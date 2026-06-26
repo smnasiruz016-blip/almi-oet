@@ -122,7 +122,7 @@ export const OET_TASKS: Record<OetTaskType, TaskDef> = {
     slug: "speaking-roleplay",
     label: "Speaking — Role-play",
     scoringMode: "AI",
-    live: false,
+    live: true,
     blurb:
       "Play your professional role in a patient consultation. We estimate from a transcript of what you said — not your accent or audio.",
   },

@@ -38,7 +38,14 @@ function sanitizePayload(taskType: OetTaskType, payload: unknown): unknown {
       questions: questions.map((q) => ({ id: q.id, stem: q.stem, options: q.options })),
     };
   }
-  // Writing + Speaking payloads carry no objective answer key.
+  if (taskType === "SPEAKING_ROLEPLAY") {
+    // The candidate sees their own card, not the patient's hidden concern —
+    // drawing that out is part of the task and what the grader scores.
+    const { patientConcern: _omit, ...rest } = p as { patientConcern?: unknown };
+    void _omit;
+    return rest;
+  }
+  // Writing payloads carry no objective answer key.
   return payload;
 }
 

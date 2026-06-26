@@ -308,11 +308,127 @@ function WritingComposer({ attemptId, prompt, payload }: { attemptId: string; pr
   );
 }
 
-// ---- Speaking (Phase 3 captures audio + grades it) ----
+// ---- Speaking: record the role-play → Whisper transcript → AI grade ----
 function SpeakingComposer({ attemptId, prompt, payload }: { attemptId: string; prompt: string; payload: unknown }) {
-  const { submit, submitting, error } = useSubmit(attemptId);
-  const [transcript, setTranscript] = useState("");
-  const p = payload as { setting?: string; candidateRole?: string; candidateCard?: string };
+  const router = useRouter();
+  const p = payload as {
+    setting?: string;
+    candidateRole?: string;
+    patientRole?: string;
+    candidateCard?: string;
+    speakSeconds?: number;
+  };
+  const cap = p.speakSeconds ?? 300;
+  const startedAt = useState(() => Date.now())[0];
+
+  const [phase, setPhase] = useState<"idle" | "recording" | "recorded" | "submitting">("idle");
+  const [secs, setSecs] = useState(0);
+  const [error, setError] = useState<string | null>(null);
+  const [typed, setTyped] = useState("");
+  const [showType, setShowType] = useState(false);
+
+  const recorderRef = useRef<MediaRecorder | null>(null);
+  const chunksRef = useRef<Blob[]>([]);
+  const blobRef = useRef<Blob | null>(null);
+  const durationRef = useRef(0);
+  const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  function stopTick() {
+    if (tickRef.current) clearInterval(tickRef.current);
+    tickRef.current = null;
+  }
+
+  async function startRecording() {
+    setError(null);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const rec = new MediaRecorder(stream);
+      recorderRef.current = rec;
+      chunksRef.current = [];
+      rec.ondataavailable = (e) => {
+        if (e.data.size > 0) chunksRef.current.push(e.data);
+      };
+      rec.onstop = () => {
+        blobRef.current = new Blob(chunksRef.current, { type: "audio/webm" });
+        stream.getTracks().forEach((t) => t.stop());
+        stopTick();
+        setPhase("recorded");
+      };
+      rec.start();
+      setSecs(0);
+      setPhase("recording");
+      tickRef.current = setInterval(() => {
+        setSecs((s) => {
+          const next = s + 1;
+          durationRef.current = next;
+          if (next >= cap) stopRecording();
+          return next;
+        });
+      }, 1000);
+    } catch {
+      setError("Microphone not available. You can type your transcript instead.");
+      setShowType(true);
+    }
+  }
+
+  function stopRecording() {
+    if (recorderRef.current && recorderRef.current.state !== "inactive") {
+      recorderRef.current.stop();
+    }
+  }
+
+  async function submitAudio() {
+    if (!blobRef.current) return;
+    setPhase("submitting");
+    setError(null);
+    try {
+      const form = new FormData();
+      form.append("attemptId", attemptId);
+      form.append("timeSpentSeconds", String(Math.round((Date.now() - startedAt) / 1000)));
+      form.append("durationSeconds", String(durationRef.current));
+      form.append("audio", blobRef.current, "speech.webm");
+      const res = await fetch("/api/oet/submit", { method: "POST", body: form });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        setError(data.error ?? "Could not submit. Try again.");
+        setPhase("recorded");
+        return;
+      }
+      router.refresh();
+    } catch {
+      setError("Network error. Try again.");
+      setPhase("recorded");
+    }
+  }
+
+  async function submitTyped() {
+    setPhase("submitting");
+    setError(null);
+    try {
+      const res = await fetch("/api/oet/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          attemptId,
+          response: { transcript: typed },
+          timeSpentSeconds: Math.round((Date.now() - startedAt) / 1000),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        setError(data.error ?? "Could not submit. Try again.");
+        setPhase("idle");
+        return;
+      }
+      router.refresh();
+    } catch {
+      setError("Network error. Try again.");
+      setPhase("idle");
+    }
+  }
+
+  const mm = String(Math.floor(secs / 60)).padStart(2, "0");
+  const ss = String(secs % 60).padStart(2, "0");
 
   return (
     <div className="space-y-5">
@@ -321,25 +437,73 @@ function SpeakingComposer({ attemptId, prompt, payload }: { attemptId: string; p
         <div className="rounded-xl border border-almi-bg-peach bg-almi-paper p-4">
           {p.setting && <p className="text-sm text-almi-text"><span className="font-semibold">Setting:</span> {p.setting}</p>}
           {p.candidateRole && <p className="mt-1 text-sm text-almi-text"><span className="font-semibold">Your role:</span> {p.candidateRole}</p>}
+          {p.patientRole && <p className="mt-1 text-sm text-almi-text"><span className="font-semibold">You are speaking with:</span> {p.patientRole}</p>}
           <p className="mt-2 text-xs font-bold uppercase tracking-wider text-almi-text-muted">Your task card</p>
           <pre className="mt-1 whitespace-pre-wrap font-sans text-sm text-almi-text">{p.candidateCard}</pre>
         </div>
       )}
+
       <p className="text-xs text-almi-text-muted">
-        Audio recording + Whisper transcription land in Phase 3. For now you can paste a transcript of
-        what you would say. We grade only the words — never accent or audio.
+        Speak your part of the consultation aloud (up to {Math.round(cap / 60)} min). We transcribe
+        what you say and grade the words only — never your accent or audio.
       </p>
-      <textarea
-        value={transcript}
-        onChange={(e) => setTranscript(e.target.value)}
-        rows={8}
-        className="w-full rounded-xl border border-almi-bg-peach bg-almi-bg px-4 py-3 text-sm"
-        placeholder="Transcript of your role-play…"
-      />
+
+      {!showType && (
+        <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/5 px-4 py-4">
+          {phase === "idle" && (
+            <button type="button" onClick={startRecording} className={SUBMIT_BTN}>
+              ● Start recording
+            </button>
+          )}
+          {phase === "recording" && (
+            <div className="flex items-center gap-3">
+              <span className="inline-block h-3 w-3 animate-pulse rounded-full bg-almi-coral" aria-hidden />
+              <span className="text-sm font-semibold text-almi-ink">Recording {mm}:{ss}</span>
+              <button
+                type="button"
+                onClick={stopRecording}
+                className="ml-auto inline-flex min-h-[40px] items-center rounded-full border border-almi-ink/15 bg-almi-paper px-4 py-2 text-sm font-semibold text-almi-ink hover:border-almi-coral"
+              >
+                ■ Stop
+              </button>
+            </div>
+          )}
+          {(phase === "recorded" || phase === "submitting") && (
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-sm text-almi-text">Recorded {mm}:{ss}.</span>
+              <button type="button" onClick={() => setPhase("idle")} className="text-sm font-semibold text-almi-text-muted underline">
+                Re-record
+              </button>
+              <button type="button" onClick={submitAudio} disabled={phase === "submitting"} className={`ml-auto ${SUBMIT_BTN}`}>
+                {phase === "submitting" ? "Transcribing & grading…" : "Submit role-play →"}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {showType && (
+        <div className="space-y-3">
+          <textarea
+            value={typed}
+            onChange={(e) => setTyped(e.target.value)}
+            rows={8}
+            className="w-full rounded-xl border border-almi-bg-peach bg-almi-bg px-4 py-3 text-sm"
+            placeholder="Type a transcript of your role-play…"
+          />
+          <button type="button" onClick={submitTyped} disabled={phase === "submitting"} className={SUBMIT_BTN}>
+            {phase === "submitting" ? "Grading…" : "Submit transcript"}
+          </button>
+        </div>
+      )}
+
+      {!showType && phase === "idle" && (
+        <button type="button" onClick={() => setShowType(true)} className="text-xs font-semibold text-almi-text-muted underline">
+          No microphone? Type your transcript instead
+        </button>
+      )}
+
       {error && <p className="text-sm font-medium text-almi-coral-deep">{error}</p>}
-      <button type="button" onClick={() => submit({ transcript })} disabled={submitting} className={SUBMIT_BTN}>
-        {submitting ? "Submitting…" : "Submit role-play"}
-      </button>
     </div>
   );
 }
