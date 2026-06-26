@@ -140,6 +140,90 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     guidanceNote:
       "Refuse the supply without sounding accusatory; normalise medication-overuse headache as a common, treatable cause, validate the patient's distress, and frame the GP referral as help rather than punishment.",
   },
+  {
+    subTest: "SPEAKING",
+    taskType: "SPEAKING_ROLEPLAY",
+    profession: "DENTISTRY",
+    title: "Dentistry — Anxious patient facing a first extraction",
+    prompt:
+      "Read your role-play card. You have a short time to prepare, then carry out the consultation. Speak your part aloud.",
+    difficulty: "CORE",
+    topicTag: "advice",
+    payload: {
+      setting: "a general dental surgery",
+      candidateRole: "You are the dentist. A patient needs a non-restorable upper molar extracted today and is visibly anxious. Acknowledge the anxiety, explain what the procedure involves, address pain and recovery concerns, and reach agreement on going ahead.",
+      patientRole: "The patient is a 34-year-old who has never had a tooth out, dreads the needle, and is worried about feeling everything and being off work the next day.",
+      candidateCard: "Find out what specifically worries the patient; reassure about local anaesthetic and that they should feel pressure but not pain; explain the brief procedure and aftercare (bite on gauze, avoid rinsing/smoking, painkillers, possible mild swelling); agree on proceeding today or arranging a follow-up if not ready.",
+      patientConcern: "The patient's real fear is not the tooth but a childhood memory of a painful dental experience, and they secretly worry the anaesthetic 'won't work' on them — they need this named and reassured, not just technical detail.",
+      prepSeconds: 60,
+      speakSeconds: 300,
+    },
+    guidanceNote:
+      "Slow down and check feelings before facts — naming the fear ('many people feel nervous before a first extraction') earns the trust that lets your clinical explanation actually land. Let the patient set the pace and confirm consent rather than rushing to the chair.",
+  },
+  {
+    subTest: "SPEAKING",
+    taskType: "SPEAKING_ROLEPLAY",
+    profession: "DENTISTRY",
+    title: "Dentistry — Parent declining fluoride for a child",
+    prompt:
+      "Read your role-play card. You have a short time to prepare, then carry out the consultation. Speak your part aloud.",
+    difficulty: "STRETCH",
+    topicTag: "advice",
+    payload: {
+      setting: "a community dental clinic",
+      candidateRole: "You are the dentist. A parent has brought their 6-year-old, who has early decay in two molars. You want to apply fluoride varnish and discuss diet, but the parent is hesitant about fluoride. Explore their concerns, give balanced information, and agree a prevention plan.",
+      patientRole: "The parent is cautious, has read online that fluoride is 'harmful', and prefers 'natural' approaches, but does want to stop the decay getting worse.",
+      candidateCard: "Find out what the parent has read and what worries them; explain how fluoride varnish works and that the small applied dose is safe and effective; acknowledge their wish to limit sugar naturally; discuss diet, snacking frequency and brushing; agree a plan the parent is comfortable with, even if that means revisiting varnish next visit.",
+      patientConcern: "The parent is not truly anti-science but feels judged as a 'bad parent' for the decay and fears being lectured — they need respect and partnership before they will accept the varnish.",
+      prepSeconds: 60,
+      speakSeconds: 300,
+    },
+    guidanceNote:
+      "Resist correcting the parent head-on; ask what they've read, validate the underlying goal (a healthy child, less sugar), and offer fluoride as one option within a shared plan. Agreeing to revisit varnish next visit can be a successful patient-centred outcome — pushing for immediate consent is not the goal.",
+  },
+  {
+    subTest: "SPEAKING",
+    taskType: "SPEAKING_ROLEPLAY",
+    profession: "PHYSIOTHERAPY",
+    title: "Physiotherapy — Advising a hesitant patient on early loading after ankle sprain",
+    prompt:
+      "Read your role-play card. You have a short time to prepare, then carry out the consultation. Speak your part aloud.",
+    difficulty: "CORE",
+    topicTag: "advice",
+    payload: {
+      setting: "an outpatient physiotherapy clinic",
+      candidateRole: "You are the physiotherapist seeing a patient one week after a grade II lateral ankle sprain sustained running. Imaging has excluded fracture.",
+      patientRole: "The patient is a 28-year-old keen runner who has been resting completely, keeping the ankle elevated and avoiding all weight-bearing for fear of 'making it worse'.",
+      candidateCard: "Find out how the patient has been managing the ankle. Explain that protected early movement and graded weight-bearing aid recovery and that prolonged total rest can slow it. Reassure that some discomfort with controlled loading is expected and safe. Advise a progressive plan (range-of-motion, gradual weight-bearing, balance work) and agree realistic short-term goals.",
+      patientConcern: "The patient secretly fears that loading the ankle will re-tear the ligament and end their running, and has read online that they should not bear weight for six weeks.",
+      prepSeconds: 60,
+      speakSeconds: 300,
+    },
+    guidanceNote:
+      "Draw out the re-injury fear before correcting the six-week belief; acknowledge the worry as reasonable rather than dismissing it, then give the graded plan.",
+  },
+  {
+    subTest: "SPEAKING",
+    taskType: "SPEAKING_ROLEPLAY",
+    profession: "PHYSIOTHERAPY",
+    title: "Physiotherapy — Managing a patient with chronic low back pain seeking a scan",
+    prompt:
+      "Read your role-play card. You have a short time to prepare, then carry out the consultation. Speak your part aloud.",
+    difficulty: "STRETCH",
+    topicTag: "advice",
+    payload: {
+      setting: "a community musculoskeletal physiotherapy clinic",
+      candidateRole: "You are the physiotherapist assessing a patient with non-specific chronic low back pain of eight months' duration, with no red-flag features identified.",
+      patientRole: "The patient is a 45-year-old warehouse worker who is convinced that an MRI scan and bed rest are needed and is frustrated that previous appointments have only offered exercises.",
+      candidateCard: "Find out the patient's beliefs about the cause of the pain and the impact on work and daily life. Explain why imaging is not usually helpful for non-specific back pain and why staying active is recommended over bed rest. Address concerns sensitively without dismissing them. Advise on graded activity, pacing and movement, and agree on a manageable next step.",
+      patientConcern: "The patient fears the pain means serious permanent damage to the spine and worries that continuing to work will cause a wheelchair-dependent future, which is why they want proof from a scan.",
+      prepSeconds: 60,
+      speakSeconds: 300,
+    },
+    guidanceNote:
+      "Validate the fear of permanent damage before explaining why a scan would not change management; offer the staying-active message as protective, not dismissive, and co-agree one concrete step.",
+  },
 ];
 
 async function main() {

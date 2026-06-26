@@ -139,6 +139,90 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     guidanceNote:
       "Make the suspended-versus-continued medicines unambiguous and tie each request to a monitoring parameter; omit unchanged social detail that does not affect ongoing care.",
   },
+  {
+    subTest: "WRITING",
+    taskType: "WRITING_LETTER",
+    profession: "DENTISTRY",
+    title: "Dentistry — Impacted lower third molar referral",
+    prompt:
+      "Using the case notes, write a letter to the oral & maxillofacial surgeon. Write 180–200 words. Select only the information relevant to ongoing care.",
+    difficulty: "FOUNDATION",
+    topicTag: "referral",
+    timeLimitSeconds: 2700,
+    payload: {
+      letterType: "referral",
+      recipient: "Mr. Daniel Okafor, Oral & Maxillofacial Surgeon, Riverside Dental Hospital",
+      taskInstruction: "Refer the patient for surgical assessment and removal of a symptomatic, partially erupted lower left third molar.",
+      wordMin: 180,
+      wordMax: 200,
+      caseNotes: "Patient: Ms. Hannah Whitlock, 27 years, administrative assistant.\nPresenting complaint: 3-week history of recurrent pain and swelling around lower left back tooth; difficulty opening mouth fully for past 4 days.\nDental history: Regular attender. Restorations 36, 46. No prior extractions.\nMedical history: Mild asthma (salbutamol PRN). No other conditions.\nAllergies: Penicillin (rash as a child).\nMedications: Combined oral contraceptive pill.\nSocial: Non-smoker. Occasional alcohol.\nExamination: 38 partially erupted, mesioangular impaction. Operculum over distal 38 inflamed, tender, slight pus on pressure. Limited mouth opening (~30mm). No facial swelling, no lymphadenopathy, afebrile today.\nRadiograph (OPG): 38 mesioangular impaction; roots in close proximity to inferior dental canal — possible superimposition over canal.\nProvisional diagnosis: Recurrent pericoronitis associated with impacted 38.\nManagement to date: Irrigation under operculum, chlorhexidine mouthwash advised, metronidazole 400mg TDS 5 days commenced (penicillin allergy).\nPlan: Refer for surgical removal assessment given recurrent episodes and IDC proximity.",
+    },
+    guidanceNote:
+      "This is a referral, so your aim is a clear request for surgical assessment — foreground the recurrent pericoronitis, the radiographic IDC proximity, and the penicillin allergy. The asthma and contraceptive pill are relevant to surgical/anaesthetic safety; the childhood restorations are not, so omit them.",
+  },
+  {
+    subTest: "WRITING",
+    taskType: "WRITING_LETTER",
+    profession: "DENTISTRY",
+    title: "Dentistry — Discharge to GP after suspicious lesion biopsy",
+    prompt:
+      "Using the case notes, write a letter to the patient's GP. Write 180–200 words. Select only the information relevant to ongoing care.",
+    difficulty: "STRETCH",
+    topicTag: "discharge",
+    timeLimitSeconds: 2700,
+    payload: {
+      letterType: "discharge",
+      recipient: "Dr. Priya Venkataraman, General Practitioner, Eastgate Medical Centre",
+      taskInstruction: "Inform the GP of a benign biopsy outcome, the advice given, and request support with smoking cessation and ongoing monitoring.",
+      wordMin: 180,
+      wordMax: 200,
+      caseNotes: "Patient: Mr. George Halloran, 58 years, retired bus driver.\nReason for attendance: Routine check-up; incidental white patch noted on left lateral border of tongue.\nDental history: Irregular attender. Upper partial denture. Heavily restored dentition.\nMedical history: Type 2 diabetes (metformin), hypertension (amlodipine).\nSocial: Smokes 20/day for 35 years; 30 units alcohol/week.\nExamination: 15mm homogenous white patch, left lateral tongue, non-wipeable, no induration or ulceration. No cervical lymphadenopathy.\nProcedure: Incisional biopsy performed under local anaesthetic two weeks ago; sutures removed, healing well.\nHistopathology: Hyperkeratosis with mild epithelial dysplasia; no malignancy.\nAdvice given: Strong smoking cessation and alcohol reduction advice; explained link to oral cancer risk.\nPlan: Discharge to routine dental recall with 3-monthly soft-tissue review; lesion to be re-referred if change. Denture reline planned separately.\nRequest: GP support for smoking cessation referral and diabetes review.",
+    },
+    guidanceNote:
+      "A discharge letter should reassure and hand over clearly: lead with the benign biopsy result, then the lifestyle risk factors and the specific support you want the GP to provide. The denture reline is your own follow-up, not the GP's, so leave it out or mention it only in passing.",
+  },
+  {
+    subTest: "WRITING",
+    taskType: "WRITING_LETTER",
+    profession: "PHYSIOTHERAPY",
+    title: "Physiotherapy — Referral to orthopaedic surgeon for non-improving knee",
+    prompt:
+      "Using the case notes, write a letter to the orthopaedic surgeon. Write 180–200 words. Select only the information relevant to ongoing care.",
+    difficulty: "CORE",
+    topicTag: "referral",
+    timeLimitSeconds: 2700,
+    payload: {
+      letterType: "referral",
+      recipient: "Mr Daniel Okafor, Orthopaedic Surgeon, Riverside General Hospital",
+      taskInstruction: "Refer the patient for orthopaedic assessment of a suspected internal derangement of the right knee that has not responded to conservative physiotherapy.",
+      wordMin: 180,
+      wordMax: 200,
+      caseNotes: "Patient: Ms Hannah Pierce, 34, primary school teacher.\nPresenting condition: Right knee pain and intermittent locking, 4 months.\nMechanism: Twisting injury during recreational netball; felt a 'pop', immediate swelling.\nHistory: No previous knee injury or surgery. Non-smoker. BMI 24. No diabetes.\nMeds: Ibuprofen 400mg PRN; Paracetamol PRN. Allergy: penicillin (rash).\nAssessment (initial): Effusion +, medial joint line tenderness, McMurray positive medially, ROM 5–110° (limited terminal extension), quads inhibition, MMT quads 4/5.\nTreatment so far (12 sessions / 10 weeks): Progressive quads/hamstring strengthening, ROM work, proprioceptive retraining, taping, activity modification.\nProgress: ROM improved to 0–130°, strength now 4+/5; HOWEVER mechanical locking persists ~2–3x/week, recurrent effusion after activity, ongoing instability descending stairs. Unable to return to sport; modified work duties.\nPlan: Conservative management plateaued; mechanical symptoms suggest possible medial meniscal tear. Refer for orthopaedic review +/- MRI.",
+    },
+    guidanceNote:
+      "Lead with the mechanical locking and failed conservative trial — those justify the referral. Omit the resolved ROM details unless they support the plateau.",
+  },
+  {
+    subTest: "WRITING",
+    taskType: "WRITING_LETTER",
+    profession: "PHYSIOTHERAPY",
+    title: "Physiotherapy — Discharge to GP after post-stroke rehabilitation",
+    prompt:
+      "Using the case notes, write a letter to the patient's GP. Write 180–200 words. Select only the information relevant to ongoing care.",
+    difficulty: "STRETCH",
+    topicTag: "discharge",
+    timeLimitSeconds: 2700,
+    payload: {
+      letterType: "discharge",
+      recipient: "Dr Amara Singh, General Practitioner, Eastgate Medical Centre",
+      taskInstruction: "Inform the GP of the patient's discharge from community physiotherapy following stroke rehabilitation and request ongoing monitoring and falls-risk support.",
+      wordMin: 180,
+      wordMax: 200,
+      caseNotes: "Patient: Mr George Whitlock, 71, retired electrician, lives with wife (bungalow).\nDiagnosis: Left middle cerebral artery ischaemic stroke, 5 months ago. Right hemiparesis.\nPMH: Hypertension, atrial fibrillation, type 2 diabetes.\nMeds: Apixaban, amlodipine, metformin, atorvastatin. No known allergies.\nRehab course: Inpatient then 14 weeks community physiotherapy.\nProgress: Independent transfers and indoor mobility with single-point stick. Walks 150m outdoors with supervision; mild residual right foot drop, manages with AFO. Right upper limb: functional grasp returning, used as assist.\nCurrent status: Berg Balance 44/56; one fall (no injury) reaching in kitchen. Independent in personal ADLs. Mood low at times re: driving cessation.\nPlan/recommendations: Discharge — goals met. Continue home exercise programme (provided). Monitor BP and falls risk; review AFO fit in 6 months. Consider low-mood review. Has not resumed driving — awaiting DVLA guidance.",
+    },
+    guidanceNote:
+      "Frame discharge around what the GP must now monitor — falls risk, low mood, AFO review — not the full rehab timeline. Be specific about the single fall.",
+  },
 ];
 
 async function main() {

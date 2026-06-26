@@ -38,7 +38,7 @@ export const PROFESSIONS: Record<OetProfession, ProfessionDef> = {
     slug: "dentistry",
     label: "Dentistry",
     blurb: "Dental referrals, treatment letters and chair-side role-plays.",
-    contentReady: false,
+    contentReady: true,
   },
   DIETETICS: {
     profession: "DIETETICS",
@@ -73,7 +73,7 @@ export const PROFESSIONS: Record<OetProfession, ProfessionDef> = {
     slug: "physiotherapy",
     label: "Physiotherapy",
     blurb: "Rehabilitation referral letters and movement-advice role-plays.",
-    contentReady: false,
+    contentReady: true,
   },
   PODIATRY: {
     profession: "PODIATRY",
