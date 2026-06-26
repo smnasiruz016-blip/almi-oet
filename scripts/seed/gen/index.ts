@@ -20,6 +20,18 @@ import { ITEMS as W_PODIATRY } from "./writing_podiatry";
 import { ITEMS as W_RADIOGRAPHY } from "./writing_radiography";
 import { ITEMS as W_SPEECH } from "./writing_speech_pathology";
 import { ITEMS as W_VET } from "./writing_veterinary_science";
+import { ITEMS as S_NURSING } from "./speaking_nursing";
+import { ITEMS as S_MEDICINE } from "./speaking_medicine";
+import { ITEMS as S_PHARMACY } from "./speaking_pharmacy";
+import { ITEMS as S_DENTISTRY } from "./speaking_dentistry";
+import { ITEMS as S_PHYSIOTHERAPY } from "./speaking_physiotherapy";
+import { ITEMS as S_DIETETICS } from "./speaking_dietetics";
+import { ITEMS as S_OT } from "./speaking_occupational_therapy";
+import { ITEMS as S_OPTOMETRY } from "./speaking_optometry";
+import { ITEMS as S_PODIATRY } from "./speaking_podiatry";
+import { ITEMS as S_RADIOGRAPHY } from "./speaking_radiography";
+import { ITEMS as S_SPEECH } from "./speaking_speech_pathology";
+import { ITEMS as S_VET } from "./speaking_veterinary_science";
 
 export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...LISTENING_A,
@@ -40,4 +52,16 @@ export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...W_RADIOGRAPHY,
   ...W_SPEECH,
   ...W_VET,
+  ...S_NURSING,
+  ...S_MEDICINE,
+  ...S_PHARMACY,
+  ...S_DENTISTRY,
+  ...S_PHYSIOTHERAPY,
+  ...S_DIETETICS,
+  ...S_OT,
+  ...S_OPTOMETRY,
+  ...S_PODIATRY,
+  ...S_RADIOGRAPHY,
+  ...S_SPEECH,
+  ...S_VET,
 ];
