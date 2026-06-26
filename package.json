@@ -5,7 +5,8 @@
   "description": "AlmiOET — AI-powered Occupational English Test (OET) practice for healthcare professionals (0–500 scale, A–E grade per sub-test, 12 professions) in the AlmiWorld family. Separate product (almioet.almiworld.com). Original content — never copied from OET/CBLA. Practice estimates only; confirm requirements with your regulator.",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && next build",
+    "build": "prisma generate && prisma migrate deploy && next build && npm run seed:prod",
+    "seed:prod": "tsx scripts/seed/append.ts || echo 'seed:prod skipped (non-fatal)'",
     "start": "next start",
     "postinstall": "prisma generate",
     "seed:listening": "tsx scripts/seed/listening.ts",
@@ -25,6 +26,7 @@
     "react-dom": "19.2.4",
     "resend": "^6.12.3",
     "stripe": "^22.1.0",
+    "tsx": "^4.21.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
@@ -34,7 +36,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
-    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
