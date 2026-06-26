@@ -9,12 +9,16 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { synthesizeSpeech } from "@/lib/ai/openai";
+import { synthesizeSpeech, synthesizeDialogue } from "@/lib/ai/openai";
 
 export const runtime = "nodejs";
 
-// Every Listening payload (Part A/B/C) carries an audioScript.
-const audioPayloadSchema = z.object({ audioScript: z.string().min(1) });
+// Every Listening payload (Part A/B/C) carries an audioScript; Part A also
+// carries the two speakers, so we render it as an alternating-voice dialogue.
+const audioPayloadSchema = z.object({
+  audioScript: z.string().min(1),
+  speakers: z.array(z.object({ role: z.string(), voice: z.string() })).optional(),
+});
 
 export async function GET(
   _req: Request,
@@ -40,7 +44,11 @@ export async function GET(
   }
 
   try {
-    const audio = await synthesizeSpeech(parsed.data.audioScript, user.id);
+    const speakers = parsed.data.speakers ?? [];
+    const audio =
+      speakers.length >= 2
+        ? await synthesizeDialogue(parsed.data.audioScript, speakers, user.id)
+        : await synthesizeSpeech(parsed.data.audioScript, user.id, speakers[0]?.voice);
     return new Response(audio, {
       headers: {
         "Content-Type": "audio/mpeg",

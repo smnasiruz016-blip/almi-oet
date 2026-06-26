@@ -9,6 +9,39 @@ import type { TaskDef } from "@/lib/oet/registry";
 import { SUBTEST_LABEL } from "@/lib/oet/types";
 import type { GradeEstimate as GradeEstimateValue } from "@/lib/oet/scale";
 import { GradeEstimate, ESTIMATE_DISCLAIMER } from "@/components/oet/GradeEstimate";
+import { buildObjectiveReview } from "@/lib/oet/review";
+
+function ObjectiveReview({ def, item, attempt }: { def: TaskDef; item: OetItem; attempt: OetAttempt }) {
+  const review = buildObjectiveReview(def.taskType, item.payload, attempt.response);
+  if (!review || review.total === 0) return null;
+  return (
+    <section className="rounded-2xl border border-almi-bg-peach bg-almi-bg p-5">
+      <h2 className="text-sm font-bold uppercase tracking-wider text-almi-text-muted">
+        Answer review · {review.correct}/{review.total} correct
+      </h2>
+      <ul className="mt-3 space-y-3">
+        {review.rows.map((r, i) => (
+          <li key={i} className="rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3">
+            <div className="flex items-start gap-2">
+              <span aria-hidden className={r.ok ? "text-almi-teal" : "text-almi-coral-deep"}>
+                {r.ok ? "✓" : "✗"}
+              </span>
+              <p className="text-sm font-medium text-almi-ink">{r.label}</p>
+            </div>
+            <p className="mt-1 pl-6 text-sm text-almi-text">
+              Your answer: <span className={r.ok ? "text-almi-teal" : "text-almi-coral-deep"}>{r.your}</span>
+            </p>
+            {!r.ok && (
+              <p className="pl-6 text-sm text-almi-text">
+                Correct: <span className="font-medium text-almi-ink">{r.correct}</span>
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
 
 type AnyFeedback = {
   strengths?: string[];
@@ -74,6 +107,8 @@ export function OetResult({
       </header>
 
       <GradeEstimate label={`${SUBTEST_LABEL[attempt.subTest]} (this item)`} estimate={estimate} />
+
+      <ObjectiveReview def={def} item={item} attempt={attempt} />
 
       {feedback && (
         <section className="rounded-2xl border border-almi-bg-peach bg-almi-bg p-5">

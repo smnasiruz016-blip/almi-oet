@@ -54,7 +54,7 @@ export const OET_TASKS: Record<OetTaskType, TaskDef> = {
     slug: "listening-part-a",
     label: "Listening — Part A",
     scoringMode: "DETERMINISTIC",
-    live: false,
+    live: true,
     blurb:
       "Listen to two healthcare consultations and complete the notes as you hear the details. Audio plays once.",
   },
@@ -64,7 +64,7 @@ export const OET_TASKS: Record<OetTaskType, TaskDef> = {
     slug: "listening-part-b",
     label: "Listening — Part B",
     scoringMode: "DETERMINISTIC",
-    live: false,
+    live: true,
     blurb:
       "Six short workplace extracts, one multiple-choice question each. Audio plays once.",
   },
@@ -74,7 +74,7 @@ export const OET_TASKS: Record<OetTaskType, TaskDef> = {
     slug: "listening-part-c",
     label: "Listening — Part C",
     scoringMode: "DETERMINISTIC",
-    live: false,
+    live: true,
     blurb:
       "Two longer presentations or interviews, multiple-choice questions. Audio plays once.",
   },
@@ -84,7 +84,7 @@ export const OET_TASKS: Record<OetTaskType, TaskDef> = {
     slug: "reading-part-a",
     label: "Reading — Part A",
     scoringMode: "DETERMINISTIC",
-    live: false,
+    live: true,
     blurb:
       "Skim four short texts on one topic and answer matching and gap-fill questions against the clock.",
   },
@@ -94,7 +94,7 @@ export const OET_TASKS: Record<OetTaskType, TaskDef> = {
     slug: "reading-part-b",
     label: "Reading — Part B",
     scoringMode: "DETERMINISTIC",
-    live: false,
+    live: true,
     blurb: "Short workplace texts — read carefully and answer one multiple-choice question each.",
   },
   READING_PART_C: {
@@ -103,7 +103,7 @@ export const OET_TASKS: Record<OetTaskType, TaskDef> = {
     slug: "reading-part-c",
     label: "Reading — Part C",
     scoringMode: "DETERMINISTIC",
-    live: false,
+    live: true,
     blurb: "Two longer texts — read in detail and answer multiple-choice questions on meaning and opinion.",
   },
   WRITING_LETTER: {

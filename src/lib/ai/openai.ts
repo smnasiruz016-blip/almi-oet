@@ -16,11 +16,13 @@ function getKey(): string {
   return k;
 }
 
-/** Generate spoken audio (mp3) from text. Kept server-side so the Listen and
- *  Type sentence never reaches the client. */
+/** Generate spoken audio (mp3) from text with a chosen voice. Kept server-side
+ *  so the Listening transcript (which carries the answers) never reaches the
+ *  client. */
 export async function synthesizeSpeech(
   text: string,
   userId: string | null,
+  voice: string = "alloy",
 ): Promise<ArrayBuffer> {
   let res: Response;
   try {
@@ -32,7 +34,7 @@ export async function synthesizeSpeech(
       },
       body: JSON.stringify({
         model: "tts-1",
-        voice: "alloy",
+        voice,
         input: text,
         response_format: "mp3",
       }),
@@ -40,7 +42,7 @@ export async function synthesizeSpeech(
   } catch (err) {
     await recordExternalCost({
       userId,
-      feature: "listen-and-type.tts",
+      feature: "listening.tts",
       model: "tts-1",
       costCents: 0,
       success: false,
@@ -51,7 +53,7 @@ export async function synthesizeSpeech(
   if (!res.ok) {
     await recordExternalCost({
       userId,
-      feature: "listen-and-type.tts",
+      feature: "listening.tts",
       model: "tts-1",
       costCents: 0,
       success: false,
@@ -62,12 +64,73 @@ export async function synthesizeSpeech(
   const costCents = Math.round((text.length / 1000) * TTS_USD_PER_1K_CHARS["tts-1"] * 10_000);
   await recordExternalCost({
     userId,
-    feature: "listen-and-type.tts",
+    feature: "listening.tts",
     model: "tts-1",
     costCents,
     success: true,
   });
   return res.arrayBuffer();
+}
+
+type DialogueSpeaker = { role: string; voice: string };
+
+/** Split a labelled script ("Clinician: … Patient: …") into ordered segments,
+ *  each tagged with the speaker's voice. Speaker labels are removed from the
+ *  spoken text — the voice change signals who is talking, as in the real exam. */
+function splitDialogue(
+  script: string,
+  speakers: DialogueSpeaker[],
+): { voice: string; text: string }[] {
+  if (speakers.length < 2) return [];
+  const roleToVoice = new Map(speakers.map((s) => [s.role.toLowerCase(), s.voice]));
+  const labels = speakers.map((s) => s.role.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  // Find every "Role:" boundary, then slice the text between consecutive marks.
+  const re = new RegExp(`(${labels.join("|")})\\s*:\\s*`, "gi");
+  const marks: { role: string; at: number; end: number }[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(script)) !== null) {
+    marks.push({ role: match[1], at: match.index, end: match.index + match[0].length });
+  }
+  if (marks.length < 2) return [];
+  const segments: { voice: string; text: string }[] = [];
+  for (let i = 0; i < marks.length; i++) {
+    const m = marks[i];
+    const textEnd = i + 1 < marks.length ? marks[i + 1].at : script.length;
+    const text = script.slice(m.end, textEnd).trim();
+    const voice = roleToVoice.get(m.role.toLowerCase()) ?? speakers[0].voice;
+    if (text) segments.push({ voice, text });
+  }
+  return segments;
+}
+
+/** Concatenate several tts-1 MP3 buffers into one. tts-1 returns constant-
+ *  bitrate MP3, which browsers play back fine when frames are concatenated. */
+function concatBuffers(buffers: ArrayBuffer[]): ArrayBuffer {
+  const total = buffers.reduce((n, b) => n + b.byteLength, 0);
+  const out = new Uint8Array(total);
+  let offset = 0;
+  for (const b of buffers) {
+    out.set(new Uint8Array(b), offset);
+    offset += b.byteLength;
+  }
+  return out.buffer;
+}
+
+/** Generate two-speaker consultation audio (Listening Part A) by synthesising
+ *  each line in its speaker's voice and concatenating. Falls back to a single
+ *  voice for the whole script if the dialogue can't be split. */
+export async function synthesizeDialogue(
+  script: string,
+  speakers: DialogueSpeaker[],
+  userId: string | null,
+): Promise<ArrayBuffer> {
+  const segments = splitDialogue(script, speakers);
+  if (segments.length < 2) return synthesizeSpeech(script, userId, speakers[0]?.voice);
+  const buffers: ArrayBuffer[] = [];
+  for (const seg of segments) {
+    buffers.push(await synthesizeSpeech(seg.text, userId, seg.voice));
+  }
+  return concatBuffers(buffers);
 }
 
 /** Transcribe a recorded audio clip with Whisper. */
