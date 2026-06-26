@@ -1,0 +1,340 @@
+// AlmiOET data model. The shared engine foundation (auth, billing, AI cost
+// ledger) is forked from AlmiDET. The practice layer is an ITEM-BANK: a single
+// OetItem ↔ OetAttempt pair carries every task type via a typed `payload` Json,
+// instead of one model per skill. Scoring is hybrid — deterministic for
+// objective tasks (Listening + Reading), AI trait-feedback for productive tasks
+// (Writing + Speaking) — and is reported as an honest practice RANGE on the OET
+// 0–500 scale with an A–E grade per sub-test. OET reports a separate score per
+// sub-test with NO composite/overall, so we never compute one either. All
+// practice content is original to AlmiOET; results are practice estimates only —
+// candidates are told to confirm requirements with their regulator.
+//
+// The big structural fact: Listening + Reading are COMMON to all 12 professions
+// (profession = null), while Writing + Speaking are PER-PROFESSION (profession
+// set). One nullable `profession` column on OetItem carries that whole axis.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Migrations use Neon's direct (unpooled) connection; runtime queries use the
+  // pooled URL above. Both are provided by the Neon–Vercel integration.
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+enum Locale {
+  EN
+  UR
+  AR
+  HI
+}
+
+enum SubscriptionTier {
+  FREE
+  PREMIUM
+}
+
+model User {
+  id           String  @id @default(cuid())
+  email        String  @unique
+  name         String?
+  passwordHash String
+  locale       Locale  @default(EN)
+  countryCode  String?
+  referralCode String  @unique @default(cuid())
+
+  // Email verification — required before paid feature access.
+  emailVerified               DateTime?
+  emailVerificationTokenHash  String?   @unique
+  emailVerificationExpiresAt  DateTime?
+  emailVerificationLastSentAt DateTime?
+
+  // Stripe subscription state — webhook keeps this in lockstep with Stripe.
+  stripeCustomerId              String?          @unique
+  stripeSubscriptionId          String?          @unique
+  subscriptionStatus            String?
+  subscriptionPlan              String?
+  subscriptionCurrentPeriodEnd  DateTime?
+  subscriptionCancelAtPeriodEnd Boolean          @default(false)
+  trialEndsAt                   DateTime?
+  subscriptionTier              SubscriptionTier @default(FREE)
+
+  // Comp Pro access — admin-granted, no Stripe. isProActive()/hasPaidAccess()
+  // short-circuit true while compProUntil is in the future, bypassing BOTH the
+  // subscription check AND email verification (comp = immediate full access).
+  // Single grant per user (revoke = null all four; extend tops up). OET full Pro
+  // = AI feedback on the Writing letter + Speaking role-play + the full mock.
+  compProUntil  DateTime?
+  compGrantedAt DateTime?
+  compGrantedBy String?
+  compReason    String?
+
+  // The healthcare profession the user is preparing for. Drives which Writing /
+  // Speaking banks they see and how their mock is assembled. Null = not chosen
+  // yet (Listening + Reading practice is common and works without it).
+  targetProfession OetProfession?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessions            Session[]
+  passwordResetTokens PasswordResetToken[]
+  oetAttempts         OetAttempt[]
+  oetSessions         OetSession[]
+
+  @@index([email])
+  @@index([referralCode])
+  @@index([stripeCustomerId])
+  @@index([stripeSubscriptionId])
+  @@index([compProUntil])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model ProcessedWebhook {
+  id          String   @id
+  eventType   String
+  processedAt DateTime @default(now())
+
+  @@index([processedAt])
+}
+
+model EarlyAccess {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  source    String?
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
+
+model AICostLedger {
+  id               String   @id @default(cuid())
+  timestamp        DateTime @default(now())
+  userId           String? // null for system calls (e.g. seeding, admin)
+  feature          String // e.g. "writing-letter.evaluate"
+  model            String
+  inputTokens      Int
+  outputTokens     Int
+  cacheReadTokens  Int      @default(0)
+  cacheWriteTokens Int      @default(0)
+  costCents        Int // rounded total cost in 1/100 cents
+  success          Boolean  @default(true)
+  errorMessage     String?
+
+  @@index([timestamp(sort: Desc)])
+  @@index([userId, timestamp])
+  @@index([feature, timestamp])
+}
+
+// ===================== OET practice item-bank =====================
+// OET has four sub-tests. Listening + Reading are COMMON across all 12
+// professions; Writing + Speaking are PER-PROFESSION. One OetItem/OetAttempt
+// pair serves every task type; the `payload`/`response` Json shapes vary by
+// taskType and are validated in app code (see src/lib/oet/tasks/*).
+
+// The four OET sub-tests. Each is scored 0–500 with an A–E grade, independently.
+enum OetSubTest {
+  LISTENING // common
+  READING // common
+  WRITING // per-profession (clinical letter)
+  SPEAKING // per-profession (role-play)
+}
+
+// The 12 OET professions (UK NARIC / CBLA official list). Set on Writing +
+// Speaking items; null on the common Listening + Reading items.
+enum OetProfession {
+  NURSING
+  MEDICINE
+  DENTISTRY
+  DIETETICS
+  OCCUPATIONAL_THERAPY
+  OPTOMETRY
+  PHARMACY
+  PHYSIOTHERAPY
+  PODIATRY
+  RADIOGRAPHY
+  SPEECH_PATHOLOGY
+  VETERINARY_SCIENCE
+}
+
+// Fine-grained task type — encodes the sub-test AND the OET part structure.
+enum OetTaskType {
+  LISTENING_PART_A // consultation extracts → note completion (gap fill)
+  LISTENING_PART_B // short workplace extracts → multiple choice
+  LISTENING_PART_C // presentation / interview → multiple choice
+  READING_PART_A // expeditious reading: 4 short texts → matching + gap fill
+  READING_PART_B // careful reading: short workplace texts → multiple choice
+  READING_PART_C // careful reading: 2 long texts → multiple choice
+  WRITING_LETTER // clinical letter from case notes (per-profession, AI)
+  SPEAKING_ROLEPLAY // role-play scenario card (per-profession, AI)
+}
+
+enum OetAttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+  SCORED
+}
+
+// Difficulty pools for assembling practice sets and mocks (not adaptive — OET
+// is a fixed-form test; honestly labelled practice difficulty).
+enum OetDifficulty {
+  FOUNDATION
+  CORE
+  STRETCH
+}
+
+model OetItem {
+  id               String         @id @default(cuid())
+  subTest          OetSubTest
+  taskType         OetTaskType
+  // NULL for Listening + Reading (common to all professions); SET for Writing +
+  // Speaking (per-profession bank). The whole per-profession axis is this column.
+  profession       OetProfession?
+  title            String
+  // Instruction shown to the test-taker.
+  prompt           String         @db.Text
+  // Task-specific stimulus + (for objective tasks) the server-side answer key,
+  // never sent raw to the client. Shapes by taskType (validated in app code):
+  //   LISTENING_PART_A   { audioScript, speakers:[{role,voice}], gaps:[{id,label,answer}] }
+  //   LISTENING_PART_B/C { audioScript, speakers, questions:[{id,stem,options,answer}] }
+  //   READING_PART_A     { texts:[{id,heading,body}], questions:[{id,kind,answer}] }
+  //   READING_PART_B/C   { passages:[{id,body}], questions:[{id,stem,options,answer}] }
+  //   WRITING_LETTER     { caseNotes, recipient, taskInstruction, letterType, wordMin, wordMax }
+  //   SPEAKING_ROLEPLAY  { setting, candidateRole, patientRole, candidateCard, patientConcern, prepSeconds, speakSeconds }
+  payload          Json
+  difficulty       OetDifficulty  @default(CORE)
+  // Honest "what good looks like" coaching note (never the answer).
+  guidanceNote     String?        @db.Text
+  timeLimitSeconds Int            @default(0)
+  topicTag         String         @default("general")
+  active           Boolean        @default(true)
+  createdAt        DateTime       @default(now())
+
+  attempts OetAttempt[]
+
+  @@index([subTest, profession, active, difficulty])
+  @@index([taskType, active])
+}
+
+model OetAttempt {
+  id       String           @id @default(cuid())
+  userId   String
+  itemId   String
+  subTest  OetSubTest
+  taskType OetTaskType
+  status   OetAttemptStatus @default(IN_PROGRESS)
+
+  // The user's raw response; shape depends on taskType:
+  //   Listening / Reading  { answers: { [questionId]: string | string[] } }
+  //   WRITING_LETTER        { text: string }
+  //   SPEAKING_ROLEPLAY     { transcript: string }
+  response Json @default("{}")
+
+  // Honest practice points: deterministic for Listening/Reading; for Writing/
+  // Speaking, derived conservatively from the AI trait read. Never an OET score.
+  pointsEarned Int @default(0)
+  pointsMax    Int @default(0)
+
+  // Per-sub-test practice estimate on the OET 0–500 scale with an A–E grade.
+  // OET scores each sub-test independently with NO composite, so this is a single
+  // estimate, not a multi-skill object. Shape: { lo, hi, grade } | null
+  // (null = not enough evidence yet). lo/hi snap to the 10-point OET grid.
+  gradeEstimate Json?
+
+  // AI trait feedback payload for Writing/Speaking (qualitative; no OET number).
+  feedback Json?
+
+  // Telemetry (AI tasks).
+  aiModel   String?
+  costCents Int?
+  latencyMs Int?
+
+  // Set when this attempt is a step inside a practice set or a full mock.
+  sessionId   String?
+  sessionStep Int?
+
+  timeSpentSeconds Int       @default(0)
+  startedAt        DateTime  @default(now())
+  submittedAt      DateTime?
+  updatedAt        DateTime  @updatedAt
+
+  user    User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  item    OetItem     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  session OetSession? @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([userId, status, submittedAt])
+  @@index([userId, startedAt])
+  @@index([itemId])
+  @@index([sessionId, sessionStep])
+}
+
+// ===================== Practice sets + full mock =====================
+// An OetSession sequences several OetAttempts. PRACTICE_SET = several items of
+// one sub-test in a row. MOCK = the full OET in order (Listening → Reading →
+// Writing → Speaking), each sub-test scored independently into its own 0–500
+// grade. No composite/overall is ever computed (OET reports per sub-test only).
+// For a MOCK, Writing + Speaking items are drawn from the user's chosen
+// profession; Listening + Reading are common.
+
+enum OetSessionMode {
+  PRACTICE_SET
+  MOCK
+}
+
+enum OetSessionStatus {
+  IN_PROGRESS
+  COMPLETED
+}
+
+model OetSession {
+  id     String @id @default(cuid())
+  userId String
+
+  mode              OetSessionMode
+  subTest           OetSubTest? // set for PRACTICE_SET (single sub-test); null for MOCK
+  // The profession a MOCK is built for (drives Writing/Speaking item selection).
+  // Null for a common-only PRACTICE_SET (Listening/Reading).
+  profession        OetProfession?
+  targetCount       Int
+  currentStep       Int              @default(0)
+  // Difficulty pool the NEXT practice item is drawn from.
+  currentDifficulty OetDifficulty    @default(CORE)
+  // Ordered task types, one per step (e.g. the full mock sequence). Null until set.
+  plan              Json?
+  status            OetSessionStatus @default(IN_PROGRESS)
+
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+  updatedAt   DateTime  @updatedAt
+
+  user     User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attempts OetAttempt[]
+
+  @@index([userId, status, startedAt])
+}

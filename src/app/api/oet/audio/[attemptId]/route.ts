@@ -1,0 +1,54 @@
+// On-demand TTS for the Listening sub-test. Generates the audio server-side from
+// the item's `audioScript` so the transcript (which carries the answers) never
+// reaches the client. Ownership-scoped to the requesting user's attempt.
+//
+// Phase 0 synthesises a single voice. Listening Part A is a two-speaker
+// consultation, so a later phase will alternate voices using payload.speakers.
+
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { getCurrentUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { synthesizeSpeech } from "@/lib/ai/openai";
+
+export const runtime = "nodejs";
+
+// Every Listening payload (Part A/B/C) carries an audioScript.
+const audioPayloadSchema = z.object({ audioScript: z.string().min(1) });
+
+export async function GET(
+  _req: Request,
+  ctx: { params: Promise<{ attemptId: string }> },
+): Promise<Response> {
+  const user = await getCurrentUser();
+  if (!user) {
+    return NextResponse.json({ ok: false, error: "Not authenticated" }, { status: 401 });
+  }
+  const { attemptId } = await ctx.params;
+
+  const attempt = await prisma.oetAttempt.findFirst({
+    where: { id: attemptId, userId: user.id },
+    include: { item: true },
+  });
+  if (!attempt || attempt.subTest !== "LISTENING") {
+    return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });
+  }
+
+  const parsed = audioPayloadSchema.safeParse(attempt.item.payload);
+  if (!parsed.success) {
+    return NextResponse.json({ ok: false, error: "Bad item" }, { status: 500 });
+  }
+
+  try {
+    const audio = await synthesizeSpeech(parsed.data.audioScript, user.id);
+    return new Response(audio, {
+      headers: {
+        "Content-Type": "audio/mpeg",
+        "Cache-Control": "private, no-store",
+      },
+    });
+  } catch (err) {
+    console.error("[oet.audio] tts failed:", err);
+    return NextResponse.json({ ok: false, error: "Audio unavailable" }, { status: 500 });
+  }
+}
