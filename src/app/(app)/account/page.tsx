@@ -14,6 +14,8 @@ import {
   isEmailVerified,
 } from "@/lib/billing/plans";
 import { ResendVerificationButton } from "@/components/ResendVerificationButton";
+import { getMyReview } from "@/lib/reviews";
+import { ReviewCard } from "@/components/reviews/ReviewCard";
 
 async function setProfession(formData: FormData) {
   "use server";
@@ -37,6 +39,7 @@ export default async function AccountPage({
   const plan = getUserPlan(user);
   const proActive = isProActive(user);
   const verified = isEmailVerified(user);
+  const myReview = await getMyReview();
 
   return (
     <div className="space-y-8">
@@ -161,6 +164,8 @@ export default async function AccountPage({
           Nursing has practice content now; the other professions follow in content batches.
         </p>
       </section>
+
+      <ReviewCard initial={myReview} />
 
       <section className="rounded-2xl border border-almi-bg-peach bg-almi-bg p-6 text-center">
         <p className="text-sm text-almi-text">Ready to practise for the Occupational English Test?</p>

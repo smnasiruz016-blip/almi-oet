@@ -1,12 +1,13 @@
 "use client";
 
-// Admin tab strip. Comp Accounts + Accounts for now; Reviews & Email List is a
-// later pass.
+// Admin tab strip.
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const TABS = [
+  { label: "Reviews", href: "/admin/reviews" },
+  { label: "AI Usage", href: "/admin/costs" },
   { label: "Comp Accounts", href: "/admin/comp-accounts" },
   { label: "Accounts", href: "/admin/accounts" },
 ];

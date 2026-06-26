@@ -4,6 +4,10 @@ import { OET_TASKS } from "@/lib/oet/registry";
 import { SUBTEST_LABEL } from "@/lib/oet/types";
 import { PROFESSION_LIST } from "@/lib/oet/professions";
 import type { OetSubTest } from "@prisma/client";
+import { TestimonialsSection } from "@/components/reviews/TestimonialsSection";
+
+// Re-render hourly so newly approved testimonials appear without a redeploy.
+export const revalidate = 3600;
 
 // Homepage self-brands. `absolute` opts out of the root layout's title
 // template so the brand appears exactly once.
@@ -286,6 +290,9 @@ export default function Home() {
           </dl>
         </div>
       </section>
+
+      {/* Testimonials (renders only when 3+ approved reviews exist) */}
+      <TestimonialsSection />
 
       {/* Final CTA */}
       <section className="border-t border-almi-bg-peach bg-almi-paper px-6 py-16">
