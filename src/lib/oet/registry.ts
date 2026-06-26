@@ -112,7 +112,7 @@ export const OET_TASKS: Record<OetTaskType, TaskDef> = {
     slug: "writing-letter",
     label: "Writing — Clinical Letter",
     scoringMode: "AI",
-    live: false,
+    live: true,
     blurb:
       "Read the case notes and write a profession-specific letter (180–200 words). You'll get honest feedback against the OET writing criteria.",
   },

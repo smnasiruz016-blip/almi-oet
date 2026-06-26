@@ -2,7 +2,11 @@
 // block can be added back here later (the AlmiPrep account page is the template).
 
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import type { OetProfession } from "@prisma/client";
 import { requireUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { PROFESSION_LIST } from "@/lib/oet/professions";
 import {
   getUserPlan,
   PLAN_DISPLAY_NAME,
@@ -11,10 +15,22 @@ import {
 } from "@/lib/billing/plans";
 import { ResendVerificationButton } from "@/components/ResendVerificationButton";
 
+async function setProfession(formData: FormData) {
+  "use server";
+  const user = await requireUser();
+  const value = String(formData.get("profession") ?? "");
+  const valid = PROFESSION_LIST.some((p) => p.profession === value);
+  await prisma.user.update({
+    where: { id: user.id },
+    data: { targetProfession: valid ? (value as OetProfession) : null },
+  });
+  redirect("/account?saved=1");
+}
+
 export default async function AccountPage({
   searchParams,
 }: {
-  searchParams: Promise<{ welcome?: string; upgraded?: string }>;
+  searchParams: Promise<{ welcome?: string; upgraded?: string; saved?: string }>;
 }) {
   const user = await requireUser();
   const params = await searchParams;
@@ -32,6 +48,11 @@ export default async function AccountPage({
       {params.upgraded && (
         <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/10 px-4 py-3 text-sm text-almi-ink">
           Subscription active. Your 7-day trial has begun.
+        </div>
+      )}
+      {params.saved && (
+        <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/10 px-4 py-3 text-sm text-almi-ink">
+          Profession saved. Your Writing and Speaking material now matches it.
         </div>
       )}
 
@@ -101,6 +122,38 @@ export default async function AccountPage({
             <ResendVerificationButton email={user.email} />
           </>
         )}
+      </section>
+
+      <section className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-almi-ink">Your profession</h2>
+        <p className="mt-1 text-sm text-almi-text-muted">
+          OET Writing and Speaking are specific to your profession. Listening and Reading are common
+          to all professions and don&apos;t need this set.
+        </p>
+        <form action={setProfession} className="mt-4 flex flex-wrap items-center gap-3">
+          <select
+            name="profession"
+            defaultValue={user.targetProfession ?? ""}
+            className="min-h-[40px] rounded-md border border-almi-bg-peach bg-almi-bg px-3 py-2 text-sm text-almi-ink"
+          >
+            <option value="">Not set</option>
+            {PROFESSION_LIST.map((p) => (
+              <option key={p.profession} value={p.profession}>
+                {p.label}
+                {p.contentReady ? "" : " (content coming soon)"}
+              </option>
+            ))}
+          </select>
+          <button
+            type="submit"
+            className="inline-flex min-h-[40px] items-center justify-center rounded-md bg-almi-coral px-4 py-2 text-sm font-semibold text-almi-ink hover:bg-almi-coral-deep"
+          >
+            Save profession
+          </button>
+        </form>
+        <p className="mt-2 text-xs text-almi-text-muted">
+          Nursing has practice content now; the other professions follow in content batches.
+        </p>
       </section>
 
       <section className="rounded-2xl border border-almi-bg-peach bg-almi-bg p-6 text-center">

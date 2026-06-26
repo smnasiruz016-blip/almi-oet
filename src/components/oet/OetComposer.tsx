@@ -298,7 +298,7 @@ function WritingComposer({ attemptId, prompt, payload }: { attemptId: string; pr
         placeholder="Write your letter here…"
       />
       <p className="text-xs text-almi-text-muted">
-        {words} words{p.wordMin ? ` · OET expects ${p.wordMin}–${p.wordMax ?? p.wordMin}` : ""}. AI feedback against the OET writing criteria lands in Phase 2.
+        {words} words{p.wordMin ? ` · OET expects ${p.wordMin}–${p.wordMax ?? p.wordMin}` : ""}. You&apos;ll get honest feedback against the six OET writing criteria.
       </p>
       {error && <p className="text-sm font-medium text-almi-coral-deep">{error}</p>}
       <button type="button" onClick={() => submit({ text })} disabled={submitting} className={SUBMIT_BTN}>

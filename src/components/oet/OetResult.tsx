@@ -43,16 +43,61 @@ function ObjectiveReview({ def, item, attempt }: { def: TaskDef; item: OetItem; 
   );
 }
 
-type AnyFeedback = {
-  strengths?: string[];
-  improvements?: string[];
-  overallComment?: string;
-} | null;
+type AnyFeedback =
+  | ({
+      strengths?: string[];
+      improvements?: string[];
+      overallComment?: string;
+    } & Record<string, unknown>)
+  | null;
+
+const TRAIT_LABEL: Record<string, string> = {
+  purpose: "Purpose",
+  content: "Content",
+  concisenessAndClarity: "Conciseness & clarity",
+  genreAndStyle: "Genre & style",
+  organisationAndLayout: "Organisation & layout",
+  language: "Language",
+  intelligibility: "Intelligibility",
+  fluency: "Fluency",
+  appropriatenessOfLanguage: "Appropriateness of language",
+  resourcesOfGrammarAndExpression: "Grammar & expression",
+  relationshipBuilding: "Relationship building",
+  understandingPatientPerspective: "Patient's perspective",
+  providingStructure: "Providing structure",
+  informationGathering: "Information gathering",
+  informationGiving: "Information giving",
+};
+const TRAIT_LEVELS = new Set(["strong", "adequate", "limited"]);
+const TRAIT_TONE: Record<string, string> = {
+  strong: "bg-almi-teal/15 text-almi-teal",
+  adequate: "bg-almi-accent/15 text-almi-accent-deep",
+  limited: "bg-almi-coral/15 text-almi-coral-deep",
+};
+
+function TraitGrid({ feedback }: { feedback: AnyFeedback }) {
+  if (!feedback) return null;
+  const traits = Object.entries(feedback).filter(
+    ([, v]) => typeof v === "string" && TRAIT_LEVELS.has(v as string),
+  ) as [string, string][];
+  if (traits.length === 0) return null;
+  return (
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+      {traits.map(([k, v]) => (
+        <div key={k} className="flex items-center justify-between gap-2 rounded-lg border border-almi-bg-peach bg-almi-paper px-3 py-2">
+          <span className="text-sm text-almi-text">{TRAIT_LABEL[k] ?? k}</span>
+          <span className={`rounded-full px-2 py-0.5 text-xs font-semibold capitalize ${TRAIT_TONE[v] ?? ""}`}>{v}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function FeedbackBlock({ feedback }: { feedback: AnyFeedback }) {
   if (!feedback) return null;
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
+      <TraitGrid feedback={feedback} />
       {feedback.overallComment && <p className="text-sm text-almi-text">{feedback.overallComment}</p>}
       {feedback.strengths && feedback.strengths.length > 0 && (
         <div>
