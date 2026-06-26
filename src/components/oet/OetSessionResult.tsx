@@ -6,6 +6,7 @@
 import Link from "next/link";
 import type { OetAttempt, OetItem, OetSession, OetSubTest } from "@prisma/client";
 import { aggregateSession } from "@/lib/oet/session";
+import { OET_BENCHMARK_B } from "@/lib/oet/scale";
 import { SUBTEST_LABEL } from "@/lib/oet/types";
 import { GradeEstimate, ESTIMATE_DISCLAIMER } from "@/components/oet/GradeEstimate";
 
@@ -20,6 +21,13 @@ export function OetSessionResult({
 }) {
   const estimates = aggregateSession(attempts);
   const touched = SUBTEST_ORDER.filter((s) => estimates[s] !== null);
+  const isMock = session.mode === "MOCK";
+  // OET requires the benchmark grade in EVERY sub-test, so count per sub-test —
+  // never average into a composite. A/B mean the midpoint is at/above 350.
+  const atBenchmark = touched.filter((s) => {
+    const g = estimates[s]?.grade;
+    return g === "A" || g === "B";
+  }).length;
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
@@ -39,6 +47,19 @@ export function OetSessionResult({
           <GradeEstimate key={s} label={SUBTEST_LABEL[s]} estimate={estimates[s]} />
         ))}
       </div>
+
+      {isMock && touched.length > 0 && (
+        <div className="rounded-2xl border border-almi-coral/30 bg-almi-coral/5 p-5">
+          <p className="text-sm font-semibold text-almi-ink">
+            {atBenchmark} of {touched.length} sub-tests at Grade B ({OET_BENCHMARK_B}) in this run
+          </p>
+          <p className="mt-1 text-sm text-almi-text">
+            Most regulators ask for at least Grade B in <span className="font-semibold">every</span>{" "}
+            sub-test — they don&apos;t average them. Use the per-sub-test grades above to see where to
+            focus next. Confirm the exact grades you need with your own regulator.
+          </p>
+        </div>
+      )}
 
       <p className="rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3 text-xs text-almi-text-muted">
         {ESTIMATE_DISCLAIMER}

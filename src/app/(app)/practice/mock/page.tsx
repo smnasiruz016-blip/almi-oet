@@ -3,8 +3,10 @@
 // mock includes AI tasks and is built for the user's profession, so it needs a
 // subscription and a chosen profession.
 
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import { hasPaidAccess } from "@/lib/billing/plans";
 import { startSession } from "@/lib/oet/session";
 
@@ -26,6 +28,16 @@ export default async function MockStartPage() {
   const user = await requireUser();
   const needsPaid = !hasPaidAccess(user);
   const needsProfession = !user.targetProfession;
+
+  // Offer to resume an unfinished mock rather than always starting fresh.
+  const inProgress =
+    needsPaid || needsProfession
+      ? null
+      : await prisma.oetSession.findFirst({
+          where: { userId: user.id, mode: "MOCK", status: "IN_PROGRESS" },
+          orderBy: { startedAt: "desc" },
+          select: { id: true, currentStep: true, targetCount: true },
+        });
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
@@ -62,14 +74,30 @@ export default async function MockStartPage() {
           .
         </div>
       ) : (
-        <form action={startMockAction}>
-          <button
-            type="submit"
-            className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
-          >
-            Begin full mock →
-          </button>
-        </form>
+        <div className="space-y-3">
+          {inProgress && (
+            <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/5 px-4 py-4">
+              <p className="text-sm font-semibold text-almi-ink">
+                You have a mock in progress — step {inProgress.currentStep + 1} of{" "}
+                {inProgress.targetCount}.
+              </p>
+              <Link
+                href={`/practice/session/${inProgress.id}`}
+                className="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-full bg-almi-teal px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90"
+              >
+                Resume mock →
+              </Link>
+            </div>
+          )}
+          <form action={startMockAction}>
+            <button
+              type="submit"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
+            >
+              {inProgress ? "Start a new mock →" : "Begin full mock →"}
+            </button>
+          </form>
+        </div>
       )}
 
       <p className="text-xs text-almi-text-muted">

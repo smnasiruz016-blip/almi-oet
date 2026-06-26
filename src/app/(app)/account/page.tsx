@@ -30,7 +30,7 @@ async function setProfession(formData: FormData) {
 export default async function AccountPage({
   searchParams,
 }: {
-  searchParams: Promise<{ welcome?: string; upgraded?: string; saved?: string }>;
+  searchParams: Promise<{ welcome?: string; upgraded?: string; saved?: string; needprofession?: string }>;
 }) {
   const user = await requireUser();
   const params = await searchParams;
@@ -53,6 +53,12 @@ export default async function AccountPage({
       {params.saved && (
         <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/10 px-4 py-3 text-sm text-almi-ink">
           Profession saved. Your Writing and Speaking material now matches it.
+        </div>
+      )}
+      {params.needprofession && (
+        <div className="rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink">
+          Choose your profession below to start the full mock — the Writing and Speaking tasks come
+          from your field.
         </div>
       )}
 
