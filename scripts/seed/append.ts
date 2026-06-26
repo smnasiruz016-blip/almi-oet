@@ -16,11 +16,12 @@ import { ITEMS as LISTENING } from "./listening";
 import { ITEMS as READING } from "./reading";
 import { ITEMS as WRITING } from "./writing-letter";
 import { ITEMS as SPEAKING } from "./speaking-roleplay";
+import { GEN_ITEMS } from "./gen";
 
 const prisma = new PrismaClient();
 const DRY = process.argv.includes("--dry");
 
-const ALL = [...LISTENING, ...READING, ...WRITING, ...SPEAKING];
+const ALL = [...LISTENING, ...READING, ...WRITING, ...SPEAKING, ...GEN_ITEMS];
 
 const key = (taskType: string, profession: string | null | undefined, title: string) =>
   `${taskType}::${profession ?? "_"}::${title}`;
