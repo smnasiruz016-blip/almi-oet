@@ -31,7 +31,7 @@ export const PROFESSIONS: Record<OetProfession, ProfessionDef> = {
     slug: "medicine",
     label: "Medicine",
     blurb: "Referral and discharge letters and consultations for doctors.",
-    contentReady: false,
+    contentReady: true,
   },
   DENTISTRY: {
     profession: "DENTISTRY",
@@ -66,7 +66,7 @@ export const PROFESSIONS: Record<OetProfession, ProfessionDef> = {
     slug: "pharmacy",
     label: "Pharmacy",
     blurb: "Medication letters and counselling-at-the-counter role-plays.",
-    contentReady: false,
+    contentReady: true,
   },
   PHYSIOTHERAPY: {
     profession: "PHYSIOTHERAPY",
