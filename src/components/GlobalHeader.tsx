@@ -15,7 +15,6 @@ export const FAMILY_NAV = [
   { label: "AlmiPrep", href: "https://almiprep.almiworld.com/" },
   { label: "AlmiPTE", href: "https://almipte.almiworld.com/" },
   { label: "AlmiTOEFL", href: "https://almitoefl.almiworld.com/" },
-  { label: "AlmiOET", href: "https://almioet.almiworld.com/" },
   { label: "AlmiDET", href: "https://almidet.almiworld.com/" },
   { label: "AlmiCELPIP", href: "https://almicelpip.almiworld.com/" },
   { label: "AlmiGoethe", href: "https://almigoethe.almiworld.com/" },
