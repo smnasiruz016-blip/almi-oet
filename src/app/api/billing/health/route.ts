@@ -35,6 +35,8 @@ export async function GET() {
     keyLen: key.length,
     keyClean: key === key.trim() && !/\s/.test(key), // no leading/trailing/inner whitespace
     keyLast4: key.slice(-4),
+    appUrl: process.env.NEXT_PUBLIC_APP_URL ?? "(unset→fallback)",
+    appUrlValid: (() => { try { new URL((process.env.NEXT_PUBLIC_APP_URL ?? "https://almioet.almiworld.com") + "/account?upgraded=true"); return true; } catch { return false; } })(),
   };
   if (!key) {
     out.ok = false;
