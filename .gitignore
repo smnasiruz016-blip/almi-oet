@@ -12,3 +12,5 @@ dist/
 
 # TypeScript incremental build cache — machine-specific, never commit
 *.tsbuildinfo
+
+.vercel
