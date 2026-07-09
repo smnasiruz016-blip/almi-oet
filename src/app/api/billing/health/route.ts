@@ -31,6 +31,10 @@ export async function GET() {
     keyPresent: Boolean(key),
     keyMode: mode,
     priceVarsPresent: Object.keys(present),
+    // Non-secret key-shape diagnostics (no key value exposed):
+    keyLen: key.length,
+    keyClean: key === key.trim() && !/\s/.test(key), // no leading/trailing/inner whitespace
+    keyLast4: key.slice(-4),
   };
   if (!key) {
     out.ok = false;
