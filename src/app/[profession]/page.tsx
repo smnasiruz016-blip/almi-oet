@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ProfessionLanding, buildProfessionMetadata } from "@/components/oet-seo/profession-landing";
 
-export const revalidate = 86400;
+export const revalidate = false; // render-once, cache until redeploy — static SEO data, no periodic ISR re-writes
 export const dynamicParams = true;
 
 type Params = Promise<{ profession: string }>;

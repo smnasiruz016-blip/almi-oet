@@ -5,7 +5,7 @@ import {
   buildProfessionOriginMetadata,
 } from "@/components/oet-seo/profession-origin-page";
 
-export const revalidate = 86400;
+export const revalidate = false; // render-once, cache until redeploy — static SEO data, no periodic ISR re-writes
 export const dynamicParams = true;
 
 // The origin segment carries the literal `from-` prefix, e.g. /nursing/from-pakistan.
