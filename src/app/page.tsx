@@ -13,10 +13,10 @@ export const revalidate = 3600;
 // template so the brand appears exactly once.
 export const metadata: Metadata = {
   title: {
-    absolute: "Occupational English Test Practice for Healthcare with Honest AI Feedback | AlmiOET",
+    absolute: "OET Practice Test — Clear or Borderline | AlmiOET",
   },
   description:
-    "Practise the Occupational English Test on the real 0–500 scale, with an A–E grade for each sub-test and honest AI feedback for all 12 healthcare professions. Original material, never copied from OET. $12/month, 7-day free trial.",
+    "OET practice on the real 0–500 scale with an A–E grade per sub-test — see if you're Clear or Borderline before exam day. All 12 healthcare professions. Original material.",
   openGraph: {
     title: "AlmiOET — honest Occupational English Test practice for healthcare",
     description:
