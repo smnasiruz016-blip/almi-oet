@@ -6,7 +6,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SITE_URL } from "@/lib/oet-seo/sitemap-urls";
 import { orgBySlug, gradeLine, professionLabelToSlug, isOrgIndexable } from "@/lib/oet-seo/data";
-import { OetSeoCrossLinks, OetSeoCta, OetSeoShamool, OetSeoDisclaimer, FaqJsonLd, GRADE_DOCTRINE } from "./master";
+import { orgNote } from "@/lib/oet-seo/org-notes";
+import {
+  OetSeoCrossLinks,
+  OetSeoCta,
+  OetSeoShamool,
+  OetSeoDisclaimer,
+  OetSeoOrgNote,
+  FaqJsonLd,
+  GRADE_DOCTRINE,
+} from "./master";
 
 export function buildRegisterMetadata(orgSlug: string): Metadata {
   const org = orgBySlug(orgSlug);
@@ -29,11 +38,14 @@ export function RegisterOrgPage({ orgSlug }: { orgSlug: string }) {
   const org = orgBySlug(orgSlug);
   if (!org) notFound();
   const grade = gradeLine(org);
+  const note = orgNote(org.slug);
 
   const faqs = [
     {
       q: `Does ${org.name} accept OET?`,
-      a: `Yes — ${org.name} is on OET's official list of recognising organisations. ${grade ? `The published requirement is ${grade}.` : "OET does not publish a fixed grade for this organisation — confirm directly."}`,
+      // A bare "yes" is misleading where acceptance is conditional on how the test was
+      // sat, so the condition rides along with the answer — including in the FAQ schema.
+      a: `Yes — ${org.name} is on OET's official list of recognising organisations. ${grade ? `The published requirement is ${grade}.` : "OET does not publish a fixed grade for this organisation — confirm directly."}${note ? ` ${note.note}` : ""}`,
     },
     { q: `What grade does ${org.name} require?`, a: grade ? `${grade}. ${GRADE_DOCTRINE}` : GRADE_DOCTRINE },
     {
@@ -69,6 +81,8 @@ export function RegisterOrgPage({ orgSlug }: { orgSlug: string }) {
           )}
           <p className="mt-1 text-xs text-almi-text-muted">Per sub-test on the 0–500 scale.</p>
         </div>
+
+        {note && <OetSeoOrgNote {...note} />}
 
         <h2 className="mt-8 text-sm font-bold uppercase tracking-wider text-almi-text-muted">
           Professions {org.name} recognises OET for
