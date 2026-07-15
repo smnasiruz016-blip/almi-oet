@@ -79,6 +79,41 @@ export function OetSeoDisclaimer() {
   );
 }
 
+/**
+ * A sourced acceptance condition for one organisation (see lib/oet-seo/org-notes.ts).
+ * Rendered above the fold, because these are the conditions that invalidate an otherwise
+ * valid test — a candidate who reads "this organisation accepts OET" and nothing else can
+ * sit the wrong kind of sitting and have it rejected. Always shows its source and the date
+ * we last read it, so a reader can check us and see how fresh the claim is.
+ */
+export function OetSeoOrgNote({
+  note,
+  sourceUrl,
+  sourceLabel,
+  verifiedOn,
+}: {
+  note: string;
+  sourceUrl: string;
+  sourceLabel: string;
+  verifiedOn: string;
+}) {
+  return (
+    <div className="mt-6 rounded-2xl border border-almi-coral bg-almi-paper p-5">
+      <p className="text-xs font-bold uppercase tracking-wider text-almi-coral-deep">
+        Important — how the test must be taken
+      </p>
+      <p className="mt-2 text-sm text-almi-text">{note}</p>
+      <p className="mt-3 text-xs text-almi-text-muted">
+        Source:{" "}
+        <a href={sourceUrl} rel="nofollow noopener" className="font-semibold text-almi-coral underline">
+          {sourceLabel}
+        </a>{" "}
+        · verified {verifiedOn}. Rules change — confirm before you book.
+      </p>
+    </div>
+  );
+}
+
 export function FaqJsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
   const json = {
     "@context": "https://schema.org",

@@ -16,11 +16,13 @@ import {
   isOrgIndexable,
   type SeoOrg,
 } from "@/lib/oet-seo/data";
+import { orgNote } from "@/lib/oet-seo/org-notes";
 import {
   OetSeoCrossLinks,
   OetSeoCta,
   OetSeoShamool,
   OetSeoDisclaimer,
+  OetSeoOrgNote,
   FaqJsonLd,
   GRADE_DOCTRINE,
 } from "./master";
@@ -70,10 +72,13 @@ export function OrgPage(args: Args) {
 
   const grade = gradeLine(org);
   const dest = org.country ?? "multiple countries";
+  const note = orgNote(org.slug);
   const faqs = [
     {
       q: `Does ${org.name} accept OET for ${professionLabel}?`,
-      a: `Yes — ${org.name} is on OET's official list of recognising organisations for ${professionLabel}. ${grade ? `The published requirement is ${grade}.` : "OET does not publish a fixed grade for this organisation — confirm it directly."} Always check the current requirement on the organisation's own page.`,
+      // A bare "yes" is misleading where acceptance is conditional on how the test was
+      // sat, so the condition rides along with the answer — including in the FAQ schema.
+      a: `Yes — ${org.name} is on OET's official list of recognising organisations for ${professionLabel}. ${grade ? `The published requirement is ${grade}.` : "OET does not publish a fixed grade for this organisation — confirm it directly."}${note ? ` ${note.note}` : ""} Always check the current requirement on the organisation's own page.`,
     },
     {
       q: `What OET grade do I need for ${org.name}?`,
@@ -125,6 +130,8 @@ export function OrgPage(args: Args) {
             </p>
           </div>
         </div>
+
+        {note && <OetSeoOrgNote {...note} />}
 
         <div className="mt-6 space-y-3 text-sm text-almi-text">
           <p>
