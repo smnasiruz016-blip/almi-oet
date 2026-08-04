@@ -1933,7 +1933,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
-          "kind": "short",
+          "kind": "gap",
           "stem": "Which scale rates six areas of risk?",
           "answer": "the Braden Scale",
           "variants": [
@@ -1943,7 +1943,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q9",
-          "kind": "short",
+          "kind": "gap",
           "stem": "A Braden score of what value or below prompts a prevention plan?",
           "answer": "18",
           "variants": [
@@ -1952,7 +1952,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q10",
-          "kind": "short",
+          "kind": "gap",
           "stem": "Which position is preferred over lying directly on the hip?",
           "answer": "the 30-degree tilt",
           "variants": [
@@ -1962,19 +1962,19 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q11",
-          "kind": "short",
+          "kind": "gap",
           "stem": "What early sign appears on the skin?",
           "answer": "non-blanching redness"
         },
         {
           "id": "q12",
-          "kind": "short",
+          "kind": "gap",
           "stem": "Which nutritional screening tool is named?",
           "answer": "MUST"
         },
         {
           "id": "q13",
-          "kind": "short",
+          "kind": "gap",
           "stem": "Who should be referred when oral intake is poor?",
           "answer": "the dietitian",
           "variants": [

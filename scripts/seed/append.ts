@@ -8,8 +8,19 @@
 //   npm run seed:append          insert missing items
 //   npm run seed:append -- --dry preview only, write nothing
 //
-// Source of truth is the four task seed files — we import their ITEMS arrays so
-// there is never a second copy of the content to drift out of sync.
+// Source of truth is gen/ — and ONLY gen/. When the seed source was converged to
+// de-gamed prod, gen/*.ts was regenerated FROM the database, which already held
+// the 60 items that the four hand-written task files describe. Since then those
+// 60 exist twice in source, and concatenating both sets tripped the duplicate
+// guard below: seed:prod threw before writing a single row.
+//
+// gen/ wins because it carries the option ORDER learners are actually served
+// (post de-game); the hand-written files carry the pre-de-game order. Seeding
+// from them would reintroduce an order that disagrees with production.
+//
+// The four files are still imported — not to be seeded, but to be CHECKED. If
+// one ever gains an item gen/ does not have, that item would be silently dropped
+// from every future seed, so we fail loudly instead.
 
 import { PrismaClient } from "@prisma/client";
 import { ITEMS as LISTENING } from "./listening";
@@ -21,7 +32,8 @@ import { GEN_ITEMS } from "./gen";
 const prisma = new PrismaClient();
 const DRY = process.argv.includes("--dry");
 
-const ALL = [...LISTENING, ...READING, ...WRITING, ...SPEAKING, ...GEN_ITEMS];
+const ALL = GEN_ITEMS;
+const HANDWRITTEN = [...LISTENING, ...READING, ...WRITING, ...SPEAKING];
 
 const key = (taskType: string, profession: string | null | undefined, title: string) =>
   `${taskType}::${profession ?? "_"}::${title}`;
@@ -34,6 +46,18 @@ async function main() {
   const dupes = sourceKeys.filter((k, i) => sourceKeys.indexOf(k) !== i);
   if (dupes.length > 0) {
     throw new Error(`Duplicate (taskType,profession,title) in seed source: ${[...new Set(dupes)].join(", ")}`);
+  }
+
+  // gen/ must remain a superset of the hand-written sets, or dropping them here
+  // loses content silently.
+  const sourceKeySet = new Set(sourceKeys);
+  const orphans = HANDWRITTEN.map((it) =>
+    key(it.taskType as string, (it.profession as string | null) ?? null, it.title),
+  ).filter((k) => !sourceKeySet.has(k));
+  if (orphans.length > 0) {
+    throw new Error(
+      `Hand-written seed item(s) missing from gen/ — they would never be seeded: ${[...new Set(orphans)].join(", ")}`,
+    );
   }
 
   const existing = await prisma.oetItem.findMany({
