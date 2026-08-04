@@ -1,15 +1,22 @@
-// On-demand TTS for the Listening sub-test. Generates the audio server-side from
-// the item's `audioScript` so the transcript (which carries the answers) never
-// reaches the client. Ownership-scoped to the requesting user's attempt.
+// Listening audio for an attempt. Serves the PRE-RENDERED file when one exists
+// and falls back to on-demand TTS only for a script that has never been
+// rendered. Audio is generated server-side either way, so the transcript (which
+// carries the answers) never reaches the client. Ownership-scoped to the
+// requesting user's attempt.
 //
-// Phase 0 synthesises a single voice. Listening Part A is a two-speaker
-// consultation, so a later phase will alternate voices using payload.speakers.
+// Pre-rendered audio is produced offline by scripts/render-audio.ts with Piper
+// and committed to the repo. The fallback is the previous behaviour and still
+// bills OpenAI per play, so a miss is a cost event, not just a slow path — it is
+// logged as one.
 
 import { NextResponse } from "next/server";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { synthesizeSpeech, synthesizeDialogue } from "@/lib/ai/openai";
+import { AUDIO_DIR, audioFileName, audioKey } from "@/lib/oet/audio";
 
 export const runtime = "nodejs";
 
@@ -19,6 +26,16 @@ const audioPayloadSchema = z.object({
   audioScript: z.string().min(1),
   speakers: z.array(z.object({ role: z.string(), voice: z.string() })).optional(),
 });
+
+/** The rendered file for this script, or null if it was never rendered. */
+async function prerendered(payload: z.infer<typeof audioPayloadSchema>): Promise<Buffer | null> {
+  const key = audioKey(payload);
+  try {
+    return await readFile(join(process.cwd(), AUDIO_DIR, audioFileName(key)));
+  } catch {
+    return null;
+  }
+}
 
 export async function GET(
   _req: Request,
@@ -43,6 +60,23 @@ export async function GET(
     return NextResponse.json({ ok: false, error: "Bad item" }, { status: 500 });
   }
 
+  const file = await prerendered(parsed.data);
+  if (file) {
+    return new Response(new Uint8Array(file), {
+      headers: {
+        "Content-Type": "audio/mpeg",
+        "Content-Length": String(file.length),
+        // Pre-rendered audio is identical for every learner, but it is still
+        // paid content behind an ownership check — private, not shared cache.
+        "Cache-Control": "private, max-age=3600",
+        "X-Audio-Source": "prerendered",
+      },
+    });
+  }
+
+  console.warn(
+    `[oet.audio] no rendered file for item ${attempt.item.id} (${attempt.item.title}) — falling back to paid TTS`,
+  );
   try {
     const speakers = parsed.data.speakers ?? [];
     const audio =
@@ -53,6 +87,7 @@ export async function GET(
       headers: {
         "Content-Type": "audio/mpeg",
         "Cache-Control": "private, no-store",
+        "X-Audio-Source": "openai-tts",
       },
     });
   } catch (err) {

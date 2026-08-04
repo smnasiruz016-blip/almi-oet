@@ -52,6 +52,13 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [{ protocol: "https", hostname: "almiworld.com" }],
   },
+  // Pre-rendered Listening audio is read from disk at request time, so nothing
+  // imports it and the tracer cannot see it. Without this the files are absent
+  // from the deployed function and every play silently falls back to paid TTS —
+  // the exact cost this replaces, failing quietly instead of loudly.
+  outputFileTracingIncludes: {
+    "/api/oet/audio/[attemptId]": ["./audio/oet/**"],
+  },
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },

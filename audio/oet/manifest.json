@@ -1,0 +1,447 @@
+{
+  "generatedFrom": "scripts/render-audio.ts",
+  "sampleRate": 22050,
+  "bitrateKbps": 48,
+  "items": [
+    {
+      "key": "56f478c3ae86f3b8",
+      "title": "Part A — Ankle injury after a fall",
+      "taskType": "LISTENING_PART_A",
+      "file": "56f478c3ae86f3b8.mp3",
+      "rendered": true,
+      "bytes": 188865
+    },
+    {
+      "key": "a48e7ae63e8a0292",
+      "title": "Part A — Antenatal visit",
+      "taskType": "LISTENING_PART_A",
+      "file": "a48e7ae63e8a0292.mp3",
+      "rendered": true,
+      "bytes": 131500
+    },
+    {
+      "key": "eacdcbf213bc8f49",
+      "title": "Part A — Asthma flare-up",
+      "taskType": "LISTENING_PART_A",
+      "file": "eacdcbf213bc8f49.mp3",
+      "rendered": true,
+      "bytes": 133381
+    },
+    {
+      "key": "22868e9e453442f8",
+      "title": "Part A — Chest pain assessment",
+      "taskType": "LISTENING_PART_A",
+      "file": "22868e9e453442f8.mp3",
+      "rendered": true,
+      "bytes": 124604
+    },
+    {
+      "key": "ffd2ffbd47107f0b",
+      "title": "Part A — Child with fever",
+      "taskType": "LISTENING_PART_A",
+      "file": "ffd2ffbd47107f0b.mp3",
+      "rendered": true,
+      "bytes": 118491
+    },
+    {
+      "key": "3353003466a7429e",
+      "title": "Part A — Diabetes annual check",
+      "taskType": "LISTENING_PART_A",
+      "file": "3353003466a7429e.mp3",
+      "rendered": true,
+      "bytes": 122410
+    },
+    {
+      "key": "c91f7e3c056d92b6",
+      "title": "Part A — Knee pain consultation",
+      "taskType": "LISTENING_PART_A",
+      "file": "c91f7e3c056d92b6.mp3",
+      "rendered": true,
+      "bytes": 92003
+    },
+    {
+      "key": "0e5cbef9994d62e3",
+      "title": "Part A — Lower back pain",
+      "taskType": "LISTENING_PART_A",
+      "file": "0e5cbef9994d62e3.mp3",
+      "rendered": true,
+      "bytes": 126328
+    },
+    {
+      "key": "5b0faf103243fb16",
+      "title": "Part A — Medication side-effect",
+      "taskType": "LISTENING_PART_A",
+      "file": "5b0faf103243fb16.mp3",
+      "rendered": true,
+      "bytes": 140904
+    },
+    {
+      "key": "49c079aa4cd9d060",
+      "title": "Part A — Mental-health check-in",
+      "taskType": "LISTENING_PART_A",
+      "file": "49c079aa4cd9d060.mp3",
+      "rendered": true,
+      "bytes": 133381
+    },
+    {
+      "key": "6431b82ca19cca36",
+      "title": "Part A — Migraine review",
+      "taskType": "LISTENING_PART_A",
+      "file": "6431b82ca19cca36.mp3",
+      "rendered": true,
+      "bytes": 144509
+    },
+    {
+      "key": "123b16c57ba96065",
+      "title": "Part A — New skin rash",
+      "taskType": "LISTENING_PART_A",
+      "file": "123b16c57ba96065.mp3",
+      "rendered": true,
+      "bytes": 100937
+    },
+    {
+      "key": "538605ba87e9ac45",
+      "title": "Part A — Ongoing sleep problem",
+      "taskType": "LISTENING_PART_A",
+      "file": "538605ba87e9ac45.mp3",
+      "rendered": true,
+      "bytes": 127112
+    },
+    {
+      "key": "fd561dd29b38a4d0",
+      "title": "Part A — Post-operative wound check",
+      "taskType": "LISTENING_PART_A",
+      "file": "fd561dd29b38a4d0.mp3",
+      "rendered": true,
+      "bytes": 109714
+    },
+    {
+      "key": "0b40750d7b9ab284",
+      "title": "Part A — Suspected urinary infection",
+      "taskType": "LISTENING_PART_A",
+      "file": "0b40750d7b9ab284.mp3",
+      "rendered": true,
+      "bytes": 128052
+    },
+    {
+      "key": "a073ba258d0405d7",
+      "title": "OET Form 1 · Listening Part A — Physiotherapy consultation (lower back pain)",
+      "taskType": "LISTENING_PART_A",
+      "file": "a073ba258d0405d7.mp3",
+      "rendered": true,
+      "bytes": 396382
+    },
+    {
+      "key": "021c92ba7132737d",
+      "title": "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)",
+      "taskType": "LISTENING_PART_A",
+      "file": "021c92ba7132737d.mp3",
+      "rendered": true,
+      "bytes": 391993
+    },
+    {
+      "key": "97ce11bcea1430fc",
+      "title": "Part B — Alert about a norovirus outbreak",
+      "taskType": "LISTENING_PART_B",
+      "file": "97ce11bcea1430fc.mp3",
+      "rendered": true,
+      "bytes": 101250
+    },
+    {
+      "key": "e0291737d8201d6e",
+      "title": "Part B — Arranging a complex discharge",
+      "taskType": "LISTENING_PART_B",
+      "file": "e0291737d8201d6e.mp3",
+      "rendered": true,
+      "bytes": 95138
+    },
+    {
+      "key": "6afcecbe540ee88e",
+      "title": "Part B — Changes to the weekend roster",
+      "taskType": "LISTENING_PART_B",
+      "file": "6afcecbe540ee88e.mp3",
+      "rendered": true,
+      "bytes": 84793
+    },
+    {
+      "key": "022cca6fdac6b918",
+      "title": "Part B — Feedback from a hand hygiene audit",
+      "taskType": "LISTENING_PART_B",
+      "file": "022cca6fdac6b918.mp3",
+      "rendered": true,
+      "bytes": 91063
+    },
+    {
+      "key": "1730ef6f460f6503",
+      "title": "Part B — Following up a patient complaint",
+      "taskType": "LISTENING_PART_B",
+      "file": "1730ef6f460f6503.mp3",
+      "rendered": true,
+      "bytes": 101250
+    },
+    {
+      "key": "6b2f10ba45ba7354",
+      "title": "Part B — Handover extract",
+      "taskType": "LISTENING_PART_B",
+      "file": "6b2f10ba45ba7354.mp3",
+      "rendered": true,
+      "bytes": 66925
+    },
+    {
+      "key": "616c156319123a88",
+      "title": "Part B — Morning team brief on bed pressures",
+      "taskType": "LISTENING_PART_B",
+      "file": "616c156319123a88.mp3",
+      "rendered": true,
+      "bytes": 106736
+    },
+    {
+      "key": "9b985789ab838903",
+      "title": "Part B — Note on mandatory manual handling training",
+      "taskType": "LISTENING_PART_B",
+      "file": "9b985789ab838903.mp3",
+      "rendered": true,
+      "bytes": 88868
+    },
+    {
+      "key": "0af0b9d4b17403d3",
+      "title": "Part B — Reminder about timing of antibiotics",
+      "taskType": "LISTENING_PART_B",
+      "file": "0af0b9d4b17403d3.mp3",
+      "rendered": true,
+      "bytes": 104385
+    },
+    {
+      "key": "5ea438b0f7dabb0e",
+      "title": "Part B — Revised visiting hours policy",
+      "taskType": "LISTENING_PART_B",
+      "file": "5ea438b0f7dabb0e.mp3",
+      "rendered": true,
+      "bytes": 96235
+    },
+    {
+      "key": "5c172ca52f395350",
+      "title": "Part B — Safeguarding reminder for new admissions",
+      "taskType": "LISTENING_PART_B",
+      "file": "5c172ca52f395350.mp3",
+      "rendered": true,
+      "bytes": 94197
+    },
+    {
+      "key": "f91fd59359a27289",
+      "title": "Part B — Shortage of a wound dressing size",
+      "taskType": "LISTENING_PART_B",
+      "file": "f91fd59359a27289.mp3",
+      "rendered": true,
+      "bytes": 101877
+    },
+    {
+      "key": "fecd71e9b5fdf224",
+      "title": "Part B — Switching to a new infusion pump model",
+      "taskType": "LISTENING_PART_B",
+      "file": "fecd71e9b5fdf224.mp3",
+      "rendered": true,
+      "bytes": 95608
+    },
+    {
+      "key": "ffa726612b8045e8",
+      "title": "Part B — Updated dressing trolley protocol",
+      "taskType": "LISTENING_PART_B",
+      "file": "ffa726612b8045e8.mp3",
+      "rendered": true,
+      "bytes": 155010
+    },
+    {
+      "key": "a4893bd877617789",
+      "title": "Part B — Verbal handover for a post-operative patient",
+      "taskType": "LISTENING_PART_B",
+      "file": "a4893bd877617789.mp3",
+      "rendered": true,
+      "bytes": 103758
+    },
+    {
+      "key": "5ad52301f773b8ec",
+      "title": "OET Form 1 · Listening Part B — Discharge concern",
+      "taskType": "LISTENING_PART_B",
+      "file": "5ad52301f773b8ec.mp3",
+      "rendered": true,
+      "bytes": 68806
+    },
+    {
+      "key": "27f4af602b00734f",
+      "title": "OET Form 1 · Listening Part B — Hand-hygiene audit",
+      "taskType": "LISTENING_PART_B",
+      "file": "27f4af602b00734f.mp3",
+      "rendered": true,
+      "bytes": 52976
+    },
+    {
+      "key": "43e3172e75b2b441",
+      "title": "OET Form 1 · Listening Part B — X-ray result",
+      "taskType": "LISTENING_PART_B",
+      "file": "43e3172e75b2b441.mp3",
+      "rendered": true,
+      "bytes": 57051
+    },
+    {
+      "key": "fd2b78412d484839",
+      "title": "OET Form 1 · Listening Part B — Home exercises",
+      "taskType": "LISTENING_PART_B",
+      "file": "fd2b78412d484839.mp3",
+      "rendered": true,
+      "bytes": 65828
+    },
+    {
+      "key": "eb8077041ebb43cc",
+      "title": "OET Form 1 · Listening Part B — Infusion pump training",
+      "taskType": "LISTENING_PART_B",
+      "file": "eb8077041ebb43cc.mp3",
+      "rendered": true,
+      "bytes": 63477
+    },
+    {
+      "key": "3753dca2d8e76a92",
+      "title": "OET Form 1 · Listening Part B — Handling results",
+      "taskType": "LISTENING_PART_B",
+      "file": "3753dca2d8e76a92.mp3",
+      "rendered": true,
+      "bytes": 68179
+    },
+    {
+      "key": "a049463ac6005bc5",
+      "title": "Part C — A multimodal approach to chronic pain management",
+      "taskType": "LISTENING_PART_C",
+      "file": "a049463ac6005bc5.mp3",
+      "rendered": true,
+      "bytes": 274599
+    },
+    {
+      "key": "afee439c82271f18",
+      "title": "Part C — Antibiotic stewardship and the 48-hour review",
+      "taskType": "LISTENING_PART_C",
+      "file": "afee439c82271f18.mp3",
+      "rendered": true,
+      "bytes": 243879
+    },
+    {
+      "key": "de2d4865d59d998c",
+      "title": "Part C — Building a culture of patient safety on the ward",
+      "taskType": "LISTENING_PART_C",
+      "file": "de2d4865d59d998c.mp3",
+      "rendered": true,
+      "bytes": 244506
+    },
+    {
+      "key": "a36d0ff62fe6d292",
+      "title": "Part C — Honest conversations at the end of life",
+      "taskType": "LISTENING_PART_C",
+      "file": "a36d0ff62fe6d292.mp3",
+      "rendered": true,
+      "bytes": 252499
+    },
+    {
+      "key": "c0479a21d28f7963",
+      "title": "Part C — Improving health literacy through teach-back",
+      "taskType": "LISTENING_PART_C",
+      "file": "c0479a21d28f7963.mp3",
+      "rendered": true,
+      "bytes": 228362
+    },
+    {
+      "key": "e649ccac57a1ba64",
+      "title": "Part C — Making telehealth consultations safe and effective",
+      "taskType": "LISTENING_PART_C",
+      "file": "e649ccac57a1ba64.mp3",
+      "rendered": true,
+      "bytes": 269270
+    },
+    {
+      "key": "91e11eff7c2f907b",
+      "title": "Part C — Preventing inpatient falls through hourly rounding",
+      "taskType": "LISTENING_PART_C",
+      "file": "91e11eff7c2f907b.mp3",
+      "rendered": true,
+      "bytes": 253283
+    },
+    {
+      "key": "c362ae661fab94f6",
+      "title": "Part C — Recognising and preventing clinician burnout",
+      "taskType": "LISTENING_PART_C",
+      "file": "c362ae661fab94f6.mp3",
+      "rendered": true,
+      "bytes": 274912
+    },
+    {
+      "key": "b309baea06496cc6",
+      "title": "Part C — Reducing medication errors with quiet zones",
+      "taskType": "LISTENING_PART_C",
+      "file": "b309baea06496cc6.mp3",
+      "rendered": true,
+      "bytes": 297952
+    },
+    {
+      "key": "dccf60ba5e169517",
+      "title": "Part C — Responding to agitation in dementia care",
+      "taskType": "LISTENING_PART_C",
+      "file": "dccf60ba5e169517.mp3",
+      "rendered": true,
+      "bytes": 254850
+    },
+    {
+      "key": "01ede63ab9d64420",
+      "title": "Part C — Sustaining gains in quality improvement projects",
+      "taskType": "LISTENING_PART_C",
+      "file": "01ede63ab9d64420.mp3",
+      "rendered": true,
+      "bytes": 237453
+    },
+    {
+      "key": "e33a4c3ca6e2a77e",
+      "title": "Part C — Tackling malnutrition risk in hospital patients",
+      "taskType": "LISTENING_PART_C",
+      "file": "e33a4c3ca6e2a77e.mp3",
+      "rendered": true,
+      "bytes": 247954
+    },
+    {
+      "key": "eed88ff22a90c6d3",
+      "title": "Part C — Talk on hydration in older adults",
+      "taskType": "LISTENING_PART_C",
+      "file": "eed88ff22a90c6d3.mp3",
+      "rendered": true,
+      "bytes": 122723
+    },
+    {
+      "key": "af8d17403c093c57",
+      "title": "Part C — The first hour in recognising sepsis",
+      "taskType": "LISTENING_PART_C",
+      "file": "af8d17403c093c57.mp3",
+      "rendered": true,
+      "bytes": 250148
+    },
+    {
+      "key": "65a7dfa386e2efe3",
+      "title": "Part C — Understanding hesitancy to improve vaccination uptake",
+      "taskType": "LISTENING_PART_C",
+      "file": "65a7dfa386e2efe3.mp3",
+      "rendered": true,
+      "bytes": 267389
+    },
+    {
+      "key": "234ecfc8c9d234cd",
+      "title": "OET Form 1 · Listening Part C — Interview: wound-care nursing",
+      "taskType": "LISTENING_PART_C",
+      "file": "234ecfc8c9d234cd.mp3",
+      "rendered": true,
+      "bytes": 553743
+    },
+    {
+      "key": "4996f41b09c90a2d",
+      "title": "OET Form 1 · Listening Part C — Presentation: polypharmacy",
+      "taskType": "LISTENING_PART_C",
+      "file": "4996f41b09c90a2d.mp3",
+      "rendered": true,
+      "bytes": 456098
+    }
+  ]
+}

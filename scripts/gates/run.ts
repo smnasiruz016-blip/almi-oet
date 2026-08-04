@@ -16,8 +16,12 @@
  *   G2 floor         — >= 15 per task type, and per profession for Writing/Speaking
  *   G3 distribution  — no MCQ part gameable from answer position
  *   G4 structure     — payload shape valid per task type; all 12 professions covered
+ *   G5 audio         — every Listening script has pre-rendered audio committed
  */
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { GEN_ITEMS } from "../seed/gen/index";
+import { AUDIO_DIR, audioFileName, audioKey } from "../../src/lib/oet/audio";
 
 const FLOOR = 15;
 const PROFS = [
@@ -143,8 +147,28 @@ const fail = (gate: string, msg: string) => failures.push(`${gate}  ${msg}`);
   }
 }
 
+// ── G5 audio ─────────────────────────────────────────────────────────────────
+// A Listening item with no rendered file still plays — it just bills OpenAI on
+// every single play. That is a cost regression that looks like success, so it
+// fails the build rather than waiting to be noticed on an invoice. Fix by
+// running `npm run audio:render` and committing the output.
+{
+  for (const it of items) {
+    if (!it.taskType.startsWith("LISTENING")) continue;
+    const payload = it.payload as { audioScript?: string; speakers?: { role: string; voice: string }[] };
+    if (!payload.audioScript) {
+      fail("G5", `${it.taskType} "${it.title}" has no audioScript`);
+      continue;
+    }
+    const file = join(process.cwd(), AUDIO_DIR, audioFileName(audioKey(payload as { audioScript: string; speakers?: { role: string; voice: string }[] })));
+    if (!existsSync(file)) {
+      fail("G5", `"${it.title}" has no pre-rendered audio — run npm run audio:render`);
+    }
+  }
+}
+
 // ── report ───────────────────────────────────────────────────────────────────
-const GATES = ["G1 item-id", "G2 floor", "G3 distribution", "G4 structure"];
+const GATES = ["G1 item-id", "G2 floor", "G3 distribution", "G4 structure", "G5 audio"];
 console.log(`[gates] ${items.length} seed items scanned`);
 for (const g of GATES) {
   const hits = failures.filter((f) => f.startsWith(g.slice(0, 2)));

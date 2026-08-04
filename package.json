@@ -16,11 +16,13 @@
     "seed:writing": "tsx scripts/seed/writing-letter.ts",
     "seed:speaking": "tsx scripts/seed/speaking-roleplay.ts",
     "seed:all": "npm run seed:listening && npm run seed:reading && npm run seed:writing && npm run seed:speaking",
-    "seed:append": "tsx scripts/seed/append.ts"
+    "seed:append": "tsx scripts/seed/append.ts",
+    "audio:render": "tsx scripts/render-audio.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",
     "@prisma/client": "^6.19.3",
+    "@smnasiruz016-blip/almi-data": "^0.5.0",
     "bcryptjs": "^3.0.3",
     "next": "16.2.6",
     "prisma": "^6.19.3",
@@ -29,10 +31,10 @@
     "resend": "^6.12.3",
     "stripe": "^22.1.0",
     "tsx": "^4.21.0",
-    "zod": "^4.3.6",
-    "@smnasiruz016-blip/almi-data": "^0.5.0"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@breezystack/lamejs": "^1.2.7",
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
