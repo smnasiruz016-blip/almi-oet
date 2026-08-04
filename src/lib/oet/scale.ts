@@ -113,13 +113,27 @@ export function rangeMidpoint(range: Range): number {
   return (range[0] + range[1]) / 2;
 }
 
-/** CEFR alignment for a 0–500 score, per the UK NARIC benchmarking table.
- *  Only B2–C2 are benchmarked by the study; below 200 we report "below B2". */
-export function cefrHint(score: number): "below B2" | "B2" | "C1" | "C2" {
+/** CEFR alignment for a 0–500 score, re-verified 2026-08-04 against OET's own
+ *  published CEFR alignment:
+ *
+ *      A  (450–500) → C2
+ *      B  (350–440) → C1
+ *      C+ (300–340) → B2
+ *      C / D / E    → NO CEFR level is claimed
+ *
+ *  The previous version mapped anything ≥200 to B2 and everything below to
+ *  "below B2", citing the UK NARIC study. That over-claimed: it handed a B2
+ *  label to grades OET does not align to a CEFR level at all, and "below B2"
+ *  read as a measurement when it was an absence of one.
+ *
+ *  Returns null rather than a string for the unaligned grades, so a caller has
+ *  to decide what to show. A hint that cannot be sourced should be missing from
+ *  the UI, not rendered as a vaguer hint. */
+export function cefrHint(score: number): "B2" | "C1" | "C2" | null {
   if (score >= 450) return "C2";
   if (score >= 350) return "C1";
-  if (score >= 200) return "B2";
-  return "below B2";
+  if (score >= 300) return "B2";
+  return null;
 }
 
 /** Honest readiness label relative to the common Grade B (350) benchmark.
