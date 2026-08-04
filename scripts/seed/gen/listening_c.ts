@@ -1203,5 +1203,282 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 2 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_C",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part C — Interview: de-escalation in mental health",
+    "prompt": "You will hear an interview. For questions 1-6, choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "interview",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Interviewer",
+          "voice": "onyx"
+        },
+        {
+          "role": "Grace Okoye",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Interviewer: Grace, when a patient becomes agitated, what's the first thing you do? Grace: Check myself, honestly. My own anxiety is contagious - if I tense up, they feel it. So I slow my breathing before I say a word. Interviewer: That's not what most people expect. Grace: People expect a technique, a form of words. But de-escalation is ninety per cent presence and ten per cent script. Tone and space matter far more than the words. Interviewer: Space? Grace: Never corner someone. I stand at an angle, not face-on, and make sure they can see the door. A person who feels trapped will fight; one who feels they can leave rarely needs to. Interviewer: What about talking them round? Grace: I don't try to win an argument. If they say something untrue, correcting them just adds fuel. I acknowledge the feeling behind it - I can see this has frightened you - because the feeling is real even when the belief isn't. Interviewer: A common mistake? Grace: Rushing. Silence feels unbearable to staff, so they fill it with questions, and that pressure escalates things. Comfortable silence is the hardest skill to teach. Interviewer: How do you recover afterwards? Grace: We debrief as a team - not to assign blame, but because carrying these moments alone is how people burn out.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Grace's first action when a patient becomes agitated is to:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "check and calm her own state"
+            },
+            {
+              "id": "b",
+              "text": "call for assistance"
+            },
+            {
+              "id": "c",
+              "text": "use a set form of words"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "In her view, de-escalation is mostly about:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "the exact words used"
+            },
+            {
+              "id": "b",
+              "text": "presence, tone and space"
+            },
+            {
+              "id": "c",
+              "text": "speed of response"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why does she stand at an angle with the door visible?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "to watch other patients"
+            },
+            {
+              "id": "b",
+              "text": "so the patient does not feel trapped"
+            },
+            {
+              "id": "c",
+              "text": "to leave quickly if needed"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "When a patient says something untrue, she:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "corrects them clearly"
+            },
+            {
+              "id": "b",
+              "text": "ignores them completely"
+            },
+            {
+              "id": "c",
+              "text": "acknowledges the feeling behind it"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "The common mistake she identifies is:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "rushing and filling silences"
+            },
+            {
+              "id": "b",
+              "text": "standing too far away"
+            },
+            {
+              "id": "c",
+              "text": "speaking too quietly"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Why does the team debrief afterwards?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "to decide who was at fault"
+            },
+            {
+              "id": "b",
+              "text": "to stop staff carrying it alone and burning out"
+            },
+            {
+              "id": "c",
+              "text": "because policy requires it"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_C",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part C — Presentation: antimicrobial resistance",
+    "prompt": "You will hear a presentation. For questions 1-6, choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "presentation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Dr Rahul Mehta",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Dr Rahul Mehta: Antimicrobial resistance is often called a future threat, but it is already here and killing people now. Every unnecessary antibiotic doesn't just fail one patient - it teaches bacteria to survive, on behalf of everyone. That's the uncomfortable truth: the harm is invisible and shared. The biggest driver isn't the exotic case; it's the everyday one - the probably-viral chest infection given an antibiotic just in case, the ten-day course when five would do, the broad-spectrum drug when a narrow one would work. None feels reckless in the moment - that's exactly why it's dangerous. My message isn't never prescribe; it's prescribe as if the drug were a limited resource you're rationing for your children's future - because it is. Practically: take a good culture before you start, review at forty-eight hours and stop or narrow, and document why you chose what you chose. The documentation isn't bureaucracy - it forces the thinking.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does he say about antimicrobial resistance?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "it is a distant future problem"
+            },
+            {
+              "id": "b",
+              "text": "it is already causing deaths now"
+            },
+            {
+              "id": "c",
+              "text": "it affects only rare cases"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "Why is the harm of unnecessary antibiotics shared?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "resistance spreads and affects everyone"
+            },
+            {
+              "id": "b",
+              "text": "the cost falls on the hospital"
+            },
+            {
+              "id": "c",
+              "text": "patients swap drugs"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "The biggest driver of resistance is:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "rare infections"
+            },
+            {
+              "id": "b",
+              "text": "patient demand"
+            },
+            {
+              "id": "c",
+              "text": "everyday over-prescribing"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Why are the everyday decisions dangerous?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "they do not feel reckless at the time"
+            },
+            {
+              "id": "b",
+              "text": "the drugs are costly"
+            },
+            {
+              "id": "c",
+              "text": "patients rarely finish them"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "His message to prescribers is to:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "never prescribe antibiotics"
+            },
+            {
+              "id": "b",
+              "text": "prescribe as if rationing a limited resource"
+            },
+            {
+              "id": "c",
+              "text": "always use broad-spectrum drugs"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Why does he say documentation helps?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "it satisfies auditors"
+            },
+            {
+              "id": "b",
+              "text": "it forces the prescriber to think"
+            },
+            {
+              "id": "c",
+              "text": "it speeds prescribing"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

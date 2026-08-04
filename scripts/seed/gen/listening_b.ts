@@ -892,5 +892,252 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 2 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part B — Low sodium",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "ward-round",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Doctor",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Doctor: Mrs Cole's sodium is low at 128. Before anything else, check whether she's on a diuretic or an SSRI - both can cause it. Don't restrict her fluids until we've reviewed the drug chart.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does the doctor want done first?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "review her medication for a cause"
+            },
+            {
+              "id": "b",
+              "text": "restrict her fluids"
+            },
+            {
+              "id": "c",
+              "text": "repeat the blood test"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part B — Gloves and hand hygiene",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "infection-control",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Infection-control lead",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Infection-control lead: Gloves are not a substitute for hand hygiene. Clean your hands before putting them on and again after - glove use has actually been shown to reduce hand-washing, the opposite of what we want.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is the speaker's main point about gloves?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "they should be worn at all times"
+            },
+            {
+              "id": "b",
+              "text": "they replace hand hygiene"
+            },
+            {
+              "id": "c",
+              "text": "they do not remove the need to clean hands"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part B — Nil by mouth",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "handover",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Nurse",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Nurse: Bed 4 is nil by mouth for theatre this afternoon - make sure the sign is up and the water jug removed. We don't want the list cancelled because someone gave her a cup of tea.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Why must the water jug be removed?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "the patient is nil by mouth for surgery"
+            },
+            {
+              "id": "b",
+              "text": "she dislikes tea"
+            },
+            {
+              "id": "c",
+              "text": "the jug needs cleaning"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part B — Paracetamol order",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "pharmacy",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Pharmacist",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Pharmacist: We're changing the ward's paracetamol order from 'four times a day' to 'a maximum of four times a day'. A small wording change, but the standing 'four times' was giving frail patients doses too high for their weight.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Why was the wording changed?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "supply was short"
+            },
+            {
+              "id": "b",
+              "text": "the fixed dosing was too high for some patients"
+            },
+            {
+              "id": "c",
+              "text": "nurses wanted it simpler"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part B — Escalating concern",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "patient-safety",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Nurse educator",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Nurse educator: When you escalate a deteriorating patient, don't just read the numbers. Say what you think is wrong and what you want: 'I'm worried about sepsis, I need a doctor now' gets a faster response than a list of figures.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What advice is given?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "always read the full observations"
+            },
+            {
+              "id": "b",
+              "text": "state your concern and what you need"
+            },
+            {
+              "id": "c",
+              "text": "wait for the next round"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part B — Chest pain at reception",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "reception",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Receptionist",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Receptionist: If someone at the desk says they think they're having a heart attack, do not book them in and ask them to sit. Call the emergency buzzer straight away - chest pain is never put in a queue.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What should staff do if someone reports chest pain?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "book them in and wait"
+            },
+            {
+              "id": "b",
+              "text": "take their details first"
+            },
+            {
+              "id": "c",
+              "text": "call the emergency buzzer immediately"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

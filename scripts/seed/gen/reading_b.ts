@@ -867,5 +867,246 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 2 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Reading Part B — Consent",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "consent",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "A signature on a consent form is not consent in itself; it records that a conversation happened. Valid consent requires capacity, relevant information including material risks, and voluntariness. If any is missing, the signature is worthless."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does a signed form represent?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "consent in itself"
+            },
+            {
+              "id": "b",
+              "text": "a record that a discussion took place"
+            },
+            {
+              "id": "c",
+              "text": "proof the risks were accepted"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Reading Part B — Vaccine fridge log",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "cold-chain",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Vaccines must be stored between 2 and 8 degrees C. If the fridge has been out of range, do not use or discard the stock - quarantine it, label it 'do not use', and contact the immunisation lead. Some vaccines survive a brief excursion; others do not."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What should staff do if the fridge goes out of range?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "discard them at once"
+            },
+            {
+              "id": "b",
+              "text": "keep using them if they look fine"
+            },
+            {
+              "id": "c",
+              "text": "quarantine them and seek advice"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Reading Part B — Terminology memo",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "documentation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Please stop using 'bedsore' in notes. Use 'pressure injury' and record the stage. 'Bedsore' implies only bed-bound people are affected, when prolonged sitting is an equally common cause."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Why is the term 'bedsore' discouraged?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "it wrongly implies only bed-bound people are affected"
+            },
+            {
+              "id": "b",
+              "text": "it offends patients"
+            },
+            {
+              "id": "c",
+              "text": "it is too informal"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Reading Part B — Protected breaks",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "rota",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "From next month the long-day shift includes a protected 30-minute break away from the ward. This is not optional. Fatigue-related error is a patient-safety issue; breaks are part of safe practice, not a perk."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "How are the breaks described?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "an optional benefit"
+            },
+            {
+              "id": "b",
+              "text": "part of safe practice"
+            },
+            {
+              "id": "c",
+              "text": "a reward"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Reading Part B — Specimen labelling",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "specimen",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Label the sample at the bedside, in front of the patient, immediately after taking it - never in advance, never at the desk. A pre-labelled tube is the commonest cause of wrong-patient results."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "When must the sample be labelled?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "at the bedside, right after collection"
+            },
+            {
+              "id": "b",
+              "text": "at the desk afterwards"
+            },
+            {
+              "id": "c",
+              "text": "in advance to save time"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 2 · Reading Part B — Safe discharge",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "discharge",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Do not discharge Mr Ahmed until pharmacy has delivered his blister pack and the district-nurse referral is confirmed. He lives alone and manages insulin with support; a gap in that support isn't safe."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What must happen before Mr Ahmed is discharged?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "his family must collect him"
+            },
+            {
+              "id": "b",
+              "text": "his insulin must be stopped"
+            },
+            {
+              "id": "c",
+              "text": "the blister pack and nurse referral must be arranged"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

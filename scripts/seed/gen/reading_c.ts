@@ -1258,5 +1258,352 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 2 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_C",
+    "profession": null,
+    "title": "OET Form 2 · Reading Part C — The trouble with 'just in case'",
+    "prompt": "Read the text and answer questions 1-8. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "clinical-reasoning",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Few phrases are as quietly costly in medicine as just in case. It sounds prudent - an extra test, a precautionary scan, a night's admission to be safe - and in any single instance the logic is hard to argue with. Who would refuse a test that might catch something serious? Yet multiplied across a system, this instinct produces a great deal of harm that never enters the mind of the person ordering the test. The harm is real but diffuse. Every test has a false-positive rate, and a positive result in a low-risk patient is more likely to be wrong than right. That wrong result triggers more tests, more anxiety, sometimes an invasive procedure with its own risks - a cascade set off by a finding that was never going to matter. The scan ordered just in case finds an incidental shadow; the shadow leads to a biopsy; the biopsy leads to a complication. The original symptom, meanwhile, was benign all along. Defensive practice is often blamed on fear of litigation, and that fear is not irrational. But studies suggest the bigger driver is discomfort with uncertainty - the sense that doing something feels safer than doing nothing, even when watchful waiting is wiser. Patients can share this instinct, and a clinician who explains why a test is unnecessary must spend more time and emotional effort than one who simply orders it. The path of least resistance runs towards over-investigation. None of this means caution is wrong. The point is that safe is not the same as more. A genuinely safe decision weighs the harm of missing something against the harm of finding things better left unfound. Framed that way, the courageous act is sometimes to explain, to reassure, and to wait - carrying the small, real risk of restraint rather than offloading it onto the patient as a cascade they never agreed to."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Why does the writer call just in case costly?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "tests are expensive to run"
+            },
+            {
+              "id": "b",
+              "text": "it produces diffuse harm the orderer doesn't see"
+            },
+            {
+              "id": "c",
+              "text": "patients dislike extra tests"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "A positive test in a low-risk patient is:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "more likely to be wrong than right"
+            },
+            {
+              "id": "b",
+              "text": "usually accurate"
+            },
+            {
+              "id": "c",
+              "text": "always repeated"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "The cascade the writer describes refers to:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "a series of tests and procedures set off by one finding"
+            },
+            {
+              "id": "b",
+              "text": "a worsening of the original disease"
+            },
+            {
+              "id": "c",
+              "text": "a spread of infection"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "What does the writer say is the bigger driver of defensive practice?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "fear of litigation"
+            },
+            {
+              "id": "b",
+              "text": "patient demand"
+            },
+            {
+              "id": "c",
+              "text": "discomfort with uncertainty"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "Why does the path of least resistance lead to over-investigation?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "explaining why a test is unneeded takes more effort"
+            },
+            {
+              "id": "b",
+              "text": "tests are quicker than examinations"
+            },
+            {
+              "id": "c",
+              "text": "guidelines require it"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "The writer argues that safe is:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "the same as doing more"
+            },
+            {
+              "id": "b",
+              "text": "not the same as doing more"
+            },
+            {
+              "id": "c",
+              "text": "impossible to achieve"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What does the writer call the courageous act?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "ordering every possible test"
+            },
+            {
+              "id": "b",
+              "text": "referring to a specialist"
+            },
+            {
+              "id": "c",
+              "text": "explaining, reassuring and waiting"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "The phrase a cascade they never agreed to suggests the patient:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "consented to the risks"
+            },
+            {
+              "id": "b",
+              "text": "bore risks they did not choose"
+            },
+            {
+              "id": "c",
+              "text": "requested the investigations"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_C",
+    "profession": null,
+    "title": "OET Form 2 · Reading Part C — What checklists can and can't do",
+    "prompt": "Read the text and answer questions 1-8. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "patient-safety",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "When a surgical checklist was shown to cut deaths and complications, the response in some quarters was almost giddy: here at last was a simple, cheap fix for the messiness of human error. Airlines used checklists; now medicine would too. The enthusiasm was understandable, and the checklist is genuinely a fine tool. But the story that grew around it - that a laminated list can engineer safety on its own - has done nearly as much harm as good. A checklist works because of what happens around it, not because of the ticks. Its real function is to flatten hierarchy for a moment: to make it acceptable for the most junior person in the room to say we haven't confirmed the patient's allergies. Where teams treat it as a genuine pause - everyone stops, everyone listens - outcomes improve. Where it is rushed through by one person reading aloud while others carry on working, it changes nothing, and may even give false comfort. The same piece of paper produces opposite results depending on the culture it lands in. This is the part that resists copying. You can distribute a checklist overnight; you cannot distribute the willingness to be interrupted, or a senior clinician's grace in being corrected by a trainee. Those are cultural achievements, built slowly, and a checklist imposed on a culture that lacks them will be completed dutifully and mean nothing. Organisations that saw no benefit often concluded the tool had failed, when what had failed was the assumption that a tool could replace the relationships that make it work. The lesson generalises. Every safety fix that looks purely technical turns out, on inspection, to depend on something human - on people feeling able to speak, and others willing to hear. The paper is the easy part. The hard part, as ever, is the room."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What was the initial reaction to the surgical checklist?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "scepticism about its cost"
+            },
+            {
+              "id": "b",
+              "text": "excitement that it was a simple fix"
+            },
+            {
+              "id": "c",
+              "text": "concern that it copied airlines"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "According to the writer, a checklist works because of:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "the number of items ticked"
+            },
+            {
+              "id": "b",
+              "text": "what happens around it in the team"
+            },
+            {
+              "id": "c",
+              "text": "its legal status"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "The checklist's real function is to:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "create a written record"
+            },
+            {
+              "id": "b",
+              "text": "speed up the operation"
+            },
+            {
+              "id": "c",
+              "text": "make it acceptable for anyone to raise a concern"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "When does a checklist change nothing?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "when it is rushed through while others work"
+            },
+            {
+              "id": "b",
+              "text": "when it is too long"
+            },
+            {
+              "id": "c",
+              "text": "when it is read by a senior clinician"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "Why does the writer say the key part resists copying?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "the paper is hard to reproduce"
+            },
+            {
+              "id": "b",
+              "text": "the culture behind it can't simply be distributed"
+            },
+            {
+              "id": "c",
+              "text": "checklists are patented"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Organisations that saw no benefit often wrongly concluded that:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "the tool itself had failed"
+            },
+            {
+              "id": "b",
+              "text": "their staff were incompetent"
+            },
+            {
+              "id": "c",
+              "text": "the checklist was too short"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "The writer says every technical safety fix depends on:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "sufficient funding"
+            },
+            {
+              "id": "b",
+              "text": "something human - people speaking and being heard"
+            },
+            {
+              "id": "c",
+              "text": "regular auditing"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "By the hard part, as ever, is the room, the writer means:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "the physical operating theatre"
+            },
+            {
+              "id": "b",
+              "text": "the human relationships and culture"
+            },
+            {
+              "id": "c",
+              "text": "the equipment available"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

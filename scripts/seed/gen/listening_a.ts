@@ -983,5 +983,184 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 2 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_A",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)",
+    "prompt": "You will hear an occupational therapist speaking to a patient. For questions 1-12, complete the notes with a word or short phrase.",
+    "difficulty": "CORE",
+    "topicTag": "consultation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Occupational therapist",
+          "voice": "alloy"
+        },
+        {
+          "role": "Patient",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Occupational therapist: Hello Mr Berg, I'm Priya, the occupational therapist. I've come to see how you're managing at home since your stroke. How have things been? Patient: Not too bad, but the mornings are hard. Getting washed and dressed takes me nearly an hour. Occupational therapist: Which part is the most difficult? Patient: Doing up buttons - my right hand is still weak, and I'm right-handed normally. Occupational therapist: There's a button hook that can help with that. How about the stairs? Patient: I manage, but I come down one step at a time, holding the rail. There's only a rail on the left going up. Occupational therapist: I'd recommend a second rail. And the bathroom - the bath? Patient: My daughter helps me. I don't feel safe on my own. Occupational therapist: A bath board and a non-slip mat might give you more independence. Cooking? Patient: I can make a sandwich, but I haven't tried anything hot - I'm nervous about carrying a pan. Occupational therapist: A trolley can help you move things safely. Are you getting out at all? Patient: Not really. I've lost my confidence since a fall last month.",
+      "gaps": [
+        {
+          "id": "g1",
+          "label": "Home visit after a",
+          "answer": "stroke"
+        },
+        {
+          "id": "g2",
+          "label": "Washing and dressing takes nearly",
+          "answer": "an hour",
+          "variants": [
+            "one hour"
+          ]
+        },
+        {
+          "id": "g3",
+          "label": "Hardest task: doing up",
+          "answer": "buttons"
+        },
+        {
+          "id": "g4",
+          "label": "His right hand is still",
+          "answer": "weak"
+        },
+        {
+          "id": "g5",
+          "label": "Suggested aid: a",
+          "answer": "button hook"
+        },
+        {
+          "id": "g6",
+          "label": "Comes down the stairs",
+          "answer": "one step at a time"
+        },
+        {
+          "id": "g7",
+          "label": "Rail is only on",
+          "answer": "the left"
+        },
+        {
+          "id": "g8",
+          "label": "Suggested for the bath: a",
+          "answer": "bath board"
+        },
+        {
+          "id": "g9",
+          "label": "Nervous about carrying a",
+          "answer": "pan"
+        },
+        {
+          "id": "g10",
+          "label": "Suggested to move things safely: a",
+          "answer": "trolley"
+        },
+        {
+          "id": "g11",
+          "label": "Has lost his",
+          "answer": "confidence"
+        },
+        {
+          "id": "g12",
+          "label": "Since a ___ last month",
+          "answer": "fall"
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_A",
+    "profession": null,
+    "title": "OET Form 2 · Listening Part A — Practice-nurse asthma review",
+    "prompt": "You will hear a practice nurse speaking to a patient. For questions 1-12, complete the notes with a word or short phrase.",
+    "difficulty": "CORE",
+    "topicTag": "consultation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Practice nurse",
+          "voice": "onyx"
+        },
+        {
+          "role": "Patient",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Practice nurse: Hello Ms Adams, I'm David, the practice nurse - your annual asthma review. How have you been? Patient: Mostly okay, but I've been using my blue inhaler more than usual - most days this past month. Practice nurse: That's more than we'd like; ideally three times a week or fewer. Are you using your brown preventer every day? Patient: I forget it when I feel well. Practice nurse: Common - but the preventer reduces the inflammation and works best taken daily, even when you feel fine. Do you use a spacer? Patient: No, just the inhaler. Practice nurse: A spacer helps the medicine reach your lungs. I'll give you one. Any night symptoms - cough or wheeze? Patient: A couple of times a week. Practice nurse: What sets it off? Patient: Cold air, mostly, and my cat. Practice nurse: Have you had your flu vaccine this year? Patient: Not yet. Practice nurse: I'd recommend it. And I'll write you an updated action plan.",
+      "gaps": [
+        {
+          "id": "g1",
+          "label": "Annual review for this condition",
+          "answer": "asthma"
+        },
+        {
+          "id": "g2",
+          "label": "Reliever should be used at most",
+          "answer": "three times a week",
+          "variants": [
+            "3 times a week"
+          ]
+        },
+        {
+          "id": "g3",
+          "label": "Forgets the preventer when she feels",
+          "answer": "well"
+        },
+        {
+          "id": "g4",
+          "label": "The preventer reduces",
+          "answer": "inflammation"
+        },
+        {
+          "id": "g5",
+          "label": "The preventer works best taken",
+          "answer": "daily"
+        },
+        {
+          "id": "g6",
+          "label": "Not using a",
+          "answer": "spacer"
+        },
+        {
+          "id": "g7",
+          "label": "A spacer helps the medicine reach the",
+          "answer": "lungs"
+        },
+        {
+          "id": "g8",
+          "label": "Night symptoms: cough or",
+          "answer": "wheeze"
+        },
+        {
+          "id": "g9",
+          "label": "Trigger 1",
+          "answer": "cold air"
+        },
+        {
+          "id": "g10",
+          "label": "Trigger 2: her",
+          "answer": "cat"
+        },
+        {
+          "id": "g11",
+          "label": "Recommended: the",
+          "answer": "flu vaccine"
+        },
+        {
+          "id": "g12",
+          "label": "Nurse to write an updated",
+          "answer": "action plan"
+        }
+      ]
+    }
   }
 ];

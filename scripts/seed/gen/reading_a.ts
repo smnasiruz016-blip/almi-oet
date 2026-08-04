@@ -2025,5 +2025,308 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 2 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_A",
+    "profession": null,
+    "title": "OET Form 2 · Reading Part A — Preventing falls in older adults",
+    "prompt": "Complete the 20 questions using the four texts (A-D). Answer with a word or short phrase, or a text letter for matching questions. You have 15 minutes.",
+    "difficulty": "CORE",
+    "topicTag": "falls-prevention",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "texts": [
+        {
+          "id": "A",
+          "heading": "Risk factors",
+          "body": "Falls in older adults are rarely due to a single cause. Contributors include muscle weakness, poor balance, visual impairment, certain medicines (particularly sedatives and some blood-pressure drugs) and environmental hazards. A history of a previous fall is the strongest single predictor of a future one. A multifactorial assessment is recommended for anyone who has fallen or reports unsteadiness."
+        },
+        {
+          "id": "B",
+          "heading": "Medication review",
+          "body": "Medicines are a modifiable risk. Sedatives, antipsychotics and drugs that lower blood pressure all increase risk, which rises with the number of medicines taken. A structured medication review - deprescribing where possible - is core to prevention. Postural blood pressure should be checked, as a drop on standing is a common, treatable contributor."
+        },
+        {
+          "id": "C",
+          "heading": "Strength and balance",
+          "body": "Exercise that challenges balance and builds lower-limb strength reduces falls in community-dwelling older people. To work it must be of sufficient dose - generally at least 50 hours over the programme - and progressive. Walking alone is not enough; the balance component makes the difference. Tai chi has good evidence."
+        },
+        {
+          "id": "D",
+          "heading": "Environment and footwear",
+          "body": "Home hazards such as loose rugs, poor lighting and absent grab rails contribute to falls; an occupational-therapy home assessment can identify and remove them. Footwear matters: well-fitting shoes with a low heel and firm sole are safer than slippers or bare feet. Vision should be checked, but be cautious with new bifocals, which can affect depth perception on stairs."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "match",
+          "stem": "the strongest single predictor of a future fall",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "kind": "match",
+          "stem": "why the balance component of exercise matters",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "kind": "match",
+          "stem": "a caution about new glasses",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "how the number of medicines affects risk",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "an exercise with good evidence",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "safe footwear features",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "who a multifactorial assessment is recommended for",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "kind": "gap",
+          "stem": "What is the strongest single predictor of a future fall?",
+          "answer": "a previous fall",
+          "variants": [
+            "a history of a previous fall",
+            "previous fall"
+          ]
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Which blood pressure sign should be checked?",
+          "answer": "postural",
+          "variants": [
+            "postural blood pressure",
+            "a drop on standing",
+            "postural hypotension"
+          ]
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Roughly how many hours should an effective programme last?",
+          "answer": "at least 50 hours",
+          "variants": [
+            "50 hours"
+          ]
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Which traditional exercise has good evidence?",
+          "answer": "tai chi"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Who can assess the home for hazards?",
+          "answer": "an occupational therapist",
+          "variants": [
+            "occupational therapist",
+            "OT"
+          ]
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "What kind of heel is safer in footwear?",
+          "answer": "a low heel",
+          "variants": [
+            "low heel"
+          ]
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "A history of a previous fall is the strongest single ___ of a future one.",
+          "answer": "predictor"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "A structured medication review is core to falls ___.",
+          "answer": "prevention"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Exercise must be of sufficient ___ to work.",
+          "answer": "dose"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "___ alone is not enough to prevent falls.",
+          "answer": "walking"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "An occupational-therapy home assessment can identify and ___ hazards.",
+          "answer": "remove"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "New ___ can affect depth perception on stairs.",
+          "answer": "bifocals"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Drugs that lower ___ pressure can increase falls risk.",
+          "answer": "blood"
+        }
+      ]
+    }
   }
 ];
