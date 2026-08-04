@@ -38,9 +38,36 @@ export async function recordCost(input: {
   success: boolean;
   errorMessage?: string;
 }): Promise<number> {
-  const costCents = input.success
-    ? computeCostCents(input.model, input.usage)
-    : 0;
+  // computeCostCents THROWS on a model with no pricing entry, and this call used
+  // to sit outside the try below. That put the throw after the paid Anthropic
+  // call had already completed: the exception propagated through the evaluator
+  // to the submit route, which returned 500. The learner paid for the call, lost
+  // their grade, and no ledger row was written — the worst of all three.
+  //
+  // A pricing gap is an accounting problem, not a reason to fail a user. Price
+  // it at 0, say so loudly in the log AND in the row, and let the grade through.
+  let costCents = 0;
+  let pricingError: string | null = null;
+  if (input.success) {
+    try {
+      costCents = computeCostCents(input.model, input.usage);
+    } catch (e) {
+      pricingError = e instanceof Error ? e.message : String(e);
+      console.error(
+        `[ai-cost-ledger] NO PRICING for model "${input.model}" (feature ${input.feature}) — ` +
+          `recording costCents=0. This call WAS billed by the provider but is NOT costed here. ` +
+          `Add it to PRICING_USD_PER_MTOK in lib/ai/models.ts.`,
+        e,
+      );
+    }
+  }
+
+  // The row still names the model, so an unpriced model is visible in the ledger
+  // rather than only in a log line nobody reads.
+  const errorMessage = pricingError
+    ? [input.errorMessage, `unpriced model: ${pricingError}`].filter(Boolean).join(" | ")
+    : input.errorMessage;
+
   try {
     await prisma.aICostLedger.create({
       data: {
@@ -53,7 +80,7 @@ export async function recordCost(input: {
         cacheWriteTokens: input.usage.cacheWriteTokens ?? 0,
         costCents,
         success: input.success,
-        errorMessage: input.errorMessage,
+        errorMessage,
       },
     });
   } catch (e) {

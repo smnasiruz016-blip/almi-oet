@@ -7,6 +7,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { isAdmin } from "@/lib/founder";
 import { prisma } from "@/lib/prisma";
 import { formatCents } from "@/lib/ai/cost";
+import { reconcileLedger } from "@/lib/ai/ledger-health";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +19,10 @@ export default async function AdminCostsPage() {
   startOfMonth.setUTCDate(1);
   startOfMonth.setUTCHours(0, 0, 0, 0);
 
-  const [lifetime, mtd, byFeature, recent] = await Promise.all([
+  // Every SCORED Writing/Speaking attempt made a paid call, so it must have left
+  // a ledger row. Counting both tells "nothing has run" apart from "recording is
+  // broken" — see lib/ai/ledger-health.ts.
+  const [lifetime, mtd, byFeature, recent, aiAttempts] = await Promise.all([
     prisma.aICostLedger.aggregate({ _sum: { costCents: true }, _count: true }),
     prisma.aICostLedger.aggregate({
       _sum: { costCents: true },
@@ -43,7 +47,12 @@ export default async function AdminCostsPage() {
         success: true,
       },
     }),
+    prisma.oetAttempt.count({
+      where: { taskType: { in: ["WRITING_LETTER", "SPEAKING_ROLEPLAY"] }, status: "SCORED" },
+    }),
   ]);
+
+  const health = reconcileLedger({ attempts: aiAttempts, rows: lifetime._count });
 
   const Stat = ({ label, value, sub }: { label: string; value: string; sub: string }) => (
     <div className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-5">
@@ -55,6 +64,21 @@ export default async function AdminCostsPage() {
 
   return (
     <div className="space-y-6">
+      {health.flag ? (
+        <div
+          role="alert"
+          className="rounded-2xl border border-amber-300 bg-amber-50 p-4 text-amber-900"
+          data-ledger-state={health.state}
+        >
+          <p className="text-sm font-semibold">⚠ {health.headline}</p>
+          <p className="mt-1 text-sm">{health.detail}</p>
+        </div>
+      ) : (
+        <p className="text-xs text-almi-text-muted" data-ledger-state={health.state}>
+          {health.headline} — {health.detail}
+        </p>
+      )}
+
       <div className="grid gap-4 sm:grid-cols-2">
         <Stat
           label="Lifetime spend"
