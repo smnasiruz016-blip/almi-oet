@@ -60,7 +60,7 @@ const PRICING_LINES = [
 const FAQ = [
   {
     q: "How is the Occupational English Test scored?",
-    a: "Each of the four sub-tests (Listening, Reading, Writing, Speaking) is scored from 0 to 500 in 10-point steps, mapped to a grade from A to E. There is no overall or composite score. AlmiOET estimates each sub-test from your practice and shows it as a range with the most-likely grade.",
+    a: "Each of the four sub-tests (Listening, Reading, Writing, Speaking) is scored from 0 to 500 in 10-point steps, mapped to a grade from A to E. Since January 2025 OET also reports an overall score alongside them, and most regulators still set their requirement per sub-test — commonly Grade B (350). AlmiOET estimates each sub-test from your practice and shows it as a range with the most-likely grade; we do not calculate an overall, because we would rather show you nothing than a number we invented.",
   },
   {
     q: "What grade do I need?",
@@ -122,7 +122,7 @@ function ScoreMockup() {
         </ul>
         <div className="mt-4 rounded-xl border border-almi-bg-peach bg-almi-bg px-4 py-3">
           <p className="text-xs text-almi-text-muted">
-            A range and grade per sub-test — never one inflated number, and no fake overall.
+            A range and grade per sub-test — never one inflated number, and never an overall we invented.
           </p>
         </div>
       </div>

@@ -80,6 +80,17 @@ export async function POST(req: Request): Promise<NextResponse> {
     );
   }
 
+  // ...and a verified email. Paid-but-unverified was reaching Sonnet and Whisper:
+  // an address nobody has proven they own could burn metered tokens on every
+  // submit. Checked AFTER the paid gate so the 402 stays the first answer for a
+  // free account, and BEFORE transcription so no unverified request costs money.
+  if (handler.mode === "AI" && !user.emailVerified) {
+    return NextResponse.json(
+      { ok: false, error: "Verify your email address before using AI feedback.", verifyUrl: "/account" },
+      { status: 403 },
+    );
+  }
+
   // Speaking: transcribe the uploaded audio before scoring.
   if (audio) {
     try {
