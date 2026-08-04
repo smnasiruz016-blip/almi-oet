@@ -910,5 +910,353 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       ]
     },
     "guidanceNote": "The writer supports autonomy in principle but attacks one distortion of it. Identify the specific misuse being criticised rather than assuming the writer opposes the concept."
+  },
+
+  // ── OET Form 1 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_C",
+    "profession": null,
+    "title": "OET Form 1 · Reading Part C — The quiet skill of listening",
+    "prompt": "Read the text and answer questions 1-8. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "communication",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Ask most patients what they remember about a good clinician, and they rarely mention a diagnosis or a procedure. They remember being listened to. It is a curious feature of modern healthcare that the skill patients value most is the one we train for least. Curricula devote years to pathology and pharmacology, and a handful of afternoons to what is dismissively called communication skills - as though listening were a soft add-on rather than the instrument through which almost everything else is delivered. Part of the problem is that listening looks like doing nothing. In a system that measures productivity by throughput, a clinician who sits quietly while a patient finds their words can appear to be wasting time. Yet the evidence points the other way. Studies of consultations show that when clinicians resist the urge to interrupt - and on average they interrupt within eleven seconds - patients disclose more, and disclose it sooner. The history, still the source of most diagnoses, improves. Paradoxically, the pause that seems to cost time saves it, because the alternative is the second appointment, the missed detail, the treatment aimed at the wrong target. There is also a defensive reflex at work. Listening fully means hearing distress you may not be able to fix, and there is a real temptation to retreat into tasks - to check a figure, to reach for the prescription pad - precisely when a patient becomes upset. The retreat is understandable, but patients read it accurately as avoidance. What they need in that moment is not a solution but acknowledgement: the sense that their fear has been registered by another human being. None of this is an argument against clinical knowledge. A warm clinician who is wrong is no comfort. The point is that knowledge and attention are not competitors for the same time; they are partners. The most efficient consultation is not the fastest but the one that gathers the right information - and the right information arrives most readily when the patient feels heard. If listening is a skill, it can be taught and practised. It begins with something almost embarrassingly simple: not speaking. It continues with the discipline of letting a silence sit long enough for the patient to fill it. And it ends, ideally, with a short summary handed back - so the thing that's really worrying you is - which checks that we have understood and tells the patient, unmistakably, that we were listening all along."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What do patients most remember about a good clinician?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "being listened to"
+            },
+            {
+              "id": "b",
+              "text": "an accurate diagnosis"
+            },
+            {
+              "id": "c",
+              "text": "a skilful procedure"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "The writer finds it curious that:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "curricula ignore pharmacology"
+            },
+            {
+              "id": "b",
+              "text": "the most valued skill is the least trained"
+            },
+            {
+              "id": "c",
+              "text": "patients dislike procedures"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Listening can look like doing nothing because:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "patients rarely speak"
+            },
+            {
+              "id": "b",
+              "text": "clinicians are untrained"
+            },
+            {
+              "id": "c",
+              "text": "it produces no measurable throughput"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "The detail that clinicians interrupt within eleven seconds suggests that:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "interrupting is a strong, common habit"
+            },
+            {
+              "id": "b",
+              "text": "consultations run too long"
+            },
+            {
+              "id": "c",
+              "text": "patients speak too slowly"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "By the retreat into tasks the writer means:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "ending the appointment early"
+            },
+            {
+              "id": "b",
+              "text": "turning to activities to avoid a patient's distress"
+            },
+            {
+              "id": "c",
+              "text": "delegating to colleagues"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "A warm clinician who is wrong is no comfort is included to:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "criticise friendly clinicians"
+            },
+            {
+              "id": "b",
+              "text": "show warmth is unnecessary"
+            },
+            {
+              "id": "c",
+              "text": "affirm that knowledge still matters"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "In the writer's view, knowledge and attention are:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "partners that work together"
+            },
+            {
+              "id": "b",
+              "text": "competitors for limited time"
+            },
+            {
+              "id": "c",
+              "text": "equally overrated"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "The purpose of the short summary at the end is to:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "create a written record"
+            },
+            {
+              "id": "b",
+              "text": "check understanding and show the patient was heard"
+            },
+            {
+              "id": "c",
+              "text": "shorten the consultation"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_C",
+    "profession": null,
+    "title": "OET Form 1 · Reading Part C — Rethinking resilience",
+    "prompt": "Read the text and answer questions 1-8. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "workforce",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "For a decade, resilience has been healthcare's favourite prescription for its own exhaustion. Staff are sent on resilience workshops, taught breathing exercises and urged to practise self-care, in the hope of stemming a rising tide of burnout. The intention is kind. The logic, however, deserves scrutiny, because it quietly relocates the problem from the system to the individual. Burnout, as originally defined, is not a personal weakness but a response to chronic workplace stressors that have not been managed - excessive workload, lack of control, insufficient reward, and a sense of unfairness. When an organisation answers these conditions with mindfulness classes, it treats a structural injury with a personal remedy. Worse, it can imply that staff who still struggle simply did not try hard enough to be resilient. A nurse working short-staffed through a third consecutive weekend does not lack resilience; she is being asked to absorb a failure that is not hers to fix. This is not to dismiss individual coping, which has its place. A clinician who sleeps well and has support outside work is genuinely better protected. But protection is not prevention. Handing someone an umbrella is sensible; it is not a substitute for repairing the roof. The evidence increasingly suggests that the interventions which actually reduce burnout are organisational: adequate staffing, manageable rotas, a real voice in decisions, and leaders who remove obstacles rather than add initiatives. There is a subtler cost to the resilience narrative, too. It can make staff reluctant to speak up. If exhaustion is framed as a personal shortfall, admitting to it feels like confessing inadequacy - and the people most in need of help become the least likely to ask. A culture that prized honest reporting of strain, treating it as data about the system rather than a verdict on the person, would surface problems earlier, while they are still cheap to solve. None of this lets individuals off the hook entirely; we each carry some responsibility for our own wellbeing. But the balance has tilted too far. Before we ask staff to become more resilient, we might ask why we keep designing work that demands so much resilience simply to survive."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The writer's main concern about the focus on resilience is that it:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "uses breathing exercises that do not work"
+            },
+            {
+              "id": "b",
+              "text": "is disliked by staff"
+            },
+            {
+              "id": "c",
+              "text": "shifts responsibility from the system to the individual"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "Burnout is originally defined as:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "a response to unmanaged workplace stressors"
+            },
+            {
+              "id": "b",
+              "text": "a personal weakness"
+            },
+            {
+              "id": "c",
+              "text": "a passing tiredness"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "The umbrella and roof comparison argues that:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "individual effort is pointless"
+            },
+            {
+              "id": "b",
+              "text": "protection is not the same as prevention"
+            },
+            {
+              "id": "c",
+              "text": "coping can replace organisational change"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "The interventions the writer says actually reduce burnout are:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "mindfulness and self-care"
+            },
+            {
+              "id": "b",
+              "text": "resilience workshops"
+            },
+            {
+              "id": "c",
+              "text": "organisational changes such as adequate staffing"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "The subtler cost of the resilience narrative is that it:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "makes staff reluctant to admit strain"
+            },
+            {
+              "id": "b",
+              "text": "is expensive to run"
+            },
+            {
+              "id": "c",
+              "text": "lowers clinical skill"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Honest reporting of strain should be treated as:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "grounds for discipline"
+            },
+            {
+              "id": "b",
+              "text": "data about the system"
+            },
+            {
+              "id": "c",
+              "text": "a verdict on the person"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "None of this lets individuals off the hook entirely shows the writer:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "blames individuals for burnout"
+            },
+            {
+              "id": "b",
+              "text": "rejects all personal coping"
+            },
+            {
+              "id": "c",
+              "text": "accepts individuals have some responsibility"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "The closing question implies that:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "work is often designed to demand too much resilience"
+            },
+            {
+              "id": "b",
+              "text": "staff should simply be more resilient"
+            },
+            {
+              "id": "c",
+              "text": "resilience cannot be taught"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

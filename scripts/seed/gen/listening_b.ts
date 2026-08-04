@@ -640,5 +640,257 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "audioScript": "Mr Okafor came back from theatre at two o'clock after a hip replacement. His observations have been stable, but he's reported his pain creeping up to seven out of ten in the last hour, so he's due for his next analgesia now rather than later. Everything else, including his wound site, looks fine."
     },
     "guidanceNote": "Contrast words like 'but' often introduce the real issue; here the stable observations are set against pain 'creeping up'."
+  },
+
+  // ── OET Form 1 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part B — Discharge concern",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "workplace",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Nurse 1",
+          "voice": "alloy"
+        },
+        {
+          "role": "Nurse 2",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Nurse 1: Did you manage to speak to the family about Mr Hughes' discharge? Nurse 2: I did, but they're anxious about managing his medication at home. I've asked the pharmacist to do a teaching session before he leaves - I think that'll make all the difference.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is the main concern about Mr Hughes' discharge?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "the family's ability to manage his medication"
+            },
+            {
+              "id": "b",
+              "text": "the availability of the pharmacist"
+            },
+            {
+              "id": "c",
+              "text": "the timing of the discharge"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part B — Hand-hygiene audit",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "workplace",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Manager",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Manager: From Monday the new hand-hygiene audit starts. It's not about catching anyone out - it's to give us baseline data before we roll out the new sanitiser stations.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is the purpose of the audit?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "to identify non-compliant staff"
+            },
+            {
+              "id": "b",
+              "text": "to gather baseline data before a change"
+            },
+            {
+              "id": "c",
+              "text": "to test the new sanitiser stations"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part B — X-ray result",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "workplace",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Doctor",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Doctor: I've reviewed the X-ray. There's no fracture, which is good news, but the swelling suggests significant soft-tissue damage, so I'd still like her to rest it and come back in a week.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does the doctor conclude from the X-ray?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "there is a small fracture"
+            },
+            {
+              "id": "b",
+              "text": "no further review is needed"
+            },
+            {
+              "id": "c",
+              "text": "there is soft-tissue damage but no fracture"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part B — Home exercises",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "patient-education",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Physiotherapist",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Physiotherapist: The exercises matter more than the appointments themselves. If you only do them when you're here, you won't progress. Ten minutes, twice a day, at home - that's the key.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does the physiotherapist emphasise?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "doing the exercises at home"
+            },
+            {
+              "id": "b",
+              "text": "attending every appointment"
+            },
+            {
+              "id": "c",
+              "text": "making the sessions longer"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part B — Infusion pump training",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "workplace",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Nurse educator",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Nurse educator: The commonest error with the new infusion pumps isn't the programming - staff are good at that. It's forgetting to check the line for air before starting. That's what today's session covers.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is the focus of the session?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "programming the pumps"
+            },
+            {
+              "id": "b",
+              "text": "reducing the number of pumps"
+            },
+            {
+              "id": "c",
+              "text": "checking the line for air"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part B — Handling results",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "workplace",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Receptionist",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Receptionist: If a patient rings about results, don't read anything out - even if it looks normal. Book them a call with the nurse. It's not our place, and 'normal' still sometimes needs explaining.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is the receptionist's advice?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "read out only the normal results"
+            },
+            {
+              "id": "b",
+              "text": "always book a call with the nurse"
+            },
+            {
+              "id": "c",
+              "text": "explain the results themselves"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

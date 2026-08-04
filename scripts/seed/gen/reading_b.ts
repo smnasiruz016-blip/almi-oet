@@ -625,5 +625,247 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       ]
     },
     "guidanceNote": "General visiting is paused at mealtimes, but relatives helping their own family member are an explicit exception and should check in with the nurse in charge."
+  },
+
+  // ── OET Form 1 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Reading Part B — Controlled-drugs policy",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "policy",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "When administering a controlled drug, two registered staff must independently check the drug, dose and patient, and both must sign the register at the time of administration - not before preparing and not afterwards. Any discrepancy in the running balance must be reported to pharmacy immediately, however small."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does the policy require about signing the register?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "both staff sign before preparing the drug"
+            },
+            {
+              "id": "b",
+              "text": "both staff sign at the time of administration"
+            },
+            {
+              "id": "c",
+              "text": "one signs while the other only checks"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Reading Part B — Sharps memo",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "memo",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Following two needlestick incidents this quarter, sharps bins must now be replaced when three-quarters full, not when completely full. Needles must never be resheathed. Report any injury the same day, whether or not the source is known."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is the main change introduced by the memo?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "replacing sharps bins earlier, at three-quarters full"
+            },
+            {
+              "id": "b",
+              "text": "resheathing needles more carefully"
+            },
+            {
+              "id": "c",
+              "text": "reporting injuries only when the source is known"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Reading Part B — Hand-hygiene guideline",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "guideline",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Alcohol hand rub suits most situations but is not effective against spores. Where a patient has diarrhoea that may be due to C. difficile, soap and water must be used, because the physical action removes spores that rub cannot kill."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Why must soap and water be used with suspected C. difficile?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "rub is unavailable on those wards"
+            },
+            {
+              "id": "b",
+              "text": "rub takes longer to apply"
+            },
+            {
+              "id": "c",
+              "text": "rub does not remove spores"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Reading Part B — Medicine label",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "label",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Store below 25 degrees C. Once opened, use within 28 days and discard any remaining contents, even if the carton's printed expiry date has not passed. Do not freeze."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does the label say about the opened medicine?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "discard it 28 days after opening"
+            },
+            {
+              "id": "b",
+              "text": "use it until the carton expiry date"
+            },
+            {
+              "id": "c",
+              "text": "freeze it to extend its life"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Reading Part B — Visitor notice",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "notice",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "To protect patients with weakened immune systems, visitors who have had sickness or diarrhoea should not visit until they have been free of symptoms for 48 hours. Fresh flowers are not permitted on this ward."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "When may a visitor who has had diarrhoea return?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "as soon as they feel better"
+            },
+            {
+              "id": "b",
+              "text": "after 48 hours free of symptoms"
+            },
+            {
+              "id": "c",
+              "text": "only with staff permission"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 1 · Reading Part B — Handover note",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "handover",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Mr Lee is now apyrexial and his CRP is falling, so the team plans to switch his antibiotics from IV to oral today - provided he tolerates breakfast. His cannula is to be removed once the switch is confirmed."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is the condition for switching Mr Lee to oral antibiotics?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "his temperature rising again"
+            },
+            {
+              "id": "b",
+              "text": "removing his cannula first"
+            },
+            {
+              "id": "c",
+              "text": "that he tolerates breakfast"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

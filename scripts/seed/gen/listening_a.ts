@@ -785,5 +785,203 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "audioScript": "Clinician: What's been troubling you? Patient: It stings when I pass urine, and it started two days ago. Clinician: Are you going more often? Patient: Yes, I'm rushing to the toilet all the time. Clinician: Have you noticed the urine itself? Patient: It looks cloudy and smells strong. Clinician: Any pain elsewhere? Patient: A dull ache low in my tummy. Clinician: Any fever? Patient: No, I don't think so."
     },
     "guidanceNote": "Everyday words like 'stings' often stand in for clinical terms; record the patient's actual word."
+  },
+
+  // ── OET Form 1 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_A",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part A — Physiotherapy consultation (lower back pain)",
+    "prompt": "You will hear a physiotherapist speaking to a patient. For questions 1-12, complete the notes with a word or short phrase.",
+    "difficulty": "CORE",
+    "topicTag": "consultation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Physiotherapist",
+          "voice": "alloy"
+        },
+        {
+          "role": "Patient",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Physiotherapist: Good morning, Mr Okafor. I'm Sarah, one of the physiotherapists. What's brought you in today? Patient: Morning. It's my lower back - it's been playing up for about three weeks now. Physiotherapist: And can you remember how it started? Patient: I was moving some boxes at work - I lift deliveries - and I felt a sharp twinge on the left side. Physiotherapist: A sharp twinge on the left. How would you describe the pain now? Patient: It's more of a dull ache most of the time, but it becomes sharp when I bend forward. Physiotherapist: Does it travel anywhere - down into your leg? Patient: A little into my left buttock, but not past the knee. Physiotherapist: Not below the knee. On a scale of nought to ten, how bad is it at its worst? Patient: Probably a seven, first thing in the morning. Physiotherapist: Is there anything that eases it? Patient: A hot water bottle helps, and the ibuprofen I bought. Physiotherapist: How often are you taking that? Patient: Twice a day, after meals. Physiotherapist: Any numbness, pins and needles, or trouble with your bladder or bowels? Patient: No, nothing like that. Physiotherapist: That's reassuring. How's it affecting your sleep? Patient: I'm waking two or three times a night because I can't get comfortable. Physiotherapist: And work? Patient: I've been on light duties, no heavy lifting, for the last week.",
+      "gaps": [
+        {
+          "id": "g1",
+          "label": "Complaint has lasted for",
+          "answer": "three weeks"
+        },
+        {
+          "id": "g2",
+          "label": "Activity when it started",
+          "answer": "moving boxes",
+          "variants": [
+            "lifting boxes",
+            "moving some boxes"
+          ]
+        },
+        {
+          "id": "g3",
+          "label": "Felt a sharp ___ on the left",
+          "answer": "twinge"
+        },
+        {
+          "id": "g4",
+          "label": "Usual pain is a dull ___",
+          "answer": "ache"
+        },
+        {
+          "id": "g5",
+          "label": "Becomes sharp when he ___",
+          "answer": "bends forward",
+          "variants": [
+            "bending forward"
+          ]
+        },
+        {
+          "id": "g6",
+          "label": "Pain radiates into the left ___",
+          "answer": "buttock"
+        },
+        {
+          "id": "g7",
+          "label": "Pain does not go past the ___",
+          "answer": "knee"
+        },
+        {
+          "id": "g8",
+          "label": "Severity out of ten (worst)",
+          "answer": "seven",
+          "variants": [
+            "7"
+          ]
+        },
+        {
+          "id": "g9",
+          "label": "Relieving factor (heat source)",
+          "answer": "hot water bottle"
+        },
+        {
+          "id": "g10",
+          "label": "Medication taken",
+          "answer": "ibuprofen"
+        },
+        {
+          "id": "g11",
+          "label": "No bladder or ___ problems",
+          "answer": "bowel",
+          "variants": [
+            "bowels"
+          ]
+        },
+        {
+          "id": "g12",
+          "label": "Wakes this many times a night",
+          "answer": "two or three times",
+          "variants": [
+            "2 or 3 times",
+            "two to three times"
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "Answers are the exact words spoken; note-completion accepts minor spelling/spacing variation."
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_A",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)",
+    "prompt": "You will hear a dietitian speaking to a patient. For questions 1-12, complete the notes with a word or short phrase.",
+    "difficulty": "CORE",
+    "topicTag": "consultation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Dietitian",
+          "voice": "onyx"
+        },
+        {
+          "role": "Patient",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Dietitian: Hello, Mrs Petrova, I'm Tom, the dietitian. Dr Ellis asked me to go through your eating with you - is that alright? Patient: Yes, of course. Dietitian: Your recent blood test showed your HbA1c was a little high - that's your average blood sugar over a few months. Talk me through a typical day. Patient: For breakfast, two slices of white toast with jam, and a coffee with sugar. Dietitian: How many sugars? Patient: Two. Dietitian: And lunch? Patient: Usually a cheese sandwich and a packet of crisps, sometimes a fizzy drink. Dietitian: Evening meal? Patient: My husband cooks - rice or pasta with a sauce, and we quite often have a dessert. Dietitian: Do you snack between meals? Patient: Biscuits with my afternoon tea - two or three. Dietitian: How much water in a day? Patient: Not much - maybe two glasses. Dietitian: And activity? Patient: I walk the dog for about twenty minutes in the evening. Dietitian: That's a good start. Let's not change everything at once. First, swap the white toast for wholegrain, and bring the sugar in your coffee down gradually. And replace that lunchtime fizzy drink with water. Patient: That sounds manageable.",
+      "gaps": [
+        {
+          "id": "g1",
+          "label": "Referred because this was high",
+          "answer": "HbA1c"
+        },
+        {
+          "id": "g2",
+          "label": "Breakfast: two slices of ___",
+          "answer": "white toast"
+        },
+        {
+          "id": "g3",
+          "label": "Coffee taken with",
+          "answer": "two sugars",
+          "variants": [
+            "2 sugars"
+          ]
+        },
+        {
+          "id": "g4",
+          "label": "Lunch includes a packet of ___",
+          "answer": "crisps"
+        },
+        {
+          "id": "g5",
+          "label": "Lunch sometimes with a ___",
+          "answer": "fizzy drink"
+        },
+        {
+          "id": "g6",
+          "label": "Evening meal often followed by a ___",
+          "answer": "dessert"
+        },
+        {
+          "id": "g7",
+          "label": "Afternoon snack (two or three)",
+          "answer": "biscuits"
+        },
+        {
+          "id": "g8",
+          "label": "Water intake per day",
+          "answer": "two glasses",
+          "variants": [
+            "2 glasses"
+          ]
+        },
+        {
+          "id": "g9",
+          "label": "Evening activity: walks the ___",
+          "answer": "dog"
+        },
+        {
+          "id": "g10",
+          "label": "Change: swap white toast for ___",
+          "answer": "wholegrain"
+        },
+        {
+          "id": "g11",
+          "label": "Reduce this in coffee gradually",
+          "answer": "sugar"
+        },
+        {
+          "id": "g12",
+          "label": "Replace fizzy drink with ___",
+          "answer": "water"
+        }
+      ]
+    }
   }
 ];

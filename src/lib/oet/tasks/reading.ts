@@ -32,6 +32,8 @@ export const readingPartAPayloadSchema = z.object({
       stem: z.string(),
       options: z.array(mcqOptionSchema).optional(),
       answer: z.string(),
+      // Additional accepted wordings for a `gap` answer — see markObjective.
+      variants: z.array(z.string()).optional(),
     }),
   ),
 });
@@ -53,6 +55,7 @@ export function scoreReadingPartA(
       id: q.id,
       answer: q.answer,
       exact: q.kind === "match",
+      variants: q.variants,
     })),
     response,
   );

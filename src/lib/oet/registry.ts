@@ -128,15 +128,32 @@ export const OET_TASKS: Record<OetTaskType, TaskDef> = {
   },
 };
 
-// The full OET mock sequence, in test order. Listening → Reading → Writing →
+// The full OET mock sequence, in test order: Listening → Reading → Writing →
 // Speaking (two role-plays).
+//
+// The multiplicities are the WHOLE point — one item per part delivered a mock of
+// 19 objective questions and called itself full-length. A real OET paper is 42
+// Listening and 42 Reading, and our item granularity is one extract per item:
+//
+//   LISTENING  Part A  2 items x 12 gaps = 24
+//              Part B  6 items x  1 MCQ  =  6
+//              Part C  2 items x  6 MCQ  = 12   → 42
+//   READING    Part A  1 item  x 20 Qs   = 20
+//              Part B  6 items x  1 MCQ  =  6
+//              Part C  2 items x  8 MCQ  = 16   → 42
+//
+// Changing these numbers changes what a "full mock" means, so they are written
+// out rather than generated — the count should be readable at a glance and show
+// up in a diff if anyone alters it.
 export const MOCK_PLAN: OetTaskType[] = [
-  "LISTENING_PART_A",
-  "LISTENING_PART_B",
-  "LISTENING_PART_C",
+  "LISTENING_PART_A", "LISTENING_PART_A",
+  "LISTENING_PART_B", "LISTENING_PART_B", "LISTENING_PART_B",
+  "LISTENING_PART_B", "LISTENING_PART_B", "LISTENING_PART_B",
+  "LISTENING_PART_C", "LISTENING_PART_C",
   "READING_PART_A",
-  "READING_PART_B",
-  "READING_PART_C",
+  "READING_PART_B", "READING_PART_B", "READING_PART_B",
+  "READING_PART_B", "READING_PART_B", "READING_PART_B",
+  "READING_PART_C", "READING_PART_C",
   "WRITING_LETTER",
   "SPEAKING_ROLEPLAY",
   "SPEAKING_ROLEPLAY",

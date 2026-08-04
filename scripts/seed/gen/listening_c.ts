@@ -925,5 +925,283 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "audioScript": "When uptake of a vaccine is low, the instinctive response is to push more information at people, on the assumption that hesitancy comes from ignorance. Our community work has taught me that this assumption is usually wrong and sometimes counterproductive. Most hesitant people are not short of information; they are short of trust, often because of past experiences in which the system let them down. Bombarding them with statistics can actually entrench their resistance, because it feels like being lectured rather than heard. What changed minds in our area was not a leaflet campaign but recruiting trusted local voices, including faith leaders, to hold open conversations. Convenience mattered too: when we brought clinics to workplaces and places of worship, attendance rose noticeably. The lesson is that uptake is built on relationships and access, not on the volume of facts we broadcast."
     },
     "guidanceNote": "Watch for a speaker calling a common assumption 'wrong' or 'counterproductive'. The tested point is usually the corrected belief, not the original assumption."
+  },
+
+  // ── OET Form 1 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_C",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part C — Interview: wound-care nursing",
+    "prompt": "You will hear an interview. For questions 1-6, choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "interview",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Interviewer",
+          "voice": "onyx"
+        },
+        {
+          "role": "Lena Fischer",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Interviewer: Today I'm speaking with Lena Fischer, a community nurse who specialises in wound care. Lena, many people think of wound care as fairly routine - is that fair? Lena: I understand why, but I'd push back. A wound is rarely just a wound; it's a window into the person's whole health. Poor healing usually points to something else - diabetes, nutrition, circulation. The dressing is almost the least interesting part. Interviewer: What drew you to the field? Lena: It wasn't a grand plan. Early on I was placed with a mentor who treated wound care as detective work, and that curiosity was infectious. I stayed because you can watch someone heal week by week - which isn't true of every specialty. Interviewer: How big a factor is nutrition, really? Lena: Bigger than most people - including some clinicians - appreciate. You can have the perfect dressing regime, but without enough protein the body has no raw materials to rebuild tissue. I spend as much time talking about food as about dressings. Interviewer: Is there a myth you'd most like to correct? Lena: That wounds should be kept dry and open to the air. For most wounds the opposite is true - a moist environment under the right dressing heals faster. That old advice does real harm, and it's stubbornly persistent. Interviewer: What's the hardest part of the job? Lena: The emotional side. When a wound won't heal despite everything, patients lose hope, and part of my role is holding that hope for them without making promises I can't keep. The clinical skills you can teach; that balance takes years. Interviewer: Finally, advice for a nurse considering the specialty? Lena: Come and shadow someone first. Don't rely on the textbook picture - spend a day in the community, see the homes and the conversations, and you'll know quickly whether it's for you.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is Lena's view of the idea that wound care is routine?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "she largely agrees"
+            },
+            {
+              "id": "b",
+              "text": "she disagrees - a wound reflects wider health"
+            },
+            {
+              "id": "c",
+              "text": "she says it depends on the wound type"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "Why did she stay in the specialty?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "she had always planned to"
+            },
+            {
+              "id": "b",
+              "text": "her mentor told her to"
+            },
+            {
+              "id": "c",
+              "text": "she could see patients heal over time"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "What does she say about nutrition?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "it matters more than many clinicians realise"
+            },
+            {
+              "id": "b",
+              "text": "it matters less than the dressing"
+            },
+            {
+              "id": "c",
+              "text": "it only affects diabetic patients"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "The myth she most wants to correct is:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "that nutrition barely affects healing"
+            },
+            {
+              "id": "b",
+              "text": "that wounds heal best kept dry and open to the air"
+            },
+            {
+              "id": "c",
+              "text": "that the work is emotionally easy"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What does she find hardest?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "keeping her clinical skills current"
+            },
+            {
+              "id": "b",
+              "text": "managing dressings correctly"
+            },
+            {
+              "id": "c",
+              "text": "supporting patients emotionally when healing is slow"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Her advice to interested nurses is to:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "read widely first"
+            },
+            {
+              "id": "b",
+              "text": "shadow someone and see the reality"
+            },
+            {
+              "id": "c",
+              "text": "start in a hospital, not the community"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_C",
+    "profession": null,
+    "title": "OET Form 1 · Listening Part C — Presentation: polypharmacy",
+    "prompt": "You will hear a presentation. For questions 1-6, choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "presentation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Dr Amara Singh",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Dr Amara Singh: Thank you all for coming. I want to talk about polypharmacy - using multiple medicines - because in our older patients it has become one of the biggest, and most preventable, sources of harm. The instinct, when someone has several conditions, is to add a medicine for each. That seems logical. But every new drug interacts with the others, and once a patient is on ten or more, the risk of an adverse reaction rises sharply - not gradually, sharply. What surprises people is that the single most useful thing we can do isn't a new drug at all; it's deprescribing - carefully stopping the ones that are no longer helping. Yet we're strangely reluctant. There's a culture where adding feels like caring and stopping feels like giving up - and that culture harms people. Let me be concrete. I reviewed a patient last month on fourteen medicines. Three of them were treating the side effects of the other eleven. When we unpicked it, she went home on six, and her falls stopped. The falls were the drugs, not her age - and that's the assumption I most want to challenge: we blame a patient's age for what the prescription is doing. So my ask is simple. At every review, don't only ask what to add. Ask what you can safely take away. And ask the patient - they often know which tablet makes them feel worse, if only we ask them.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does Dr Singh say about adding a medicine for each condition?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "it seems logical, but each new drug interacts and raises risk"
+            },
+            {
+              "id": "b",
+              "text": "it is always the wrong choice"
+            },
+            {
+              "id": "c",
+              "text": "it is unavoidable when conditions are multiple"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "She says the single most useful intervention is:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "prescribing safer alternatives"
+            },
+            {
+              "id": "b",
+              "text": "adding a medicine to prevent falls"
+            },
+            {
+              "id": "c",
+              "text": "deprescribing - stopping drugs that no longer help"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why are clinicians reluctant to deprescribe?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "a culture where adding feels like caring and stopping like giving up"
+            },
+            {
+              "id": "b",
+              "text": "fear of legal action"
+            },
+            {
+              "id": "c",
+              "text": "a lack of time during reviews"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "In her example of the patient on fourteen medicines:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "most of the drugs were essential"
+            },
+            {
+              "id": "b",
+              "text": "three were treating side effects of the others"
+            },
+            {
+              "id": "c",
+              "text": "the patient refused to stop any"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "The assumption she most wants to challenge is that:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "patients dislike taking tablets"
+            },
+            {
+              "id": "b",
+              "text": "deprescribing is unsafe"
+            },
+            {
+              "id": "c",
+              "text": "a patient's age, not their drugs, causes problems such as falls"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Her main request to the team is to:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "at every review, ask what can safely be removed"
+            },
+            {
+              "id": "b",
+              "text": "always involve a pharmacist"
+            },
+            {
+              "id": "c",
+              "text": "reduce every patient to six medicines"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

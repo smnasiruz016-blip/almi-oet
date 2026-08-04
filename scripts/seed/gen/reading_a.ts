@@ -1726,5 +1726,304 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       ]
     },
     "guidanceNote": "Match each dressing to its exudate level first — that single clue resolves most Part A wound questions quickly."
+  },
+
+  // ── OET Form 1 (canonical ingest 2026-08-04) ──
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_A",
+    "profession": null,
+    "title": "OET Form 1 · Reading Part A — Preventing pressure injuries",
+    "prompt": "Complete the 20 questions using the four texts (A-D). Answer with a word or short phrase, or a text letter for matching questions. You have 15 minutes.",
+    "difficulty": "CORE",
+    "topicTag": "pressure-injury",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "texts": [
+        {
+          "id": "A",
+          "heading": "Risk assessment",
+          "body": "Pressure injuries develop where soft tissue is compressed between bone and a surface. Structured risk assessment on admission is the foundation of prevention. The Braden Scale rates six areas - sensory perception, moisture, activity, mobility, nutrition and friction/shear - with lower total scores meaning higher risk. A score of 18 or below prompts a prevention plan. Risk should be reassessed whenever the patient's condition changes, not only on admission."
+        },
+        {
+          "id": "B",
+          "heading": "Repositioning",
+          "body": "Repositioning redistributes pressure and is advised at least every four hours for at-risk patients on a pressure-redistributing mattress, and more often on a standard mattress. The 30-degree tilt is preferred over lying directly on the hip, which concentrates pressure on the bony prominence. Heels should be offloaded entirely, ideally floating on a pillow placed under the calves. A repositioning schedule should be documented and visible at the bedside."
+        },
+        {
+          "id": "C",
+          "heading": "Skin and moisture",
+          "body": "Skin should be inspected at each repositioning, with particular attention to the sacrum, heels and any medical-device sites. Non-blanching redness is an early warning sign. Excess moisture from perspiration or incontinence weakens the skin barrier; a barrier cream protects intact skin, but massage over bony prominences is contraindicated, as it can damage fragile tissue."
+        },
+        {
+          "id": "D",
+          "heading": "Nutrition",
+          "body": "Undernutrition impairs healing and raises risk. Patients should be screened with a validated tool such as MUST. Adequate protein and energy support tissue integrity; where oral intake is poor, referral to the dietitian is indicated. Hydration matters too - dehydrated skin is less resilient."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "match",
+          "stem": "how often to reposition an at-risk patient",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "kind": "match",
+          "stem": "a validated tool for nutritional screening",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "kind": "match",
+          "stem": "the earliest visible warning sign",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "the score that triggers a prevention plan",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "how to protect the heels",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "when risk should be reassessed",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "a practice that is contraindicated",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "kind": "short",
+          "stem": "Which scale rates six areas of risk?",
+          "answer": "the Braden Scale",
+          "variants": [
+            "Braden Scale",
+            "Braden"
+          ]
+        },
+        {
+          "id": "q9",
+          "kind": "short",
+          "stem": "A Braden score of what value or below prompts a prevention plan?",
+          "answer": "18",
+          "variants": [
+            "18 or below"
+          ]
+        },
+        {
+          "id": "q10",
+          "kind": "short",
+          "stem": "Which position is preferred over lying directly on the hip?",
+          "answer": "the 30-degree tilt",
+          "variants": [
+            "30-degree tilt",
+            "30 degree tilt"
+          ]
+        },
+        {
+          "id": "q11",
+          "kind": "short",
+          "stem": "What early sign appears on the skin?",
+          "answer": "non-blanching redness"
+        },
+        {
+          "id": "q12",
+          "kind": "short",
+          "stem": "Which nutritional screening tool is named?",
+          "answer": "MUST"
+        },
+        {
+          "id": "q13",
+          "kind": "short",
+          "stem": "Who should be referred when oral intake is poor?",
+          "answer": "the dietitian",
+          "variants": [
+            "dietitian"
+          ]
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Pressure injuries develop where soft tissue is compressed between bone and a ___.",
+          "answer": "surface"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Risk should be reassessed whenever the patient's ___ changes.",
+          "answer": "condition"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Heels should ideally be ___ on a pillow under the calves.",
+          "answer": "floating"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "A ___ cream protects intact skin from excess moisture.",
+          "answer": "barrier"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "___ over bony prominences is contraindicated.",
+          "answer": "massage"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Undernutrition ___ healing and raises risk.",
+          "answer": "impairs"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "___ skin is less resilient.",
+          "answer": "dehydrated"
+        }
+      ]
+    }
   }
 ];
