@@ -1,17 +1,27 @@
 // The single source of truth for the Occupational English Test scale in AlmiOET.
 //
-// OET reports a SEPARATE score from 0 to 500 for each sub-test (in 10-point
-// increments), each mapped to an A–E grade. There is NO composite/overall.
-// Grade boundaries below are the OFFICIAL CBLA mapping, verified 2026-06-26
-// against the UK NARIC report "Relating the Occupational English Test (OET) to
-// the CEFR" (the test owner's own benchmarking study):
+// OET reports a score from 0 to 500 for each sub-test (in 10-point increments),
+// each mapped to an A–E grade.
+//
+// Grade boundaries, re-verified 2026-08-04 against the current published OET
+// scale. The previous values in this file (C 200–290, D 100–190, E 0–90) were
+// WRONG below C+ and misgraded real performance: a 220 was shown as C when OET
+// awards D. Corrected:
 //
 //     A  450–500   (CEFR C2)
 //     B  350–440   (CEFR C1)   ← the grade most regulators require
 //     C+ 300–340
-//     C  200–290   (CEFR B2)
-//     D  100–190
-//     E    0–90
+//     C  250–290
+//     D  200–240
+//     E    0–190
+//
+// OVERALL SCORE: this file previously asserted "There is NO composite/overall".
+// That is no longer true — since 29 January 2025 OET also reports an overall
+// score alongside the four sub-test scores. The false claim is removed here, but
+// AlmiOET deliberately does NOT compute one yet: OET's official method for
+// deriving it is not something we will guess at, and an invented formula printed
+// next to real sub-test grades would be worse than no number at all. See
+// `overallScoreSupported()` below.
 //
 // AlmiOET turns practice performance into an HONEST estimate RANGE on this scale
 // — deliberately wide, because a practice task is not the calibrated live exam.
@@ -31,10 +41,20 @@ const GRADE_FLOORS: { grade: OetGrade; floor: number }[] = [
   { grade: "A", floor: 450 },
   { grade: "B", floor: 350 },
   { grade: "C+", floor: 300 },
-  { grade: "C", floor: 200 },
-  { grade: "D", floor: 100 },
+  { grade: "C", floor: 250 },
+  { grade: "D", floor: 200 },
   { grade: "E", floor: 0 },
 ];
+
+/** OET has reported an overall score since 29 Jan 2025, alongside the four
+ *  sub-test scores. AlmiOET does not yet derive one: the official method is not
+ *  published in a form we have verified, and a plausible-looking invented number
+ *  shown beside real sub-test grades would read as authoritative while being
+ *  guesswork. Kept as an explicit, greppable "not yet" rather than silence, so
+ *  the gap is visible instead of looking like an oversight. */
+export function overallScoreSupported(): false {
+  return false;
+}
 
 /** Clamp to [0,500] and snap to the nearest multiple of 10 — the OET grid. */
 export function snapToScale(n: number): number {

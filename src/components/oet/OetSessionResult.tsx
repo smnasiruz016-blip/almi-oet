@@ -37,8 +37,9 @@ export function OetSessionResult({
         </p>
         <h1 className="mt-1 text-2xl font-semibold text-almi-ink">Your practice estimates</h1>
         <p className="mt-2 text-sm text-almi-text">
-          Each sub-test is estimated on its own 0–500 scale with an A–E grade. OET reports a separate
-          grade per sub-test — there is no overall score, so we don&apos;t invent one.
+          Each sub-test is estimated on its own 0–500 scale with an A–E grade. OET reports a grade per
+          sub-test and, since January 2025, an overall score too — we don&apos;t estimate that one, because
+          we won&apos;t put a number next to your results that we invented.
         </p>
       </header>
 

@@ -6,7 +6,8 @@
 //
 // MOCK: the full OET in test order (Listening → Reading → Writing → Speaking).
 // Each sub-test is scored independently into its own 0–500 grade. We NEVER
-// compute a composite/overall (OET reports per sub-test only). A mock is built
+// compute an overall — OET does report one (since Jan 2025) but its method is
+// not something we will guess at; see overallScoreSupported(). A mock is built
 // for one profession — its Writing + Speaking items come from that profession's
 // bank; Listening + Reading are common.
 
