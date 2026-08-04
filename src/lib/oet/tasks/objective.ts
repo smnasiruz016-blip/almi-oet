@@ -22,10 +22,15 @@ function firstValue(v: string | string[] | undefined): string {
   return v ?? "";
 }
 
-export type AnswerKey = { id: string; answer: string; exact?: boolean };
+/** `variants` are ADDITIONAL accepted answers, marked identically to `answer`.
+ *  A note-completion gap often has more than one legitimate wording of the same
+ *  heard phrase ("moving boxes" / "lifting boxes"), and marking one of them wrong
+ *  penalises a candidate for the authoring, not for the listening. */
+export type AnswerKey = { id: string; answer: string; exact?: boolean; variants?: string[] };
 
 /** Mark a set of answers against a key. `exact` items (MCQ/matching by id) must
- *  match exactly; the rest use lenient normalised comparison (gap fill). */
+ *  match exactly; the rest use lenient normalised comparison (gap fill). Any
+ *  declared variant is accepted on the same terms as the primary answer. */
 export function markObjective(
   key: AnswerKey[],
   response: ObjectiveResponse,
@@ -34,9 +39,10 @@ export function markObjective(
   const detail: { id: string; correct: boolean }[] = [];
   for (const k of key) {
     const given = firstValue(response.answers[k.id]);
+    const accepted = [k.answer, ...(k.variants ?? [])];
     const ok = k.exact
-      ? given.trim() === k.answer.trim()
-      : normalize(given) === normalize(k.answer);
+      ? accepted.some((a) => given.trim() === a.trim())
+      : accepted.some((a) => normalize(given) === normalize(a));
     if (ok) correct += 1;
     detail.push({ id: k.id, correct: ok });
   }

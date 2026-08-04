@@ -26,7 +26,15 @@ const mcqQuestionSchema = z.object({
 export const listeningPartAPayloadSchema = z.object({
   audioScript: z.string(),
   speakers: z.array(speakerSchema),
-  gaps: z.array(z.object({ id: z.string(), label: z.string(), answer: z.string() })),
+  gaps: z.array(
+    z.object({
+      id: z.string(),
+      label: z.string(),
+      answer: z.string(),
+      // Additional accepted wordings of the same heard phrase — see markObjective.
+      variants: z.array(z.string()).optional(),
+    }),
+  ),
 });
 export type ListeningPartAPayload = z.infer<typeof listeningPartAPayloadSchema>;
 
@@ -42,7 +50,7 @@ export function scoreListeningPartA(
   response: z.infer<typeof objectiveResponseSchema>,
 ): TaskRunResult {
   return markObjective(
-    payload.gaps.map((g) => ({ id: g.id, answer: g.answer })),
+    payload.gaps.map((g) => ({ id: g.id, answer: g.answer, variants: g.variants })),
     response,
   );
 }
