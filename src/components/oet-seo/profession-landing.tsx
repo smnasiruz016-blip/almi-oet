@@ -8,8 +8,11 @@ import { GET_STARTED_HREF } from "@/components/GlobalHeader";
 import { SITE_URL } from "@/lib/oet-seo/sitemap-urls";
 import { PROFESSIONS } from "@/lib/oet/professions";
 import { professionBySlug } from "@/lib/oet/professions";
-import { orgsForProfession, gradeLine, type SeoOrg } from "@/lib/oet-seo/data";
+import { orgsForProfession, gradeLine, orgBySlug } from "@/lib/oet-seo/data";
+import { nameVariants } from "@/lib/oet-seo/regulators";
+import { hubCountries, orgsForProfessionRenderable } from "@/lib/oet-seo/links";
 import { OetSeoCrossLinks, OetSeoCta, OetSeoShamool, OetSeoDisclaimer, FaqJsonLd, GRADE_DOCTRINE } from "./master";
+import { Breadcrumbs, BreadcrumbJsonLd, RelatedLinks, type Crumb } from "./rich-page";
 
 export function buildProfessionMetadata(professionSlug: string): Metadata {
   const def = professionBySlug(professionSlug);
@@ -27,18 +30,23 @@ export function buildProfessionMetadata(professionSlug: string): Metadata {
   };
 }
 
-function topRegulators(orgs: SeoOrg[]): SeoOrg[] {
-  const isReg = (o: SeoOrg) =>
-    !!o.type && /regulator|government|credentialing/i.test(o.type);
-  return orgs.filter(isReg).slice(0, 12);
-}
-
 export function ProfessionLanding({ professionSlug }: { professionSlug: string }) {
   const def = professionBySlug(professionSlug);
   if (!def) notFound();
   const orgs = orgsForProfession(professionSlug);
-  const regulators = topRegulators(orgs);
   const countries = new Set(orgs.map((o) => o.country).filter((c): c is string => !!c && c !== "All"));
+
+  // Link only to pages that were actually built. The old landing listed any org
+  // whose `type` looked like a regulator, which after the prune would have been
+  // a hub pointing at 404s.
+  const linkable = orgsForProfessionRenderable(professionSlug);
+  const trail: Crumb[] = [
+    { label: "AlmiOET", href: "/" },
+    { label: def.label, href: `/${professionSlug}` },
+  ];
+  const hubs = hubCountries().filter((c) =>
+    linkable.some((s) => orgBySlug(s)?.country === c.country),
+  );
 
   const faqs = [
     {
@@ -62,8 +70,10 @@ export function ProfessionLanding({ professionSlug }: { professionSlug: string }
   return (
     <article className="bg-almi-bg">
       <FaqJsonLd faqs={faqs} />
+      <BreadcrumbJsonLd trail={trail} />
+      <Breadcrumbs trail={trail} />
 
-      <header className="mx-auto max-w-3xl px-6 pt-12">
+      <header className="mx-auto max-w-3xl px-6 pt-6">
         <p className="text-xs font-bold uppercase tracking-wider text-almi-accent-deep">
           ALMIOET · OCCUPATIONAL ENGLISH TEST
         </p>
@@ -112,20 +122,28 @@ export function ProfessionLanding({ professionSlug }: { professionSlug: string }
         </div>
       </section>
 
-      {regulators.length > 0 && (
+      {linkable.length > 0 && (
         <section className="mx-auto max-w-3xl px-6 pb-6">
           <h2 className="text-sm font-bold uppercase tracking-wider text-almi-text-muted">
-            Regulators & boards that recognise OET for {def.label}
+            Bodies that recognise OET for {def.label} — with the grade each asks
           </h2>
           <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-            {regulators.map((o) => (
-              <li key={o.slug} className="text-sm">
-                <Link href={`/register/${o.slug}`} className="font-medium text-almi-coral hover:underline">
-                  {o.name}
-                </Link>
-                <span className="text-almi-text-muted"> — {gradeLine(o) ?? "confirm grade"}</span>
-              </li>
-            ))}
+            {linkable.map((s) => {
+              const o = orgBySlug(s);
+              if (!o) return null;
+              const nv = nameVariants(o.name);
+              return (
+                <li key={s} className="text-sm">
+                  <Link
+                    href={`/${professionSlug}/${s}`}
+                    className="font-medium text-almi-coral hover:underline"
+                  >
+                    {nv.abbrev ?? nv.full}
+                  </Link>
+                  <span className="text-almi-text-muted"> — {gradeLine(o) ?? "confirm grade"}</span>
+                </li>
+              );
+            })}
           </ul>
           <p className="mt-3 text-xs text-almi-text-muted">{GRADE_DOCTRINE}</p>
         </section>
@@ -142,6 +160,20 @@ export function ProfessionLanding({ professionSlug }: { professionSlug: string }
           ))}
         </dl>
       </section>
+
+      {hubs.length > 0 && (
+        <RelatedLinks
+          heading={`${def.label} OET by country`}
+          links={[
+            ...hubs.map((c) => ({
+              label: `OET in ${c.country}`,
+              href: `/${c.slug}`,
+              blurb: "Every body in this country that recognises OET, and what each asks.",
+            })),
+            { label: "All recognising organisations", href: "/register" },
+          ]}
+        />
+      )}
 
       <OetSeoCrossLinks />
       <OetSeoCta />

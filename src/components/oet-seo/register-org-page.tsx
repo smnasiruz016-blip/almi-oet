@@ -1,129 +1,133 @@
-// /register/[organization] — one recognising organisation, the professions it
-// accepts OET for, and its published grade. Real data only.
+// /register/[organization] — one recognising organisation, composed from real
+// fields and gated before it is ever built. The page no longer restates OET's
+// scrape in a box; it says what this body requires, how it treats results from
+// more than one sitting, what it accepts instead, and where OET sits in its own
+// process — because those are the things a candidate is actually trying to find.
 
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { SITE_URL } from "@/lib/oet-seo/sitemap-urls";
-import { orgBySlug, gradeLine, professionLabelToSlug, isOrgIndexable } from "@/lib/oet-seo/data";
-import { orgNote } from "@/lib/oet-seo/org-notes";
+import { composeOrgPage } from "@/lib/oet-seo/compose";
+import { isCurrentEnoughToIndex, nameVariants, verifiedOn } from "@/lib/oet-seo/regulators";
+import { gradeLine } from "@/lib/oet-seo/data";
 import {
-  OetSeoCrossLinks,
-  OetSeoCta,
-  OetSeoShamool,
-  OetSeoDisclaimer,
-  OetSeoOrgNote,
-  FaqJsonLd,
-  GRADE_DOCTRINE,
-} from "./master";
+  countryHubHrefForOrg,
+  isOrgRenderable,
+  professionsForOrgRenderable,
+} from "@/lib/oet-seo/links";
+import { orgNote } from "@/lib/oet-seo/org-notes";
+import { GRADE_DOCTRINE, OetSeoOrgNote } from "./master";
+import { RichPage, buildRichMetadata, type Crumb, type RelatedLink } from "./rich-page";
+
+const AWAITING =
+  "The requirement below is compiled from published sources and has not yet been re-read against this body's own current page. Treat it as a starting point and confirm it directly before you act on it.";
 
 export function buildRegisterMetadata(orgSlug: string): Metadata {
-  const org = orgBySlug(orgSlug);
-  if (!org) return { robots: { index: false, follow: true } };
-  const url = `${SITE_URL}/register/${org.slug}`;
+  const c = composeOrgPage(orgSlug);
+  if (!c || !isOrgRenderable(orgSlug)) return { robots: { index: false, follow: true } };
+  const { org } = c.merged;
   const grade = gradeLine(org);
-  const title = `${org.name} — OET recognition & grade | AlmiOET`;
-  const description = `${org.name} (${org.country ?? "international"}) recognises OET for ${org.professions.length} profession(s). ${grade ? `Published grade: ${grade}.` : "Confirm the grade with the organisation."} Honest OET practice with AlmiOET.`;
-  return {
-    title: { absolute: title },
+  const nv = nameVariants(org.name);
+  // Front-load the abbreviation people actually type, then the requirement.
+  const lead = nv.abbrev ? `${nv.abbrev} OET requirement` : `${org.name} OET requirement`;
+  const title = `${lead}${grade ? ` — ${grade}` : ""} | AlmiOET`;
+  const description = grade
+    ? `${org.name}${org.country ? ` (${org.country})` : ""} requires ${grade} for registration. What it accepts instead, whether results combine across sittings, and where OET sits in its process.`
+    : `${org.name}${org.country ? ` (${org.country})` : ""} recognises OET. What it accepts, whether results combine across sittings, and where OET sits in its registration process.`;
+  return buildRichMetadata({
+    title,
     description,
-    alternates: { canonical: url },
-    robots: isOrgIndexable(org) ? undefined : { index: false, follow: true },
-    openGraph: { title, description, url, type: "article", siteName: "AlmiOET" },
-    twitter: { card: "summary", title, description },
-  };
+    path: `/register/${orgSlug}`,
+    noindex: !isCurrentEnoughToIndex(orgSlug),
+  });
 }
 
 export function RegisterOrgPage({ orgSlug }: { orgSlug: string }) {
-  const org = orgBySlug(orgSlug);
-  if (!org) notFound();
+  const c = composeOrgPage(orgSlug);
+  if (!c || !isOrgRenderable(orgSlug)) notFound();
+  const { org, reg } = c.merged;
   const grade = gradeLine(org);
   const note = orgNote(org.slug);
+  const nv = nameVariants(org.name);
+  const countryHub = countryHubHrefForOrg(orgSlug);
+  const professions = professionsForOrgRenderable(orgSlug);
+
+  const trail: Crumb[] = [
+    { label: "AlmiOET", href: "/" },
+    { label: "Recognising organisations", href: "/register" },
+    ...(countryHub ? [{ label: countryHub.label, href: countryHub.href }] : []),
+    { label: nv.abbrev ?? org.name, href: `/register/${orgSlug}` },
+  ];
 
   const faqs = [
     {
-      q: `Does ${org.name} accept OET?`,
-      // A bare "yes" is misleading where acceptance is conditional on how the test was
-      // sat, so the condition rides along with the answer — including in the FAQ schema.
-      a: `Yes — ${org.name} is on OET's official list of recognising organisations. ${grade ? `The published requirement is ${grade}.` : "OET does not publish a fixed grade for this organisation — confirm directly."}${note ? ` ${note.note}` : ""}`,
+      q: `What OET grade does ${nv.abbrev ?? org.name} require?`,
+      a: grade ? `${grade}. ${GRADE_DOCTRINE}` : GRADE_DOCTRINE,
     },
-    { q: `What grade does ${org.name} require?`, a: grade ? `${grade}. ${GRADE_DOCTRINE}` : GRADE_DOCTRINE },
-    {
-      q: `Which professions does ${org.name} cover?`,
-      a: `${org.name} recognises OET for: ${org.professions.join(", ")}.`,
-    },
+    ...(reg?.combiningRule === null
+      ? [
+          {
+            q: `Can I combine OET results from two sittings for ${nv.abbrev ?? org.name}?`,
+            a: `${org.name} publishes no provision for combining results across sittings, so plan to reach every grade in one attempt.`,
+          },
+        ]
+      : []),
+    ...(reg?.alternativeTests?.length
+      ? [
+          {
+            q: `Does ${nv.abbrev ?? org.name} accept anything other than OET?`,
+            a: `Yes — it also recognises ${reg.alternativeTests.join("; ")}.`,
+          },
+        ]
+      : []),
+    ...(professions.length
+      ? [
+          {
+            q: `Which professions does ${nv.abbrev ?? org.name} recognise OET for?`,
+            a: `${org.professions.join(", ")}.`,
+          },
+        ]
+      : []),
   ];
 
+  const related: { heading: string; links: RelatedLink[] }[] = [];
+  if (professions.length) {
+    related.push({
+      heading: `${nv.abbrev ?? org.name} by profession`,
+      links: professions.map((p) => ({
+        label: `${p.label} — ${nv.abbrev ?? org.name}`,
+        href: `/${p.slug}/${orgSlug}`,
+        blurb: `What the Writing letter and Speaking role-play ask of a ${p.label.toLowerCase()}.`,
+      })),
+    });
+  }
+  if (countryHub) {
+    related.push({
+      heading: "Where this sits",
+      links: [
+        { label: `OET in ${countryHub.label}`, href: countryHub.href, blurb: "Every body in this country that recognises OET." },
+        { label: "All recognising organisations", href: "/register" },
+      ],
+    });
+  }
+
   return (
-    <article className="bg-almi-bg">
-      <FaqJsonLd faqs={faqs} />
-      <header className="mx-auto max-w-3xl px-6 pt-12">
-        <p className="text-xs font-bold uppercase tracking-wider text-almi-accent-deep">
-          AlmiOET · OET recognition
-        </p>
-        <h1 className="mt-2 text-3xl font-semibold text-almi-ink">{org.name}</h1>
-        <p className="mt-2 text-sm text-almi-text-muted">
-          {org.type ?? "Recognising organisation"} · {org.country ?? "International"}
-        </p>
-      </header>
-
-      <section className="mx-auto max-w-3xl px-6 py-8">
-        <div className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-5">
-          <p className="text-xs font-bold uppercase tracking-wider text-almi-text-muted">
-            Published OET grade
-          </p>
-          {grade ? (
-            <p className="mt-1 text-base font-semibold text-almi-ink">{grade}</p>
-          ) : (
-            <p className="mt-1 text-base font-semibold text-almi-coral-deep">
-              Not published — confirm with {org.name}
-            </p>
-          )}
-          <p className="mt-1 text-xs text-almi-text-muted">Per sub-test on the 0–500 scale.</p>
+    <RichPage
+      eyebrow="AlmiOET · OET recognition"
+      title={`${org.name} — the OET requirement`}
+      subtitle={[org.type ?? "Recognising organisation", org.country, verifiedOn(reg) ? `last verified ${verifiedOn(reg)}` : null]
+        .filter(Boolean)
+        .join(" · ")}
+      trail={trail}
+      sections={c.sections}
+      faqs={faqs}
+      related={related}
+      noindexNote={isCurrentEnoughToIndex(orgSlug) ? null : AWAITING}
+    >
+      {note && (
+        <div className="mx-auto max-w-3xl px-6">
+          <OetSeoOrgNote {...note} />
         </div>
-
-        {note && <OetSeoOrgNote {...note} />}
-
-        <h2 className="mt-8 text-sm font-bold uppercase tracking-wider text-almi-text-muted">
-          Professions {org.name} recognises OET for
-        </h2>
-        <ul className="mt-3 flex flex-wrap gap-2">
-          {org.professions.map((label) => {
-            const slug = professionLabelToSlug(label);
-            return slug ? (
-              <li key={label}>
-                <Link
-                  href={`/${slug}`}
-                  className="inline-flex rounded-full border border-almi-bg-peach bg-almi-paper px-3 py-1.5 text-sm font-medium text-almi-coral hover:border-almi-coral"
-                >
-                  {label}
-                </Link>
-              </li>
-            ) : (
-              <li key={label} className="rounded-full bg-almi-bg-peach px-3 py-1.5 text-sm text-almi-text">
-                {label}
-              </li>
-            );
-          })}
-        </ul>
-
-        <p className="mt-6 rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3 text-sm text-almi-text">
-          {GRADE_DOCTRINE}
-        </p>
-        {org.website && (
-          <p className="mt-3 text-sm text-almi-text">
-            Official page:{" "}
-            <a href={org.website} rel="nofollow noopener" className="font-semibold text-almi-coral underline">
-              {org.website.replace(/^https?:\/\//, "")}
-            </a>
-          </p>
-        )}
-      </section>
-
-      <OetSeoCrossLinks />
-      <OetSeoCta />
-      <OetSeoShamool />
-      <OetSeoDisclaimer />
-    </article>
+      )}
+    </RichPage>
   );
 }
