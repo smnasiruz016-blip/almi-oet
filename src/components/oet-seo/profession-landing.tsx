@@ -20,7 +20,10 @@ export function buildProfessionMetadata(professionSlug: string): Metadata {
   const count = orgsForProfession(professionSlug).length;
   const url = `${SITE_URL}/${professionSlug}`;
   const title = `${def.label} OET Practice & Recognition | AlmiOET`;
-  const description = `Practise the OET for ${def.label} with honest AI feedback per sub-test. ${count} organisations recognise OET for ${def.label}. Original healthcare material, never copied from OET.`;
+  // Pluralise from the real number rather than writing "organisation(s)" — the
+  // parenthesised form was on every page of the old surface and reads as a
+  // template that was never finished.
+  const description = `Practise the OET for ${def.label} with honest AI feedback per sub-test. ${count} ${count === 1 ? "organisation recognises" : "organisations recognise"} OET for ${def.label} on OET's own list. Original healthcare material, never copied from OET.`;
   return {
     title: { absolute: title },
     description,
@@ -51,7 +54,7 @@ export function ProfessionLanding({ professionSlug }: { professionSlug: string }
   const faqs = [
     {
       q: `Who accepts OET for ${def.label}?`,
-      a: `OET's official list shows ${orgs.length} organisations recognising OET for ${def.label} across ${countries.size} countries — regulators, boards, councils and employers. Always confirm the exact requirement with your own regulator.`,
+      a: `OET's official list shows ${orgs.length} ${orgs.length === 1 ? "organisation" : "organisations"} recognising OET for ${def.label} across ${countries.size} ${countries.size === 1 ? "country" : "countries"} — regulators, boards, councils and employers. Always confirm the exact requirement with your own regulator.`,
     },
     {
       q: `What OET grade do I need for ${def.label}?`,
@@ -83,8 +86,9 @@ export function ProfessionLanding({ professionSlug }: { professionSlug: string }
         <p className="mt-3 text-base text-almi-text">
           Practise the OET for {def.label.toLowerCase()} using real clinical scenarios, not general
           academic topics. Get an honest grade for each sub-test so you know exactly where you stand
-          before test day. {orgs.length} organisations across {countries.size} countries recognise OET
-          for {def.label}.
+          before test day. {orgs.length} {orgs.length === 1 ? "organisation" : "organisations"} across{" "}
+          {countries.size} {countries.size === 1 ? "country" : "countries"} recognise OET for{" "}
+          {def.label} on OET&apos;s own list.
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-4">
           {/* Card-first: /signup, not /practice — see the note in master.tsx. */}

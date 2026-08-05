@@ -1,74 +1,82 @@
+// The sitemap: gate-passers AND currency-passers only.
+//
+// It used to carry ~240,000 URLs, of which 237,413 were profession×origin×org
+// leaves that differed only by a label. Submitting them told Google to crawl a
+// quarter of a million pages that said the same thing, and Google declined —
+// most of the surface sat in discovered-not-indexed. What is listed here now is
+// only what the quality gate emitted and the currency gate cleared: a page that
+// is rich but awaiting re-confirmation renders with `noindex` and is deliberately
+// absent from this file, because asking for a crawl of a fact we have not
+// re-read is asking to be trusted for something we cannot yet promise.
+//
+// `<lastmod>` is the date the FACTS were verified, not the date of the build. A
+// build-time lastmod on unchanged facts is a lie told at scale.
+
 import type { MetadataRoute } from "next";
-import { PROFESSION_LIST } from "@/lib/oet/professions";
-import { OET_ORIGIN_SLUGS } from "./origins";
-import { ORGANISATIONS, ROLE_ORG_PAIRS } from "./data";
+import { emitted } from "./compose";
+import { regulatorBySlug, verifiedOn } from "./regulators";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "https://almioet.almiworld.com";
+
+/** Sitemaps.org caps a child sitemap at 50,000 URLs. */
 export const CHUNK_SIZE = 45_000;
 
-// Leaf origins = all researched origins (191). L drives the index-math.
-const L = OET_ORIGIN_SLUGS.length;
+function lastmodFor(orgSlug: string): Date | undefined {
+  const v = verifiedOn(regulatorBySlug(orgSlug));
+  if (!v) return undefined;
+  const d = new Date(v);
+  return Number.isNaN(d.getTime()) ? undefined : d;
+}
 
-// MEMORY-SAFE: the ~237k profession×origin×org leaves are NEVER materialised as
-// one array. Only the small BASE is built + cached; each leaf is computed
-// index-mathematically (pairIdx = j / L, originIdx = j % L) against ROLE_ORG_PAIRS.
+let _urls: MetadataRoute.Sitemap | null = null;
 
-let _base: MetadataRoute.Sitemap | null = null;
-function baseUrls(): MetadataRoute.Sitemap {
-  if (_base) return _base;
+/** Every indexable URL, in a stable order. Small enough to materialise: the
+ *  count is bounded by the amount of real enriched data, which is the point. */
+export function allUrls(): MetadataRoute.Sitemap {
+  if (_urls) return _urls;
+  const e = emitted();
   const out: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${SITE_URL}/register`, changeFrequency: "monthly", priority: 0.7 },
   ];
-  // profession landings
-  for (const p of PROFESSION_LIST) {
-    out.push({ url: `${SITE_URL}/${p.slug}`, changeFrequency: "monthly", priority: 0.8 });
+  for (const p of e.professions) {
+    out.push({ url: `${SITE_URL}/${p}`, changeFrequency: "monthly", priority: 0.8 });
   }
-  // register/[org] — one per recognising organisation
-  for (const o of ORGANISATIONS) {
-    out.push({ url: `${SITE_URL}/register/${o.slug}`, changeFrequency: "monthly", priority: 0.6 });
+  for (const c of e.countries) {
+    out.push({ url: `${SITE_URL}/${c}`, changeFrequency: "monthly", priority: 0.7 });
   }
-  // profession × origin
-  for (const p of PROFESSION_LIST) {
-    for (const o of OET_ORIGIN_SLUGS) {
-      out.push({ url: `${SITE_URL}/${p.slug}/from-${o}`, changeFrequency: "monthly", priority: 0.5 });
-    }
+  for (const s of e.orgs) {
+    out.push({
+      url: `${SITE_URL}/register/${s}`,
+      lastModified: lastmodFor(s),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
   }
-  _base = out;
+  for (const x of e.professionOrgs) {
+    out.push({
+      url: `${SITE_URL}/${x.professionSlug}/${x.orgSlug}`,
+      lastModified: lastmodFor(x.orgSlug),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    });
+  }
+  _urls = out;
   return out;
 }
 
-const baseLen = () => baseUrls().length;
-const matrixCount = () => ROLE_ORG_PAIRS.length * L; // role-org pair × origin
-
 export function totalUrlCount(): number {
-  return baseLen() + matrixCount();
+  return allUrls().length;
 }
 
 export function numSitemapChunks(): number {
   return Math.max(1, Math.ceil(totalUrlCount() / CHUNK_SIZE));
 }
 
-/** Build only the URLs for one chunk — index-math, never the full matrix array. */
+/** The URLs for one child sitemap. The index is built from numSitemapChunks()
+ *  over this same list, so the two can never disagree about how many exist. */
 export function urlsForChunk(chunkIndex: number): MetadataRoute.Sitemap {
-  const base = baseUrls();
-  const bLen = base.length;
-  const total = totalUrlCount();
+  const all = allUrls();
   const start = chunkIndex * CHUNK_SIZE;
-  const end = Math.min(start + CHUNK_SIZE, total);
-  const out: MetadataRoute.Sitemap = [];
-  for (let i = start; i < end; i++) {
-    if (i < bLen) {
-      out.push(base[i]);
-    } else {
-      const j = i - bLen;
-      const pair = ROLE_ORG_PAIRS[Math.floor(j / L)];
-      const origin = OET_ORIGIN_SLUGS[j % L];
-      out.push({
-        url: `${SITE_URL}/${pair.professionSlug}/from-${origin}/${pair.orgSlug}`,
-        changeFrequency: "monthly",
-        priority: 0.35,
-      });
-    }
-  }
-  return out;
+  return all.slice(start, start + CHUNK_SIZE);
 }
