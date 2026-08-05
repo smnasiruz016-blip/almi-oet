@@ -30,9 +30,11 @@ export function buildJourneyMetadata({ occupationSlug, originSlug, destinationSl
   // Search-first title: the corridor's own top query string, which is what people
   // actually type ("nurse UK from Pakistan"), not a phrasing we preferred.
   const title = `${searchTitle(c)} — verification, English and registration | AlmiOET`;
-  const description = ex?.eligible
-    ? `${c.originCountry}-trained nurses may not need an English test for ${inCountry(c.destinationCountry)}. What ${c.originRegulator} has to verify, and what the ${c.destinationCountry} regulator asks.`
-    : `What ${c.originRegulator} must verify, the OET grades required, and how the ${c.originCountry}-to-${c.destinationCountry} route actually runs.`;
+  // The description is what shows in a search result, so it is the LAST place to
+  // float an unconfirmed exemption: a snippet reading "may not need an English
+  // test" is read as the answer by people who never open the page. It states the
+  // route's real content instead, and lets the page carry the nuance.
+  const description = `What ${c.originRegulator} has to verify for the ${c.originCountry}-to-${c.destinationCountry} route, the English evidence ${c.destinationCountry} regulators require, and what to confirm before you book anything.`;
   return buildRichMetadata({
     title,
     description,

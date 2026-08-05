@@ -85,13 +85,35 @@ export function composeJourney(
   if (ex) {
     const paras: string[] = [];
     if (ex.eligible) {
-      facts.push("englishExemption", "exemptionEligible");
+      facts.push("englishExemption");
+      // NEVER stated as an entitlement.
+      //
+      // An earlier version of this branch told a Nigerian- or Philippine-trained
+      // nurse they "may not have to sit an English test at all" and that its
+      // "months and fees come out of the plan entirely". That was wrong: no
+      // country on this list gets an automatic exemption from the destination's
+      // English requirement. Someone who believed it would have skipped booking a
+      // test they in fact need, and found out at the application.
+      //
+      // An unconfirmed exemption is a question to take to the regulator, not an
+      // answer to act on. Where the fact carries `confirm-official` the page says
+      // so in the same breath as the possibility, and never nets out the cost of a
+      // test the reader may well have to sit.
+      const unconfirmed = ex.verifyStatus === "confirm-official";
       paras.push(
-        `A ${occupationPlural.replace(/s$/, "")} trained in ${from} may not have to sit an English test for ${to} at all. ${sentence(ex.basis)}`,
+        `Whether a ${occupationPlural.replace(/s$/, "")} trained in ${from} can evidence English from their training rather than by sitting a test is a question to put to ${dest.regulatorName} directly. ${sentence(ex.basis)}`,
       );
       paras.push(
-        `That is the single biggest difference between this route and one starting somewhere without English-medium training: where the exemption applies, the language requirement is evidenced from the training itself rather than from a test result, and the months and fees an English test would cost come out of the plan entirely.`,
+        unconfirmed
+          ? `Do not plan around it. This route is not an automatic exemption and we have not re-read it against ${dest.regulatorName}'s current position — assume you will need a test result until ${dest.regulatorName} tells you otherwise in writing, and book accordingly.`
+          : `It is decided on an individual training record rather than on nationality, so two nurses from the same country and the same year can get different answers.`,
       );
+      if (dest.requirementLine) {
+        facts.push("destinationRequirement");
+        paras.push(
+          `If a test is required, the published requirement is ${dest.requirementLine}. Each sub-test is reported separately, so the weakest one decides the outcome.`,
+        );
+      }
       paras.push(exemptionCaveat(dest, corridor.originRegulator));
     } else {
       facts.push("englishExemption");
@@ -109,11 +131,18 @@ export function composeJourney(
     push(
       {
         id: "exemption",
-        // Search-first: the dataset's own query strings name the exemption
-        // question directly for the corridors where it is the headline fact.
-        heading: ex.eligible
-          ? `${searchPhrase(corridor, /english|without/i) ?? `Do ${from}-trained ${occupationPlural} need an English test for ${to}?`}`
-          : `The English test ${from}-trained ${occupationPlural} have to sit`,
+        // Search-first: the dataset's own query strings. But a query string like
+        // "Nigerian nurse UK without OET" is how people SEARCH, not a claim we
+        // endorse — used as a heading over an unconfirmed exemption it reads as an
+        // answer. So it is only used where the fact is confirmed; otherwise the
+        // heading poses the question the section actually answers.
+        heading:
+          ex.eligible && ex.verifyStatus !== "confirm-official"
+            ? (searchPhrase(corridor, /english|without/i) ??
+              `Do ${from}-trained ${occupationPlural} need an English test for ${to}?`)
+            : ex.eligible
+              ? `Do ${from}-trained ${occupationPlural} need an English test for ${to}?`
+              : `The English test ${from}-trained ${occupationPlural} have to sit`,
         paras,
       },
       [],
