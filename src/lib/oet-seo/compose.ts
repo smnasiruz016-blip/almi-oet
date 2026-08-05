@@ -51,7 +51,13 @@ import {
   type GateResult,
   type Merged,
 } from "./compose-core";
-import { CORRIDORS, destinationFor, corridorPath } from "./corridors";
+import {
+  CORRIDORS,
+  destinationFor,
+  corridorPath,
+  CORRIDOR_DESTINATION_ORG,
+  SHARED_DESTINATION,
+} from "./corridors";
 import { composeJourney, isJourneyCurrent, journeyNotCurrentReason } from "@/lib/journey/compose";
 import {
   matrixCells,
@@ -232,6 +238,54 @@ function sectionContext(m: Merged): { section: Section; facts: string[] } | null
   };
 }
 
+/** The uniform steps every corridor into this destination shares.
+ *
+ *  THE OTHER HALF OF LAW #3. The corridor pages deliberately do not state the
+ *  Test of Competence, the fee schedule or the majority-English-country list —
+ *  they name them and link here. That only works if "here" actually holds them,
+ *  otherwise de-emphasising the shared material just deletes it.
+ *
+ *  So this renders on the ONE page the corridors point at, and only there.
+ *
+ *  WHAT IT DELIBERATELY DOES NOT RENDER: `sharedDestination.englishAcceptedTests`.
+ *  The base record already owns the English requirement and `sectionRequirements`
+ *  already states it on this same page — grades, the IELTS alternative and the
+ *  combining rule. Rendering the batch's differently-worded copy alongside it
+ *  would put two owners on one fact on one page, which is exactly how enrichment
+ *  v1 published three regulators' figures wrongly. The one thing that copy holds
+ *  and the base does not is IELTS's own numeric scores; those belong in the base
+ *  record, not smuggled in through a corridor file. Flagged, not fabricated. */
+function sectionSharedCorridorSteps(m: Merged): { section: Section; facts: string[] } | null {
+  if (m.org.slug !== CORRIDOR_DESTINATION_ORG) return null;
+  const s = SHARED_DESTINATION;
+  const paras: string[] = [];
+  const facts: string[] = [];
+  if (s.testOfCompetence?.value) {
+    facts.push("testOfCompetence");
+    paras.push(sentence(s.testOfCompetence.value));
+  }
+  if (s.nmcFees?.value) {
+    facts.push("destinationFees");
+    paras.push(sentence(s.nmcFees.value));
+  }
+  if (s.englishMajorityCountryList?.value) {
+    facts.push("majorityEnglishList");
+    paras.push(sentence(s.englishMajorityCountryList.value));
+  }
+  if (!paras.length) return null;
+  paras.push(
+    `These steps are the same whichever country you trained in, which is why the country-by-country pages link here rather than repeating them.`,
+  );
+  return {
+    section: {
+      id: "shared-steps",
+      heading: `The steps every internationally-trained applicant takes`,
+      paras,
+    },
+    facts,
+  };
+}
+
 /** The local vocabulary — genuinely useful, and it is the searcher's own words. */
 function sectionWording(w: Wording, m: Merged, professionSlug: string): { section: Section; facts: string[] } | null {
   const conv = localeConvention(m.countryCode);
@@ -365,6 +419,7 @@ export function composeOrgPage(orgSlug: string): (Composed & { merged: Merged })
   if (m.professionSlugs.length) facts.push("professions");
   push(sectionAlternatives(m));
   push(sectionContext(m));
+  push(sectionSharedCorridorSteps(m));
   if (primary && w) push(sectionWording(w, m, primary));
   push(sectionSource(m));
 

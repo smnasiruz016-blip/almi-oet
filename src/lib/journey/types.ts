@@ -11,12 +11,20 @@
 // about "origin" as an axis was wrong. What was wrong was multiplying by it while
 // holding no fact that varied along it.
 //
-// A corridor here is the opposite: it carries the origin's own regulator, that
-// regulator's verification route, and — the fact that actually decides the
-// candidate's year — whether their training exempts them from the destination's
-// English test at all. A Nigerian-trained nurse may skip OET entirely; a
-// Pakistani-trained nurse must sit it. That is not a label. Two corridors that
-// disagree about it are genuinely different pages.
+// A corridor here is the opposite. It carries the origin's own regulator, that
+// regulator's verification route, the attestation chain that route runs through,
+// the fees and timeline it costs, and the origin's own reading of the
+// destination's English rule. Those differ in substance, not in name: PNMC takes
+// a PKR 10,000 fee by email through a Good Standing Cell, NMCN takes REMITA
+// payments through a portal and posts the verification itself, India's is issued
+// by the STATE council rather than the national one, and the Philippines runs
+// through PRC LERIS and a DFA apostille. That is not a label.
+//
+// What is NOT here is as important. The destination's uniform steps — the Test
+// of Competence, the accepted English tests and their scores, the NMC's fees —
+// are the same for all four, so they live on the destination page and are LINKED
+// (law #3). Copying them into each corridor is precisely how four pages become
+// one page four times.
 //
 // So this module is built to be MEASURED, not assumed. It composes from corridor
 // facts only, links the destination's uniform steps rather than copying them, and
@@ -28,17 +36,25 @@
 // the origin-side facts. The destination's requirement and the location of its
 // shared steps are injected by the product.
 
-export type ExemptionStatus = {
-  /** True where the origin's training may satisfy the destination's language
-   *  requirement without a test. The single highest-value fact on the page. */
-  eligible: boolean;
-  /** The sourced reason. Rendered as given — never paraphrased into a promise. */
-  basis: string;
-  /** "confirm-official" marks a fact compiled from published sources but not yet
-   *  re-read against the authority's own page. It does NOT hold the page back:
-   *  an exemption is exactly the claim a reader must verify themselves, so the
-   *  page ships and says so, prominently, rather than silently not existing. */
+/** One sourced claim, as the proof batch carries it.
+ *
+ *  Every renderable fact arrives with its provenance attached rather than as a
+ *  bare string, because the two questions a reader has about a fact on this page
+ *  — who says so, and how sure are we — are the two the page has to be able to
+ *  answer. `confidence` distinguishes a regulator's own page from a summary of
+ *  it; `verifyStatus: "confirm-official"` marks a fact compiled from published
+ *  sources but not yet re-read against the authority's own page, which holds the
+ *  page out of the index while still rendering it. */
+export type SourcedFact = {
+  value: string;
+  sourceUrl?: string;
+  sourceName?: string;
+  confidence?: "official" | "secondary" | "notFound";
+  asOf?: string;
+  /** "confirm-official" → renders, but noindex until re-read at source. */
   verifyStatus?: string;
+  /** An author's caveat about the fact itself, not part of the claim. */
+  note?: string;
 };
 
 export type Corridor = {
@@ -50,13 +66,25 @@ export type Corridor = {
   destinationSlug: string;
   destinationCountry: string;
   /** The body that holds the register the candidate is ALREADY on. */
-  originRegulator: string;
-  originRegulatorUrl?: string;
+  originRegulator: SourcedFact;
+  /** The regulator's short name, derived once on load so no consumer has to
+   *  parse a sourced sentence to put a body's name in a heading. */
+  originRegulatorName: string;
   /** How that body's confirmation reaches the destination regulator. */
-  originVerification: string;
-  englishExemption?: ExemptionStatus;
+  verificationRoute: SourcedFact;
+  /** Notary / ministry / apostille chain the documents run through. Absent for
+   *  origins where the batch found none — an absent slot renders nothing rather
+   *  than a sentence about the absence. */
+  attestationChain?: SourcedFact;
+  /** Eligibility rules, money and elapsed time for the verification itself. */
+  feesTimeline?: SourcedFact;
+  /** How the destination's English rule lands for THIS origin. Never a binary:
+   *  see the composer for why an exemption is not stated as an entitlement. */
+  englishRoute?: SourcedFact;
+  /** The batch's own one-line summary of what makes this corridor distinct. */
+  originDistinctSummary?: string;
   /** How people in this origin actually phrase the search. Real query strings. */
-  searchWording?: string[];
+  localSearchWording?: string[];
   lastVerified: string;
   verifyStatus?: string;
 };
@@ -69,11 +97,12 @@ export type JourneyDestination = {
   /** The published requirement line, or null where none is published. */
   requirementLine: string | null;
   /** Where the UNIFORM steps live. The steps that are identical for every origin
-   *  — application, competence tests, visa — are linked here and deliberately not
-   *  restated per corridor: repeating them is precisely what would make four
-   *  corridors read as one page four times. */
+   *  — application, competence tests, fees, accepted English tests — are linked
+   *  here and deliberately not restated per corridor: repeating them is precisely
+   *  what would make four corridors read as one page four times. */
   sharedStepsHref: string | null;
-  /** A single sentence naming those steps, so the link means something. */
+  /** A single sentence NAMING those steps, so the link means something. It names
+   *  them; it does not state them. The difference is the whole of law #3. */
   sharedStepsSummary: string;
   /** Set when the destination's own record is awaiting re-confirmation. */
   destinationVerifiedOn?: string | null;

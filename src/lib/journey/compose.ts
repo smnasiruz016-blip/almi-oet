@@ -3,22 +3,31 @@
 // THE DESIGN CONSTRAINT, stated once because everything below follows from it:
 // the origin-distinct material must dominate, and the destination's uniform steps
 // must be LINKED rather than copied. Four corridors into the same destination
-// share an application process, a competence test and a visa route. Restating
-// those on each is how four pages become one page four times — the exact failure
-// that cut Australia's twelve profession pages at 75-84% overlap.
+// share an application process, a competence test, a fee schedule and a list of
+// accepted English tests. Restating those on each is how four pages become one
+// page four times — the exact failure that cut Australia's twelve profession
+// pages at 75-84% overlap.
 //
-// So the composer is deliberately lopsided. The origin regulator, its verification
-// route, the exemption answer and the local search wording get full paragraphs.
-// The destination requirement gets one short section and a link out. If that is
-// not enough material to clear the gate, the honest conclusion is that the
-// corridor is thin — not that the shared steps should be pasted in to bulk it up.
+// So the composer is deliberately lopsided. The origin regulator, its
+// verification route, the attestation chain, the money and the elapsed time, the
+// origin's reading of the English rule and the local search wording get full
+// paragraphs. The destination gets one short section that NAMES its shared steps
+// and links out.
+//
+// A SECOND CONSTRAINT, learned the expensive way: the words this file writes
+// itself appear on all four pages. Sourced values differ per origin; connective
+// prose does not. Every generic sentence added here is four identical sentences
+// in the corpus, and 5-gram sibling overlap counts them. So the scaffolding is
+// kept thin and, where it must exist, it names the origin country or its
+// regulator so the n-grams break. This is not a style preference — it is the
+// difference between four pages and one page four times.
 //
 // Nothing here is padded to help a page pass. The point of this module is the
 // measurement, and a page that only clears the gate because it was inflated
 // tells us nothing.
 
 import { measure, sentence, type Composed, type Section } from "@/lib/oet-seo/compose-core";
-import type { Corridor, JourneyDestination } from "./types";
+import type { Corridor, JourneyDestination, SourcedFact } from "./types";
 
 export type ComposedJourney = Composed & { corridor: Corridor };
 
@@ -32,7 +41,7 @@ export function inCountry(c: string): string {
  *  words rather than ours. Returns null when the dataset has none — we do not
  *  invent a phrase and present it as how people search. */
 function searchPhrase(c: Corridor, re: RegExp): string | null {
-  const hit = (c.searchWording ?? []).find((w) => re.test(w));
+  const hit = (c.localSearchWording ?? []).find((w) => re.test(w));
   return hit ? hit.replace(/^./, (m) => m.toUpperCase()) : null;
 }
 
@@ -41,27 +50,21 @@ function list(xs: string[]): string {
   return `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
 }
 
-/** The caveat an exemption always carries. An exemption is a claim that saves a
- *  candidate a test and several hundred pounds; getting it wrong costs them a
- *  refused application, so it is never stated without naming both authorities. */
-function exemptionCaveat(dest: JourneyDestination, originRegulator: string): string {
-  return `Confirm this with ${dest.regulatorName} and with ${originRegulator} before you rely on it — an exemption is decided on your individual training record, not on your country alone.`;
+/** Every fact on the corridor, in render order, for the source list and the
+ *  currency check. Keeping one list means a fact cannot be rendered without
+ *  being citable, or held to a currency rule the source list never mentions. */
+function factsOf(c: Corridor): { key: string; label: string; fact: SourcedFact }[] {
+  const out: { key: string; label: string; fact: SourcedFact }[] = [];
+  const add = (key: string, label: string, f?: SourcedFact) => {
+    if (f) out.push({ key, label, fact: f });
+  };
+  add("originRegulator", "the regulator", c.originRegulator);
+  add("verificationRoute", "the verification route", c.verificationRoute);
+  add("feesTimeline", "eligibility, fees and timeline", c.feesTimeline);
+  add("attestationChain", "the attestation chain", c.attestationChain);
+  add("englishRoute", "the English requirement", c.englishRoute);
+  return out;
 }
-
-// A NOTE ON WHAT IS NOT HERE.
-//
-// The corridor spec asks for "origin credential/attestation wording" in the body.
-// The proof batch names that slot but does not fill it: `originDistinctContent`
-// reads "Pakistani document/attestation specifics", "Nigerian attestation
-// specifics" — a description of the material that should exist, not the material.
-// The one concrete instance anywhere in the batch is the Philippine
-// red-ribbon/apostille mention.
-//
-// So it is not rendered. Turning "Pakistani attestation specifics" into a
-// sentence about Pakistani attestation would mean writing the facts myself, and
-// on a page a nurse uses to plan an application that is the worst thing this
-// composer could do. The gap is reported instead — it is one of the reasons the
-// corridors measure as thin as they do.
 
 export function composeJourney(
   corridor: Corridor,
@@ -77,137 +80,175 @@ export function composeJourney(
   };
   const from = corridor.originCountry;
   const to = inCountry(corridor.destinationCountry);
-  const ex = corridor.englishExemption;
+  const reg = corridor.originRegulatorName;
+  const one = occupationPlural.replace(/s$/, "");
 
-  // ── 1. The exemption. Deliberately first: for half these corridors it is the
-  //       difference between sitting a test and not sitting one, which outranks
-  //       every other fact on the page.
-  if (ex) {
-    const paras: string[] = [];
-    if (ex.eligible) {
-      facts.push("englishExemption");
-      // NEVER stated as an entitlement.
-      //
-      // An earlier version of this branch told a Nigerian- or Philippine-trained
-      // nurse they "may not have to sit an English test at all" and that its
-      // "months and fees come out of the plan entirely". That was wrong: no
-      // country on this list gets an automatic exemption from the destination's
-      // English requirement. Someone who believed it would have skipped booking a
-      // test they in fact need, and found out at the application.
-      //
-      // An unconfirmed exemption is a question to take to the regulator, not an
-      // answer to act on. Where the fact carries `confirm-official` the page says
-      // so in the same breath as the possibility, and never nets out the cost of a
-      // test the reader may well have to sit.
-      const unconfirmed = ex.verifyStatus === "confirm-official";
-      paras.push(
-        `Whether a ${occupationPlural.replace(/s$/, "")} trained in ${from} can evidence English from their training rather than by sitting a test is a question to put to ${dest.regulatorName} directly. ${sentence(ex.basis)}`,
-      );
-      paras.push(
-        unconfirmed
-          ? `Do not plan around it. This route is not an automatic exemption and we have not re-read it against ${dest.regulatorName}'s current position — assume you will need a test result until ${dest.regulatorName} tells you otherwise in writing, and book accordingly.`
-          : `It is decided on an individual training record rather than on nationality, so two nurses from the same country and the same year can get different answers.`,
-      );
-      if (dest.requirementLine) {
-        facts.push("destinationRequirement");
-        paras.push(
-          `If a test is required, the published requirement is ${dest.requirementLine}. Each sub-test is reported separately, so the weakest one decides the outcome.`,
-        );
-      }
-      paras.push(exemptionCaveat(dest, corridor.originRegulator));
-    } else {
-      facts.push("englishExemption");
-      paras.push(
-        `A ${occupationPlural.replace(/s$/, "")} trained in ${from} does have to evidence English with a test. ${sentence(ex.basis)}`,
-      );
-      if (dest.requirementLine) {
-        facts.push("destinationRequirement");
-        paras.push(
-          `In practice that means reaching ${dest.requirementLine}. Each sub-test is reported separately, so the weakest one decides the outcome — there is no aggregate to fall back on.`,
-        );
-      }
-      paras.push(exemptionCaveat(dest, corridor.originRegulator));
-    }
+  // ── 1. What is different about THIS corridor, in one line.
+  //
+  //       The batch's own summary, rendered as the page's lead. For India it is
+  //       also the only place the state-by-state fees and timelines appear
+  //       (KNMC ~2-4 weeks, TNNMC ~7 working days, DNC 15-30 days), so dropping
+  //       it would lose real sourced facts, not just a restatement.
+  if (corridor.originDistinctSummary) {
     push(
       {
-        id: "exemption",
-        // Search-first: the dataset's own query strings. But a query string like
-        // "Nigerian nurse UK without OET" is how people SEARCH, not a claim we
-        // endorse — used as a heading over an unconfirmed exemption it reads as an
-        // answer. So it is only used where the fact is confirmed; otherwise the
-        // heading poses the question the section actually answers.
-        heading:
-          ex.eligible && ex.verifyStatus !== "confirm-official"
-            ? (searchPhrase(corridor, /english|without/i) ??
-              `Do ${from}-trained ${occupationPlural} need an English test for ${to}?`)
-            : ex.eligible
-              ? `Do ${from}-trained ${occupationPlural} need an English test for ${to}?`
-              : `The English test ${from}-trained ${occupationPlural} have to sit`,
-        paras,
+        id: "at-a-glance",
+        heading: `What is different about applying from ${from}`,
+        paras: [sentence(corridor.originDistinctSummary)],
       },
-      [],
+      ["originSummary"],
     );
   }
 
-  // ── 2. The origin regulator and its verification route. The other genuinely
-  //       origin-specific fact: it names a different body, with a different
-  //       process, in every corridor.
+  // ── 2. The origin regulator and its verification route. The largest
+  //       origin-distinct block, and the step candidates most often start late:
+  //       it does not depend on them, it depends on their council.
   {
     const paras: string[] = [
-      `Before ${dest.regulatorName} will register you, it has to hear from the body you are already registered with. In ${from} that is ${corridor.originRegulator}.`,
-      sentence(corridor.originVerification),
-      `This step is the one most often underestimated on this route, because it does not depend on you: it depends on ${corridor.originRegulator} sending the confirmation, on their timetable. It is worth starting it early and separately from everything else.`,
+      `${dest.regulatorName} needs confirmation from the register you are already on. In ${from} that is ${reg}. ${sentence(corridor.originRegulator.value)}`,
+      sentence(corridor.verificationRoute.value),
+      `Start this early: the timetable is ${reg}'s, not yours.`,
     ];
     push(
       {
         id: "origin-verification",
-        heading: `${searchPhrase(corridor, /verification|good standing/i) ?? `Getting your registration verified by ${corridor.originRegulator}`}`,
+        heading:
+          searchPhrase(corridor, /verification|good standing/i) ??
+          `Getting your registration verified by ${reg}`,
         paras,
       },
-      ["originRegulator", "originVerification"],
+      ["originRegulator", "verificationRoute"],
     );
   }
 
-  // ── 3. The destination end — SHORT, and linked out rather than restated.
-  {
-    const paras: string[] = [
-      dest.requirementLine
-        ? `${dest.regulatorName} publishes one requirement for everyone: ${dest.requirementLine}. It does not vary by where you trained — what varies is whether you have to demonstrate it by test at all, which is the question above.`
-        : `${dest.regulatorName} sets the same requirement for every applicant regardless of origin.`,
-      `${sentence(dest.sharedStepsSummary)} Those steps are identical whichever country you are applying from, so they are not repeated here.`,
-    ];
-    push({ id: "destination", heading: `What ${to} asks of everyone`, paras }, ["sharedSteps"]);
+  // ── 3. Eligibility, money and elapsed time — where the batch found them.
+  //       Absent for origins where it did not. An absent slot renders nothing:
+  //       a sentence about the absence of a fee schedule is not a fee schedule.
+  if (corridor.feesTimeline) {
+    push(
+      {
+        id: "fees-timeline",
+        heading: `What ${reg} asks for, what it costs and how long it takes`,
+        paras: [sentence(corridor.feesTimeline.value)],
+      },
+      ["feesTimeline"],
+    );
   }
 
-  // ── 4. Local wording. Real query strings, which differ per origin because the
+  // ── 4. The attestation chain. Genuinely different in every corridor that has
+  //       one — different ministries, different order, different apostille date.
+  if (corridor.attestationChain) {
+    push(
+      {
+        id: "attestation",
+        heading:
+          searchPhrase(corridor, /attestation|apostille/i) ??
+          `Getting your ${from} documents attested`,
+        paras: [
+          sentence(corridor.attestationChain.value),
+          `Run this alongside the ${reg} verification, not after it.`,
+        ],
+      },
+      ["attestationChain"],
+    );
+  }
+
+  // ── 5. The English requirement, as it lands for THIS origin.
+  //
+  //       NEVER stated as an entitlement. An earlier version of this section told
+  //       a Nigerian- or Philippine-trained nurse they "may not have to sit an
+  //       English test at all" and that its "months and fees come out of the plan
+  //       entirely". That was wrong, and v2 now carries the correction in the
+  //       sourced value itself: none of these four countries is on the NMC's
+  //       majority-English list, so none gets an automatic exemption, and the
+  //       taught-in-English route needs a UK employer's supporting information on
+  //       top of a transcript. Someone who believed the old wording would have
+  //       skipped booking a test they in fact need.
+  //
+  //       Because the data now carries the nuance, this section adds almost no
+  //       prose of its own — which is also why it stopped being the section that
+  //       made all four pages read alike.
+  if (corridor.englishRoute) {
+    const unconfirmed = corridor.englishRoute.verifyStatus === "confirm-official";
+    const paras: string[] = [sentence(corridor.englishRoute.value)];
+    paras.push(
+      unconfirmed
+        ? `Assume you are sitting a test until ${dest.regulatorName} confirms otherwise in writing. It turns on your individual ${from} training record, not on your nationality.`
+        : `It turns on your individual ${from} training record, not on your nationality.`,
+    );
+    // The SCORES are shared: identical for all four origins, owned by the base
+    // record, rendered on the destination page. Named and linked, never restated.
+    if (dest.sharedStepsHref) {
+      paras.push(`The scores do not vary by origin, so they are on the ${dest.regulatorName} page.`);
+    }
+    push(
+      {
+        id: "english",
+        // A query string like "can Nigerian nurses skip IELTS for NMC" is how
+        // people SEARCH, not a claim we endorse. Used as a heading over an
+        // unconfirmed route it reads as the answer, so it is only borrowed where
+        // the fact is confirmed; otherwise the heading poses the question.
+        heading: unconfirmed
+          ? `Do ${from}-trained ${occupationPlural} need an English test for ${to}?`
+          : (searchPhrase(corridor, /english|ielts|oet/i) ??
+            `The English test ${from}-trained ${occupationPlural} have to sit`),
+        paras,
+      },
+      ["englishRoute"],
+    );
+  }
+
+  // ── 6. The destination end — SHORT, named and linked, never restated.
+  //       Law #3 lives or dies in this section. It is four sentences long on
+  //       purpose, and three of them name the origin.
+  {
+    push(
+      {
+        id: "destination",
+        heading: `What ${to} asks of everyone`,
+        paras: [
+          `Past the ${from} steps above, nothing changes for a ${one} from ${from}: ${dest.regulatorName} asks everyone for ${dest.sharedStepsSummary}, set out in full on its own page rather than repeated here.`,
+        ],
+      },
+      ["sharedSteps"],
+    );
+  }
+
+  // ── 7. Local wording. Real query strings, which differ per origin because the
   //       origin's own institutions are named in them.
-  if (corridor.searchWording?.length) {
+  if (corridor.localSearchWording?.length) {
     push(
       {
         id: "wording",
         heading: `What this route is called in ${from}`,
         paras: [
-          `Nurses making this move search for it in their own terms — ${list(
-            corridor.searchWording.map((w) => `"${w}"`),
-          )}. Those phrases name ${corridor.originRegulator} rather than the destination regulator, which is why guidance written from the ${corridor.destinationCountry} end is often hard to find from ${from}.`,
+          `In ${from} people search for this as ${list(corridor.localSearchWording.map((w) => `"${w}"`))}. Those name ${reg}, which is why guidance written from the ${corridor.destinationCountry} end is hard to find from ${from}.`,
         ],
       },
-      ["searchWording"],
+      ["localSearchWording"],
     );
   }
 
-  // ── 5. Sourcing and currency.
+  // ── 8. Sourcing and currency. One line per fact, naming who says so — the
+  //       source list is itself origin-distinct, because these are the origin's
+  //       own authorities.
   {
     const paras: string[] = [];
-    if (corridor.originRegulatorUrl) {
+    const seen = new Set<string>();
+    for (const { label, fact: f } of factsOf(corridor)) {
+      if (!f.sourceName || !f.sourceUrl) continue;
+      const line = `${f.sourceName} — ${label}${f.confidence === "secondary" ? ", a secondary summary rather than the authority's own page" : ""}: ${f.sourceUrl}`;
+      if (seen.has(line)) continue;
+      seen.add(line);
+      paras.push(line);
       facts.push("officialUrl");
-      paras.push(`${corridor.originRegulator}: ${corridor.originRegulatorUrl}`);
     }
+    const pending = factsOf(corridor).filter((x) => x.fact.verifyStatus === "confirm-official");
     facts.push("lastVerified");
     paras.push(`Corridor facts last verified ${corridor.lastVerified}.`);
-    if (ex?.verifyStatus === "confirm-official") {
+    if (pending.length) {
       paras.push(
-        `The exemption position above is compiled from published sources and has not been re-read against ${dest.regulatorName}'s current page. Confirm it with ${dest.regulatorName} and with ${corridor.originRegulator} before acting on it.`,
+        `Not yet re-read at source: ${list(pending.map((p) => p.label))}. Confirm with ${dest.regulatorName} and ${reg} first.`,
       );
     }
     push({ id: "source", heading: "Sources and last verified", paras }, []);
@@ -218,19 +259,23 @@ export function composeJourney(
 
 /** Currency for a corridor.
  *
- *  A corridor must be dated, and any fact on it carrying `confirm-official` holds
- *  the page OUT OF THE INDEX while still rendering. The exemption is exactly such
- *  a fact: it is the claim that saves a candidate a test, so it is the one most
- *  expensive to get wrong, and asking Google to rank a page asserting it before we
- *  have re-read the regulator's own page would be asking to be trusted for
- *  something we have not checked. The page still exists and still says it, with
- *  both authorities named — a reader who finds it is better off than one who
- *  finds nothing. `noindex, follow`, out of the sitemap, until confirmed. */
+ *  A corridor must be dated, and ANY fact on it carrying `confirm-official` holds
+ *  the page out of the index while still rendering. v1 checked only the exemption
+ *  because that was the only fact that carried the marker; v2 spreads it across
+ *  the regulator's name in Pakistan, the fee schedule in Nigeria, the state-council
+ *  route in India and the PRC handoff in the Philippines, so the check now scans
+ *  every fact. Missing one would index a page on the strength of a claim nobody
+ *  has re-read.
+ *
+ *  The page still exists and still says it, with both authorities named — a reader
+ *  who finds it is better off than one who finds nothing. `noindex, follow`, out
+ *  of the sitemap, until confirmed. */
 export function journeyNotCurrentReason(c: Corridor): string | null {
   if (!c.lastVerified) return "no lastVerified date";
   if (c.verifyStatus === "confirm-official") return "corridor awaits re-confirmation";
-  if (c.englishExemption?.verifyStatus === "confirm-official") {
-    return "exemption status awaits re-confirmation";
+  const pending = factsOf(c).filter((x) => x.fact.verifyStatus === "confirm-official");
+  if (pending.length) {
+    return `awaits re-confirmation: ${pending.map((p) => p.key).join(", ")}`;
   }
   return null;
 }

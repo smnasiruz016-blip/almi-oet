@@ -1,65 +1,138 @@
 {
   "_meta": {
-    "name": "AlmiOET corridor proof batch — v1 (nursing → UK, 4 origins)",
-    "purpose": "Test whether the ORIGIN dimension is real for OET journeys — built Nasir's way (search the origin side + its real facts), then MEASURE against the gate rather than assume. If these 4 clear the gate distinct, the corridor axis is real and we scale it; if they collapse, we learn it honestly.",
-    "method": "Searched how each origin's nurses actually search + their real origin-specific facts (origin regulator, verification/good-standing process, English-exemption status, local wording). Destination facts (NMC OET grades) from enrichment_v3. Uniform steps (CBT/OSCE/visa) are SHARED and must be de-emphasised so the origin-distinct content dominates.",
-    "lastCompiled": "2026-08-05",
-    "gateExpectation": "Each corridor's distinct content = origin regulator + verification process + exemption status + local wording. Uniform NMC steps are linked to the destination page, NOT repeated per corridor. CC to compose so origin content dominates, then measure sibling-overlap.",
-    "verifyPolicy": "Exemption status + verification specifics carry verifyStatus; every page shows 'confirm with the NMC and your national council' + lastVerified. No fabrication.",
-    "sources": ["pnmc.gov.pk", "nmcn.gov.ng", "NMC english-language-requirements", "edubenchmark (NMC grades)"]
+    "name": "AlmiOET corridor proof batch — v2 (nursing → UK, 4 origins), ENRICHED + CITED",
+    "supersedes": "AlmiOET_corridor_proof_batch_v1.json",
+    "purpose": "Enrich the 4 corridors ~4x with REAL, CITED origin facts so each clears the quality gate on real content (not padding). Built search-first: origin regulator + verification route + attestation chain + English-route nuance + local wording. Destination (NMC) facts are SHARED — linked once from the destination page, NOT repeated per corridor (law #3).",
+    "lastCompiled": "2026-08-06",
+    "CORRECTION_1_english_exemption": "v1 claimed Nigeria & Philippines nurses are EXEMPT from OET/IELTS via English-medium training, while Pakistan & India are not. That binary is INCORRECT per the NMC's own guidance. NONE of the four countries is on the NMC's list of 34 majority-English-speaking countries. For all four, the 'taught and examined in English' (aka 'qualified in English') route EXISTS but is CONDITIONAL: it requires (a) a training transcript/institution letter showing the course was taught AND examined in English, AND (b) supporting information from a UK employer (SIFE) — which in practice needs ~12 months already working in the UK. So a nurse applying FROM the home country, before a UK job, almost always STILL sits OET or IELTS. The genuine per-corridor English nuance is only that Philippine and Nigerian pre-registration nursing is English-medium (meets part (a) cleanly), whereas Pakistan/India medium is more variable — but the automatic exemption does NOT exist for any of them. verifyStatus: confirm-official on all English-route facts.",
+    "CORRECTION_2_philippines_apostille": "v1 said 'red-ribbon/apostille'. The Philippine DFA red ribbon was ABOLISHED; the Philippines acceded to the Hague Apostille Convention (in force 14 May 2019; embassies stopped red ribbons 15 June 2019). Authentication is now by APOSTILLE only. Fixed in v2.",
+    "method": "4 independent research passes, official primary sources preferred (NMC, PNMC, NMCN, INC/state councils, PRC, DFA). Every fact carries sourceUrl + sourceName + confidence (official|secondary|notFound) + asOf. Nothing invented; unfilled slots stay notFound. Churny/interpretation facts carry verifyStatus:confirm-official and render but noindex until confirmed (currency gate).",
+    "compose_instruction_for_CC": "Body of each corridor = origin-distinct facts (regulator, verification route, attestation chain, origin fees, English-medium nuance, local wording). SHARED destination facts (NMC Test of Competence CBT+OSCE, NMC English test scores, NMC £ fees) live on the destination/registration page and are LINKED once — do NOT repeat them in each corridor body. Every page: 'confirm with the NMC and your national council' + lastVerified. Re-run scripts/corridor-report.ts and report uniqueWords / facts / pairwise siblingOverlap by STATE."
   },
-  "destination": {
+  "sharedDestination": {
+    "note": "SHARED across all corridors — render once on the destination/registration page, link from each corridor. Do NOT repeat per corridor (law #3).",
     "occupation": "nursing",
     "country": "United Kingdom",
-    "regulator": "uk-nmc",
-    "oetRequirement": "L B · R B · W C+ · S B (from enrichment_v3; base owns grades)",
-    "uniformSteps_sharedNotRepeated": "NMC application → CBT (computer-based test) → English evidence → OSCE (on arrival) → PIN. These are identical for all origins and live on the destination/registration page, linked, not copied into each corridor.",
+    "regulator": "Nursing and Midwifery Council (NMC)",
+    "testOfCompetence": {
+      "value": "Overseas-trained nurses must pass the NMC Test of Competence: Part 1 CBT (computer-based test — Part A numeracy, Part B clinical; can be taken in-country) and Part 2 OSCE (objective structured clinical examination, taken at a UK test centre). Both parts within two years of each other.",
+      "sourceUrl": "https://www.nmc.org.uk/registration/joining-the-register/toc/toc-nursing-and-midwifery/",
+      "sourceName": "NMC — Test of Competence", "confidence": "official", "asOf": "2026-08"
+    },
+    "englishAcceptedTests": {
+      "value": "NMC accepts IELTS Academic (L7 R7 S7, W6.5) or OET (L/R/S grade B, W grade C+). Two sittings of the SAME test can be combined if within 12 months of each other. Cannot mix IELTS with OET. CEFR C1 standard.",
+      "sourceUrl": "https://www.nmc.org.uk/registration/joining-the-register/english-language-requirements/accepted-english-language-tests/",
+      "sourceName": "NMC — Accepted English language tests", "confidence": "official", "asOf": "2026-08"
+    },
+    "nmcFees": {
+      "value": "NMC fee components (subject to change — verify current amounts): qualification/eligibility evaluation £140 (non-refundable), CBT £83, OSCE £794, initial registration £153.",
+      "sourceUrl": "https://www.nmc.org.uk/registration/information-for-internationally-trained-applicants/",
+      "sourceName": "NMC — Information for internationally trained applicants", "confidence": "official", "asOf": "2026-08"
+    },
+    "englishMajorityCountryList": {
+      "value": "The NMC's 'recent practice in a majority-English country' and automatic-exemption routes rely on a published list of 34 majority-English-speaking territories. None of Pakistan, Nigeria, India or the Philippines is on it — so none of these four gets an automatic English exemption.",
+      "sourceUrl": "https://www.nmc.org.uk/globalassets/sitedocuments/registration/accepted-english-speaking-countries.pdf",
+      "sourceName": "NMC — Accepted English-speaking countries list", "confidence": "official", "asOf": "2026-08"
+    },
     "visa": "UK Health and Care Worker visa (route broadly common across origins)."
   },
   "corridors": [
     {
       "slug": "nursing__pakistan__united-kingdom",
+      "route": "/nursing/pakistan/united-kingdom",
       "originCountry": "Pakistan",
-      "originRegulator": "Pakistan Nursing & Midwifery Council (PNMC)",
-      "originRegulatorUrl": "https://pnmc.gov.pk/",
-      "searchWording": ["PNMC verification for NMC", "Pakistani nurse UK registration", "PNMC good standing NMC UK", "nurse UK from Pakistan requirements"],
-      "englishExemption": { "eligible": false, "basis": "Pakistan is not on the NMC's list for the training-taught-in-English route; a Pakistani-trained nurse must evidence English via OET (L/R/S B, W C+) or IELTS.", "verifyStatus": "confirm-official" },
-      "originVerification": "The NMC requires a verification of registration (good standing) sent directly from the PNMC. Pakistani nurses obtain PNMC foreign verification / good-standing through the PNMC's verification-registration process before or during the NMC application.",
-      "originDistinctContent": "PNMC good-standing route + timelines + Pakistan not qualifying for the English exemption (OET/IELTS required) + Pakistani document/attestation specifics.",
-      "lastVerified": "2026-08-05", "verifyStatus": "verified-base"
+      "originRegulator": {
+        "value": "Pakistan Nursing & Midwifery Council (PNMC) — reconstituted/renamed from the former Pakistan Nursing Council (PNC).",
+        "sourceUrl": "https://pnmc.gov.pk/", "sourceName": "PNMC official site", "confidence": "official", "asOf": "2026-08",
+        "verifyStatus": "confirm-official", "note": "Confirm current legally operative name/portal — pnmc.gov.pk uses the new name; older pnc.org.pk still resolves."
+      },
+      "verificationRoute": {
+        "value": "Verification of registration / good standing is obtained directly from PNMC: submit the verification application form, processing fee PKR 10,000, a request letter from the receiving regulator (the UK NMC) with full contact details, and photocopies of the PNMC registration card plus all nursing/midwifery diplomas and degrees. Queries go to the Good Standing Cell (gsc@pnmc.gov.pk) with name, CNIC and PNMC registration number; stated response ~3 working days. This is a manual/email-based process, not a self-service outbound portal.",
+        "sourceUrl": "https://pnmc.gov.pk/verification-registration-2/", "sourceName": "PNMC — Verification Registration", "confidence": "official", "asOf": "2026-08"
+      },
+      "attestationChain": {
+        "value": "Degree attestation via the Higher Education Commission (HEC); school/intermediate certificates countersigned by the IBCC; then the Ministry of Foreign Affairs (MOFA). Pakistan acceded to the Hague Apostille Convention (in force 9 March 2023), so MOFA now issues Apostilles (apostille.mofa.gov.pk) — HEC (and IBCC for school docs) verification remains the prerequisite step before the MOFA apostille.",
+        "sourceUrl": "https://www.hcch.net/en/news-archive/details/?varevent=865", "sourceName": "HCCH — Pakistan accedes to Apostille Convention", "confidence": "official", "asOf": "2026-08"
+      },
+      "englishRoute": {
+        "value": "Pakistan is NOT on the NMC majority-English list, so no automatic exemption. The 'taught and examined in English' route is available but conditional: needs a transcript/institution letter (taught AND examined in English) PLUS UK-employer supporting information (SIFE). Pakistani nursing medium of instruction is variable, so most Pakistani nurses evidence English via OET or IELTS.",
+        "sourceUrl": "https://www.nmc.org.uk/globalassets/sitedocuments/registration/language-requirements-guidance.pdf", "sourceName": "NMC — Language requirements guidance", "confidence": "official", "asOf": "2026-08", "verifyStatus": "confirm-official"
+      },
+      "originDistinctSummary": "PNMC email/Good-Standing-Cell verification + PKR 10,000 fee + HEC/IBCC→MOFA apostille (Hague since Mar 2023) + English via OET/IELTS in practice.",
+      "localSearchWording": ["PNMC good standing certificate for NMC UK", "PNMC verification for NMC", "Pakistan nurse NMC UK registration process", "HEC degree attestation for NMC UK", "MOFA apostille nursing degree Pakistan UK", "how to become UK nurse from Pakistan", "IELTS or OET for NMC nurse Pakistan"],
+      "lastVerified": "2026-08-06", "verifyStatus": "verified-cited"
     },
     {
       "slug": "nursing__nigeria__united-kingdom",
+      "route": "/nursing/nigeria/united-kingdom",
       "originCountry": "Nigeria",
-      "originRegulator": "Nursing and Midwifery Council of Nigeria (NMCN)",
-      "originRegulatorUrl": "https://nmcn.gov.ng/",
-      "searchWording": ["NMCN verification NMC UK", "Nigerian nurse UK without OET", "NMCN certificate verification UK", "nurse UK from Nigeria English exemption"],
-      "englishExemption": { "eligible": true, "basis": "Nigerian pre-registration nursing is taught and examined in English, so a Nigerian-trained nurse MAY meet the NMC English requirement via the 'taught in English' route rather than sitting OET/IELTS — a genuinely different answer from Pakistan/India.", "verifyStatus": "confirm-official" },
-      "originVerification": "The NMC requires certificate verification sent directly from the NMCN. Nigerian nurses use the NMCN's Verification of Certificates process.",
-      "originDistinctContent": "NMCN verification-of-certificates route + the English-exemption via English-medium training (the headline distinct fact) + Nigerian attestation specifics. This is the corridor most different from the others because of the exemption.",
-      "lastVerified": "2026-08-05", "verifyStatus": "verified-base"
+      "originRegulator": {
+        "value": "Nursing and Midwifery Council of Nigeria (NMCN). Main site nmcn.gov.ng; applicant portal myportal.nmcn.gov.ng; verification info nmcn.gov.ng/verify.html. Payments via REMITA.",
+        "sourceUrl": "https://nmcn.gov.ng/", "sourceName": "NMCN official site", "confidence": "official", "asOf": "2026-08"
+      },
+      "verificationRoute": {
+        "value": "The nurse uses NMCN's 'Verification of Certificate' service: apply online on the Council's portal, upload a scanned Certificate(s) of Registration and a passport photo, complete the verification form (stating destination = UK NMC), pay via REMITA. Only Certificate(s) of Registration are accepted (not exam-result/notification docs). NMCN sends the verification directly to the destination regulator.",
+        "sourceUrl": "https://www.nmcn.gov.ng/verify.html", "sourceName": "NMCN — Verification of Certificate", "confidence": "official", "asOf": "2026-08"
+      },
+      "verificationEligibilityFeesTimeline": {
+        "value": "Revised NMCN verification guidelines (reported effective 1 March 2024): typically a minimum ~2 years post-qualification experience and an active practising licence; NMCN contacts the training institution and workplace directly; allow ~6 months. Fees (via REMITA) reported around: standard verification ≈₦66,875, a UK-specific verification line ≈₦17,500, authentication ≈₦8,750, Letter of Good Standing ≈₦8,750.",
+        "sourceUrl": "https://myschoolgist.com/news/nmcn-verification-of-certificate/", "sourceName": "MySchoolGist (secondary, summarising NMCN revised guidelines)", "confidence": "secondary", "asOf": "2026-08", "verifyStatus": "confirm-official"
+      },
+      "englishRoute": {
+        "value": "Nigerian pre-registration nursing IS taught and examined in English (meets part (a) of the 'qualified in English' route cleanly). BUT Nigeria is NOT on the NMC majority-English list, so the transcript alone is NOT sufficient — the NMC also requires UK-employer supporting information (SIFE), which generally needs ~12 months already working in the UK. So a nurse applying FROM Nigeria (first-time registration + visa) almost always still needs OET or IELTS. The common belief that Nigerian nurses skip IELTS/OET is a misconception.",
+        "sourceUrl": "https://www.nmc.org.uk/globalassets/sitedocuments/registration/language-requirements-guidance.pdf", "sourceName": "NMC — Language requirements guidance", "confidence": "official", "asOf": "2026-08", "verifyStatus": "confirm-official"
+      },
+      "originDistinctSummary": "NMCN online portal + REMITA + UK-specific verification line, ~2yr experience + active licence, ~6-month timeline, NMCN posts verification directly; English-medium training but SIFE still required so OET/IELTS in practice.",
+      "localSearchWording": ["NMCN verification for UK", "NMCN certificate verification portal", "NMCN verification of certificate fee 2026", "NMCN CertPortal login", "can Nigerian nurses skip IELTS for NMC", "NMC taught and examined in English Nigeria", "how to register as a nurse in UK from Nigeria"],
+      "lastVerified": "2026-08-06", "verifyStatus": "verified-cited"
     },
     {
       "slug": "nursing__india__united-kingdom",
+      "route": "/nursing/india/united-kingdom",
       "originCountry": "India",
-      "originRegulator": "Indian Nursing Council (INC) + State Nursing Councils",
-      "originRegulatorUrl": "https://www.indiannursingcouncil.org/",
-      "searchWording": ["INC verification NMC UK", "Indian nurse UK NMC registration", "state nursing council good standing UK", "nurse UK from India OET"],
-      "englishExemption": { "eligible": false, "basis": "Indian-trained nurses generally evidence English via OET (L/R/S B, W C+) or IELTS; confirm current NMC position on training-in-English route.", "verifyStatus": "confirm-official" },
-      "originVerification": "Verification of registration comes from the relevant State Nursing Council (and/or INC). India's federal structure means the verifying body is the STATE council of registration — an origin-distinct wrinkle (e.g. which state council, its process).",
-      "originDistinctContent": "State-council verification (not one national body — the India-specific complexity) + OET/IELTS requirement + Indian degree/attestation specifics.",
-      "lastVerified": "2026-08-05", "verifyStatus": "verified-base"
+      "originRegulator": {
+        "value": "Indian Nursing Council (INC) sets national standards and runs the national live register (NRTS), but individual registration is held at the STATE Nursing Council level (constituted under the Indian Nursing Council Act, 1947).",
+        "sourceUrl": "https://www.indiannursingcouncil.org/", "sourceName": "Indian Nursing Council (official)", "confidence": "official", "asOf": "2026-08"
+      },
+      "verificationRoute": {
+        "value": "India-distinct federal wrinkle: verification of registration / good standing for going abroad is issued by the STATE Nursing Council of first registration (e.g. Kerala KNMC, Tamil Nadu TNNMC, Karnataka KSNC, Delhi DNC, Maharashtra MNC) — NOT the INC. The nurse applies through her state council's foreign-verification portal, uploads passport + registration certificate + experience proof, pays the fee, and the state council sends the verification directly to the NMC. Some councils (e.g. Karnataka) include a video verification appointment.",
+        "sourceUrl": "https://www.attestationmea.com/foreign-nursing-verification-india/", "sourceName": "AttestationMEA (secondary; corroborated across state-council portals e.g. noc.onlinetnnmc.org)", "confidence": "secondary", "asOf": "2026-08", "verifyStatus": "confirm-official"
+      },
+      "attestationChain": {
+        "value": "Attestation chain for Indian nursing credentials going abroad: notary → State authentication (Home/HRD) → Ministry of External Affairs (MEA). The UK is a Hague country, so the MEA issues an APOSTILLE (no embassy legalisation needed). State nursing council verification is a separate credential step.",
+        "sourceUrl": "https://www.attestationmea.com/foreign-nursing-verification-india/", "sourceName": "AttestationMEA (secondary)", "confidence": "secondary", "asOf": "2026-08", "verifyStatus": "confirm-official"
+      },
+      "englishRoute": {
+        "value": "India is NOT on the NMC majority-English list. The 'taught and examined in English' route exists but needs transcript + UK-employer clinical-English evidence (SIFE); Indian medium of instruction is variable, so in practice most Indian nurses evidence English via OET or IELTS Academic.",
+        "sourceUrl": "https://www.nmc.org.uk/registration/joining-the-register/english-language-requirements/", "sourceName": "NMC — English language requirements", "confidence": "official", "asOf": "2026-08", "verifyStatus": "confirm-official"
+      },
+      "originDistinctSummary": "State council of first registration issues verification (not INC) — the federal split; state-by-state portals/fees/timelines (KNMC ~₹2,000 2-4wk; TNNMC ~7 working days; DNC 15-30 days; MNC ~₹3,000 ~30 working days); notary→State→MEA apostille; OET/IELTS in practice.",
+      "localSearchWording": ["NMC registration process for Indian nurses", "state nursing council verification for abroad", "KNMC foreign verification", "Tamil Nadu nursing council foreign verification online", "good standing certificate nurses Kerala nursing council", "MEA apostille nursing certificate UK", "OET vs IELTS for nurses UK"],
+      "lastVerified": "2026-08-06", "verifyStatus": "verified-cited"
     },
     {
       "slug": "nursing__philippines__united-kingdom",
+      "route": "/nursing/philippines/united-kingdom",
       "originCountry": "Philippines",
-      "originRegulator": "Professional Regulation Commission (PRC) — Board of Nursing",
-      "originRegulatorUrl": "https://www.prc.gov.ph/",
-      "searchWording": ["PRC verification NMC UK", "Filipino nurse UK registration", "PRC board rating NMC", "nurse UK from Philippines English"],
-      "englishExemption": { "eligible": true, "basis": "Philippine nursing is taught and examined in English, so a Filipino-trained nurse MAY meet the NMC English requirement via the 'taught in English' route — like Nigeria, unlike Pakistan/India.", "verifyStatus": "confirm-official" },
-      "originVerification": "Verification of registration from the PRC Board of Nursing, sent to the NMC. Filipino nurses use the PRC's verification/authentication process.",
-      "originDistinctContent": "PRC verification route + the English-exemption via English-medium training + Philippine (red-ribbon/apostille) authentication specifics.",
-      "lastVerified": "2026-08-05", "verifyStatus": "verified-base"
+      "originRegulator": {
+        "value": "Professional Regulation Commission (PRC), acting through the Professional Regulatory Board of Nursing. PRC issues the Certificate of Registration (COR) and Professional Identification Card (PIC), and provides certification/authentication and stateboard verification services. Online system: LERIS.",
+        "sourceUrl": "https://www.prc.gov.ph/certification-authentication", "sourceName": "PRC — Certification / Authentication", "confidence": "official", "asOf": "2026-08"
+      },
+      "verificationRoute": {
+        "value": "Filipino nurse obtains PRC-authenticated documents via LERIS: log in, book an appointment and pay, present the system-generated Action Sheet plus requirements (valid PIC/e-PIC, originals, one Documentary Stamp Tax per copy). PRC also lists a 'Stateboard Verification / Validation of Registration/License' service used by professionals going abroad. Note: the PRC page does not itself describe a direct electronic transmission to the UK NMC; third-party credential-verifiers (e.g. TruMerit/CGFNS, DataFlow) are typically used to confirm authenticity — confirm the exact PRC→NMC handoff.",
+        "sourceUrl": "https://www.prc.gov.ph/certification-authentication", "sourceName": "PRC — Certification / Authentication", "confidence": "official", "asOf": "2026-08", "verifyStatus": "confirm-official"
+      },
+      "attestationChain": {
+        "value": "CORRECTED (v1 said red ribbon): the Philippines abolished the DFA 'red ribbon' and acceded to the Hague Apostille Convention (in force 14 May 2019; embassies stopped red ribbons 15 June 2019). Documents are now APOSTILLED by the DFA: regular PHP 100 (~5 working days) or expedited PHP 200 (~2 working days); appointments at appointment.apostille.gov.ph. Because the UK is an Apostille state, an apostilled Philippine document needs no further UK legalisation.",
+        "sourceUrl": "https://dfa.gov.ph/dfa-news/dfa-releasesupdate/23009-ph-does-away-with-red-ribbons-on-authentication-certificates", "sourceName": "Philippine DFA — PH does away with red ribbons", "confidence": "official", "asOf": "2026-08"
+      },
+      "englishRoute": {
+        "value": "Philippine pre-registration nursing IS taught and examined in English (meets part (a) cleanly). But the Philippines is NOT on the NMC majority-English list, so the transcript alone is not sufficient — the NMC also requires UK-employer supporting information (SIFE). So applying from the Philippines before a UK job, most Filipino nurses still sit OET or IELTS. Route availability is confirm-official.",
+        "sourceUrl": "https://www.nmc.org.uk/registration/joining-the-register/english-language-requirements/", "sourceName": "NMC — English language requirements", "confidence": "official", "asOf": "2026-08", "verifyStatus": "confirm-official"
+      },
+      "originDistinctSummary": "PRC LERIS appointment + Documentary Stamp Tax + Stateboard Verification service; DFA APOSTILLE (red ribbon abolished 2019) PHP 100/200; English-medium training but SIFE still required so OET/IELTS in practice.",
+      "localSearchWording": ["how to become a UK nurse from Philippines", "NMC registration for Filipino nurses", "PRC verification for NMC", "PRC stateboard verification NMC UK", "DFA apostille PRC documents for UK", "IELTS or OET for NMC Philippines", "PRC certificate of good standing for UK nursing"],
+      "lastVerified": "2026-08-06", "verifyStatus": "verified-cited"
     }
   ]
 }
