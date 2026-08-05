@@ -41,6 +41,12 @@ import { pick } from "./phrasing";
 // ── gate thresholds ─────────────────────────────────────────────────────────
 export const GATE = { uniqueWords: 350, facts: 5, siblingOverlap: 0.4 } as const;
 
+/** A body like AHPRA covers all twelve professions. Rendering twelve sub-test
+ *  sections would bury the page's own facts under material that belongs on the
+ *  twelve `/{profession}/{org}` pages, which link from here. The cap is named
+ *  and reported rather than inlined, because an unstated cap reads as coverage. */
+export const ORG_PAGE_PROFESSION_CAP = 4;
+
 export type Section = { id: string; heading: string; paras: string[] };
 export type Composed = {
   sections: Section[];
@@ -264,9 +270,25 @@ function sectionWording(w: Wording, m: Merged, professionSlug: string): { sectio
       `The credential itself is usually referred to as ${w.credentialBody}, which is the name to look for on official pages and the phrase most candidates search for.`,
     );
   }
-  if (conv) {
+  // Only worth saying where the local word actually DIFFERS from the neutral
+  // one. Otherwise it renders "the UK says registration where other countries
+  // say registration" — a sentence that varies the label over identical facts,
+  // which is the exact pattern the recipe bans.
+  const localWords = conv
+    ? ([
+        conv.credentialWord !== "registration"
+          ? `calls the credential a "${conv.credentialWord}" rather than "registration"`
+          : null,
+        conv.processWord !== "registration" && conv.processWord !== conv.credentialWord
+          ? `calls the process "${conv.processWord}"`
+          : null,
+        conv.spelling ? `and writes ${conv.spelling}` : null,
+      ].filter(Boolean) as string[])
+    : [];
+  if (localWords.length) {
+    facts.push("localeConvention");
     bits.push(
-      `Local usage matters when searching: ${m.country} says "${conv.credentialWord}" where other countries say "registration", and calls the process "${conv.processWord}".`,
+      `Local usage matters when searching: ${m.country} ${localWords.join(", ")} — worth knowing because it changes the words on the official pages you are looking for.`,
     );
   }
   if (!bits.length) return null;
@@ -349,7 +371,7 @@ export function composeOrgPage(orgSlug: string): (Composed & { merged: Merged })
   // Every profession this body covers gets its own sub-test paragraph — this is
   // the section that makes a multi-profession body genuinely long, and it is
   // real: the material differs per profession.
-  for (const p of m.professionSlugs.slice(0, 4)) {
+  for (const p of m.professionSlugs.slice(0, ORG_PAGE_PROFESSION_CAP)) {
     const pw = wordingFor(p, m.countryCode);
     push(sectionSubtest(p, pw, m.org.name));
   }
@@ -451,6 +473,30 @@ export type Emitted = {
 
 let _emitted: Emitted | null = null;
 
+/** Sibling overlap is decided against whoever was accepted FIRST, so the order
+ *  candidates are considered in decides which of two similar pages survives.
+ *  Source order is the order of OET's scrape, which means an arbitrary body can
+ *  claim the ground and knock out the NMC or AHPRA — the two most-searched
+ *  regulators on the surface. Richest first instead: the page carrying the most
+ *  distinct material wins its cluster, and the derivative one is the one cut.
+ *  Ties break on slug so the emitted set is identical on every build. */
+function richestFirst<T>(
+  items: T[],
+  key: (t: T) => string,
+  measured: Map<string, Composed | null>,
+): T[] {
+  const rank = (t: T) => measured.get(key(t)) ?? null;
+  return [...items].sort((a, b) => {
+    const ma = rank(a);
+    const mb = rank(b);
+    const byFacts = (mb?.facts ?? -1) - (ma?.facts ?? -1);
+    if (byFacts !== 0) return byFacts;
+    const byWords = (mb?.uniqueWords ?? -1) - (ma?.uniqueWords ?? -1);
+    if (byWords !== 0) return byWords;
+    return key(a).localeCompare(key(b));
+  });
+}
+
 export function emitted(): Emitted {
   if (_emitted) return _emitted;
   const skipped: Skip[] = [];
@@ -460,12 +506,15 @@ export function emitted(): Emitted {
   // /register/{org}
   const orgs: string[] = [];
   const orgSeen: Set<string>[] = [];
-  for (const o of ORGANISATIONS) {
+  const orgComposed = new Map<string, Composed | null>(
+    ORGANISATIONS.map((o) => [o.slug, o.professions.length ? composeOrgPage(o.slug) : null]),
+  );
+  for (const o of richestFirst([...ORGANISATIONS], (x) => x.slug, orgComposed)) {
     if (!o.professions.length) {
       skipped.push({ type: "register", slug: o.slug, reasons: ["covers 0 professions"] });
       continue;
     }
-    const c = composeOrgPage(o.slug);
+    const c = orgComposed.get(o.slug) ?? null;
     if (!c) {
       skipped.push({ type: "register", slug: o.slug, reasons: ["no composable data"] });
       continue;
@@ -491,29 +540,36 @@ export function emitted(): Emitted {
   // /{profession}/{org} — meaningful combinations only
   const professionOrgs: { professionSlug: string; orgSlug: string }[] = [];
   const poSeen: Set<string>[] = [];
+  const poPairs: { professionSlug: string; orgSlug: string }[] = [];
   for (const p of PROFESSION_LIST) {
-    for (const o of orgsForProfession(p.slug)) {
-      const c = composeProfessionOrgPage(p.slug, o.slug);
-      if (!c) {
-        skipped.push({ type: "profession-org", slug: `${p.slug}/${o.slug}`, reasons: ["no composable data"] });
-        continue;
-      }
-      const g = gate(c, poSeen);
-      if (g.pass) {
-        poSeen.push(fingerprint(c.sections));
-        if (isCurrentEnoughToIndex(o.slug)) {
-          professionOrgs.push({ professionSlug: p.slug, orgSlug: o.slug });
-        } else {
-          noindexProfessionOrgs.push({ professionSlug: p.slug, orgSlug: o.slug });
-          skipped.push({
-            type: "profession-org",
-            slug: `${p.slug}/${o.slug}`,
-            reasons: [`noindex, out of sitemap — ${notCurrentReason(o.slug)}`],
-          });
-        }
+    for (const o of orgsForProfession(p.slug)) poPairs.push({ professionSlug: p.slug, orgSlug: o.slug });
+  }
+  const poKey = (x: { professionSlug: string; orgSlug: string }) => `${x.professionSlug}/${x.orgSlug}`;
+  const poComposed = new Map<string, Composed | null>(
+    poPairs.map((x) => [poKey(x), composeProfessionOrgPage(x.professionSlug, x.orgSlug)]),
+  );
+  for (const pair of richestFirst(poPairs, poKey, poComposed)) {
+    const slug = poKey(pair);
+    const c = poComposed.get(slug) ?? null;
+    if (!c) {
+      skipped.push({ type: "profession-org", slug, reasons: ["no composable data"] });
+      continue;
+    }
+    const g = gate(c, poSeen);
+    if (g.pass) {
+      poSeen.push(fingerprint(c.sections));
+      if (isCurrentEnoughToIndex(pair.orgSlug)) {
+        professionOrgs.push(pair);
       } else {
-        skipped.push({ type: "profession-org", slug: `${p.slug}/${o.slug}`, reasons: g.reasons });
+        noindexProfessionOrgs.push(pair);
+        skipped.push({
+          type: "profession-org",
+          slug,
+          reasons: [`noindex, out of sitemap — ${notCurrentReason(pair.orgSlug)}`],
+        });
       }
+    } else {
+      skipped.push({ type: "profession-org", slug, reasons: g.reasons });
     }
   }
 
