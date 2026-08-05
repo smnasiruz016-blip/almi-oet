@@ -1,9 +1,13 @@
 // Unified submit endpoint for every OET task. The route does NOT branch on task
 // type — it looks the handler up in the registry, runs it, turns the result into
-// an honest 0–500 grade estimate, and persists. AI tasks (Writing letter,
-// Speaking role-play) are gated on paid access; objective tasks (Listening,
-// Reading) are free practice. The Speaking role-play arrives as multipart audio,
-// which is transcribed (Whisper) before scoring.
+// an honest 0–500 grade estimate, and persists. Card-first: EVERY task needs an
+// active trial or subscription, objective ones included — objective scoring used
+// to be free, which is what let the whole Listening and Reading bank be worked
+// through without a card. The AI tasks (Writing letter, Speaking role-play) carry
+// two further gates on top: a verified email, and the trial's 2-per-task-type
+// evaluation cap. The Speaking role-play arrives as multipart audio, which is
+// transcribed (Whisper) before scoring — after all gates, so a refused request
+// costs nothing.
 
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";

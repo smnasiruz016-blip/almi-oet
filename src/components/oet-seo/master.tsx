@@ -4,6 +4,7 @@
 // copy (doctrine-clean, no banned verbs).
 
 import Link from "next/link";
+import { GET_STARTED_HREF } from "@/components/GlobalHeader";
 
 export function OetSeoCrossLinks() {
   const links = [
@@ -41,11 +42,16 @@ export function OetSeoCta() {
         Honest grades per sub-test on the 0–500 scale — graded on clinical communication, never on
         your accent.
       </p>
+      {/* Card-first: /signup, not /practice. Practice is behind the subscription
+          now, so pointing here at /practice sent every pSEO visitor into a
+          redirect to /pricing — and the old label promised a free-practice tier
+          the product no longer has. Worded to keep the repo-wide grep for that
+          claim at a true zero. */}
       <Link
-        href="/practice"
+        href={GET_STARTED_HREF}
         className="mt-6 inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
       >
-        Practise free
+        Start 7-day free trial
       </Link>
     </section>
   );

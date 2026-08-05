@@ -4,6 +4,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { GET_STARTED_HREF } from "@/components/GlobalHeader";
 import { SITE_URL } from "@/lib/oet-seo/sitemap-urls";
 import { PROFESSIONS } from "@/lib/oet/professions";
 import { professionBySlug } from "@/lib/oet/professions";
@@ -76,11 +77,12 @@ export function ProfessionLanding({ professionSlug }: { professionSlug: string }
           for {def.label}.
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-4">
+          {/* Card-first: /signup, not /practice — see the note in master.tsx. */}
           <Link
-            href="/practice"
+            href={GET_STARTED_HREF}
             className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
           >
-            Practise free
+            Start your 7-day free trial
           </Link>
           <span className="text-xs text-almi-text-muted">
             $12/month · 7-day free trial · never copied from OET
