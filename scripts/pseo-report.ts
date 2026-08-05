@@ -8,7 +8,9 @@
 //   npx tsx scripts/pseo-report.ts            # counts + reasons
 //   npx tsx scripts/pseo-report.ts --samples  # + full sample page bodies
 
-import { ORGANISATIONS } from "../src/lib/oet-seo/data";
+import { ORGANISATIONS, ROLE_ORG_PAIRS, PROFESSION_LIST } from "../src/lib/oet-seo/data";
+import { OET_ORIGIN_SLUGS } from "../src/lib/oet-seo/origins";
+import { allUrls, numSitemapChunks } from "../src/lib/oet-seo/sitemap-urls";
 import {
   emitted,
   composeOrgPage,
@@ -39,8 +41,9 @@ console.log(`  /register/{org}        ${e.orgs.length}`);
 console.log(`  /{profession}/{org}    ${e.professionOrgs.length}`);
 console.log(`  /{country}             ${e.countries.length}`);
 console.log(`  /register              1`);
+console.log(`  /                      1`);
 const indexable =
-  e.professions.length + e.orgs.length + e.professionOrgs.length + e.countries.length + 1;
+  e.professions.length + e.orgs.length + e.professionOrgs.length + e.countries.length + 2;
 console.log(`  TOTAL indexable        ${indexable}`);
 console.log("");
 
@@ -68,6 +71,23 @@ console.log("");
 // gate is a second gate, and it would drift from the one that actually ships.
 const gatePassers = e.orgs.length + e.noindexOrgs.length;
 console.log(`of ${ORGANISATIONS.length} organisations: ${gatePassers} clear the quality gate; ${e.orgs.length} clear gate AND currency`);
+console.log("");
+
+// ── the pruned surface, and where it goes ───────────────────────────────────
+const L = OET_ORIGIN_SLUGS.length;
+const prunedLeaves = ROLE_ORG_PAIRS.length * L;
+const prunedHubs = PROFESSION_LIST.length * L;
+console.log("PRUNED (301 via middleware, never 404)");
+console.log(`  /{profession}/from-{origin}/{org}   ${prunedLeaves.toLocaleString('en-US')}`);
+console.log(`  /{profession}/from-{origin}         ${prunedHubs.toLocaleString('en-US')}`);
+console.log(`  TOTAL 301 targets covered           ${(prunedLeaves + prunedHubs).toLocaleString('en-US')}`);
+console.log(`  origins dropped as a URL axis       ${L}`);
+console.log("");
+
+console.log("SITEMAP");
+console.log(`  URLs submitted        ${allUrls().length}`);
+console.log(`  child sitemaps        ${numSitemapChunks()} (cap ${(45_000).toLocaleString('en-US')}/child)`);
+console.log(`  lastmod source        per-entity lastVerified, not build time`);
 console.log("");
 
 function describe(label: string, c: Composed | null) {

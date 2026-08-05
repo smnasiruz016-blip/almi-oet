@@ -79,6 +79,22 @@ function ngrams(ws: string[], n = 5): Set<string> {
 
 const GRADE_LABEL: Record<string, string> = { L: "Listening", R: "Reading", W: "Writing", S: "Speaking" };
 
+/** "the United Kingdom", but "Australia". Country names arrive bare from the
+ *  base record, and "registration in United Kingdom" was appearing on the two
+ *  biggest destination surfaces we have. */
+const NEEDS_ARTICLE = /^(United |Netherlands|Philippines|Bahamas|Maldives|Gambia|Czech )/;
+function inCountry(country: string | null): string {
+  if (!country) return "";
+  return NEEDS_ARTICLE.test(country) ? `the ${country}` : country;
+}
+
+/** Sourced strings are written by hand and sometimes arrive without a full
+ *  stop. Rendering them mid-paragraph then runs two sentences together. */
+function sentence(s: string): string {
+  const t = s.trim();
+  return /[.!?]$/.test(t) ? t : `${t}.`;
+}
+
 function gradesSentence(g: RegulatorGrades | null): string | null {
   if (!g) return null;
   const parts = (["L", "R", "W", "S"] as const)
@@ -132,9 +148,9 @@ function sectionRequirements(m: Merged, w: Wording | null): { section: Section; 
       `To satisfy ${m.org.name} on English you need ${line}. There is no aggregate OET score to fall back on: the four sub-tests are reported separately and judged separately.`,
     ]),
     pick(`${k}:2`, [
-      `That is the English-language condition attached to ${cred}${m.country ? ` in ${m.country}` : ""} — one requirement among several, not the application itself.`,
-      `Meeting it clears the language condition on ${cred}${m.country ? ` in ${m.country}` : ""} and nothing further; qualifications, identity and practice history are assessed separately.`,
-      `Clearing these grades settles the English question for ${cred}${m.country ? ` in ${m.country}` : ""}. Every other part of the assessment is unaffected by how far above the bar you land.`,
+      `That is the English-language condition attached to ${cred}${m.country ? ` in ${inCountry(m.country)}` : ""} — one requirement among several, not the application itself.`,
+      `Meeting it clears the language condition on ${cred}${m.country ? ` in ${inCountry(m.country)}` : ""} and nothing further; qualifications, identity and practice history are assessed separately.`,
+      `Clearing these grades settles the English question for ${cred}${m.country ? ` in ${inCountry(m.country)}` : ""}. Every other part of the assessment is unaffected by how far above the bar you land.`,
     ]),
   ];
   if (m.reg?.validityYears) {
@@ -167,8 +183,8 @@ function sectionCombining(m: Merged): { section: Section; facts: string[] } | nu
     // `halfGradeRule` arrives either as prose or as a bare boolean flag. Only the
     // prose form says anything a reader can act on, so the flag renders nothing
     // rather than a sentence we would have to invent around it.
-    if (typeof c.halfGradeRule === "string") paras.push(c.halfGradeRule);
-    if (c.reducedWriting) paras.push(String(c.reducedWriting));
+    if (typeof c.halfGradeRule === "string") paras.push(sentence(c.halfGradeRule));
+    if (c.reducedWriting) paras.push(sentence(String(c.reducedWriting)));
     return { section: { id: "combining", heading: "Combining results from more than one sitting", paras }, facts: ["combiningRule"] };
   }
   return {
@@ -247,7 +263,7 @@ function sectionContext(m: Merged): { section: Section; facts: string[] } | null
   const ctx = m.reg?.registrationContext;
   if (!ctx) return null;
   return {
-    section: { id: "context", heading: `Where OET sits in the ${m.org.name} process`, paras: [String(ctx)] },
+    section: { id: "context", heading: `Where OET sits in the ${m.org.name} process`, paras: [sentence(String(ctx))] },
     facts: ["registrationContext"],
   };
 }
@@ -261,7 +277,7 @@ function sectionWording(w: Wording, m: Merged, professionSlug: string): { sectio
     facts.push("localTerm");
     const def = wordingFor(professionSlug, null).term;
     bits.push(
-      `${m.country} calls this role a ${w.term}; elsewhere the same role is a ${def}. Both describe the same OET profession, and the sub-test material is the same — only the job title differs.`,
+      `${inCountry(m.country)} calls this role a ${w.term}; elsewhere the same role is a ${def}. Both describe the same OET profession, and the sub-test material is the same — only the job title differs.`,
     );
   }
   if (w.credentialBody) {
@@ -282,17 +298,24 @@ function sectionWording(w: Wording, m: Merged, professionSlug: string): { sectio
         conv.processWord !== "registration" && conv.processWord !== conv.credentialWord
           ? `calls the process "${conv.processWord}"`
           : null,
-        conv.spelling ? `and writes ${conv.spelling}` : null,
+        conv.spelling ? `writes ${conv.spelling}` : null,
       ].filter(Boolean) as string[])
     : [];
   if (localWords.length) {
     facts.push("localeConvention");
+    // Join with a real "and" before the last clause. Hanging the conjunction off
+    // one fixed clause produced "United Kingdom and writes -ise" whenever the
+    // clauses before it were the ones that dropped out.
+    const clause =
+      localWords.length === 1
+        ? localWords[0]
+        : `${localWords.slice(0, -1).join(", ")} and ${localWords[localWords.length - 1]}`;
     bits.push(
-      `Local usage matters when searching: ${m.country} ${localWords.join(", ")} — worth knowing because it changes the words on the official pages you are looking for.`,
+      `Local usage matters when searching: ${inCountry(m.country)} ${clause} — worth knowing because it changes the words on the official pages you are looking for.`,
     );
   }
   if (!bits.length) return null;
-  return { section: { id: "wording", heading: `What this is called in ${m.country}`, paras: bits }, facts };
+  return { section: { id: "wording", heading: `What this is called in ${inCountry(m.country)}`, paras: bits }, facts };
 }
 
 /** Sourcing + freshness — E-E-A-T, and honest about what we can and cannot promise. */
@@ -330,7 +353,7 @@ function sectionSource(m: Merged): { section: Section; facts: string[] } {
       `Our sources disagree on this requirement. The figure shown is the one OET publishes; a secondary source gives a different one. Until that is resolved against ${m.org.name}'s own page, treat this entry as indicative and confirm before acting.`,
     );
   }
-  if (m.reg?.note) paras.push(m.reg.note);
+  if (m.reg?.note) paras.push(sentence(m.reg.note));
   if (m.reg?.verifyStatus === "confirm-official") {
     paras.push(
       `This entry is compiled from published sources and has not yet been re-confirmed against the body's own current page, so treat the grades above as a starting point and check them directly before you rely on them.`,
@@ -339,7 +362,7 @@ function sectionSource(m: Merged): { section: Section; facts: string[] } {
   const note = orgNote(m.org.slug);
   if (note) {
     facts.push("orgNote");
-    paras.push(note.note);
+    paras.push(sentence(note.note));
   }
   paras.push(
     pick(`src:${m.org.slug}`, [
