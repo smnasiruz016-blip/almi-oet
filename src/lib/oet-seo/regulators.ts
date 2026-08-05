@@ -42,6 +42,40 @@ const DATA = RAW as unknown as Payload;
 export const REGULATOR_META = DATA._meta ?? {};
 export const REGULATORS: readonly RegulatorEntity[] = DATA.regulators ?? [];
 
+/** FINAL RECIPE §4 — "rich AND current, or it doesn't ship". Every page must be
+ *  able to state a real date. The dataset carries `lastCompiled` at the top
+ *  level but no per-entity `lastVerified` yet, so this is the honest date we can
+ *  stamp: when the dataset was compiled. If per-entity dates arrive they take
+ *  precedence, because a per-fact date is the one that actually matters. */
+export const DATASET_COMPILED: string | null =
+  typeof (DATA._meta as { lastCompiled?: unknown } | undefined)?.lastCompiled === "string"
+    ? ((DATA._meta as { lastCompiled: string }).lastCompiled)
+    : null;
+
+export function verifiedOn(r: RegulatorEntity | undefined): string | null {
+  return r?.lastVerified ?? (r ? DATASET_COMPILED : null);
+}
+
+/** Recipe §4 + design §6: an unconfirmed grade must not be presented as fact.
+ *  These pages compose and render, but ship `noindex` and stay out of the
+ *  sitemap until the body's own page has been re-read. */
+export function isCurrentEnoughToIndex(r: RegulatorEntity | undefined): boolean {
+  if (!r) return false;
+  if (r.verifyStatus === "confirm-official") return false;
+  return Boolean(verifiedOn(r));
+}
+
+/** Real name variants, DERIVED from the official name — never guessed.
+ *  "Nursing and Midwifery Council (NMC)" yields both the full name and NMC,
+ *  which are the two strings people actually search. Recipe §2, organisation axis. */
+export function nameVariants(name: string): { full: string; abbrev: string | null; all: string[] } {
+  const m = /^(.*?)\s*\(([^)]+)\)\s*$/.exec(name);
+  if (m && /^[A-Z][A-Za-z0-9&/+. -]{1,14}$/.test(m[2])) {
+    return { full: m[1].trim(), abbrev: m[2].trim(), all: [m[1].trim(), m[2].trim()] };
+  }
+  return { full: name, abbrev: null, all: [name] };
+}
+
 const bySlug = new Map(REGULATORS.map((r) => [r.slug, r]));
 export function regulatorBySlug(slug: string): RegulatorEntity | undefined {
   return bySlug.get(slug);

@@ -23,6 +23,10 @@ import {
   countrySlug,
   regulatorBySlug,
   regulatorsForCountry,
+  verifiedOn,
+  isCurrentEnoughToIndex,
+  nameVariants,
+  DATASET_COMPILED,
   type RegulatorEntity,
 } from "./regulators";
 import { searchIntents, wordingFor, localeConvention, type Wording } from "./lexicon";
@@ -264,13 +268,24 @@ function sectionSource(m: Merged): { section: Section; facts: string[] } {
   const paras: string[] = [];
   const facts: string[] = [];
   const url = m.reg?.officialUrl ?? m.org.website;
+  const v = m.org.name;
+  const nv = nameVariants(v);
+  if (nv.abbrev) {
+    // Recipe §2, organisation axis: both strings people actually type, derived
+    // from the official name rather than invented.
+    facts.push("nameVariants");
+    paras.push(
+      `${nv.full} is usually written ${nv.abbrev} in application guidance and is searched both ways; the two names refer to the same body.`,
+    );
+  }
   if (url) {
     facts.push("officialUrl");
     paras.push(`The authority on this is ${m.org.name} itself: ${url}`);
   }
-  if (m.reg?.lastVerified) {
+  const verified = verifiedOn(m.reg);
+  if (verified) {
     facts.push("lastVerified");
-    paras.push(`Last verified ${m.reg.lastVerified}.`);
+    paras.push(`Last verified ${verified}.`);
   }
   if (m.reg?.verifyStatus === "confirm-official") {
     paras.push(
@@ -399,10 +414,16 @@ export function fingerprint(sections: Section[]): Set<string> {
 
 export type Skip = { type: string; slug: string; reasons: string[] };
 export type Emitted = {
+  /** Gate-passers that are ALSO current — indexable and sitemapped. */
   orgs: string[];
   professionOrgs: { professionSlug: string; orgSlug: string }[];
   countries: string[];
   professions: string[];
+  /** Gate-passers whose facts are not re-confirmed: rendered, but noindex and
+   *  kept OUT of the sitemap. Recipe §4 — a rich page that is out of date sends
+   *  a real person down a dead road, so richness alone does not earn indexing. */
+  noindexOrgs: string[];
+  noindexProfessionOrgs: { professionSlug: string; orgSlug: string }[];
   skipped: Skip[];
 };
 
@@ -411,6 +432,8 @@ let _emitted: Emitted | null = null;
 export function emitted(): Emitted {
   if (_emitted) return _emitted;
   const skipped: Skip[] = [];
+  const noindexOrgs: string[] = [];
+  const noindexProfessionOrgs: { professionSlug: string; orgSlug: string }[] = [];
 
   // /register/{org}
   const orgs: string[] = [];
@@ -427,8 +450,13 @@ export function emitted(): Emitted {
     }
     const g = gate(c, orgSeen);
     if (g.pass) {
-      orgs.push(o.slug);
       orgSeen.push(fingerprint(c.sections));
+      // Recipe §4: rich AND current, or it does not ship indexable.
+      if (isCurrentEnoughToIndex(regulatorBySlug(o.slug))) orgs.push(o.slug);
+      else {
+        noindexOrgs.push(o.slug);
+        skipped.push({ type: "register", slug: o.slug, reasons: ["not current: noindex, out of sitemap"] });
+      }
     } else {
       skipped.push({ type: "register", slug: o.slug, reasons: g.reasons });
     }
@@ -446,8 +474,13 @@ export function emitted(): Emitted {
       }
       const g = gate(c, poSeen);
       if (g.pass) {
-        professionOrgs.push({ professionSlug: p.slug, orgSlug: o.slug });
         poSeen.push(fingerprint(c.sections));
+        if (isCurrentEnoughToIndex(regulatorBySlug(o.slug))) {
+          professionOrgs.push({ professionSlug: p.slug, orgSlug: o.slug });
+        } else {
+          noindexProfessionOrgs.push({ professionSlug: p.slug, orgSlug: o.slug });
+          skipped.push({ type: "profession-org", slug: `${p.slug}/${o.slug}`, reasons: ["not current: noindex, out of sitemap"] });
+        }
       } else {
         skipped.push({ type: "profession-org", slug: `${p.slug}/${o.slug}`, reasons: g.reasons });
       }
@@ -468,6 +501,8 @@ export function emitted(): Emitted {
     professionOrgs,
     countries: countries.map(countrySlug),
     professions: PROFESSION_LIST.map((p) => p.slug),
+    noindexOrgs,
+    noindexProfessionOrgs,
     skipped,
   };
   return _emitted;
