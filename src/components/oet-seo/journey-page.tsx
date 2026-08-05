@@ -1,4 +1,5 @@
-// /{occupation}/from-{origin}/to-{destination} — the corridor journey. Pattern 5.
+// /{profession}/{originCountry}/{destinationCountry} — the corridor journey. Pattern 5.
+// e.g. /nursing/pakistan/united-kingdom
 //
 // The page a nurse in Lahore or Lagos is actually looking for: what THEIR council
 // has to send, whether THEIR training exempts them from the English test, and
@@ -10,7 +11,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { composeJourney, inCountry, isJourneyCurrent } from "@/lib/journey/compose";
-import { destinationFor } from "@/lib/oet-seo/corridors";
+import { destinationFor, searchTitle } from "@/lib/oet-seo/corridors";
 import { journeyFor } from "@/lib/oet-seo/links";
 import { professionSlugToLabel } from "@/lib/oet-seo/data";
 import { GRADE_DOCTRINE } from "./master";
@@ -26,14 +27,16 @@ export function buildJourneyMetadata({ occupationSlug, originSlug, destinationSl
   if (!c) return { robots: { index: false, follow: true } };
   const label = (professionSlugToLabel(occupationSlug) ?? occupationSlug).toLowerCase();
   const ex = c.englishExemption;
-  const title = `${c.originCountry} to ${c.destinationCountry}: OET and registration for ${label} | AlmiOET`;
+  // Search-first title: the corridor's own top query string, which is what people
+  // actually type ("nurse UK from Pakistan"), not a phrasing we preferred.
+  const title = `${searchTitle(c)} — verification, English and registration | AlmiOET`;
   const description = ex?.eligible
     ? `${c.originCountry}-trained nurses may not need an English test for ${inCountry(c.destinationCountry)}. What ${c.originRegulator} has to verify, and what the ${c.destinationCountry} regulator asks.`
     : `What ${c.originRegulator} must verify, the OET grades required, and how the ${c.originCountry}-to-${c.destinationCountry} route actually runs.`;
   return buildRichMetadata({
     title,
     description,
-    path: `/${occupationSlug}/from-${originSlug}/to-${destinationSlug}`,
+    path: `/${occupationSlug}/${originSlug}/${destinationSlug}`,
     noindex: !isJourneyCurrent(c),
   });
 }
@@ -51,7 +54,7 @@ export function JourneyPage({ occupationSlug, originSlug, destinationSlug }: Arg
     { label, href: `/${occupationSlug}` },
     {
       label: `${c.originCountry} to ${c.destinationCountry}`,
-      href: `/${occupationSlug}/from-${originSlug}/to-${destinationSlug}`,
+      href: `/${occupationSlug}/${originSlug}/${destinationSlug}`,
     },
   ];
 
@@ -89,7 +92,7 @@ export function JourneyPage({ occupationSlug, originSlug, destinationSlug }: Arg
   return (
     <RichPage
       eyebrow={`AlmiOET · ${c.originCountry} → ${c.destinationCountry}`}
-      title={`${label} in ${inCountry(c.destinationCountry)}, trained in ${c.originCountry}`}
+      title={searchTitle(c)}
       subtitle={`${c.originRegulator} · verified ${c.lastVerified}`}
       trail={trail}
       sections={composed.sections}

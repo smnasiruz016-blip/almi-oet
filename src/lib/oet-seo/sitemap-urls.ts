@@ -87,6 +87,13 @@ export function allUrls(): MetadataRoute.Sitemap {
       priority: 0.6,
     });
   }
+  // Pattern 5 corridors. Only the current ones: a corridor holding a
+  // confirm-official exemption renders with noindex and is deliberately absent
+  // here, because asking for a crawl of a fact we have not re-read is asking to
+  // be trusted for something we cannot yet promise.
+  for (const p of e.journeys) {
+    out.push({ url: `${SITE_URL}${p}`, changeFrequency: "monthly", priority: 0.7 });
+  }
   _urls = out;
   return out;
 }

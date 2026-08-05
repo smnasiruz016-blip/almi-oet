@@ -34,6 +34,7 @@ export function build(): string {
       .sort(),
     professionByCountry: [...e.professionByCountry].sort(),
     professionRankings: [...e.professionRankings].sort(),
+    journeys: [...e.journeys, ...e.noindexJourneys].sort(),
   };
   return `${JSON.stringify(payload, null, 2)}\n`;
 }
@@ -49,6 +50,6 @@ if (process.argv[1]?.endsWith("gen-emitted.ts")) {
   writeFileSync(OUT, out);
   const p = JSON.parse(out);
   console.log(
-    `[gen-emitted] ${p.orgs.length} org pages · ${p.professionOrgs.length} profession×org pages · ${p.countries.length} country hubs · ${p.professions.length} profession hubs · ${p.countryProfessions.length} country×profession · ${p.professionByCountry.length} by-country · ${p.professionRankings.length} rankings`,
+    `[gen-emitted] ${p.orgs.length} org pages · ${p.professionOrgs.length} profession×org pages · ${p.countries.length} country hubs · ${p.professions.length} profession hubs · ${p.countryProfessions.length} country×profession · ${p.professionByCountry.length} by-country · ${p.professionRankings.length} rankings · ${p.journeys.length} journeys`,
   );
 }
