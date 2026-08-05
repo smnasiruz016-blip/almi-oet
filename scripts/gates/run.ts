@@ -22,6 +22,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { GEN_ITEMS } from "../seed/gen/index";
 import { AUDIO_DIR, audioFileName, audioKey } from "../../src/lib/oet/audio";
+import { isCurrent, OUT } from "../gen-emitted";
 
 const FLOOR = 15;
 const PROFS = [
@@ -167,8 +168,20 @@ const fail = (gate: string, msg: string) => failures.push(`${gate}  ${msg}`);
   }
 }
 
+// ── G6 · redirect map is current ─────────────────────────────────────────────
+// The middleware 301s ~239,705 pruned URLs using a PRECOMPUTED list of the pages
+// the pSEO gate emits. If that list goes stale, every one of those redirects
+// points at a page that no longer exists — a 301 into a 404, which is worse for
+// the pruned URLs than having left them alone. So the build refuses to ship a
+// map that disagrees with the gate.
+{
+  if (!isCurrent()) {
+    fail("G6", `${OUT.replace(process.cwd(), ".")} is stale — run: npx tsx scripts/gen-emitted.ts`);
+  }
+}
+
 // ── report ───────────────────────────────────────────────────────────────────
-const GATES = ["G1 item-id", "G2 floor", "G3 distribution", "G4 structure", "G5 audio"];
+const GATES = ["G1 item-id", "G2 floor", "G3 distribution", "G4 structure", "G5 audio", "G6 redirect-map"];
 console.log(`[gates] ${items.length} seed items scanned`);
 for (const g of GATES) {
   const hits = failures.filter((f) => f.startsWith(g.slice(0, 2)));

@@ -1,0 +1,37 @@
+{
+  "_generatedBy": "npx tsx scripts/gen-emitted.ts — do not hand-edit; gate G6 checks it",
+  "orgs": [
+    "au-ahpra",
+    "au-macquarie-university",
+    "ie-coru-regulating-health-and-social-care",
+    "uk-hcpc",
+    "uk-nmc",
+    "us-ecfmg",
+    "us-trumerit"
+  ],
+  "professionOrgs": [
+    "medicine/uk-gmc",
+    "medicine/us-ecfmg",
+    "nursing/au-ahpra",
+    "speech-pathology/uk-hcpc"
+  ],
+  "professions": [
+    "dentistry",
+    "dietetics",
+    "medicine",
+    "nursing",
+    "occupational-therapy",
+    "optometry",
+    "pharmacy",
+    "physiotherapy",
+    "podiatry",
+    "radiography",
+    "speech-pathology",
+    "veterinary-science"
+  ],
+  "countries": [
+    "australia",
+    "united-kingdom",
+    "united-states"
+  ]
+}
