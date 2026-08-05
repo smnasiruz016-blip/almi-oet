@@ -1,10 +1,11 @@
 // Practice hub — the logged-in "Choose a Test" page. Lists the eight OET task
-// types from the registry grouped by sub-test, plus the full mock. Listening +
-// Reading are free; the AI-graded Writing + Speaking and the mock need a
-// subscription.
+// types from the registry grouped by sub-test, plus the full mock. All practice
+// needs a subscription; the 7-day trial is the free tier.
 
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
+import { hasPaidAccess } from "@/lib/billing/plans";
 import { OET_TASKS } from "@/lib/oet/registry";
 import type { TaskDef } from "@/lib/oet/registry";
 import { SUBTEST_LABEL } from "@/lib/oet/types";
@@ -13,7 +14,7 @@ import type { OetSubTest } from "@prisma/client";
 const SUBTEST_ORDER: OetSubTest[] = ["LISTENING", "READING", "WRITING", "SPEAKING"];
 
 function TaskCard({ def }: { def: TaskDef }) {
-  const tag = def.scoringMode === "AI" ? "AI feedback · Pro" : "Auto-marked · Free";
+  const tag = def.scoringMode === "AI" ? "AI feedback" : "Auto-marked";
   const inner = (
     <>
       <div className="flex items-baseline justify-between gap-3">
@@ -43,7 +44,11 @@ function TaskCard({ def }: { def: TaskDef }) {
 }
 
 export default async function PracticePage() {
-  await requireUser();
+  const user = await requireUser();
+  // Card-first: the practice hub itself is behind the subscription. Everything
+  // it links to is gated, so showing the menu to an account with no card only
+  // routes them into a redirect.
+  if (!hasPaidAccess(user)) redirect("/pricing");
   const tasks = Object.values(OET_TASKS);
 
   return (
@@ -54,7 +59,7 @@ export default async function PracticePage() {
         </p>
         <h1 className="mt-1 text-3xl font-semibold text-almi-ink">Choose a task</h1>
         <p className="mt-2 max-w-2xl text-sm text-almi-text">
-          Listening and Reading are common to every profession and free to practise. Writing and
+          Listening and Reading are common to every profession. Writing and
           Speaking are specific to your profession and graded with honest AI feedback. Each sub-test
           is estimated on the 0–500 scale with an A–E grade — shown as a range, never a single number.
         </p>

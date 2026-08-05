@@ -50,7 +50,7 @@ const PROMISES = [
 
 const PRICING_LINES = [
   "Honest AI feedback on the Writing letter and Speaking role-play",
-  "Free, auto-marked Listening and Reading practice",
+  "Auto-marked Listening and Reading practice on every attempt",
   "A 0–500 estimate and A–E grade per sub-test, shown as ranges",
   "All 12 professions — Nursing, Medicine, Pharmacy and more",
   "Original practice material — never copied from OET",
@@ -80,7 +80,7 @@ const FAQ = [
   },
   {
     q: "How much does AlmiOET cost?",
-    a: "$12 per month with a 7-day free trial, monthly only, cancel anytime. Listening and Reading practice is free; AI feedback on Writing and Speaking is part of the subscription.",
+    a: "$12 per month after a 7-day free trial, monthly only, cancel anytime. The trial needs a card and gives you all four sub-tests; during the trial, AI feedback is limited to 2 Writing and 2 Speaking evaluations. Cancel before day 7 and you are not charged.",
   },
 ] as const;
 
@@ -155,14 +155,14 @@ export default function Home() {
                 href="/signup"
                 className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-almi-coral/30"
               >
-                Practise free
+                Start your 7-day free trial
               </Link>
               <Link href="/login" className="text-sm font-medium text-almi-coral hover:underline">
                 Already have an account? Log in →
               </Link>
             </div>
             <p className="mt-4 text-sm text-almi-text-muted">
-              $12/month, 7-day free trial, cancel anytime · Listening &amp; Reading free · Original material, never copied from OET
+              $12/month after a 7-day free trial, cancel anytime · All four sub-tests · Original material, never copied from OET
             </p>
           </div>
           <ScoreMockup />
@@ -192,7 +192,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl">
           <h2 className="text-center text-3xl font-semibold text-almi-ink">The four OET sub-tests</h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-base text-almi-text-muted">
-            Listening and Reading are common to every profession and free to practise. Writing and
+            Listening and Reading are common to every profession. Writing and
             Speaking are graded with honest AI feedback against the real OET criteria.
           </p>
           <ul className="mt-10 grid gap-4 md:grid-cols-2">
@@ -203,7 +203,7 @@ export default function Home() {
                 <li key={subTest} className="flex h-full flex-col rounded-2xl border border-almi-bg-peach bg-almi-paper p-6">
                   <div className="flex items-baseline justify-between gap-3">
                     <h3 className="text-lg font-semibold text-almi-ink">{SUBTEST_LABEL[subTest]}</h3>
-                    <span className="text-xs text-almi-text-muted">{isAi ? "AI feedback · Pro" : "Auto-marked · Free"}</span>
+                    <span className="text-xs text-almi-text-muted">{isAi ? "AI feedback" : "Auto-marked"}</span>
                   </div>
                   <p className="mt-2 flex-1 text-sm text-almi-text">{parts[0]?.blurb}</p>
                   <span className="mt-3 text-xs text-almi-text-muted">
@@ -267,7 +267,7 @@ export default function Home() {
           </ul>
           <div className="mt-8">
             <Link href="/signup" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep">
-              Practise free
+              Start your 7-day free trial
             </Link>
           </div>
           <p className="mt-4 text-sm text-almi-text-muted">
@@ -304,7 +304,7 @@ export default function Home() {
           </p>
           <div className="mt-8">
             <Link href="/signup" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep">
-              Practise free
+              Start your 7-day free trial
             </Link>
           </div>
         </div>

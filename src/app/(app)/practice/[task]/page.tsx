@@ -1,5 +1,5 @@
 // Task start page: opens a practice session for the task and routes into it.
-// Objective tasks (Listening/Reading) run a short practice set and are free; AI
+// Objective tasks (Listening/Reading) run a short practice set; AI
 // tasks (Writing/Speaking) run a single item and need a subscription. Per-
 // profession tasks use the user's chosen target profession.
 
@@ -16,7 +16,9 @@ async function beginAction(formData: FormData) {
   const def = taskBySlug(slug);
   if (!def || !def.live) redirect("/practice");
   const user = await requireUser();
-  if (def.scoringMode === "AI" && !hasPaidAccess(user)) redirect("/pricing");
+  // Card-first: starting ANY practice set needs a subscription, not only the
+  // AI-graded ones. Previously Listening and Reading started without one.
+  if (!hasPaidAccess(user)) redirect("/pricing");
   const profession = isPerProfession(def.subTest) ? user.targetProfession : null;
   const id = await startSession({
     userId: user.id,
@@ -42,7 +44,7 @@ export default async function TaskStartPage({
   if (!def || !def.live) notFound();
 
   const isObjective = def.scoringMode === "DETERMINISTIC";
-  const needsPaid = def.scoringMode === "AI" && !hasPaidAccess(user);
+  const needsPaid = !hasPaidAccess(user);
   const needsProfession = isPerProfession(def.subTest) && !user.targetProfession;
 
   return (
@@ -78,11 +80,11 @@ export default async function TaskStartPage({
         </div>
       ) : needsPaid ? (
         <div className="rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink">
-          AI feedback on Writing and Speaking is part of a subscription.{" "}
+          Practice is part of a subscription, and the 7-day trial is free.{" "}
           <a href="/pricing" className="font-semibold underline">
             See plans
           </a>{" "}
-          — Listening and Reading practice is free.
+          — the 7-day trial covers all four sub-tests.
         </div>
       ) : (
         <form action={beginAction}>

@@ -14,6 +14,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth";
+import { hasPaidAccess } from "@/lib/billing/plans";
 import { prisma } from "@/lib/prisma";
 import { synthesizeSpeech, synthesizeDialogue } from "@/lib/ai/openai";
 import { AUDIO_DIR, audioFileName, audioKey } from "@/lib/oet/audio";
@@ -46,6 +47,16 @@ export async function GET(
     return NextResponse.json({ ok: false, error: "Not authenticated" }, { status: 401 });
   }
   const { attemptId } = await ctx.params;
+
+  // Card-first: the audio IS the Listening content. Ownership alone used to be
+  // enough, so a free account holding an attempt could stream the whole bank.
+  // Pre-rendering it with Piper removed the marginal cost, not the paywall.
+  if (!hasPaidAccess(user)) {
+    return NextResponse.json(
+      { ok: false, error: "Start your 7-day free trial to play this audio.", upgradeUrl: "/pricing" },
+      { status: 402 },
+    );
+  }
 
   const attempt = await prisma.oetAttempt.findFirst({
     where: { id: attemptId, userId: user.id },

@@ -9,32 +9,15 @@ export const STRIPE_PRICE_YEARLY = process.env.STRIPE_PRICE_ID_YEARLY ?? "";
 
 export type PlanKey = "FREE" | "PRO_MONTHLY" | "PRO_YEARLY";
 
-export type PlanConfig = {
-  /** Practice attempts per month — Infinity = unlimited. */
-  attemptsPerMonth: number;
-  /** AI-evaluated productive tasks per month — Infinity = unlimited. */
-  aiEvaluationsPerMonth: number;
-  /** Access to all DET task types vs. a limited preview. */
-  allTasks: boolean;
-};
-
-export const PLANS: Record<PlanKey, PlanConfig> = {
-  FREE: {
-    attemptsPerMonth: 3,
-    aiEvaluationsPerMonth: 1,
-    allTasks: false,
-  },
-  PRO_MONTHLY: {
-    attemptsPerMonth: Infinity,
-    aiEvaluationsPerMonth: Infinity,
-    allTasks: true,
-  },
-  PRO_YEARLY: {
-    attemptsPerMonth: Infinity,
-    aiEvaluationsPerMonth: Infinity,
-    allTasks: true,
-  },
-};
+// REMOVED 2026-08-05: a `PLANS` table declaring FREE = 3 attempts/month and
+// 1 AI evaluation/month. It was inherited from the AlmiDET fork and had ZERO
+// references outside this file — no route, page, or helper ever read it. It
+// described a metered free tier that did not exist, so anyone reading this
+// file would reasonably conclude limits were enforced when practice was in
+// fact binary and uncapped. Deleted rather than wired: AlmiOET is card-first,
+// so there is no free practice tier to meter. The one real limit — the trial's
+// AI-evaluation cap — lives in lib/billing/trial-limits.ts and IS enforced,
+// in the submit route, with a proof.
 
 export const PLAN_DISPLAY_NAME: Record<PlanKey, string> = {
   FREE: "Free",

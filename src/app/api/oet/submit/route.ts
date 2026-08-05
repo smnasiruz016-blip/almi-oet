@@ -8,7 +8,9 @@
 import { NextResponse } from "next/server";
 import { Prisma } from "@prisma/client";
 import { getCurrentUser } from "@/lib/auth";
-import { hasPaidAccess } from "@/lib/billing/plans";
+import { hasPaidAccess, isComped } from "@/lib/billing/plans";
+import { trialAiAllowance } from "@/lib/billing/trial-limits";
+import { isOwner } from "@/lib/auth/owner-check";
 import { prisma } from "@/lib/prisma";
 import { OET_HANDLERS } from "@/lib/oet/registry";
 import { fractionToEstimate } from "@/lib/oet/scale";
@@ -72,10 +74,17 @@ export async function POST(req: Request): Promise<NextResponse> {
     );
   }
 
-  // AI feedback is a paid feature; objective auto-marking is free practice.
-  if (handler.mode === "AI" && !hasPaidAccess(user)) {
+  // Card-first: ALL scoring needs a subscription, not just the AI-graded tasks.
+  // Objective auto-marking used to be free and uncapped, which meant the whole
+  // Listening and Reading bank could be worked through without ever adding a
+  // card. The trial is the free tier now.
+  if (!hasPaidAccess(user)) {
     return NextResponse.json(
-      { ok: false, error: "AI feedback needs a subscription", upgradeUrl: "/pricing" },
+      {
+        ok: false,
+        error: "Start your 7-day free trial to score this task.",
+        upgradeUrl: "/pricing",
+      },
       { status: 402 },
     );
   }
@@ -89,6 +98,33 @@ export async function POST(req: Request): Promise<NextResponse> {
       { ok: false, error: "Verify your email address before using AI feedback.", verifyUrl: "/account" },
       { status: 403 },
     );
+  }
+
+  // Trial cap on the metered surface. Checked AFTER the paid + verified gates
+  // and BEFORE transcription, so a capped trial request costs nothing: no
+  // Whisper call, no Sonnet call. Owner and comp bypass — they never had a
+  // trial to limit.
+  if (handler.mode === "AI") {
+    const used = await prisma.oetAttempt.count({
+      where: { userId: user.id, taskType: attempt.taskType, status: "SCORED" },
+    });
+    const allowance = trialAiAllowance({
+      subscriptionStatus: user.subscriptionStatus,
+      taskType: attempt.taskType,
+      used,
+      bypass: isOwner(user.email) || isComped(user),
+    });
+    if (!allowance.allowed) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: allowance.message,
+          trial: { limit: allowance.limit, used: allowance.used, remaining: 0 },
+          upgradeUrl: "/account",
+        },
+        { status: 402 },
+      );
+    }
   }
 
   // Speaking: transcribe the uploaded audio before scoring.

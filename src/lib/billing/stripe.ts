@@ -79,6 +79,10 @@ export async function createCheckoutSession(input: {
     mode: "subscription",
     customer: customerId,
     line_items: [{ price: input.priceId, quantity: 1 }],
+    // Stated explicitly rather than left to the Stripe default. Card-first is
+    // the whole model here, and a silent default change would turn the trial
+    // into a no-card trial without a line of code moving.
+    payment_method_collection: "always",
     subscription_data: {
       trial_period_days: TRIAL_PERIOD_DAYS,
       metadata: { userId: input.userId, plan: planLabel, product: "almi-oet" },
