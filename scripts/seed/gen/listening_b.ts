@@ -1139,5 +1139,252 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 3 (canonical ingest 2026-08-05) ──
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part B — Sharps bins",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "sharps-safety",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Ward manager",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Ward manager: Never resheath a used needle, and never overfill the sharps bin - once it reaches the fill line, seal it and replace it. Most of the needlestick injuries on this ward have come from bins that were too full to close properly.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is given as the main cause of needlestick injuries on the ward?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "sharps bins that were too full"
+            },
+            {
+              "id": "b",
+              "text": "faulty needles"
+            },
+            {
+              "id": "c",
+              "text": "staff working too quickly"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part B — Transfusion check",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "transfusion",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Charge nurse",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Charge nurse: The bedside check before a transfusion must be done by two staff, together, at the patient's side - not one person reading it out while the other signs later. It's the final barrier against giving the wrong blood, and it only works if you both actually look.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What point is made about the pre-transfusion check?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "it can be signed afterwards"
+            },
+            {
+              "id": "b",
+              "text": "both staff must do it together at the bedside"
+            },
+            {
+              "id": "c",
+              "text": "one senior nurse is enough"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part B — Timely notes",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "documentation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Clinical educator",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Clinical educator: Write your notes as soon as you can after the event, not hours later at the end of the shift. Memory fades, and a record made at the time carries far more weight if a case is ever reviewed.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Why should notes be written promptly?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "it is quicker overall"
+            },
+            {
+              "id": "b",
+              "text": "to finish the shift on time"
+            },
+            {
+              "id": "c",
+              "text": "a record made at the time is more reliable"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part B — Oxygen as a drug",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "prescribing",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Respiratory nurse",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Respiratory nurse: Oxygen is a drug and must be prescribed with a target saturation range, like anything else. In some patients with chronic lung disease, high-flow oxygen can actually be dangerous, so we don't just turn it up because someone looks unwell.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is the speaker's main point about oxygen?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "it must be prescribed with a target range"
+            },
+            {
+              "id": "b",
+              "text": "it should always be given at high flow"
+            },
+            {
+              "id": "c",
+              "text": "it is completely harmless"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part B — Interpreters",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "communication",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Practice manager",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Practice manager: When a patient doesn't speak much English, book a professional interpreter - don't rely on their child or a relative. Family members may soften bad news, miss detail, or the patient may not want them to know everything.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Why should family members not be used to interpret?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "it takes longer"
+            },
+            {
+              "id": "b",
+              "text": "they may alter or limit what is said"
+            },
+            {
+              "id": "c",
+              "text": "it is against the law"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part B — Red wristband",
+    "prompt": "You will hear a short workplace extract. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "allergy",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Nurse",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Nurse: If a patient has a known allergy, they wear a red wristband, and it should match what's documented. If you see a red band but nothing recorded, stop and check before giving anything - an unexplained band is a red flag, not a decoration.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What should you do if a patient has a red wristband but no recorded allergy?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "ignore the band"
+            },
+            {
+              "id": "b",
+              "text": "remove the band"
+            },
+            {
+              "id": "c",
+              "text": "check before giving any medication"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

@@ -2328,5 +2328,310 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 3 (canonical ingest 2026-08-05) ──
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_A",
+    "profession": null,
+    "title": "OET Form 3 · Reading Part A — Delirium in hospital",
+    "prompt": "Complete the 20 questions using the four texts (A-D). Answer with a word or short phrase, or a text letter for matching questions. You have 15 minutes.",
+    "difficulty": "CORE",
+    "topicTag": "delirium",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "texts": [
+        {
+          "id": "A",
+          "heading": "Recognising delirium",
+          "body": "Delirium is a sudden change in mental state - confusion, disorientation, altered awareness - that develops over hours or days, and it is often missed. Unlike dementia, which comes on slowly, delirium is acute and fluctuates through the day, sometimes worse at night. The quiet, withdrawn 'hypoactive' form is easily overlooked and carries the worst outcomes. A simple screening tool such as the 4AT can help detect it."
+        },
+        {
+          "id": "B",
+          "heading": "Common causes",
+          "body": "Delirium usually has a trigger, often more than one. Frequent causes include infection (especially urinary and chest), dehydration, constipation, pain, and medicines - particularly sedatives and strong painkillers. Because the causes are treatable, delirium should prompt a search for the underlying problem rather than simply sedation of the patient."
+        },
+        {
+          "id": "C",
+          "heading": "Prevention",
+          "body": "Much delirium is preventable. Keeping patients hydrated, mobile and oriented - with clocks, daylight, and their own glasses and hearing aids - reduces risk. Uninterrupted sleep matters, so avoid waking patients for non-urgent observations at night. Familiar faces help, so involving family is protective, not a distraction."
+        },
+        {
+          "id": "D",
+          "heading": "Management",
+          "body": "When delirium occurs, treat the cause and support the person. A calm, well-lit environment and consistent staff reduce distress. Medication to sedate should be a last resort, reserved for severe agitation that risks safety, and used at the lowest dose, as it can prolong the delirium it is meant to treat."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "match",
+          "stem": "how delirium differs from dementia",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "kind": "match",
+          "stem": "which form of delirium has the worst outcomes",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "kind": "match",
+          "stem": "why sedating medication should be a last resort",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "the protective role of family",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "common infective triggers",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "a named screening tool",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "advice about night-time observations",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "kind": "gap",
+          "stem": "Over what timescale does delirium develop?",
+          "answer": "hours or days",
+          "variants": [
+            "hours to days",
+            "over hours or days"
+          ]
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Which screening tool is named?",
+          "answer": "the 4AT",
+          "variants": [
+            "4AT"
+          ]
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Delirium fluctuates and is sometimes worse at what time?",
+          "answer": "night",
+          "variants": [
+            "at night"
+          ]
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Name one site of infection said to 'especially' cause delirium.",
+          "answer": "urinary",
+          "variants": [
+            "chest",
+            "urinary tract"
+          ]
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Besides infection, name one treatable cause listed.",
+          "answer": "dehydration",
+          "variants": [
+            "constipation",
+            "pain"
+          ]
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Keeping patients hydrated, oriented and ___ reduces risk.",
+          "answer": "mobile"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Patients should have their own glasses and ___.",
+          "answer": "hearing aids"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Uninterrupted ___ matters for prevention.",
+          "answer": "sleep"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "The quiet, withdrawn form is called ___ delirium.",
+          "answer": "hypoactive"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Delirium should prompt a search for the underlying ___ rather than sedation.",
+          "answer": "problem",
+          "variants": [
+            "cause"
+          ]
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "In management, sedation should be a ___ resort.",
+          "answer": "last"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Sedating medication can ___ the delirium it is meant to treat.",
+          "answer": "prolong"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Unlike delirium, ___ comes on slowly.",
+          "answer": "dementia"
+        }
+      ]
+    }
   }
 ];

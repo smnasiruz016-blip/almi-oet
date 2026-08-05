@@ -1605,5 +1605,352 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 3 (canonical ingest 2026-08-05) ──
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_C",
+    "profession": null,
+    "title": "OET Form 3 · Reading Part C — The fifteen-minute appointment",
+    "prompt": "Read the text and answer questions 1-8. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "clinical-practice",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "There is a quiet arithmetic that governs modern medicine, and its basic unit is roughly fifteen minutes. That is the length of the standard appointment in much of general practice, and almost everything about the way care is delivered has arranged itself around that figure. It was never chosen because fifteen minutes is the right amount of time to understand a human being's suffering; it was chosen because it allows a certain number of patients to be seen in a day. The number came first, and the medicine has been folded to fit it. Much of the time this works, or appears to. A sore throat, a repeat prescription, a blood-pressure check - these fit comfortably inside the quarter-hour, and a brisk, focused consultation is exactly what the patient wants. The trouble begins with everything that does not announce itself so tidily. The patient who mentions, hand already on the door, that they have been feeling low. The elderly man whose four separate complaints are really one, if only there were time to join them up. The worried parent whose real question arrives only after the small talk the clock does not permit. These are not edge cases; they are the substance of medicine, and they do not keep to time. What gets lost is not usually the diagnosis - a competent clinician can still spot the dangerous thing - but the space in which a patient feels heard enough to say what actually brought them. Rushed people disclose less, and disclosure is where much of the real work lives. The doctor senses this too, and carries the low-grade guilt of the unfinished conversation from room to room across a day. None of this is an argument that longer is always better; a slow consultation can wander and reassure no one. It is an argument that time is not a luxury bolted onto good care but part of its very structure - and that a system which treats minutes as the thing to be saved may be quietly discarding the thing it exists to provide."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does the writer say determined the fifteen-minute length?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "how many patients could be seen in a day"
+            },
+            {
+              "id": "b",
+              "text": "research into what makes care good"
+            },
+            {
+              "id": "c",
+              "text": "what patients asked for"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "According to the writer, which came first?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "the medicine, then the number"
+            },
+            {
+              "id": "b",
+              "text": "the number, then the medicine folded to fit it"
+            },
+            {
+              "id": "c",
+              "text": "neither, they arose together"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Which problem is said to fit the fifteen minutes comfortably?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "a patient who feels low"
+            },
+            {
+              "id": "b",
+              "text": "four complaints that are really one"
+            },
+            {
+              "id": "c",
+              "text": "a repeat prescription"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "The 'hand already on the door' examples are used to show:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "the real substance of medicine, which does not keep to time"
+            },
+            {
+              "id": "b",
+              "text": "rare, unusual cases"
+            },
+            {
+              "id": "c",
+              "text": "patients who waste time"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What does the writer say is usually NOT lost?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "the patient's trust"
+            },
+            {
+              "id": "b",
+              "text": "the diagnosis"
+            },
+            {
+              "id": "c",
+              "text": "the doctor's patience"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Why does disclosure matter, according to the writer?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "it saves time later"
+            },
+            {
+              "id": "b",
+              "text": "it protects the doctor legally"
+            },
+            {
+              "id": "c",
+              "text": "it is where much of the real work lives"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What does the writer say the doctor carries between rooms?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "the guilt of the unfinished conversation"
+            },
+            {
+              "id": "b",
+              "text": "detailed written notes"
+            },
+            {
+              "id": "c",
+              "text": "the next patient's file"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "The writer's overall argument is that time is:",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "a luxury added on to good care"
+            },
+            {
+              "id": "b",
+              "text": "part of the very structure of good care"
+            },
+            {
+              "id": "c",
+              "text": "always better in larger amounts"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_C",
+    "profession": null,
+    "title": "OET Form 3 · Reading Part C — Resilience is not the answer",
+    "prompt": "Read the text and answer questions 1-8. Choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "workforce",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Whenever healthcare staff are surveyed and found to be exhausted, demoralised, and leaving in numbers, a familiar remedy is wheeled out: resilience. There are workshops on it, modules, mindfulness apps distributed by the very organisations whose rotas made the mindfulness necessary. The message, however kindly meant, is that the problem lies in the individual's capacity to cope, and the solution is to help them cope better. It is worth pausing on how strange this is. We would not respond to a ward with a broken ventilation system by teaching the staff to breathe more efficiently. Resilience, as a personal quality, is real and valuable. People who can steady themselves under pressure are a gift to any team. The sleight of hand is not in praising resilience but in prescribing it - in taking a systemic failure and relocating it inside the worker, so that burnout becomes a sign of insufficient character rather than of impossible conditions. Once framed that way, the exhausted nurse is subtly at fault, and the institution is off the hook. If only she had attended the wellbeing session. The evidence points elsewhere. Burnout tracks not with weak personalities but with things done to people: excessive workload, lack of control over one's day, unfair treatment, and values in conflict with the job. These are features of systems, not flaws in souls, and they respond to systemic things - safe staffing, workable rotas, a say in decisions, and the simple experience of being listened to when you raise a concern. The cruelty of the resilience narrative is that it asks the depleted to generate, from their own reserves, the strength the organisation has failed to provide. It privatises a public failing. None of this means individuals are powerless, or that supporting wellbeing is wrong. It means that wellbeing offered instead of change is not support; it is a way of looking after the appearance of care while leaving its causes untouched. The honest response to a broken system is to mend the system."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What remedy does the writer say is offered to exhausted staff?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "higher pay"
+            },
+            {
+              "id": "b",
+              "text": "longer holidays"
+            },
+            {
+              "id": "c",
+              "text": "resilience training"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "The broken-ventilation analogy is used to show that:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "it is strange to fix a system problem by changing the individual"
+            },
+            {
+              "id": "b",
+              "text": "hospitals need better air quality"
+            },
+            {
+              "id": "c",
+              "text": "staff breathe inefficiently"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "What does the writer call the 'sleight of hand'?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "praising resilience"
+            },
+            {
+              "id": "b",
+              "text": "prescribing resilience for a systemic failure"
+            },
+            {
+              "id": "c",
+              "text": "denying that resilience exists"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "When burnout is framed as weak character, who is 'off the hook'?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "the individual worker"
+            },
+            {
+              "id": "b",
+              "text": "the patient"
+            },
+            {
+              "id": "c",
+              "text": "the institution"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "According to the evidence cited, burnout tracks with:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "things done to people, such as workload and lack of control"
+            },
+            {
+              "id": "b",
+              "text": "weak personalities"
+            },
+            {
+              "id": "c",
+              "text": "a lack of training"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What kind of solutions does the writer say the causes respond to?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "individual mindfulness"
+            },
+            {
+              "id": "b",
+              "text": "systemic changes such as safe staffing"
+            },
+            {
+              "id": "c",
+              "text": "resilience apps"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "The writer says the resilience narrative 'privatises' a:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "personal weakness"
+            },
+            {
+              "id": "b",
+              "text": "hospital budget"
+            },
+            {
+              "id": "c",
+              "text": "public failing"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What does the writer say wellbeing offered instead of change really is?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "a way of preserving the appearance of care while ignoring its causes"
+            },
+            {
+              "id": "b",
+              "text": "genuine support"
+            },
+            {
+              "id": "c",
+              "text": "a waste of money"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

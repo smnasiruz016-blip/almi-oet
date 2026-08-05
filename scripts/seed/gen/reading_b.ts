@@ -1108,5 +1108,246 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 3 (canonical ingest 2026-08-05) ──
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Reading Part B — Penicillin allergy label",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "allergy",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Many 'penicillin allergies' on our records are not true allergies but old side effects like nausea, or a childhood rash no one can now verify. An inaccurate label matters: it pushes prescribers towards second-choice antibiotics that are often less effective and broader-spectrum. Where the history is doubtful, refer for proper allergy assessment rather than carrying the label for life."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Why does an inaccurate penicillin-allergy label matter?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "it leads to less effective, broader-spectrum antibiotics"
+            },
+            {
+              "id": "b",
+              "text": "it upsets patients"
+            },
+            {
+              "id": "c",
+              "text": "it is illegal to record"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Reading Part B — Controlled drugs",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "controlled-drugs",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Controlled drugs must be checked and signed by two registered staff at the point of administration, with the stock balance confirmed against the register. If the count does not match, do not proceed - report it immediately. A discrepancy is never something to 'sort out later'."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What should staff do if the controlled-drug count does not match?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "adjust the register to fit"
+            },
+            {
+              "id": "b",
+              "text": "stop and report it immediately"
+            },
+            {
+              "id": "c",
+              "text": "sort it out at the end of the shift"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Reading Part B — Early warning scores",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "patient-safety",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "The early warning score is only useful if a high score triggers action. A rising score with no documented response is worse than no score at all, because it shows the warning was seen and ignored. Escalate according to the chart - do not wait to see whether the patient improves on their own."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does the text say is worse than having no early warning score?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "a consistently low score"
+            },
+            {
+              "id": "b",
+              "text": "a score checked twice"
+            },
+            {
+              "id": "c",
+              "text": "a rising score with no response"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Reading Part B — Bare below the elbows",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "infection-control",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "From Monday, all clinical staff must be bare below the elbows - no long sleeves, wristwatches, or rings other than a plain band. This is not about appearance: cuffs and jewellery harbour organisms and get in the way of properly washing the wrists and forearms."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "Why is the 'bare below the elbows' rule in place?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "cuffs and jewellery harbour organisms and hinder handwashing"
+            },
+            {
+              "id": "b",
+              "text": "to look more professional"
+            },
+            {
+              "id": "c",
+              "text": "to reduce laundry costs"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Reading Part B — Confidentiality in public areas",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "confidentiality",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "A reminder: do not discuss patients in lifts, corridors, or the canteen. It is easy to forget who is standing beside you - a patient's relative, or a colleague of the person you are describing. Confidentiality does not switch off when you leave the ward."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What is the main point of the reminder?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "simply speak more quietly"
+            },
+            {
+              "id": "b",
+              "text": "avoid discussing patients in public areas"
+            },
+            {
+              "id": "c",
+              "text": "use only first names"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "OET Form 3 · Reading Part B — Verbal orders",
+    "prompt": "Read the text and choose the answer (A, B or C) which fits best.",
+    "difficulty": "FOUNDATION",
+    "topicTag": "prescribing",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Telephone and verbal medication orders are error-prone and should be avoided where possible. Where unavoidable, write the order down and read it back to the prescriber, including the dose and route, and have it countersigned within 24 hours. 'I thought you said' is not a defence."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What must you do when taking a verbal medication order?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "act on it from memory"
+            },
+            {
+              "id": "b",
+              "text": "wait 24 hours before giving it"
+            },
+            {
+              "id": "c",
+              "text": "write it down and read it back"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];

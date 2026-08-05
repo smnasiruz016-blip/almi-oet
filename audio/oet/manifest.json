@@ -156,6 +156,22 @@
       "bytes": 278047
     },
     {
+      "key": "1af30851b19cd936",
+      "title": "OET Form 3 · Listening Part A — Physiotherapist and lower back pain",
+      "taskType": "LISTENING_PART_A",
+      "file": "1af30851b19cd936.mp3",
+      "rendered": true,
+      "bytes": 389172
+    },
+    {
+      "key": "47423159e9bf4e7c",
+      "title": "OET Form 3 · Listening Part A — Midwife antenatal booking visit",
+      "taskType": "LISTENING_PART_A",
+      "file": "47423159e9bf4e7c.mp3",
+      "rendered": true,
+      "bytes": 382119
+    },
+    {
       "key": "97ce11bcea1430fc",
       "title": "Part B — Alert about a norovirus outbreak",
       "taskType": "LISTENING_PART_B",
@@ -372,6 +388,54 @@
       "bytes": 66142
     },
     {
+      "key": "1a847f6d277008f5",
+      "title": "OET Form 3 · Listening Part B — Sharps bins",
+      "taskType": "LISTENING_PART_B",
+      "file": "1a847f6d277008f5.mp3",
+      "rendered": true,
+      "bytes": 71628
+    },
+    {
+      "key": "623ce0c5ca17bc74",
+      "title": "OET Form 3 · Listening Part B — Transfusion check",
+      "taskType": "LISTENING_PART_B",
+      "file": "623ce0c5ca17bc74.mp3",
+      "rendered": true,
+      "bytes": 92473
+    },
+    {
+      "key": "0356c4546a575a3d",
+      "title": "OET Form 3 · Listening Part B — Timely notes",
+      "taskType": "LISTENING_PART_B",
+      "file": "0356c4546a575a3d.mp3",
+      "rendered": true,
+      "bytes": 59716
+    },
+    {
+      "key": "b52615a5228a50fa",
+      "title": "OET Form 3 · Listening Part B — Oxygen as a drug",
+      "taskType": "LISTENING_PART_B",
+      "file": "b52615a5228a50fa.mp3",
+      "rendered": true,
+      "bytes": 87301
+    },
+    {
+      "key": "2993e7794a78de28",
+      "title": "OET Form 3 · Listening Part B — Interpreters",
+      "taskType": "LISTENING_PART_B",
+      "file": "2993e7794a78de28.mp3",
+      "rendered": true,
+      "bytes": 68963
+    },
+    {
+      "key": "dadfb8e602fe621f",
+      "title": "OET Form 3 · Listening Part B — Red wristband",
+      "taskType": "LISTENING_PART_B",
+      "file": "dadfb8e602fe621f.mp3",
+      "rendered": true,
+      "bytes": 91219
+    },
+    {
       "key": "a049463ac6005bc5",
       "title": "Part C — A multimodal approach to chronic pain management",
       "taskType": "LISTENING_PART_C",
@@ -522,6 +586,22 @@
       "file": "3b1ccba779450c71.mp3",
       "rendered": true,
       "bytes": 290586
+    },
+    {
+      "key": "50d57d73e3ef7cd9",
+      "title": "OET Form 3 · Listening Part C — Interview: living with chronic pain",
+      "taskType": "LISTENING_PART_C",
+      "file": "50d57d73e3ef7cd9.mp3",
+      "rendered": true,
+      "bytes": 446694
+    },
+    {
+      "key": "304586b6e5650f2d",
+      "title": "OET Form 3 · Listening Part C — Presentation: health literacy",
+      "taskType": "LISTENING_PART_C",
+      "file": "304586b6e5650f2d.mp3",
+      "rendered": true,
+      "bytes": 382746
     }
   ]
 }

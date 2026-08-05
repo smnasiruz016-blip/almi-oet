@@ -1162,5 +1162,211 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 3 (canonical ingest 2026-08-05) ──
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_A",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part A — Physiotherapist and lower back pain",
+    "prompt": "You will hear a physiotherapist speaking to a patient. For questions 1-12, complete the notes with a word or short phrase.",
+    "difficulty": "CORE",
+    "topicTag": "consultation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Physiotherapist",
+          "voice": "alloy"
+        },
+        {
+          "role": "Patient",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Physiotherapist: Good morning, Mr Doyle. I'm Elena, one of the physiotherapists. I understand you've had some back pain - when did it start? Patient: About three weeks ago. I was lifting a box in the garage and felt a sharp twinge in my lower back. Physiotherapist: And how would you describe the pain now? Patient: It's more of a dull ache, but it's worse when I sit for a long time. Physiotherapist: Does it travel anywhere - down into your leg, for instance? Patient: No, it stays in my back. Physiotherapist: That's reassuring. Any numbness or pins and needles? Patient: None. Physiotherapist: Good. Have you been taking anything for it? Patient: Just ibuprofen, which takes the edge off. Physiotherapist: And have you been resting it? Patient: Yes, I've mostly been lying down. Physiotherapist: Actually, too much bed rest can slow recovery. Gentle movement is better - a short walk each day. Patient: I didn't realise that. Physiotherapist: Most cases like yours settle within six weeks. I'll show you some exercises, and I'd like you to avoid heavy lifting for now. Patient: Should I be worried it's something serious? Physiotherapist: Your symptoms point to a simple muscular strain. But if you ever develop weakness in your legs or problems passing urine, seek help immediately.",
+      "gaps": [
+        {
+          "id": "g1",
+          "label": "Back pain started about",
+          "answer": "three weeks ago",
+          "variants": [
+            "3 weeks ago"
+          ]
+        },
+        {
+          "id": "g2",
+          "label": "Injured while lifting a",
+          "answer": "box"
+        },
+        {
+          "id": "g3",
+          "label": "Initially felt a sharp",
+          "answer": "twinge"
+        },
+        {
+          "id": "g4",
+          "label": "Pain is now a dull",
+          "answer": "ache"
+        },
+        {
+          "id": "g5",
+          "label": "Pain is worse when ___ for a long time",
+          "answer": "sitting",
+          "variants": [
+            "sits",
+            "sit"
+          ]
+        },
+        {
+          "id": "g6",
+          "label": "Pain does not travel into his",
+          "answer": "leg"
+        },
+        {
+          "id": "g7",
+          "label": "Taking for the pain:",
+          "answer": "ibuprofen"
+        },
+        {
+          "id": "g8",
+          "label": "Has mostly been",
+          "answer": "lying down",
+          "variants": [
+            "resting",
+            "lying"
+          ]
+        },
+        {
+          "id": "g9",
+          "label": "Better than bed rest: gentle",
+          "answer": "movement",
+          "variants": [
+            "exercise"
+          ]
+        },
+        {
+          "id": "g10",
+          "label": "Recommended daily: a short",
+          "answer": "walk"
+        },
+        {
+          "id": "g11",
+          "label": "Most cases settle within",
+          "answer": "six weeks",
+          "variants": [
+            "6 weeks"
+          ]
+        },
+        {
+          "id": "g12",
+          "label": "Told to avoid heavy",
+          "answer": "lifting"
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_A",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part A — Midwife antenatal booking visit",
+    "prompt": "You will hear a midwife speaking to a patient. For questions 1-12, complete the notes with a word or short phrase.",
+    "difficulty": "CORE",
+    "topicTag": "consultation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Midwife",
+          "voice": "alloy"
+        },
+        {
+          "role": "Patient",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Midwife: Hello Sarah, I'm Grace, your midwife. This is your booking appointment, at around ten weeks. Congratulations - is this your first baby? Patient: Yes, it is. Midwife: How have you been feeling? Patient: Quite sick in the mornings, and very tired. Midwife: That's common in the first trimester and usually eases by about week fourteen. Are you managing to eat? Patient: Small amounts. I've gone off coffee completely. Midwife: That's often the body's way of protecting the baby. Are you taking folic acid? Patient: Yes, 400 micrograms a day. Midwife: Perfect - that helps protect the baby's spine. Keep taking it until twelve weeks. Do you smoke? Patient: I stopped as soon as I found out. Midwife: Well done - that's the best thing you could do. Any alcohol? Patient: None at all. Midwife: Good. Today I'll check your blood pressure and take some blood, and we'll arrange your first scan for around twelve weeks. Patient: Will I find out the due date then? Midwife: Yes, the scan gives us an accurate date. Any questions? Patient: I've been getting headaches. Midwife: Usually hormonal, but if they become severe or you see spots in your vision, tell us straight away.",
+      "gaps": [
+        {
+          "id": "g1",
+          "label": "Type of appointment today: the",
+          "answer": "booking",
+          "variants": [
+            "booking appointment"
+          ]
+        },
+        {
+          "id": "g2",
+          "label": "Roughly how many weeks pregnant:",
+          "answer": "ten weeks",
+          "variants": [
+            "10 weeks"
+          ]
+        },
+        {
+          "id": "g3",
+          "label": "This is her first",
+          "answer": "baby"
+        },
+        {
+          "id": "g4",
+          "label": "Feels sick in the",
+          "answer": "mornings"
+        },
+        {
+          "id": "g5",
+          "label": "Also feels very",
+          "answer": "tired"
+        },
+        {
+          "id": "g6",
+          "label": "Has gone off",
+          "answer": "coffee"
+        },
+        {
+          "id": "g7",
+          "label": "Taking daily: folic",
+          "answer": "acid"
+        },
+        {
+          "id": "g8",
+          "label": "Folic acid dose:",
+          "answer": "400 micrograms",
+          "variants": [
+            "400 mcg",
+            "400 micrograms a day"
+          ]
+        },
+        {
+          "id": "g9",
+          "label": "Folic acid protects the baby's",
+          "answer": "spine"
+        },
+        {
+          "id": "g10",
+          "label": "As soon as she found out, she stopped",
+          "answer": "smoking",
+          "variants": [
+            "smoke"
+          ]
+        },
+        {
+          "id": "g11",
+          "label": "First scan at around",
+          "answer": "twelve weeks",
+          "variants": [
+            "12 weeks"
+          ]
+        },
+        {
+          "id": "g12",
+          "label": "Warning sign with headaches: seeing",
+          "answer": "spots"
+        }
+      ]
+    }
   }
 ];

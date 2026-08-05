@@ -1480,5 +1480,282 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  // ── OET Form 3 (canonical ingest 2026-08-05) ──
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_C",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part C — Interview: living with chronic pain",
+    "prompt": "You will hear an interview. For questions 1-6, choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "interview",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Interviewer",
+          "voice": "onyx"
+        },
+        {
+          "role": "Fiona Clark",
+          "voice": "alloy"
+        }
+      ],
+      "audioScript": "Interviewer: Fiona, you work with people who've had pain for years. What's the first thing you try to change? Fiona: Their expectation that we'll make it disappear. For chronic pain, chasing a cure often does more harm than the pain itself - endless appointments, stronger drugs, each promising an end that doesn't come. The shift is from getting rid of it to living well alongside it. Interviewer: That sounds like giving up. Fiona: Patients often hear it that way at first, and I understand why. But it's the opposite. Accepting that the pain may stay is what frees people to rebuild a life - to go back to work, to see friends - instead of putting everything on hold waiting for a fix. Interviewer: Where do painkillers fit? Fiona: They have a place, but a smaller one than people expect. Strong opioids in particular often lose their effect over time while the side effects stay. I've seen patients function better on less medication, not more - which is deeply counterintuitive to them. Interviewer: What actually helps, then? Fiona: Movement, mostly. It feels wrong - if it hurts, surely you should rest? But muscles that aren't used get weaker and hurt more, so gentle, graded activity breaks that cycle. And addressing mood, because pain and low mood feed each other. Interviewer: Is that a hard message to sell? Fiona: Very. People come wanting a stronger tablet and leave with a walking plan. The trick is not to dismiss their pain - it's absolutely real - while offering a different kind of hope.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "According to Fiona, the first thing she tries to change is the patient's:",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "expectation of a cure"
+            },
+            {
+              "id": "b",
+              "text": "choice of medication"
+            },
+            {
+              "id": "c",
+              "text": "daily routine"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "Why does she say chasing a cure can be harmful?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "it is expensive"
+            },
+            {
+              "id": "b",
+              "text": "it leads to endless appointments and stronger drugs"
+            },
+            {
+              "id": "c",
+              "text": "doctors dislike it"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "When patients first hear her message, they often feel:",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "relieved"
+            },
+            {
+              "id": "b",
+              "text": "angry with their GP"
+            },
+            {
+              "id": "c",
+              "text": "that they are being told to give up"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "What does she say about strong opioids?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "they often lose effect while side effects remain"
+            },
+            {
+              "id": "b",
+              "text": "they work better over time"
+            },
+            {
+              "id": "c",
+              "text": "they should never be used"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "Why does she recommend movement despite the pain?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "it distracts the patient"
+            },
+            {
+              "id": "b",
+              "text": "unused muscles weaken and hurt more"
+            },
+            {
+              "id": "c",
+              "text": "it heals the original injury"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What does she call the 'trick' in her work?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "prescribing a stronger tablet"
+            },
+            {
+              "id": "b",
+              "text": "insisting the pain is imagined"
+            },
+            {
+              "id": "c",
+              "text": "offering different hope without dismissing the pain"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "subTest": "LISTENING",
+    "taskType": "LISTENING_PART_C",
+    "profession": null,
+    "title": "OET Form 3 · Listening Part C — Presentation: health literacy",
+    "prompt": "You will hear a presentation. For questions 1-6, choose the answer (A, B or C) which fits best.",
+    "difficulty": "STRETCH",
+    "topicTag": "presentation",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "speakers": [
+        {
+          "role": "Dr Amara Sithole",
+          "voice": "onyx"
+        }
+      ],
+      "audioScript": "Dr Amara Sithole: We tend to blame patients when they don't follow advice - non-compliant, we call them, as if it were a character flaw. But look closely and you often find they simply didn't understand what we told them. Studies suggest patients forget up to half of what's said in a consultation within minutes of leaving, and misremember much of the rest. We speak in a code - take this on an empty stomach, watch for adverse effects - that feels plain to us and is anything but to someone frightened and unwell. The instinct is to hand over a leaflet, but most patient leaflets are written well above the reading level of the people who need them, so they reassure the writer more than they help the reader. The single most useful technique costs nothing: ask the patient to tell you, in their own words, what they're going to do. Not do you understand - everyone says yes to that - but, just so I know I've explained it clearly, how will you take this at home? If they can't say it back, you haven't finished. It reframes the failure as ours, not theirs, which is where it usually belongs. And it takes a minute, far less than the return visit, the wasted medicine, or the harm a misunderstanding causes. The point isn't to speak down to people. It's to check that the bridge we think we've built actually reaches the other side.",
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does the speaker say about calling patients 'non-compliant'?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "it wrongly blames patients who often didn't understand"
+            },
+            {
+              "id": "b",
+              "text": "it accurately describes them"
+            },
+            {
+              "id": "c",
+              "text": "it is a formal diagnosis"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "stem": "How much of a consultation do patients often forget?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "none of it"
+            },
+            {
+              "id": "b",
+              "text": "up to half within minutes"
+            },
+            {
+              "id": "c",
+              "text": "only the drug names"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "What is the problem with most patient leaflets?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "they are too short"
+            },
+            {
+              "id": "b",
+              "text": "they are out of date"
+            },
+            {
+              "id": "c",
+              "text": "they are written above the reader's level"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Why does the speaker dislike asking 'do you understand?'",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "patients say yes regardless"
+            },
+            {
+              "id": "b",
+              "text": "it takes too long"
+            },
+            {
+              "id": "c",
+              "text": "it sounds rude"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What does the teach-back technique reframe?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "the cost as the patient's"
+            },
+            {
+              "id": "b",
+              "text": "the failure as the clinician's, not the patient's"
+            },
+            {
+              "id": "c",
+              "text": "the diagnosis itself"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What is the speaker's main message?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "to speak down to patients"
+            },
+            {
+              "id": "b",
+              "text": "to hand out more leaflets"
+            },
+            {
+              "id": "c",
+              "text": "to check that understanding has actually reached the patient"
+            }
+          ]
+        }
+      ]
+    }
   }
 ];
