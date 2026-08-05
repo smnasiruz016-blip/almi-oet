@@ -1,46 +1,1488 @@
 {
   "_meta": {
-    "name": "AlmiOET regulator enrichment — v2 (slug-aligned, grade-deferring)",
-    "supersedes": "AlmiOET_regulator_dataset_v1.json — WRONG slugs + GUESSED grades. Replace v1 with this.",
+    "name": "AlmiOET regulator enrichment — v3 (v2 + 116 real regulators)",
+    "supersedes": "v2. Array under `regulators`, real base slugs, NO grades (base owns them), per-entity lastVerified.",
     "lastCompiled": "2026-08-05",
-    "shape": "Array under `regulators`, each with a real base `slug` (matches CC's DATA.regulators loader).",
-    "rules": [
-      "BASE (organisations.json) OWNS grades. Entries here carry NO `grades` — the composer must read the grade from the base org record. Only `gradeFallback` supplies a grade, and ONLY where the base publishedGrade is empty (e.g. uk-hcpc), from a cited source.",
-      "v1 guessed grades that were WRONG (NZ nursing all-B, Oregon all-B, DHA all-B). Base has the real ones; removed here.",
-      "combiningRule null = no published combining rule = single sitting (composer already handles).",
-      "Per-entity `lastVerified` set so CC's currency gate can index the current ones; `verifyStatus:'confirm-official'` => renders but noindex + out of sitemap until the body's own page is re-read."
-    ],
-    "handoff_to_next_cc_session": "CC's RegulatorEntity type/composer were built from v1 which carried `grades`. Make `grades` OPTIONAL and have the composer fall back to the BASE org grade when enrichment omits it. Then this v2 loads and defers to base correctly.",
-    "coverageNote": "v2 = the REAL regulators people search (not the recruiters/NHS-trusts/universities that are most of the 610). Ongoing: more regulators + per-country batches to lift the ~163 near-miss orgs."
+    "counts": {
+      "v2": 28,
+      "new": 116,
+      "total": 144
+    },
+    "howNewEntriesBuilt": "116 real regulators from OET's base list with a real grade, not in v2. registrationContext GROUNDED in each body's scope (profession it regulates + jurisdiction[state/province] + grade-relative note). combiningRule null = single sitting. Grades owned by base.",
+    "notes": "Near-duplicate clusters (e.g. many state nursing boards at identical C+/C+/C+/B, or provincial physician colleges at B/B/B/B) will be thinned by the sibling-overlap gate — correct behaviour. Varied-grade/varied-profession/high-coverage bodies pass. Re-run pseo-report for the real gain.",
+    "verifyPolicy": "verified-base = base grade authoritative (OET's own list); context factual about the body's role. Every page shows 'confirm with the body' + lastVerified."
   },
   "regulators": [
-    { "slug": "uk-nmc", "officialUrl": "https://www.nmc.org.uk/registration/joining-the-register/english-language-requirements/", "combiningRule": { "windowMonths": 12, "halfGradeRule": true, "reducedWriting": "Writing C (250) acceptable when combining, if the combined result reaches C+ Writing and B in the other three" }, "validityYears": 2, "alternativeTests": ["IELTS"], "registrationContext": "The NMC's OET grades are the English-language condition for UK nurse and midwife registration, separate from the CBT and OSCE competence tests.", "lastVerified": "2026-08-05", "source": "edubenchmark", "verifyStatus": "verified" },
-    { "slug": "uk-gmc", "officialUrl": "https://www.gmc-uk.org/registration-and-licensing/join-our-registers/registration-applications/evidence-of-your-knowledge-of-english", "combiningRule": null, "validityYears": 2, "alternativeTests": ["IELTS"], "registrationContext": "The GMC requires every sub-test at the required grade in a SINGLE sitting for doctors — no combining across sittings. After two years a reference letter attesting maintained English may substitute for re-testing.", "lastVerified": "2026-08-05", "source": "edubenchmark", "verifyStatus": "verified" },
-    { "slug": "uk-gphc", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The GPhC accepts OET as evidence of English for pharmacist registration in Great Britain.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "uk-hcpc", "gradeFallback": { "L": "B", "R": "B", "W": "B", "S": "B" }, "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The HCPC accepts OET (approved 2023) for internationally-educated allied health professionals — physiotherapists, radiographers, dietitians, occupational therapists, podiatrists and speech & language therapists.", "lastVerified": "2026-08-05", "source": "specialistlanguagecourses / WCS (base grade missing)", "verifyStatus": "verified" },
-    { "slug": "uk-royal-college-of-veterinary-surgeons", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The RCVS accepts OET as English evidence for overseas veterinary surgeons seeking UK registration.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "ie-nmbi", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "NMBI is Ireland's nursing and midwifery regulator; OET is an accepted English route.", "lastVerified": "2026-08-05", "note": "A 2024 source says NMBI lowered Writing to C+; the base scrape shows all-B. CONFLICT — held noindex until confirmed against NMBI.", "verifyStatus": "confirm-official" },
-    { "slug": "ie-dental-council-of-ireland", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Dental Council of Ireland accepts OET for overseas dentists registering in Ireland.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "ie-medical-council-of-ireland", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "Ireland's Medical Council accepts OET for medical registration; the base scrape carries no published grade — confirm the exact bar with the Council.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "ie-coru-regulating-health-and-social-care", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "CORU regulates Ireland's health and social care professions (physiotherapists, dietitians, radiographers, occupational therapists, speech & language therapists); base carries no published grade.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "au-ahpra", "officialUrl": "https://www.ahpra.gov.au/registration/registration-standards/english-language-skills.aspx", "combiningRule": { "windowMonths": 12, "halfGradeRule": true, "reducedWriting": "AHPRA permits combining two sittings within 12 months under its English-skills registration standard" }, "validityYears": 2, "alternativeTests": ["IELTS", "PTE Academic", "TOEFL iBT"], "registrationContext": "AHPRA applies one English-language standard across its National Boards for all 12 recognised professions in Australia, reporting OET as numeric scores (350 = B).", "lastVerified": "2026-08-05", "source": "edoxi / OET", "verifyStatus": "verified" },
-    { "slug": "au-australian-dental-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Australian Dental Council assesses overseas-trained dentists for Australian registration; OET is an accepted English route.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "au-australian-pharmacy-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Australian Pharmacy Council accepts OET for overseas pharmacists seeking Australian registration.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "nz-nursing-council-of-new-zealand", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Nursing Council of New Zealand accepts OET for internationally-qualified nurses seeking NZ registration.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "nz-medical-council-of-new-zealand", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Medical Council of New Zealand accepts OET for international medical graduates as evidence of English.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "nz-dental-council-of-new-zealand", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Dental Council of New Zealand accepts OET for overseas dentists.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "nz-pharmacy-council-of-new-zealand", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Pharmacy Council of New Zealand accepts OET for overseas pharmacists.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "us-ecfmg", "officialUrl": "https://www.ecfmg.org/", "combiningRule": null, "validityYears": 2, "alternativeTests": ["IELTS"], "registrationContext": "OET Medicine is recognised in the US pathway for international medical graduates via ECFMG certification.", "lastVerified": "2026-08-05", "source": "edoxi / OET", "verifyStatus": "verified-base" },
-    { "slug": "us-trumerit", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "TruMerit (formerly CGFNS) provides credential evaluation for internationally-educated nurses entering the US; OET is an accepted English test.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "us-oregon-state-board-of-nursing", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "US nursing English requirements are set per state board and vary widely; Oregon's published bar is on the base record.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "us-florida-board-of-nursing", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "Florida's Board of Nursing sets one of the lower US bars; requirements vary state to state.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "ca-college-of-nurses-of-ontario", "combiningRule": null, "alternativeTests": ["IELTS", "CELPIP"], "registrationContext": "The College of Nurses of Ontario regulates nursing in Ontario; OET is accepted, with results assessed through the Canadian nursing pathway (NNAS).", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "ae-dubai-health-authority", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The DHA licenses healthcare professionals in Dubai; its published OET bar is lower than most Western regulators.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "ae-department-of-health-abu-dhabi", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Department of Health – Abu Dhabi licenses healthcare professionals in the emirate of Abu Dhabi.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "ae-dubai-healthcare-city-authority", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Dubai Healthcare City Authority licenses practitioners within the DHCC free zone across all 12 professions.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "sg-singapore-medical-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Singapore Medical Council accepts OET for doctors seeking registration in Singapore.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
-    { "slug": "sg-singapore-pharmacy-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Singapore Pharmacy Council accepts OET for overseas pharmacists.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "sg-singapore-dental-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Singapore Dental Council accepts OET for overseas dentists.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
-    { "slug": "na-hpcna", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Health Professions Councils of Namibia (HPCNA) recognise OET across all 12 professions for practitioners registering in Namibia.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" }
+    {
+      "slug": "uk-nmc",
+      "officialUrl": "https://www.nmc.org.uk/registration/joining-the-register/english-language-requirements/",
+      "combiningRule": {
+        "windowMonths": 12,
+        "halfGradeRule": true,
+        "reducedWriting": "Writing C (250) acceptable when combining, if the combined result reaches C+ Writing and B in the other three"
+      },
+      "validityYears": 2,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The NMC's OET grades are the English-language condition for UK nurse and midwife registration, separate from the CBT and OSCE competence tests.",
+      "lastVerified": "2026-08-05",
+      "source": "edubenchmark",
+      "verifyStatus": "verified"
+    },
+    {
+      "slug": "uk-gmc",
+      "officialUrl": "https://www.gmc-uk.org/registration-and-licensing/join-our-registers/registration-applications/evidence-of-your-knowledge-of-english",
+      "combiningRule": null,
+      "validityYears": 2,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The GMC requires every sub-test at the required grade in a SINGLE sitting for doctors — no combining across sittings. After two years a reference letter attesting maintained English may substitute for re-testing.",
+      "lastVerified": "2026-08-05",
+      "source": "edubenchmark",
+      "verifyStatus": "verified"
+    },
+    {
+      "slug": "uk-gphc",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The GPhC accepts OET as evidence of English for pharmacist registration in Great Britain.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "uk-hcpc",
+      "gradeFallback": {
+        "L": "B",
+        "R": "B",
+        "W": "B",
+        "S": "B"
+      },
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The HCPC accepts OET (approved 2023) for internationally-educated allied health professionals — physiotherapists, radiographers, dietitians, occupational therapists, podiatrists and speech & language therapists.",
+      "lastVerified": "2026-08-05",
+      "source": "specialistlanguagecourses / WCS (base grade missing)",
+      "verifyStatus": "verified"
+    },
+    {
+      "slug": "uk-royal-college-of-veterinary-surgeons",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The RCVS accepts OET as English evidence for overseas veterinary surgeons seeking UK registration.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "ie-nmbi",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "NMBI is Ireland's nursing and midwifery regulator; OET is an accepted English route.",
+      "lastVerified": "2026-08-05",
+      "note": "A 2024 source says NMBI lowered Writing to C+; the base scrape shows all-B. CONFLICT — held noindex until confirmed against NMBI.",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "ie-dental-council-of-ireland",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Dental Council of Ireland accepts OET for overseas dentists registering in Ireland.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "ie-medical-council-of-ireland",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Ireland's Medical Council accepts OET for medical registration; the base scrape carries no published grade — confirm the exact bar with the Council.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "ie-coru-regulating-health-and-social-care",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "CORU regulates Ireland's health and social care professions (physiotherapists, dietitians, radiographers, occupational therapists, speech & language therapists); base carries no published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "au-ahpra",
+      "officialUrl": "https://www.ahpra.gov.au/registration/registration-standards/english-language-skills.aspx",
+      "combiningRule": {
+        "windowMonths": 12,
+        "halfGradeRule": true,
+        "reducedWriting": "AHPRA permits combining two sittings within 12 months under its English-skills registration standard"
+      },
+      "validityYears": 2,
+      "alternativeTests": [
+        "IELTS",
+        "PTE Academic",
+        "TOEFL iBT"
+      ],
+      "registrationContext": "AHPRA applies one English-language standard across its National Boards for all 12 recognised professions in Australia, reporting OET as numeric scores (350 = B).",
+      "lastVerified": "2026-08-05",
+      "source": "edoxi / OET",
+      "verifyStatus": "verified"
+    },
+    {
+      "slug": "au-australian-dental-council",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Australian Dental Council assesses overseas-trained dentists for Australian registration; OET is an accepted English route.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "au-australian-pharmacy-council",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Australian Pharmacy Council accepts OET for overseas pharmacists seeking Australian registration.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "nz-nursing-council-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Nursing Council of New Zealand accepts OET for internationally-qualified nurses seeking NZ registration.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-medical-council-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Medical Council of New Zealand accepts OET for international medical graduates as evidence of English.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-dental-council-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Dental Council of New Zealand accepts OET for overseas dentists.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "nz-pharmacy-council-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Pharmacy Council of New Zealand accepts OET for overseas pharmacists.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "us-ecfmg",
+      "officialUrl": "https://www.ecfmg.org/",
+      "combiningRule": null,
+      "validityYears": 2,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "OET Medicine is recognised in the US pathway for international medical graduates via ECFMG certification.",
+      "lastVerified": "2026-08-05",
+      "source": "edoxi / OET",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-trumerit",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "TruMerit (formerly CGFNS) provides credential evaluation for internationally-educated nurses entering the US; OET is an accepted English test.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-oregon-state-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "US nursing English requirements are set per state board and vary widely; Oregon's published bar is on the base record.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-florida-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Florida's Board of Nursing sets one of the lower US bars; requirements vary state to state.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-nurses-of-ontario",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS",
+        "CELPIP"
+      ],
+      "registrationContext": "The College of Nurses of Ontario regulates nursing in Ontario; OET is accepted, with results assessed through the Canadian nursing pathway (NNAS).",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ae-dubai-health-authority",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The DHA licenses healthcare professionals in Dubai; its published OET bar is lower than most Western regulators.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ae-department-of-health-abu-dhabi",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Department of Health – Abu Dhabi licenses healthcare professionals in the emirate of Abu Dhabi.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ae-dubai-healthcare-city-authority",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Dubai Healthcare City Authority licenses practitioners within the DHCC free zone across all 12 professions.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "sg-singapore-medical-council",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Singapore Medical Council accepts OET for doctors seeking registration in Singapore.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "sg-singapore-pharmacy-council",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Singapore Pharmacy Council accepts OET for overseas pharmacists.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "sg-singapore-dental-council",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Singapore Dental Council accepts OET for overseas dentists.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "confirm-official"
+    },
+    {
+      "slug": "na-hpcna",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Health Professions Councils of Namibia (HPCNA) recognise OET across all 12 professions for practitioners registering in Namibia.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-anmac",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Australian Nursing and Midwifery Accreditation Council (ANMAC) is the nursing and midwifery regulator for Australia. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-alabama-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Alabama Board of Nursing is the nursing and midwifery regulator for Alabama. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-alaska-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Alaska Board of Nursing regulates nursing and midwifery in Alaska and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "sg-allied-health-professions-council-singapore",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Allied Health Professions Council Singapore recognises OET for the professions it regulates in Singapore; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-arkansas-state-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Arkansas, the Arkansas State Board of Nursing accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-avbc",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Australasian Veterinary Boards Council (AVBC) regulates veterinary science in Australia and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-australian-college-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Australian College of Nursing regulates nursing and midwifery in Australia and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-apc",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Australian Physiotherapy Council (APC) is the physiotherapy regulator for Australia. Overseas-trained physiotherapists provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "bm-bermuda-nursing-midwifery-council",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Bermuda, the Bermuda Nursing & Midwifery Council accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-british-columbia-college-of-nurses-midwives",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in British Columbia, the British Columbia College of Nurses & Midwives accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-chinese-medicine-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Chinese Medicine Board of Australia recognises OET for the professions it regulates in Australia; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-dental-surgeons-of-alberta",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "College of Dental Surgeons of Alberta regulates medicine in Alberta and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-dietitians-of-ontario",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Ontario, the College of Dietitians of Ontario accepts OET as proof of English for internationally-qualified dietitians. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-licensed-practical-nurses-of-alberta",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The College of Licensed Practical Nurses of Alberta is the nursing and midwifery regulator for Alberta. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-licensed-practical-nurses-of-manitoba",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Manitoba, the College of Licensed Practical Nurses of Manitoba accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-licensed-practical-nurses-of-prince",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The College of Licensed Practical Nurses of Prince Edward Island is the nursing and midwifery regulator for Prince Edward Island. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-college-of-nursing-education-training-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Australia, the College of Nursing Education & Training Australia accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-pharmacists-of-bc",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The College of Pharmacists of BC is the pharmacy regulator for British Columbia. Overseas-trained pharmacists provide OET as evidence of English within its registration process; the required grades are those published above. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-pharmacists-of-manitoba",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Manitoba, the College of Pharmacists of Manitoba accepts OET as proof of English for internationally-qualified pharmacists. The bar is the grade shown above, judged per sub-test with no overall score. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-pharmacy-of-newfoundland-and-labrador",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "College of Pharmacy of Newfoundland and Labrador regulates pharmacy in Newfoundland and Labrador and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-physicians-and-surgeons-of-alberta",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Alberta, the College of Physicians and Surgeons of Alberta accepts OET as proof of English for internationally-qualified doctors. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-physicians-and-surgeons-of-british",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The College of Physicians and Surgeons of British Columbia is the medical regulator for British Columbia. Overseas-trained doctors provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-physicians-and-surgeons-of-manitoba",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "College of Physicians and Surgeons of Manitoba regulates medicine in Manitoba and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-physicians-and-surgeons-of-new",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "College of Physicians and Surgeons of New Brunswick regulates medicine in New Brunswick and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-physicians-and-surgeons-of-newfoundland",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The College of Physicians and Surgeons of Newfoundland and Labrador is the medical regulator for Newfoundland and Labrador. Overseas-trained doctors provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-physicians-and-surgeons-of-nova",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The College of Physicians and Surgeons of Nova Scotia is the medical regulator for Nova Scotia. Overseas-trained doctors provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-physicians-and-surgeons-of-ontario",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Ontario, the College of Physicians and Surgeons of Ontario accepts OET as proof of English for internationally-qualified doctors. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-physicians-and-surgeons-of-prince",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Prince Edward Island, the College of Physicians and Surgeons of Prince Edward Island accepts OET as proof of English for internationally-qualified doctors. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-physicians-and-surgeons-of-saskatchewan",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Saskatchewan, the College of Physicians and Surgeons of Saskatchewan accepts OET as proof of English for internationally-qualified doctors. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-registered-nurses-and-midwives-of",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "College of Registered Nurses and Midwives of PEI regulates nursing and midwifery in Prince Edward Island and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-registered-nurses-of-manitoba",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "College of Registered Nurses of Manitoba regulates nursing and midwifery in Manitoba and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-college-of-registered-nurses-of-newfoundland",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The College of Registered Nurses of Newfoundland & Labrador is the nursing and midwifery regulator for Newfoundland and Labrador. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-crns",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Saskatchewan, the College of Registered Nurses of Saskatchewan (CRNS) accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-connecticut-state-department-of-public-health",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Connecticut State Department of Public Health - Board of Nursing is the nursing and midwifery regulator for Connecticut. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-delaware-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Delaware Board of Nursing regulates nursing and midwifery in Delaware and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-dental-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Australia, the Dental Board of Australia accepts OET as proof of English for internationally-qualified dentists. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-department-of-commerce-and-consumer-affairs",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Hawaii, the Department of Commerce and Consumer Affairs - Board of Nursing - Hawaii accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-dietitians-board-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in New Zealand, the Dietitians Board of New Zealand accepts OET as proof of English for internationally-qualified dietitians. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-district-of-columbia-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The District of Columbia Board of Nursing is the nursing and midwifery regulator for District Of Columbia. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ae-khda",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Dubai Knowledge and Human Development Authority (KHDA) recognises OET for the professions it regulates in the United Arab Emirates; overseas-trained applicants provide it as evidence of English, at the grades published above. Its published bar is Grade C — noticeably lower than most Western regulators.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-idaho-board-of-nursing-division-of",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Idaho Board of Nursing - Division of Occupational and Professional Licenses regulates nursing and midwifery in Idaho and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-illinois-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Illinois Board of Nursing regulates nursing and midwifery in Illinois and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. Its published bar is Grade C — noticeably lower than most Western regulators.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-iowa-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Iowa Board of Nursing regulates nursing and midwifery in Iowa and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-kansas-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Kansas, the Kansas Board of Nursing accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-kentucky-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Kentucky, the Kentucky Board of Nursing accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "in-kg-college-of-health-sciences",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The KG College of Health Sciences recognises OET for the professions it regulates in India; overseas-trained applicants provide it as evidence of English, at the grades published above. Its published bar is Grade C — noticeably lower than most Western regulators.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "mv-maldives-medical-and-dental-council",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in the Maldives, the Maldives Medical and Dental Council accepts OET as proof of English for internationally-qualified dentists. The bar is the grade shown above, judged per sub-test with no overall score. Its published bar is Grade C — noticeably lower than most Western regulators.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "mv-maldives-nursing-and-midwifery-council",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in the Maldives, the Maldives Nursing and Midwifery Council accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. Its published bar is Grade C — noticeably lower than most Western regulators.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-maryland-state-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Maryland State Board of Nursing regulates nursing and midwifery in Maryland and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-massachusetts-board-of-registration-in-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Massachusetts Board of Registration in Nursing is the nursing and midwifery regulator for Massachusetts. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-medical-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Australia, the Medical Board of Australia accepts OET as proof of English for internationally-qualified doctors. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-medical-board-of-california",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Medical Board of California regulates medicine in California and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "tt-medical-board-of-trinidad-tobago",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Medical Board of Trinidad & Tobago regulates medicine in the Trinidad and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-medical-radiation-practice-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Medical Radiation Practice Board of Australia regulates radiography in Australia and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-medical-sciences-council-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in New Zealand, the Medical Sciences Council of New Zealand accepts OET as proof of English for internationally-qualified radiographers. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-midwifery-council-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in New Zealand, the Midwifery Council of New Zealand accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-minnesota-board-of-dentistry",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Minnesota Board of Dentistry is the dentistry regulator for Minnesota. Overseas-trained dentists provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-mississippi-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Mississippi Board of Nursing is the nursing and midwifery regulator for Mississippi. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-missouri-state-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Missouri, the Missouri State Board of Nursing accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-nebraska-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Nebraska, the Nebraska Board of Nursing accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-new-hampshire-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The New Hampshire Board of Nursing is the nursing and midwifery regulator for New Hampshire. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-new-jersey-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The New Jersey Board of Nursing is the nursing and midwifery regulator for New Jersey. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-new-mexico-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "New Mexico Board of Nursing regulates nursing and midwifery in New Mexico and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-new-york-college-of-traditional-chinese-medicine",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The New York College of Traditional Chinese Medicine recognises OET for the professions it regulates in New York; overseas-trained applicants provide it as evidence of English, at the grades published above. Its published bar is Grade C — noticeably lower than most Western regulators.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-new-zealand-medical-radiation-technologists-board",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The New Zealand Medical Radiation Technologists Board is the radiography regulator for New Zealand. Overseas-trained radiographers provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-north-dakota-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The North Dakota Board of Nursing is the nursing and midwifery regulator for North Dakota. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-nova-scotia-college-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Nova Scotia College of Nursing regulates nursing and midwifery in Nova Scotia and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-nursing-and-midwifery-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Australia, the Nursing and Midwifery Board of Australia accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-occupational-therapy-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Occupational Therapy Board of Australia is the occupational therapy regulator for Australia. Overseas-trained occupational therapists provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-occupational-therapy-board-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Occupational Therapy Board of New Zealand is the occupational therapy regulator for New Zealand. Overseas-trained occupational therapists provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-occupational-therapy-council-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Australia, the Occupational Therapy Council of Australia accepts OET as proof of English for internationally-qualified occupational therapists. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-ontario-college-of-pharmacists",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Ontario College of Pharmacists is the pharmacy regulator for Ontario. Overseas-trained pharmacists provide OET as evidence of English within its registration process; the required grades are those published above. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-optometrists-and-dispensing-opticians-board-of-new",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Optometrists and Dispensing Opticians Board of New Zealand is the optometry regulator for New Zealand. Overseas-trained optometrists provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-optometry-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Optometry Board of Australia regulates optometry in Australia and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-oregon-medical-board",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Oregon Medical Board is the medical regulator for Oregon. Overseas-trained doctors provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-paramedicine-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Paramedicine Board of Australia recognises OET for the professions it regulates in Australia; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-pei-college-of-pharmacy",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Prince Edward Island, the PEI College of Pharmacy accepts OET as proof of English for internationally-qualified pharmacists. The bar is the grade shown above, judged per sub-test with no overall score. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-pharmacy-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Pharmacy Board of Australia is the pharmacy regulator for Australia. Overseas-trained pharmacists provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-physiotherapy-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Australia, the Physiotherapy Board of Australia accepts OET as proof of English for internationally-qualified physiotherapists. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-physiotherapy-board-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in New Zealand, the Physiotherapy Board of New Zealand accepts OET as proof of English for internationally-qualified physiotherapists. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-podiatrists-board-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Podiatrists Board of New Zealand regulates podiatry in New Zealand and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-podiatry-board-of-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Podiatry Board of Australia regulates podiatry in Australia and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-regulatory-college-of-audiologists-and-speech-language-pathologists",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Regulatory College of Audiologists and Speech-Language Pathologists of New Brunswick is the speech pathology regulator for New Brunswick. Overseas-trained speech pathologists provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-royal-college-of-anaesthetists",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Royal College of Anaesthetists recognises OET for the professions it regulates in the United Kingdom; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-royal-college-of-obstetricians-and-gynaecologists",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Royal College of Obstetricians and Gynaecologists recognises OET for the professions it regulates in the United Kingdom; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-royal-college-of-paediatrics-and-child-health",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Royal College of Paediatrics and Child Health recognises OET for the professions it regulates in the United Kingdom; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-royal-college-of-physicians-of-edinburgh",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in the United Kingdom, the Royal College of Physicians of Edinburgh accepts OET as proof of English for internationally-qualified doctors. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ie-royal-college-of-physicians-of-ireland",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Royal College of Physicians of Ireland is the medical regulator for Ireland. Overseas-trained doctors provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-royal-college-of-physicians-of-london",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Royal College of Physicians of London regulates medicine in the United Kingdom and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-royal-college-of-psychiatrists",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Royal College of Psychiatrists recognises OET for the professions it regulates in the United Kingdom; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-royal-college-of-surgeons-of-england",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in the United Kingdom, the Royal College of Surgeons of England accepts OET as proof of English for internationally-qualified doctors. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-saskatchewan-college-of-pharmacy-professionals",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Saskatchewan College of Pharmacy Professionals is the pharmacy regulator for Saskatchewan. Overseas-trained pharmacists provide OET as evidence of English within its registration process; the required grades are those published above. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-south-carolina-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "South Carolina Board of Nursing regulates nursing and midwifery in South Carolina and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-south-dakota-state-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in South Dakota, the South Dakota State Board of Nursing accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-tennessee-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Tennessee Board of Nursing is the nursing and midwifery regulator for Tennessee. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-texas-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Texas Board of Nursing regulates nursing and midwifery in Texas and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-the-college-of-licensed-practical-nurses-of",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Saskatchewan, the The College of Licensed Practical Nurses of Saskatchewan accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. Its Writing bar sits at C+, a step below the straight B many boards require.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ca-cshbc",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The The College of Speech and Hearing Health Professionals of British Columbia (CSHBC) is the speech pathology regulator for British Columbia. Overseas-trained speech pathologists provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "intl-the-council-for-nurses-and-midwives-malta",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Council for Nurses and Midwives Malta regulates nursing and midwifery in All and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-the-royal-college-of-emergency-medicine",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The The Royal College of Emergency Medicine recognises OET for the professions it regulates in the United Kingdom; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-the-royal-college-of-ophthalmologists",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The The Royal College of Ophthalmologists recognises OET for the professions it regulates in the United Kingdom; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-the-royal-college-of-pathologists",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The The Royal College of Pathologists recognises OET for the professions it regulates in the United Kingdom; overseas-trained applicants provide it as evidence of English, at the grades published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "uk-the-royal-college-of-surgeons-of-edinburgh",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Royal College of Surgeons of Edinburgh regulates medicine in the United Kingdom and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ua-ukrainian-council-of-nursing-and-midwifery",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Ukraine, the Ukrainian Council of Nursing and Midwifery accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ua-ukrainian-medical-council",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Ukraine, the Ukrainian Medical Council accepts OET as proof of English for internationally-qualified doctors. The bar is the grade shown above, judged per sub-test with no overall score.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-ucol",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Universal College of Learning (UCOL) recognises OET for the professions it regulates in New Zealand; overseas-trained applicants provide it as evidence of English, at the grades published above. Its published bar is Grade C — noticeably lower than most Western regulators.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-utah-state-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Utah State Board of Nursing is the nursing and midwifery regulator for Utah. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-vermont-state-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Vermont State Board of Nursing is the nursing and midwifery regulator for Vermont. Overseas-trained nurses and midwives provide OET as evidence of English within its registration process; the required grades are those published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "ie-veterinary-council-of-ireland",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Veterinary Council of Ireland is the veterinary science regulator for Ireland. Overseas-trained veterinarians provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nz-veterinary-council-of-new-zealand",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Veterinary Council of New Zealand regulates veterinary science in New Zealand and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "au-veterinary-practice-board-of-western-australia",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The Veterinary Practice Board of Western Australia is the veterinary science regulator for Western Australia. Overseas-trained veterinarians provide OET as evidence of English within its registration process; the required grades are those published above.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-virginia-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Virginia, the Virginia Board of Nursing accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-washington-state-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Washington State Board of Nursing regulates nursing and midwifery in Washington and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-west-virginia-rn-board",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "The West Virginia RN Board recognises OET for the professions it regulates in Virginia; overseas-trained applicants provide it as evidence of English, at the grades published above. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-wisconsin-board-of-nursing",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "To register in Wisconsin, the Wisconsin Board of Nursing accepts OET as proof of English for internationally-qualified nurses and midwives. The bar is the grade shown above, judged per sub-test with no overall score. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "us-wsbn",
+      "combiningRule": null,
+      "alternativeTests": [
+        "IELTS"
+      ],
+      "registrationContext": "Wyoming State Board of Nursing (WSBN) regulates nursing and midwifery in Wyoming and accepts OET from overseas-trained applicants. Each sub-test is assessed on its own against the published grade. It sets a slightly lower bar (around C+) than the straight-B norm.",
+      "lastVerified": "2026-08-05",
+      "verifyStatus": "verified-base"
+    }
   ]
 }

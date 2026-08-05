@@ -13,6 +13,8 @@
     "medicine/uk-gmc",
     "medicine/us-ecfmg",
     "nursing/au-ahpra",
+    "nursing/nz-ucol",
+    "nursing/us-idaho-board-of-nursing-division-of",
     "speech-pathology/uk-hcpc"
   ],
   "professions": [
