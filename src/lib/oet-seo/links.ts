@@ -11,6 +11,8 @@ import { emitted } from "./compose";
 import { orgBySlug, professionSlugToLabel, PROFESSION_LIST } from "./data";
 import { countrySlug, countryFromSlug } from "./regulators";
 import { matrixCountries } from "./compose-matrix";
+import { CORRIDORS, corridorPath } from "./corridors";
+import type { Corridor } from "@/lib/journey/types";
 
 /** Renderable = the page is built. Includes the noindex ones: they are real
  *  pages with real content, they simply are not in the sitemap yet, and linking
@@ -182,4 +184,40 @@ export function countryProfessionsForProfession(professionSlug: string): string[
   return renderableCountryProfessions()
     .filter((x) => x.professionSlug === professionSlug)
     .map((x) => x.countrySlug);
+}
+
+// ── Pattern 5 · corridor journeys ───────────────────────────────────────────
+
+export function renderableJourneyPaths(): string[] {
+  const e = emitted();
+  return [...e.journeys, ...e.noindexJourneys];
+}
+
+export function isJourneyRenderable(path: string): boolean {
+  return renderableJourneyPaths().includes(path);
+}
+
+export function journeyFor(
+  occupationSlug: string,
+  originSlug: string,
+  destinationSlug: string,
+): Corridor | undefined {
+  const c = CORRIDORS.find(
+    (x) =>
+      x.occupationSlug === occupationSlug &&
+      x.originSlug === originSlug &&
+      x.destinationSlug === destinationSlug,
+  );
+  return c && isJourneyRenderable(corridorPath(c)) ? c : undefined;
+}
+
+/** Params for the three-segment route. Empty while the gate emits nothing, in
+ *  which case the route builds no pages and every corridor URL 404s — which is
+ *  the correct outcome for a page type the gate refused, not a bug to route
+ *  around. */
+export function allJourneyParams(): { slug: string; sub: string; third: string }[] {
+  return renderableJourneyPaths().map((p) => {
+    const [, slug, sub, third] = p.split("/");
+    return { slug, sub, third };
+  });
 }

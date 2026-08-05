@@ -1,0 +1,65 @@
+{
+  "_meta": {
+    "name": "AlmiOET corridor proof batch — v1 (nursing → UK, 4 origins)",
+    "purpose": "Test whether the ORIGIN dimension is real for OET journeys — built Nasir's way (search the origin side + its real facts), then MEASURE against the gate rather than assume. If these 4 clear the gate distinct, the corridor axis is real and we scale it; if they collapse, we learn it honestly.",
+    "method": "Searched how each origin's nurses actually search + their real origin-specific facts (origin regulator, verification/good-standing process, English-exemption status, local wording). Destination facts (NMC OET grades) from enrichment_v3. Uniform steps (CBT/OSCE/visa) are SHARED and must be de-emphasised so the origin-distinct content dominates.",
+    "lastCompiled": "2026-08-05",
+    "gateExpectation": "Each corridor's distinct content = origin regulator + verification process + exemption status + local wording. Uniform NMC steps are linked to the destination page, NOT repeated per corridor. CC to compose so origin content dominates, then measure sibling-overlap.",
+    "verifyPolicy": "Exemption status + verification specifics carry verifyStatus; every page shows 'confirm with the NMC and your national council' + lastVerified. No fabrication.",
+    "sources": ["pnmc.gov.pk", "nmcn.gov.ng", "NMC english-language-requirements", "edubenchmark (NMC grades)"]
+  },
+  "destination": {
+    "occupation": "nursing",
+    "country": "United Kingdom",
+    "regulator": "uk-nmc",
+    "oetRequirement": "L B · R B · W C+ · S B (from enrichment_v3; base owns grades)",
+    "uniformSteps_sharedNotRepeated": "NMC application → CBT (computer-based test) → English evidence → OSCE (on arrival) → PIN. These are identical for all origins and live on the destination/registration page, linked, not copied into each corridor.",
+    "visa": "UK Health and Care Worker visa (route broadly common across origins)."
+  },
+  "corridors": [
+    {
+      "slug": "nursing__pakistan__united-kingdom",
+      "originCountry": "Pakistan",
+      "originRegulator": "Pakistan Nursing & Midwifery Council (PNMC)",
+      "originRegulatorUrl": "https://pnmc.gov.pk/",
+      "searchWording": ["PNMC verification for NMC", "Pakistani nurse UK registration", "PNMC good standing NMC UK", "nurse UK from Pakistan requirements"],
+      "englishExemption": { "eligible": false, "basis": "Pakistan is not on the NMC's list for the training-taught-in-English route; a Pakistani-trained nurse must evidence English via OET (L/R/S B, W C+) or IELTS.", "verifyStatus": "confirm-official" },
+      "originVerification": "The NMC requires a verification of registration (good standing) sent directly from the PNMC. Pakistani nurses obtain PNMC foreign verification / good-standing through the PNMC's verification-registration process before or during the NMC application.",
+      "originDistinctContent": "PNMC good-standing route + timelines + Pakistan not qualifying for the English exemption (OET/IELTS required) + Pakistani document/attestation specifics.",
+      "lastVerified": "2026-08-05", "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nursing__nigeria__united-kingdom",
+      "originCountry": "Nigeria",
+      "originRegulator": "Nursing and Midwifery Council of Nigeria (NMCN)",
+      "originRegulatorUrl": "https://nmcn.gov.ng/",
+      "searchWording": ["NMCN verification NMC UK", "Nigerian nurse UK without OET", "NMCN certificate verification UK", "nurse UK from Nigeria English exemption"],
+      "englishExemption": { "eligible": true, "basis": "Nigerian pre-registration nursing is taught and examined in English, so a Nigerian-trained nurse MAY meet the NMC English requirement via the 'taught in English' route rather than sitting OET/IELTS — a genuinely different answer from Pakistan/India.", "verifyStatus": "confirm-official" },
+      "originVerification": "The NMC requires certificate verification sent directly from the NMCN. Nigerian nurses use the NMCN's Verification of Certificates process.",
+      "originDistinctContent": "NMCN verification-of-certificates route + the English-exemption via English-medium training (the headline distinct fact) + Nigerian attestation specifics. This is the corridor most different from the others because of the exemption.",
+      "lastVerified": "2026-08-05", "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nursing__india__united-kingdom",
+      "originCountry": "India",
+      "originRegulator": "Indian Nursing Council (INC) + State Nursing Councils",
+      "originRegulatorUrl": "https://www.indiannursingcouncil.org/",
+      "searchWording": ["INC verification NMC UK", "Indian nurse UK NMC registration", "state nursing council good standing UK", "nurse UK from India OET"],
+      "englishExemption": { "eligible": false, "basis": "Indian-trained nurses generally evidence English via OET (L/R/S B, W C+) or IELTS; confirm current NMC position on training-in-English route.", "verifyStatus": "confirm-official" },
+      "originVerification": "Verification of registration comes from the relevant State Nursing Council (and/or INC). India's federal structure means the verifying body is the STATE council of registration — an origin-distinct wrinkle (e.g. which state council, its process).",
+      "originDistinctContent": "State-council verification (not one national body — the India-specific complexity) + OET/IELTS requirement + Indian degree/attestation specifics.",
+      "lastVerified": "2026-08-05", "verifyStatus": "verified-base"
+    },
+    {
+      "slug": "nursing__philippines__united-kingdom",
+      "originCountry": "Philippines",
+      "originRegulator": "Professional Regulation Commission (PRC) — Board of Nursing",
+      "originRegulatorUrl": "https://www.prc.gov.ph/",
+      "searchWording": ["PRC verification NMC UK", "Filipino nurse UK registration", "PRC board rating NMC", "nurse UK from Philippines English"],
+      "englishExemption": { "eligible": true, "basis": "Philippine nursing is taught and examined in English, so a Filipino-trained nurse MAY meet the NMC English requirement via the 'taught in English' route — like Nigeria, unlike Pakistan/India.", "verifyStatus": "confirm-official" },
+      "originVerification": "Verification of registration from the PRC Board of Nursing, sent to the NMC. Filipino nurses use the PRC's verification/authentication process.",
+      "originDistinctContent": "PRC verification route + the English-exemption via English-medium training + Philippine (red-ribbon/apostille) authentication specifics.",
+      "lastVerified": "2026-08-05", "verifyStatus": "verified-base"
+    }
+  ]
+}

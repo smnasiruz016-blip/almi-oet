@@ -51,6 +51,8 @@ import {
   type GateResult,
   type Merged,
 } from "./compose-core";
+import { CORRIDORS, destinationFor, corridorPath } from "./corridors";
+import { composeJourney, isJourneyCurrent, journeyNotCurrentReason } from "@/lib/journey/compose";
 import {
   matrixCells,
   matrixCountries,
@@ -411,6 +413,11 @@ export type Emitted = {
   countryProfessions: CountryProfession[];
   professionByCountry: string[];
   professionRankings: string[];
+  /** Pattern 5 — occupation × origin × destination corridors. */
+  journeys: string[];
+  /** Corridors rich enough to ship but holding a fact awaiting re-confirmation:
+   *  rendered with `noindex, follow`, kept out of the sitemap. */
+  noindexJourneys: string[];
   /** Gate-passers whose facts are not re-confirmed: rendered, but noindex and
    *  kept OUT of the sitemap. Recipe §4 — a rich page that is out of date sends
    *  a real person down a dead road, so richness alone does not earn indexing. */
@@ -618,6 +625,40 @@ export function emitted(): Emitted {
     professionRankings.push(p);
   }
 
+  // /{occupation}/from-{origin}/to-{destination} — the corridor journeys.
+  //
+  // Same gate, no exception. This page type was built to be measured: if the
+  // origin dimension carries enough real material, these pass; if it does not,
+  // they are cut and that is the finding. Nothing here is padded to help them.
+  const journeys: string[] = [];
+  const noindexJourneys: string[] = [];
+  const jSeen: Set<string>[] = [];
+  const jComposed = new Map<string, Composed | null>(
+    CORRIDORS.map((c) => [c.slug, composeJourney(c, destinationFor(c), "nurses")]),
+  );
+  for (const c of largestFirst([...CORRIDORS], (x) => x.slug, jComposed)) {
+    const comp = jComposed.get(c.slug) ?? null;
+    if (!comp) {
+      skipped.push({ type: "journey", slug: c.slug, reasons: ["no composable data"] });
+      continue;
+    }
+    const g = gate(comp, jSeen);
+    if (!g.pass) {
+      skipped.push({ type: "journey", slug: c.slug, reasons: g.reasons });
+      continue;
+    }
+    jSeen.push(fingerprint(comp.sections, comp.tables));
+    if (isJourneyCurrent(c)) journeys.push(corridorPath(c));
+    else {
+      noindexJourneys.push(corridorPath(c));
+      skipped.push({
+        type: "journey",
+        slug: c.slug,
+        reasons: [`noindex, out of sitemap — ${journeyNotCurrentReason(c)}`],
+      });
+    }
+  }
+
   _emitted = {
     orgs,
     professionOrgs,
@@ -626,6 +667,8 @@ export function emitted(): Emitted {
     countryProfessions,
     professionByCountry,
     professionRankings,
+    journeys,
+    noindexJourneys,
     noindexOrgs,
     noindexProfessionOrgs,
     noindexCountryProfessions,
