@@ -1,3 +1,15 @@
+// The corridor gate run — Pattern 5's measurement, kept runnable.
+//
+//   npx tsx scripts/corridor-report.ts
+//
+// Reports STATE, not a verdict: per-corridor uniqueWords / facts / sibling
+// overlap, the pairwise 5-gram overlap between every corridor pair, and the
+// ceiling — how much sourced origin material actually exists before any prose is
+// written around it. That last number is the one that says whether a shortfall is
+// the composer's fault or the dataset's.
+//
+// No silent caps: every corridor is listed with its reason.
+
 import { CORRIDORS, destinationFor } from "../src/lib/oet-seo/corridors";
 import { composeJourney } from "../src/lib/journey/compose";
 import { GATE, fingerprint, largestFirst, type Composed } from "../src/lib/oet-seo/compose-core";
@@ -48,4 +60,27 @@ for (const [a, b, note] of pairs) {
   const worst = Math.max(h / fb.size, h2 / fa.size);
   console.log(`  ${(a + " vs " + b).padEnd(26)} ${(worst*100).toFixed(0).padStart(3)}%  ${worst > GATE.siblingOverlap ? "OVER  " : "under "} ${note}`);
 }
-console.log("\nverdict:", JSON.stringify(verdict));
+// The ceiling. This is the number that decides whether a shortfall is the
+// composer's fault or the dataset's: how much sourced origin material exists
+// before a single word of prose is written around it.
+console.log("\n=== CEILING: sourced origin material, before any prose ===");
+console.log("   (the finished page needs 350 uniqueWords to clear the gate)");
+for (const c of CORRIDORS) {
+  const sourced = [
+    c.originRegulator,
+    c.originRegulatorUrl ?? "",
+    c.originVerification,
+    c.englishExemption?.basis ?? "",
+    ...(c.searchWording ?? []),
+  ]
+    .join(" ")
+    .trim()
+    .split(/\s+/).length;
+  console.log(
+    `  ${c.originSlug.padEnd(12)} ${String(sourced).padStart(3)} sourced words · ${String(350 - sourced).padStart(3)} short before any prose`,
+  );
+}
+
+console.log("\nSTATE:", JSON.stringify(verdict));
+const passed = Object.values(verdict).filter((v) => v === "PASS").length;
+console.log(`${passed} of ${CORRIDORS.length} corridors cleared the gate distinct.`);

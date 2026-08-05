@@ -43,6 +43,7 @@ console.log(`  /{country}                        ${e.countries.length}`);
 console.log(`  /{country}/{profession}           ${e.countryProfessions.length}   (v2 type 1)`);
 console.log(`  /{profession}/by-country          ${e.professionByCountry.length}   (v2 type 2)`);
 console.log(`  /{profession}/where-oet-is-easiest ${e.professionRankings.length}   (v2 type 3)`);
+console.log(`  /{prof}/{origin}/{destination}    ${e.journeys.length}   (v2 pattern 5 — corridors)`);
 console.log(`  /register                         1`);
 console.log(`  /                                 1`);
 const indexable =
@@ -53,6 +54,7 @@ const indexable =
   e.countryProfessions.length +
   e.professionByCountry.length +
   e.professionRankings.length +
+  e.journeys.length +
   2;
 console.log(`  TOTAL indexable                   ${indexable}`);
 console.log("");
@@ -61,8 +63,9 @@ console.log("RENDERED BUT NOINDEX (rich, not current — out of the sitemap)");
 console.log(`  /register/{org}          ${e.noindexOrgs.length}`);
 console.log(`  /{profession}/{org}      ${e.noindexProfessionOrgs.length}`);
 console.log(`  /{country}/{profession}  ${e.noindexCountryProfessions.length}`);
+console.log(`  corridors                ${e.noindexJourneys.length}`);
 console.log(
-  `  TOTAL noindex            ${e.noindexOrgs.length + e.noindexProfessionOrgs.length + e.noindexCountryProfessions.length}`,
+  `  TOTAL noindex            ${e.noindexOrgs.length + e.noindexProfessionOrgs.length + e.noindexCountryProfessions.length + e.noindexJourneys.length}`,
 );
 for (const s of e.noindexOrgs) console.log(`    - /register/${s}  (${notCurrentReason(s)})`);
 console.log("");
