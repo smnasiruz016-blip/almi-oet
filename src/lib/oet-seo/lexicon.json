@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "name": "AlmiOET localized-wording lexicon — v1 (beta-g)",
+    "purpose": "The DATA that makes pages speak in the vocabulary locals actually search. Generator picks the local profession term, spelling, credential/exam name and search-intent phrasing per country. Same 'data-grounded generator' pipeline as the regulator dataset.",
+    "lastCompiled": "2026-08-05",
+    "groundTruth": "GSC Performance -> Queries filtered BY COUNTRY = the empirical localized wording people actually typed to reach AlmiOET. Pull that to extend/correct this lexicon. Secondary: Google autocomplete + Keyword Planner per locale.",
+    "scaleNote": "This v1 covers OET's 12 professions x the main English-destination countries. The SAME structure extends network-wide: AlmiJob = role-name variants by country; AlmiStudy = subject/degree wording by country. Do NOT guess millions of terms — seed from this lexicon + GSC query data.",
+    "usage": "For a {profession}x{country} page: term = professionTerms[profession].byCountry[cc] || .default; apply localeConventions[locale] spelling+vocab; name the local credential from credentialNames[cc][profession]; compose title/meta/H1 from searchIntentTemplates."
+  },
+  "localeConventions": {
+    "en-US": { "credentialWord": "license / licensure", "processWord": "credentialing", "examWord": "board exam", "spelling": "-ize, -or (color), practice(n+v), pediatric, orthopedic", "notes": "Americans search 'license', not 'registration'." },
+    "en-GB": { "credentialWord": "registration", "processWord": "registration", "examWord": "registration exam", "spelling": "-ise, -our (colour), practise(v)/practice(n), paediatric, orthopaedic", "notes": "UK searches 'registration' + the regulator acronym (NMC, GMC, HCPC, GDC, GPhC)." },
+    "en-AU": { "credentialWord": "registration", "processWord": "registration", "examWord": "", "spelling": "mostly -ise / -our (AU/UK blend)", "notes": "AU searches 'AHPRA' + profession." },
+    "en-IE": { "credentialWord": "registration", "processWord": "registration", "examWord": "", "spelling": "UK-style", "notes": "IE searches the body: NMBI (nurses), Medical Council, CORU (allied health)." },
+    "en-NZ": { "credentialWord": "registration", "processWord": "registration", "examWord": "", "spelling": "UK-style", "notes": "NZ searches the Council: Nursing Council, MCNZ." },
+    "en-CA": { "credentialWord": "licensure / registration", "processWord": "credential assessment", "examWord": "NCLEX (nursing)", "spelling": "US/UK blend (colour but -ize common)", "notes": "CA nursing uses NNAS + NCLEX; province colleges." }
+  },
+  "professionTerms": {
+    "physiotherapy": { "default": "physiotherapist", "byCountry": { "US": "physical therapist" }, "abbrev": { "US": "PT", "UK": "physio" }, "searchAlso": ["physiotherapy", "physical therapy", "physio"] },
+    "speech-pathology": { "default": "speech pathologist", "byCountry": { "US": "speech-language pathologist", "GB": "speech and language therapist", "IE": "speech and language therapist" }, "abbrev": { "US": "SLP", "GB": "SLT" }, "searchAlso": ["speech therapist", "speech therapy"] },
+    "radiography": { "default": "radiographer", "byCountry": { "US": "radiologic technologist" }, "abbrev": { "US": "rad tech" }, "searchAlso": ["medical imaging", "x-ray technician"] },
+    "podiatry": { "default": "podiatrist", "byCountry": {}, "abbrev": {}, "searchAlso": ["chiropodist (older UK)", "foot doctor"] },
+    "medicine": { "default": "doctor", "byCountry": { "US": "physician" }, "abbrev": {}, "searchAlso": ["physician", "medical doctor", "IMG"] },
+    "nursing": { "default": "nurse", "byCountry": {}, "abbrev": { "*": "RN" }, "searchAlso": ["registered nurse", "overseas nurse", "internationally educated nurse"] },
+    "dietetics": { "default": "dietitian", "byCountry": { "US": "registered dietitian nutritionist" }, "abbrev": { "US": "RDN / RD" }, "searchAlso": ["dietician (common misspelling)", "nutritionist"] },
+    "pharmacy": { "default": "pharmacist", "byCountry": {}, "abbrev": {}, "searchAlso": ["overseas pharmacist"] },
+    "dentistry": { "default": "dentist", "byCountry": {}, "abbrev": {}, "searchAlso": ["overseas dentist", "dental registration"] },
+    "optometry": { "default": "optometrist", "byCountry": {}, "abbrev": { "US": "OD" }, "searchAlso": ["eye doctor (US colloquial)"] },
+    "occupational-therapy": { "default": "occupational therapist", "byCountry": {}, "abbrev": { "*": "OT" }, "searchAlso": ["occupational therapy"] },
+    "veterinary-science": { "default": "veterinarian", "byCountry": { "GB": "veterinary surgeon" }, "abbrev": { "*": "vet" }, "searchAlso": ["overseas vet"] }
+  },
+  "credentialNames": {
+    "US": { "nursing": "NCLEX-RN + state board of nursing (endorsement); CGFNS/TruMerit credential evaluation", "medicine": "USMLE + ECFMG certification", "physiotherapy": "NPTE + state PT board", "pharmacy": "NAPLEX + FPGEE", "dentistry": "INBDE", "occupational-therapy": "NBCOT" },
+    "GB": { "nursing": "NMC (CBT + OSCE)", "medicine": "GMC registration (+ PLAB)", "physiotherapy": "HCPC", "dietetics": "HCPC", "radiography": "HCPC", "occupational-therapy": "HCPC", "podiatry": "HCPC", "speech-pathology": "HCPC / RCSLT", "pharmacy": "GPhC", "dentistry": "GDC (+ ORE)", "optometry": "GOC", "veterinary-science": "RCVS" },
+    "AU": { "nursing": "AHPRA / NMBA", "medicine": "AHPRA / AMC", "*": "AHPRA (relevant National Board)" },
+    "IE": { "nursing": "NMBI", "medicine": "Medical Council of Ireland", "allied": "CORU" },
+    "NZ": { "nursing": "Nursing Council of New Zealand", "medicine": "Medical Council of New Zealand (MCNZ)" },
+    "CA": { "nursing": "NNAS + NCLEX + provincial college", "medicine": "MCC" }
+  },
+  "searchIntentTemplates": {
+    "note": "Compose H1/title/meta/body from these; {profession} uses the localized term, {cc} the country.",
+    "byProfessionCountry": [
+      "OET for {profession}s in {country}",
+      "OET grade for {credentialBody} ({country})",
+      "English requirement for {profession} registration in {country}",
+      "how to register as a {profession} in {country} (OET route)",
+      "{country} {profession} English test — OET vs IELTS",
+      "OET Writing/Speaking for {profession}s"
+    ],
+    "originModifiers": ["from India", "from the Philippines", "from Nigeria", "from Pakistan"],
+    "originNote": "High-volume localized long-tails combine destination + origin (e.g. 'register as a nurse in the UK from India'). Confirm real demand from GSC queries before mass-generating origin pages — gate them like any other."
+  }
+}
