@@ -156,6 +156,10 @@ export async function POST(req: Request): Promise<NextResponse> {
       payload: attempt.item.payload,
       response: responseValue,
       userId: user.id,
+      // The ITEM's profession, not the user's target — the case notes and the
+      // role-play card belong to the item, and a user may practise outside
+      // their own target profession.
+      profession: attempt.item.profession,
     });
   } catch (err) {
     console.error("[oet.submit] scoring failed:", err);

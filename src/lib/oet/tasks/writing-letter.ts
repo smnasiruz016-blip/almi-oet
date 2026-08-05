@@ -18,6 +18,7 @@
 import { z } from "zod";
 import { getAnthropicClient, recordCost } from "@/lib/ai/anthropic-client";
 import { MODELS } from "@/lib/ai/models";
+import { professionGrading, professionHeading } from "@/lib/oet/profession-grading";
 
 export const writingLetterPayloadSchema = z.object({
   caseNotes: z.string(),
@@ -101,6 +102,23 @@ Return ONLY a JSON object, no prose around it, with exactly these keys:
   "overallComment": string      // one or two honest sentences
 }`;
 
+/** The system prompt for one profession. The profession block is appended to the
+ *  SAME cached system text (it is static per profession), so this costs one cache
+ *  entry per profession rather than a per-request token regression.
+ *
+ *  An unknown or missing profession returns today's generic prompt UNCHANGED —
+ *  a grade must never fail over a profession we don't have context for. */
+function systemFor(profession: string | null | undefined): string {
+  const grading = professionGrading(profession);
+  if (!grading) return SYSTEM;
+  return `${SYSTEM}
+
+PROFESSION CONTEXT (${professionHeading(profession!)})
+${grading.writingContext}
+
+Judge "content", "genreAndStyle" and clinical relevance against THESE professional norms — not generic ones. A letter that reads well but selects the wrong information for this reader, or uses the wrong register for this profession, has not met the criteria.`;
+}
+
 function extractJson(text: string): unknown {
   const start = text.indexOf("{");
   const end = text.lastIndexOf("}");
@@ -110,22 +128,50 @@ function extractJson(text: string): unknown {
   return JSON.parse(text.slice(start, end + 1));
 }
 
-function wordCount(s: string): number {
+export function wordCount(s: string): number {
   return s.trim() ? s.trim().split(/\s+/).length : 0;
 }
 
-/** Evaluate a clinical letter against the six OET writing criteria with Claude
- *  Sonnet. Returns conservative practice points + an honest fraction (mapped to a
- *  0–500 estimate by the caller), the trait feedback, and cost telemetry. */
-export async function evaluateWritingLetter(input: {
+/** Multiplier applied to the trait fraction for length.
+ *
+ *  The two directions are deliberately NOT symmetrical in strength, because the
+ *  faults are not equivalent:
+ *
+ *  UNDER-length keeps a firm 0.6 floor. A letter at well under half the task
+ *  length cannot demonstrate the six criteria at all — there is not enough
+ *  writing to judge, so the trait read itself is unreliable.
+ *
+ *  OVER-length is a 0.85 NUDGE, not a second full penalty. The model already
+ *  sees the exact word count and the expected range, and "concisenessAndClarity"
+ *  is one of the six criteria — so it prices over-length once on its own. This
+ *  multiplier only adds the bit the trait average understates. Measured on the
+ *  fixture set: a 321-word letter with otherwise strong traits scored 0.816
+ *  before any multiplier; at 0.6 it fell to band E, level with a letter that
+ *  omitted half the handover, which is harsher than an OET assessor would be.
+ *  At 0.85 it lands mid-range — penalised, but still clearly above a letter that
+ *  failed on content and register.
+ *
+ *  Moderate over-length (inside 1.5×) takes no code penalty at all and is left
+ *  entirely to the conciseness criterion. */
+export function lengthPenalty(words: number, wordMin: number, wordMax: number): number {
+  if (words < wordMin * 0.6) return 0.6; // too short to demonstrate the criteria
+  if (words > wordMax * 1.5) return 0.85; // nudge on top of the model's own conciseness read
+  return 1;
+}
+
+/** Build the exact system + user messages the grader sends. Exported so a proof
+ *  can assert on the REAL prompt rather than a reimplementation of it — the
+ *  evaluator below calls this same function. */
+export function buildWritingPrompt(input: {
   payload: WritingLetterPayload;
   response: WritingLetterResponse;
-  userId: string;
-}): Promise<AiScore> {
-  const { payload, response, userId } = input;
+  profession?: string | null;
+}): { system: string; userMessage: string } {
+  const { payload, response, profession } = input;
   const words = wordCount(response.text);
-
-  const userMessage = `Letter type: ${LETTER_TYPE_HINT[payload.letterType]}.
+  return {
+    system: systemFor(profession),
+    userMessage: `Letter type: ${LETTER_TYPE_HINT[payload.letterType]}.
 Expected length: ${payload.wordMin}–${payload.wordMax} words. The candidate wrote ${words} words.
 Recipient: ${payload.recipient}
 Task: ${payload.taskInstruction}
@@ -136,7 +182,25 @@ ${payload.caseNotes}
 CANDIDATE'S LETTER:
 ${response.text}
 
-Assess the letter against the six criteria and return the JSON object.`;
+Assess the letter against the six criteria and return the JSON object.`,
+  };
+}
+
+/** Evaluate a clinical letter against the six OET writing criteria with Claude
+ *  Sonnet. Returns conservative practice points + an honest fraction (mapped to a
+ *  0–500 estimate by the caller), the trait feedback, and cost telemetry. */
+export async function evaluateWritingLetter(input: {
+  payload: WritingLetterPayload;
+  response: WritingLetterResponse;
+  userId: string;
+  /** The ITEM's profession (OetItem.profession), not User.targetProfession — a
+   *  user may practise a profession other than their target, and the case notes
+   *  belong to the item. Null/unknown falls back to the generic prompt. */
+  profession?: string | null;
+}): Promise<AiScore> {
+  const { payload, response, userId, profession } = input;
+  const { system, userMessage } = buildWritingPrompt({ payload, response, profession });
+  const words = wordCount(response.text);
 
   const client = getAnthropicClient();
   const started = Date.now();
@@ -146,7 +210,7 @@ Assess the letter against the six criteria and return the JSON object.`;
     const msg = await client.messages.create({
       model: MODELS.SONNET,
       max_tokens: 700,
-      system: [{ type: "text", text: SYSTEM, cache_control: { type: "ephemeral" } }],
+      system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
       messages: [{ role: "user", content: userMessage }],
     });
     const block = msg.content.find((c) => c.type === "text");
@@ -188,8 +252,7 @@ Assess the letter against the six criteria and return the JSON object.`;
     feedback.language,
   ];
   let fraction = traits.reduce((s, t) => s + LEVEL_VALUE[t], 0) / traits.length;
-  // A letter well under the task length can't demonstrate the criteria — cap it.
-  if (words < payload.wordMin * 0.6) fraction *= 0.6;
+  fraction *= lengthPenalty(words, payload.wordMin, payload.wordMax);
   fraction = Math.min(1, Math.max(0, fraction));
 
   return {

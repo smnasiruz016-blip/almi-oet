@@ -184,6 +184,11 @@ export type TaskHandler = {
     payload: unknown;
     response: unknown;
     userId: string;
+    /** The ITEM's profession (OetItem.profession) — set for Writing/Speaking,
+     *  null for the common Listening/Reading tasks. Deliberately NOT
+     *  User.targetProfession: a user may practise outside their target, and the
+     *  case notes belong to the item. */
+    profession?: string | null;
   }) => Promise<TaskRunResult>;
 };
 
@@ -238,10 +243,10 @@ export const OET_HANDLERS: Partial<Record<OetTaskType, TaskHandler>> = {
   },
   WRITING_LETTER: {
     mode: "AI",
-    run: async ({ payload, response, userId }) => {
+    run: async ({ payload, response, userId, profession }) => {
       const p = writingLetterPayloadSchema.parse(payload);
       const r = writingLetterResponseSchema.parse(response);
-      const s = await evaluateWritingLetter({ payload: p, response: r, userId });
+      const s = await evaluateWritingLetter({ payload: p, response: r, userId, profession });
       return {
         pointsEarned: s.pointsEarned,
         pointsMax: s.pointsMax,
@@ -253,10 +258,10 @@ export const OET_HANDLERS: Partial<Record<OetTaskType, TaskHandler>> = {
   },
   SPEAKING_ROLEPLAY: {
     mode: "AI",
-    run: async ({ payload, response, userId }) => {
+    run: async ({ payload, response, userId, profession }) => {
       const p = speakingRoleplayPayloadSchema.parse(payload);
       const r = speakingRoleplayResponseSchema.parse(response);
-      const s = await evaluateSpeakingRoleplay({ payload: p, response: r, userId });
+      const s = await evaluateSpeakingRoleplay({ payload: p, response: r, userId, profession });
       return {
         pointsEarned: s.pointsEarned,
         pointsMax: s.pointsMax,

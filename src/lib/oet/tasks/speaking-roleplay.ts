@@ -22,6 +22,7 @@
 import { z } from "zod";
 import { getAnthropicClient, recordCost } from "@/lib/ai/anthropic-client";
 import { MODELS } from "@/lib/ai/models";
+import { professionGrading, professionHeading } from "@/lib/oet/profession-grading";
 
 export const speakingRoleplayPayloadSchema = z.object({
   setting: z.string(),
@@ -112,6 +113,25 @@ function extractJson(text: string): unknown {
   return JSON.parse(text.slice(start, end + 1));
 }
 
+/** System prompt for one profession. Appended to the SAME cached system text
+ *  (static per profession), so this is one cache entry per profession, not a
+ *  per-request token regression. Unknown/missing profession returns today's
+ *  generic prompt UNCHANGED — a grade must never fail over a missing context. */
+export function buildSpeakingSystem(profession: string | null | undefined): string {
+  return systemFor(profession);
+}
+
+function systemFor(profession: string | null | undefined): string {
+  const grading = professionGrading(profession);
+  if (!grading) return SYSTEM;
+  return `${SYSTEM}
+
+PROFESSION CONTEXT (${professionHeading(profession!)})
+${grading.speakingContext}
+
+Judge the CLINICAL COMMUNICATION band and appropriateness of language against THESE professional norms — not generic ones.`;
+}
+
 function wordCount(s: string): number {
   return s.trim() ? s.trim().split(/\s+/).length : 0;
 }
@@ -124,8 +144,11 @@ export async function evaluateSpeakingRoleplay(input: {
   payload: SpeakingRoleplayPayload;
   response: SpeakingRoleplayResponse;
   userId: string;
+  /** The ITEM's profession (OetItem.profession), not User.targetProfession. */
+  profession?: string | null;
 }): Promise<AiScore> {
-  const { payload, response, userId } = input;
+  const { payload, response, userId, profession } = input;
+  const system = systemFor(profession);
   const words = wordCount(response.transcript);
 
   const userMessage = `Setting: ${payload.setting}
@@ -147,7 +170,7 @@ Assess the transcript against the two bands / nine criteria and return the JSON 
     const msg = await client.messages.create({
       model: MODELS.SONNET,
       max_tokens: 800,
-      system: [{ type: "text", text: SYSTEM, cache_control: { type: "ephemeral" } }],
+      system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }],
       messages: [{ role: "user", content: userMessage }],
     });
     const block = msg.content.find((c) => c.type === "text");
