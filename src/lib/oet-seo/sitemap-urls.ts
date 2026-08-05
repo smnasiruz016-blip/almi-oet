@@ -15,17 +15,21 @@
 import type { MetadataRoute } from "next";
 import { emitted } from "./compose";
 import { regulatorBySlug, verifiedOn } from "./regulators";
+import { cellFor, cellVerifiedOn } from "./compose-matrix";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "https://almioet.almiworld.com";
 
 /** Sitemaps.org caps a child sitemap at 50,000 URLs. */
 export const CHUNK_SIZE = 45_000;
 
-function lastmodFor(orgSlug: string): Date | undefined {
-  const v = verifiedOn(regulatorBySlug(orgSlug));
+function asDate(v: string | undefined): Date | undefined {
   if (!v) return undefined;
   const d = new Date(v);
   return Number.isNaN(d.getTime()) ? undefined : d;
+}
+
+function lastmodFor(orgSlug: string): Date | undefined {
+  return asDate(verifiedOn(regulatorBySlug(orgSlug)) ?? undefined);
 }
 
 let _urls: MetadataRoute.Sitemap | null = null;
@@ -59,6 +63,28 @@ export function allUrls(): MetadataRoute.Sitemap {
       lastModified: lastmodFor(x.orgSlug),
       changeFrequency: "monthly",
       priority: 0.5,
+    });
+  }
+  // Page types v2. `lastmod` is the date the underlying facts were verified —
+  // for an aggregate page that is the most recent of its rows, falling back to
+  // the date OET's own list was fetched. Never the build time.
+  for (const x of e.countryProfessions) {
+    const cell = cellFor(x.countrySlug, x.professionSlug);
+    out.push({
+      url: `${SITE_URL}/${x.countrySlug}/${x.professionSlug}`,
+      lastModified: cell ? asDate(cellVerifiedOn(cell.bodies)) : undefined,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  }
+  for (const p of e.professionByCountry) {
+    out.push({ url: `${SITE_URL}/${p}/by-country`, changeFrequency: "monthly", priority: 0.7 });
+  }
+  for (const p of e.professionRankings) {
+    out.push({
+      url: `${SITE_URL}/${p}/where-oet-is-easiest`,
+      changeFrequency: "monthly",
+      priority: 0.6,
     });
   }
   _urls = out;

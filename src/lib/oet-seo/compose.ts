@@ -15,119 +15,81 @@
 // three thresholds. This is the pSEO analogue of the G-gates: thin is not
 // something we review for, it is something the build refuses to produce.
 
-import { ORGANISATIONS, orgBySlug, orgsForProfession, type SeoOrg } from "./data";
+import { ORGANISATIONS, orgBySlug, orgsForProfession } from "./data";
 import {
-  REGULATORS,
-  codeForCountry,
-  countryFromSlug,
   countrySlug,
-  regulatorBySlug,
-  regulatorCountry,
+  countryFromSlug,
   regulatorsForCountry,
   resolveGrades,
   verifiedOn,
   isCurrentEnoughToIndex,
   notCurrentReason,
   nameVariants,
-  type RegulatorEntity,
+  REGULATORS,
   type RegulatorGrades,
 } from "./regulators";
 import { searchIntents, wordingFor, localeConvention, type Wording } from "./lexicon";
 import { PROFESSION_GRADING } from "@/lib/oet/profession-grading";
-import { PROFESSION_LIST, professionLabelToSlug } from "./data";
+import { PROFESSION_LIST } from "./data";
 import { orgNote } from "./org-notes";
 import { pick } from "./phrasing";
+import {
+  GATE,
+  gate,
+  fingerprint,
+  measure,
+  merge,
+  richestFirst,
+  largestFirst,
+  inCountry,
+  sentence,
+  gradesSentence,
+  GRADE_LABEL,
+  type Section,
+  type Table,
+  type Composed,
+  type GateResult,
+  type Merged,
+} from "./compose-core";
+import {
+  matrixCells,
+  matrixCountries,
+  composeCountryHubPage,
+  composeCountryProfessionPage,
+  composeProfessionByCountryPage,
+  composeProfessionRankingPage,
+  isMatrixCurrent,
+  matrixNotCurrentReason,
+  type MatrixCell,
+} from "./compose-matrix";
 
-// ── gate thresholds ─────────────────────────────────────────────────────────
-export const GATE = { uniqueWords: 350, facts: 5, siblingOverlap: 0.4 } as const;
+// Gate thresholds, the measuring tape, the gate itself, `merge()` and the small
+// grade/country helpers now live in compose-core.ts, so the matrix page types can
+// share them without importing this module (which would close a cycle: `emitted()`
+// below has to know about them). Re-exported here because the components and the
+// report have always imported them from "./compose".
+export {
+  GATE,
+  gate,
+  fingerprint,
+  measure,
+  merge,
+  inCountry,
+  sentence,
+  gradesSentence,
+  GRADE_LABEL,
+  type Section,
+  type Table,
+  type Composed,
+  type GateResult,
+  type Merged,
+};
 
 /** A body like AHPRA covers all twelve professions. Rendering twelve sub-test
  *  sections would bury the page's own facts under material that belongs on the
  *  twelve `/{profession}/{org}` pages, which link from here. The cap is named
  *  and reported rather than inlined, because an unstated cap reads as coverage. */
 export const ORG_PAGE_PROFESSION_CAP = 4;
-
-export type Section = { id: string; heading: string; paras: string[] };
-export type Composed = {
-  sections: Section[];
-  facts: number;
-  factList: string[];
-  words: number;
-  uniqueWords: number;
-  overlap: number;
-};
-export type GateResult = Composed & { pass: boolean; reasons: string[] };
-
-// Boilerplate that appears on every page — excluded from uniqueWords so the gate
-// measures what is actually distinctive about this page.
-const BOILERPLATE = [
-  "registration is not the same as a visa and recognition and required grades change always confirm the current requirement with your regulator or the organisation before you rely on it",
-  "practise the real oet sub tests honest grades per sub test on the 0 500 scale graded on clinical communication never on your accent",
-  "all content is original to almioet we never copy or reproduce oet test material scores are practice estimates not official occupational english test results",
-  "25 of what the family earns goes to the shamool foundation which provides free education and daily meals to underprivileged children in lahore pakistan",
-];
-const BOILER_WORDS = new Set(BOILERPLATE.join(" ").split(/\s+/));
-
-function words(s: string): string[] {
-  return s.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(Boolean);
-}
-function ngrams(ws: string[], n = 5): Set<string> {
-  const out = new Set<string>();
-  for (let i = 0; i + n <= ws.length; i += 1) out.add(ws.slice(i, i + n).join(" "));
-  return out;
-}
-
-const GRADE_LABEL: Record<string, string> = { L: "Listening", R: "Reading", W: "Writing", S: "Speaking" };
-
-/** "the United Kingdom", but "Australia". Country names arrive bare from the
- *  base record, and "registration in United Kingdom" was appearing on the two
- *  biggest destination surfaces we have. */
-const NEEDS_ARTICLE = /^(United |Netherlands|Philippines|Bahamas|Maldives|Gambia|Czech )/;
-function inCountry(country: string | null): string {
-  if (!country) return "";
-  return NEEDS_ARTICLE.test(country) ? `the ${country}` : country;
-}
-
-/** Sourced strings are written by hand and sometimes arrive without a full
- *  stop. Rendering them mid-paragraph then runs two sentences together. */
-function sentence(s: string): string {
-  const t = s.trim();
-  return /[.!?]$/.test(t) ? t : `${t}.`;
-}
-
-function gradesSentence(g: RegulatorGrades | null): string | null {
-  if (!g) return null;
-  const parts = (["L", "R", "W", "S"] as const)
-    .map((k) => (g[k] ? `${GRADE_LABEL[k]} ${g[k]}` : null))
-    .filter(Boolean);
-  return parts.length ? parts.join(", ") : null;
-}
-
-// ── the merged entity ───────────────────────────────────────────────────────
-export type Merged = {
-  org: SeoOrg;
-  reg: RegulatorEntity | undefined;
-  grades: ReturnType<typeof resolveGrades>;
-  country: string | null;
-  countryCode: string | null;
-  professionSlugs: string[];
-};
-
-export function merge(orgSlug: string): Merged | null {
-  const org = orgBySlug(orgSlug);
-  if (!org) return null;
-  const reg = regulatorBySlug(orgSlug);
-  // Base first for country too: enrichment v2 carries no country field at all.
-  const country = org.country ?? reg?.country ?? null;
-  return {
-    org,
-    reg,
-    grades: resolveGrades(orgSlug),
-    country,
-    countryCode: codeForCountry(country),
-    professionSlugs: org.professions.map(professionLabelToSlug).filter((s): s is string => !!s),
-  };
-}
 
 // ── section builders ────────────────────────────────────────────────────────
 
@@ -435,90 +397,30 @@ export function composeProfessionOrgPage(
   return { merged: m, wording: w, ...measure(sections, facts) };
 }
 
-function measure(sections: Section[], factList: string[]): Composed {
-  const body = sections.flatMap((s) => [s.heading, ...s.paras]).join(" ");
-  const ws = words(body);
-  const uniq = ws.filter((x) => !BOILER_WORDS.has(x));
-  return {
-    sections,
-    facts: new Set(factList).size,
-    factList: [...new Set(factList)],
-    words: ws.length,
-    uniqueWords: uniq.length,
-    overlap: 0,
-  };
-}
-
-// ── the gate ────────────────────────────────────────────────────────────────
-
-/** Max 5-gram overlap against already-accepted siblings of the same type. */
-function overlapAgainst(sections: Section[], seen: Set<string>[]): number {
-  const g = ngrams(words(sections.flatMap((s) => [s.heading, ...s.paras]).join(" ")));
-  if (g.size === 0) return 1;
-  let worst = 0;
-  for (const prev of seen) {
-    let hit = 0;
-    for (const x of g) if (prev.has(x)) hit += 1;
-    worst = Math.max(worst, hit / g.size);
-  }
-  return worst;
-}
-
-export function gate(c: Composed, seen: Set<string>[]): GateResult {
-  const overlap = overlapAgainst(c.sections, seen);
-  const reasons: string[] = [];
-  if (c.uniqueWords < GATE.uniqueWords) reasons.push(`uniqueWords ${c.uniqueWords} < ${GATE.uniqueWords}`);
-  if (c.facts < GATE.facts) reasons.push(`facts ${c.facts} < ${GATE.facts}`);
-  if (overlap > GATE.siblingOverlap) reasons.push(`siblingOverlap ${(overlap * 100).toFixed(0)}% > ${GATE.siblingOverlap * 100}%`);
-  return { ...c, overlap, pass: reasons.length === 0, reasons };
-}
-
-export function fingerprint(sections: Section[]): Set<string> {
-  return ngrams(words(sections.flatMap((s) => [s.heading, ...s.paras]).join(" ")));
-}
-
 // ── candidate enumeration + the emitted set (computed once, cached) ──────────
 
 export type Skip = { type: string; slug: string; reasons: string[] };
+export type CountryProfession = { countrySlug: string; professionSlug: string };
 export type Emitted = {
   /** Gate-passers that are ALSO current — indexable and sitemapped. */
   orgs: string[];
   professionOrgs: { professionSlug: string; orgSlug: string }[];
   countries: string[];
   professions: string[];
+  /** Page types v2. Same gate, same currency rule, same richest-first ordering. */
+  countryProfessions: CountryProfession[];
+  professionByCountry: string[];
+  professionRankings: string[];
   /** Gate-passers whose facts are not re-confirmed: rendered, but noindex and
    *  kept OUT of the sitemap. Recipe §4 — a rich page that is out of date sends
    *  a real person down a dead road, so richness alone does not earn indexing. */
   noindexOrgs: string[];
   noindexProfessionOrgs: { professionSlug: string; orgSlug: string }[];
+  noindexCountryProfessions: CountryProfession[];
   skipped: Skip[];
 };
 
 let _emitted: Emitted | null = null;
-
-/** Sibling overlap is decided against whoever was accepted FIRST, so the order
- *  candidates are considered in decides which of two similar pages survives.
- *  Source order is the order of OET's scrape, which means an arbitrary body can
- *  claim the ground and knock out the NMC or AHPRA — the two most-searched
- *  regulators on the surface. Richest first instead: the page carrying the most
- *  distinct material wins its cluster, and the derivative one is the one cut.
- *  Ties break on slug so the emitted set is identical on every build. */
-function richestFirst<T>(
-  items: T[],
-  key: (t: T) => string,
-  measured: Map<string, Composed | null>,
-): T[] {
-  const rank = (t: T) => measured.get(key(t)) ?? null;
-  return [...items].sort((a, b) => {
-    const ma = rank(a);
-    const mb = rank(b);
-    const byFacts = (mb?.facts ?? -1) - (ma?.facts ?? -1);
-    if (byFacts !== 0) return byFacts;
-    const byWords = (mb?.uniqueWords ?? -1) - (ma?.uniqueWords ?? -1);
-    if (byWords !== 0) return byWords;
-    return key(a).localeCompare(key(b));
-  });
-}
 
 export function emitted(): Emitted {
   if (_emitted) return _emitted;
@@ -596,18 +498,137 @@ export function emitted(): Emitted {
     }
   }
 
-  // Country hubs — only where an emitted regulator page exists for that country.
-  const countries = [
-    ...new Set(orgs.map((s) => orgBySlug(s)?.country ?? null).filter((c): c is string => !!c)),
-  ].sort();
+  // ── page types v2 ─────────────────────────────────────────────────────────
+  // Same gate, same currency rule, same richest-first ordering. Each type is
+  // judged against its OWN siblings: a country×profession page is not a near-copy
+  // of an organisation page just because both mention the NMC, and comparing
+  // across types would measure the boilerplate they share rather than the
+  // material that distinguishes them.
+
+  // /{country}/{profession}
+  const countryProfessions: CountryProfession[] = [];
+  const noindexCountryProfessions: CountryProfession[] = [];
+  const cpSeen: Set<string>[] = [];
+  const cpKey = (x: CountryProfession) => `${x.countrySlug}/${x.professionSlug}`;
+  const cpCells = matrixCells().map((c) => ({ countrySlug: c.countrySlug, professionSlug: c.professionSlug }));
+  const cpComposed = new Map<string, Composed | null>(
+    cpCells.map((x) => [cpKey(x), composeCountryProfessionPage(x.countrySlug, x.professionSlug)]),
+  );
+  const cellByKey = new Map<string, MatrixCell>(
+    matrixCells().map((c) => [`${c.countrySlug}/${c.professionSlug}`, c]),
+  );
+  for (const x of largestFirst(cpCells, cpKey, cpComposed)) {
+    const slug = cpKey(x);
+    const c = cpComposed.get(slug) ?? null;
+    if (!c) {
+      skipped.push({ type: "country-profession", slug, reasons: ["no composable data"] });
+      continue;
+    }
+    const g = gate(c, cpSeen);
+    if (!g.pass) {
+      skipped.push({ type: "country-profession", slug, reasons: g.reasons });
+      continue;
+    }
+    cpSeen.push(fingerprint(c.sections, c.tables));
+    const bodies = cellByKey.get(slug)?.bodies ?? [];
+    if (isMatrixCurrent(bodies)) countryProfessions.push(x);
+    else {
+      noindexCountryProfessions.push(x);
+      skipped.push({
+        type: "country-profession",
+        slug,
+        reasons: [`noindex, out of sitemap — ${matrixNotCurrentReason(bodies)}`],
+      });
+    }
+  }
+
+  // Country hubs. A hub is no longer "any country with an emitted org page": it
+  // is a composed page in its own right and has to earn its place like the rest.
+  const countries: string[] = [];
+  const hubSeen: Set<string>[] = [];
+  const hubSlugs = matrixCountries().map((c) => c.slug);
+  const hubComposed = new Map<string, Composed | null>(
+    hubSlugs.map((s) => [s, composeCountryHubPage(s)]),
+  );
+  for (const s of largestFirst(hubSlugs, (x) => x, hubComposed)) {
+    const c = hubComposed.get(s) ?? null;
+    if (!c) {
+      skipped.push({ type: "country", slug: s, reasons: ["no composable data"] });
+      continue;
+    }
+    const g = gate(c, hubSeen);
+    if (!g.pass) {
+      skipped.push({ type: "country", slug: s, reasons: g.reasons });
+      continue;
+    }
+    hubSeen.push(fingerprint(c.sections, c.tables));
+    countries.push(s);
+  }
+
+  // /{profession}/by-country
+  const professionByCountry: string[] = [];
+  const bcSeen: Set<string>[] = [];
+  const bcSlugs = PROFESSION_LIST.map((p) => p.slug);
+  const bcComposed = new Map<string, Composed | null>(
+    bcSlugs.map((p) => [p, composeProfessionByCountryPage(p)]),
+  );
+  const bcFingerprint = new Map<string, Set<string>>();
+  for (const p of largestFirst(bcSlugs, (x) => x, bcComposed)) {
+    const c = bcComposed.get(p) ?? null;
+    if (!c) {
+      skipped.push({ type: "by-country", slug: p, reasons: ["no country with a real body"] });
+      continue;
+    }
+    const g = gate(c, bcSeen);
+    if (!g.pass) {
+      skipped.push({ type: "by-country", slug: p, reasons: g.reasons });
+      continue;
+    }
+    const fp = fingerprint(c.sections, c.tables);
+    bcSeen.push(fp);
+    bcFingerprint.set(p, fp);
+    professionByCountry.push(p);
+  }
+
+  // /{profession}/where-oet-is-easiest — the ranking.
+  //
+  // Gated against its own siblings AND against the by-country page for the SAME
+  // profession, which is the one page on the surface it could plausibly duplicate:
+  // both are built from the same rows. Asserting "distinct by construction" and
+  // not checking is how two near-identical URLs end up competing with each other,
+  // so the check is real rather than assumed.
+  const professionRankings: string[] = [];
+  const rkSeen: Set<string>[] = [];
+  const rkComposed = new Map<string, Composed | null>(
+    bcSlugs.map((p) => [p, composeProfessionRankingPage(p)]),
+  );
+  for (const p of largestFirst(bcSlugs, (x) => x, rkComposed)) {
+    const c = rkComposed.get(p) ?? null;
+    if (!c) {
+      skipped.push({ type: "ranking", slug: p, reasons: ["fewer than 3 countries to rank"] });
+      continue;
+    }
+    const own = bcFingerprint.get(p);
+    const g = gate(c, own ? [...rkSeen, own] : rkSeen);
+    if (!g.pass) {
+      skipped.push({ type: "ranking", slug: p, reasons: g.reasons });
+      continue;
+    }
+    rkSeen.push(fingerprint(c.sections, c.tables));
+    professionRankings.push(p);
+  }
 
   _emitted = {
     orgs,
     professionOrgs,
-    countries: countries.map(countrySlug),
+    countries,
     professions: PROFESSION_LIST.map((p) => p.slug),
+    countryProfessions,
+    professionByCountry,
+    professionRankings,
     noindexOrgs,
     noindexProfessionOrgs,
+    noindexCountryProfessions,
     skipped,
   };
   return _emitted;
@@ -618,6 +639,11 @@ export function isOrgEmitted(slug: string): boolean {
 }
 export function isProfessionOrgEmitted(professionSlug: string, orgSlug: string): boolean {
   return emitted().professionOrgs.some((x) => x.professionSlug === professionSlug && x.orgSlug === orgSlug);
+}
+export function isCountryProfessionEmitted(countrySlugValue: string, professionSlug: string): boolean {
+  return emitted().countryProfessions.some(
+    (x) => x.countrySlug === countrySlugValue && x.professionSlug === professionSlug,
+  );
 }
 
 export { countrySlug, countryFromSlug, regulatorsForCountry, REGULATORS, searchIntents, wordingFor };

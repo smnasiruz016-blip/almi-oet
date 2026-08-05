@@ -33,7 +33,22 @@
   ],
   "countries": [
     "australia",
-    "united-kingdom",
+    "new-zealand",
+    "singapore",
     "united-states"
+  ],
+  "countryProfessions": [
+    "australia/pharmacy",
+    "canada/medicine",
+    "canada/nursing",
+    "united-arab-emirates/medicine",
+    "united-states/nursing"
+  ],
+  "professionByCountry": [
+    "nursing",
+    "pharmacy"
+  ],
+  "professionRankings": [
+    "nursing"
   ]
 }

@@ -1,38 +1,48 @@
-// /[country] — the country hub. NEW.
+// /[country] — the country hub. TYPE 4, upgraded.
 //
-// This is the spine of the internal linking. Before it existed, an organisation
-// page belonged to nothing: nothing linked in, nothing linked across, and 99.7%
-// of the surface was orphaned. A hub answers a real question of its own — which
-// bodies in this country recognise OET, and what each of them asks — built
-// entirely from pages that were actually emitted.
+// It began as a list of organisation links: real, but thin, and it existed only
+// because an organisation page belonged to nothing before it. It is now a
+// composed page like the rest — every profession that has a body behind it in
+// this country, the grade each asks, and a route into the per-profession page —
+// and it goes through the same quality gate as everything else. A country does
+// not get a hub because it is a country; it gets one when there is enough here
+// to be worth a page.
 
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { gradeLine, orgBySlug } from "@/lib/oet-seo/data";
 import { nameVariants, isCurrentEnoughToIndex } from "@/lib/oet-seo/regulators";
-import { countryNameForSlug, isHubCountry, orgsInCountry, hubProfessions } from "@/lib/oet-seo/links";
+import { composeCountryHubPage, cellVerifiedOn } from "@/lib/oet-seo/compose-matrix";
+import {
+  countryNameForSlug,
+  isHubCountry,
+  orgsInCountry,
+  hubProfessions,
+  countryProfessionsForCountry,
+} from "@/lib/oet-seo/links";
 import { GRADE_DOCTRINE } from "./master";
+import { inCountry } from "@/lib/oet-seo/compose-core";
 import { RichPage, buildRichMetadata, type Crumb, type RelatedLink } from "./rich-page";
 
 export function buildCountryMetadata(slug: string): Metadata {
   const country = countryNameForSlug(slug);
-  if (!country || !isHubCountry(slug)) return { robots: { index: false, follow: true } };
-  const n = orgsInCountry(slug).length;
-  const title = `OET requirements in ${country} — every recognising body | AlmiOET`;
-  const description = `The ${n} ${n === 1 ? "body" : "bodies"} in ${country} that recognise OET, the grade each one asks for, and which professions each covers.`;
+  const c = composeCountryHubPage(slug);
+  if (!country || !isHubCountry(slug) || !c) return { robots: { index: false, follow: true } };
+  const title = `OET in ${inCountry(country)} — every profession and the grade each body asks | AlmiOET`;
+  const description = `The ${c.cells.length} ${c.cells.length === 1 ? "profession" : "professions"} with an OET requirement in ${inCountry(country)}, which body sets it, and what it is per sub-test.`;
   return buildRichMetadata({ title, description, path: `/${slug}` });
 }
 
 export function CountryHub({ slug }: { slug: string }) {
   const country = countryNameForSlug(slug);
-  if (!country || !isHubCountry(slug)) notFound();
+  const c = composeCountryHubPage(slug);
+  if (!country || !isHubCountry(slug) || !c) notFound();
+
   const orgSlugs = orgsInCountry(slug);
   const orgs = orgSlugs.map((s) => orgBySlug(s)).filter((o): o is NonNullable<typeof o> => !!o);
-
-  // Professions actually covered by the bodies in this country — real, not the
-  // full list of twelve.
-  const professionLabels = [...new Set(orgs.flatMap((o) => o.professions))].sort();
+  const withPages = new Set(countryProfessionsForCountry(slug));
+  const allBodies = [...new Map(c.cells.flatMap((x) => x.bodies).map((b) => [b.org.slug, b])).values()];
 
   const trail: Crumb[] = [
     { label: "AlmiOET", href: "/" },
@@ -42,25 +52,36 @@ export function CountryHub({ slug }: { slug: string }) {
 
   const faqs = [
     {
-      q: `Which bodies in ${country} accept OET?`,
-      a: `${orgs.map((o) => o.name).join("; ")}.`,
+      q: `Which professions can use OET in ${inCountry(country)}?`,
+      a: `${c.cells.map((x) => x.professionLabel).join(", ")}.`,
     },
-    { q: `What OET grade is needed in ${country}?`, a: GRADE_DOCTRINE },
-    ...(professionLabels.length
-      ? [
-          {
-            q: `Which professions can use OET in ${country}?`,
-            a: `${professionLabels.join(", ")}.`,
-          },
-        ]
-      : []),
+    {
+      q: `Which bodies in ${inCountry(country)} accept OET?`,
+      a: `${allBodies.map((b) => b.org.name).join("; ")}.`,
+    },
+    { q: `What OET grade is needed in ${inCountry(country)}?`, a: GRADE_DOCTRINE },
   ];
 
   const related: { heading: string; links: RelatedLink[] }[] = [
+    // The spec's Type 4 job: link to every Type 1 page this country has.
+    ...(withPages.size
+      ? [
+          {
+            heading: `Profession by profession in ${inCountry(country)}`,
+            links: c.cells
+              .filter((x) => withPages.has(x.professionSlug))
+              .map((x) => ({
+                label: `${x.professionLabel} in ${inCountry(country)}`,
+                href: `/${slug}/${x.professionSlug}`,
+                blurb: `${x.bodies.length} ${x.bodies.length === 1 ? "body" : "bodies"}.`,
+              })),
+          },
+        ]
+      : []),
     {
       heading: "OET by profession",
       links: hubProfessions()
-        .filter((p) => professionLabels.includes(p.label))
+        .filter((p) => c.cells.some((x) => x.professionSlug === p.slug))
         .map((p) => ({ label: `OET for ${p.label.toLowerCase()}`, href: `/${p.slug}` })),
     },
     { heading: "Elsewhere", links: [{ label: "All recognising organisations", href: "/register" }] },
@@ -69,38 +90,45 @@ export function CountryHub({ slug }: { slug: string }) {
   return (
     <RichPage
       eyebrow="AlmiOET · by country"
-      title={`OET in ${country} — who recognises it, and what they ask`}
-      subtitle={`${orgs.length} ${orgs.length === 1 ? "body" : "bodies"} · grades per sub-test on the 0–500 scale`}
+      title={`OET in ${inCountry(country)} — who recognises it, and what they ask`}
+      subtitle={`${c.cells.length} ${c.cells.length === 1 ? "profession" : "professions"} · ${allBodies.length} bodies · verified ${cellVerifiedOn(allBodies)}`}
       trail={trail}
-      sections={[]}
+      sections={c.sections}
+      tables={c.tables}
       faqs={faqs}
       related={related}
     >
-      <section className="mx-auto max-w-3xl px-6 py-6">
-        <h2 className="text-lg font-semibold text-almi-ink">Recognising bodies in {country}</h2>
-        <ul className="mt-4 space-y-3">
-          {orgs.map((o) => {
-            const nv = nameVariants(o.name);
-            const grade = gradeLine(o);
-            return (
-              <li key={o.slug} className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-4">
-                <Link href={`/register/${o.slug}`} className="text-sm font-semibold text-almi-coral hover:underline">
-                  {nv.full}
-                  {nv.abbrev ? ` (${nv.abbrev})` : ""}
-                </Link>
-                <p className="mt-1 text-sm text-almi-text">
-                  {grade ?? "Grade not published — confirm with the body"}
-                </p>
-                <p className="mt-1 text-xs text-almi-text-muted">
-                  {o.professions.length} {o.professions.length === 1 ? "profession" : "professions"}
-                  {isCurrentEnoughToIndex(o.slug) ? "" : " · awaiting re-confirmation"}
-                </p>
-              </li>
-            );
-          })}
-        </ul>
-        <p className="mt-4 text-xs text-almi-text-muted">{GRADE_DOCTRINE}</p>
-      </section>
+      {orgs.length ? (
+        <section className="mx-auto max-w-3xl px-6 py-6">
+          <h2 className="text-lg font-semibold text-almi-ink">
+            Bodies in {inCountry(country)} with their own page
+          </h2>
+          <ul className="mt-4 space-y-3">
+            {orgs.map((o) => {
+              const nv = nameVariants(o.name);
+              const grade = gradeLine(o);
+              return (
+                <li key={o.slug} className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-4">
+                  <Link
+                    href={`/register/${o.slug}`}
+                    className="text-sm font-semibold text-almi-coral hover:underline"
+                  >
+                    {nv.full}
+                    {nv.abbrev ? ` (${nv.abbrev})` : ""}
+                  </Link>
+                  <p className="mt-1 text-sm text-almi-text">
+                    {grade ?? "Grade not published — confirm with the body"}
+                  </p>
+                  <p className="mt-1 text-xs text-almi-text-muted">
+                    {o.professions.length} {o.professions.length === 1 ? "profession" : "professions"}
+                    {isCurrentEnoughToIndex(o.slug) ? "" : " · awaiting re-confirmation"}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ) : null}
     </RichPage>
   );
 }

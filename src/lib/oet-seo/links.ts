@@ -10,6 +10,7 @@
 import { emitted } from "./compose";
 import { orgBySlug, professionSlugToLabel, PROFESSION_LIST } from "./data";
 import { countrySlug, countryFromSlug } from "./regulators";
+import { matrixCountries } from "./compose-matrix";
 
 /** Renderable = the page is built. Includes the noindex ones: they are real
  *  pages with real content, they simply are not in the sitemap yet, and linking
@@ -35,14 +36,22 @@ export function isProfessionOrgRenderable(professionSlug: string, orgSlug: strin
   );
 }
 
-/** Countries that have a hub — i.e. at least one renderable organisation page. */
+/** Countries that have a hub.
+ *
+ *  This is `emitted().countries` and nothing else. It used to be derived here,
+ *  independently — "any country with a renderable organisation page" — which was
+ *  fine while the hub was a thin list of those very pages. Once the hub became a
+ *  composed page that goes through the gate, the two definitions disagreed: the
+ *  sitemap listed the four hubs the gate emitted while the build rendered the
+ *  four this function derived, and only two were in both. Two sitemapped 404s
+ *  and two orphans. One source of truth, so they cannot drift again. */
 export function hubCountries(): { country: string; slug: string }[] {
-  const seen = new Map<string, string>();
-  for (const s of renderableOrgs()) {
-    const c = orgBySlug(s)?.country;
-    if (c) seen.set(countrySlug(c), c);
-  }
-  return [...seen].map(([slug, country]) => ({ country, slug })).sort((a, b) => a.country.localeCompare(b.country));
+  return emitted()
+    .countries.map((slug) => ({
+      slug,
+      country: matrixCountries().find((c) => c.slug === slug)?.country ?? countryFromSlug(slug) ?? slug,
+    }))
+    .sort((a, b) => a.country.localeCompare(b.country));
 }
 
 export function isHubCountry(slug: string): boolean {
@@ -91,4 +100,86 @@ export function countryHubHrefForOrg(orgSlug: string): { href: string; label: st
   if (!c) return null;
   const s = countrySlug(c);
   return isHubCountry(s) ? { href: `/${s}`, label: c } : null;
+}
+
+// ── page types v2 ───────────────────────────────────────────────────────────
+
+/** Reserved second segments. `/{profession}/by-country` and the ranking share the
+ *  two-segment shape with `/{profession}/{org}` and `/{country}/{profession}`, so
+ *  the resolver has to know these are page names and not organisation slugs. */
+export const BY_COUNTRY_SEGMENT = "by-country";
+export const RANKING_SEGMENT = "where-oet-is-easiest";
+
+export function renderableCountryProfessions(): { countrySlug: string; professionSlug: string }[] {
+  const e = emitted();
+  return [...e.countryProfessions, ...e.noindexCountryProfessions];
+}
+
+export function isCountryProfessionRenderable(countrySlugValue: string, professionSlug: string): boolean {
+  return renderableCountryProfessions().some(
+    (x) => x.countrySlug === countrySlugValue && x.professionSlug === professionSlug,
+  );
+}
+
+export function isByCountryRenderable(professionSlug: string): boolean {
+  return emitted().professionByCountry.includes(professionSlug);
+}
+
+export function isRankingRenderable(professionSlug: string): boolean {
+  return emitted().professionRankings.includes(professionSlug);
+}
+
+/** What the two-segment route is looking at. Resolved in one place so the page,
+ *  its metadata and `generateStaticParams` cannot disagree about it — the shapes
+ *  do not overlap in practice (no profession is named after a country, and no
+ *  organisation slug is "by-country"), but deciding it twice is how they start to. */
+export type TwoSegmentKind =
+  | { kind: "profession-org"; professionSlug: string; orgSlug: string }
+  | { kind: "country-profession"; countrySlug: string; professionSlug: string }
+  | { kind: "by-country"; professionSlug: string }
+  | { kind: "ranking"; professionSlug: string }
+  | { kind: "none" };
+
+export function resolveTwoSegment(first: string, second: string): TwoSegmentKind {
+  if (isHubProfession(first)) {
+    if (second === BY_COUNTRY_SEGMENT && isByCountryRenderable(first)) {
+      return { kind: "by-country", professionSlug: first };
+    }
+    if (second === RANKING_SEGMENT && isRankingRenderable(first)) {
+      return { kind: "ranking", professionSlug: first };
+    }
+    if (isProfessionOrgRenderable(first, second)) {
+      return { kind: "profession-org", professionSlug: first, orgSlug: second };
+    }
+  }
+  if (isCountryProfessionRenderable(first, second)) {
+    return { kind: "country-profession", countrySlug: first, professionSlug: second };
+  }
+  return { kind: "none" };
+}
+
+/** Every two-segment URL the build should produce. */
+export function allTwoSegmentParams(): { slug: string; sub: string }[] {
+  const e = emitted();
+  return [
+    ...renderableProfessionOrgs().map((x) => ({ slug: x.professionSlug, sub: x.orgSlug })),
+    ...renderableCountryProfessions().map((x) => ({ slug: x.countrySlug, sub: x.professionSlug })),
+    ...e.professionByCountry.map((p) => ({ slug: p, sub: BY_COUNTRY_SEGMENT })),
+    ...e.professionRankings.map((p) => ({ slug: p, sub: RANKING_SEGMENT })),
+  ];
+}
+
+/** The country×profession pages that belong to one country hub, and to one
+ *  profession page — the cross-links the spec asks for, offered only where the
+ *  target was actually emitted. */
+export function countryProfessionsForCountry(countrySlugValue: string): string[] {
+  return renderableCountryProfessions()
+    .filter((x) => x.countrySlug === countrySlugValue)
+    .map((x) => x.professionSlug);
+}
+
+export function countryProfessionsForProfession(professionSlug: string): string[] {
+  return renderableCountryProfessions()
+    .filter((x) => x.professionSlug === professionSlug)
+    .map((x) => x.countrySlug);
 }

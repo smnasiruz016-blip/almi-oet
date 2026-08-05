@@ -26,6 +26,14 @@ export function build(): string {
       .sort(),
     professions: [...e.professions].sort(),
     countries: [...e.countries].sort(),
+    // Page types v2 — recorded here for the same reason as the rest: G6 fails the
+    // build when this file drifts from what the gate emits, so a page type that
+    // is not listed is a page type the redirect map cannot see.
+    countryProfessions: [...e.countryProfessions, ...e.noindexCountryProfessions]
+      .map((x) => `${x.countrySlug}/${x.professionSlug}`)
+      .sort(),
+    professionByCountry: [...e.professionByCountry].sort(),
+    professionRankings: [...e.professionRankings].sort(),
   };
   return `${JSON.stringify(payload, null, 2)}\n`;
 }
@@ -41,6 +49,6 @@ if (process.argv[1]?.endsWith("gen-emitted.ts")) {
   writeFileSync(OUT, out);
   const p = JSON.parse(out);
   console.log(
-    `[gen-emitted] ${p.orgs.length} org pages · ${p.professionOrgs.length} profession×org pages · ${p.countries.length} country hubs · ${p.professions.length} profession hubs`,
+    `[gen-emitted] ${p.orgs.length} org pages · ${p.professionOrgs.length} profession×org pages · ${p.countries.length} country hubs · ${p.professions.length} profession hubs · ${p.countryProfessions.length} country×profession · ${p.professionByCountry.length} by-country · ${p.professionRankings.length} rankings`,
   );
 }

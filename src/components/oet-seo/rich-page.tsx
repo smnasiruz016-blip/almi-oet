@@ -14,7 +14,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_URL } from "@/lib/oet-seo/sitemap-urls";
-import type { Section } from "@/lib/oet-seo/compose";
+import type { Section, Table } from "@/lib/oet-seo/compose";
 import {
   OetSeoCrossLinks,
   OetSeoCta,
@@ -131,6 +131,55 @@ function AwaitingConfirmation({ body }: { body: string }) {
   );
 }
 
+/** A composed comparison table.
+ *
+ *  The table IS the material on a matrix page, which is why the composer hands
+ *  its text to the gate rather than letting it ship unmeasured. Wide tables get
+ *  their own horizontal scroll container so the page body never scrolls sideways
+ *  on a phone. */
+export function ComparisonTable({ table }: { table: Table }) {
+  return (
+    <section className="mx-auto max-w-3xl px-6 py-6">
+      <h2 className="text-lg font-semibold text-almi-ink">{table.caption}</h2>
+      <div className="mt-4 overflow-x-auto rounded-2xl border border-almi-bg-peach">
+        <table className="w-full border-collapse text-left text-sm">
+          <caption className="sr-only">{table.caption}</caption>
+          <thead className="bg-almi-paper">
+            <tr>
+              {table.columns.map((col) => (
+                <th
+                  key={col}
+                  scope="col"
+                  className="whitespace-nowrap px-3 py-2 text-xs font-bold uppercase tracking-wider text-almi-text-muted"
+                >
+                  {col}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {table.rows.map((row, i) => (
+              <tr key={row.join("|")} className={i % 2 ? "bg-almi-paper/50" : undefined}>
+                {row.map((cell, j) =>
+                  j === 0 ? (
+                    <th key={j} scope="row" className="px-3 py-2 font-semibold text-almi-ink">
+                      {cell}
+                    </th>
+                  ) : (
+                    <td key={j} className="whitespace-nowrap px-3 py-2 text-almi-text">
+                      {cell}
+                    </td>
+                  ),
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
 // ── the page ────────────────────────────────────────────────────────────────
 
 export function RichPage({
@@ -139,6 +188,7 @@ export function RichPage({
   subtitle,
   trail,
   sections,
+  tables,
   faqs,
   related,
   noindexNote,
@@ -149,6 +199,8 @@ export function RichPage({
   subtitle?: string | null;
   trail: Crumb[];
   sections: Section[];
+  /** Rendered after the prose, in composed order. */
+  tables?: Table[];
   faqs?: { q: string; a: string }[];
   related?: { heading: string; links: RelatedLink[] }[];
   /** Present iff the currency gate held this page out of the index. */
@@ -175,6 +227,10 @@ export function RichPage({
       )}
 
       {children}
+
+      {tables?.map((t) => (
+        <ComparisonTable key={t.id} table={t} />
+      ))}
 
       {sections.map((s) => (
         <section key={s.id} id={s.id} className="mx-auto max-w-3xl px-6 py-6">

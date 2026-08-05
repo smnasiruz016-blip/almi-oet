@@ -10,7 +10,16 @@ import { PROFESSIONS } from "@/lib/oet/professions";
 import { professionBySlug } from "@/lib/oet/professions";
 import { orgsForProfession, gradeLine, orgBySlug } from "@/lib/oet-seo/data";
 import { nameVariants } from "@/lib/oet-seo/regulators";
-import { hubCountries, orgsForProfessionRenderable } from "@/lib/oet-seo/links";
+import {
+  hubCountries,
+  orgsForProfessionRenderable,
+  countryNameForSlug,
+  countryProfessionsForProfession,
+  isByCountryRenderable,
+  isRankingRenderable,
+  BY_COUNTRY_SEGMENT,
+  RANKING_SEGMENT,
+} from "@/lib/oet-seo/links";
 import { OetSeoCrossLinks, OetSeoCta, OetSeoShamool, OetSeoDisclaimer, FaqJsonLd, GRADE_DOCTRINE } from "./master";
 import { Breadcrumbs, BreadcrumbJsonLd, RelatedLinks, type Crumb } from "./rich-page";
 
@@ -164,6 +173,41 @@ export function ProfessionLanding({ professionSlug }: { professionSlug: string }
           ))}
         </dl>
       </section>
+
+      {/* The comparison and ranking pages for THIS profession, where the gate
+          emitted them. They are the pages that answer "and where else?", so the
+          profession hub is where they have to be reachable from. */}
+      {(isByCountryRenderable(professionSlug) ||
+        isRankingRenderable(professionSlug) ||
+        countryProfessionsForProfession(professionSlug).length > 0) && (
+        <RelatedLinks
+          heading={`${def.label} — compare countries`}
+          links={[
+            ...(isByCountryRenderable(professionSlug)
+              ? [
+                  {
+                    label: `${def.label} requirements by country`,
+                    href: `/${professionSlug}/${BY_COUNTRY_SEGMENT}`,
+                    blurb: "One table: the body, the grade and the combining rule in each country.",
+                  },
+                ]
+              : []),
+            ...(isRankingRenderable(professionSlug)
+              ? [
+                  {
+                    label: `Where the OET bar is lowest for ${def.label.toLowerCase()}`,
+                    href: `/${professionSlug}/${RANKING_SEGMENT}`,
+                    blurb: "Ranked on the English condition alone — which is not the whole picture.",
+                  },
+                ]
+              : []),
+            ...countryProfessionsForProfession(professionSlug).map((s) => ({
+              label: `${def.label} in ${countryNameForSlug(s) ?? s}`,
+              href: `/${s}/${professionSlug}`,
+            })),
+          ]}
+        />
+      )}
 
       {hubs.length > 0 && (
         <RelatedLinks

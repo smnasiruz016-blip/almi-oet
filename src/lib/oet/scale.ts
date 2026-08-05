@@ -68,6 +68,14 @@ export function snapRange(lo: number, hi: number): Range {
   return [a, b] as const;
 }
 
+/** The score a grade starts at. The pSEO ranking pages order regulators by the
+ *  bar each one sets, and that ordering has to come from the same boundaries the
+ *  grader uses — a second copy of the numbers in the SEO layer would be a second
+ *  source of truth, and the one that silently goes stale. */
+export function gradeFloor(grade: OetGrade): number {
+  return GRADE_FLOORS.find((g) => g.grade === grade)?.floor ?? 0;
+}
+
 /** The official OET letter grade for a 0–500 score. */
 export function gradeForScore(score: number): OetGrade {
   for (const { grade, floor } of GRADE_FLOORS) {
