@@ -1,169 +1,46 @@
 {
   "_meta": {
-    "name": "AlmiOET regulator dataset — v1 seed (beta-g)",
-    "purpose": "Real, sourced per-regulator data that the fixed generator composes into genuinely rich, distinct pages. This is the DATA half of the quality+quantity pipeline; CC's generator + quality-gate is the machine half.",
+    "name": "AlmiOET regulator enrichment — v2 (slug-aligned, grade-deferring)",
+    "supersedes": "AlmiOET_regulator_dataset_v1.json — WRONG slugs + GUESSED grades. Replace v1 with this.",
     "lastCompiled": "2026-08-05",
-    "verifyPolicy": "Grades corroborated from the sources listed; every page must still say 'confirm current requirement with the body' and carry lastVerified. Entries marked verifyStatus:'confirm-official' need a final check against the regulator's own site before that page ships.",
-    "sources": [
-      "edubenchmark.com (NMC, GMC grades)",
-      "blog.specialistlanguagecourses.com (NMBI)",
-      "edoxi.com OET grades-by-country table (AU/NZ/CA/US/UAE/etc.)",
-      "OET recognising-organisations pages (master list to extend from: oet.com/.../recognising-organisations/{country})"
+    "shape": "Array under `regulators`, each with a real base `slug` (matches CC's DATA.regulators loader).",
+    "rules": [
+      "BASE (organisations.json) OWNS grades. Entries here carry NO `grades` — the composer must read the grade from the base org record. Only `gradeFallback` supplies a grade, and ONLY where the base publishedGrade is empty (e.g. uk-hcpc), from a cited source.",
+      "v1 guessed grades that were WRONG (NZ nursing all-B, Oregon all-B, DHA all-B). Base has the real ones; removed here.",
+      "combiningRule null = no published combining rule = single sitting (composer already handles).",
+      "Per-entity `lastVerified` set so CC's currency gate can index the current ones; `verifyStatus:'confirm-official'` => renders but noindex + out of sitemap until the body's own page is re-read."
     ],
-    "gradeScale": { "B": 350, "C+": 300, "C": 250, "scale": "0-500 per sub-test" },
-    "schema": "see AlmiOET_pSEO_generator_fix_spec_v1.md §1 (RegulatorEntity)",
-    "coverageNote": "v1 seed = the top destination bodies with verified grades. Full ~hundreds extend from OET's published country recognition lists. Generator quality-gate should SKIP any entity lacking distinct data rather than emit a thin page."
+    "handoff_to_next_cc_session": "CC's RegulatorEntity type/composer were built from v1 which carried `grades`. Make `grades` OPTIONAL and have the composer fall back to the BASE org grade when enrichment omits it. Then this v2 loads and defers to base correctly.",
+    "coverageNote": "v2 = the REAL regulators people search (not the recruiters/NHS-trusts/universities that are most of the 610). Ongoing: more regulators + per-country batches to lift the ~163 near-miss orgs."
   },
   "regulators": [
-    {
-      "slug": "uk-nmc", "regulator": "Nursing and Midwifery Council (NMC)", "country": "United Kingdom",
-      "officialUrl": "https://www.nmc.org.uk/registration/joining-the-register/english-language-requirements/",
-      "professionsRecognised": ["Nursing", "Midwifery"],
-      "grades": { "L": "B", "R": "B", "W": "C+", "S": "B" },
-      "combiningRule": { "windowMonths": 12, "halfGradeRule": true, "reducedWriting": "C (250) acceptable when combining, provided combined result reaches C+ Writing and B in the other three" },
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "OET satisfies the NMC English-language evidence route; separate from the CBT and OSCE competence tests.",
-      "source": "edubenchmark", "verifyStatus": "verified"
-    },
-    {
-      "slug": "uk-gmc", "regulator": "General Medical Council (GMC)", "country": "United Kingdom",
-      "officialUrl": "https://www.gmc-uk.org/registration-and-licensing/join-our-registers/registration-applications/evidence-of-your-knowledge-of-english",
-      "professionsRecognised": ["Medicine"],
-      "grades": { "L": "B", "R": "B", "W": "B", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "Grade B required in ALL four sub-tests in a SINGLE sitting (no combining). Certificate valid 2 years; after that a reference letter attesting maintained English may be accepted.",
-      "source": "edubenchmark", "verifyStatus": "verified"
-    },
-    {
-      "slug": "uk-hcpc", "regulator": "Health and Care Professions Council (HCPC)", "country": "United Kingdom",
-      "officialUrl": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
-      "professionsRecognised": ["Physiotherapy", "Radiography", "Dietetics", "Occupational Therapy", "Podiatry", "Speech Pathology"],
-      "grades": { "L": "B", "R": "B", "W": "B", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "HCPC accepts OET (approved 2023) for internationally-educated allied health professionals across its regulated professions.",
-      "source": "specialistlanguagecourses / WCS", "verifyStatus": "verified"
-    },
-    {
-      "slug": "au-ahpra", "regulator": "Australian Health Practitioner Regulation Agency (AHPRA)", "country": "Australia",
-      "officialUrl": "https://www.ahpra.gov.au/registration/registration-standards/english-language-skills.aspx",
-      "professionsRecognised": ["Dentistry", "Dietetics", "Medicine", "Nursing", "Occupational Therapy", "Optometry", "Pharmacy", "Physiotherapy", "Podiatry", "Radiography", "Speech Pathology", "Veterinary Science"],
-      "grades": { "L": "B", "R": "B", "W": "B", "S": "B" },
-      "combiningRule": { "windowMonths": 12, "halfGradeRule": true, "reducedWriting": "AHPRA permits combining two sittings within 12 months under its English-skills standard" },
-      "validityYears": 2, "alternativeTests": ["IELTS", "PTE Academic", "TOEFL iBT"],
-      "registrationContext": "AHPRA applies one English-language standard across its National Boards; recently moved to numeric score reporting (350 = B).",
-      "source": "edoxi / OET", "verifyStatus": "verified"
-    },
-    {
-      "slug": "ie-nmbi", "regulator": "Nursing and Midwifery Board of Ireland (NMBI)", "country": "Ireland",
-      "officialUrl": "https://www.nmbi.ie/Registration/Overseas-Applicants",
-      "professionsRecognised": ["Nursing", "Midwifery"],
-      "grades": { "L": "B", "R": "B", "W": "C+", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "NMBI lowered the Writing requirement from B to C+ (results must be a single sitting). Requirement is 3×B + 1×C+ (Writing).",
-      "source": "specialistlanguagecourses", "verifyStatus": "verified"
-    },
-    {
-      "slug": "nz-ncnz", "regulator": "Nursing Council of New Zealand (NCNZ)", "country": "New Zealand",
-      "officialUrl": "https://www.nursingcouncil.org.nz/",
-      "professionsRecognised": ["Nursing"],
-      "grades": { "L": "B", "R": "B", "W": "B", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "NCNZ accepts OET for internationally-qualified nurses seeking registration in New Zealand.",
-      "source": "edoxi", "verifyStatus": "confirm-official"
-    },
-    {
-      "slug": "nz-mcnz", "regulator": "Medical Council of New Zealand (MCNZ)", "country": "New Zealand",
-      "officialUrl": "https://www.mcnz.org.nz/",
-      "professionsRecognised": ["Medicine"],
-      "grades": { "L": "B", "R": "B", "W": "B", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "MCNZ accepts OET for international medical graduates as evidence of English proficiency.",
-      "source": "edoxi", "verifyStatus": "confirm-official"
-    },
-    {
-      "slug": "us-ecfmg", "regulator": "ECFMG (Educational Commission for Foreign Medical Graduates)", "country": "United States",
-      "officialUrl": "https://www.ecfmg.org/",
-      "professionsRecognised": ["Medicine"],
-      "grades": { "L": "B", "R": "B", "W": "B", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["OET is one accepted route"],
-      "registrationContext": "OET Medicine is recognised in the US pathway for international medical graduates.",
-      "source": "edoxi / OET", "verifyStatus": "confirm-official"
-    },
-    {
-      "slug": "us-nursing-oregon", "regulator": "Oregon State Board of Nursing", "country": "United States",
-      "officialUrl": "https://www.oregon.gov/osbn/",
-      "professionsRecognised": ["Nursing"],
-      "grades": { "L": "B", "R": "B", "W": "B", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "US nursing English requirements are set per state board and vary; Oregon requires Grade B across all sub-tests.",
-      "source": "edoxi", "verifyStatus": "confirm-official"
-    },
-    {
-      "slug": "us-nursing-florida", "regulator": "Florida Board of Nursing", "country": "United States",
-      "officialUrl": "https://floridasnursing.gov/",
-      "professionsRecognised": ["Nursing"],
-      "grades": { "L": "C+", "R": "C+", "W": "C+", "S": "C+" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "US nursing requirements vary by state; Florida accepts Grade C+ across all sub-tests — a lower bar than most.",
-      "source": "edoxi", "verifyStatus": "confirm-official"
-    },
-    {
-      "slug": "ca-nnas", "regulator": "NNAS (National Nursing Assessment Service)", "country": "Canada",
-      "officialUrl": "https://www.nnas.ca/",
-      "professionsRecognised": ["Nursing"],
-      "grades": { "L": "B", "R": "B", "W": "B", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS", "CELPIP"],
-      "registrationContext": "OET is accepted in the Canadian nursing pathway; provincial regulatory bodies apply the assessment via NNAS.",
-      "source": "edoxi", "verifyStatus": "confirm-official"
-    },
-    {
-      "slug": "ae-dha", "regulator": "Dubai Health Authority (DHA)", "country": "United Arab Emirates",
-      "officialUrl": "https://www.dha.gov.ae/",
-      "professionsRecognised": ["Nursing", "Medicine", "Pharmacy", "Dentistry"],
-      "grades": { "L": "B", "R": "B", "W": "B", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "UAE health authorities accept OET at Grade B for healthcare licensing (DHA/DOH/MOHAP apply broadly similar bars).",
-      "source": "edoxi", "verifyStatus": "confirm-official"
-    },
-    {
-      "slug": "ie-imc", "regulator": "Medical Council of Ireland (IMC)", "country": "Ireland",
-      "officialUrl": "https://www.medicalcouncil.ie/",
-      "professionsRecognised": ["Medicine"],
-      "grades": { "L": "B", "R": "B", "W": "C+", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "Ireland accepts OET for medical registration; confirm the exact per-sub-test bar with the Medical Council.",
-      "source": "edoxi (country-level)", "verifyStatus": "confirm-official"
-    },
-    {
-      "slug": "ph-prc", "regulator": "Professional Regulation Commission (PRC)", "country": "Philippines",
-      "officialUrl": "https://www.prc.gov.ph/",
-      "professionsRecognised": ["Nursing"],
-      "grades": { "L": "B", "R": "B", "W": "C+", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "OET accepted for Philippine nursing contexts at 3×B + C+ Writing; confirm with the relevant body.",
-      "source": "edoxi (country-level)", "verifyStatus": "confirm-official"
-    },
-    {
-      "slug": "mt-nursing", "regulator": "Malta — nursing registration", "country": "Malta",
-      "officialUrl": "https://deputyprimeminister.gov.mt/",
-      "professionsRecognised": ["Nursing"],
-      "grades": { "L": "C+", "R": "C+", "W": "C+", "S": "B" },
-      "combiningRule": null,
-      "validityYears": 2, "alternativeTests": ["IELTS"],
-      "registrationContext": "Malta accepts a lower bar for nurses (C+ in three sub-tests, B in Speaking).",
-      "source": "edoxi (country-level)", "verifyStatus": "confirm-official"
-    }
+    { "slug": "uk-nmc", "officialUrl": "https://www.nmc.org.uk/registration/joining-the-register/english-language-requirements/", "combiningRule": { "windowMonths": 12, "halfGradeRule": true, "reducedWriting": "Writing C (250) acceptable when combining, if the combined result reaches C+ Writing and B in the other three" }, "validityYears": 2, "alternativeTests": ["IELTS"], "registrationContext": "The NMC's OET grades are the English-language condition for UK nurse and midwife registration, separate from the CBT and OSCE competence tests.", "lastVerified": "2026-08-05", "source": "edubenchmark", "verifyStatus": "verified" },
+    { "slug": "uk-gmc", "officialUrl": "https://www.gmc-uk.org/registration-and-licensing/join-our-registers/registration-applications/evidence-of-your-knowledge-of-english", "combiningRule": null, "validityYears": 2, "alternativeTests": ["IELTS"], "registrationContext": "The GMC requires every sub-test at the required grade in a SINGLE sitting for doctors — no combining across sittings. After two years a reference letter attesting maintained English may substitute for re-testing.", "lastVerified": "2026-08-05", "source": "edubenchmark", "verifyStatus": "verified" },
+    { "slug": "uk-gphc", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The GPhC accepts OET as evidence of English for pharmacist registration in Great Britain.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "uk-hcpc", "gradeFallback": { "L": "B", "R": "B", "W": "B", "S": "B" }, "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The HCPC accepts OET (approved 2023) for internationally-educated allied health professionals — physiotherapists, radiographers, dietitians, occupational therapists, podiatrists and speech & language therapists.", "lastVerified": "2026-08-05", "source": "specialistlanguagecourses / WCS (base grade missing)", "verifyStatus": "verified" },
+    { "slug": "uk-royal-college-of-veterinary-surgeons", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The RCVS accepts OET as English evidence for overseas veterinary surgeons seeking UK registration.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "ie-nmbi", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "NMBI is Ireland's nursing and midwifery regulator; OET is an accepted English route.", "lastVerified": "2026-08-05", "note": "A 2024 source says NMBI lowered Writing to C+; the base scrape shows all-B. CONFLICT — held noindex until confirmed against NMBI.", "verifyStatus": "confirm-official" },
+    { "slug": "ie-dental-council-of-ireland", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Dental Council of Ireland accepts OET for overseas dentists registering in Ireland.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "ie-medical-council-of-ireland", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "Ireland's Medical Council accepts OET for medical registration; the base scrape carries no published grade — confirm the exact bar with the Council.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "ie-coru-regulating-health-and-social-care", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "CORU regulates Ireland's health and social care professions (physiotherapists, dietitians, radiographers, occupational therapists, speech & language therapists); base carries no published grade.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "au-ahpra", "officialUrl": "https://www.ahpra.gov.au/registration/registration-standards/english-language-skills.aspx", "combiningRule": { "windowMonths": 12, "halfGradeRule": true, "reducedWriting": "AHPRA permits combining two sittings within 12 months under its English-skills registration standard" }, "validityYears": 2, "alternativeTests": ["IELTS", "PTE Academic", "TOEFL iBT"], "registrationContext": "AHPRA applies one English-language standard across its National Boards for all 12 recognised professions in Australia, reporting OET as numeric scores (350 = B).", "lastVerified": "2026-08-05", "source": "edoxi / OET", "verifyStatus": "verified" },
+    { "slug": "au-australian-dental-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Australian Dental Council assesses overseas-trained dentists for Australian registration; OET is an accepted English route.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "au-australian-pharmacy-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Australian Pharmacy Council accepts OET for overseas pharmacists seeking Australian registration.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "nz-nursing-council-of-new-zealand", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Nursing Council of New Zealand accepts OET for internationally-qualified nurses seeking NZ registration.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "nz-medical-council-of-new-zealand", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Medical Council of New Zealand accepts OET for international medical graduates as evidence of English.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "nz-dental-council-of-new-zealand", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Dental Council of New Zealand accepts OET for overseas dentists.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "nz-pharmacy-council-of-new-zealand", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Pharmacy Council of New Zealand accepts OET for overseas pharmacists.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "us-ecfmg", "officialUrl": "https://www.ecfmg.org/", "combiningRule": null, "validityYears": 2, "alternativeTests": ["IELTS"], "registrationContext": "OET Medicine is recognised in the US pathway for international medical graduates via ECFMG certification.", "lastVerified": "2026-08-05", "source": "edoxi / OET", "verifyStatus": "verified-base" },
+    { "slug": "us-trumerit", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "TruMerit (formerly CGFNS) provides credential evaluation for internationally-educated nurses entering the US; OET is an accepted English test.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "us-oregon-state-board-of-nursing", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "US nursing English requirements are set per state board and vary widely; Oregon's published bar is on the base record.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "us-florida-board-of-nursing", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "Florida's Board of Nursing sets one of the lower US bars; requirements vary state to state.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "ca-college-of-nurses-of-ontario", "combiningRule": null, "alternativeTests": ["IELTS", "CELPIP"], "registrationContext": "The College of Nurses of Ontario regulates nursing in Ontario; OET is accepted, with results assessed through the Canadian nursing pathway (NNAS).", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "ae-dubai-health-authority", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The DHA licenses healthcare professionals in Dubai; its published OET bar is lower than most Western regulators.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "ae-department-of-health-abu-dhabi", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Department of Health – Abu Dhabi licenses healthcare professionals in the emirate of Abu Dhabi.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "ae-dubai-healthcare-city-authority", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Dubai Healthcare City Authority licenses practitioners within the DHCC free zone across all 12 professions.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "sg-singapore-medical-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Singapore Medical Council accepts OET for doctors seeking registration in Singapore.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" },
+    { "slug": "sg-singapore-pharmacy-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Singapore Pharmacy Council accepts OET for overseas pharmacists.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "sg-singapore-dental-council", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Singapore Dental Council accepts OET for overseas dentists.", "lastVerified": "2026-08-05", "verifyStatus": "confirm-official" },
+    { "slug": "na-hpcna", "combiningRule": null, "alternativeTests": ["IELTS"], "registrationContext": "The Health Professions Councils of Namibia (HPCNA) recognise OET across all 12 professions for practitioners registering in Namibia.", "lastVerified": "2026-08-05", "verifyStatus": "verified-base" }
   ]
 }

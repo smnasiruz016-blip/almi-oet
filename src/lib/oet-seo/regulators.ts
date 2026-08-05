@@ -1,4 +1,4 @@
-// Enrichment layer: real per-regulator facts (grades, combining rules, validity,
+// Enrichment layer: real per-regulator facts (combining rules, validity,
 // alternatives, registration context), compiled and sourced by beta-g.
 //
 // This ENRICHES organisations.json — it does not replace it. organisations.json
@@ -6,32 +6,45 @@
 // name/country/grade/website). This file adds the facts that make a page worth
 // existing. An org with no entry here keeps its base data and will simply fail
 // the quality gate, which is the intended behaviour.
+//
+// WHO OWNS WHAT (enrichment v2): the BASE owns the grades, the country and the
+// professions covered. Enrichment carries none of them, because v1 did and got
+// them wrong — it guessed all-B for the New Zealand nursing council, the Oregon
+// board and the DHA, and the base record had the real, different figures the
+// whole time. Enrichment may only supply `gradeFallback`, and only where the
+// base has no published grade at all (uk-hcpc). Enrichment never overrides base.
 
 import RAW from "./regulators.json";
+import { orgBySlug } from "./data";
 
 export type RegulatorGrades = { L?: string; R?: string; W?: string; S?: string };
 
 export type CombiningRule = {
   windowMonths?: number;
-  halfGradeRule?: string;
+  halfGradeRule?: string | boolean;
   reducedWriting?: string;
   [k: string]: unknown;
 };
 
 export type RegulatorEntity = {
   slug: string;
-  regulator: string;
-  country: string;
-  officialUrl: string;
-  professionsRecognised: string[];
-  grades: RegulatorGrades;
+  /** All optional: the base org record is the source of truth for each of these.
+   *  An enrichment entry that omits them is the normal, correct shape. */
+  regulator?: string;
+  country?: string;
+  officialUrl?: string;
+  professionsRecognised?: string[];
+  grades?: RegulatorGrades;
+  /** Used ONLY where the base org publishes no grade at all. Never an override. */
+  gradeFallback?: RegulatorGrades;
   combiningRule?: CombiningRule | null;
   validityYears?: number | null;
   alternativeTests?: string[];
   registrationContext?: string;
   professionNotes?: Record<string, string>;
+  note?: string;
   source?: string;
-  verifyStatus?: "verified" | "confirm-official" | string;
+  verifyStatus?: "verified" | "verified-base" | "confirm-official" | string;
   lastVerified?: string;
 };
 
@@ -43,10 +56,8 @@ export const REGULATOR_META = DATA._meta ?? {};
 export const REGULATORS: readonly RegulatorEntity[] = DATA.regulators ?? [];
 
 /** FINAL RECIPE §4 — "rich AND current, or it doesn't ship". Every page must be
- *  able to state a real date. The dataset carries `lastCompiled` at the top
- *  level but no per-entity `lastVerified` yet, so this is the honest date we can
- *  stamp: when the dataset was compiled. If per-entity dates arrive they take
- *  precedence, because a per-fact date is the one that actually matters. */
+ *  able to state a real date. A per-entity `lastVerified` is the one that
+ *  matters, so it wins; the dataset's compile date is the honest fallback. */
 export const DATASET_COMPILED: string | null =
   typeof (DATA._meta as { lastCompiled?: unknown } | undefined)?.lastCompiled === "string"
     ? ((DATA._meta as { lastCompiled: string }).lastCompiled)
@@ -56,13 +67,77 @@ export function verifiedOn(r: RegulatorEntity | undefined): string | null {
   return r?.lastVerified ?? (r ? DATASET_COMPILED : null);
 }
 
+const bySlug = new Map(REGULATORS.map((r) => [r.slug, r]));
+export function regulatorBySlug(slug: string): RegulatorEntity | undefined {
+  return bySlug.get(slug);
+}
+
+// ── grades: base wins, always ───────────────────────────────────────────────
+
+const GRADE_KEYS = ["L", "R", "W", "S"] as const;
+
+/** The base org's published grade, in the enrichment's L/R/W/S shape. */
+export function baseGrades(slug: string): RegulatorGrades | null {
+  const g = orgBySlug(slug)?.grade;
+  if (!g) return null;
+  const out: RegulatorGrades = {};
+  if (g.listening) out.L = g.listening;
+  if (g.reading) out.R = g.reading;
+  if (g.writing) out.W = g.writing;
+  if (g.speaking) out.S = g.speaking;
+  return Object.keys(out).length ? out : null;
+}
+
+export type ResolvedGrades = {
+  grades: RegulatorGrades | null;
+  /** "base" | "fallback" — which source the rendered grade came from. */
+  origin: "base" | "fallback" | null;
+  /** True when enrichment carries a grade that CONTRADICTS a published base
+   *  grade. We render the base figure and hold the page out of the index: a
+   *  disagreement between two sources is exactly the case where a confident
+   *  page is the dangerous one. */
+  conflict: boolean;
+};
+
+/** Resolve the grade for an org. The base record wins whenever it has one;
+ *  `gradeFallback` fills in only where the base is silent. */
+export function resolveGrades(slug: string): ResolvedGrades {
+  const base = baseGrades(slug);
+  const r = regulatorBySlug(slug);
+  const enriched = r?.grades ?? r?.gradeFallback ?? null;
+  if (base) {
+    const conflict = Boolean(
+      enriched && GRADE_KEYS.some((k) => enriched[k] && base[k] && enriched[k] !== base[k]),
+    );
+    return { grades: base, origin: "base", conflict };
+  }
+  if (enriched) return { grades: enriched, origin: "fallback", conflict: false };
+  return { grades: null, origin: null, conflict: false };
+}
+
+// ── the currency gate ───────────────────────────────────────────────────────
+
 /** Recipe §4 + design §6: an unconfirmed grade must not be presented as fact.
  *  These pages compose and render, but ship `noindex` and stay out of the
  *  sitemap until the body's own page has been re-read. */
-export function isCurrentEnoughToIndex(r: RegulatorEntity | undefined): boolean {
+export function isCurrentEnoughToIndex(slugOrEntity: string | RegulatorEntity | undefined): boolean {
+  const slug = typeof slugOrEntity === "string" ? slugOrEntity : slugOrEntity?.slug;
+  if (!slug) return false;
+  const r = regulatorBySlug(slug);
   if (!r) return false;
   if (r.verifyStatus === "confirm-official") return false;
+  if (resolveGrades(slug).conflict) return false;
   return Boolean(verifiedOn(r));
+}
+
+/** Why a page is held back, for the build report. */
+export function notCurrentReason(slug: string): string | null {
+  const r = regulatorBySlug(slug);
+  if (!r) return "no enrichment entry";
+  if (r.verifyStatus === "confirm-official") return "verifyStatus confirm-official";
+  if (resolveGrades(slug).conflict) return "base/enrichment grade conflict";
+  if (!verifiedOn(r)) return "no lastVerified date";
+  return null;
 }
 
 /** Real name variants, DERIVED from the official name — never guessed.
@@ -76,18 +151,21 @@ export function nameVariants(name: string): { full: string; abbrev: string | nul
   return { full: name, abbrev: null, all: [name] };
 }
 
-const bySlug = new Map(REGULATORS.map((r) => [r.slug, r]));
-export function regulatorBySlug(slug: string): RegulatorEntity | undefined {
-  return bySlug.get(slug);
+// ── country: read off the base record ───────────────────────────────────────
+
+/** The country of an enriched regulator — from its base org record, with the
+ *  enrichment's own value only as a fallback. */
+export function regulatorCountry(r: RegulatorEntity): string | null {
+  return orgBySlug(r.slug)?.country ?? r.country ?? null;
 }
 
 /** Distinct countries that have at least one enriched regulator — the country hubs. */
 export const REGULATOR_COUNTRIES: readonly string[] = [
-  ...new Set(REGULATORS.map((r) => r.country)),
+  ...new Set(REGULATORS.map(regulatorCountry).filter((c): c is string => !!c)),
 ].sort();
 
 export function regulatorsForCountry(country: string): RegulatorEntity[] {
-  return REGULATORS.filter((r) => r.country === country);
+  return REGULATORS.filter((r) => regulatorCountry(r) === country);
 }
 
 /** ISO-ish 2-letter code from the slug prefix ("uk-nmc" -> "UK"), used to look up
@@ -107,6 +185,8 @@ const COUNTRY_TO_CODE: Record<string, string> = {
   "United Arab Emirates": "AE",
   Philippines: "PH",
   Malta: "MT",
+  Singapore: "SG",
+  Namibia: "NA",
 };
 
 export function codeForCountry(country: string | null | undefined): string | null {

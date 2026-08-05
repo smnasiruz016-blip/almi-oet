@@ -15,19 +15,22 @@
 // three thresholds. This is the pSEO analogue of the G-gates: thin is not
 // something we review for, it is something the build refuses to produce.
 
-import { ORGANISATIONS, gradeLine, orgBySlug, orgsForProfession, type SeoOrg } from "./data";
+import { ORGANISATIONS, orgBySlug, orgsForProfession, type SeoOrg } from "./data";
 import {
   REGULATORS,
   codeForCountry,
   countryFromSlug,
   countrySlug,
   regulatorBySlug,
+  regulatorCountry,
   regulatorsForCountry,
+  resolveGrades,
   verifiedOn,
   isCurrentEnoughToIndex,
+  notCurrentReason,
   nameVariants,
-  DATASET_COMPILED,
   type RegulatorEntity,
+  type RegulatorGrades,
 } from "./regulators";
 import { searchIntents, wordingFor, localeConvention, type Wording } from "./lexicon";
 import { PROFESSION_GRADING } from "@/lib/oet/profession-grading";
@@ -70,7 +73,8 @@ function ngrams(ws: string[], n = 5): Set<string> {
 
 const GRADE_LABEL: Record<string, string> = { L: "Listening", R: "Reading", W: "Writing", S: "Speaking" };
 
-function gradesSentence(g: RegulatorEntity["grades"]): string | null {
+function gradesSentence(g: RegulatorGrades | null): string | null {
+  if (!g) return null;
   const parts = (["L", "R", "W", "S"] as const)
     .map((k) => (g[k] ? `${GRADE_LABEL[k]} ${g[k]}` : null))
     .filter(Boolean);
@@ -81,6 +85,7 @@ function gradesSentence(g: RegulatorEntity["grades"]): string | null {
 export type Merged = {
   org: SeoOrg;
   reg: RegulatorEntity | undefined;
+  grades: ReturnType<typeof resolveGrades>;
   country: string | null;
   countryCode: string | null;
   professionSlugs: string[];
@@ -90,10 +95,12 @@ export function merge(orgSlug: string): Merged | null {
   const org = orgBySlug(orgSlug);
   if (!org) return null;
   const reg = regulatorBySlug(orgSlug);
-  const country = reg?.country ?? org.country ?? null;
+  // Base first for country too: enrichment v2 carries no country field at all.
+  const country = org.country ?? reg?.country ?? null;
   return {
     org,
     reg,
+    grades: resolveGrades(orgSlug),
     country,
     countryCode: codeForCountry(country),
     professionSlugs: org.professions.map(professionLabelToSlug).filter((s): s is string => !!s),
@@ -105,9 +112,9 @@ export function merge(orgSlug: string): Merged | null {
 /** Requirements — always, from whichever grade source is real. */
 function sectionRequirements(m: Merged, w: Wording | null): { section: Section; facts: string[] } | null {
   const facts: string[] = [];
-  const regLine = m.reg ? gradesSentence(m.reg.grades) : null;
-  const baseLine = gradeLine(m.org);
-  const line = regLine ?? baseLine;
+  // The BASE org record owns the grade. Enrichment only fills a gap, never
+  // overrides — v1 overrode and published three regulators' grades wrongly.
+  const line = gradesSentence(m.grades.grades);
   if (!line) return null;
   facts.push("grades");
   const cred = w?.credentialWord ?? "registration";
@@ -151,7 +158,10 @@ function sectionCombining(m: Merged): { section: Section; facts: string[] } | nu
         `${m.org.name} allows results to be combined across more than one sitting, provided the sittings fall within ${c.windowMonths} months of each other. In practice that means a candidate who misses one sub-test can re-sit that sub-test alone rather than repeating the whole test.`,
       );
     }
-    if (c.halfGradeRule) paras.push(String(c.halfGradeRule));
+    // `halfGradeRule` arrives either as prose or as a bare boolean flag. Only the
+    // prose form says anything a reader can act on, so the flag renders nothing
+    // rather than a sentence we would have to invent around it.
+    if (typeof c.halfGradeRule === "string") paras.push(c.halfGradeRule);
     if (c.reducedWriting) paras.push(String(c.reducedWriting));
     return { section: { id: "combining", heading: "Combining results from more than one sitting", paras }, facts: ["combiningRule"] };
   }
@@ -287,6 +297,18 @@ function sectionSource(m: Merged): { section: Section; facts: string[] } {
     facts.push("lastVerified");
     paras.push(`Last verified ${verified}.`);
   }
+  if (m.grades.origin === "fallback" && m.reg?.source) {
+    // Be explicit when the figure did not come from OET's own list.
+    paras.push(
+      `OET's recognising-organisations list publishes no grade for ${m.org.name}; the requirement above is taken from ${m.reg.source} and should be checked against the body's own page.`,
+    );
+  }
+  if (m.grades.conflict) {
+    paras.push(
+      `Our sources disagree on this requirement. The figure shown is the one OET publishes; a secondary source gives a different one. Until that is resolved against ${m.org.name}'s own page, treat this entry as indicative and confirm before acting.`,
+    );
+  }
+  if (m.reg?.note) paras.push(m.reg.note);
   if (m.reg?.verifyStatus === "confirm-official") {
     paras.push(
       `This entry is compiled from published sources and has not yet been re-confirmed against the body's own current page, so treat the grades above as a starting point and check them directly before you rely on them.`,
@@ -452,10 +474,14 @@ export function emitted(): Emitted {
     if (g.pass) {
       orgSeen.push(fingerprint(c.sections));
       // Recipe §4: rich AND current, or it does not ship indexable.
-      if (isCurrentEnoughToIndex(regulatorBySlug(o.slug))) orgs.push(o.slug);
+      if (isCurrentEnoughToIndex(o.slug)) orgs.push(o.slug);
       else {
         noindexOrgs.push(o.slug);
-        skipped.push({ type: "register", slug: o.slug, reasons: ["not current: noindex, out of sitemap"] });
+        skipped.push({
+          type: "register",
+          slug: o.slug,
+          reasons: [`noindex, out of sitemap — ${notCurrentReason(o.slug)}`],
+        });
       }
     } else {
       skipped.push({ type: "register", slug: o.slug, reasons: g.reasons });
@@ -475,11 +501,15 @@ export function emitted(): Emitted {
       const g = gate(c, poSeen);
       if (g.pass) {
         poSeen.push(fingerprint(c.sections));
-        if (isCurrentEnoughToIndex(regulatorBySlug(o.slug))) {
+        if (isCurrentEnoughToIndex(o.slug)) {
           professionOrgs.push({ professionSlug: p.slug, orgSlug: o.slug });
         } else {
           noindexProfessionOrgs.push({ professionSlug: p.slug, orgSlug: o.slug });
-          skipped.push({ type: "profession-org", slug: `${p.slug}/${o.slug}`, reasons: ["not current: noindex, out of sitemap"] });
+          skipped.push({
+            type: "profession-org",
+            slug: `${p.slug}/${o.slug}`,
+            reasons: [`noindex, out of sitemap — ${notCurrentReason(o.slug)}`],
+          });
         }
       } else {
         skipped.push({ type: "profession-org", slug: `${p.slug}/${o.slug}`, reasons: g.reasons });
@@ -489,11 +519,7 @@ export function emitted(): Emitted {
 
   // Country hubs — only where an emitted regulator page exists for that country.
   const countries = [
-    ...new Set(
-      orgs
-        .map((s) => regulatorBySlug(s)?.country ?? orgBySlug(s)?.country ?? null)
-        .filter((c): c is string => !!c),
-    ),
+    ...new Set(orgs.map((s) => orgBySlug(s)?.country ?? null).filter((c): c is string => !!c)),
   ].sort();
 
   _emitted = {
