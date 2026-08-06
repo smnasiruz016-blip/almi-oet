@@ -55,7 +55,11 @@ type RawCorridor = {
   originRegulator: RawFact;
   verificationRoute: RawFact;
   attestationChain?: RawFact;
-  /** Nigeria's slot. Named for what it holds rather than for one origin. */
+  /** The same slot under two names. v2 spelled it out for Nigeria; v3's six new
+   *  corridors use the short name. Both are read — a renamed field that silently
+   *  reads as absent removes a whole section from a page and looks like thin
+   *  data rather than a missed key. */
+  feesTimeline?: RawFact;
   verificationEligibilityFeesTimeline?: RawFact;
   englishRoute?: RawFact;
   originDistinctSummary?: string;
@@ -70,7 +74,10 @@ export type SharedDestination = {
   country: string;
   regulator: string;
   testOfCompetence: RawFact;
-  englishAcceptedTests: RawFact;
+  /** v3 renamed and widened this: it now sets out the NMC's THREE independent
+   *  English routes rather than just the accepted tests. See CORRECTION_3 — v2
+   *  wrongly said the taught-in-English route also required employer SIFE. */
+  englishRoutesMechanics: RawFact;
   nmcFees: RawFact;
   englishMajorityCountryList: RawFact;
   visa?: string;
@@ -130,14 +137,38 @@ function fact(f: RawFact | undefined): SourcedFact | undefined {
  *  name. But a heading needs "the Indian Nursing Council (INC)", not the sentence
  *  that explains what the INC does.
  *
- *  Every regulator on this surface introduces itself as "Name (ABBREV)", which is
- *  what the lookup keys on. If a future corridor arrives without one, this falls
- *  back to the first clause rather than guessing: a slightly long heading is a
- *  cosmetic problem, a wrong regulator name on a registration page is not. */
-function shortRegulatorName(value: string): string {
-  const abbrev = value.match(/^(.*?\([A-Z][A-Za-z&.]*\))/);
-  if (abbrev) return abbrev[1].trim();
-  return value.split(/(?:\s+—\s+|\.\s+)/)[0].trim();
+ *  v3 broke the first version of this, which is why it is now defensive. It keyed
+ *  on "Name (ABBREV)" with no spaces allowed inside the brackets, so Ghana's
+ *  "(NMC Ghana)" missed and the fallback returned the whole 25-word sentence as a
+ *  regulator name. Egypt is worse and cannot be fixed by a better pattern: its
+ *  value opens "Nursing in Egypt is regulated jointly by..." — a sentence about
+ *  the regulators, not a name, because Egypt genuinely has two.
+ *
+ *  So this returns null when it cannot derive a name it trusts, and the caller
+ *  says "Egypt's nursing regulator" instead. That phrase is accurate and vague;
+ *  a confidently wrong name in a heading, a meta description and the permanent
+ *  caveat is neither. The corridors relying on the fallback are reported, because
+ *  the real fix is an explicit short name in the batch, not a cleverer regex. */
+function shortRegulatorName(value: string): string | null {
+  // "Name (ABBREV)" — brackets may hold spaces or digits ("NMC Ghana"), but an
+  // abbreviation is short. A long parenthetical is a description, not a name.
+  const abbrev = value.match(/^(.{3,80}?\(([A-Z][A-Za-z0-9&.\s]{0,28})\))/);
+  if (abbrev && abbrev[2].trim().split(/\s+/).length <= 3) return abbrev[1].trim();
+
+  // Otherwise the leading phrase, if it reads like a name rather than a clause.
+  const lead = value.split(/(?:\s+—\s+|\.\s+|,\s+)/)[0].trim();
+  const looksLikeSentence = /\b(is|are|was|były|regulated|comprises|consists|means)\b/i.test(lead);
+  if (!lead || looksLikeSentence || lead.split(/\s+/).length > 9) return null;
+  return lead;
+}
+
+/** Corridors whose regulator name had to fall back to a generic phrase. Exported
+ *  so the report can name them rather than leaving a vague heading to be noticed
+ *  in production. */
+export function corridorsWithoutRegulatorName(): string[] {
+  return DATA.corridors
+    .filter((c) => shortRegulatorName(c.originRegulator.value) === null)
+    .map((c) => c.slug);
 }
 
 function countrySlugOf(country: string): string {
@@ -157,10 +188,11 @@ export const CORRIDORS: readonly Corridor[] = DATA.corridors.map((c) => {
     originCountry: c.originCountry,
     destinationCountry: DATA.sharedDestination.country,
     originRegulator,
-    originRegulatorName: shortRegulatorName(originRegulator.value),
+    originRegulatorName:
+      shortRegulatorName(originRegulator.value) ?? `${c.originCountry}'s nursing regulator`,
     verificationRoute: fact(c.verificationRoute)!,
     attestationChain: fact(c.attestationChain),
-    feesTimeline: fact(c.verificationEligibilityFeesTimeline),
+    feesTimeline: fact(c.feesTimeline ?? c.verificationEligibilityFeesTimeline),
     englishRoute: fact(c.englishRoute),
     originDistinctSummary: c.originDistinctSummary,
     localSearchWording: c.localSearchWording,
@@ -200,7 +232,7 @@ export function destinationFor(corridor: Corridor): JourneyDestination {
     requirementLine: org ? gradeLine(org) : null,
     sharedStepsHref: org ? `/register/${org.slug}` : null,
     sharedStepsSummary:
-      "the Test of Competence, the accepted English tests and their scores, and the registration fees",
+      "the Test of Competence, the three ways it accepts English evidence, and the registration fees",
     destinationVerifiedOn: verifiedOn(reg),
   };
 }
@@ -228,19 +260,25 @@ export function destinationGradeConflicts(): string[] {
     base.set(m[1][0], m[2]);
   }
 
-  const claimed = SHARED_DESTINATION.englishAcceptedTests?.value ?? "";
+  const claimed = SHARED_DESTINATION.englishRoutesMechanics?.value ?? "";
   const oet = claimed.match(/OET\s*\(([^)]*)\)/i);
   if (!oet) {
     return [
-      "could not read the OET grades out of sharedDestination.englishAcceptedTests to check them against the base record",
+      "could not read the OET grades out of sharedDestination.englishRoutesMechanics to check them against the base record",
     ];
   }
+  // Sub-tests are named either by initial ("L/R/S grade B", v2) or in full
+  // ("Listening/Reading/Speaking grade B, Writing C+", v3), and the word "grade"
+  // is optional. Both forms are read, because the check that silently stops
+  // matching is worse than no check: it returns "no conflict" for the wrong
+  // reason, which is the one answer this function must never give by accident.
+  const SUB = "(?:L|R|W|S|Listening|Reading|Writing|Speaking)";
   const batch = new Map<string, string>();
-  for (const m of oet[1].matchAll(/([LRWS](?:\/[LRWS])*)\s*grade\s*([A-C]\+?)/gi)) {
-    for (const letter of m[1].toUpperCase().split("/")) batch.set(letter, m[2].toUpperCase());
+  for (const m of oet[1].matchAll(new RegExp(`(${SUB}(?:\\/${SUB})*)\\s*(?:grade\\s*)?([A-C]\\+?)(?![\\w+])`, "gi"))) {
+    for (const name of m[1].split("/")) batch.set(name.trim().toUpperCase()[0], m[2].toUpperCase());
   }
   if (batch.size === 0) {
-    return ["sharedDestination.englishAcceptedTests names OET but states no readable grades"];
+    return ["sharedDestination.englishRoutesMechanics names OET but states no readable grades"];
   }
 
   const out: string[] = [];

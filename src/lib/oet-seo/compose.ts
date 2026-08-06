@@ -265,6 +265,15 @@ function sectionSharedCorridorSteps(m: Merged): { section: Section; facts: strin
     facts.push("testOfCompetence");
     paras.push(sentence(s.testOfCompetence.value));
   }
+  // v3: the three English routes live here, ONCE, and every corridor links to
+  // them. CORRECTION_3 — v2 wrongly told readers the taught-in-English route
+  // also required employer SIFE. It does not: SIFE is a separate supplementary
+  // route. That correction is only safe if the mechanics are stated in one place
+  // rather than paraphrased on ten corridor pages.
+  if (s.englishRoutesMechanics?.value) {
+    facts.push("englishRoutesMechanics");
+    paras.push(sentence(s.englishRoutesMechanics.value));
+  }
   if (s.nmcFees?.value) {
     facts.push("destinationFees");
     paras.push(sentence(s.nmcFees.value));

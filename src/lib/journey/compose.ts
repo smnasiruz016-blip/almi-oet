@@ -185,7 +185,14 @@ export function composeJourney(
     // The SCORES are shared: identical for all four origins, owned by the base
     // record, rendered on the destination page. Named and linked, never restated.
     if (dest.sharedStepsHref) {
-      paras.push(`The scores do not vary by origin, so they are on the ${dest.regulatorName} page.`);
+      // The corridor value refers to the NMC's routes by number, so the page has
+      // to say where those routes are defined. It does NOT restate them: the
+      // three routes and their evidence thresholds are identical for all ten
+      // origins, and paraphrasing them per corridor is how v2 came to tell every
+      // reader that the taught-in-English route required employer SIFE.
+      paras.push(
+        `What routes (1) to (3) mean, and the score each test needs, are the same whichever country you trained in — they are set out on the ${dest.regulatorName} page.`,
+      );
     }
     push(
       {

@@ -94,7 +94,7 @@ export function JourneyPage({ occupationSlug, originSlug, destinationSlug }: Arg
                 label: `${dest.regulatorName} — the full requirement and process`,
                 href: dest.sharedStepsHref,
                 blurb:
-                  "The Test of Competence, the accepted English tests and their scores, and the registration fees — in one place, because they do not change with where you trained.",
+                  "The Test of Competence, the three routes the NMC accepts English evidence by, and the registration fees — in one place, because they do not change with where you trained.",
               },
             ]
           : []),

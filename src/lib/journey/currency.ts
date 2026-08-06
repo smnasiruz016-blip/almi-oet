@@ -70,6 +70,22 @@ export const LOAD_BEARING: readonly string[] = [
 const RECONFIRM = /^(re)?confirm-official$/;
 /** Statuses that DO hold a page out of the index. */
 const BLOCKING_STATUS = new Set(["stale", "unverified", "disputed"]);
+/** Read at source, nothing left to re-check: no caveat, no block. */
+const CLEAR_STATUS = new Set(["verified"]);
+/** Every status this gate understands. Anything else BLOCKS.
+ *
+ *  Failing closed on an unrecognised status is deliberate. The alternative is
+ *  what this file did until v3 arrived carrying a status it had never seen:
+ *  fall through both branches and silently treat it as clean. A typo —
+ *  "stale-ish", "unverifed" — would then read as fine, and the one piece of
+ *  metadata whose entire job is to say "do not trust this yet" would be the one
+ *  thing nobody was checking. */
+const KNOWN_STATUS = new Set([
+  ...BLOCKING_STATUS,
+  ...CLEAR_STATUS,
+  "confirm-official",
+  "reconfirm-official",
+]);
 
 export type FactRef = { key: string; label: string; fact: SourcedFact };
 
@@ -165,6 +181,27 @@ function corroborationDiscrepancy(f: SourcedFact): boolean {
   return f.corroborated === true && !wellSourced(f);
 }
 
+/** `corroborated: false` — an explicit statement by whoever sourced the fact
+ *  that its load-bearing specifics are NOT corroborated, whatever the URL list
+ *  looks like.
+ *
+ *  THE ASYMMETRY IS THE POINT, and Zimbabwe is why. Its verification route cites
+ *  an official page and a secondary one, so counting sources says "official
+ *  present, corroborated". But the official page is the NMC's, and it establishes
+ *  only that SOME verification is required; every NCZ-specific detail — posted
+ *  board-to-board, the certified-copy list, the EcoCash fee — rests on the one
+ *  secondary. Which source supports which part of a claim is not something a URL
+ *  count can see, and the person who read them knew it.
+ *
+ *  So the two directions are treated differently, and both fail safe:
+ *    corroborated: true  → does NOT clear. Evidence has to show it; a claim
+ *                          cannot grant itself the status.
+ *    corroborated: false → DOES block. A stated doubt is never overridden by a
+ *                          mechanical rule that can see less than the author. */
+function explicitlyUncorroborated(f: SourcedFact): boolean {
+  return f.corroborated === false;
+}
+
 export type VerdictInput = {
   facts: FactRef[];
   lastVerified: string;
@@ -209,7 +246,9 @@ export function indexVerdict(input: VerdictInput): IndexVerdict {
     const { key, label, fact } = ref;
     const loadBearing = LOAD_BEARING.includes(key);
 
-    if (fact.verifyStatus && BLOCKING_STATUS.has(fact.verifyStatus)) {
+    if (fact.verifyStatus && !KNOWN_STATUS.has(fact.verifyStatus)) {
+      blockers.push(`${label} carries an unrecognised verifyStatus "${fact.verifyStatus}"`);
+    } else if (fact.verifyStatus && BLOCKING_STATUS.has(fact.verifyStatus)) {
       blockers.push(`${label} marked ${fact.verifyStatus}`);
     } else if (fact.verifyStatus && RECONFIRM.test(fact.verifyStatus)) {
       // The whole point of the refinement: a caveat, not a blocker.
@@ -238,6 +277,11 @@ export function indexVerdict(input: VerdictInput): IndexVerdict {
     }
     if (corroborationDiscrepancy(fact)) {
       blockers.push(`${label} is marked corroborated but its own sources do not support that`);
+    }
+    if (loadBearing && explicitlyUncorroborated(fact)) {
+      blockers.push(
+        `${label} is load-bearing and is marked NOT corroborated at source${fact.note ? ` (${fact.note})` : ""}`,
+      );
     }
 
     // (b) per-fact freshness, on the fact's own asOf where it has one.

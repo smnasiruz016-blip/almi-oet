@@ -41,11 +41,18 @@ for (const c of CORRIDORS) {
 console.log("\n=== THE REFINEMENT ITSELF: reconfirm-official must NOT noindex ===");
 {
   // Every corridor carries at least one confirm-official fact. Under the old
-  // gate that alone noindexed all four. It must no longer.
+  // gate that alone noindexed every one of them. It must no longer. Counted
+  // against CORRIDORS.length rather than a literal: this assertion was written
+  // when there were four and silently became wrong at ten.
   const withReconfirm = CORRIDORS.filter((c) =>
     journeyVerdict(c, { conflicts, today: TODAY }).reconfirm.length > 0,
   );
-  expect("all four corridors still carry a reconfirm caveat", withReconfirm.length === 4, true, `${withReconfirm.length}/4`);
+  expect(
+    "every corridor still carries a reconfirm caveat",
+    withReconfirm.length === CORRIDORS.length,
+    true,
+    `${withReconfirm.length}/${CORRIDORS.length}`,
+  );
   const blockedByReconfirmAlone = withReconfirm.filter((c) => {
     const v = journeyVerdict(c, { conflicts, today: TODAY });
     return v.blockers.some((b) => /confirm-official/.test(b));
@@ -151,6 +158,67 @@ console.log("\n=== CORROBORATION via the sources ARRAY (India's new shape) ===")
     v.reported.some((r) => r.key === "verificationRoute"),
     false,
   );
+}
+
+console.log("\n=== corroborated:false is an AUTHOR OVERRIDE that blocks (Zimbabwe) ===");
+{
+  // Zimbabwe cites an official page and a secondary one, so counting sources
+  // says "official present, corroborated". But the official page is the NMC's
+  // and establishes only that SOME verification is required; every NCZ-specific
+  // detail rests on the one secondary. The person who read them marked it
+  // corroborated:false, and that must win over the count.
+  const zw = byOrigin("zimbabwe");
+  const v = journeyVerdict(zw, { conflicts, today: TODAY });
+  expect("zimbabwe is held noindex", v.indexable, false, v.blockers.join(" \u00b7 "));
+  expect(
+    "…on the corroborated:false override, not on a source count",
+    v.blockers.some((b) => /marked NOT corroborated at source/.test(b)),
+    true,
+  );
+  expect(
+    "…and a naive source count would have cleared it",
+    zw.verificationRoute.sources!.some((x) => x.confidence === "official"),
+    true,
+  );
+
+  // Flipping the flag to true DOES clear Zimbabwe, because its sources do carry
+  // an official page — which is exactly why the false flag has to be honoured:
+  // the count cannot see that the official page is the NMC's and says nothing
+  // about NCZ's process. Asserted so the asymmetry stays visible.
+  const lifted = clone(zw);
+  lifted.verificationRoute.corroborated = true;
+  expect(
+    "flipping the flag to true clears it — so the false flag was doing the work",
+    journeyVerdict(lifted, { conflicts, today: TODAY }).indexable,
+    true,
+  );
+}
+
+console.log("\n=== an unrecognised verifyStatus FAILS CLOSED ===");
+{
+  const c = clone(byOrigin("ghana"));
+  expect("control: ghana indexable", journeyVerdict(c, { conflicts, today: TODAY }).indexable, true);
+  c.englishRoute!.verifyStatus = "unverifed"; // a typo, not a status
+  const v = journeyVerdict(c, { conflicts, today: TODAY });
+  expect("a typo'd status blocks rather than reading as clean", v.indexable, false);
+  expect(
+    "…and names itself",
+    v.blockers.some((b) => /unrecognised verifyStatus/.test(b)),
+    true,
+  );
+
+  const ok = clone(byOrigin("ghana"));
+  ok.englishRoute!.verifyStatus = "verified";
+  expect('"verified" is recognised and does not block', journeyVerdict(ok, { conflicts, today: TODAY }).indexable, true);
+}
+
+console.log("\n=== the destination grade check reads v3's word-form grades ===");
+{
+  // v2 wrote "OET (L/R/S grade B, W grade C+)", v3 writes
+  // "OET (Listening/Reading/Speaking grade B, Writing C+)". A checker that
+  // silently stops matching returns "no conflict" for the wrong reason — the one
+  // answer it must never give by accident.
+  expect("no conflict between the batch and the base record", conflicts.length === 0, true, conflicts.join("; "));
 }
 
 console.log("\n=== SABOTAGE (b): staleness ===");
