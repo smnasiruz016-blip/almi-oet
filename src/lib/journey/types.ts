@@ -87,6 +87,14 @@ export type SourcedFact = {
   note?: string;
 };
 
+/** One question-and-answer, in the searcher's own words.
+ *
+ *  `groundedIn` names the fact the answer is derived from. It is not rendered —
+ *  it exists so an answer can be traced back to a sourced value rather than
+ *  being a fluent sentence nobody can check. An answer whose groundedIn points
+ *  at nothing is a new claim wearing a familiar shape. */
+export type FaqItem = { q: string; a: string; groundedIn?: string };
+
 export type Corridor = {
   /** "{occupation}__{origin}__{destination}" in the dataset; parsed on load. */
   slug: string;

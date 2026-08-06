@@ -27,7 +27,7 @@
 // tells us nothing.
 
 import { measure, sentence, type Composed, type Section } from "@/lib/oet-seo/compose-core";
-import type { Corridor, JourneyDestination } from "./types";
+import type { Corridor, FaqItem, JourneyDestination } from "./types";
 import {
   corridorFacts,
   indexVerdict,
@@ -37,7 +37,13 @@ import {
   type IndexVerdict,
 } from "./currency";
 
-export type ComposedJourney = Composed & { corridor: Corridor; verdict: IndexVerdict };
+export type ComposedJourney = Composed & {
+  corridor: Corridor;
+  verdict: IndexVerdict;
+  /** Rendered by the page as an accessible <dl> and as FAQPage JSON-LD. Also
+   *  present, as text, in the measured sections under id "faq" — see below. */
+  faqs: FaqItem[];
+};
 
 /** "the United Kingdom", but "Pakistan". */
 const NEEDS_ARTICLE = /^(United |Netherlands|Philippines|Bahamas|Maldives|Gambia|Czech )/;
@@ -67,7 +73,7 @@ export function composeJourney(
   corridor: Corridor,
   dest: JourneyDestination,
   occupationPlural: string,
-  opts: { conflicts?: string[]; policy?: FreshnessPolicy; today?: Date } = {},
+  opts: { conflicts?: string[]; policy?: FreshnessPolicy; today?: Date; faqs?: FaqItem[] } = {},
 ): ComposedJourney {
   const verdict = indexVerdict({
     facts: corridorFacts(corridor),
@@ -240,7 +246,33 @@ export function composeJourney(
     );
   }
 
-  // ── 8. Sourcing and currency. One line per fact, naming who says so — the
+  // ── 8. The questions people actually type.
+  //
+  //       MEASURED, not decorative. The gate reads `sections`, so a Q&A block
+  //       rendered only through the page's `faqs` prop would ship words the
+  //       overlap gate never sees — and FAQ answers are exactly the kind of text
+  //       that reads the same on ten pages. Two hardcoded questions were already
+  //       shipping that way before this batch arrived.
+  //
+  //       So the text lives here, in `sections`, under id "faq", and the page
+  //       renders that id as a <dl> instead of as prose. Measured once, rendered
+  //       once, and the same words both times.
+  //
+  //       The SHARED questions — the OET score, the Test of Competence, the fees
+  //       — are not here. They are on the destination page, once, and linked.
+  const faqs = opts.faqs ?? [];
+  if (faqs.length) {
+    push(
+      {
+        id: "faq",
+        heading: `Common questions from ${from}`,
+        paras: faqs.flatMap((f) => [f.q, f.a]),
+      },
+      ["faq"],
+    );
+  }
+
+  // ── 9. Sourcing and currency. One line per fact, naming who says so — the
   //       source list is itself origin-distinct, because these are the origin's
   //       own authorities.
   //
@@ -285,7 +317,7 @@ export function composeJourney(
     push({ id: "source", heading: "Sources and last verified", paras }, []);
   }
 
-  return { corridor, verdict, ...measure(sections, facts) };
+  return { corridor, verdict, faqs, ...measure(sections, facts) };
 }
 
 /** Currency for a corridor — law #5 as refined on 08-06.

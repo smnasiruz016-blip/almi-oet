@@ -16,6 +16,7 @@ import {
 } from "@/lib/oet-seo/links";
 import { orgNote } from "@/lib/oet-seo/org-notes";
 import { permanentCaveat } from "@/lib/journey/currency";
+import { SHARED_DESTINATION_FAQ, CORRIDOR_DESTINATION_ORG } from "@/lib/oet-seo/corridors";
 import { GRADE_DOCTRINE, OetSeoOrgNote } from "./master";
 import { RichPage, buildRichMetadata, type Crumb, type RelatedLink } from "./rich-page";
 
@@ -59,7 +60,15 @@ export function RegisterOrgPage({ orgSlug }: { orgSlug: string }) {
     { label: nv.abbrev ?? org.name, href: `/register/${orgSlug}` },
   ];
 
+  // The corridor FAQ's shared half belongs to THIS page — ten corridors link
+  // here rather than answering "what OET score do I need" ten times. Its text is
+  // already inside `c.sections` under id "faq" so the gate measured it; this
+  // reads it back for the <dl> and the FAQPage JSON-LD, and the prose loop skips
+  // that id so the words render exactly once.
+  const sharedFaqs = orgSlug === CORRIDOR_DESTINATION_ORG ? SHARED_DESTINATION_FAQ : [];
+  const proseSections = c.sections.filter((s) => s.id !== "faq");
   const faqs = [
+    ...sharedFaqs.map((f) => ({ q: f.q, a: f.a })),
     {
       q: `What OET grade does ${nv.abbrev ?? org.name} require?`,
       a: grade ? `${grade}. ${GRADE_DOCTRINE}` : GRADE_DOCTRINE,
@@ -119,7 +128,7 @@ export function RegisterOrgPage({ orgSlug }: { orgSlug: string }) {
         .filter(Boolean)
         .join(" · ")}
       trail={trail}
-      sections={c.sections}
+      sections={proseSections}
       faqs={faqs}
       related={related}
       /* Law #5: the permanent caveat renders on every page, indexable or not,

@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "name": "AlmiOET corridor FAQ — v1 (nursing → UK, real question-searches)",
+    "companionTo": "AlmiOET_corridor_proof_batch_v3.json",
+    "lastCompiled": "2026-08-06",
+    "purpose": "Add a Q&A section to each corridor + the destination page, built from the real questions people search on Google (People-Also-Ask / autocomplete style), in the searcher's own words. Captures long-tail question-searches and adds origin-distinct content.",
+    "grounding_rule": "EVERY answer is grounded in a fact already present in v3 (see each item's groundedIn). No new unsourced claims. Where an exact figure isn't officially published, the answer says so and points to the body — same discipline as the batch. Keep the permanent 'confirm current details with the NMC and your national council' caveat on the page.",
+    "law3_rule": "sharedDestinationFaq renders ONCE on /register/uk-nmc (shared questions — OET score, Test of Competence, fees, the taught-in-English route). corridorFaq[slug] renders on that corridor only (origin-distinct questions). Do NOT repeat the shared FAQ per corridor.",
+    "render_instruction_for_CC": "Render as an accessible Q&A section (details/summary or headings) AND emit FAQPage JSON-LD per page (questions+answers). Answers are short (1–3 sentences). Note: Google limits FAQ rich results to authoritative domains, so treat the JSON-LD as correctness/coverage, not a guaranteed rich snippet. The Q&A words count toward the page and are checked by the overlap gate like any other content — if a corridor's FAQ pushes overlap up, that's a signal the answers aren't origin-distinct enough; keep them anchored to the origin's own regulator/fee/attestation facts.",
+    "verifyStatus_rule": "Answers that lean on a confirm-official fact (English routes, Zimbabwe verification specifics) inherit that status — the page already carries the caveat; do not present them as guaranteed."
+  },
+  "sharedDestinationFaq": [
+    {"q": "What OET score do I need to register as a nurse with the NMC?", "a": "OET grade B in Listening, Reading and Speaking and grade C+ in Writing — or IELTS Academic 7.0 in Listening/Reading/Speaking and 6.5 in Writing. Two sittings of the same test can be combined within 12 months, but you cannot mix OET and IELTS.", "groundedIn": "sharedDestination.englishRoutesMechanics"},
+    {"q": "What is the NMC Test of Competence?", "a": "Two parts: a computer-based test (CBT) you can sit in your own country, and an OSCE (practical exam) taken at a UK test centre. Both parts must be completed within two years of each other.", "groundedIn": "sharedDestination.testOfCompetence"},
+    {"q": "How much does NMC registration cost?", "a": "The main NMC fees are around £140 for the eligibility/qualification assessment, £83 for the CBT, £794 for the OSCE and £153 to register — verify the current amounts on the NMC site, as they change.", "groundedIn": "sharedDestination.nmcFees"},
+    {"q": "Can I use my English-taught nursing degree instead of taking OET or IELTS?", "a": "Possibly. The NMC's 'taught and examined in English' route accepts a transcript or official letter from your training institution plus evidence your clinical practice met its interaction thresholds. SIFE (employer support) is a separate route, not a requirement for this one. In practice, most people applying from outside the UK still take OET or IELTS.", "groundedIn": "sharedDestination.englishRoutesMechanics"}
+  ],
+  "corridorFaq": {
+    "nursing__pakistan__united-kingdom": [
+      {"q": "Can Pakistani nurses work in the UK?", "a": "Yes. You register with the UK NMC — pass the Test of Competence, meet the English requirement, and provide PNMC good standing.", "groundedIn": "verificationRoute"},
+      {"q": "Do Pakistani nurses need IELTS or OET for the NMC?", "a": "In practice yes. Pakistan is not on the NMC's majority-English list and the 'taught and examined in English' route is hard to evidence for most Pakistani programmes, so most Pakistani nurses take OET or IELTS.", "groundedIn": "englishRoute"},
+      {"q": "How do I get PNMC good standing for the NMC?", "a": "Apply to PNMC's verification service with the NMC's request letter and your PNMC registration and qualifications; the processing fee is PKR 10,000, and queries go to PNMC's Good Standing Cell.", "groundedIn": "verificationRoute"},
+      {"q": "Do I need to apostille my Pakistani nursing degree for the UK?", "a": "Pakistan joined the Hague Apostille Convention (in force March 2023), so after HEC (and IBCC for school documents) verification, the Ministry of Foreign Affairs issues an apostille — no separate UK legalisation needed.", "groundedIn": "attestationChain"}
+    ],
+    "nursing__nigeria__united-kingdom": [
+      {"q": "Can Nigerian nurses skip IELTS or OET for the NMC?", "a": "No — there is no automatic exemption. Nigerian nursing is taught in English, but applying from Nigeria most nurses still take OET or IELTS. The belief that Nigerian nurses skip the test is a misconception.", "groundedIn": "englishRoute"},
+      {"q": "How do I do NMCN verification for the UK?", "a": "Use NMCN's online Verification of Certificate service (Certificate of Registration only), pay via REMITA, and state the UK NMC as the destination; NMCN sends the verification directly to the NMC.", "groundedIn": "verificationRoute"},
+      {"q": "How much is NMCN verification and how long does it take?", "a": "Reported around ₦66,875 for standard verification plus a UK-specific line, typically needing about two years' experience and an active licence; allow roughly six months, as NMCN contacts your school and employer directly. Confirm current figures with NMCN.", "groundedIn": "verificationEligibilityFeesTimeline"},
+      {"q": "How long does it take to become a UK nurse from Nigeria?", "a": "There is no single fixed timeline, but the NMCN verification step alone is reported at around six months, on top of your English test, CBT, OSCE and visa steps.", "groundedIn": "verificationEligibilityFeesTimeline"}
+    ],
+    "nursing__india__united-kingdom": [
+      {"q": "Which body gives good standing for Indian nurses — the INC or the state council?", "a": "The State Nursing Council where you first registered — not the Indian Nursing Council. The state council completes the NMC's verification form and sends it directly.", "groundedIn": "verificationRoute"},
+      {"q": "Do Indian nurses need OET or IELTS for the NMC?", "a": "India is not on the NMC's majority-English list and the medium of instruction varies by institution, so in practice most Indian nurses take OET or IELTS Academic.", "groundedIn": "englishRoute"},
+      {"q": "Do I need to apostille my Indian nursing certificate for the UK?", "a": "Yes — documents are authenticated at state level and then apostilled by the Ministry of External Affairs. Because India and the UK are both Hague members, no further UK legalisation is needed.", "groundedIn": "attestationChain"},
+      {"q": "How do I get state nursing council verification sent to the NMC?", "a": "Apply through your state council of registration; it completes its section of the NMC's form and couriers it directly to the NMC, so you supply the NMC's courier address with your documents.", "groundedIn": "verificationRoute"}
+    ],
+    "nursing__philippines__united-kingdom": [
+      {"q": "How do Filipino nurses verify their registration with the NMC?", "a": "Get PRC-authenticated documents through LERIS and use the PRC's stateboard verification service. The PRC page doesn't describe direct transmission to the NMC, so confirm the exact handoff — third-party verifiers like CGFNS/TruMerit are commonly used.", "groundedIn": "verificationRoute"},
+      {"q": "Is it red ribbon or apostille now for PRC documents?", "a": "Apostille. The Philippine DFA red ribbon was abolished when the Philippines joined the Hague Convention (2019); documents are now apostilled by the DFA (PHP 100 regular, PHP 200 expedited).", "groundedIn": "attestationChain"},
+      {"q": "Do Filipino nurses need IELTS or OET?", "a": "There is no automatic exemption. Philippine nursing is taught in English, but most Filipino nurses applying from home still take OET or IELTS.", "groundedIn": "englishRoute"},
+      {"q": "Can Filipino nurses work in the UK?", "a": "Yes, by registering with the NMC — Test of Competence, English evidence, and PRC verification of your registration.", "groundedIn": "verificationRoute"}
+    ],
+    "nursing__ghana__united-kingdom": [
+      {"q": "How do I get NMC Ghana good standing for the UK?", "a": "Use the Nursing and Midwifery Council of Ghana's Foreign Verification service through its regional offices; your PIN must be current (annual renewal with CPD) before you can request it. Confirm the fee and whether it is sent directly to the UK NMC.", "groundedIn": "verificationRoute"},
+      {"q": "Do Ghanaian documents need apostille or legalisation for the UK?", "a": "Legalisation — Ghana is not a Hague Apostille member, so documents are authenticated by Ghana's Ministry of Foreign Affairs and then legalised by the relevant mission.", "groundedIn": "attestationChain"},
+      {"q": "Do Ghanaian nurses need OET or IELTS?", "a": "Ghana is not on the NMC's majority-English list. English is Ghana's language of nursing instruction, so the 'taught and examined in English' route may apply with institutional evidence, but many Ghanaian nurses still take OET or IELTS.", "groundedIn": "englishRoute"}
+    ],
+    "nursing__kenya__united-kingdom": [
+      {"q": "How do I do Nursing Council of Kenya verification for the NMC?", "a": "Apply for NCK's outmigration/emigration verification through the NCK Online Services Portal; the UK route also asks for an employer reference, medical report, police clearance, CV, NEA proof and your English test results.", "groundedIn": "verificationRoute"},
+      {"q": "Is Kenya a Hague apostille country?", "a": "No. Kenyan documents need the full legalisation chain — notarisation, then authentication by the Ministry of Foreign and Diaspora Affairs, then legalisation by the British High Commission Nairobi.", "groundedIn": "attestationChain"},
+      {"q": "Do Kenyan nurses need IELTS or OET?", "a": "Kenya is not on the NMC's majority-English list. NCK trains and examines in English, so the 'taught and examined in English' route may apply with evidence, but most Kenyan nurses still take OET or IELTS.", "groundedIn": "englishRoute"}
+    ],
+    "nursing__zimbabwe__united-kingdom": [
+      {"q": "How do I get Nurses Council of Zimbabwe good standing for the UK?", "a": "The Nurses Council of Zimbabwe issues a Certificate of Good Standing for overseas registration. The exact documents and process should be confirmed directly with NCZ, as the published detail is limited.", "groundedIn": "verificationRoute (confirm-official)"},
+      {"q": "Is Zimbabwe an apostille country?", "a": "No. Zimbabwe is not a Hague member, so documents need full legalisation — notarisation or High Court authentication, then the Ministry of Foreign Affairs and International Trade, then the receiving mission.", "groundedIn": "attestationChain"},
+      {"q": "Do Zimbabwean nurses need OET or IELTS?", "a": "Zimbabwe is not on the NMC's majority-English list. Zimbabwean nursing is taught and examined in English, so the 'taught and examined in English' route may apply with evidence, but most still take OET or IELTS.", "groundedIn": "englishRoute"}
+    ],
+    "nursing__egypt__united-kingdom": [
+      {"q": "How do Egyptian nurses prove good standing to the NMC?", "a": "There is no single automated verification. You obtain registration/good-standing proof from the Egyptian Nursing Syndicate and the Ministry of Health and Population, legalised through the Egyptian Ministry of Foreign Affairs, and apply directly to the NMC.", "groundedIn": "verificationRoute + attestationChain"},
+      {"q": "Do Egyptian nurses need OET or IELTS?", "a": "Yes, in practice. Egyptian nursing is generally taught in Arabic, so the 'taught and examined in English' route usually does not apply and you take OET or IELTS Academic.", "groundedIn": "englishRoute"},
+      {"q": "Can I apostille Egyptian documents for the UK?", "a": "No. Egypt is not a Hague member, so documents are authenticated by the Egyptian Ministry of Foreign Affairs — and note British embassies (including Cairo) cannot legalise documents.", "groundedIn": "attestationChain"}
+    ],
+    "nursing__sri-lanka__united-kingdom": [
+      {"q": "How do Sri Lankan nurses register with the NMC?", "a": "Apply directly to the NMC and provide good-standing proof from the Sri Lanka Nursing Council; your documents are authenticated through the Ministry of Foreign Affairs Consular Affairs Division (e-DAS).", "groundedIn": "verificationRoute + attestationChain"},
+      {"q": "Is Sri Lanka an apostille country?", "a": "No. Sri Lanka is not a Hague member, so documents are authenticated/legalised via the Ministry of Foreign Affairs Consular Affairs Division and the relevant mission, not apostilled.", "groundedIn": "attestationChain"},
+      {"q": "Do Sri Lankan nurses need OET or IELTS?", "a": "Sri Lanka is not on the NMC's majority-English list, and the language of instruction varies, so the 'taught and examined in English' route is case-by-case — most Sri Lankan nurses take OET or IELTS.", "groundedIn": "englishRoute"}
+    ],
+    "nursing__nepal__united-kingdom": [
+      {"q": "How do I get Nepal Nursing Council verification for the NMC?", "a": "Apply for the NNC Verification service with the NMC's form, your current NNC licence, transcript, character certificate and passport; the fee is NRs 2,500. It is usually issued to you as a hard copy, so confirm the NMC's current direct-verification arrangement.", "groundedIn": "verificationRoute"},
+      {"q": "Is Nepal an apostille country?", "a": "No. Nepal is not a Hague member, so documents need legalisation — university/Ministry of Education verification, then the Ministry of Foreign Affairs consular department.", "groundedIn": "attestationChain"},
+      {"q": "Do Nepali nurses need OET or IELTS?", "a": "Nepal is not on the NMC's majority-English list. Many Nepali programmes are taught in English, so the 'taught and examined in English' route may apply with evidence, but most Nepali nurses still take OET or IELTS.", "groundedIn": "englishRoute"}
+    ]
+  }
+}

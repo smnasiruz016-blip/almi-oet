@@ -13,7 +13,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { composeJourney, inCountry, journeyVerdict } from "@/lib/journey/compose";
 import { permanentCaveat } from "@/lib/journey/currency";
-import { destinationFor, searchTitle, destinationGradeConflicts } from "@/lib/oet-seo/corridors";
+import {
+  destinationFor,
+  searchTitle,
+  destinationGradeConflicts,
+  corridorFaqFor,
+} from "@/lib/oet-seo/corridors";
 import { journeyFor } from "@/lib/oet-seo/links";
 import { professionSlugToLabel } from "@/lib/oet-seo/data";
 import { RichPage, buildRichMetadata, type Crumb, type RelatedLink } from "./rich-page";
@@ -56,6 +61,7 @@ export function JourneyPage({ occupationSlug, originSlug, destinationSlug }: Arg
   const dest = destinationFor(c);
   const composed = composeJourney(c, dest, `${label.toLowerCase()}s`, {
     conflicts: destinationGradeConflicts(),
+    faqs: corridorFaqFor(c.slug),
   });
   const verdict = composed.verdict;
 
@@ -68,21 +74,16 @@ export function JourneyPage({ occupationSlug, originSlug, destinationSlug }: Arg
     },
   ];
 
-  // The FAQ answers from the corridor's own sourced values. It never paraphrases
-  // them into something shorter and more confident than the source: an answer box
-  // is the surface most likely to be read alone, out of the page's context.
-  const faqs = [
-    {
-      q: `Do ${c.originCountry}-trained ${label.toLowerCase()}s need OET or IELTS for ${inCountry(c.destinationCountry)}?`,
-      a: c.englishRoute
-        ? `${c.englishRoute.value} Confirm with ${dest.regulatorName} and ${c.originRegulatorName}.`
-        : `Confirm the current English requirement with ${dest.regulatorName} and ${c.originRegulatorName}.`,
-    },
-    {
-      q: `Who verifies my existing registration?`,
-      a: `${c.originRegulatorName}. ${c.verificationRoute.value}`,
-    },
-  ];
+  // The questions come from the FAQ companion, where every answer names the v3
+  // fact it was derived from. Two questions used to be built here instead, by
+  // pasting a sourced value into an answer template — which meant they rendered
+  // through RichPage's `faqs` prop and were therefore never measured by the
+  // overlap gate. They are gone. The composer now carries the FAQ text inside
+  // `sections` under id "faq", so it is measured; this reads it back out for the
+  // <dl> and the FAQPage JSON-LD, and the prose loop skips that id so the words
+  // appear exactly once.
+  const faqs = composed.faqs;
+  const proseSections = composed.sections.filter((s) => s.id !== "faq");
 
   const related: { heading: string; links: RelatedLink[] }[] = [
     {
@@ -109,7 +110,7 @@ export function JourneyPage({ occupationSlug, originSlug, destinationSlug }: Arg
       title={searchTitle(c)}
       subtitle={`${c.originRegulatorName} · verified ${c.lastVerified}`}
       trail={trail}
-      sections={composed.sections}
+      sections={proseSections}
       tables={composed.tables}
       faqs={faqs}
       related={related}

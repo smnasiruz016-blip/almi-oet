@@ -15,6 +15,9 @@ import {
   destinationFor,
   destinationGradeConflicts,
   corridorsWithoutRegulatorName,
+  corridorFaqFor,
+  corridorsWithoutFaq,
+  faqGroundingGaps,
 } from "../src/lib/oet-seo/corridors";
 import { composeJourney, journeyVerdict } from "../src/lib/journey/compose";
 import { GATE, fingerprint, largestFirst, type Composed } from "../src/lib/oet-seo/compose-core";
@@ -31,7 +34,7 @@ if (conflicts.length) {
 const composed = new Map<string, Composed | null>();
 const byslug = new Map<string, Composed>();
 for (const c of CORRIDORS) {
-  const r = composeJourney(c, destinationFor(c), "nurses", { conflicts });
+  const r = composeJourney(c, destinationFor(c), "nurses", { conflicts, faqs: corridorFaqFor(c.slug) });
   composed.set(c.slug, r);
   byslug.set(c.slug, r);
 }
@@ -166,6 +169,17 @@ for (const c of CORRIDORS) {
   );
   console.log(`     BLOCKERS                               : ${v.blockers.length ? v.blockers.join(" · ") : "none"}`);
 }
+
+console.log("\n=== FAQ COVERAGE + GROUNDING ===");
+for (const c of CORRIDORS) {
+  const n = corridorFaqFor(c.slug).length;
+  console.log(`  ${c.originSlug.padEnd(12)} ${n} question${n === 1 ? "" : "s"}`);
+}
+const noFaq = corridorsWithoutFaq();
+console.log(`  corridors with NO questions: ${noFaq.length ? noFaq.join(", ") : "none"}`);
+const gaps = faqGroundingGaps();
+console.log(`  answers whose groundedIn does not resolve: ${gaps.length}`);
+for (const g of gaps) console.log(`    !! ${g}`);
 
 const noName = corridorsWithoutRegulatorName();
 if (noName.length) {

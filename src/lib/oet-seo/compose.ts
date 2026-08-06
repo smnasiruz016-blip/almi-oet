@@ -57,6 +57,7 @@ import {
   corridorPath,
   CORRIDOR_DESTINATION_ORG,
   SHARED_DESTINATION,
+  SHARED_DESTINATION_FAQ,
   destinationGradeConflicts,
 } from "./corridors";
 import { composeJourney, isJourneyCurrent, journeyNotCurrentReason } from "@/lib/journey/compose";
@@ -296,6 +297,29 @@ function sectionSharedCorridorSteps(m: Merged): { section: Section; facts: strin
   };
 }
 
+/** The SHARED questions, on the one page that owns them.
+ *
+ *  The other half of law #3 again. Ten corridors link here for "what OET score
+ *  do I need" and "what is the Test of Competence" precisely so those four
+ *  answers are not written ten times — an FAQ block is the easiest place in a
+ *  page to duplicate a sibling without noticing.
+ *
+ *  Measured, like the corridor FAQ: the text lives in `sections` under id "faq"
+ *  and the page renders that id as a <dl> rather than as prose. Words that ship
+ *  but are never measured are how a thin page slips through a green gate. */
+function sectionSharedFaq(m: Merged): { section: Section; facts: string[] } | null {
+  if (m.org.slug !== CORRIDOR_DESTINATION_ORG) return null;
+  if (!SHARED_DESTINATION_FAQ.length) return null;
+  return {
+    section: {
+      id: "faq",
+      heading: "Common questions",
+      paras: SHARED_DESTINATION_FAQ.flatMap((f) => [f.q, f.a]),
+    },
+    facts: ["sharedFaq"],
+  };
+}
+
 /** The local vocabulary — genuinely useful, and it is the searcher's own words. */
 function sectionWording(w: Wording, m: Merged, professionSlug: string): { section: Section; facts: string[] } | null {
   const conv = localeConvention(m.countryCode);
@@ -431,6 +455,7 @@ export function composeOrgPage(orgSlug: string): (Composed & { merged: Merged })
   push(sectionContext(m));
   push(sectionSharedCorridorSteps(m));
   if (primary && w) push(sectionWording(w, m, primary));
+  push(sectionSharedFaq(m));
   push(sectionSource(m));
 
   return { merged: m, ...measure(sections, facts) };

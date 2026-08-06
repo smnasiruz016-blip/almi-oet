@@ -25,9 +25,16 @@
 // enrichment v1 published three regulators' figures wrongly.
 
 import RAW from "./corridors.json";
+import FAQ_RAW from "./corridor-faq.json";
 import { orgBySlug, gradeLine } from "./data";
 import { regulatorBySlug, verifiedOn, nameVariants } from "./regulators";
-import type { Corridor, JourneyDataset, JourneyDestination, SourcedFact } from "@/lib/journey/types";
+import type {
+  Corridor,
+  FaqItem,
+  JourneyDataset,
+  JourneyDestination,
+  SourcedFact,
+} from "@/lib/journey/types";
 
 type RawSource = { url?: string; name?: string; confidence?: string; note?: string };
 
@@ -286,6 +293,105 @@ export function destinationGradeConflicts(): string[] {
     const b = base.get(letter);
     if (b && b.toUpperCase() !== grade) {
       out.push(`the batch says OET ${letter} ${grade}, the base record says ${b}`);
+    }
+  }
+  return out;
+}
+
+/** The FAQ companion to the proof batch: the questions people actually type.
+ *
+ *  Split the same way the facts are, and for the same reason. The shared
+ *  questions — what OET score, what the Test of Competence is, what it costs —
+ *  have one answer for all ten origins, so they render ONCE on /register/uk-nmc
+ *  and the corridors link there. Only the origin-distinct questions render on a
+ *  corridor. An FAQ block is the easiest place in a page to accidentally write
+ *  the same four answers ten times, which is why it goes through the overlap
+ *  gate with everything else rather than around it. */
+type FaqPayload = {
+  _meta: Record<string, unknown>;
+  sharedDestinationFaq: FaqItem[];
+  corridorFaq: Record<string, FaqItem[]>;
+};
+const FAQ = FAQ_RAW as unknown as FaqPayload;
+
+/** Shared questions — rendered once, on the destination page. */
+export const SHARED_DESTINATION_FAQ: FaqItem[] = FAQ.sharedDestinationFaq ?? [];
+
+/** This corridor's own questions. Empty when the companion has none, which
+ *  renders no section rather than an empty heading. */
+export function corridorFaqFor(slug: string): FaqItem[] {
+  return FAQ.corridorFaq?.[slug] ?? [];
+}
+
+/** Corridors the companion has no questions for. Reported rather than left to
+ *  be noticed as a missing section on one page in ten. */
+export function corridorsWithoutFaq(): string[] {
+  return DATA.corridors.filter((c) => !(FAQ.corridorFaq?.[c.slug]?.length)).map((c) => c.slug);
+}
+
+/** Every answer names the fact it came from. This checks those names resolve to
+ *  a field the corridor actually carries — an answer grounded in nothing is a
+ *  new claim wearing a familiar shape, and the whole point of the companion is
+ *  that it adds questions, not facts. */
+export function faqGroundingGaps(): string[] {
+  const out: string[] = [];
+  const shared = new Set([
+    "sharedDestination.englishRoutesMechanics",
+    "sharedDestination.testOfCompetence",
+    "sharedDestination.nmcFees",
+    "sharedDestination.englishMajorityCountryList",
+    "sharedDestination.visa",
+  ]);
+  for (const item of SHARED_DESTINATION_FAQ) {
+    if (item.groundedIn && !shared.has(item.groundedIn)) {
+      out.push(`sharedDestinationFaq "${item.q.slice(0, 48)}…" groundedIn ${item.groundedIn} (unknown shared field)`);
+    }
+  }
+  // `groundedIn` is written by hand, so it arrives in three shapes: a bare field
+  // name, two names joined by "+" where an answer draws on both, and a name with
+  // a parenthetical note ("verificationRoute (confirm-official)"). It also uses
+  // the batch's OWN field names, including the long `verificationEligibilityFees`
+  // spelling this adapter normalises away.
+  //
+  // The first version of this check understood only the bare normalised name and
+  // reported five gaps, every one of them its own misreading. A grounding check
+  // that cries wolf is worse than none: it is the reason people stop reading
+  // gate output.
+  const ALIAS: Record<string, string> = {
+    verificationeligibilityfeestimeline: "feesTimeline",
+    originregulator: "originRegulator",
+    verificationroute: "verificationRoute",
+    attestationchain: "attestationChain",
+    feestimeline: "feesTimeline",
+    englishroute: "englishRoute",
+    localsearchwording: "localSearchWording",
+  };
+  const partsOf = (k: string) =>
+    k
+      .split("+")
+      .map((x) => x.replace(/\([^)]*\)/g, "").trim())
+      .filter(Boolean);
+
+  for (const c of CORRIDORS) {
+    const has: Record<string, unknown> = {
+      originRegulator: c.originRegulator,
+      verificationRoute: c.verificationRoute,
+      attestationChain: c.attestationChain,
+      feesTimeline: c.feesTimeline,
+      englishRoute: c.englishRoute,
+      localSearchWording: c.localSearchWording?.length ? c.localSearchWording : undefined,
+    };
+    for (const item of corridorFaqFor(c.slug)) {
+      if (!item.groundedIn) continue;
+      for (const raw of partsOf(item.groundedIn)) {
+        if (shared.has(raw)) continue;
+        const key = ALIAS[raw.toLowerCase()];
+        if (!key) {
+          out.push(`${c.originSlug}: "${item.q.slice(0, 48)}…" groundedIn "${raw}" — not a field name`);
+        } else if (!has[key]) {
+          out.push(`${c.originSlug}: "${item.q.slice(0, 48)}…" groundedIn ${key} — not present on this corridor`);
+        }
+      }
     }
   }
   return out;
