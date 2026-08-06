@@ -108,8 +108,16 @@ export type Corridor = {
   /** The regulator's short name, derived once on load so no consumer has to
    *  parse a sourced sentence to put a body's name in a heading. */
   originRegulatorName: string;
-  /** How that body's confirmation reaches the destination regulator. */
-  verificationRoute: SourcedFact;
+  /** How that body's confirmation reaches the destination regulator.
+   *
+   *  OPTIONAL since the spine landed, and the reason is a finding rather than a
+   *  convenience: v3's verification routes were authored for the UK and nine of
+   *  ten name the NMC as the recipient. On an Australia corridor that sentence is
+   *  false, so it is not carried across — the corridor states the destination's
+   *  own requirement and links, and this slot stays empty until someone sources a
+   *  destination-neutral issuance fact for that origin. Empty is honest; reused
+   *  would be wrong. */
+  verificationRoute?: SourcedFact;
   /** Notary / ministry / apostille chain the documents run through. Absent for
    *  origins where the batch found none — an absent slot renders nothing rather
    *  than a sentence about the absence. */

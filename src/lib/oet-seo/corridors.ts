@@ -260,6 +260,78 @@ export const CORRIDORS: readonly Corridor[] = ORIGINS.map((o) =>
   composeCorridorEntity(o, "united-kingdom", DATA.sharedDestination.country),
 );
 
+/** AUSTRALIA corridors, composed from the same origins.
+ *
+ *  What each one can honestly carry, and what it cannot:
+ *    originRegulator     reused — the one reliably destination-neutral fact
+ *    attestationChain    reused ONLY where the origin's chain names no
+ *                        destination (Pakistan alone, of the nine that have one)
+ *    verificationRoute   NOT reused — nine of ten name the NMC as recipient
+ *    englishRoute        composed from the destination's own template, since
+ *                        every v3 englishRoute is a statement about NMC rules
+ *    localSearchWording  NOT reused — these name the UK end; Australian query
+ *                        strings have not been sourced, and inventing "how
+ *                        people search" is the one thing the composer refuses
+ *
+ *  The result is deliberately thin, and it is meant to be measured rather than
+ *  argued about. */
+const AU_DEST_SLUG = "australia";
+
+function auEnglishRoute(origin: OriginEntity, template: string | undefined): SourcedFact | undefined {
+  if (!template) return undefined;
+  // The template carries a placeholder for the origin's English-medium status,
+  // which in v3 lives inside a sentence about NMC rules. Lifting a clause out of
+  // a cited sentence is authoring, not quoting, so the placeholder is dropped
+  // rather than filled. What remains is the destination's own sourced position.
+  const value = template
+    .replace(/\{origin_english_medium_status_from_v3\}\.?\s*/g, "")
+    .replace(/\{origin\}/g, origin.country);
+  return {
+    value,
+    sourceUrl:
+      "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/fact-sheet-english-language-skills-registration-standard.aspx",
+    sourceName: "NMBA — English language skills fact sheet (recognised countries, education pathways)",
+    confidence: "official",
+    asOf: "2026-08",
+    verifyStatus: "confirm-official",
+  };
+}
+
+/** True where the origin's attestation chain names no destination, so it holds
+ *  for any Hague destination including Australia. */
+function attestationIsPortable(f: SourcedFact | undefined): boolean {
+  if (!f) return false;
+  return !/(UK NMC|NMC UK|the NMC|NMC's|NMC|United Kingdom|UK|British|Britain)/.test(f.value);
+}
+
+export function australiaCorridors(englishTemplate?: string, hagueOrigins: string[] = []): Corridor[] {
+  return ORIGINS.map((o) => {
+    const ukScoped = o.perDestination["united-kingdom"] ?? {};
+    const portableAttestation =
+      hagueOrigins.includes(o.slug) && attestationIsPortable(ukScoped.attestationChain)
+        ? ukScoped.attestationChain
+        : undefined;
+    return {
+      slug: `nursing__${o.slug}__${AU_DEST_SLUG}`,
+      occupationSlug: "nursing",
+      originSlug: o.slug,
+      destinationSlug: AU_DEST_SLUG,
+      originCountry: o.country,
+      destinationCountry: "Australia",
+      originRegulator: o.regulator,
+      originRegulatorName: o.regulatorName,
+      verificationRoute: undefined,
+      attestationChain: portableAttestation,
+      feesTimeline: undefined,
+      englishRoute: auEnglishRoute(o, englishTemplate),
+      originDistinctSummary: undefined,
+      localSearchWording: undefined,
+      lastVerified: "2026-08-06",
+      verifyStatus: undefined,
+    } satisfies Corridor;
+  });
+}
+
 export function corridorFor(
   occupationSlug: string,
   originSlug: string,

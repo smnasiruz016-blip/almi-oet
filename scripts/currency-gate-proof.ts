@@ -65,13 +65,13 @@ console.log("\n=== SABOTAGE (a): a load-bearing fact on a weak source ===");
   const c = clone(byOrigin("pakistan"));
   const before = journeyVerdict(c, { conflicts, today: TODAY });
   expect("control: pakistan indexable before sabotage", before.indexable, true, before.blockers.join(" · "));
-  c.verificationRoute.confidence = "secondary";
+  c.verificationRoute!.confidence = "secondary";
   const after = journeyVerdict(c, { conflicts, today: TODAY });
   expect("secondary load-bearing fact blocks", after.indexable, false, after.blockers.join(" · "));
 
   const d = clone(byOrigin("pakistan"));
-  d.verificationRoute.confidence = "secondary";
-  d.verificationRoute.corroboratedBy = ["a second independent source"];
+  d.verificationRoute!.confidence = "secondary";
+  d.verificationRoute!.corroboratedBy = ["a second independent source"];
   expect(
     "…but corroboration clears it",
     journeyVerdict(d, { conflicts, today: TODAY }).indexable,
@@ -79,7 +79,7 @@ console.log("\n=== SABOTAGE (a): a load-bearing fact on a weak source ===");
   );
 
   const e = clone(byOrigin("pakistan"));
-  delete e.verificationRoute.sourceUrl;
+  delete e.verificationRoute!.sourceUrl;
   expect(
     "a load-bearing fact with no source URL blocks",
     journeyVerdict(e, { conflicts, today: TODAY }).indexable,
@@ -109,7 +109,7 @@ console.log("\n=== CORROBORATION via the sources ARRAY (India's new shape) ===")
   expect("india is now indexable on corroborated sources", v.indexable, true, v.blockers.join(" \u00b7 "));
 
   const oneSecondary = clone(india);
-  oneSecondary.verificationRoute.sources = [
+  oneSecondary.verificationRoute!.sources = [
     { url: "https://example-summary.com/a", name: "one secondary summary", confidence: "secondary" },
   ];
   expect(
@@ -119,7 +119,7 @@ console.log("\n=== CORROBORATION via the sources ARRAY (India's new shape) ===")
   );
 
   const sameHost = clone(india);
-  sameHost.verificationRoute.sources = [
+  sameHost.verificationRoute!.sources = [
     { url: "https://example-summary.com/a", name: "summary A", confidence: "secondary" },
     { url: "https://www.example-summary.com/b", name: "summary B", confidence: "secondary" },
   ];
@@ -130,7 +130,7 @@ console.log("\n=== CORROBORATION via the sources ARRAY (India's new shape) ===")
   );
 
   const twoHosts = clone(india);
-  twoHosts.verificationRoute.sources = [
+  twoHosts.verificationRoute!.sources = [
     { url: "https://one.example/a", name: "summary A", confidence: "secondary" },
     { url: "https://two.example/b", name: "summary B", confidence: "secondary" },
   ];
@@ -141,8 +141,8 @@ console.log("\n=== CORROBORATION via the sources ARRAY (India's new shape) ===")
   );
 
   const lying = clone(india);
-  lying.verificationRoute.corroborated = true;
-  lying.verificationRoute.sources = [
+  lying.verificationRoute!.corroborated = true;
+  lying.verificationRoute!.sources = [
     { url: "https://one.example/a", name: "lone summary", confidence: "secondary" },
   ];
   const lv = journeyVerdict(lying, { conflicts, today: TODAY });

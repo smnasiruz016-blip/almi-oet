@@ -140,7 +140,7 @@ console.log(`   (the finished page needs ${GATE.uniqueWords} uniqueWords to clea
 for (const c of CORRIDORS) {
   const sourced = [
     c.originRegulator.value,
-    c.verificationRoute.value,
+    c.verificationRoute!.value,
     c.attestationChain?.value ?? "",
     c.feesTimeline?.value ?? "",
     c.englishRoute?.value ?? "",

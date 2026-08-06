@@ -118,9 +118,21 @@ export function composeJourney(
   {
     const paras: string[] = [
       `${dest.regulatorName} needs confirmation from the register you are already on. In ${from} that is ${reg}. ${sentence(corridor.originRegulator.value)}`,
-      sentence(corridor.verificationRoute.value),
-      `Start this early: the timetable is ${reg}'s, not yours.`,
     ];
+    const factsHere = ["originRegulator"];
+    if (corridor.verificationRoute) {
+      factsHere.push("verificationRoute");
+      paras.push(sentence(corridor.verificationRoute.value));
+      paras.push(`Start this early: the timetable is ${reg}'s, not yours.`);
+    } else {
+      // No destination-neutral issuance fact has been sourced for this origin
+      // into this destination. The page says what it knows and points at the
+      // destination's own requirement rather than borrowing another
+      // destination's sentence, which would be false here.
+      paras.push(
+        `How ${reg} issues that confirmation for ${to} has not been separately sourced yet — check the requirement on the ${dest.regulatorName} page and confirm the process with ${reg} directly.`,
+      );
+    }
     push(
       {
         id: "origin-verification",
@@ -129,7 +141,7 @@ export function composeJourney(
           `Getting your registration verified by ${reg}`,
         paras,
       },
-      ["originRegulator", "verificationRoute"],
+      factsHere,
     );
   }
 

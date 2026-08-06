@@ -59,7 +59,10 @@ import {
   SHARED_DESTINATION,
   SHARED_DESTINATION_FAQ,
   destinationGradeConflicts,
+  australiaCorridors,
+  corridorFaqFor,
 } from "./corridors";
+import { destinationBySlug, destinationForOrg } from "./destinations";
 import { composeJourney, isJourneyCurrent, journeyNotCurrentReason } from "@/lib/journey/compose";
 import {
   matrixCells,
@@ -258,41 +261,26 @@ function sectionContext(m: Merged): { section: Section; facts: string[] } | null
  *  and the base does not is IELTS's own numeric scores; those belong in the base
  *  record, not smuggled in through a corridor file. Flagged, not fabricated. */
 function sectionSharedCorridorSteps(m: Merged): { section: Section; facts: string[] } | null {
-  if (m.org.slug !== CORRIDOR_DESTINATION_ORG) return null;
-  const s = SHARED_DESTINATION;
+  // Destination-driven since Australia arrived. Whichever destination lives at
+  // this org page renders ITS shared block here — the UK's Test of Competence
+  // and three English routes at /register/uk-nmc, Australia's IQNM pathway and
+  // ELS standard at /register/au-ahpra. One page owns one destination's uniform
+  // facts, and the corridors into it link rather than repeat.
+  const dest = destinationForOrg(m.org.slug);
+  if (!dest) return null;
   const paras: string[] = [];
   const facts: string[] = [];
-  if (s.testOfCompetence?.value) {
-    facts.push("testOfCompetence");
-    paras.push(sentence(s.testOfCompetence.value));
-  }
-  // v3: the three English routes live here, ONCE, and every corridor links to
-  // them. CORRECTION_3 — v2 wrongly told readers the taught-in-English route
-  // also required employer SIFE. It does not: SIFE is a separate supplementary
-  // route. That correction is only safe if the mechanics are stated in one place
-  // rather than paraphrased on ten corridor pages.
-  if (s.englishRoutesMechanics?.value) {
-    facts.push("englishRoutesMechanics");
-    paras.push(sentence(s.englishRoutesMechanics.value));
-  }
-  if (s.nmcFees?.value) {
-    facts.push("destinationFees");
-    paras.push(sentence(s.nmcFees.value));
-  }
-  if (s.englishMajorityCountryList?.value) {
-    facts.push("majorityEnglishList");
-    paras.push(sentence(s.englishMajorityCountryList.value));
+  for (const { key, fact: f } of dest.sharedFacts) {
+    if (!f?.value) continue;
+    facts.push(key);
+    paras.push(sentence(f.value));
   }
   if (!paras.length) return null;
   paras.push(
     `These steps are the same whichever country you trained in, which is why the country-by-country pages link here rather than repeating them.`,
   );
   return {
-    section: {
-      id: "shared-steps",
-      heading: `The steps every internationally-trained applicant takes`,
-      paras,
-    },
+    section: { id: "shared-steps", heading: `The steps every internationally-trained applicant takes`, paras },
     facts,
   };
 }
@@ -308,13 +296,13 @@ function sectionSharedCorridorSteps(m: Merged): { section: Section; facts: strin
  *  and the page renders that id as a <dl> rather than as prose. Words that ship
  *  but are never measured are how a thin page slips through a green gate. */
 function sectionSharedFaq(m: Merged): { section: Section; facts: string[] } | null {
-  if (m.org.slug !== CORRIDOR_DESTINATION_ORG) return null;
-  if (!SHARED_DESTINATION_FAQ.length) return null;
+  const dest = destinationForOrg(m.org.slug);
+  if (!dest?.sharedFaq.length) return null;
   return {
     section: {
       id: "faq",
       heading: "Common questions",
-      paras: SHARED_DESTINATION_FAQ.flatMap((f) => [f.q, f.a]),
+      paras: dest.sharedFaq.flatMap((f) => [f.q, f.a]),
     },
     facts: ["sharedFaq"],
   };
@@ -727,10 +715,42 @@ export function emitted(): Emitted {
   // they all point at the same destination record, so if the batch and the base
   // disagree about the NMC's grades, every corridor is resting on the conflict.
   const destConflicts = destinationGradeConflicts();
+  // Australia is judged by the same gate, in the same pass, against the same
+  // siblings. Nothing is exempted for being new: if a second destination's
+  // corridors cannot clear the bar the UK's cleared, that is the measurement the
+  // entity spine was built to produce.
+  //
+  // The FAQ is composed in HERE too, which it was not before. The report passed
+  // `faqs` and this pass did not, so the gate has been judging corridors on text
+  // the page does not have — ~120 words short, per corridor. Every corridor
+  // cleared under both, so no page moved, but the two were measuring different
+  // documents and only one of them was the one that ships.
+  const auDest = destinationBySlug("australia");
+  const AU = auDest
+    ? australiaCorridors(auDest.params?.englishNuanceTemplate, auDest.params?.hagueOrigins ?? [])
+    : [];
+  const auJourneyDest = auDest
+    ? {
+        regulatorName: auDest.regulatorName,
+        requirementLine: null,
+        sharedStepsHref: `/register/${auDest.orgSlug}`,
+        sharedStepsSummary: auDest.sharedStepsSummary,
+        destinationVerifiedOn: "2026-08-06",
+      }
+    : null;
+  const ALL_CORRIDORS = [...CORRIDORS, ...AU];
   const jComposed = new Map<string, Composed | null>(
-    CORRIDORS.map((c) => [c.slug, composeJourney(c, destinationFor(c), "nurses", { conflicts: destConflicts })]),
+    ALL_CORRIDORS.map((c) => [
+      c.slug,
+      c.destinationSlug === "australia" && auJourneyDest
+        ? composeJourney(c, auJourneyDest, "nurses", { conflicts: destConflicts })
+        : composeJourney(c, destinationFor(c), "nurses", {
+            conflicts: destConflicts,
+            faqs: corridorFaqFor(c.slug),
+          }),
+    ]),
   );
-  for (const c of largestFirst([...CORRIDORS], (x) => x.slug, jComposed)) {
+  for (const c of largestFirst([...ALL_CORRIDORS], (x) => x.slug, jComposed)) {
     const comp = jComposed.get(c.slug) ?? null;
     if (!comp) {
       skipped.push({ type: "journey", slug: c.slug, reasons: ["no composable data"] });
