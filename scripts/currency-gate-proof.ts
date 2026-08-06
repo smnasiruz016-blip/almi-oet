@@ -160,38 +160,98 @@ console.log("\n=== CORROBORATION via the sources ARRAY (India's new shape) ===")
   );
 }
 
-console.log("\n=== corroborated:false is an AUTHOR OVERRIDE that blocks (Zimbabwe) ===");
+console.log("\n=== THE CORROBORATION RULE, on synthetic fixtures ===");
 {
-  // Zimbabwe cites an official page and a secondary one, so counting sources
-  // says "official present, corroborated". But the official page is the NMC's
-  // and establishes only that SOME verification is required; every NCZ-specific
-  // detail rests on the one secondary. The person who read them marked it
-  // corroborated:false, and that must win over the count.
-  const zw = byOrigin("zimbabwe");
-  const v = journeyVerdict(zw, { conflicts, today: TODAY });
-  expect("zimbabwe is held noindex", v.indexable, false, v.blockers.join(" \u00b7 "));
-  expect(
-    "…on the corroborated:false override, not on a source count",
-    v.blockers.some((b) => /marked NOT corroborated at source/.test(b)),
-    true,
-  );
-  expect(
-    "…and a naive source count would have cleared it",
-    zw.verificationRoute.sources!.some((x) => x.confidence === "official"),
-    true,
-  );
+  // WHY THESE ARE SYNTHETIC. This block used to assert "zimbabwe is held
+  // noindex" against the live batch, because Zimbabwe was the corridor that
+  // happened to carry corroborated:false. Then Zimbabwe was re-sourced against
+  // the NCZ's own good-standing form, legitimately cleared, and the proof of the
+  // RULE went red — for a reason that had nothing to do with the rule.
+  //
+  // That is backwards, and dangerous in a specific way: a rule-proof that breaks
+  // when the data IMPROVES creates pressure to weaken the proof instead of
+  // fixing the data. The second time it happens, someone deletes the assertion.
+  //
+  // So the rule is now proved against fixtures built here, and no real
+  // corridor's data can break it. What the live batch is used for is one thing
+  // only, below: confirming that a corridor which cleared did so on evidence.
+  const base = clone(byOrigin("pakistan"));
+  const withRoute = (sources: any[], corroborated?: boolean) => {
+    const c = clone(base);
+    delete (c.verificationRoute as any).sourceUrl;
+    delete (c.verificationRoute as any).sourceName;
+    delete (c.verificationRoute as any).confidence;
+    (c.verificationRoute as any).sources = sources;
+    (c.verificationRoute as any).corroborated = corroborated;
+    return journeyVerdict(c, { conflicts, today: TODAY });
+  };
+  const OFFICIAL = { url: "https://regulator.example/verify", name: "the regulator", confidence: "official" };
+  const SEC_A = { url: "https://summary-a.example/x", name: "summary A", confidence: "secondary" };
+  const SEC_B = { url: "https://summary-b.example/y", name: "summary B", confidence: "secondary" };
+  const SEC_A2 = { url: "https://www.summary-a.example/z", name: "summary A again", confidence: "secondary" };
 
-  // Flipping the flag to true DOES clear Zimbabwe, because its sources do carry
-  // an official page — which is exactly why the false flag has to be honoured:
-  // the count cannot see that the official page is the NMC's and says nothing
-  // about NCZ's process. Asserted so the asymmetry stays visible.
-  const lifted = clone(zw);
-  lifted.verificationRoute.corroborated = true;
+  expect("one secondary source BLOCKS", withRoute([SEC_A]).indexable, false);
+  expect("two secondaries on the SAME host block", withRoute([SEC_A, SEC_A2]).indexable, false);
+  expect("two secondaries on DIFFERENT hosts clear", withRoute([SEC_A, SEC_B]).indexable, true);
+  expect("one official source clears", withRoute([OFFICIAL]).indexable, true);
+  expect("official + secondaries clears", withRoute([OFFICIAL, SEC_A, SEC_B]).indexable, true);
+
+  // The flag, both directions. Neither can substitute for evidence.
+  const lying = withRoute([SEC_A], true);
+  expect("corroborated:true on a lone secondary still BLOCKS", lying.indexable, false);
   expect(
-    "flipping the flag to true clears it — so the false flag was doing the work",
-    journeyVerdict(lifted, { conflicts, today: TODAY }).indexable,
+    "…and says the flag is unsupported",
+    lying.blockers.some((b) => /marked corroborated but its own sources/.test(b)),
     true,
   );
+  const overridden = withRoute([OFFICIAL, SEC_A], false);
+  expect("corroborated:false OVERRIDES an official source and blocks", overridden.indexable, false);
+  expect(
+    "…naming the override, not a source count",
+    overridden.blockers.some((b) => /marked NOT corroborated at source/.test(b)),
+    true,
+  );
+  expect("the same fixture WITHOUT the false flag clears", withRoute([OFFICIAL, SEC_A]).indexable, true);
+
+  // A supporting (non-load-bearing) fact is exempt from all of the above.
+  const fees = clone(byOrigin("nigeria"));
+  expect(
+    "a lone secondary on feesTimeline does NOT block",
+    journeyVerdict(fees, { conflicts, today: TODAY }).indexable,
+    true,
+  );
+}
+
+console.log("\n=== every corridor that CLEARED did so on evidence ===");
+{
+  // The one thing the live batch is used for. Not "is corridor X indexable" —
+  // that changes as data improves — but the invariant that must hold whatever
+  // the data says: nothing is indexable while a load-bearing fact rests on a
+  // lone secondary source.
+  for (const c of CORRIDORS) {
+    const v = journeyVerdict(c, { conflicts, today: TODAY });
+    if (!v.indexable) continue;
+    for (const key of ["originRegulator", "verificationRoute", "attestationChain", "englishRoute"] as const) {
+      const f = (c as any)[key];
+      if (!f) continue;
+      const srcs = f.sources ?? [{ url: f.sourceUrl, confidence: f.confidence }];
+      const official = srcs.filter((x: any) => x.confidence === "official").length;
+      const hosts = new Set(
+        srcs.filter((x: any) => x.url).map((x: any) => {
+          try {
+            return new URL(x.url).host.replace(/^www[.]/, "");
+          } catch {
+            return x.url;
+          }
+        }),
+      ).size;
+      expect(
+        `${c.originSlug}/${key}: official=${official} independentHosts=${hosts}`,
+        official >= 1 || hosts >= 2,
+        true,
+      );
+    }
+  }
 }
 
 console.log("\n=== an unrecognised verifyStatus FAILS CLOSED ===");

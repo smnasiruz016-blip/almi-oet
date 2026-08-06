@@ -229,14 +229,14 @@
         "sourceUrl": "https://nursescouncil.co.zw/", "sourceName": "Nurses Council of Zimbabwe — official site", "confidence": "official", "asOf": "2026-08", "verifyStatus": "verified"
       },
       "verificationRoute": {
-        "value": "For UK registration the NMC requires verification of the applicant's overseas registration / good standing directly from the home regulator. The Nurses Council of Zimbabwe issues a Certificate of Good Standing / verification. Reported specifics (single secondary, uncorroborated): posted board-to-board rather than handed to the nurse; requires a completed application form with certified copies of the practising certificate, diploma, NCZ registration certificate, the receiving board's request, and proof of fee (EcoCash/card/bank). Confirm directly with NCZ.",
-        "corroborated": false,
+        "value": "The Nurses Council of Zimbabwe (NCZ) issues a Certificate of Good Standing (CGS) through its official 'Clearance form for Certificate of Good Standing Verification'. The applicant supplies personal and registration details, a 10-year employment history with employer details, criminal-record and disciplinary disclosures, intended destination and departure date, and two references from nurse managers in good standing; a Ministry of Health clearance is part of the process. The CGS is transmitted board-to-board — sent directly to the receiving Registrar (the UK NMC) — and NCZ reserves the right to notify the destination board of any matter arising after issue. The clearance process is stated to take about 1–2 weeks; an applicable fee is payable on submission (amount not published — confirm with NCZ).",
+        "corroborated": true,
         "sources": [
-          {"url": "https://www.nmc.org.uk/registration/information-for-internationally-trained-applicants/", "name": "NMC — requires good-standing verification from the home regulator (official, destination-side)", "confidence": "official"},
-          {"url": "https://nursingmanthra.com/nurses-council-of-zimbabwe-foreign-veriifcation-good-standing-registration-renewal-process/", "name": "Nursing Manthra — NCZ good-standing process (secondary; NCZ-specifics single-source)", "confidence": "secondary"}
+          {"url": "https://nursescouncil.co.zw/wp-content/uploads/2022/02/Clearance-form-for-Certificate-of-Good-standing-Verification.pdf", "name": "Nurses Council of Zimbabwe — official Clearance form for Certificate of Good Standing Verification (fetched: board-to-board to the Registrar; MoH clearance; ~1–2 weeks; fee on submission)", "confidence": "official"},
+          {"url": "https://nursescouncil.co.zw/downloads/", "name": "NCZ — Downloads (official forms incl. good-standing/verification)", "confidence": "official"},
+          {"url": "https://nursingmanthra.com/nurses-council-of-zimbabwe-foreign-veriifcation-good-standing-registration-renewal-process/", "name": "Nursing Manthra — NCZ good-standing process (secondary corroboration)", "confidence": "secondary"}
         ],
-        "asOf": "2026-08", "verifyStatus": "confirm-official",
-        "note": "NCZ-specific process rests on a single secondary source — expected to be held noindex by the gate until corroborated against an official NCZ page. Honest gap, not a caveat."
+        "asOf": "2026-08", "verifyStatus": "confirm-official"
       },
       "attestationChain": {
         "value": "Zimbabwe is NOT a member of the Hague Apostille Convention (absent from the HCCH status table), so apostille is unavailable and documents need full consular LEGALISATION: (1) notarisation / High Court authentication; (2) authentication by the Zimbabwe Ministry of Foreign Affairs and International Trade (Legal & Consular Dept); (3) legalisation by the receiving country's mission. NMC verification itself relies mainly on direct regulator-to-regulator confirmation; legalisation is for where authenticated hard-copy documents are required.",
