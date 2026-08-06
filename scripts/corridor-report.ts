@@ -10,14 +10,23 @@
 //
 // No silent caps: every corridor is listed with its reason.
 
-import { CORRIDORS, destinationFor } from "../src/lib/oet-seo/corridors";
-import { composeJourney, journeyNotCurrentReason } from "../src/lib/journey/compose";
+import { CORRIDORS, destinationFor, destinationGradeConflicts } from "../src/lib/oet-seo/corridors";
+import { composeJourney, journeyVerdict } from "../src/lib/journey/compose";
 import { GATE, fingerprint, largestFirst, type Composed } from "../src/lib/oet-seo/compose-core";
+
+// Case (c) is computed once: every corridor points at the same destination
+// record, so a batch-vs-base grade conflict would rest under all of them.
+const conflicts = destinationGradeConflicts();
+if (conflicts.length) {
+  console.log("!! DESTINATION CONFLICTS (block every corridor):");
+  for (const c of conflicts) console.log(`   - ${c}`);
+  console.log("");
+}
 
 const composed = new Map<string, Composed | null>();
 const byslug = new Map<string, Composed>();
 for (const c of CORRIDORS) {
-  const r = composeJourney(c, destinationFor(c), "nurses");
+  const r = composeJourney(c, destinationFor(c), "nurses", { conflicts });
   composed.set(c.slug, r);
   byslug.set(c.slug, r);
 }
@@ -59,14 +68,15 @@ for (const c of largestFirst([...CORRIDORS], (x) => x.slug, composed)) {
   const pass = why.length === 0;
   verdict[c.originSlug] = pass ? "PASS" : "COLLAPSE";
   const vsCol = seen.length === 0 ? "  — (first accepted)" : `${(worst * 100).toFixed(0).padStart(3)}% vs ${who.split("__")[1] ?? who}`;
+  const v = journeyVerdict(c, { conflicts });
   console.log(
-    `${pass ? "PASS    " : "COLLAPSE"} ${c.originSlug.padEnd(12)} uniqueWords=${String(r.uniqueWords).padStart(4)}  facts=${String(r.facts).padStart(2)}  acceptOverlap=${vsCol}   ${why.join(" · ")}`,
+    `${pass ? "PASS    " : "COLLAPSE"} ${c.originSlug.padEnd(12)} uniqueWords=${String(r.uniqueWords).padStart(4)}  facts=${String(r.facts).padStart(2)}  acceptOverlap=${vsCol}  indexable=${v.indexable ? "YES" : "no "}   ${why.join(" · ")}`,
   );
   if (pass) {
     seen.push({ k: c.slug, fp });
-    const reason = journeyNotCurrentReason(c);
-    if (reason) noindexed.push({ slug: c.originSlug, reason });
-    else emitted.push(c.originSlug);
+    const v = journeyVerdict(c, { conflicts });
+    if (v.indexable) emitted.push(c.originSlug);
+    else noindexed.push({ slug: c.originSlug, reason: v.blockers.join(" · ") });
   } else {
     skipped.push({ slug: c.originSlug, reasons: why });
   }
@@ -119,6 +129,19 @@ for (const c of CORRIDORS) {
   console.log(
     `  ${c.originSlug.padEnd(12)} ${String(sourced).padStart(3)} sourced words · ${short > 0 ? `${String(short).padStart(3)} short before any prose` : `${String(-short).padStart(3)} OVER the bar on sourced material alone`}`,
   );
+}
+
+console.log("\n=== CURRENCY GATE, refined (law #5): why each corridor is or is not indexable ===");
+for (const c of CORRIDORS) {
+  const v = journeyVerdict(c, { conflicts });
+  console.log(`  ${c.originSlug.padEnd(12)} indexable=${v.indexable ? "YES" : "NO "}`);
+  console.log(
+    `     caveat-only (reconfirm, does NOT block): ${v.reconfirm.length ? v.reconfirm.map((x) => x.key).join(", ") : "none"}`,
+  );
+  console.log(
+    `     reported (secondary, supporting only)  : ${v.reported.length ? v.reported.map((x) => x.key).join(", ") : "none"}`,
+  );
+  console.log(`     BLOCKERS                               : ${v.blockers.length ? v.blockers.join(" · ") : "none"}`);
 }
 
 console.log("\n=== EMITTED vs SKIPPED (no silent caps) ===");
