@@ -267,7 +267,7 @@
         "asOf": "2026-08", "verifyStatus": "verified"
       },
       "verificationRoute": {
-        "value": "There is no single automated regulator-to-regulator verification for Egypt. The nurse applies directly to the UK NMC via the 'trained outside the UK' route (self-assessment, qualification + ID verification, English, Test of Competence CBT+OSCE, health & character, indemnity), and supplies evidence of registration/good standing obtained from the Egyptian Nursing Syndicate / MoHP and legalised (see attestation). The NMC assesses whether the Egyptian qualification/registration is comparable.",
+        "value": "There is no single automated regulator-to-regulator verification for Egypt. The nurse applies directly to the UK NMC and supplies evidence of registration / good standing obtained from the Egyptian Nursing Syndicate and the Ministry of Health and Population, legalised via the Egyptian Ministry of Foreign Affairs (see attestation chain). The NMC then assesses whether the Egyptian qualification and registration are comparable. (The shared NMC application and Test of Competence steps live on the destination page.)",
         "corroborated": true,
         "sources": [
           {"url": "https://www.nmc.org.uk/registration/joining-the-register/register-nurse-midwife/trained-outside-uk/", "name": "NMC — register if you trained outside the UK", "confidence": "official"},
@@ -304,7 +304,7 @@
         "asOf": "2026-08", "verifyStatus": "verified"
       },
       "verificationRoute": {
-        "value": "The Sri Lanka-trained nurse applies directly to the UK NMC via the 'trained outside the UK' route; the NMC assesses/verifies the qualification and registration, and the applicant satisfies the qualification/eligibility assessment, Test of Competence (CBT then OSCE), English evidence, health & character (covering good standing), ID and indemnity. The applicant obtains registration/good-standing proof from the SLNC as required.",
+        "value": "The Sri Lanka-trained nurse applies directly to the UK NMC and obtains registration / good-standing proof from the Sri Lanka Nursing Council (SLNC) as required for the application; the NMC assesses and verifies the SLNC qualification and registration. Sri Lankan documents are authenticated through the Ministry of Foreign Affairs (see attestation chain). (The shared NMC application and Test of Competence steps live on the destination page.)",
         "corroborated": true,
         "sources": [
           {"url": "https://www.nmc.org.uk/registration/joining-the-register/register-nurse-midwife/trained-outside-uk/", "name": "NMC — register if you trained outside the UK", "confidence": "official"},
