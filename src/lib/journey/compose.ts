@@ -27,9 +27,16 @@
 // tells us nothing.
 
 import { measure, sentence, type Composed, type Section } from "@/lib/oet-seo/compose-core";
-import type { Corridor, JourneyDestination, SourcedFact } from "./types";
+import type { Corridor, JourneyDestination } from "./types";
+import {
+  corridorFacts,
+  indexVerdict,
+  permanentCaveat,
+  type FreshnessPolicy,
+  type IndexVerdict,
+} from "./currency";
 
-export type ComposedJourney = Composed & { corridor: Corridor };
+export type ComposedJourney = Composed & { corridor: Corridor; verdict: IndexVerdict };
 
 /** "the United Kingdom", but "Pakistan". */
 const NEEDS_ARTICLE = /^(United |Netherlands|Philippines|Bahamas|Maldives|Gambia|Czech )/;
@@ -50,27 +57,25 @@ function list(xs: string[]): string {
   return `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
 }
 
-/** Every fact on the corridor, in render order, for the source list and the
- *  currency check. Keeping one list means a fact cannot be rendered without
- *  being citable, or held to a currency rule the source list never mentions. */
-function factsOf(c: Corridor): { key: string; label: string; fact: SourcedFact }[] {
-  const out: { key: string; label: string; fact: SourcedFact }[] = [];
-  const add = (key: string, label: string, f?: SourcedFact) => {
-    if (f) out.push({ key, label, fact: f });
-  };
-  add("originRegulator", "the regulator", c.originRegulator);
-  add("verificationRoute", "the verification route", c.verificationRoute);
-  add("feesTimeline", "eligibility, fees and timeline", c.feesTimeline);
-  add("attestationChain", "the attestation chain", c.attestationChain);
-  add("englishRoute", "the English requirement", c.englishRoute);
-  return out;
-}
+/** The fact list lives in currency.ts so the source list and the index verdict
+ *  read the SAME list. A fact judged by a rule the source section never mentions
+ *  is a fact the reader cannot check. */
+const factsOf = corridorFacts;
 
 export function composeJourney(
   corridor: Corridor,
   dest: JourneyDestination,
   occupationPlural: string,
+  opts: { conflicts?: string[]; policy?: FreshnessPolicy; today?: Date } = {},
 ): ComposedJourney {
+  const verdict = indexVerdict({
+    facts: corridorFacts(corridor),
+    lastVerified: corridor.lastVerified,
+    recordStatus: corridor.verifyStatus,
+    conflicts: opts.conflicts,
+    policy: opts.policy,
+    today: opts.today,
+  });
   const sections: Section[] = [];
   const facts: string[] = [];
   const push = (s: Section | null, f: string[] = []) => {
@@ -232,54 +237,79 @@ export function composeJourney(
   // ── 8. Sourcing and currency. One line per fact, naming who says so — the
   //       source list is itself origin-distinct, because these are the origin's
   //       own authorities.
+  //
+  //       The permanent caveat lives here AND at the top of the page. It is not
+  //       conditional on the verdict: a page that stops saying "check your own
+  //       case" once it passes the gate has quietly promised it checked for you.
   {
     const paras: string[] = [];
     const seen = new Set<string>();
     for (const { label, fact: f } of factsOf(corridor)) {
       if (!f.sourceName || !f.sourceUrl) continue;
-      const line = `${f.sourceName} — ${label}${f.confidence === "secondary" ? ", a secondary summary rather than the authority's own page" : ""}: ${f.sourceUrl}`;
+      const line = `${f.sourceName} — ${label}${f.confidence === "secondary" ? " (reported, not the authority's own page)" : ""}: ${f.sourceUrl}`;
       if (seen.has(line)) continue;
       seen.add(line);
       paras.push(line);
       facts.push("officialUrl");
     }
-    const pending = factsOf(corridor).filter((x) => x.fact.verifyStatus === "confirm-official");
     facts.push("lastVerified");
-    paras.push(`Corridor facts last verified ${corridor.lastVerified}.`);
-    if (pending.length) {
+    if (verdict.reported.length) {
       paras.push(
-        `Not yet re-read at source: ${list(pending.map((p) => p.label))}. Confirm with ${dest.regulatorName} and ${reg} first.`,
+        `Reported rather than read from the authority's own page: ${list(verdict.reported.map((p) => p.label))}. Treat ${verdict.reported.length === 1 ? "it" : "them"} as indicative and check the current figure before budgeting.`,
       );
     }
+    paras.push(permanentCaveat(dest.regulatorName, reg, corridor.lastVerified));
     push({ id: "source", heading: "Sources and last verified", paras }, []);
   }
 
-  return { corridor, ...measure(sections, facts) };
+  return { corridor, verdict, ...measure(sections, facts) };
 }
 
-/** Currency for a corridor.
+/** Currency for a corridor — law #5 as refined on 08-06.
  *
- *  A corridor must be dated, and ANY fact on it carrying `confirm-official` holds
- *  the page out of the index while still rendering. v1 checked only the exemption
- *  because that was the only fact that carried the marker; v2 spreads it across
- *  the regulator's name in Pakistan, the fee schedule in Nigeria, the state-council
- *  route in India and the PRC handoff in the Philippines, so the check now scans
- *  every fact. Missing one would index a page on the strength of a claim nobody
- *  has re-read.
+ *  WHAT CHANGED, because the old behaviour looked responsible and was not: any
+ *  fact carrying `confirm-official` used to hold the page out of the index. All
+ *  four corridors carry one, so all four were noindexed — a page type that had
+ *  just been proven at 4/4 and 25-29% overlap was earning nothing, for the sin of
+ *  telling readers to check their own case.
  *
- *  The page still exists and still says it, with both authorities named — a reader
- *  who finds it is better off than one who finds nothing. `noindex, follow`, out
- *  of the sitemap, until confirmed. */
-export function journeyNotCurrentReason(c: Corridor): string | null {
-  if (!c.lastVerified) return "no lastVerified date";
-  if (c.verifyStatus === "confirm-official") return "corridor awaits re-confirmation";
-  const pending = factsOf(c).filter((x) => x.fact.verifyStatus === "confirm-official");
-  if (pending.length) {
-    return `awaits re-confirmation: ${pending.map((p) => p.key).join(", ")}`;
-  }
-  return null;
+ *  "Confirm your case with the regulator" is a permanent property of this
+ *  material, not a defect to be cleared. It now renders as a caveat and the page
+ *  is indexable. `noindex` is reserved for the three states where the page cannot
+ *  be stood behind at all: a load-bearing fact on a weak source, a fact past its
+ *  freshness window, or a genuine conflict.
+ *
+ *  Pass `conflicts` from the product — only the product knows which two records
+ *  are supposed to agree. */
+export function journeyVerdict(
+  c: Corridor,
+  opts: { conflicts?: string[]; policy?: FreshnessPolicy; today?: Date } = {},
+): IndexVerdict {
+  return indexVerdict({
+    facts: corridorFacts(c),
+    lastVerified: c.lastVerified,
+    recordStatus: c.verifyStatus,
+    conflicts: opts.conflicts,
+    policy: opts.policy,
+    today: opts.today,
+  });
 }
 
-export function isJourneyCurrent(c: Corridor): boolean {
-  return journeyNotCurrentReason(c) === null;
+/** The reason a corridor is held out of the index, or null when it is indexable.
+ *  Reasons are joined rather than truncated: a page held out for two reasons that
+ *  reports one gets "fixed" once and stays out, and the second reason is then
+ *  invisible. */
+export function journeyNotCurrentReason(
+  c: Corridor,
+  opts: { conflicts?: string[]; policy?: FreshnessPolicy; today?: Date } = {},
+): string | null {
+  const v = journeyVerdict(c, opts);
+  return v.indexable ? null : v.blockers.join(" · ");
+}
+
+export function isJourneyCurrent(
+  c: Corridor,
+  opts: { conflicts?: string[]; policy?: FreshnessPolicy; today?: Date } = {},
+): boolean {
+  return journeyVerdict(c, opts).indexable;
 }

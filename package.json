@@ -8,7 +8,7 @@
     "build": "prisma generate && npm run gate:all && next build",
     "db:deploy": "prisma migrate deploy",
     "seed:prod": "tsx scripts/seed/append.ts",
-    "gate:all": "tsx scripts/gates/run.ts && tsx scripts/validate-seed.ts",
+    "gate:all": "tsx scripts/gates/run.ts && tsx scripts/validate-seed.ts && tsx scripts/currency-gate-proof.ts",
     "start": "next start",
     "postinstall": "prisma generate",
     "seed:listening": "tsx scripts/seed/listening.ts",

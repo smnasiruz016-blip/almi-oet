@@ -183,6 +183,54 @@ export function destinationFor(corridor: Corridor): JourneyDestination {
   };
 }
 
+/** Case (c) of the currency gate: a GENUINE conflict between two records that are
+ *  supposed to agree.
+ *
+ *  The batch and the base record both state the NMC's OET grades — the batch
+ *  inside `sharedDestination.englishAcceptedTests`, the base as the figure every
+ *  other page on the surface renders. Two copies of one fact is how enrichment v1
+ *  published three regulators' figures wrongly, and the corridor pages point at
+ *  the base's copy. So they are compared rather than trusted.
+ *
+ *  A parse failure is reported as a conflict, not waved through. "I could not
+ *  check" and "I checked and they agree" are different states, and a gate that
+ *  returns the second when it means the first is exactly the kind that ships
+ *  green and blind. */
+export function destinationGradeConflicts(): string[] {
+  const org = orgBySlug(CORRIDOR_DESTINATION_ORG);
+  const baseLine = org ? gradeLine(org) : null;
+  if (!baseLine) return ["the base record states no OET grades for the destination"];
+
+  const base = new Map<string, string>();
+  for (const m of baseLine.matchAll(/(Listening|Reading|Writing|Speaking)\s+([A-C]\+?)/g)) {
+    base.set(m[1][0], m[2]);
+  }
+
+  const claimed = SHARED_DESTINATION.englishAcceptedTests?.value ?? "";
+  const oet = claimed.match(/OET\s*\(([^)]*)\)/i);
+  if (!oet) {
+    return [
+      "could not read the OET grades out of sharedDestination.englishAcceptedTests to check them against the base record",
+    ];
+  }
+  const batch = new Map<string, string>();
+  for (const m of oet[1].matchAll(/([LRWS](?:\/[LRWS])*)\s*grade\s*([A-C]\+?)/gi)) {
+    for (const letter of m[1].toUpperCase().split("/")) batch.set(letter, m[2].toUpperCase());
+  }
+  if (batch.size === 0) {
+    return ["sharedDestination.englishAcceptedTests names OET but states no readable grades"];
+  }
+
+  const out: string[] = [];
+  for (const [letter, grade] of batch) {
+    const b = base.get(letter);
+    if (b && b.toUpperCase() !== grade) {
+      out.push(`the batch says OET ${letter} ${grade}, the base record says ${b}`);
+    }
+  }
+  return out;
+}
+
 export const CORRIDOR_META = DATA._meta;
 
 export function corridorDataset(): JourneyDataset {

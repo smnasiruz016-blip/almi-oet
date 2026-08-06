@@ -57,6 +57,7 @@ import {
   corridorPath,
   CORRIDOR_DESTINATION_ORG,
   SHARED_DESTINATION,
+  destinationGradeConflicts,
 } from "./corridors";
 import { composeJourney, isJourneyCurrent, journeyNotCurrentReason } from "@/lib/journey/compose";
 import {
@@ -688,8 +689,12 @@ export function emitted(): Emitted {
   const journeys: string[] = [];
   const noindexJourneys: string[] = [];
   const jSeen: Set<string>[] = [];
+  // Case (c) of the currency gate is computed ONCE and applies to every corridor:
+  // they all point at the same destination record, so if the batch and the base
+  // disagree about the NMC's grades, every corridor is resting on the conflict.
+  const destConflicts = destinationGradeConflicts();
   const jComposed = new Map<string, Composed | null>(
-    CORRIDORS.map((c) => [c.slug, composeJourney(c, destinationFor(c), "nurses")]),
+    CORRIDORS.map((c) => [c.slug, composeJourney(c, destinationFor(c), "nurses", { conflicts: destConflicts })]),
   );
   for (const c of largestFirst([...CORRIDORS], (x) => x.slug, jComposed)) {
     const comp = jComposed.get(c.slug) ?? null;
@@ -703,13 +708,13 @@ export function emitted(): Emitted {
       continue;
     }
     jSeen.push(fingerprint(comp.sections, comp.tables));
-    if (isJourneyCurrent(c)) journeys.push(corridorPath(c));
+    if (isJourneyCurrent(c, { conflicts: destConflicts })) journeys.push(corridorPath(c));
     else {
       noindexJourneys.push(corridorPath(c));
       skipped.push({
         type: "journey",
         slug: c.slug,
-        reasons: [`noindex, out of sitemap — ${journeyNotCurrentReason(c)}`],
+        reasons: [`noindex, out of sitemap — ${journeyNotCurrentReason(c, { conflicts: destConflicts })}`],
       });
     }
   }

@@ -131,6 +131,28 @@ function AwaitingConfirmation({ body }: { body: string }) {
   );
 }
 
+/** The PERMANENT caveat — law #5.
+ *
+ *  Distinct from AwaitingConfirmation above, and the distinction is the whole
+ *  point of the refined gate. That one means "we cannot stand behind this as
+ *  current" and goes away when the fact is re-read. This one means "confirm your
+ *  own case" and never goes away, because it is a property of the material: a
+ *  registration requirement is decided on an individual record, and no amount of
+ *  verification on our side changes that.
+ *
+ *  So it renders on every page, indexable or not, above the fold. A page that
+ *  stops saying it once it passes the gate has quietly promised it checked for
+ *  the reader. */
+function PermanentCaveat({ body }: { body: string }) {
+  return (
+    <div className="mx-auto max-w-3xl px-6">
+      <p className="rounded-2xl border border-almi-bg-peach bg-almi-bg-peach/40 px-5 py-4 text-sm text-almi-text">
+        <span className="font-semibold text-almi-ink">Check your own case.</span> {body}
+      </p>
+    </div>
+  );
+}
+
 /** A composed comparison table.
  *
  *  The table IS the material on a matrix page, which is why the composer hands
@@ -192,6 +214,7 @@ export function RichPage({
   faqs,
   related,
   noindexNote,
+  caveat,
   children,
 }: {
   eyebrow: string;
@@ -203,8 +226,12 @@ export function RichPage({
   tables?: Table[];
   faqs?: { q: string; a: string }[];
   related?: { heading: string; links: RelatedLink[] }[];
-  /** Present iff the currency gate held this page out of the index. */
+  /** Present iff the currency gate held this page out of the index. Temporary:
+   *  it goes away when the fact is re-read at source. */
   noindexNote?: string | null;
+  /** The permanent "confirm your own case" caveat. Renders on every page whether
+   *  indexable or not, and is never cleared. */
+  caveat?: string | null;
   children?: React.ReactNode;
 }) {
   return (
@@ -220,8 +247,14 @@ export function RichPage({
         {subtitle && <p className="mt-2 text-sm text-almi-text-muted">{subtitle}</p>}
       </header>
 
-      {noindexNote && (
+      {caveat && (
         <div className="pt-6">
+          <PermanentCaveat body={caveat} />
+        </div>
+      )}
+
+      {noindexNote && (
+        <div className="pt-4">
           <AwaitingConfirmation body={noindexNote} />
         </div>
       )}

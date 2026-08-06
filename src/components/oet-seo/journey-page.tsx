@@ -11,20 +11,27 @@
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { composeJourney, inCountry, isJourneyCurrent, journeyNotCurrentReason } from "@/lib/journey/compose";
-import { destinationFor, searchTitle } from "@/lib/oet-seo/corridors";
+import { composeJourney, inCountry, journeyVerdict } from "@/lib/journey/compose";
+import { permanentCaveat } from "@/lib/journey/currency";
+import { destinationFor, searchTitle, destinationGradeConflicts } from "@/lib/oet-seo/corridors";
 import { journeyFor } from "@/lib/oet-seo/links";
 import { professionSlugToLabel } from "@/lib/oet-seo/data";
 import { RichPage, buildRichMetadata, type Crumb, type RelatedLink } from "./rich-page";
 
-const AWAITING =
-  "Some facts on this page are compiled from published sources and have not been re-read against the authorities' own current pages. Confirm with the NMC and with your national council before you rely on them.";
+/** Shown ONLY when the refined currency gate actually holds the page back —
+ *  a load-bearing fact on a weak source, a fact past its freshness window, or a
+ *  conflict. Not shown for "confirm your own case": that is the permanent caveat
+ *  below, and conflating the two is what noindexed all four proven corridors. */
+function awaitingNote(blockers: string[]): string {
+  return `This page is not currently listed for search while we re-check it: ${blockers.join("; ")}. Everything on it is still shown, with its sources.`;
+}
 
 type Args = { occupationSlug: string; originSlug: string; destinationSlug: string };
 
 export function buildJourneyMetadata({ occupationSlug, originSlug, destinationSlug }: Args): Metadata {
   const c = journeyFor(occupationSlug, originSlug, destinationSlug);
   if (!c) return { robots: { index: false, follow: true } };
+  const verdict = journeyVerdict(c, { conflicts: destinationGradeConflicts() });
   // Search-first title: the corridor's own top query string, which is what people
   // actually type ("PNMC good standing certificate for NMC UK"), not a phrasing
   // we preferred.
@@ -38,7 +45,7 @@ export function buildJourneyMetadata({ occupationSlug, originSlug, destinationSl
     title,
     description,
     path: `/${occupationSlug}/${originSlug}/${destinationSlug}`,
-    noindex: !isJourneyCurrent(c),
+    noindex: !verdict.indexable,
   });
 }
 
@@ -47,7 +54,10 @@ export function JourneyPage({ occupationSlug, originSlug, destinationSlug }: Arg
   if (!c) notFound();
   const label = professionSlugToLabel(occupationSlug) ?? occupationSlug;
   const dest = destinationFor(c);
-  const composed = composeJourney(c, dest, `${label.toLowerCase()}s`);
+  const composed = composeJourney(c, dest, `${label.toLowerCase()}s`, {
+    conflicts: destinationGradeConflicts(),
+  });
+  const verdict = composed.verdict;
 
   const trail: Crumb[] = [
     { label: "AlmiOET", href: "/" },
@@ -103,7 +113,8 @@ export function JourneyPage({ occupationSlug, originSlug, destinationSlug }: Arg
       tables={composed.tables}
       faqs={faqs}
       related={related}
-      noindexNote={journeyNotCurrentReason(c) ? AWAITING : null}
+      caveat={permanentCaveat(dest.regulatorName, c.originRegulatorName, c.lastVerified)}
+      noindexNote={verdict.indexable ? null : awaitingNote(verdict.blockers)}
     />
   );
 }

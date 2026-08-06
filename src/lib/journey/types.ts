@@ -51,8 +51,16 @@ export type SourcedFact = {
   sourceName?: string;
   confidence?: "official" | "secondary" | "notFound";
   asOf?: string;
-  /** "confirm-official" → renders, but noindex until re-read at source. */
+  /** `confirm-official` / `reconfirm-official` → sourced from the official body,
+   *  but the reader must verify their own case: a permanent caveat, NOT a reason
+   *  to noindex. `stale` / `unverified` / `disputed` DO hold the page out of the
+   *  index. See lib/journey/currency.ts — keeping those two apart is the whole
+   *  of law #5 as refined on 08-06. */
   verifyStatus?: string;
+  /** Second and further sources that independently support this claim. A
+   *  secondary source is a lead until something corroborates it; once it is
+   *  corroborated it can carry a load-bearing fact. */
+  corroboratedBy?: string[];
   /** An author's caveat about the fact itself, not part of the claim. */
   note?: string;
 };

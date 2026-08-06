@@ -51,5 +51,10 @@
   "professionRankings": [
     "nursing"
   ],
-  "journeys": []
+  "journeys": [
+    "/nursing/india/united-kingdom",
+    "/nursing/nigeria/united-kingdom",
+    "/nursing/pakistan/united-kingdom",
+    "/nursing/philippines/united-kingdom"
+  ]
 }

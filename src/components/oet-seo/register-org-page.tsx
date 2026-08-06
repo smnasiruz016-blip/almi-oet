@@ -15,6 +15,7 @@ import {
   professionsForOrgRenderable,
 } from "@/lib/oet-seo/links";
 import { orgNote } from "@/lib/oet-seo/org-notes";
+import { permanentCaveat } from "@/lib/journey/currency";
 import { GRADE_DOCTRINE, OetSeoOrgNote } from "./master";
 import { RichPage, buildRichMetadata, type Crumb, type RelatedLink } from "./rich-page";
 
@@ -121,6 +122,15 @@ export function RegisterOrgPage({ orgSlug }: { orgSlug: string }) {
       sections={c.sections}
       faqs={faqs}
       related={related}
+      /* Law #5: the permanent caveat renders on every page, indexable or not,
+         and is never cleared. On this page it matters most — it is the one the
+         corridors link to for the shared steps, so it is where a reader lands
+         expecting the definitive figure. */
+      caveat={permanentCaveat(
+        org.name,
+        "your own national council",
+        verifiedOn(reg) ?? "the date shown above",
+      )}
       noindexNote={isCurrentEnoughToIndex(orgSlug) ? null : AWAITING}
     >
       {note && (
