@@ -17,12 +17,15 @@
  *   G3 distribution  — no MCQ part gameable from answer position
  *   G4 structure     — payload shape valid per task type; all 12 professions covered
  *   G5 audio         — every Listening script has pre-rendered audio committed
+ *   G6 redirect-map  — the precomputed emitted-page list matches what the gate emits
+ *   G7 index-state   — no page changed indexability without a committed snapshot
  */
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { GEN_ITEMS } from "../seed/gen/index";
 import { AUDIO_DIR, audioFileName, audioKey } from "../../src/lib/oet/audio";
 import { isCurrent, OUT } from "../gen-emitted";
+import { indexStateIsCurrent, indexStateDrift, INDEX_STATE_OUT } from "../gen-index-state";
 
 const FLOOR = 15;
 const PROFS = [
@@ -180,8 +183,31 @@ const fail = (gate: string, msg: string) => failures.push(`${gate}  ${msg}`);
   }
 }
 
+// ── G7 · indexability has not drifted ────────────────────────────────────────
+// G6 cannot catch this. emitted.generated.json UNIONS indexed and noindexed
+// pages, because the redirect map only needs to know a page exists — so a page
+// moving between the two changes that file by zero bytes. When the currency gate
+// moved three corridors into the sitemap and later a fourth, G6 stayed green
+// throughout, and a green G6 was being read as "nothing moved".
+//
+// Sitemap membership is the state that actually reaches Google: dropping out
+// loses a page its traffic, entering publishes a claim that may not have been
+// re-read. Neither is visible in a build log. So it gets its own snapshot, and
+// changing it has to be a committed decision rather than a side effect.
+{
+  if (!indexStateIsCurrent()) {
+    const drift = indexStateDrift();
+    fail(
+      "G7",
+      `${INDEX_STATE_OUT.replace(process.cwd(), ".")} is stale — run: npx tsx scripts/gen-index-state.ts`,
+    );
+    for (const d of drift.slice(0, 20)) fail("G7", `  ${d}`);
+    if (drift.length > 20) fail("G7", `  … ${drift.length - 20} more`);
+  }
+}
+
 // ── report ───────────────────────────────────────────────────────────────────
-const GATES = ["G1 item-id", "G2 floor", "G3 distribution", "G4 structure", "G5 audio", "G6 redirect-map"];
+const GATES = ["G1 item-id", "G2 floor", "G3 distribution", "G4 structure", "G5 audio", "G6 redirect-map", "G7 index-state"];
 console.log(`[gates] ${items.length} seed items scanned`);
 for (const g of GATES) {
   const hits = failures.filter((f) => f.startsWith(g.slice(0, 2)));
