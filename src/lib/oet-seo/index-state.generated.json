@@ -2,8 +2,7 @@
   "_generatedBy": "npx tsx scripts/gen-index-state.ts — do not hand-edit; gate G7 checks it",
   "_note": "Indexability per route. Distinct from emitted.generated.json, which unions indexed and noindexed pages and therefore cannot see a page move between them.",
   "counts": {
-    "sitemapped": 26,
-    "noindex": 2
+    "sitemapped": 31
   },
   "routes": {
     "/medicine/uk-gmc": "sitemapped",
@@ -27,11 +26,14 @@
     "/oet-in/united-arab-emirates/medicine": "sitemapped",
     "/oet-in/united-states/nursing": "sitemapped",
     "/register/au-ahpra": "sitemapped",
-    "/register/au-macquarie-university": "noindex",
-    "/register/ie-coru-regulating-health-and-social-care": "noindex",
+    "/register/au-medical-board-of-australia": "sitemapped",
+    "/register/ie-coru-regulating-health-and-social-care": "sitemapped",
+    "/register/ie-medical-council-of-ireland": "sitemapped",
+    "/register/nz-medical-council-of-new-zealand": "sitemapped",
+    "/register/uk-gmc": "sitemapped",
+    "/register/uk-gphc": "sitemapped",
     "/register/uk-hcpc": "sitemapped",
     "/register/uk-nmc": "sitemapped",
-    "/register/us-ecfmg": "sitemapped",
     "/register/us-trumerit": "sitemapped",
     "/speech-pathology/uk-hcpc": "sitemapped"
   }

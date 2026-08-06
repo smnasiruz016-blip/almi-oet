@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "name": "AlmiOET UK professions block — medicine, pharmacy, physiotherapy — v1 (dentistry documented as EXCLUDED)",
+    "purpose": "Opens the PROFESSIONS axis on the proven UK destination. Each is a profession-specific UK regulator + OET requirement + registration pathway — supports rich 'OET for {profession}: {regulator}' recognition pages now, and profession corridors later (which will also need profession-specific ORIGIN regulators, e.g. PM&DC for Pakistani doctors — not yet sourced).",
+    "lastCompiled": "2026-08-06",
+    "oet_honesty": "Confirmed OET-accepting UK professions here: medicine (GMC), pharmacy (GPhC), physiotherapy (HCPC). EXCLUDED: dentistry (GDC) — the GDC's official English-language-controls guidance names ONLY IELTS (overall 7.0, 6.5 each); OET is not listed. Blogs claiming the GDC accepts OET are uncorroborated by the regulator. Do NOT build an OET-dentistry-UK page without confirming acceptance directly with the GDC. (See dentistryExcluded below.)",
+    "reuse_note": "Country-level attestation base + English-medium status from v4 origins reuse for these professions (they are country-level, not profession-specific). What differs per profession: the ORIGIN professional regulator (nursing council vs medical/dental/pharmacy council) and the DESTINATION regulator + exam + OET version. Origin professional regulators are the next gather.",
+    "sourcing": "All from official regulator sites (gmc-uk.org, pharmacyregulation.org, hcpc-uk.org) + GOV.UK. Fees/visa periodically revised → confirm-official."
+  },
+  "professions": [
+    {
+      "slug": "medicine", "profession": "doctor / medicine",
+      "regulator": {
+        "value": "The General Medical Council (GMC) registers and licenses doctors in the UK; you must be registered AND hold a licence to practise. International medical graduates apply for full registration with a licence to practise.",
+        "sources": [{"url": "https://www.gmc-uk.org/registration-and-licensing/join-our-registers/registration-applications/application-guides/full-registration-for-international-medical-graduates", "name": "GMC — Full registration for IMGs", "confidence": "official"}],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "englishOET": {
+        "value": "The GMC accepts OET — doctors take the OET MEDICINE version and need Grade B in each of the four sub-tests, all in the same sitting (grades can't be combined across sittings), valid two years. Alternative: IELTS Academic overall 7.5 with at least 7.0 in each skill.",
+        "sources": [
+          {"url": "https://www.gmc-uk.org/registration-and-licensing/join-our-registers/before-you-apply-guide-for-doctors/evidence-of-your-knowledge-of-english/using-your-oet-certificate", "name": "GMC — Using your OET certificate", "confidence": "official"},
+          {"url": "https://www.gmc-uk.org/registration-and-licensing/join-our-registers/before-you-apply-guide-for-doctors/evidence-of-your-knowledge-of-english/using-your-ielts-certificate", "name": "GMC — Using your IELTS certificate", "confidence": "official"}
+        ],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "registrationPathway": {
+        "value": "International medical graduates reach full registration via: (1) PLAB — pass PLAB Part 1 and Part 2 (within two years), plus an acceptable primary medical qualification and internship; (2) an acceptable GMC-approved postgraduate qualification (exempts from PLAB); or (3) sponsorship by a GMC-approved body. All routes also require English evidence, primary-source verification of the qualification, and a certificate of good standing from each regulator held.",
+        "sources": [{"url": "https://www.gmc-uk.org/registration-and-licensing/join-our-registers/registration-applications/application-guides/full-registration-for-international-medical-graduates", "name": "GMC — IMG routes (PLAB / postgraduate)", "confidence": "official"}],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "verification": {
+        "value": "The GMC requires primary source verification (PSV) of the primary medical qualification, carried out by ECFMG (Intealth) via its EPIC service, which confirms the qualification with the awarding institution directly; plus a certificate of good standing from each medical regulator the doctor has registered with.",
+        "sources": [
+          {"url": "https://www.gmc-uk.org/registration-and-licensing/join-our-registers/before-you-apply-guide-for-doctors/primary-source-verification-for-international-medical-graduates", "name": "GMC — PSV for IMGs", "confidence": "official"},
+          {"url": "https://www.ecfmg.org/psv/instructions-gmc.html", "name": "ECFMG/EPIC — instructions for UK/GMC", "confidence": "official"}
+        ],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "fees": {
+        "value": "GMC (April 2025 figures; revised each April — confirm current): full registration with a licence £463 (+£463/yr retention); low-income discounts apply. PLAB Part 1 £273; PLAB Part 2 £998.",
+        "sources": [{"url": "https://www.gmc-uk.org/registration-and-licensing/managing-your-registration/fees-and-funding/fees-for-doctors", "name": "GMC — Fees for doctors", "confidence": "official"}],
+        "corroborated": false, "verifyStatus": "confirm-official"
+      },
+      "oetRole": "Yes — OET Medicine, Grade B in all four, one sitting.",
+      "searchWording": ["GMC registration for overseas doctors", "OET Medicine grade B GMC", "PLAB 1 and PLAB 2 GMC route", "GMC registration without PLAB postgraduate qualification", "EPIC verification GMC", "certificate of good standing GMC"]
+    },
+    {
+      "slug": "pharmacy", "profession": "pharmacist / pharmacy",
+      "regulator": {
+        "value": "The General Pharmaceutical Council (GPhC) is the statutory regulator for pharmacists in Great Britain (Pharmacy Order 2010); registration is required to practise as a pharmacist.",
+        "sources": [{"url": "https://www.pharmacyregulation.org/pharmacists/registering-pharmacist/non-eea-qualified-international-pharmacists", "name": "GPhC — international pharmacists", "confidence": "official"}],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "englishOET": {
+        "value": "The GPhC accepts OET — Grade B in each of the four areas at one sitting (OET on Paper or on Computer; OET@Home not accepted). Alternative: IELTS Academic overall 7 with no area below 7.",
+        "sources": [
+          {"url": "https://assets.pharmacyregulation.org/files/2025-06/gphc-guidance-on-evidence-of-english-language-skills-june-2025_0.pdf", "name": "GPhC — evidence of English language skills (June 2025)", "confidence": "official"}
+        ],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "registrationPathway": {
+        "value": "Internationally-qualified pharmacists: (1) eligibility assessment of the overseas qualification (fee; eligibility letter valid two academic years); (2) the Overseas Pharmacists' Assessment Programme (OSPAP), a one-year GPhC-accredited postgraduate conversion diploma; (3) 52 weeks of foundation training in Great Britain; (4) pass the common registration assessment; (5) join Part 1 of the register. English and fitness-to-practise requirements also apply.",
+        "sources": [
+          {"url": "https://www.pharmacyregulation.org/pharmacists/registering-pharmacist/non-eea-qualified-international-pharmacists", "name": "GPhC — international pharmacists", "confidence": "official"},
+          {"url": "https://assets.pharmacyregulation.org/files/2025-04/Registering_as_a_pharmacist_in_great_britain_internationally_qualified_pharmacists-April-2025.pdf", "name": "GPhC — registering as an internationally qualified pharmacist (April 2025)", "confidence": "official"}
+        ],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "verification": {
+        "value": "The GPhC verifies overseas qualifications through the eligibility assessment before OSPAP; where a degree isn't equivalent to a UK bachelor's it assesses the syllabus via its international comparative assessment framework. Registration is confirmed on the GPhC online register.",
+        "sources": [{"url": "https://www.pharmacyregulation.org/pharmacists/registering-pharmacist/non-eea-qualified-international-pharmacists", "name": "GPhC — international pharmacists", "confidence": "official"}],
+        "corroborated": false, "verifyStatus": "confirm-official"
+      },
+      "fees": {
+        "value": "GPhC (July 2025 Fees Rules): eligibility assessment £783 (non-refundable); application to enter Part 1 £489 (→£518 from 1 Sep 2026); entry completion £293 (→£311); annual renewal £293 (→£311). OSPAP tuition is set by universities, separate.",
+        "sources": [{"url": "https://assets.pharmacyregulation.org/files/2025-07/gphc-registration-renewal-fees-rules-july-2025.pdf", "name": "GPhC — Fees Rules 2025", "confidence": "official"}],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "oetRole": "Yes — OET Grade B in all four, one sitting.",
+      "searchWording": ["how to register as a pharmacist in the UK from overseas", "GPhC OSPAP requirements", "does GPhC accept OET pharmacist", "GPhC foundation training overseas pharmacist", "GPhC eligibility assessment fee", "convert foreign pharmacy degree UK"]
+    },
+    {
+      "slug": "physiotherapy", "profession": "physiotherapist / physiotherapy",
+      "regulator": {
+        "value": "The Health and Care Professions Council (HCPC) is the UK statutory regulator for physiotherapists (and 15 other professions); registration is required to use the protected title 'Physiotherapist'.",
+        "sources": [{"url": "https://www.hcpc-uk.org/about-us/who-we-regulate/the-professions/", "name": "HCPC — professions we regulate", "confidence": "official"}],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "englishOET": {
+        "value": "The HCPC accepts the profession-specific OET (physiotherapy version) — minimum 350 (Grade B) with no element below 300 for most professions including physiotherapy. Alternatives: IELTS 7.0 overall with no element below 6.5, or TOEFL iBT. Certificate under two years old, taken at an official centre.",
+        "sources": [{"url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/", "name": "HCPC — certificate of English language proficiency", "confidence": "official"}],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "registrationPathway": {
+        "value": "Internationally-trained physiotherapists apply via the HCPC international application route: an online application including a 'standards of proficiency mapping document' where HCPC assesses education/training against UK standards; where gaps are found the applicant may need a Test of Competence or a Period of Adaptation. Successful applicants join the Register and gain the protected title.",
+        "sources": [{"url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/", "name": "HCPC — international application route", "confidence": "official"}],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "verification": {
+        "value": "Applicants certify supporting documents (qualification certificates/transcripts, English proficiency certificate, professional registration/good-standing evidence, and the standards-of-proficiency mapping document), which the HCPC scrutinises against UK standards to verify equivalence and fitness to register.",
+        "sources": [{"url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/", "name": "HCPC — international applications", "confidence": "official"}],
+        "corroborated": true, "verifyStatus": "verified"
+      },
+      "fees": {
+        "value": "HCPC international application scrutiny fee: a one-off non-refundable £678.38 for the assessment; a separate periodic registration fee (per two-year cycle) is payable once approved — see HCPC fees pages for the current amount.",
+        "sources": [{"url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/paying-your-scrutiny-fee/", "name": "HCPC — paying your scrutiny fee", "confidence": "official"}],
+        "corroborated": false, "verifyStatus": "confirm-official"
+      },
+      "oetRole": "Yes — OET physiotherapy version, 350/Grade B.",
+      "searchWording": ["HCPC registration for physiotherapists", "HCPC international application physiotherapist", "does HCPC accept OET physiotherapy", "HCPC test of competence physiotherapist", "HCPC scrutiny fee international application", "overseas physiotherapist UK registration"]
+    }
+  ],
+  "dentistryExcluded": {
+    "profession": "dentistry (GDC)",
+    "reason": "The GDC's official Guidance on English language controls names ONLY IELTS (Academic, overall 7.0 with 6.5 in each) as the standardised test — OET is not listed as accepted evidence, unlike the GMC/GPhC/HCPC. So an 'OET → dentist → UK' page cannot honestly tell a dentist OET satisfies the GDC. Excluded from AlmiOET UK corridors unless/until OET acceptance is confirmed directly with the GDC.",
+    "sources": [
+      {"url": "https://www.gdc-uk.org/docs/default-source/registration/english-language-controls/gdc-guidance-on-english-language-controls.pdf?sfvrsn=88adf167_2", "name": "GDC — Guidance on English language controls (IELTS only)", "confidence": "official"},
+      {"url": "https://www.gdc-uk.org/registration/overseas-registration-exam", "name": "GDC — Overseas Registration Examination (ORE Part 1 + Part 2)", "confidence": "official"}
+    ],
+    "note": "Dentist→UK is still a real REGISTRATION corridor (ORE Part 1 £485, Part 2 ~£6,967 in 2026; ARF £698), just not an OET one. It could live in the broader nursing/health network as an IELTS/ORE page, not an AlmiOET page."
+  }
+}

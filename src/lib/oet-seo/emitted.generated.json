@@ -2,11 +2,14 @@
   "_generatedBy": "npx tsx scripts/gen-emitted.ts — do not hand-edit; gate G6 checks it",
   "orgs": [
     "au-ahpra",
-    "au-macquarie-university",
+    "au-medical-board-of-australia",
     "ie-coru-regulating-health-and-social-care",
+    "ie-medical-council-of-ireland",
+    "nz-medical-council-of-new-zealand",
+    "uk-gmc",
+    "uk-gphc",
     "uk-hcpc",
     "uk-nmc",
-    "us-ecfmg",
     "us-trumerit"
   ],
   "professionOrgs": [

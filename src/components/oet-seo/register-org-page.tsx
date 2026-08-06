@@ -17,6 +17,7 @@ import {
 import { orgNote } from "@/lib/oet-seo/org-notes";
 import { permanentCaveat } from "@/lib/journey/currency";
 import { destinationForOrg } from "@/lib/oet-seo/destinations";
+import { regulatorProfileForOrg } from "@/lib/oet-seo/regulator-profiles";
 import { GRADE_DOCTRINE, OetSeoOrgNote } from "./master";
 import { RichPage, buildRichMetadata, type Crumb, type RelatedLink } from "./rich-page";
 
@@ -65,7 +66,7 @@ export function RegisterOrgPage({ orgSlug }: { orgSlug: string }) {
   // already inside `c.sections` under id "faq" so the gate measured it; this
   // reads it back for the <dl> and the FAQPage JSON-LD, and the prose loop skips
   // that id so the words render exactly once.
-  const sharedFaqs = destinationForOrg(orgSlug)?.sharedFaq ?? [];
+  const sharedFaqs = regulatorProfileForOrg(orgSlug)?.faq ?? destinationForOrg(orgSlug)?.sharedFaq ?? [];
   const proseSections = c.sections.filter((s) => s.id !== "faq");
   const faqs = [
     ...sharedFaqs.map((f) => ({ q: f.q, a: f.a })),

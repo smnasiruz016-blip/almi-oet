@@ -62,6 +62,7 @@ import {
   corridorFaqFor,
 } from "./corridors";
 import { destinationBySlug, destinationForOrg } from "./destinations";
+import { regulatorProfileForOrg } from "./regulator-profiles";
 import { composeJourney, isJourneyCurrent, journeyNotCurrentReason } from "@/lib/journey/compose";
 import {
   matrixCells,
@@ -265,21 +266,47 @@ function sectionSharedCorridorSteps(m: Merged): { section: Section; facts: strin
   // and three English routes at /register/uk-nmc, Australia's IQNM pathway and
   // ELS standard at /register/au-ahpra. One page owns one destination's uniform
   // facts, and the corridors into it link rather than repeat.
+  // Two kinds of profile hang off an org page and they are mutually exclusive by
+  // construction: a DESTINATION block (the uniform steps corridors link to, e.g.
+  // the NMC's or the NMBA's) or a profession × REGULATOR profile (the GMC's PLAB
+  // route, the AMC's exams). uk-nmc and au-ahpra carry the first; uk-gmc,
+  // uk-gphc, uk-hcpc, the Medical Board of Australia, the Irish Medical Council
+  // and the MCNZ carry the second.
+  const profile = regulatorProfileForOrg(m.org.slug);
   const dest = destinationForOrg(m.org.slug);
-  if (!dest) return null;
+  const blockFacts = profile ? profile.facts : dest?.sharedFacts;
+  if (!blockFacts?.length) return null;
   const paras: string[] = [];
   const facts: string[] = [];
-  for (const { key, fact: f } of dest.sharedFacts) {
+  for (const { key, fact: f } of blockFacts) {
     if (!f?.value) continue;
     facts.push(key);
     paras.push(sentence(f.value));
   }
   if (!paras.length) return null;
-  paras.push(
-    `These steps are the same whichever country you trained in, which is why the country-by-country pages link here rather than repeating them.`,
-  );
+  if (profile) {
+    // The regulator's OWN query strings — real, and different for every one of
+    // them, which is the point of this axis. Also the only sentence this file
+    // adds to a profile page: the closing line below belongs to DESTINATION
+    // blocks, where corridors really do link in, and saying it here would be
+    // both untrue and ~25 words of identical text on every regulator page.
+    if (profile.searchWording.length) {
+      facts.push("searchWording");
+      paras.push(
+        `People look for this as ${profile.searchWording.map((w) => `"${w}"`).join(", ")}.`,
+      );
+    }
+  } else {
+    paras.push(
+      `These steps are the same whichever country you trained in, which is why the country-by-country pages link here rather than repeating them.`,
+    );
+  }
   return {
-    section: { id: "shared-steps", heading: `The steps every internationally-trained applicant takes`, paras },
+    section: {
+      id: "shared-steps",
+      heading: profile ? profile.blockHeading : `The steps every internationally-trained applicant takes`,
+      paras,
+    },
     facts,
   };
 }
@@ -295,13 +322,14 @@ function sectionSharedCorridorSteps(m: Merged): { section: Section; facts: strin
  *  and the page renders that id as a <dl> rather than as prose. Words that ship
  *  but are never measured are how a thin page slips through a green gate. */
 function sectionSharedFaq(m: Merged): { section: Section; facts: string[] } | null {
-  const dest = destinationForOrg(m.org.slug);
-  if (!dest?.sharedFaq.length) return null;
+  const items =
+    regulatorProfileForOrg(m.org.slug)?.faq ?? destinationForOrg(m.org.slug)?.sharedFaq ?? [];
+  if (!items.length) return null;
   return {
     section: {
       id: "faq",
       heading: "Common questions",
-      paras: dest.sharedFaq.flatMap((f) => [f.q, f.a]),
+      paras: items.flatMap((f) => [f.q, f.a]),
     },
     facts: ["sharedFaq"],
   };
