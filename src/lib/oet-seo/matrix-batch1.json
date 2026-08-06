@@ -1,0 +1,1947 @@
+[
+ {
+  "profession": "medicine",
+  "country": "United States",
+  "regulator": "Medical licensure is granted by individual U.S. STATE medical boards (coordinated via the Federation of State Medical Boards, FSMB). International medical graduates (IMGs) must first obtain certification from ECFMG (Educational Commission for Foreign Medical Graduates, a division of Intealth). The licensing exam, USMLE, is co-sponsored by FSMB and NBME.",
+  "oet_accepted": "yes",
+  "oet_note": "For medicine in the U.S., OET Medicine is NOT merely accepted — it is the SOLE English/communication-skills test ECFMG accepts for certification under the Pathways (2027 Pathways cycle confirmed). TOEFL and IELTS are NOT accepted for the ECFMG communication skills requirement. Required scores in a single administration: Listening, Reading, Speaking >=350 each and Writing >=300. All applicants must satisfy this regardless of native language or language of medical instruction, with no exceptions. (OET replaced the former USMLE Step 2 CS clinical-skills exam, discontinued in 2021.) Note: OET is used only for the ECFMG communication-skills gate; the USMLE exams themselves and state licensure have no separate English test.",
+  "localSearchWording": [
+   "ECFMG certification pathways OET Medicine requirement",
+   "ECFMG communication skills requirement English OET score",
+   "USMLE Step 1 Step 2 CK international medical graduate ECFMG",
+   "ECFMG EPIC primary source verification medical diploma",
+   "ECFMG J-1 visa sponsorship EVSP residency",
+   "state medical board license international medical graduate ECFMG certificate"
+  ],
+  "notes": "Key high-stakes finding: contrary to the common assumption that U.S. boards default to TOEFL/IELTS, ECFMG certification for MEDICINE requires OET Medicine as the only accepted English/communication test (via the Pathways). Licensure itself is state-by-state; ECFMG certification + USMLE Steps 1 & 2 CK + graduation from a WDOMS-listed school are prerequisites to enter U.S. residency (via the Match), after which a full state license is obtained. Fees verified from the ECFMG 19-Mar-2026 fee-increase notice (effective 1 Apr 2026) and usmle.org apply-exams page. All facts sourced to official ecfmg.org / usmle.org pages.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Medical practice licenses are issued by individual U.S. STATE medical boards (there is no single national medical license); the Federation of State Medical Boards (FSMB) coordinates. IMGs must hold ECFMG (Educational Commission for Foreign Medical Graduates, a division of Intealth) certification. The licensing examination is the USMLE, co-sponsored by FSMB and NBME.",
+    "sources": [
+     {
+      "url": "https://www.ecfmg.org/certification/",
+      "name": "ECFMG - Certification Overview (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.usmle.org/bulletin-information/eligibility",
+      "name": "USMLE 2026 Bulletin of Information - Eligibility (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.fsmb.org/",
+      "name": "Federation of State Medical Boards (official)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "OET Medicine is the ONLY accepted English/communication-skills test for ECFMG certification (2027 Pathways). Required minimum scores in ONE test administration: Listening 350, Reading 350, Speaking 350, and Writing 300. TOEFL and IELTS are NOT accepted for this requirement. All Pathways applicants must satisfy it regardless of native language, language of instruction, or citizenship, with no exceptions.",
+    "sources": [
+     {
+      "url": "https://www.ecfmg.org/certification-pathways/oet.html",
+      "name": "ECFMG Pathways - Assessment of Communication Skills / OET (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ecfmg.org/certification-pathways/",
+      "name": "ECFMG - Requirements for Pathways for Certification (official)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Steps for an IMG: (1) graduate from a medical school listed in the World Directory of Medical Schools (WDOMS) meeting ECFMG eligibility; (2) pass USMLE Step 1 and USMLE Step 2 Clinical Knowledge (CK); (3) satisfy the communication-skills requirement by achieving the required OET Medicine scores; (4) satisfy the clinical-skills requirement via one of six Pathways (e.g., current licensure abroad, an acceptable OSCE, WFME/NCFMEA-recognized accreditation, LCME joint degree, or Mini-CEX clinical evaluation); (5) have medical credentials primary-source verified; then ECFMG issues the Standard Certificate. Certification is required to enter U.S. graduate medical education (residency) via the Match; a full, unrestricted state license follows after completing required training and passing USMLE Step 3.",
+    "sources": [
+     {
+      "url": "https://www.ecfmg.org/certification-pathways/",
+      "name": "ECFMG - Requirements for Pathways for ECFMG Certification (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ecfmg.org/2026ib/certification-requirements.html",
+      "name": "ECFMG 2026 Information Booklet - Requirements for ECFMG Certification (official)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "verification",
+    "value": "ECFMG performs primary-source verification of an IMG's final medical diploma by confirming it directly with the issuing medical school; documents are first checked against verified samples in ECFMG's Medical Credentials Reference Library, then confirmed directly with the institution (ECFMG accepts verification only from the issuing institution). Verification for third parties (e.g., other boards/licensing authorities) is handled through ECFMG's EPIC (Electronic Portfolio of International Credentials) platform via the MyIntealth portal.",
+    "sources": [
+     {
+      "url": "https://www.ecfmg.org/certification/verification-of-credentials.html",
+      "name": "ECFMG - Verification of Credentials (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ecfmg.org/psv/",
+      "name": "ECFMG EPIC - Overview / Primary-Source Verification (official)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "fees",
+    "value": "ECFMG fees effective 1 April 2026: Application for ECFMG Certification USD 580; MyIntealth Applicant Portal account establishment USD 110; Credential Verification Request USD 220. USMLE exam fees (2026-2027): Step 1 USD 695 and Step 2 CK USD 695, plus an international region surcharge for testing outside the U.S./Canada (Step 1 +USD 210; Step 2 CK +USD 235). OET Medicine is paid separately to OET (approx. USD 500-600 depending on region/currency; confirm current price with OET).",
+    "sources": [
+     {
+      "url": "https://www.ecfmg.org/news/2026/03/19/fee-increases-beginning-april-1-2026/",
+      "name": "ECFMG News - Fee Increases Beginning April 1, 2026 (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.usmle.org/apply-exams",
+      "name": "USMLE - Apply for Exams / Fees (official)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "visa",
+    "value": "ECFMG (Intealth) is the SOLE sponsor of J-1 exchange-visitor visas for foreign national physicians in U.S. clinical graduate medical education (residency/fellowship), under the Exchange Visitor Sponsorship Program (EVSP) authorized by the U.S. Department of State's BridgeUSA. ECFMG certification is a prerequisite for J-1 sponsorship. (An alternative for some IMGs is the H-1B visa obtained via the employing training program; that route is not sponsored by ECFMG.)",
+    "sources": [
+     {
+      "url": "https://www.ecfmg.org/evsp/about.html",
+      "name": "ECFMG EVSP - About / J-1 Physician Sponsorship (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ecfmg.org/evsp/applying-general.html",
+      "name": "ECFMG EVSP - General Requirements (official)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   }
+  ],
+  "_cell": "medicine|United States"
+ },
+ {
+  "profession": "medicine",
+  "country": "Canada",
+  "regulator": "Medical Council of Canada (MCC) + provincial/territorial colleges; CaRMS for residency match",
+  "oet_accepted": "yes",
+  "oet_note": "OET is accepted for medicine in Canada. The accepted version is OET Medicine, requiring a minimum grade B in each of the four sub-tests (listening, reading, writing, speaking) in the same sitting, and generally valid within 24 months. This is confirmed on the regulator's own pages: CaRMS national R-1 language requirements list OET Medicine (grade B) alongside IELTS Academic (7.0) and CELPIP-General (9); provincial colleges (CPSO Ontario, CPSM Manitoba) explicitly list OET-Medicine grade B as one of the accepted tests. TOEFL iBT is more limited — accepted only in some provinces (e.g. Ontario for IMGs). OET, IELTS and CELPIP are the widely accepted options across provinces.",
+  "localSearchWording": [
+   "OET Medicine accepted Canada physician registration",
+   "provincial college of physicians and surgeons English language proficiency OET IELTS",
+   "CaRMS R-1 language proficiency requirements OET grade B",
+   "MCC physiciansapply source verification international medical graduate",
+   "practice-ready assessment IMG province Canada"
+  ],
+  "notes": "Licensure in Canada is provincial/territorial, not a single national licence — final registration is granted by the province's college of physicians and surgeons. The MCC administers the national MCCQE (formerly MCCQE Part I) and the NAC Examination (NAC OSCE) and provides source verification of credentials via physiciansapply.ca. OET acceptance is strongly corroborated across multiple independent official regulator hosts (carms.ca, cpso.on.ca, cpsm.mb.ca), so oet_accepted=yes is high-confidence. English requirement applies mainly to those whose medical training was not in English/French; French-track (OET is English) applicants in Quebec have separate French requirements. Fees are from MCC's official fee page (mcc.ca/fees) and are subject to change. Visa/immigration is a separate IRCC matter from licensure.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Medical Council of Canada (MCC) administers national exams (MCCQE, NAC Examination) and credential source verification via physiciansapply.ca; actual licence to practise is issued by each province/territory's medical regulatory authority (e.g. College of Physicians and Surgeons of Ontario). CaRMS administers the residency match.",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://mcc.ca/credentials-and-services/pathways-to-licensure/pathways-for-international-medical-graduates/",
+      "name": "Medical Council of Canada — Pathways for international medical graduates",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.cpso.on.ca/physicians/registration/apply-for-registration/language-proficiency",
+      "name": "College of Physicians and Surgeons of Ontario (CPSO)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.carms.ca/match/r-1-main-residency-match/eligibility-criteria/r-1-summary-of-language-proficiency-requirements/",
+      "name": "CaRMS — R-1 language proficiency requirements",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "OET Medicine (minimum grade B in each of the four sub-tests, same sitting) IS accepted. Also accepted: IELTS Academic (7.0 in each of four components, same sitting) and CELPIP-General (9 in each of four skills, same sitting). TOEFL iBT (approx. 93 overall, min 24 speaking) has limited provincial acceptance (e.g. Ontario for IMGs). Results generally must be within 24 months / valid at application. OET role: fully accepted as a primary option for medicine across provinces and for the CaRMS national match.",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.carms.ca/match/r-1-main-residency-match/eligibility-criteria/r-1-summary-of-language-proficiency-requirements/",
+      "name": "CaRMS — R-1 summary of language proficiency requirements",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.cpso.on.ca/physicians/registration/apply-for-registration/language-proficiency",
+      "name": "CPSO — Language Proficiency",
+      "confidence": "official"
+     },
+     {
+      "url": "https://cpsm.mb.ca/assets/Policies/English%20Language%20Proficiency.pdf",
+      "name": "College of Physicians and Surgeons of Manitoba — English Language Proficiency policy (PDF)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "For international medical graduates: (1) create a physiciansapply.ca account and obtain source verification of the medical degree/credentials via MCC; (2) demonstrate English (or French) language proficiency (OET Medicine grade B / IELTS 7.0 / CELPIP 9); (3) pass the MCCQE (formerly MCCQE Part I) national qualifying exam; (4) pass the NAC Examination (National Assessment Collaboration / NAC OSCE) — required for CaRMS and some Practice-Ready Assessment programs; (5) enter postgraduate training via the CaRMS residency match, an approved-jurisdiction route, or a provincial Practice-Ready Assessment (~12-week workplace assessment for experienced physicians); (6) obtain LMCC and apply for registration/licensure with the provincial/territorial college.",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://mcc.ca/credentials-and-services/pathways-to-licensure/pathways-for-international-medical-graduates/",
+      "name": "MCC — Pathways for international medical graduates",
+      "confidence": "official"
+     },
+     {
+      "url": "https://mcc.ca/examinations-assessments/",
+      "name": "MCC — Examinations and assessments",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Medical credentials (degree, transcripts, etc.) are source-verified through the MCC's verification service accessed via a physiciansapply.ca account; source verification is requested per credential. Language test results and registration are verified directly by the provincial college at application. Ontario candidates may be directed to the provincial regulator for certain steps.",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://mcc.ca/credentials-and-services/pathways-to-licensure/pathways-for-international-medical-graduates/",
+      "name": "MCC — Pathways for international medical graduates",
+      "confidence": "official"
+     },
+     {
+      "url": "https://mcc.ca/fees/",
+      "name": "MCC — Examination and service fees (source verification fee)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "Official MCC fees (CAD, non-refundable, subject to change): physiciansapply.ca one-time account setup $335; source verification $232 per credential; MCCQE application $1,500 (withdrawal fee $750 in some cases); NAC Examination application $3,320. Provincial college registration/licensing fees and language-test fees (OET/IELTS/CELPIP) are additional and set separately by each body.",
+    "corroborated": false,
+    "sources": [
+     {
+      "url": "https://mcc.ca/fees/",
+      "name": "Medical Council of Canada — Examination and service fees",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Licensure and immigration are separate. International physicians need work/study authorization from IRCC to train or practise; residency (visa-trainee) positions and practice require appropriate permits. In Dec 2025 IRCC announced a dedicated Express Entry category and immigration measures for doctors (including faster work-permit processing for eligible physicians). Immigration status does not substitute for provincial licensure.",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/transparency/committees/cimm-nov-18-2025/work-permits-for-visa-trainee-physicians.html",
+      "name": "IRCC (Canada.ca) — Work permits for visa-trainee physicians",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.cicnews.com/2025/12/immigration-minister-announcement-for-healthcare-workers-1263152.html",
+      "name": "CIC News — IRCC Express Entry category for doctors",
+      "confidence": "secondary"
+     }
+    ]
+   }
+  ],
+  "_cell": "medicine|Canada"
+ },
+ {
+  "profession": "medicine",
+  "country": "United Arab Emirates",
+  "regulator": "Dubai Health Authority (DHA); Department of Health – Abu Dhabi (DoH); Ministry of Health and Prevention (MOHAP); Dubai Healthcare City Authority (DHCC)",
+  "oet_accepted": "yes",
+  "oet_note": "OET is explicitly accepted for physicians. Dubai Healthcare City Authority's official \"Licensure Requirements for Physicians and Dentists\" lists OET at \"minimum of grade C or equivalent\" alongside IELTS 5.0, TOEFL 500 and Cambridge 169. Acceptance/threshold varies by authority: DoH Abu Dhabi and MOHAP generally require English proof (OET grade C or IELTS ~5.0-6.0 Academic) for non-exempt applicants, while DHA does not always mandate a test at the eligibility stage. Broad exemptions apply — graduates of an English-curriculum program, holders of a license from a native-English-speaking country for >=1 year, existing DHA-licensed practitioners, or those with an employer undertaking to provide a translator. Private employers frequently demand higher (OET B / IELTS 7.0). OET is accepted but is one option among several, not the dominant/required test.",
+  "localSearchWording": [
+   "DHA Sheryan get registered physician self-assessment",
+   "DoH Abu Dhabi PQR professional qualification requirements doctor",
+   "MOHAP healthcare professional evaluation UAE PASS",
+   "DHA DataFlow primary source verification doctor",
+   "Prometric DHA / MOH / DOH CBT exam booking physician",
+   "UAE unified healthcare professional qualification requirements English proficiency"
+  ],
+  "notes": "Sourcing is strong on official UAE regulator domains (dha.gov.ae, doh.gov.ae, mohap.gov.ae, dhcc.ae, u.ae). The clearest primary statement of English-test acceptance for physicians (including explicit OET grade C) is the DHCC official PDF; DHA's own PQR PDF and service pages describe the pathway/DataFlow/Prometric but do not publish a numeric English score table for physicians on the fetched pages, so the exact per-authority English thresholds (esp. DoH IELTS 6.0) rest partly on secondary corroboration. Fees beyond the DHA AED 200 credentialing fee (DataFlow and Prometric fees) vary and were not pinned to an official figure — treat as indicative. Exam is a Prometric-delivered CBT (\"if required\"), with possible oral assessment; max 3 attempts per category.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Doctors are licensed by one of three regulators depending on jurisdiction: Dubai Health Authority (DHA, dha.gov.ae) for Dubai mainland; Department of Health – Abu Dhabi (DoH, doh.gov.ae) for Abu Dhabi; and Ministry of Health and Prevention (MOHAP, mohap.gov.ae) for the Northern Emirates and federal facilities. Dubai Healthcare City Authority (DHCC, dhcc.ae) regulates the DHCC free zone. All share the Unified Healthcare Professional Qualification Requirements (PQR).",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://services.dha.gov.ae/sheryan/wps/portal/home/services-professional/service-description?scode=NRG&CATALOGUE_TYPE=PROFESSIONAL",
+      "name": "DHA Sheryan – Get Registered service (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.doh.gov.ae/en/pqr",
+      "name": "DoH Abu Dhabi – Professional Qualification Requirements (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://mohap.gov.ae/en/w/healthcare-professional-evaluation",
+      "name": "MOHAP – Healthcare Professional Evaluation (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Accepted English proficiency tests for physicians (per DHCC official licensure guidance, reflecting the UAE unified standard): TOEFL minimum 500; IELTS minimum band 5.0; OET minimum grade C (or equivalent); Cambridge English minimum 169. DoH Abu Dhabi typically requires the higher IELTS 6.0 Academic (or OET grade C); MOHAP ~IELTS 5.0 / OET C. Exemptions: graduated from an English-curriculum program; held/practiced under a license from a native-English-speaking country for >=1 year; hold a valid DHA license; or provide an employer undertaking to supply an English translator. OET is accepted but is one of several options — not mandatory where an exemption or alternative test applies.",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://www.dhcc.ae/gallery/Licensure%20Requirements%20for%20Physicians%20and%20Dentists.pdf",
+      "name": "DHCC Authority – Licensure Requirements for Physicians and Dentists (official PDF)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://felixhappich.com/uae/healthcare/professional-qualification-requirements-pqr/",
+      "name": "Felix Happich – UAE PQR 2026 (secondary)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://www.collegesimplified.in/post/oet-vs-ielts-for-uae-doctors-2026-exam-acceptance-score-requirements-licensing-impact",
+      "name": "OET vs IELTS for UAE Doctors 2026 (secondary)",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "DHA 'Get Registered' pathway: (1) Eligibility – complete the online self-assessment tool against the Unified PQR; eligible applicants proceed. (2) Primary Source Verification via DataFlow and, if required, a Computer-Based Test (CBT) assessment via Prometric (DataFlow and CBT can run in parallel). (3) Submit the 'Get Registered' application, schedule an oral assessment if required. (4) Hiring facility activates the professional license. Processing ~5 working days; maximum 3 exam attempts per category. DoH and MOHAP follow an equivalent flow (apply via UAE PASS, submit documents + DataFlow report, pass exam/exemption, receive evaluation/licence).",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://services.dha.gov.ae/sheryan/wps/portal/home/services-professional/service-description?scode=NRG&CATALOGUE_TYPE=PROFESSIONAL",
+      "name": "DHA Sheryan – Get Registered service (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://mohap.gov.ae/en/w/healthcare-professional-evaluation",
+      "name": "MOHAP – Healthcare Professional Evaluation (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Credentials are verified through Primary Source Verification (PSV) performed by the DataFlow Group, a mandatory step for DHA, DoH and MOHAP. Degrees, licenses, good-standing certificates and experience are verified directly with issuing authorities; the DataFlow report result must be positive before the application proceeds. MOHAP states 'All documents submitted to DataFlow will be verified and the result of the report must be positive.' Registration status is recorded in the regulator's registry (e.g., Dubai Medical Registry via the Sheryan system).",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://mohap.gov.ae/en/w/healthcare-professional-evaluation",
+      "name": "MOHAP – Healthcare Professional Evaluation (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://services.dha.gov.ae/sheryan/wps/portal/home/services-professional/service-description?scode=NRG&CATALOGUE_TYPE=PROFESSIONAL",
+      "name": "DHA Sheryan – Get Registered service (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://dataflowgroup.com/organization/ministry-of-health-and-prevention/",
+      "name": "DataFlow Group – MOHAP PSV (official verification provider)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "DHA credentialing/registration fee is AED 200 for physicians and dentists (also AED 200 for nurses, midwives, allied health), plus 'Knowledge and Innovation' fees added at checkout. Separate DataFlow PSV fees and Prometric CBT exam fees also apply and vary by profession/report scope; these were not pinned to an official published figure and should be confirmed on the DataFlow and Prometric portals at time of application. Fees are shown on customization in the DHA Sheryan portal.",
+    "corroborated": false,
+    "verifyStatus": "official-partial",
+    "sources": [
+     {
+      "url": "https://services.dha.gov.ae/sheryan/wps/portal/home/services-professional/service-description?scode=NRG&CATALOGUE_TYPE=PROFESSIONAL",
+      "name": "DHA Sheryan – Get Registered service, fees (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Employed doctors normally work on a standard employer-sponsored work residence visa (the employing healthcare facility sponsors the work permit, medical fitness test, residence visa and Emirates ID). Highly qualified doctors and specialists/scientists in the health field may also qualify for the UAE 10-year Golden Visa under the 'scientists and specialised talents / doctors' category, subject to accreditation by the relevant authority. Golden Visa criteria and application run through the UAE Government portal and ICP/GDRFA.",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://u.ae/en/information-and-services/visa-and-emirates-id/residence-visas/residence-visa-for-working-in-the-uae",
+      "name": "UAE Government Portal – Residence visa for working in the UAE (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://u.ae/en/information-and-services/visa-and-emirates-id/golden-visa",
+      "name": "UAE Government Portal – Golden visa (official)",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "medicine|United Arab Emirates"
+ },
+ {
+  "profession": "pharmacy",
+  "country": "Ireland",
+  "regulator": "Pharmaceutical Society of Ireland (PSI) — Cumann Cógaiseoirí na hÉireann",
+  "oet_accepted": "yes",
+  "oet_note": "OET is explicitly accepted by the PSI for pharmacist registration. The PSI's official Language Requirements page states: \"Currently IELTS, TOEFL, CAE and OET tests are accepted by the PSI.\" For OET the required result is an overall grade B (350), with Listening 350, Reading 350, Speaking 350, and Writing at least 300 (i.e. Writing may be one grade lower at C+/300 while the rest are B/350). Note the OET (Pharmacy) version should be taken. Home-based tests are generally not accepted, but from June 2026 an exception applies to OET Speaking. OET is a genuine alternative to IELTS/TOEFL/CAE here, not marketing — unlike some US/Canada boards, the Irish pharmacy regulator lists OET among its accepted tests.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "The statutory regulator is the Pharmaceutical Society of Ireland (PSI), which maintains the Register of Pharmacists under the Pharmacy Act 2007. Official site: https://www.psi.ie",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.psi.ie/registration/pharmacists/first-time-registration/qualification-obtained-outside-eu",
+      "name": "PSI — Qualification Obtained Outside the EU (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.psi.ie/registration/pharmacists/first-time-registration/language-requirements",
+      "name": "PSI — Language Requirements (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "PSI states: 'Currently IELTS, TOEFL, CAE and OET tests are accepted by the PSI.' Minimum scores: OET — overall grade B (350) with Listening 350, Reading 350, Speaking 350, Writing 300 (OET Pharmacy). IELTS Academic — overall band 7.0 with Speaking 7, Writing 6.5, Reading 7, Listening 7. TOEFL iBT — total 95 (Speaking 25, Writing 21, Reading 24, Listening 22). CAE (C1 Advanced) — overall C1 (180), all components 180. Home-based tests are not accepted, except OET Speaking from June 2026. Alternative tests may be considered if shown equivalent to CEFR C1.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.psi.ie/registration/pharmacists/first-time-registration/language-requirements",
+      "name": "PSI — Language Requirements (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Third-country (non-EU/EEA, including UK post-2020) qualified pharmacists follow the Third Country Qualification Recognition (TCQR) process under Section 16 of the Pharmacy Act 2007: (1) Application for qualification recognition (TCQR1 form plus Statutory Declaration, Certificate of Identity, Regulatory Data Form); (2) Holistic assessment by the PSI to determine whether examination is required; (3) TCQR Examination administered by RCSI in Dublin, comprising a Multiple Choice Examination (pharmaceutical calculations and applied pharmacy practice) and an Objective Structured Clinical Examination (OSCE) — one or both may be required. After qualification recognition, the applicant applies for registration via the PSI portal and must demonstrate English language competence. UK-qualified pharmacists who began training before 31 Dec 2020 may use transitional/simplified arrangements.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.psi.ie/registration/pharmacists/first-time-registration/qualification-obtained-outside-eu",
+      "name": "PSI — Qualification Obtained Outside the EU (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Credentials are verified through documentary submission with the TCQR1 application: a Statutory Declaration, a Certificate of Identity, and a Regulatory Data Form (confirming good standing / regulatory history). The PSI assesses whether the qualification is appropriate for practice under Section 16 of the Pharmacy Act 2007, and competence is verified via the RCSI-administered TCQR examination (MCQ and OSCE) where required.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.psi.ie/registration/pharmacists/first-time-registration/qualification-obtained-outside-eu",
+      "name": "PSI — Qualification Obtained Outside the EU (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "TCQR pathway fees (per PSI): Stage 1 application for qualification recognition €500; Stage 2 holistic assessment €1,000; Stage 3 examination — €2,250 (MCQ only), €2,750 (OSCE only), or €3,000 (both components). Fees are payable at each stage; English language test fees and annual registration/retention fees are separate.",
+    "verifyStatus": "verified",
+    "corroborated": false,
+    "sources": [
+     {
+      "url": "https://www.psi.ie/registration/pharmacists/first-time-registration/qualification-obtained-outside-eu",
+      "name": "PSI — Qualification Obtained Outside the EU (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Immigration/visa is not administered by the PSI. Non-EEA nationals require an employment permit (e.g. Critical Skills or General Employment Permit — pharmacist is generally an eligible occupation) from the Department of Enterprise, Trade and Employment, and an immigration permission/visa from the Department of Justice (ISD). notFound on the PSI regulator pages themselves; confirm via official Irish immigration/employment-permit sources.",
+    "verifyStatus": "notFound",
+    "corroborated": false,
+    "sources": [
+     {
+      "url": "https://www.psi.ie/registration/pharmacists/first-time-registration/qualification-obtained-outside-eu",
+      "name": "PSI (does not cover visa/immigration) — official",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "localSearchWording": [
+   "PSI Ireland pharmacist third country qualification recognition TCQR",
+   "Pharmaceutical Society of Ireland OET pharmacy accepted grade B",
+   "PSI language requirements pharmacist IELTS TOEFL CAE OET scores",
+   "PSI TCQR examination RCSI MCQ OSCE fees",
+   "PSI Ireland non-EU pharmacist registration steps"
+  ],
+  "notes": "All load-bearing facts sourced directly from the PSI's own official pages (psi.ie), which qualify as primary regulator sources. OET acceptance is confirmed verbatim from the PSI Language Requirements page (\"Currently IELTS, TOEFL, CAE and OET tests are accepted by the PSI\"), so oet_accepted=yes with high confidence. OET required result is grade B/350 with Writing allowed at 300 (OET Pharmacy). A June 2026 exception permits home-based OET Speaking. The OET.com corroborating page returned HTTP 403 and could not be independently fetched, but the official PSI source alone satisfies the >=1 official source standard. Fees are stated on the official PSI page but not independently corroborated by a second host (corroborated:false); recommend re-checking the current PSI fee schedule as amounts are periodically updated. Visa/immigration is outside the regulator's remit (notFound on PSI pages) and should be verified via Irish employment-permit and immigration authorities.",
+  "_cell": "pharmacy|Ireland"
+ },
+ {
+  "profession": "pharmacy",
+  "country": "Australia",
+  "regulator": "Pharmacy Board of Australia (AHPRA) + Australian Pharmacy Council (APC)",
+  "oet_accepted": "yes",
+  "oet_note": "OET is fully accepted by the Pharmacy Board of Australia / AHPRA as one of five approved English tests (there is a pharmacy-specific OET version). Under the AHPRA English language skills registration standard, from 23 April 2026 the required OET result is Listening B, Reading B, Speaking B, Writing C+ (previously a grade B in all four components). OET is accepted on equal footing with IELTS Academic, PTE Academic, TOEFL iBT and Cambridge English — it is not marginalised for this profession.",
+  "localSearchWording": [
+   "Pharmacy Board of Australia overseas pharmacist registration",
+   "Australian Pharmacy Council OPRA exam skills assessment",
+   "AHPRA English language skills registration standard pharmacist OET"
+  ],
+  "notes": "Key correction: the exam long known as KAPS (Knowledge Assessment of Pharmaceutical Sciences) has been rebranded/replaced by the APC as OPRA (Overseas Pharmacist Readiness Assessment) under the Knowledge Stream; CAOP (Competency Assessment of Overseas Pharmacist, formerly the OSCE-style CAOP) covers the Competency Stream. New Zealand pharmacists register via Trans-Tasman Mutual Recognition. Fees verified from APC's official fee schedule (AUD). English scores reflect the AHPRA standard effective 23 April 2026 (common to all National Boards including Pharmacy). Recruitment-agency pages were used only to locate official pages, not as load-bearing sources.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Pharmacy Board of Australia is the national regulator that grants registration to practise pharmacy in Australia, supported administratively by AHPRA. The Australian Pharmacy Council (APC) is the accreditation/assessment body that conducts the skills assessment and examinations for overseas-qualified pharmacists. Official URLs: https://www.pharmacyboard.gov.au and https://www.pharmacycouncil.org.au",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.pharmacyboard.gov.au/Registration/Overseas.aspx",
+      "name": "Pharmacy Board of Australia — Overseas practitioners",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/",
+      "name": "Australian Pharmacy Council — Skills assessment and exams for pharmacists",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Under the AHPRA/Pharmacy Board English language skills registration standard, five tests are accepted. From 23 April 2026 the minimum results are: OET — Listening B, Reading B, Speaking B, Writing C+ (a pharmacy-specific version exists); IELTS Academic — overall 7.0 with Listening 7.0, Reading 7.0, Speaking 7.0, Writing 6.5; PTE Academic — overall 63 (Listening 58, Reading 59, Writing 60, Speaking 76); TOEFL iBT — overall 91 (Listening 22, Reading 22, Writing 23, Speaking 24, select 'Taking TOEFL for Australia'); Cambridge English (C1 Advanced 178 / C2 Proficiency 185). OET is fully accepted and equal to the other tests.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests.aspx",
+      "name": "AHPRA — Accepted English language tests",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.pharmacyboard.gov.au/Registration-Standards/English-language-skills.aspx",
+      "name": "Pharmacy Board of Australia — English language skills registration standard",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Overseas-qualified pharmacists (other than New Zealand) must be assessed and examined via the APC, then apply to the Pharmacy Board for registration. APC offers streams by country of qualification: (1) Knowledge Stream (graduates from countries not listed elsewhere) — pass the OPRA exam (Overseas Pharmacist Readiness Assessment, formerly known as KAPS); (2) Competency Stream (currently-registered pharmacists from Canada, Ireland, UK or USA) — pass the CAOP exam; (3) International Student Stream (degree completed in Australia/NZ); (4) NZ Registered Pharmacist Stream. After the relevant exam, candidates complete Board-approved supervised practice / internship (including an Intern Written Exam after ~75% of supervised hours), meet the English standard, and then apply for general registration. New Zealand pharmacists may register via Trans-Tasman Mutual Recognition.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/",
+      "name": "APC — Skills assessment and exams for pharmacists (streams, OPRA, CAOP, Intern Written Exam)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.pharmacyboard.gov.au/Registration/Overseas.aspx",
+      "name": "Pharmacy Board of Australia — Overseas practitioners (APC exam + supervised practice)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Qualifications and identity of overseas pharmacists are verified by the APC as part of the skills assessment (eligibility check), which issues a Skills Assessment Outcome. Registration status of a practitioner is verified publicly through the AHPRA national Register of practitioners. Candidates must obtain the APC Skills Assessment Outcome before applying to the Department of Home Affairs for migration/visa purposes.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/",
+      "name": "APC — Skills Assessment Outcome issued by APC for Home Affairs",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.pharmacyboard.gov.au/Registration/Overseas.aspx",
+      "name": "Pharmacy Board of Australia — overseas registration process",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "APC skills assessment / exam fees (AUD): Eligibility Check $810 per request; Skills Assessment Outcome $300 per request; Updated Skills Assessment $610 per request; OPRA exam $2,245 per attempt; CAOP exam $2,100 per attempt; Australian Intern Written Exam $790 per attempt. Note: separate AHPRA/Pharmacy Board registration application fees apply in addition and are set by the Board annually.",
+    "corroborated": false,
+    "verifyStatus": "verified-single-official",
+    "sources": [
+     {
+      "url": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment-fees/",
+      "name": "Australian Pharmacy Council — Skills assessment fees",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Migration for pharmacists requires a positive Skills Assessment Outcome from the APC (the designated assessing authority for the pharmacist occupation), which is then submitted to the Department of Home Affairs when applying for a skilled visa. Registration to practise is separate from and additional to the visa/migration process.",
+    "corroborated": false,
+    "verifyStatus": "verified-single-official",
+    "sources": [
+     {
+      "url": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/",
+      "name": "APC — Skills Assessment Outcome required before applying for migration visas via Department of Home Affairs",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "pharmacy|Australia"
+ },
+ {
+  "profession": "pharmacy",
+  "country": "New Zealand",
+  "regulator": "Pharmacy Council of New Zealand / Pharmacy Council (Te Pou Whakamana Kaimatū o Aotearoa)",
+  "oet_accepted": "yes",
+  "oet_note": "OET is explicitly accepted by the Pharmacy Council of New Zealand. Requirement: an A or B in each of the four sub-tests (listening, reading, writing and speaking), valid for two years from the test date. The Council allows combining results from multiple OET sittings within the two-year window. OET sits alongside IELTS Academic (7.0 in each band) as one of only two accepted tests — TOEFL iBT and PTE Academic are NOT listed as accepted. NZ/Australian graduates and pharmacists already registered in Australia, Canada, Ireland, UK or USA are exempt from English testing.",
+  "localSearchWording": [
+   "Pharmacy Council New Zealand English language requirements OET",
+   "PCNZ non-REQR overseas pharmacist registration pathway",
+   "OPRA exam New Zealand Australian Pharmacy Council fee",
+   "Pharmacy Council NZ fees notice 2025 APC pharmacist",
+   "New Zealand Green List pharmacist straight to residence"
+  ],
+  "notes": "Primary regulator is the Pharmacy Council of New Zealand (statutorily now \"Pharmacy Council\"), site pharmacycouncil.org.nz. English requirements, verification and the Non-REQR pathway are drawn from official Council pages. The overseas-qualified route for pharmacists NOT from Australia/Canada/USA/UK/Ireland is the Non-Recognised Equivalent Qualification Route (Non-REQR): preliminary review → OPRA exam + NZPL legislation course → Intern Pharmacist registration → Intern Training Programme + Assessment Centre → full registration. The OPRA (Overseas Pharmacist Readiness Assessment) exam is administered on the Council's behalf by the Australian Pharmacy Council (AU$2,245 per attempt, 2 attempts). Council fees are set in a Gazette Fees Notice (2025-sl402). Note: a March 2026 consultation document proposed changes to registration pathways — figures/steps could change; verify current pages before relying. Visa/Green List facts are from secondary immigration sources (two independent hosts agree Pharmacist is Tier 1 Straight to Residence) and should be confirmed on immigration.govt.nz Appendix 13.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Pharmacy Council of New Zealand (Pharmacy Council / Te Pou Whakamana Kaimatū o Aotearoa) — the statutory registration authority for pharmacists under the Health Practitioners Competence Assurance Act 2003. Website: https://pharmacycouncil.org.nz",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://pharmacycouncil.org.nz/pharmacy_registries/pharmacists-from-other-countries/",
+      "name": "Pharmacy Council of New Zealand — Pharmacists qualified in other countries",
+      "confidence": "official"
+     },
+     {
+      "url": "https://gazette.govt.nz/notice/id/2025-sl402",
+      "name": "NZ Gazette — Pharmacy Council (Fees) Notice 2025",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Two tests accepted: (1) IELTS Academic — 7.0 in each of the four bands (listening, reading, writing, speaking); (2) OET — grade A or B in each of the four sub-tests. Both valid 2 years from test date. OET results can be combined across multiple sittings within the 2-year window; IELTS allows One Skill Retake (one attempt, one skill). TOEFL iBT and PTE Academic are not listed as accepted. Exemptions: NZ/Australian graduates and pharmacists already registered in Australia, Canada, Ireland, UK or USA.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://pharmacycouncil.org.nz/pharmacy_registries/english-language-requirements/",
+      "name": "Pharmacy Council of New Zealand — English Language Requirements",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "For pharmacists qualified outside Australia/Canada/USA/UK/Ireland: the Non-Recognised Equivalent Qualification Route (Non-REQR). Step 1 — Preliminary Review (pharmacy degree BPharm/MPharm/PharmD, current overseas registration, post-registration clinical experience, passed English test). Step 2 — pass OPRA (Overseas Pharmacist Readiness Assessment; max 2 attempts) AND the NZ Pharmacy Legislation course (NZPL, University of Auckland), both within 2 years of preliminary approval. Step 3 — register as an Intern Pharmacist and complete the Intern Training Programme (intake each February) plus the Council's Assessment Centre examination (2 years to complete). Step 4 — full Pharmacist scope of practice. Note: a March 2026 Council consultation proposed changes to these pathways.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://pharmacycouncil.org.nz/pharmacy_registries/pharmacists-from-other-countries/",
+      "name": "Pharmacy Council of New Zealand — Pharmacists qualified in other countries (Non-REQR)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/new-zealand-opra-exam/",
+      "name": "Australian Pharmacy Council — New Zealand OPRA exam",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Qualifications and registration are verified via source documents sent directly to the Council by the relevant overseas authority (degree transcripts and registration certificates), with 90 working days to arrive after the online application. The Council confirms the applicant's overseas registration is in good standing (currently eligible to practise, no serious complaints/disciplinary action). At Intern Pharmacist stage a current Certificate of Good Standing (re-issued if older than 6 months) and an up-to-date criminal conviction record are required.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://pharmacycouncil.org.nz/pharmacy_registries/pharmacists-from-other-countries/",
+      "name": "Pharmacy Council of New Zealand — Pharmacists qualified in other countries",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "Council fees (2025 Gazette Fees Notice 2025-sl402, GST inclusive): Application for Initial Consideration of Registration for non-REQR Applicants NZ$950.00; Issue of an Annual Practising Certificate (APC) – Pharmacist NZ$1,020.00. Separately, the OPRA exam costs AU$2,245 per attempt (payable to the Australian Pharmacy Council). The NZPL legislation course and Intern Training Programme carry their own provider fees (not set by the Council).",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://pharmacycouncil.org.nz/pharmacist/fees/",
+      "name": "Pharmacy Council of New Zealand — Fees",
+      "confidence": "official"
+     },
+     {
+      "url": "https://gazette.govt.nz/notice/id/2025-sl402",
+      "name": "NZ Gazette — Pharmacy Council (Fees) Notice 2025 (2025-sl402)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.pharmacycouncil.org.au/pharmacist/skills-assessment/new-zealand-opra-exam/",
+      "name": "Australian Pharmacy Council — NZ OPRA exam fee AU$2,245",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Pharmacist is on New Zealand's Green List. Both Hospital Pharmacist (ANZSCO 251511) and Retail Pharmacist (251513) appear on the Green List; secondary immigration sources place them in Tier 1 (Straight to Residence pathway), which also requires a qualifying job offer, pay threshold, and full occupational registration (Pharmacy Council APC). Overseas pharmacists typically work first on an Accredited Employer Work Visa (AEWV). Confirm current tier/requirements against Immigration NZ Appendix 13 (opsmanual).",
+    "corroborated": true,
+    "verifyStatus": "secondary-corroborated",
+    "sources": [
+     {
+      "url": "https://www.workingin-newzealand.com/green-list/",
+      "name": "Working In New Zealand — Green List (Hospital/Retail Pharmacist, Tier 1)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://workingin-health.co.nz/green-list/",
+      "name": "Working In Health NZ — Green List (Hospital/Retail Pharmacist, Tier 1)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://www.immigration.govt.nz/live/resident-visas-to-live-in-new-zealand/skilled-residence-pathways-in-new-zealand/green-list-pathway-to-residence/",
+      "name": "Immigration New Zealand — Green List pathway to residence",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "pharmacy|New Zealand"
+ },
+ {
+  "profession": "pharmacy",
+  "country": "United States",
+  "regulator": "National Association of Boards of Pharmacy (NABP) — administers FPGEC certification, the FPGEE, and the NAPLEX/MPJE licensure exams; the individual state Boards of Pharmacy grant the actual pharmacist license.",
+  "oet_accepted": "partial",
+  "oet_note": "As of August 2026 the OET is NOT yet accepted. NABP's official FAQ states plainly: \"No, the current policy remains in place. All applicants should follow the requirements outlined in the FPGEC Candidate Application Bulletin\" — i.e. the TOEFL iBT is currently the ONLY accepted English proficiency test for FPGEC certification. However, NABP's FPGEC Task Force (report published Feb 2026) formally recommended adding the Occupational English Test (OET) as an alternative because it assesses health-professional clinical English; NABP confirms that \"once implemented, candidates will be able to choose if they take the Occupational English Test (OET) or the TOEFL iBT.\" No effective/implementation date has been published. IELTS and the Duolingo English Test were reviewed and NOT recommended. Bottom line for a candidate today: sit the TOEFL iBT — OET is approved-in-principle but not yet valid; TOEFL remains the required/dominant test.",
+  "localSearchWording": [
+   "FPGEC certification foreign pharmacy graduate NABP requirements",
+   "does OET replace TOEFL iBT FPGEC NABP",
+   "FPGEE exam eligibility English proficiency requirement",
+   "NAPLEX MPJE eligibility internationally trained pharmacist state board of pharmacy"
+  ],
+  "notes": "Two-tier system: NABP provides national FPGEC certification (proof of educational equivalency), but the license to practise is issued by the individual state Board of Pharmacy, whose requirements (intern/practical hours, NAPLEX, MPJE) vary by state. Typical pathway: (1) create NABP e-Profile; (2) submit FPGEC application ($750) with credentials evaluated by Educational Credential Evaluators (ECE); (3) pass TOEFL iBT (all 4 sections in one sitting — home/remote-proctored version and MyBest scores NOT accepted); (4) pass the FPGEE (scaled passing score 75, max 5 attempts, offered once per year); (5) receive FPGEC certification; (6) apply to a state Board of Pharmacy, complete state-required internship hours, then pass NAPLEX and the state MPJE (or jurisprudence equivalent). Note: TOEFL score minimums changed with ETS's new score scale as of Jan 21, 2026. Visa/immigration is outside the regulator's remit and is not a licensing requirement — it is handled separately (usually employer-sponsored, e.g. H-1B); NABP/state boards do not sponsor visas. Sources are NABP official pages plus the NABP-published Candidate Application Bulletin (nxtbook), corroborated by pharmacy-trade coverage for the OET policy movement.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "National credential: NABP (National Association of Boards of Pharmacy) via the Foreign Pharmacy Graduate Examination Committee (FPGEC). Actual license to practise: the state Board of Pharmacy in the state where you wish to work. FPGEC certification 'is not a license to practice pharmacy; it ensures that a foreign pharmacist's education meets comparable requirements.'",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://nabp.pharmacy/programs/foreign-pharmacy/",
+      "name": "NABP — FPGEC / Foreign Pharmacy Certification (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://read.nxtbook.com/nabp/bulletin/fpgec_bulletin/title_page.html",
+      "name": "NABP FPGEC Candidate Application Bulletin (official publication)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Currently TOEFL iBT ONLY. All 4 sections must be completed in one testing session; the home/remote-proctored TOEFL iBT is NOT accepted; MyBest scores are currently NOT accepted. Minimum section scores for exams taken before 21 Jan 2026: Reading 21, Listening 22, Writing 22, Speaking 25. For exams taken on/after 21 Jan 2026 (new ETS 1–6 score scale): Reading 4, Listening 5, Writing 4.5, Speaking 5. Scores valid 2 years. OET is approved to be added as an alternative in future but is NOT yet accepted (see oet_note). IELTS and Duolingo are not accepted.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://nabp.pharmacy/programs/foreign-pharmacy/",
+      "name": "NABP — FPGEC page, TOEFL iBT score requirements (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://nabp.pharmacy/help/does-the-oet-replace-the-toefl-ibt-requirement/",
+      "name": "NABP FAQ — 'Does the OET replace the TOEFL iBT requirement?' (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "1) Create NABP e-Profile. 2) Submit FPGEC application; degree/credentials evaluated by Educational Credential Evaluators (ECE). Eligibility requires a pharmacy degree from an accredited non-US school (min 4 years if pre-2003; min 5 years if 2003 or later) and an unrestricted pharmacy license/registration from another country. 3) Pass TOEFL iBT. 4) Pass the FPGEE (Foreign Pharmacy Graduate Equivalency Exam): 200 questions, ~4.5 hrs, offered once per year at Pearson VUE sites, scaled passing score 75, max 5 attempts. 5) Receive FPGEC certification (applicants have 2 years to meet all requirements). 6) Apply to a state Board of Pharmacy, complete state-required internship/practical hours, then pass the NAPLEX (pharmacist competence) and the MPJE (multistate pharmacy jurisprudence) or the state's UMPJE/equivalent. State requirements vary.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://nabp.pharmacy/programs/foreign-pharmacy/",
+      "name": "NABP — FPGEC eligibility & next-steps (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://nabp.pharmacy/programs/foreign-pharmacy/fpgee/",
+      "name": "NABP — FPGEE exam details, passing score 75 (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Educational credentials verified through Educational Credential Evaluators (ECE): candidates submit official transcripts, proof of degree, and certified translations of non-English documents, plus proof of an unrestricted foreign pharmacy license. Progress and eligibility are tracked in the NABP e-Profile. Application evaluation takes approximately 12 weeks. State boards independently verify FPGEC certification, exam scores and internship hours before licensure.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://nabp.pharmacy/programs/foreign-pharmacy/",
+      "name": "NABP — FPGEC document/credential verification (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://read.nxtbook.com/nabp/bulletin/fpgec_bulletin/step_2.html",
+      "name": "NABP FPGEC Candidate Application Bulletin — Complete Your Application (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "FPGEC application fee: $750 (nonrefundable; comprises $100 administrative + $650 document evaluation fee). FPGEE exam fee: $750 for the first attempt on an application (as of 1 Mar 2024); retake on same application $850 ($750 + $100 admin). NAPLEX: $520 exam purchase fee, plus $100 eligibility application and $85 processing fee ($200 rescore). MPJE: $170 exam purchase fee, plus $100 eligibility application and $85 processing fee ($200 rescore). Additional separate costs: TOEFL iBT fee (ETS; NABP offers 15% discount code NABPTOEFL) and ECE evaluation fee. State boards may charge their own licensure/application fees.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://read.nxtbook.com/nabp/bulletin/fpgec_bulletin/step_2.html",
+      "name": "NABP FPGEC Bulletin — $750 application fee breakdown (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://read.nxtbook.com/nabp/bulletin/fpgec_bulletin/what_is_the_fpgee.html",
+      "name": "NABP FPGEC Bulletin — $750 FPGEE exam fee (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://read.nxtbook.com/nabp/bulletin/naplex_mpje_bulletin/exam_fees.html",
+      "name": "NABP NAPLEX/MPJE Bulletin — exam fee schedule (official)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Immigration/visa status is NOT a licensing requirement set by NABP or state boards and is handled entirely separately from the FPGEC/NAPLEX pathway. Internationally-educated pharmacists typically require employer sponsorship (e.g. H-1B specialty-occupation visa, or permanent residency/EAD) to work; neither NABP nor state boards sponsor visas. Some states may ask for a Social Security number or work authorization at the licensure/application stage — confirm with the specific state Board of Pharmacy. No official NABP visa page exists (this is outside the regulator's scope).",
+    "verifyStatus": "not-found-on-regulator",
+    "corroborated": false,
+    "sources": [
+     {
+      "url": "https://nabp.pharmacy/programs/foreign-pharmacy/",
+      "name": "NABP FPGEC page — confirms certification is not a license and directs visa/work matters to state boards; no visa provisions (official, absence-of-requirement)",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "pharmacy|United States"
+ },
+ {
+  "profession": "pharmacy",
+  "country": "Canada",
+  "regulator": "Pharmacy Examining Board of Canada (PEBC) — national certification/examination body; NAPRA (National Association of Pharmacy Regulatory Authorities) — sets national language-proficiency policy and operates Pharmacists' Gateway Canada; final licensure is by the 10 provincial/territorial Pharmacy Regulatory Authorities (PRAs), e.g. Ontario College of Pharmacists (OCP), Alberta College of Pharmacy (ACP).",
+  "oet_accepted": "partial",
+  "oet_note": "OET is accepted under NAPRA's national Language Proficiency Requirement Policy (Feb 2024) at OET grades Reading B, Listening B, Speaking B, Writing C+ (all four subtests in one sitting), and is accepted by the NAPRA-operated Pharmacists' Gateway Canada and by provinces that adopted the 2024 NAPRA policy (e.g. Alberta College of Pharmacy accepts \"the academic version of IELTS or the OET\" as of Sep 1, 2024). HOWEVER, acceptance is province-specific: the Ontario College of Pharmacists does NOT list OET — Ontario accepts CELPIP-General, IELTS Academic/General, PTE Core, and TOEFL only. IELTS Academic is the universally accepted test nationwide. Applicants must confirm OET acceptance with the specific PRA where they intend to license.",
+  "localSearchWording": [
+   "NAPRA Language Proficiency Requirement Policy OET pharmacist",
+   "Pharmacists Gateway Canada language requirements OET IELTS",
+   "Ontario College of Pharmacists language proficiency accepted tests",
+   "Alberta College of Pharmacy language requirements OET IELTS",
+   "PEBC document evaluation evaluating qualifying examination fees",
+   "[your province] pharmacy regulatory authority English language requirement OET"
+  ],
+  "notes": "Two-tier system: PEBC handles credential evaluation and national qualifying exams; the provincial PRA grants the licence and sets language rules (mostly adopting NAPRA's policy). Key OET nuance: nationally/NAPRA-yes, Ontario-no — hence \"partial.\" Pathway update: as of May 13, 2025, eligible international pharmacy graduates may get direct admission to the Qualifying Exam Part I, bypassing the Evaluating Exam. TOEFL was being phased out (accepted for tests on/before Aug 31, 2024 per Gateway; NAPRA 2024 policy standardises on IELTS Academic and OET). Visa/immigration is handled by IRCC, separate from professional registration — not administered by any pharmacy regulator.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "PEBC (Pharmacy Examining Board of Canada) runs national document evaluation and the Evaluating & Qualifying examinations. NAPRA sets the national Language Proficiency Requirement Policy and operates Pharmacists' Gateway Canada. Actual licence to practise is issued by the provincial/territorial Pharmacy Regulatory Authority (e.g. Ontario College of Pharmacists, Alberta College of Pharmacy).",
+    "sources": [
+     {
+      "url": "https://pebc.ca/pharmacists/pharmacist-evaluating-examination/general-information/",
+      "name": "PEBC — Pharmacist Evaluating Examination, General Information",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.pharmacistsgatewaycanada.ca/before-you-start/pebc-certificate-of-qualification/",
+      "name": "Pharmacists' Gateway Canada (NAPRA) — PEBC Certificate of Qualification",
+      "confidence": "official"
+     },
+     {
+      "url": "https://ocpinfo.com/applicants/registration-requirements/language-proficiency/language-proficiency-requirements-for-pharmacists/",
+      "name": "Ontario College of Pharmacists — Language Proficiency Requirements",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "NAPRA national policy (Feb 2024): IELTS Academic — Reading 7.0, Listening 7.0, Speaking 7.0, Writing 6.5; OR OET — Reading B, Listening B, Speaking B, Writing C+ (all four subtests in one sitting). French option: TEF Canada (Reading B2, Listening C1, Speaking C1, Writing B2). Provincial variation exists: Ontario (OCP) accepts CELPIP-General (all 8), IELTS Academic (overall 7, each 6), IELTS General Training, PTE Core, and TOEFL iBT (total 97, Speaking 27, Writing 25) — Ontario does NOT list OET. Alberta (ACP, from Sep 1, 2024) accepts IELTS Academic or OET, aligning with NAPRA.",
+    "sources": [
+     {
+      "url": "https://www.napra.ca/wp-content/uploads/2024/02/NAPRA-Language-Proficiency-Requirement-Policy-February-2024-EN.pdf",
+      "name": "NAPRA — Language Proficiency Requirement Policy (February 2024)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.pharmacistsgatewaycanada.ca/before-you-start/language-requirements/",
+      "name": "Pharmacists' Gateway Canada — Language Requirements",
+      "confidence": "official"
+     },
+     {
+      "url": "https://ocpinfo.com/applicants/registration-requirements/language-proficiency/language-proficiency-requirements-for-pharmacists/",
+      "name": "Ontario College of Pharmacists — Language Proficiency Requirements for Pharmacists",
+      "confidence": "official"
+     },
+     {
+      "url": "https://abpharmacy.ca/news/acp-updates-language-proficiency-requirements/",
+      "name": "Alberta College of Pharmacy — ACP updates language proficiency requirements",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "oetRole",
+    "value": "OET accepted at Reading B / Listening B / Speaking B / Writing C+ under NAPRA's national 2024 policy and via Pharmacists' Gateway Canada and NAPRA-aligned provinces (e.g. Alberta). NOT accepted in Ontario. IELTS Academic is the one test accepted across all jurisdictions. Verdict: partial — province-dependent.",
+    "sources": [
+     {
+      "url": "https://www.napra.ca/wp-content/uploads/2024/02/NAPRA-Language-Proficiency-Requirement-Policy-February-2024-EN.pdf",
+      "name": "NAPRA — Language Proficiency Requirement Policy (February 2024)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://abpharmacy.ca/news/acp-updates-language-proficiency-requirements/",
+      "name": "Alberta College of Pharmacy — language proficiency update (OET accepted)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://ocpinfo.com/applicants/registration-requirements/language-proficiency/language-proficiency-requirements-for-pharmacists/",
+      "name": "Ontario College of Pharmacists — accepted tests (OET not listed)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "registrationPathway",
+    "value": "1) PEBC Document Evaluation — professional undergraduate pharmacy degree that leads to licensure in the country of education; result valid 5 years. 2) Pharmacist Evaluating Examination — one-day computer-based exam (biomedical, pharmaceutical, pharmacy practice, administrative sciences); graduates of ACPE-accredited programs are exempt, and as of May 13, 2025 eligible international pharmacy graduates may receive direct admission to Qualifying Exam Part I, bypassing the Evaluating Exam. 3) Pharmacist Qualifying Examination — Part I MCQ (computer-based) and Part II OSCE (in-person clinical stations); both parts within 3 years. Completion yields the PEBC Certificate of Qualification. 4) Apply to a provincial PRA for licensure (jurisprudence exam, language proficiency, practical training/internship, registration).",
+    "sources": [
+     {
+      "url": "https://www.pharmacistsgatewaycanada.ca/before-you-start/pebc-certificate-of-qualification/",
+      "name": "Pharmacists' Gateway Canada — PEBC Certificate of Qualification pathway",
+      "confidence": "official"
+     },
+     {
+      "url": "https://pebc.ca/pharmacists/pharmacist-evaluating-examination/general-information/",
+      "name": "PEBC — Pharmacist Evaluating Examination general information",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "verification",
+    "value": "Credentials are source-verified: PEBC requires official documents (degree, transcripts, licensure/registration proof) sent directly from the issuing institution/authority. English test results must be sent directly from the testing body — OCP 'only accepts test score reports sent directly from the testing institution'; via Pharmacists' Gateway Canada, IELTS results come through a secure portal, OET/TOEFL results are submitted to gatewayinfo@napra.ca with permission for NAPRA to view them. Provincial PRAs verify the PEBC Certificate of Qualification before licensing.",
+    "sources": [
+     {
+      "url": "https://www.pharmacistsgatewaycanada.ca/before-you-start/language-requirements/",
+      "name": "Pharmacists' Gateway Canada — Language Requirements (submission/verification method)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://ocpinfo.com/applicants/registration-requirements/language-proficiency/language-proficiency-requirements-for-pharmacists/",
+      "name": "Ontario College of Pharmacists — direct-from-institution score reports",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "fees",
+    "value": "Official PEBC fees (CAD, 2026): Document Evaluation $715; Pharmacist Evaluating Examination $910; Qualifying Examination Part I (MCQ) $855; Qualifying Examination Part II (OSCE) $1,915. Payment by Visa/MasterCard online, or certified cheque/bank draft/money order offline. Additional provincial PRA registration, jurisprudence exam, and language-test fees apply separately.",
+    "sources": [
+     {
+      "url": "https://pebc.ca/general-informations/examination-dates-and-fees/",
+      "name": "PEBC — Examination Dates and Fees",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": false,
+    "verifyStatus": "single-official-source"
+   },
+   {
+    "key": "visa",
+    "value": "Immigration/work authorization is administered by Immigration, Refugees and Citizenship Canada (IRCC), separate from and not required for professional registration. Pharmacist is a regulated occupation; PEBC certification and provincial licensure are professional (not immigration) requirements. No pharmacy regulator issues visas. Confirm current pathways (Express Entry, PNP, etc.) with IRCC.",
+    "sources": [
+     {
+      "url": "https://www.pharmacistsgatewaycanada.ca/before-you-start/pebc-certificate-of-qualification/",
+      "name": "Pharmacists' Gateway Canada — registration vs. right to practise (licensure is separate from immigration)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": false,
+    "verifyStatus": "regulator-not-responsible-see-IRCC"
+   }
+  ],
+  "_cell": "pharmacy|Canada"
+ },
+ {
+  "profession": "pharmacy",
+  "country": "United Arab Emirates",
+  "regulator": "Three separate health regulators depending on emirate/jurisdiction: Dubai Health Authority (DHA) for Dubai; Department of Health – Abu Dhabi (DoH, formerly HAAD) for Abu Dhabi; and Ministry of Health and Prevention (MOHAP) for the Northern Emirates (Sharjah, Ajman, RAK, Fujairah, Umm Al Quwain). (Dubai Healthcare City / DHCC has a separate licensing arm for its free zone.)",
+  "oet_accepted": "yes",
+  "oet_note": "OET is officially recognised by UAE health regulators as an accepted English-proficiency test for healthcare professionals. OET lists the UAE (DHA Dubai, MOH/MOHAP, and Abu Dhabi/DoH-HAAD) among its recognising organisations. Where an English test is required, the accepted minimum for DoH Abu Dhabi is OET Grade B (equivalent to IELTS 6.5 / TOEFL iBT 79-80). Important caveat: for pharmacists the English test is NOT always mandatory — it is typically required only where the applicant's qualification was not taught/examined in English or where the authority flags it; the primary language gate for most pharmacist applicants is the licensing exam itself (DHA/MOHAP Prometric or DoH Pearson VUE), which is delivered in English. So OET is 'accepted' but its necessity is conditional. The exact OET grade tied specifically to pharmacy at DHA/MOHAP is not published on a single primary page and rests on secondary corroboration; DoH Abu Dhabi's OET Grade B standard is the clearest documented threshold.",
+  "localSearchWording": [
+   "DHA Sheryan pharmacist Get Registered eligibility requirements",
+   "MOHAP evaluation of health professional pharmacist DataFlow",
+   "DoH Abu Dhabi Professional Qualification Requirements pharmacist PQR",
+   "DHA MOHAP DoH English language OET grade B IELTS requirement pharmacist",
+   "DataFlow primary source verification MOHAP DHA pharmacist package",
+   "Prometric MOHAP DHA pharmacist exam booking fee passing score",
+   "UAE pharmacist licence activation employment residence visa"
+  ],
+  "notes": "UAE has no single national pharmacy register — licensing is split across DHA (Dubai), DoH Abu Dhabi, and MOHAP (Northern Emirates), each with its own portal (DHA Sheryan; DoH via TAMM/UAE Pass; MOHAP online Evaluation System). All three route credential checks through DataFlow Group (Primary Source Verification). Exams: DHA and MOHAP use Prometric computer-based tests (pass mark commonly cited as 60%); DoH Abu Dhabi uses Pearson VUE. Exam may be waived for applicants from certain exempt countries or with recognised experience/qualifications (evaluation officer decides at MOHAP; DHA has an exemption country list). I could not find fully machine-readable primary pages exposing every fee/score on the regulators' own sites (some are behind login/JS on Sheryan/TAMM), so several fee and score figures are marked confidence:'secondary'. Visa specifics are not published by the regulators — the standard route is an employer-sponsored UAE residence/work permit after the professional licence is activated. Verify current fees/scores directly on the relevant regulator portal before relying on them, as these change.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "DHA (Dubai Health Authority) for Dubai — licensing via the Sheryan portal; DoH – Department of Health Abu Dhabi (ex-HAAD) for Abu Dhabi; MOHAP (Ministry of Health and Prevention) for the Northern Emirates. Each licenses pharmacists independently within its jurisdiction.",
+    "sources": [
+     {
+      "url": "https://mohap.gov.ae/en/w/evaluation-of-health-professional",
+      "name": "MOHAP – Evaluation of Health Professional (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://services.dha.gov.ae/sheryan/wps/portal/home/services-professional/service-description?scode=NRG&CATALOGUE_TYPE=PROFESSIONAL",
+      "name": "DHA Sheryan – Get Registered service (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.doh.gov.ae/en",
+      "name": "Department of Health – Abu Dhabi (official)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "corroborated-official"
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "OET is accepted (recognised across UAE health authorities). DoH Abu Dhabi publishes minimums: OET Grade B, or IELTS Academic 6.5, or TOEFL iBT 79-80. DHA and MOHAP recognise OET similarly. English test is conditional for pharmacists — generally required only where the degree was not English-medium or where the authority requires it; the Prometric/Pearson VUE licensing exam is itself in English.",
+    "sources": [
+     {
+      "url": "https://oet.com/test/who-recognises-oet/recognising-organisations/united-arab-emirates",
+      "name": "OET – UAE recognising organisations (official OET)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://oetgcc.com/",
+      "name": "OET GCC – lists DHA Dubai, MOH UAE, HAAD Abu Dhabi as recognising bodies",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://felixhappich.com/abu-dhabi/healthcare/doh/medical-license/",
+      "name": "Felix Happich – DoH Abu Dhabi English scores (OET B / IELTS 6.5 / TOEFL 79-80)",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "OET-recognition-official; exact-grade-secondary"
+   },
+   {
+    "key": "registrationPathway",
+    "value": "1) Create account on the relevant portal (DHA Sheryan / DoH via TAMM+UAE Pass / MOHAP Evaluation System). 2) Submit academic degree, transcripts, experience/good-standing certificates, passport. 3) DataFlow Primary Source Verification. 4) Regulator eligibility/qualification review against Professional Qualification Requirements (PQR). 5) Sit the licensing exam if required — DHA/MOHAP via Prometric, DoH via Pearson VUE (pass mark commonly 60%); exam may be waived for exempt-country/qualification profiles (MOHAP evaluation officer decides). 6) Receive evaluation/eligibility certificate. 7) Secure a job offer from a licensed facility. 8) Activate the professional licence.",
+    "sources": [
+     {
+      "url": "https://mohap.gov.ae/en/w/evaluation-of-health-professional",
+      "name": "MOHAP – Evaluation process steps (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.dataflowgroup.com/blog-post/mohap-exam-pharmacist/",
+      "name": "DataFlow Group – MOHAP pharmacist exam guide",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://felixhappich.com/dubai/healthcare/dha/medical-license/for-pharmacists/",
+      "name": "Felix Happich – DHA pharmacist licensing steps",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "corroborated"
+   },
+   {
+    "key": "verification",
+    "value": "Credentials (degree, transcripts, experience, good-standing) are verified through DataFlow Group Primary Source Verification (PSV), the official verification provider used by MOHAP, DHA and DoH. MOHAP forwards the application to DataFlow after fees are paid; typical PSV turnaround ~14 working days (varies). Outcomes: Positive / Negative / Unable to Verify.",
+    "sources": [
+     {
+      "url": "https://mohap.gov.ae/en/w/evaluation-of-health-professional",
+      "name": "MOHAP – 'forwarded to DataFlow for verification' (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.dataflowgroup.com/blog-post/mohap-exam-pharmacist/",
+      "name": "DataFlow Group – PSV process/timeline",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "corroborated-official"
+   },
+   {
+    "key": "fees",
+    "value": "MOHAP professional evaluation (allied-health category incl. pharmacist): AED 300. MOHAP account/application ~AED 100 plus licence ~AED 1,000 (secondary). Prometric exam fee ~USD 130 (~AED 477). DataFlow PSV ~AED 935-1,235. DHA exam fee ~AED 500-1,000; DHA DataFlow ~AED 935. Illustrative all-in cost estimates: MOHAP ~AED 1,600-1,800; DHA ~AED 4,500-6,000; DoH Abu Dhabi pharmacist ~AED 2,437. Fees change — confirm on the portal.",
+    "sources": [
+     {
+      "url": "https://mohap.gov.ae/en/w/evaluation-of-health-professional",
+      "name": "MOHAP – evaluation fee AED 300 (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.dataflowgroup.com/blog-post/mohap-exam-pharmacist/",
+      "name": "DataFlow Group – MOHAP fees (app AED 100, licence AED 1,000, Prometric USD 130)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://felixhappich.com/dubai/healthcare/dha/medical-license/for-pharmacists/",
+      "name": "Felix Happich – DHA PSV/exam fees",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "MOHAP-evaluation-fee-official; other-fees-secondary"
+   },
+   {
+    "key": "visa",
+    "value": "The regulators do not issue visas. After the pharmacist licence is activated with a licensed employer, the pharmacist works under a standard UAE employer-sponsored residence visa and work permit (issued via the relevant emirate's immigration/ministry of labour channels). No regulator-hosted primary source details visa steps; treat as the general UAE employment-visa route.",
+    "sources": [
+     {
+      "url": "https://mohap.gov.ae/en/w/evaluation-of-health-professional",
+      "name": "MOHAP – licence activation follows job offer (visa not covered by regulator)",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": false,
+    "verifyStatus": "notFound-on-primary; general-knowledge"
+   }
+  ],
+  "_cell": "pharmacy|United Arab Emirates"
+ },
+ {
+  "profession": "physiotherapy",
+  "country": "Ireland",
+  "regulator": "CORU – Health and Social Care Professionals Council (An Chomhairle um Ghairmithe Sláinte agus Cúraim Shóisialaigh); the Physiotherapists Registration Board is the statutory registration board for physiotherapists.",
+  "oet_accepted": "yes",
+  "oet_note": "OET is explicitly accepted by CORU for physiotherapists. Required grades: OET Grade B (score 350) in three components and a minimum of Grade C+ (score 300) in the one remaining component. The OET must be the Medicine/health-profession version, dated within two years of application. OET's online/at-home version is accepted. IELTS Academic (overall 7.0, no element below 6.5) is the main alternative, alongside Cambridge CAE. So OET and IELTS are treated as equally valid options for this profession — OET is genuinely accepted, not marketing-only.",
+  "localSearchWording": [
+   "CORU physiotherapist registration international applicants",
+   "CORU recognition of qualifications physiotherapist",
+   "CORU English language requirements OET IELTS physiotherapist",
+   "CORU recognition fee registration fee",
+   "Ireland Critical Skills Employment Permit physiotherapist"
+  ],
+  "notes": "All load-bearing facts sourced from official CORU (coru.ie) and Irish Government (enterprise.gov.ie / citizensinformation.ie) primary pages. English-language and OET requirements confirmed directly on CORU's official Language requirements page. Recognition fee (€410) confirmed on CORU's recognition-of-international-qualifications page. Physiotherapist is a protected title regulated by CORU under the Health and Social Care Professionals Act 2005. Exact separate registration/annual retention fee amounts were not fully rendered on the fetched CORU fees landing page (registration@coru.ie is the contact) — treat the specific registration/retention euro figure as notFound pending confirmation on the live CORU fees schedule. Physiotherapist is on Ireland's Critical Skills Occupations List (widely corroborated); confirm current list edition and salary threshold before relying on it.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "CORU – Health and Social Care Professionals Council. Physiotherapists are regulated by the Physiotherapists Registration Board within CORU. 'Physiotherapist' is a protected title; you must be on the CORU register to practise and use the title.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://coru.ie/about-us/registration-boards/physiotherapists-registration-board/",
+      "name": "CORU – Physiotherapists Registration Board",
+      "confidence": "official"
+     },
+     {
+      "url": "https://coru.ie/health-and-social-care-professionals/international-qualifications/competent-authorities/",
+      "name": "CORU – Competent Authorities",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "CORU accepts OET, IELTS Academic, and Cambridge Certificate in Advanced English (CAE). For physiotherapists: OET = Grade B (350) in three components and minimum Grade C+ (300) in the remaining component; IELTS Academic = overall 7.0 with no element below 6.5. Test certificate must be dated within two years of application. OET's online/at-home version is accepted; IELTS must be a physical (in-centre) test. TOEFL is not listed as accepted.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.coru.ie/health-and-social-care-professionals/registration/registration-requirements/language/",
+      "name": "CORU – Language requirements",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.healthpathireland.com/post/english-language-requirements-for-healthcare-professionals-in-ireland-2025-guide",
+      "name": "HealthPath Ireland – English Language Requirements 2025",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Two-stage process for internationally qualified applicants. Stage 1 – Recognition of Qualification: apply via CORU's online recognition system with qualification, placement, internship and employment details; once all documents and third-party verifications are received the file is deemed 'File Complete' and assessed against the Physiotherapist Standards of Proficiency (five domains, effective 1 June 2024). If qualifications do not fully meet the standards, applicants may be required to complete a compensation measure – either a Period of Adaptation (supervised clinical practice in Ireland) or an Aptitude Test (in-person examination). Stage 2 – Registration: after receiving a Letter of Recognition, apply to join the register. EU/EEA-qualified physiotherapists may use the European Professional Card route.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://coru.ie/health-and-social-care-professionals/registration/graduate-registration-information/apply-for-recognition-of-international-qualifications/apply-for-recognition-of-international-qualifications.html",
+      "name": "CORU – Apply for Recognition of International Qualifications",
+      "confidence": "official"
+     },
+     {
+      "url": "https://coru.ie/files-recognition/standards-of-proficiency-for-physiotherapists.pdf",
+      "name": "CORU – Physiotherapist Standards of Proficiency (PDF)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Credentials are verified via certified/third-party documentation. Applicants submit certified copies (certified by a solicitor, lawyer or notary public) of passport, certificate of qualification, academic transcript and course syllabus/module descriptions. Universities may email certified documents directly from official institutional addresses, and employers submit verification forms from official email addresses to recognition@coru.ie. A Competent Authority (the regulatory body in the country of origin) must confirm eligibility/entitlement to practise there. CORU acts as the competent authority in Ireland assessing recognition under Directive 2005/36/EC.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://coru.ie/health-and-social-care-professionals/registration/graduate-registration-information/apply-for-recognition-of-international-qualifications/apply-for-recognition-of-international-qualifications.html",
+      "name": "CORU – Apply for Recognition of International Qualifications",
+      "confidence": "official"
+     },
+     {
+      "url": "https://coru.ie/health-and-social-care-professionals/international-qualifications/competent-authorities/",
+      "name": "CORU – Competent Authorities",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "Recognition of International Qualifications application fee: €410 (paid at the recognition stage). A separate registration fee and annual retention fee apply once joining the register; the exact current euro amounts were not confirmed on the fetched CORU fees page and should be verified directly with CORU (registration@coru.ie). Note: statutory CORU registration/retention fees are eligible for Irish income-tax relief.",
+    "corroborated": false,
+    "verifyStatus": "partial",
+    "sources": [
+     {
+      "url": "https://coru.ie/health-and-social-care-professionals/registration/graduate-registration-information/apply-for-recognition-of-international-qualifications/apply-for-recognition-of-international-qualifications.html",
+      "name": "CORU – Apply for Recognition of International Qualifications (recognition fee €410)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://coru.ie/health-and-social-care-professionals/international-qualifications/recognition-fee/",
+      "name": "CORU – Recognition Fee page",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Physiotherapist is on Ireland's Critical Skills Occupations List, so non-EEA physiotherapists can typically apply for a Critical Skills Employment Permit (issued by the Department of Enterprise, Trade and Employment). Benefits include no Labour Market Needs Test, immediate family reunification, and eligibility to apply for Stamp 4 (unrestricted residence) after two years. Minimum salary thresholds apply (Critical Skills thresholds start around €38,000–€44,000 depending on category; confirm current figures). CORU registration is generally required to work as a physiotherapist. Applicants should verify the current Critical Skills list edition and salary threshold at time of application.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/permit-types/critical-skills-employment-permit/",
+      "name": "DETE – Critical Skills Employment Permit",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.citizensinformation.ie/en/moving-country/working-in-ireland/employment-permits/green-card-permits/",
+      "name": "Citizens Information – Critical Skills Employment Permit",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "physiotherapy|Ireland"
+ },
+ {
+  "profession": "physiotherapy",
+  "country": "Australia",
+  "regulator": "Physiotherapy Board of Australia (regulates registration; supported by the Australian Health Practitioner Regulation Agency, Ahpra). The Australian Physiotherapy Council (APC) is the Board-appointed assessing authority for overseas-qualified physiotherapists.",
+  "oet_accepted": "yes",
+  "oet_note": "OET (Medicine version) is explicitly accepted by Ahpra/the Physiotherapy Board as one of five approved English tests. Effective 23 April 2026 the required OET minimums are numeric: Listening 350, Reading 360, Writing 350, Speaking 360 (equivalent to grade B in L/R/S with writing at least 350). No overall score is required. Results from a maximum of two sittings within a 12-month period can be combined, but only from the same test provider (cannot mix OET with IELTS/PTE/TOEFL). Note: the APC's own assessments (APEP/FLYR) have no separate English test requirement, but proof of English (e.g., OET) is required to register with Ahpra.",
+  "localSearchWording": [
+   "Physiotherapy Board of Australia English language skills registration standard",
+   "Ahpra accepted English language tests OET IELTS PTE 2026",
+   "Australian Physiotherapy Council APEP pathway international physiotherapist",
+   "Australian Physiotherapy Council FLYR Express pathway eligible countries",
+   "APC fees and processing times physiotherapy assessment",
+   "Ahpra physiotherapist registration overseas qualified"
+  ],
+  "notes": "All English-test scores and pathway/fee facts corroborated by official regulator sources (Ahpra, Physiotherapy Board, Australian Physiotherapy Council). English minimum scores updated effective 23 April 2026 — the required proficiency level is unchanged, only cross-test score alignment. Slight source-to-source variance existed on OET writing/speaking numbers; the authoritative Ahpra 'Accepted English language tests' page value (L350/R360/W350/S360) is used. Fees are in AUD and current per the APC fees page (verify at time of application as they are indexed/updated). The APC is the assessing authority; the Physiotherapy Board (via Ahpra) makes the final registration decision.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Physiotherapy Board of Australia (supported by Ahpra) is the registration authority. The Australian Physiotherapy Council (APC) is the appointed assessing authority for overseas-qualified physiotherapists. Board: https://www.physiotherapyboard.gov.au/ ; Ahpra: https://www.ahpra.gov.au/ ; APC: https://physiocouncil.com.au/",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.physiotherapyboard.gov.au/",
+      "name": "Physiotherapy Board of Australia",
+      "confidence": "official"
+     },
+     {
+      "url": "https://physiocouncil.com.au/international-physiotherapists/getting-started",
+      "name": "Australian Physiotherapy Council - Getting Started (assessing authority)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ahpra.gov.au/",
+      "name": "Ahpra",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Five accepted tests (minimum scores effective 23 April 2026). IELTS Academic: overall 7 (L7/R7/W6.5/S7). OET: no overall score; L350, R360, W350, S360 (≈ grade B). PTE Academic: overall 63 (L58/R59/W60/S76). TOEFL iBT: overall 91 (L22/R22/W23/S24). Cambridge: C1 Advanced overall 178 or C2 Proficiency overall 185. Results from up to two sittings within 12 months may be combined, same provider only. OET IS accepted for physiotherapy.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests.aspx",
+      "name": "Ahpra - Accepted English language tests",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.physiotherapyboard.gov.au/Codes-Guidelines/FAQ/English-language-skills.aspx",
+      "name": "Physiotherapy Board - English language skills FAQ",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.aussizzgroup.com/blog/ahpra-english-language-requirement-changes/",
+      "name": "Aussizz Group - AHPRA English requirement changes 2026",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "APC is the assessing authority. Pathways: (1) Australian Physiotherapy Entry Pathway (APEP) — stages: Eligibility Assessment, Written Assessment, Capability Assessment, Clinical Workshop; (2) FLYR Pathway for Netherlands, Singapore, Sweden, United States — Eligibility + Written Assessment; (3) Express FLYR Pathway for Canada, UK, Ireland, Hong Kong, South Africa — Eligibility Assessment only; (4) Skills Assessment for skilled-migration visas (document-based). On completion the candidate receives an APC certificate then applies to Ahpra/Physiotherapy Board for registration (Interim Certificate allows Limited Registration under supervision).",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://physiocouncil.com.au/international-physiotherapists",
+      "name": "APC - International Physiotherapists pathways",
+      "confidence": "official"
+     },
+     {
+      "url": "https://physiocouncil.com.au/international-physiotherapists/express-flyr-pathway",
+      "name": "APC - Express FLYR Pathway",
+      "confidence": "official"
+     },
+     {
+      "url": "https://physiocouncil.com.au/international-physiotherapists/getting-started",
+      "name": "APC - Getting Started",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Credentials are assessed by the APC (the Board-appointed assessing authority); each pathway lists required documents in its fact sheet. Final registration decision is made by the Physiotherapy Board via Ahpra, which requires proof of identity, criminal history check, and evidence of English language proficiency. APC issues a Final or Interim Certificate that the applicant submits to Ahpra to apply for registration.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://physiocouncil.com.au/international-physiotherapists/getting-started",
+      "name": "APC - Getting Started (certificate then Ahpra registration)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.physiotherapyboard.gov.au/Registration.aspx",
+      "name": "Physiotherapy Board - Registration",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "APC assessment fees (AUD, per APC fees page). APEP total ≈ $7,814: Eligibility Assessment $1,170 + Cultural Safety Training $235; Written Assessment $2,017; Capability Assessment $2,928; Clinical Workshop $1,464. FLYR Pathway total ≈ $3,422 (Eligibility $1,170 + Cultural Safety $235 + Written $2,017). Express FLYR total ≈ $1,650 (Eligibility $1,415 + Cultural Safety $235). Resit fees apply. These are APC assessment fees only; separate Ahpra registration application/annual fees apply.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://physiocouncil.com.au/international-physiotherapists/fees-and-processing-times",
+      "name": "APC - Fees and processing times",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "For skilled-migration visas, the APC provides a document-based Skills Assessment for physiotherapists (ANZSCO occupation Physiotherapist) — required for points-tested and employer-sponsored visa applications; APC estimates ~8–10 weeks processing for the permanent-residence Skills Assessment. Visa grant is decided by the Department of Home Affairs, separate from APC assessment and Ahpra registration.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://physiocouncil.com.au/international-physiotherapists",
+      "name": "APC - Skills Assessment for Migration Visas",
+      "confidence": "official"
+     },
+     {
+      "url": "https://physiocouncil.com.au/international-physiotherapists/fees-and-processing-times",
+      "name": "APC - Fees and processing times (skills assessment 8-10 weeks)",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "physiotherapy|Australia"
+ },
+ {
+  "profession": "physiotherapy",
+  "country": "New Zealand",
+  "regulator": "Physiotherapy Board of New Zealand (Te Poari Tiaki Tinana o Aotearoa / PBNZ)",
+  "oet_accepted": "yes",
+  "oet_note": "OET is explicitly accepted by the Physiotherapy Board of New Zealand as one of four approved English tests. Required grades: minimum 350 in Reading, Listening and Speaking, and minimum 300 in Writing. Scores may be combined across two sittings within six months provided all areas are examined in both sittings, with no score below 300. Results must be less than 2 years old at application. OET sits alongside IELTS Academic (7/7/7 with 6.5 Writing), PTE Academic (65 overall/each) and TOEFL iBT (94 total) — no single test dominates; all four are on equal footing per the regulator's own English proficiency page.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "The Physiotherapy Board of New Zealand (PBNZ / Te Poari Tiaki Tinana o Aotearoa) is the statutory regulator that registers physiotherapists under the Health Practitioners Competence Assurance Act 2003. Official site: https://physioboard.org.nz. Scopes of practice and prescribed qualifications are set in the New Zealand Gazette (Scopes of Practice and Qualifications Prescribed by the Physiotherapy Board 2024).",
+    "sources": [
+     {
+      "url": "https://physioboard.org.nz/",
+      "name": "Physiotherapy Board of New Zealand - Home",
+      "confidence": "official"
+     },
+     {
+      "url": "https://gazette.govt.nz/notice/id/2024-sl271",
+      "name": "NZ Gazette - Scopes of Practice and Qualifications Prescribed by the Physiotherapy Board 2024",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Four tests accepted, all equal standing. IELTS Academic: min 7 in Reading/Listening/Speaking and 6.5 in Writing. OET: min 350 in Reading/Listening/Speaking and 300 in Writing. PTE Academic: overall min 65 and each skill min 65. TOEFL iBT: total min 94 (Listening 24, Reading 24, Writing 27, Speaking 23). Scores may be combined across two sittings within six months subject to per-test floor rules. Only IELTS Academic (not General) is accepted. Test results must be less than 2 years old at date of application. OET IS accepted.",
+    "sources": [
+     {
+      "url": "https://physioboard.org.nz/faq/english-proficiency-evidence",
+      "name": "PBNZ - English Proficiency Evidence",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": false,
+    "verifyStatus": "verified-official-single-source"
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Internationally qualified physiotherapists register via one of two overseas pathways. (1) International Express Pathway - for those with unrestricted registration or a recognised pre-registration qualification from the UK, Ireland, Canada or South Africa; credential/good-standing verification against the Physiotherapy Practice Thresholds (Australia & Aotearoa NZ), no exam, ~1-2 weeks once complete. (2) International General Pathway - for all other countries; five phases: document check, qualification/curriculum assessment against the Practice Thresholds, supporting-evidence request (applicant has 3 months), assessment of evidence (one resubmission allowed), then registration by the Registrar; averages 6-9 months; no formal written/clinical exam - assessment is by curriculum review and evidence, not a sit-down competence examination. Both require English proof plus two cultural competency modules. Registration must be followed by an Annual Practising Certificate (APC) before practising. Australian-qualified physios use Trans-Tasman Mutual Recognition (TTMR).",
+    "sources": [
+     {
+      "url": "https://physioboard.org.nz/international-general-pathway",
+      "name": "PBNZ - International General Pathway",
+      "confidence": "official"
+     },
+     {
+      "url": "https://physioboard.org.nz/international-express-pathway",
+      "name": "PBNZ - International Express Pathway",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "verification",
+    "value": "Credentials are verified through certified identity documents (passport/birth certificate), degree transcripts/qualification certificates, current registration certificates from the origin regulator (e.g. HCPC, CORU, HPCSA, Canadian regulators), and Certificates of Good Standing from all prior regulatory bodies. Police/criminal clearance is required for any country of residence exceeding 12 months in the past 10 years. Applications are submitted and tracked via the MyPBNZ online portal. Once registered, a practitioner's registration and Annual Practising Certificate status can be confirmed on the Board's public register.",
+    "sources": [
+     {
+      "url": "https://physioboard.org.nz/international-express-pathway",
+      "name": "PBNZ - International Express Pathway (documents/verification)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://physioboard.org.nz/mypbnz-portal",
+      "name": "PBNZ - MyPBNZ portal",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "fees",
+    "value": "PBNZ 2025/2026 fees (NZD): Overseas Graduate registration - General pathway $1,735; Express pathway $847 (rising to $1,067 from 1 April 2026). Australian-qualified (TTMR) registration $460. Physiotherapy specialist scope $2,762; advanced practice scope $1,451. Annual Practising Certificate (APC) $414 including disciplinary levy; late-renewal APC $686; Return to Practice Programme APC $571.50. Application/registration fees are non-refundable. Fees are set annually by Gazette notice (Physiotherapy Board (Fees) Notice).",
+    "sources": [
+     {
+      "url": "https://physioboard.org.nz/resources/fees",
+      "name": "PBNZ - Fees",
+      "confidence": "official"
+     },
+     {
+      "url": "https://gazette.govt.nz/notice/id/2025-sl2321",
+      "name": "NZ Gazette - Physiotherapy Board (Fees) Notice 2025",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "visa",
+    "value": "Physiotherapist is on New Zealand's Immigration Green List under the Tier 1 Straight to Residence pathway (added 11 April 2023; applications opened 29 May 2023). Immigration NZ requires that where occupational registration is needed, it must be obtained BEFORE submitting a residence application - i.e. PBNZ registration/APC must be secured first. Visa/immigration is administered separately by Immigration New Zealand, not the Physiotherapy Board.",
+    "sources": [
+     {
+      "url": "https://pnz.org.nz/Story?Action=View&Story_id=5106",
+      "name": "Physiotherapy New Zealand (PNZ) - Physiotherapists on the Immigration Green List",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://www.immigration.govt.nz/about-us/media-centre/news-notifications/green-list-and-other-immigration-changes",
+      "name": "Immigration New Zealand - Green List changes",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   }
+  ],
+  "localSearchWording": [
+   "Physiotherapy Board of New Zealand overseas registration",
+   "PBNZ International General Pathway",
+   "PBNZ International Express Pathway",
+   "physioboard.org.nz English proficiency evidence OET",
+   "MyPBNZ portal application",
+   "Physiotherapy Board New Zealand fees",
+   "physiotherapist New Zealand Green List straight to residence"
+  ],
+  "notes": "OET is clearly accepted by PBNZ for physiotherapy (min 350 R/L/S, 300 Writing), on equal footing with IELTS Academic, PTE Academic and TOEFL iBT — confirmed directly on the regulator's official English Proficiency Evidence page, not marketing. No sit-down competence exam exists for either overseas pathway; assessment is curriculum/threshold review plus evidence (General) or credential verification (Express, for UK/Ireland/Canada/South Africa only). englishAcceptedTests and the fees breakdown come from single official PBNZ pages (fees also corroborated by the Gazette Fees Notice). Fees change annually via Gazette; Express pathway fee rises to $1,067 from 1 April 2026. All primary facts sourced from physioboard.org.nz (official regulator) and gazette.govt.nz (official). Visa/Green List corroborated by PNZ + Immigration NZ.",
+  "_cell": "physiotherapy|New Zealand"
+ },
+ {
+  "profession": "physiotherapy",
+  "country": "United States",
+  "regulator": "Individual state (and D.C./territory) physical therapy licensing boards license practice; the Federation of State Boards of Physical Therapy (FSBPT) administers the national exam (NPTE) and coordinates credentialing standards; the Foreign Credentialing Commission on Physical Therapy (FCCPT) is a recognized credential-evaluation and visa-screening agency.",
+  "oet_accepted": "partial",
+  "oet_note": "OET is NOT universally accepted. The authoritative FSBPT Jurisdiction Licensure Reference Guide lists ONLY the TOEFL iBT as the English test referenced across state boards, and FSBPT/USCIS guidance states TOEFL is the exam accepted for PTs; many individual state boards require TOEFL specifically (or require no test). However, the credential evaluator FCCPT — which performs English-language verification for its Type 1 licensure evaluations (used by CA, LA, MA, NE, NM, ND, TN, D.C.) and for USCIS visa screening — DOES accept the OET among several tests (with minimums roughly Reading 340 / Listening 320 / Writing 350 / Speaking 360), alongside TOEFL iBT, IELTS Academic, Pearson PTE, Cambridge and the Michigan English Test. Net effect: OET may satisfy FCCPT's English verification and thus some pathways, but TOEFL is the dominant/safe choice and the only test many state boards name. Applicants must confirm with their specific state board, since state rules control.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Licensure is issued by each U.S. state / D.C. / territory physical therapy board (independent legal authority to license and discipline). FSBPT (fsbpt.org) develops and administers the National Physical Therapy Examination (NPTE) and maintains the Jurisdiction Licensure Reference Guide. FCCPT (fccpt.org) is a recognized agency for foreign credential evaluation and USCIS visa (Health Care Worker Certificate) screening.",
+    "sources": [
+     {
+      "url": "https://www.fsbpt.org/Secondary-Pages/Exam-Candidates/National-Exam-NPTE/Eligibility-Requirements",
+      "name": "FSBPT - NPTE Eligibility Requirements (state boards independent; substantial equivalency)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.fccpt.org/services/",
+      "name": "FCCPT - Services (credential evaluation & visa screening agency)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "TOEFL iBT is the primary/dominant accepted English test. The FSBPT Jurisdiction Licensure Reference Guide references ONLY TOEFL iBT for state boards (typical section minimums cited: Writing 24, Speaking 26, Reading 21, Listening 18; some states use a composite of Writing+Reading+Listening = 63 plus Speaking 26; several states require NO English test, e.g. AK, CO, CT, DE, FL, NY, PA, PR). Separately, FCCPT accepts MULTIPLE tests for its own English-language verification: TOEFL iBT, IELTS Academic (Overall 6.5 / Speaking 7), Pearson PTE, Cambridge (B2 First/C1/C2), Michigan English Test (MET), and OET (approx. Reading 340 / Listening 320 / Writing 350 / Speaking 360). OET's acceptance therefore depends on the pathway/state.",
+    "sources": [
+     {
+      "url": "https://www.fsbpt.org/lrg/Home/EnglishLanguageRequirement",
+      "name": "FSBPT Jurisdiction Licensure Reference Guide - English Language Requirement (TOEFL iBT only across jurisdictions)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.fsbpt.org/Free-Resources/Foreign-Educated-PTs-and-PT-Assistants/Other-Requirements-for-FEPTs-PTAs",
+      "name": "FSBPT - Other Requirements for FEPTs/PTAs (TOEFL is the exam accepted by FSBPT/USCIS for PTs)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.fccpt.org/Requirements/How-to-Apply/TOEFL-Requirements",
+      "name": "FCCPT - English/TOEFL Requirements (lists TOEFL, IELTS, Pearson, Cambridge, MET, and OET with minimum scores)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Typical pathway for an internationally-educated PT: (1) Obtain a credential/educational-equivalency evaluation from a recognized agency (e.g. FCCPT Educational Credentials Review / Type 1) showing education substantially equivalent to a U.S. first professional PT degree, assessed via the Coursework Evaluation Tool (CWT). (2) Meet English-language proficiency (TOEFL iBT, per state; FCCPT verifies English for its evaluations). (3) Satisfy the state board's requirements and gain NPTE eligibility. (4) Pass the National Physical Therapy Examination (NPTE) administered by FSBPT via Prometric. (5) Some states require Supervised Clinical Practice (SCP) and/or a jurisprudence exam. FSBPT NPTE eligibility is independent of and additional to state requirements.",
+    "sources": [
+     {
+      "url": "https://www.fsbpt.org/Secondary-Pages/Exam-Candidates/National-Exam-NPTE/Eligibility-Requirements",
+      "name": "FSBPT - NPTE Eligibility Requirements",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.fccpt.org/services/",
+      "name": "FCCPT - Services (ECR / Type 1 evaluations, Coursework Evaluation Tool)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.fsbpt.org/Free-Resources/Foreign-Educated-PTs-and-PT-Assistants/Other-Requirements-for-FEPTs-PTAs",
+      "name": "FSBPT - Other Requirements for FEPTs/PTAs (NPTE required by every state; possible SCP)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "verification",
+    "value": "Educational credentials, degree conferral (official transcripts), current licensure/registration in country of education, and English test scores are verified by a recognized credential-evaluation agency (e.g. FCCPT) and reported to the state board. FCCPT also offers state-specific verification (e.g. New York Credentials Verification, verifying authenticity of educational and licensure records). NPTE results are reported by FSBPT directly to the licensing jurisdiction; FSBPT also operates a national data/score-transfer system between boards.",
+    "sources": [
+     {
+      "url": "https://www.fccpt.org/services/",
+      "name": "FCCPT - Services (credential/licensure verification, NY Credentials Verification)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.fccpt.org/Requirements/How-to-Apply/TOEFL-Requirements",
+      "name": "FCCPT - English verification and degree-conferral documentation",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": false,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "fees",
+    "value": "NPTE examination fee (FSBPT): USD 485 for PT (plus a ~1.6% processing fee and separate Prometric and state licensure-application fees). FCCPT credential-evaluation fees: Type 1 for Immigration = USD 1,340; Type 1 for Licensure = USD 1,340; Educational Credentials Review (ECR) = USD 1,240; PTA Educational Equivalency Review = USD 975; New York Credentials Verification = USD 515. State boards charge additional, jurisdiction-specific licensure-application fees.",
+    "sources": [
+     {
+      "url": "https://www.fsbpt.org/Our-Services/Candidate-Services/Exam-Registration-Payment",
+      "name": "FSBPT - Exam Registration & Payment (NPTE $485 + 1.6% processing)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.fccpt.org/services/",
+      "name": "FCCPT - Services (evaluation fees)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "visa",
+    "value": "Foreign PTs seeking to work in the U.S. must obtain a VisaScreen / Health Care Worker Certificate for USCIS. FCCPT is an authorized agency issuing this via its 'Type 1 for Immigration' service (USD 1,340; ~23-25 weeks), which requires the qualifying PT degree, current licensure verification, and passage of an approved English-language competency test. This certificate is required for the relevant work/immigrant visa categories. (CGFNS International is the other main VisaScreen provider.)",
+    "sources": [
+     {
+      "url": "https://www.fccpt.org/services/",
+      "name": "FCCPT - Services (Type 1 for Immigration / Health Care Worker Certificate for USCIS)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.fsbpt.org/Free-Resources/Foreign-Educated-PTs-and-PT-Assistants/Other-Requirements-for-FEPTs-PTAs",
+      "name": "FSBPT - Other Requirements (TOEFL required by USCIS for PT visa screening)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   }
+  ],
+  "localSearchWording": [
+   "FSBPT foreign educated physical therapist licensure requirements",
+   "FCCPT Type 1 credential evaluation physical therapist",
+   "NPTE eligibility internationally educated physical therapist",
+   "[state] physical therapy board foreign trained applicant TOEFL requirement",
+   "FCCPT English language proficiency accepted tests OET IELTS TOEFL",
+   "VisaScreen Health Care Worker Certificate physical therapist FCCPT"
+  ],
+  "notes": "Genuine nuance on OET: the FSBPT Jurisdiction Licensure Reference Guide and FSBPT/USCIS foreign-educated PT guidance reference ONLY TOEFL iBT for state boards, and FSBPT explicitly frames TOEFL as the exam accepted for PTs — so TOEFL dominates and is the safe choice. However, the credential evaluator FCCPT's current English-requirements page lists OET (plus IELTS Academic, Pearson PTE, Cambridge, MET, TOEFL) as acceptable for its own English-language verification used in Type 1 licensure evaluations (CA, LA, MA, NE, NM, ND, TN, D.C.) and USCIS visa screening. Hence oet_accepted = partial. Note: some TOEFL section-score numbers returned by the FCCPT page fetch appeared garbled (e.g. '3.5/4.5', which are not valid TOEFL iBT 0-30 section scores) and should be re-verified directly on the FCCPT site; the OET numeric-scale minimums (~320-360) are internally consistent. Licensing is state-controlled, so requirements (including which English test and whether SCP/jurisprudence is needed) vary by jurisdiction and must be confirmed with the specific state board. Regulator, NPTE fee ($485), FCCPT fees, and the multi-step pathway are corroborated by official FSBPT and FCCPT pages.",
+  "_cell": "physiotherapy|United States"
+ },
+ {
+  "profession": "physiotherapy",
+  "country": "Canada",
+  "regulator": "Canadian Alliance of Physiotherapy Regulators (CAPR) + provincial regulatory colleges",
+  "oet_accepted": "no",
+  "oet_note": "OET is NOT accepted. CAPR's official Language Proficiency Policy 2.2 (effective March 3, 2025) lists only four accepted ENGLISH tests — CELPIP-General, IELTS General Training, IELTS Academic, and PTE Core — plus two French tests (TEF, TCF). The Occupational English Test does not appear anywhere in the accepted list. IELTS (Academic or General Training) is the dominant test used by internationally educated physiotherapists in Canada, with a minimum of Reading 7.0 / Listening 7.0 / Writing 6.5 / Speaking 6.5. This was corroborated by a University of Toronto (OIEPB) bridging-program page, which likewise lists IELTS/CELPIP/TOEFL/TEF but not OET. (Note: the U of T page still shows TOEFL iBT, but CAPR's own current policy no longer lists TOEFL; rely on CAPR's policy as authoritative.) Applicants educated in Australia, France, New Zealand, Ireland, the UK, or the US are exempt from the language test.",
+  "localSearchWording": [
+   "Canadian Alliance of Physiotherapy Regulators credentialling internationally educated",
+   "CAPR language proficiency policy 2.2 accepted tests IELTS CELPIP",
+   "Canadian Physiotherapy Examination CPTE dates and fees 2026",
+   "physiotherapy provincial college registration internationally educated Canada",
+   "immigrate to Canada as a physiotherapist NOC 31202 Express Entry"
+  ],
+  "notes": "Key 2026 change: CAPR replaced the old two-part Physiotherapy Competency Examination (PCE: separate written + clinical components) with a SINGLE Canadian Physiotherapy Examination (CPTE) starting January 2026 — one virtual, remotely-proctored, ~5-hour exam combining a written multiple-choice section (100 points) and an oral case-based section (150 points) with a single pass mark. Some older regulator/university pages still reference \"PCE written component\"; the current national exam is the CPTE. Visa/immigration is entirely separate from licensure and is handled by IRCC (federal), not by CAPR or the colleges. All fees are CAD and subject to change.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "National credentialling and the licensure exam are run by the Canadian Alliance of Physiotherapy Regulators (CAPR), https://alliancept.org/. The licence to practise is issued by the provincial/territorial college of physiotherapists in the jurisdiction where you will work (physiotherapy is a regulated, protected-title profession in all Canadian provinces).",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "name": "CAPR – Applying for Credentialling (official)",
+      "url": "https://alliancept.org/internationally-trained/applying-for-credentialing/",
+      "confidence": "official"
+     },
+     {
+      "name": "Canadian Physiotherapy Association – Working in Canada",
+      "url": "https://physiotherapy.ca/advocacy/about-physiotherapy-in-canada/working-in-canada/",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "CAPR Language Proficiency Policy 2.2 (effective 3 March 2025) accepted ENGLISH tests and minimum scores (must be achieved in one sitting): IELTS General Training or IELTS Academic — Reading 7.0, Listening 7.0, Writing 6.5, Speaking 6.5; CELPIP-General — Reading 9, Writing 8, Listening 8, Speaking 8; PTE Core — Reading 78, Writing 79, Listening 71, Speaking 76. Accepted FRENCH tests: TEF (Reading 503 / Writing 472 / Listening 462 / Speaking 494 for tests after 10 Dec 2023) and TCF (Reading 524 / Writing 12 / Listening 503 / Speaking 12). Official scores must be sent by the testing agency directly to CAPR within two years of the test date. OET is NOT an accepted test. Applicants educated in Australia, France, New Zealand, Ireland, the UK, or the US are exempt.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "name": "CAPR – Policy 2.2 Language Proficiency (official)",
+      "url": "https://alliancept.org/internationally-trained/credentialing-overview/policies/2-2-language-proficiency/",
+      "confidence": "official"
+     },
+     {
+      "name": "University of Toronto OIEPB – CAPR Requirements (corroborates OET not accepted)",
+      "url": "https://oiepb.utoronto.ca/bridging-process/capr-requirements/",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Steps for an internationally educated PT: (1) Apply to CAPR for credentialling via the Client Portal and choose a pathway — Standard (Pan-Canadian Framework; open to all), Pre-Approved (graduates from specified jurisdictions licensed/eligible to practise without restriction), or Alternative (for those lacking documents for reasons beyond their control). (2) CAPR assesses education (university-level entry-to-practice physiotherapy degree), a minimum of 1,025 supervised clinical hours (incl. 100 MSK, 100 neuro, 40 cardiorespiratory), language proficiency, and completion of an approved 'physiotherapy practice within Canada' orientation course (e.g. U of Toronto or U of Alberta). (3) Pass the Canadian Physiotherapy Examination (CPTE) — from January 2026 a single virtual, remotely-proctored ~5-hour exam with a 100-point written MCQ section and a 150-point oral case-based section, replacing the former two-part PCE. (4) Apply to the provincial/territorial college for registration/licensure.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "name": "CAPR – Assessment Requirements, Standard Pathway (official)",
+      "url": "https://alliancept.org/internationally-trained/applying-for-credentialing/assessment-requirements/",
+      "confidence": "official"
+     },
+     {
+      "name": "CAPR – Canadian Physiotherapy Examination, Getting Started (official)",
+      "url": "https://alliancept.org/canadian-physiotherapy-examination/getting-started/",
+      "confidence": "official"
+     },
+     {
+      "name": "College of Physiotherapists of Alberta – 2026 exam changes",
+      "url": "https://www.cpta.ab.ca/news-and-updates/clinical-examination-updates/",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "CAPR reviews all submitted documents for authenticity; if anything is found irregular or fraudulent the application is closed. Documents are uploaded as PDFs through the CAPR Client Portal and status is tracked from Pending onward. Credential and registration verification (education, qualifications, and — for the Pre-Approved pathway — proof of unrestricted licence/eligibility in the home jurisdiction) is done by CAPR as part of credentialling; the provincial college then independently verifies CAPR credentialling, exam results, and good-standing before granting a licence.",
+    "verifyStatus": "verified",
+    "corroborated": false,
+    "sources": [
+     {
+      "name": "CAPR – Assessment Requirements, Standard Pathway (official)",
+      "url": "https://alliancept.org/internationally-trained/applying-for-credentialing/assessment-requirements/",
+      "confidence": "official"
+     },
+     {
+      "name": "CAPR – Applying for Credentialling (official)",
+      "url": "https://alliancept.org/internationally-trained/applying-for-credentialing/",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "CAPR credentialling: 'Assessment of Educational Credentials and Qualifications – All Pathways' = CAD $1,486. Other credentialling fees: Administrative Reconsideration $410, rejected cheque $48, duplicate documents $35, archived document retrieval $47, international courier $171. Canadian Physiotherapy Examination (CPTE): standard fee CAD $2,500 (a reduced CAD $1,800 transition fee applies in 2026 to candidates who passed the 2025 PCE Written Component). All amounts CAD and subject to change without notice; these exclude the separate language test cost, the required Canada orientation course, and provincial college registration fees.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "name": "CAPR – Fees & Payment (credentialling) (official)",
+      "url": "https://alliancept.org/internationally-trained/applying-for-credentialing/fees-payment/",
+      "confidence": "official"
+     },
+     {
+      "name": "CAPR – CPTE Dates and Fees (official)",
+      "url": "https://alliancept.org/canadian-physiotherapy-examination/applying-for-the-cpte/dates-and-fees/",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Immigration is separate from licensure and is administered by Immigration, Refugees and Citizenship Canada (IRCC), not by CAPR or the colleges. Physiotherapists are NOC 31202, a TEER 1 occupation eligible for federal economic immigration — Express Entry (Federal Skilled Worker / Canadian Experience Class) and Provincial Nominee Programs (PNP), which can add points via an Express Entry provincial nomination. Employer-driven work permits are also possible. Licensure and immigration are pursued in parallel; a job offer or provincial nomination can support a permanent-residence application.",
+    "verifyStatus": "verified",
+    "corroborated": true,
+    "sources": [
+     {
+      "name": "Canada.ca (IRCC) – Provincial Nominee Program: Express Entry process (official)",
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/provincial-nominees/express-entry.html",
+      "confidence": "official"
+     },
+     {
+      "name": "WelcomeBC – BC Provincial Nominee Program (official provincial)",
+      "url": "https://www.welcomebc.ca/immigrate-to-b-c/about-the-bc-provincial-nominee-program/the-bc-provincial-nominee-program",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "physiotherapy|Canada"
+ },
+ {
+  "profession": "physiotherapy",
+  "country": "United Arab Emirates",
+  "regulator": "DHA (Dubai Health Authority / Dubai Health), DoH – Abu Dhabi (Department of Health), MOHAP (Ministry of Health and Prevention)",
+  "oet_accepted": "yes",
+  "oet_note": "OET is accepted by all three UAE health regulators (DHA, DoH, MOHAP) as one of several qualifying English tests for physiotherapists, alongside IELTS and TOEFL. Required OET grade differs by regulator: DoH – Abu Dhabi generally requires OET Grade B (with IELTS 6.5 / TOEFL 79-80 as alternatives), while DHA Dubai accepts a lower threshold around OET Grade C (with IELTS Academic ~5.0, TOEFL 500, or Cambridge 169). English testing is typically required only when the applicant's professional qualification was NOT taught/completed in English; graduates of English-medium programs are commonly exempt. Confirm the exact current grade against each regulator's live PQR, as thresholds are periodically updated. Note: these OET grades are from independent secondary licensing-consultancy sources — the official Unified PQR PDF names English as the exam medium but the extracted section did not restate the numeric test scores.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Physiotherapists are licensed by one of three emirate-level regulators under a unified UAE Professional Qualification Requirement (PQR): DHA/Dubai Health for Dubai (applications via Sheryan, https://www.dha.gov.ae), DoH – Abu Dhabi (PQR at https://www.doh.gov.ae/en/pqr, applications via TAMM), and MOHAP for the Northern Emirates (https://mohap.gov.ae). Physiotherapy is classified as an Allied Healthcare Professional title in the unified qualification framework.",
+    "sources": [
+     {
+      "url": "https://www.doh.gov.ae/en/pqr",
+      "name": "Department of Health Abu Dhabi – Introduction to Professional Qualification Requirement (PQR)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.dha.gov.ae/uploads/072022/Unified%20Healthcare%20Professional%20Qualification202273235.pdf",
+      "name": "DHA – Unified Healthcare Professional Qualification Requirements (PQR) PDF",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "official"
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Accepted English tests are OET, IELTS (Academic) and TOEFL (DHA also lists Cambridge English), generally required only when the physiotherapy qualification was not taught/completed in English. DoH – Abu Dhabi: IELTS 6.5, TOEFL iBT 79-80, or OET Grade B. DHA Dubai: approximately IELTS 5.0, TOEFL 500, OET Grade C, or Cambridge 169. OET is explicitly accepted by all UAE regulators. Exact thresholds vary by regulator and are periodically revised.",
+    "sources": [
+     {
+      "url": "https://felixhappich.com/abu-dhabi/healthcare/doh/medical-license/",
+      "name": "Felix Happich – DoH Abu Dhabi License Guide (IELTS 6.5 / TOEFL 79-80 / OET B)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://mydoctorlicense.com/dha-physiotherapy-license/",
+      "name": "MyDoctorLicense – DHA Physiotherapy License (IELTS 5.0 / TOEFL 500 / OET C / Cambridge 169)",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "corroborated-secondary"
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Typical steps: (1) Confirm eligibility – recognized BSc/MSc in Physiotherapy/Physical Therapy plus post-qualification experience (commonly ~2 years; UAE/GCC graduates complete 6 months post-graduation training per the unified PQR). (2) Create an applicant account (DHA Sheryan / DoH TAMM / MOHAP portal). (3) Complete DataFlow primary source verification. (4) Sit the computer-based licensing exam – Prometric for DHA and MOHAP, Pearson VUE for DoH Abu Dhabi (physiotherapist DHA exam: 150 questions, 3 hours, 50% pass mark). (5) Qualification/credential evaluation and, on passing, license issuance; an employer/facility is then linked for practice.",
+    "sources": [
+     {
+      "url": "https://mydoctorlicense.com/dha-physiotherapy-license/",
+      "name": "MyDoctorLicense – DHA Physiotherapy License (Prometric exam 150 Q / 3 hrs / 50%)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://felixhappich.com/abu-dhabi/healthcare/doh/medical-license/",
+      "name": "Felix Happich – DoH Abu Dhabi License (Pearson VUE CBT process)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://www.dha.gov.ae/uploads/072022/Unified%20Healthcare%20Professional%20Qualification202273235.pdf",
+      "name": "DHA Unified PQR – allied health qualification/training requirements",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "corroborated"
+   },
+   {
+    "key": "verification",
+    "value": "Credentials are verified through DataFlow Group Primary Source Verification (PSV): the applicant uploads degree certificate, current professional license, Certificate of Good Standing (typically issued within the last 6 months), and experience certificates, which DataFlow authenticates directly with the issuing institutions. PSV typically takes about 3–6 weeks (up to 6–12 weeks). The verified report feeds the regulator's licensing decision.",
+    "sources": [
+     {
+      "url": "https://mydoctorlicense.com/dha-physiotherapy-license/",
+      "name": "MyDoctorLicense – DataFlow PSV documents & timeline (DHA)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://felixhappich.com/uae/healthcare/mohap/medical-license/",
+      "name": "Felix Happich – MOHAP License (DataFlow PSV 6-12 weeks)",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "corroborated-secondary"
+   },
+   {
+    "key": "fees",
+    "value": "Fees vary by regulator (figures are indicative and change). DHA Dubai: DataFlow PSV ~AED 935 base (covers ~4 documents; +AED 300 per extra document, +5% VAT); Prometric physiotherapist exam ~USD 240. MOHAP (Northern Emirates): application ~AED 250, Prometric ~AED 477, DataFlow ~AED 935–1,235, with total allied-health processing roughly AED 1,662–1,962. DoH Abu Dhabi: DataFlow ~AED 990–1,680, TAMM application ~AED 100, one-time processing ~AED 600, Pearson VUE exam ~AED 347, plus license issuance. Employer often covers or reimburses these.",
+    "sources": [
+     {
+      "url": "https://mydoctorlicense.com/dha-physiotherapy-license/",
+      "name": "MyDoctorLicense – DHA fees (DataFlow AED 935, Prometric USD 240)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://felixhappich.com/uae/healthcare/mohap/medical-license/",
+      "name": "Felix Happich – MOHAP fees (application AED 250, Prometric AED 477, total AED 1,662-1,962)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://felixhappich.com/abu-dhabi/healthcare/doh/medical-license/",
+      "name": "Felix Happich – DoH Abu Dhabi fees (DataFlow AED 990-1,680, Pearson VUE AED 347)",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "corroborated-secondary"
+   },
+   {
+    "key": "visa",
+    "value": "A professional license does not itself grant residency: to practice, an internationally-qualified physiotherapist normally needs a UAE residence visa and a work permit sponsored by the employing healthcare facility (or via a UAE free-zone/company sponsor), plus Emirates ID and medical fitness clearance. The regulator's professional license is required to be employed in a clinical role, and the license is typically activated/linked to the sponsoring facility. Specific visa steps are handled through the employer and UAE immigration (GDRFA/ICP), not the health regulator.",
+    "sources": [
+     {
+      "url": "https://felixhappich.com/uae/healthcare/mohap/medical-license/",
+      "name": "Felix Happich – MOHAP licensing/employment context (employer-linked practice)",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": false,
+    "verifyStatus": "notFound-official"
+   }
+  ],
+  "localSearchWording": [
+   "DHA physiotherapist license requirements Sheryan",
+   "DoH Abu Dhabi physiotherapy PQR Pearson VUE exam",
+   "MOHAP physiotherapist license Prometric exam Northern Emirates",
+   "UAE physiotherapy DataFlow primary source verification documents",
+   "DHA OET IELTS English requirement allied health physiotherapist",
+   "DoH Abu Dhabi English language requirement OET grade B physiotherapist",
+   "UAE physiotherapist licensing exam pass mark fees 2026"
+  ],
+  "notes": "The UAE has three emirate regulators (DHA/Dubai Health, DoH Abu Dhabi, MOHAP for the Northern Emirates) operating under a Unified Professional Qualification Requirement (PQR); physiotherapy is an Allied Healthcare Professional title. OET is accepted by all three as a qualifying English test for physiotherapists (English testing usually required only if the qualification was not taught in English). Required OET grade differs: DoH generally OET B; DHA around OET C. The official DHA Unified PQR PDF and DoH PQR page confirm the regulator/framework and that exams are in English, but the extracted sections did not restate numeric English-test scores or precise fees — those come from independent, generally reliable licensing-consultancy sources (Felix Happich, MyDoctorLicense) and should be reconfirmed against each regulator's live PQR/portal, as scores and fees are updated periodically. Visa/immigration details are handled by the sponsoring employer and UAE immigration rather than the health regulator and were not found on an official regulator page. Note that DHA has been merged into \"Dubai Health\"; legacy dha.gov.ae/Sheryan resources remain the operative licensing references.",
+  "_cell": "physiotherapy|United Arab Emirates"
+ }
+]

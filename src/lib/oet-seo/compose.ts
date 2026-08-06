@@ -62,7 +62,7 @@ import {
   corridorFaqFor,
 } from "./corridors";
 import { destinationBySlug, destinationForOrg } from "./destinations";
-import { regulatorProfileForOrg } from "./regulator-profiles";
+import { regulatorProfileForOrg, regulatorProfileForProfessionOrg } from "./regulator-profiles";
 import { composeJourney, isJourneyCurrent, journeyNotCurrentReason } from "@/lib/journey/compose";
 import {
   matrixCells,
@@ -335,6 +335,29 @@ function sectionSharedFaq(m: Merged): { section: Section; facts: string[] } | nu
   };
 }
 
+/** The profession-scoped regulator block, for /{profession}/{org}. */
+function sectionProfessionProfile(professionSlug: string, m: Merged): { section: Section; facts: string[] } | null {
+  const p = regulatorProfileForProfessionOrg(professionSlug, m.org.slug);
+  if (!p?.facts.length) return null;
+  const paras = p.facts.filter((f) => f.fact?.value).map((f) => sentence(f.fact.value));
+  if (p.searchWording.length) {
+    paras.push(`People look for this as ${p.searchWording.map((w) => `"${w}"`).join(", ")}.`);
+  }
+  return {
+    section: { id: "profession-profile", heading: p.blockHeading, paras },
+    facts: [...p.facts.map((f) => f.key), ...(p.searchWording.length ? ["searchWording"] : [])],
+  };
+}
+
+function sectionProfessionProfileFaq(professionSlug: string, m: Merged): { section: Section; facts: string[] } | null {
+  const p = regulatorProfileForProfessionOrg(professionSlug, m.org.slug);
+  if (!p?.faq.length) return null;
+  return {
+    section: { id: "faq", heading: "Common questions", paras: p.faq.flatMap((f) => [f.q, f.a]) },
+    facts: ["professionFaq"],
+  };
+}
+
 /** The local vocabulary — genuinely useful, and it is the searcher's own words. */
 function sectionWording(w: Wording, m: Merged, professionSlug: string): { section: Section; facts: string[] } | null {
   const conv = localeConvention(m.countryCode);
@@ -492,13 +515,45 @@ export function composeProfessionOrgPage(
     facts.push(...r.facts);
   };
 
-  push(sectionRequirements(m, w));
-  push(sectionSubtest(professionSlug, w, m.org.name));
-  push(sectionCombining(m));
-  push(sectionAlternatives(m));
-  push(sectionContext(m));
-  push(sectionWording(w, m, professionSlug));
-  push(sectionSource(m));
+  // WHERE SEVERAL PROFESSIONS SHARE ONE REGULATOR, this page must not restate
+  // the regulator. The HCPC registers six of them, and composing each page the
+  // normal way put the SAME requirements, combining rule, alternatives, context
+  // and source sections on all six — about 400 identical words apiece. Measured:
+  // 15 of 15 pairs over the gate, worst 50%, including each profession against
+  // the HCPC's own register page.
+  //
+  // So when a profession profile exists, the regulator-wide sections are dropped
+  // and linked instead, and the page carries what actually differs: the OET
+  // sub-test for this profession, its pathway, its English threshold — speech
+  // and language therapy needs a higher OET than the other five — its fees and
+  // its own search wording. Law #3 applied to a regulator rather than a
+  // destination: link the shared, keep what differs.
+  const profile = regulatorProfileForProfessionOrg(professionSlug, m.org.slug);
+  if (profile) {
+    push(sectionSubtest(professionSlug, w, m.org.name));
+    push(sectionProfessionProfile(professionSlug, m));
+    push(sectionWording(w, m, professionSlug));
+    push(sectionProfessionProfileFaq(professionSlug, m));
+    push({
+      section: {
+        id: "regulator-shared",
+        heading: `The rest of the ${m.org.name} process`,
+        paras: [
+          `Everything the ${m.org.name} asks of every profession it registers — the requirement it publishes, how it treats results from more than one sitting, what it accepts instead of OET, and where OET sits in its process — is set out on its own page rather than repeated here.`,
+        ],
+      },
+      facts: ["regulatorShared"],
+    });
+    push(sectionSource(m));
+  } else {
+    push(sectionRequirements(m, w));
+    push(sectionSubtest(professionSlug, w, m.org.name));
+    push(sectionCombining(m));
+    push(sectionAlternatives(m));
+    push(sectionContext(m));
+    push(sectionWording(w, m, professionSlug));
+    push(sectionSource(m));
+  }
   facts.push("professionMatch");
 
   return { merged: m, wording: w, ...measure(sections, facts) };

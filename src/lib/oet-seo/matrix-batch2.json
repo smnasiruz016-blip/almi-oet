@@ -1,0 +1,1562 @@
+[
+ {
+  "profession": "occupational therapy",
+  "country": "United Kingdom",
+  "regulator": "Health and Care Professions Council (HCPC)",
+  "oet_accepted": "yes",
+  "oet_note": "HCPC accepts the OET for occupational therapists (a regulated/protected profession) from 29 January 2025. OET publishes an Occupational Therapy-specific version of the test. On HCPC's own certificate-of-English-language-proficiency page the requirement is expressed in the current numeric OET scoring: an overall score of at least 1400 with no individual sub-test (Listening, Reading, Writing, Speaking) below 300. In legacy OET grade terms, 300 corresponds to Grade C+ (minimum per sub-test) and the 1400 total equates to roughly an average of Grade B — hence secondary sources commonly describe HCPC's OET standard as \"Grade B\". Speech and language therapists face a higher bar (1800 total / 400 each), but occupational therapists fall in the \"most professions\" band (1400/300). Certificate must be no more than two years old at application.",
+  "localSearchWording": [
+   "HCPC certificate of English language proficiency OET occupational therapist",
+   "HCPC international applications guidance occupational therapist scrutiny fee",
+   "OET Occupational Therapy HCPC 1400 grade B 300"
+  ],
+  "notes": "Regulator is HCPC (statutory regulator of the protected title \"occupational therapist\" under the Health Professions Order 2001). RCOT (Royal College of Occupational Therapists) is the professional body/trade union, not a regulator, so it does not set registration or English-language requirements. English-language requirements changed on 29 January 2025: self-declaration of English as a first language was removed, and OET was newly added alongside IELTS and TOEFL. Numeric OET/TOEFL scales are being updated (note the TOEFL 21 January 2026 scale change on HCPC's page). All English/fee facts drawn from HCPC's own pages (official/primary). Visa facts drawn from UK gov-adjacent secondary sources; occupational therapists sit under SOC 2222 and the role is eligible for the Health and Care Worker visa. OET's own site confirms an Occupational Therapy version and the 1400/300 standard, corroborating HCPC.</notes>\n<parameter name=\"oet_note\">OET accepted for occupational therapists from 29 Jan 2025; minimum overall 1400 with no sub-test below 300 (roughly \"Grade B\" average, Grade C+ minimum per element); OET has a dedicated Occupational Therapy version.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Health and Care Professions Council (HCPC) — statutory regulator of the protected title 'occupational therapist' in the UK. Official site: https://www.hcpc-uk.org. (The Royal College of Occupational Therapists, RCOT, is the professional body/union, not a regulator.)",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications to join the HCPC Register",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/",
+      "name": "HCPC — How to apply via the international application route",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Three approved tests (certificate must be <2 years old): (1) IELTS Academic or General — overall 7.0 with no element below 6.5 for most professions incl. occupational therapy (speech & language therapists need 8.0/7.5); (2) OET (Occupational English Test) — overall at least 1400 with no sub-test below 300 for most professions incl. occupational therapy; (3) TOEFL iBT — 100/120 for tests taken before 21 Jan 2026, with a revised sectioned scale on/after 21 Jan 2026 (not accepted if taken in the UK). Since 29 Jan 2025 applicants can no longer self-declare English as their first language; applicants qualifying in an approved 'majority English-speaking' country may be exempt from testing.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/",
+      "name": "HCPC — Certificate of English language proficiency (IELTS/OET/TOEFL scores)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/news-and-events/news/2024/new-english-language-requirements-for-international-applicants-to-come-into-effect-in-2025/",
+      "name": "HCPC — New English language requirements effective 29 January 2025",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "oetRole",
+    "value": "OET is a fully accepted standalone English-proficiency test for HCPC occupational therapy registration from 29 January 2025. Required: overall 1400, no sub-test below 300 (≈ Grade B average / Grade C+ per element). OET has a dedicated Occupational Therapy version of the test.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/",
+      "name": "HCPC — Certificate of English language proficiency (OET 1400/300)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://oet.com/en-us/post/hcpc-accepts-oet",
+      "name": "OET — HCPC recognises the OET Test (OT version; 1400/300 from 29 Jan 2025)",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Online international application route (no separate paper form). Applicant creates an account and submits: personal details, qualifications, professional experience, international registration/membership, English-language evidence, a Standards Mapping Document (evidencing HCPC standards of proficiency), and declarations. HCPC assesses education, training and experience against UK standards (with plagiarism/AI and verification checks). It is not a routine exam-only route: possible outcomes include full registration, or — where a shortfall is identified — a required Test of Competence and/or a Period of Adaptation (POA) before registration.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/",
+      "name": "HCPC — How to apply (application sections; Test of Competence / Periods of Adaptation)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications overview (assessment & outcomes)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "HCPC independently reviews and verifies submitted evidence: qualification/education records, professional experience, and any overseas registration or membership; applications also undergo plagiarism and AI checks and information-verification steps. Supporting documents must be certified copies.",
+    "corroborated": false,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/",
+      "name": "HCPC — How to apply (review, plagiarism/AI checks, verification)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "International application scrutiny fee: one-off non-refundable £678.38 (for assessment of the application). Ongoing HCPC registration fee: £246.68 per two-year cycle (£123.34/year); new UK graduates get a 50% discount (£61.67/year) — the standard rate applies to internationally-qualified registrants. Test of Competence / adaptation costs (if required) are additional. (Fees as published on HCPC pages accessed August 2026.)",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/paying-your-scrutiny-fee/",
+      "name": "HCPC — Paying your scrutiny fee (£678.38)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/uk-applications/paying-the-registration-fee/",
+      "name": "HCPC — Registration fee (£246.68 per two-year cycle)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Occupational therapists are classified under SOC code 2222 and the role is eligible for sponsorship under the UK Skilled Worker route, including the lower-cost Health and Care Worker visa (relevant for NHS/care employers). A Certificate of Sponsorship from a licensed sponsor is required; HCPC registration is generally needed to practise. Salary thresholds and eligibility are set by UK Visas & Immigration and change periodically — confirm current rules on GOV.UK.",
+    "corroborated": true,
+    "verifyStatus": "secondary",
+    "sources": [
+     {
+      "url": "https://huntukvisasponsors.com/uk-visa-occupation-eligibility/2222-occupational-therapists",
+      "name": "SOC 2222 — Occupational therapists, UK visa eligibility",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://www.nhsemployers.org/articles/skilled-worker-health-and-care-visa",
+      "name": "NHS Employers — Skilled Worker: Health and Care Visa",
+      "confidence": "secondary"
+     }
+    ]
+   }
+  ],
+  "_cell": "occupational therapy|United Kingdom"
+ },
+ {
+  "profession": "occupational therapy",
+  "country": "Australia",
+  "regulator": "Occupational Therapy Board of Australia",
+  "oet_accepted": "yes",
+  "oet_note": "OET is explicitly accepted by the Occupational Therapy Board of Australia via the Ahpra common Registration standard: English language skills (in effect 18 March 2025). For OET results obtained BEFORE 23 April 2026: minimum grade B in each of Listening, Reading and Speaking, and minimum C+ in Writing. For OET taken ON OR AFTER 23 April 2026, Ahpra moves to OET's numeric scale: Listening 350, Reading 360, Writing 350, Speaking 360. Results may come from one sitting or a maximum of two sittings within 12 months (subject to floor scores). OET is one of five accepted tests alongside IELTS Academic, PTE Academic, TOEFL iBT and Cambridge C1 Advanced/C2 Proficiency; all must be sat at a physical test centre. English is only one component — an internationally qualified OT must also pass an Occupational Therapy Council (OTC) qualifications/skills assessment.",
+  "localSearchWording": [
+   "Occupational Therapy Board of Australia English language skills registration standard",
+   "Ahpra accepted English language tests OET occupational therapy",
+   "Occupational Therapy Council OTC internationally qualified assessment Australia",
+   "occupational therapist registration fee Ahpra 2025/26",
+   "Occupational Therapy Council skilled migration assessment ANZSCO 252411"
+  ],
+  "notes": "Occupational therapy is a nationally regulated profession under the National Registration and Accreditation Scheme; the Occupational Therapy Board of Australia partners with Ahpra and delegates qualification/skills assessment of internationally qualified OTs to the Occupational Therapy Council (OTC). The English standard is the Ahpra common standard shared across boards, so OET acceptance and scores are set at the Ahpra level and adopted by the OT Board. Important dual-threshold detail: minimum test scores CHANGE for tests taken on or after 23 April 2026 (OET switches from letter grades B/C+ to numeric 350/360). OTC-specific assessment fee amounts could not be confirmed from a primary source in this pass (OTC hosts a fee schedule but the figures were not extractable) — marked notFound rather than sourced to recruitment-agency pages. National (annual) registration fee for 2025/26 is AUD $132 effective 18 September 2025 (period 1 Dec 2025–30 Nov 2026); this is the registration fee, separate from OTC assessment fees and visa/skilled-migration costs.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Occupational Therapy Board of Australia, working in partnership with the Australian Health Practitioner Regulation Agency (Ahpra). Official site: https://www.occupationaltherapyboard.gov.au. Internationally qualified applicants' qualifications/skills are assessed by the Occupational Therapy Council (OTC): https://www.otcouncil.com.au",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.occupationaltherapyboard.gov.au/Registration/Internationally-qualified-occupational-therapists.aspx",
+      "name": "Occupational Therapy Board of Australia — Registration for internationally qualified occupational therapists",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ahpra.gov.au/occupational-therapy",
+      "name": "Ahpra — Regulating Australia's occupational therapists",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.otcouncil.com.au/assessment/",
+      "name": "Occupational Therapy Council — Assessment",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Five tests accepted (must be sat at a physical test centre): IELTS Academic, OET, PTE Academic, TOEFL iBT, and Cambridge C1 Advanced/C2 Proficiency. Minimum scores for tests taken BEFORE 23 April 2026 — IELTS Academic: overall 7 with 7 in Listening/Reading/Speaking and 6.5 in Writing; OET: grade B in Listening/Reading/Speaking and C+ in Writing; PTE Academic: 66 in Listening/Reading/Speaking and 56 in Writing; TOEFL iBT: overall 94 (Listening 24, Reading 24, Writing 24, Speaking 23). Minimum scores for tests taken ON OR AFTER 23 April 2026 — IELTS: overall 7 (L7 R7 W6.5 S7); OET: Listening 350, Reading 360, Writing 350, Speaking 360; PTE: overall 63 (L58 R59 W60 S76); TOEFL iBT: overall 91 (L22 R22 W23 S24). Results may be from one sitting or a maximum of two sittings within a 12-month period, subject to floor scores.",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests.aspx",
+      "name": "Ahpra — Accepted English language tests",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.occupationaltherapyboard.gov.au/Registration-Standards/English-language-skills.aspx",
+      "name": "Occupational Therapy Board of Australia — Registration standard: English language skills",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "oetRole",
+    "value": "OET is directly accepted (not merely published for the profession). Pre-23 April 2026 grade: B / B / B in Listening/Reading/Speaking, C+ in Writing. From 23 April 2026: numeric 350 (Listening), 360 (Reading), 350 (Writing), 360 (Speaking).",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests.aspx",
+      "name": "Ahpra — Accepted English language tests (OET scores)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Internationally qualified OTs generally register via one of the Board's pathways: (1) Comparable regulator pathway — qualifications accredited by the UK (HCPC) or Ireland (CORU); (2) Recognised international qualification pathway — a qualification the Board has previously assessed as substantially equivalent (same institution, year, degree title); (3) Qualification assessment pathway — assessment by the Occupational Therapy Council (OTC), which runs an Assessment of Competence for those without a pre-approved/comparable qualification (may include portfolio/further requirements). Applicants must also meet all Board registration standards (English, criminal history, recency of practice, CPD, professional indemnity insurance).",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.occupationaltherapyboard.gov.au/Registration/Internationally-qualified-occupational-therapists.aspx",
+      "name": "Occupational Therapy Board — Internationally qualified occupational therapists",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.otcouncil.com.au/assessment/assessment-in-australia/",
+      "name": "Occupational Therapy Council — Assessment for Internationally Qualified Practitioners",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Skills/qualification verification is performed by the Occupational Therapy Council (OTC), which offers two streams: Assessment of Competence (for registration in Australia) and Assessment for Skilled Migration (ANZSCO 252411). The OTC assessment is separate from, and in addition to, the Board's registration process; the visa application process and Board registration are also separate.",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.otcouncil.com.au/assessment/assessment-in-australia/",
+      "name": "Occupational Therapy Council — Assessment for Internationally Qualified Practitioners",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.occupationaltherapyboard.gov.au/Registration/Internationally-qualified-occupational-therapists.aspx",
+      "name": "Occupational Therapy Board — Internationally qualified occupational therapists",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "National (annual) registration fee for occupational therapists 2025/26: AUD $132, effective 18 September 2025, covering 1 December 2025 to 30 November 2026 (a 4.25% indexation increase). Separate OTC assessment fees apply for skilled migration and for assessment of competence — the OTC publishes a fee schedule but specific AUD amounts were not confirmable from a primary source in this pass (notFound).",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.ahpra.gov.au/sitecore/content/Occupational-Therapy/News/2025-09-18-fees-announcement-2025.aspx",
+      "name": "Ahpra — Occupational Therapy Board of Australia sets fee for 2025/26",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.occupationaltherapyboard.gov.au/Registration/Fees.aspx",
+      "name": "Occupational Therapy Board of Australia — Fees",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.otcouncil.com.au/assessment/assessment-fees/",
+      "name": "Occupational Therapy Council — Assessment fees (schedule; amounts notFound)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "For skilled migration, the Occupational Therapy Council is the designated assessing authority for Occupational Therapist (ANZSCO 252411); a positive OTC skills assessment supports a Department of Home Affairs visa application. Board registration and the visa/migration process are separate steps and the OTC runs a distinct 'Assessment for Skilled Migration only' stream.",
+    "corroborated": true,
+    "sources": [
+     {
+      "url": "https://www.otcouncil.com.au/assessment/assessment-from-overseas/",
+      "name": "Occupational Therapy Council — Assessment for Skilled Migration only",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.occupationaltherapyboard.gov.au/Registration/Internationally-qualified-occupational-therapists.aspx",
+      "name": "Occupational Therapy Board — visa and registration processes are separate",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "occupational therapy|Australia"
+ },
+ {
+  "profession": "radiography",
+  "country": "United Kingdom",
+  "regulator": "Health and Care Professions Council (HCPC)",
+  "oet_accepted": "yes",
+  "oet_note": "HCPC accepts the profession-specific OET (Occupational English Test) for radiographers as evidence of English language proficiency. OET was added to IELTS and TOEFL as a recognised provider from November 2024, with the requirement applying to applications from 29 January 2025. The finalised requirement on HCPC's official 'Certificate of English language proficiency' page is a minimum OET score of 1400 with no element (Listening, Reading, Writing, Speaking) below 300 — i.e. at least grade C+ in every sub-test. In OET grade terms this equates to roughly an overall grade B with a minimum of C+ in any paper (the equivalency HCPC benchmarked against its IELTS 7.0 / no element below 6.5 standard). Applicants whose relevant primary qualification was obtained/taught in a country on HCPC's English-predominant qualifying list (e.g. Australia, Canada, Ireland, New Zealand, USA) are exempt from any English test.",
+  "localSearchWording": [
+   "HCPC certificate of English language proficiency OET radiographer",
+   "HCPC international application radiographer scrutiny fee",
+   "HCPC OET grade requirement 1400 no element below 300"
+  ],
+  "notes": "Regulator for radiographers in the UK is the HCPC (statutory register; 'radiographer' is a protected title). The Society of Radiographers (SoR) is the professional body/trade union, NOT the statutory regulator, and plays no role in registration to practise. OET acceptance and score, English test requirements, and fees are all sourced from official HCPC pages. Visa fact sourced from GOV.UK (Medical radiographers = SOC code 2254, eligible for the Health and Care Worker visa via the Skilled Worker route). Effective dates: new English-language rules (no self-declaration; OET added) took effect 29 Jan 2025; fees quoted are those effective from 29 April 2025; TOEFL iBT moves to component-based scoring from 21 January 2026.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Health and Care Professions Council (HCPC) — statutory regulator of radiographers in the UK; 'radiographer' is a protected title requiring HCPC registration to practise. Website: https://www.hcpc-uk.org",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "HCPC accepts three tests: IELTS (Academic or General, UKVI or non-UKVI) minimum overall 7.0 with no element below 6.5; TOEFL iBT overall 100/120 (moving to component-based scoring from 21 January 2026; tests taken in the UK not accepted); and OET (profession-specific radiography version) minimum 1400 with no element below 300. OET plays the role of an accepted alternative to IELTS/TOEFL (added as a recognised provider from Nov 2024, applying from 29 Jan 2025). Exemption applies if the relevant primary qualification was obtained in an HCPC-listed English-predominant country.",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/",
+      "name": "HCPC — Certificate of English language proficiency",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/news-and-events/news/2024/new-english-language-requirements-for-international-applicants-to-come-into-effect-in-2025/",
+      "name": "HCPC — New English language requirements (2025)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://specialistlanguagecourses.com/hcpc-approve-oet-for-internationally-educated-allied-health-professionals-wanting-to-work-in-the-uk/",
+      "name": "Specialist Language Courses — HCPC approves OET for AHPs",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Internationally-qualified radiographers apply via HCPC's international application route (not an examination-first model). HCPC assesses the applicant's education, training and experience against the UK standards of proficiency for radiographers and makes a first decision. Where a shortfall is identified, the applicant may be required to undertake a Test of Competence or a Period of Adaptation (POA). Process stages: check eligibility, prepare/certify documents, submit online application, assessment, verification, outcome.",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/eligibility/",
+      "name": "HCPC — International applications eligibility",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Applicants must prepare and certify supporting documents (qualification certificates, transcripts, proof of identity, English language certificate where required, professional/registration history). HCPC verifies submitted information as part of the assessment. Refugee applicants are exempt from the scrutiny fee.",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/eligibility/",
+      "name": "HCPC — International applications eligibility",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "International scrutiny (application) fee: £678.38. Approved (UK) programme scrutiny fee: £86.34. Readmission/restoration: £185.01. Ongoing registration/renewal fee: £123.34 per year (paid every two years); new UK graduates get a 50% discount (£61.67) for the first two professional years. Fees effective from 29 April 2025.",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/your-registration/fees-and-tax/changes-to-our-registration-fees/",
+      "name": "HCPC — Changes to our registration fees",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Radiographers (SOC 2254 'Medical radiographers') are an eligible occupation for the UK Health and Care Worker visa, a route within the Skilled Worker visa. Requires a job offer from an approved UK sponsor (e.g. NHS or approved employer). The Health and Care Worker visa has reduced application fees and exemption from the Immigration Health Surcharge. HCPC registration is the professional-registration step; the visa is a separate immigration process handled via GOV.UK.",
+    "corroborated": true,
+    "verifyStatus": "verified-official",
+    "sources": [
+     {
+      "url": "https://www.gov.uk/health-care-worker-visa",
+      "name": "GOV.UK — Health and Care Worker visa",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.gov.uk/government/publications/skilled-worker-visa-eligible-occupations/skilled-worker-visa-eligible-occupations-and-codes",
+      "name": "GOV.UK — Skilled Worker eligible occupations and codes",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "radiography|United Kingdom"
+ },
+ {
+  "profession": "radiography",
+  "country": "Australia",
+  "regulator": "Medical Radiation Practice Board of Australia",
+  "oet_accepted": "yes",
+  "oet_note": "OET is accepted for radiography (medical radiation practice) registration. The MRPBA/AHPRA English language skills registration standard lists OET as an accepted test alongside IELTS Academic, PTE Academic and TOEFL iBT. The official MRPBA standard states applicants need \"an overall pass in the OET with grades A or B only in each of the four components\" (listening, reading, writing, speaking). Under the revised standard (in effect 18 March 2025) the writing component was lowered to C+. From 23 April 2026 AHPRA expresses OET results numerically rather than as letter grades: Listening 350, Reading 360, Writing 350, Speaking 360. Results must be from a single sitting obtained within two years before applying (older results accepted only with evidence of continuous registered practice using English). OET acceptance for this profession is confirmed on the regulator's own standard; the exact 2026 numeric thresholds are corroborated by independent secondary sources and should be confirmed on AHPRA's live \"Accepted tests\" page.",
+  "notes": "MRPBA/AHPRA registration standard pages are JavaScript-rendered and could not be fully scraped directly; the underlying registration-standard PDF (record WD12/7099) and AHPRA consultation PDF (WD15/16900) were read directly and confirm OET acceptance and letter-grade thresholds. The exact 2026 numeric OET/PTE/TOEFL thresholds effective 23 April 2026 come from two independent secondary sources (aussizzgroup, knowbal) and should be re-verified on AHPRA's live \"Accepted tests\" page before relying on them. ASMIRT is the Board-appointed assessing authority for overseas medical radiation qualifications and for migration skills assessment (ANZSCO 251211 Medical Diagnostic Radiographer, 251212 Radiation Therapist, 251214 Sonographer). Visa/immigration is handled separately by the Department of Home Affairs, not the regulator.",
+  "localSearchWording": [
+   "OET accepted for radiography registration Australia AHPRA",
+   "Medical Radiation Practice Board English language skills registration standard",
+   "MRPBA overseas qualified radiographer registration pathway",
+   "AHPRA accepted English tests OET grade B 2026 scores",
+   "ASMIRT overseas qualification assessment radiographer fees"
+  ],
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Medical Radiation Practice Board of Australia (MRPBA), operating within AHPRA. Official site: https://www.medicalradiationpracticeboard.gov.au/ (AHPRA: https://www.ahpra.gov.au/). The Board registers diagnostic radiographers, radiation therapists and nuclear medicine technologists.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.medicalradiationpracticeboard.gov.au/",
+      "name": "Medical Radiation Practice Board of Australia - Home",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ahpra.gov.au/Registration/International-practitioners",
+      "name": "AHPRA - Information for international practitioners",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Accepted tests: IELTS Academic, OET, PTE Academic and TOEFL iBT (single sitting, taken within 2 years of applying). Thresholds for tests taken on/before 22 April 2026: IELTS overall 7.0 with L7/R7/W6.5/S7; OET grade B in each component (writing C+ under the revised 18 March 2025 standard); PTE Academic ~66; TOEFL iBT ~94. From 23 April 2026 the minimum scores change to: IELTS L7.0/R7.0/W6.5/S7.0 (overall 7.0); OET (numeric) Listening 350, Reading 360, Writing 350, Speaking 360; PTE Academic overall 63 (L58/R59/W60/S76); TOEFL iBT overall 91 (L22/R22/W23/S24). Every individual component minimum must be met. OET's role: it is a fully accepted test for this profession. Alternative to sitting a test: full secondary AND tertiary education taught and assessed in English in a recognised country (Australia, Canada, NZ, Republic of Ireland, South Africa, UK, USA).",
+    "corroborated": true,
+    "verifyStatus": "partially-verified",
+    "sources": [
+     {
+      "url": "https://www.medicalradiationpracticeboard.gov.au/documents/default.aspx?record=WD12%2F7099&dbid=AP&chksum=UmCNhbBUo1EIXNh7CHj34g%3D%3D",
+      "name": "MRPBA English language skills registration standard (PDF)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills",
+      "name": "AHPRA - English language skills registration standard (Accepted tests / changes effective 23 April 2026)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.aussizzgroup.com/blog/ahpra-english-language-requirement-changes/",
+      "name": "Aussizz Group - AHPRA English Language Requirement Changes 2026",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://www.knowbal.com.au/blog/ahpra-english-language-requirement-2026-complete-guide",
+      "name": "Knowbal Migration - AHPRA English Requirement 2026",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "oetRole",
+    "value": "OET is explicitly accepted by MRPBA/AHPRA for radiography. Official standard: 'completion and an overall pass in the OET with grades A or B only in each of the four components' (writing reduced to C+ under the revised standard). From 23 April 2026 AHPRA reports OET numerically (L350/R360/W350/S360). Unlike chiropractic, osteopathy and psychology, medical radiation practice is a profession for which OET is accepted.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.medicalradiationpracticeboard.gov.au/documents/default.aspx?record=WD12%2F7099&dbid=AP&chksum=UmCNhbBUo1EIXNh7CHj34g%3D%3D",
+      "name": "MRPBA English language skills registration standard (PDF)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.medicalradiationpracticeboard.gov.au/Registration-Standards/English-language-skills.aspx",
+      "name": "MRPBA - English language skills",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Overseas-qualified pathway: (1) Skills/qualifications assessment by ASMIRT's Overseas Qualification Assessment Panel (OQAP), which decides if the qualification is equivalent to the Australian standard at time of qualifying and whether clinical experience is adequate; outcomes are a Statement of Qualification (unconditional), conditional (more documents/experience needed), or rejection (may need to complete an accredited Australian program). NZ Diagnostic Radiography/Radiation Therapy degrees have an accelerated pre-approved pathway (1 year FT clinical experience in last 5 years). (2) Separate application to MRPBA for registration - a successful ASMIRT assessment does NOT guarantee Board registration. (3) The Board may require candidates to sit the National exam for medical radiation practice (Part A common capabilities + Part B division-specific; pass mark 65% in each part; max 3 attempts) where qualifications are not fully met or on return after absence. Applicants must also meet English, criminal history, professional indemnity insurance, recency of practice and CPD standards.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://asmirt.org/overseas-assessments/",
+      "name": "ASMIRT - Overseas assessments (OQAP)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://www.medicalradiationpracticeboard.gov.au/Registration/National-MRP-exam.aspx",
+      "name": "MRPBA - National exam for medical radiation practice",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.medicalradiationpracticeboard.gov.au/registration/overseas-qualified-practitioners.aspx",
+      "name": "MRPBA - Overseas qualified practitioners",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Applicants must provide certified proof of identity, verified qualifications/transcripts (assessed via ASMIRT), evidence of English proficiency (test results from a single sitting within 2 years, or the education exemption), criminal history/police checks (including any overseas), and declarations of health and past registration/conduct history. Older English results accepted only with proof of continuous registered health-practitioner employment using English as the primary language.",
+    "corroborated": true,
+    "verifyStatus": "partially-verified",
+    "sources": [
+     {
+      "url": "https://www.medicalradiationpracticeboard.gov.au/documents/default.aspx?record=WD12%2F7099&dbid=AP&chksum=UmCNhbBUo1EIXNh7CHj34g%3D%3D",
+      "name": "MRPBA English language skills registration standard (PDF)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ahpra.gov.au/Registration/International-practitioners",
+      "name": "AHPRA - Information for international practitioners",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "MRPBA fee schedule effective 18 September 2025 (2025/26): general/provisional/limited registration fee AUD 221 per year; non-practising AUD 73; application fee AUD 60 (payable with the registration fee at application); qualification portfolio assessment AUD 660. NSW registrants receive a rebate (net ~AUD 174). ASMIRT overseas assessment fees are separate: NZ pre-approved accelerated pathway AUD 338; general migration assessment AUD 1,074-1,690 depending on residency/dual-modality claims. (National exam fee not listed on the exam page reviewed.)",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.medicalradiationpracticeboard.gov.au/Registration/Fees.aspx",
+      "name": "MRPBA - Fees",
+      "confidence": "official"
+     },
+     {
+      "url": "https://asmirt.org/overseas-assessments/",
+      "name": "ASMIRT - Overseas assessment fees",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Registration is separate from immigration. Skilled migration is administered by the Department of Home Affairs; ASMIRT is the appointed skills-assessing authority for the relevant occupations - Medical Diagnostic Radiographer (ANZSCO 251211), Radiation Therapist (251212) and Sonographer (251214). A positive ASMIRT skills assessment supports a skilled visa application but does not confer AHPRA registration or the right to practise; MRPBA registration must be obtained separately.",
+    "corroborated": false,
+    "verifyStatus": "partially-verified",
+    "sources": [
+     {
+      "url": "https://asmirt.org/overseas-assessments/",
+      "name": "ASMIRT - Overseas assessments (ANZSCO occupations)",
+      "confidence": "secondary"
+     }
+    ]
+   }
+  ],
+  "_cell": "radiography|Australia"
+ },
+ {
+  "profession": "optometry",
+  "country": "United Kingdom",
+  "regulator": "General Optical Council (GOC)",
+  "oet_accepted": "no",
+  "oet_note": "Although OET publishes an Optometry-relevant version, the GOC does NOT accept OET for optometrist registration. The GOC's official international optometrists page states plainly: \"We only accept IELTS tests; other English language tests are not accepted.\" OET, IELTS Indicator (online) and IELTS One Skill Retake are all excluded. The only accepted evidence is a standard (in-person) IELTS Academic test with an overall score of 7.0, a minimum of 7.0 in Speaking, and a minimum of 6.0 in the other three sections (Listening, Reading, Writing).",
+  "localSearchWording": [
+   "GOC English language requirements optometrist",
+   "optical.org international optometrists IELTS",
+   "General Optical Council register from overseas optometrist"
+  ],
+  "notes": "Regulator is the General Optical Council (GOC), official site optical.org (the mygoc.azurewebsites.net URLs seen in search are a GOC staging/CMS mirror of the same content). English-language rule confirmed directly from GOC's own 'International optometrists' page: IELTS only, OET explicitly not accepted. Registration pathway and fees also from the same official GOC page. The final competency stage (Scheme for Registration, including the OSCE) is delivered by the College of Optometrists, a separate body from the regulator. Visa is not a GOC matter — GOC registration and UK immigration (Home Office Skilled Worker visa) are independent processes; not sourced here, flagged notFound.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "General Optical Council (GOC) — the statutory regulator for optometrists (and dispensing opticians) in the UK. Official website: https://optical.org",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "General Optical Council — International optometrists (optical.org)",
+      "url": "https://optical.org/registration/register-from-overseas/international-optometrists.html",
+      "confidence": "official"
+     },
+     {
+      "name": "General Optical Council — International optometrists (GOC CMS mirror)",
+      "url": "https://mygoc.azurewebsites.net/en/registration/register-from-overseas/international-optometrists/",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "IELTS Academic ONLY. Required scores: overall 7.0; Speaking minimum 7.0; Listening, Reading and Writing each minimum 6.0. Online IELTS (e.g. IELTS Indicator) and IELTS One Skill Retake are NOT accepted. OET is NOT accepted, nor is any other English language test — the GOC states 'We only accept IELTS tests; other English language tests are not accepted.' OET therefore plays no role in GOC registration despite an OET Optometry version existing.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "General Optical Council — International optometrists, English language requirements (optical.org)",
+      "url": "https://optical.org/registration/register-from-overseas/international-optometrists.html",
+      "confidence": "official"
+     },
+     {
+      "name": "General Optical Council — International optometrists (GOC CMS mirror)",
+      "url": "https://mygoc.azurewebsites.net/en/registration/register-from-overseas/international-optometrists/",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Overseas applicants apply to the GOC through a multi-stage process: (1) Initial scrutiny of the application and documents; (2) Assessment — a panel compares the applicant's qualifications against UK competency standards; (3) A virtual interview; (4) Assessor recommendation determining the pathway (which may include the College of Optometrists' Scheme for Registration, trailing competencies, or adaptation); (5) Completion of the College of Optometrists' Scheme for Registration, which culminates in the final assessment OSCE (delivered by the College of Optometrists, not the GOC). Successful completion leads to GOC registration as an optometrist.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "General Optical Council — International optometrists (optical.org)",
+      "url": "https://optical.org/registration/register-from-overseas/international-optometrists.html",
+      "confidence": "official"
+     },
+     {
+      "name": "College of Optometrists — Scheme for Registration / Final assessment (OSCE)",
+      "url": "https://www.college-optometrists.org/qualifying/scheme-for-registration/final-assessment-osce",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Applicants must have their qualifications independently verified before applying, via Qualification Check (QC) — a global credential verification service that confirms qualifications directly with the awarding educational institutions. The verification link is provided within the GOC application email.",
+    "corroborated": false,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "General Optical Council — International optometrists (optical.org)",
+      "url": "https://optical.org/registration/register-from-overseas/international-optometrists.html",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "GOC overseas application fees (non-refundable): scrutiny fee £130; assessment fee £455; interview fee £205 — total £790. (Separate: GOC student registration £30 if undertaking UK training; College of Optometrists' Scheme for Registration and OSCE fees are additional and set by the College. Annual GOC retention fee applies once registered.)",
+    "corroborated": false,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "General Optical Council — International optometrists, fees (optical.org)",
+      "url": "https://optical.org/registration/register-from-overseas/international-optometrists.html",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Not regulated by the GOC. GOC registration and UK immigration are separate. To work in the UK, most overseas optometrists need permission to work (e.g. a Home Office Skilled Worker visa with a licensed sponsor); this is handled via UK Visas and Immigration, independent of GOC registration. No official visa detail sourced on the GOC optometry pages.",
+    "corroborated": false,
+    "verifyStatus": "notFound",
+    "sources": []
+   }
+  ],
+  "_cell": "optometry|United Kingdom"
+ },
+ {
+  "profession": "optometry",
+  "country": "Australia",
+  "regulator": "Optometry Board of Australia / Ahpra",
+  "oet_accepted": "yes",
+  "oet_note": "OET is explicitly accepted by the Optometry Board of Australia under the Ahpra English language skills registration standard (Test pathway). Requirement to 22 April 2026: minimum OET grade B (numeric 350) in each of Listening, Reading, Writing and Speaking, in one sitting, within 2 years. From 23 April 2026 the test pathway is expressed numerically as Listening 350 / Reading 360 / Writing 350 / Speaking 360, with Ahpra stating the required proficiency level is equivalent (still grade-B level). OET publishes an optometry-relevant (healthcare) version and, unlike some professions, this regulator does accept it. Post-April-2026 numeric figures corroborated by two independent secondary sources; confirm on the live Ahpra Accepted tests page.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Optometry Board of Australia is the National Board that regulates optometrists; registration is administered jointly with the Australian Health Practitioner Regulation Agency (Ahpra). Official URL: https://www.optometryboard.gov.au (Ahpra: https://www.ahpra.gov.au).",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.optometryboard.gov.au/Registration-Standards/English-language-skills.aspx",
+      "name": "Optometry Board of Australia - English language skills registration standard",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/FAQ.aspx",
+      "name": "Ahpra - English language skills registration standard FAQ",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Approved tests under the Ahpra English language skills registration standard adopted by the Optometry Board: IELTS Academic, OET, PTE Academic, TOEFL iBT, and Cambridge English (C1 Advanced / C2 Proficiency). Legacy (pre-23 April 2026) test-pathway minimums: IELTS Academic overall 7.0 with min 7.0 each band; OET minimum grade B (numeric 350) in each of the four components. OET's role: fully accepted as one of the approved tests. New minimums effective 23 April 2026 (test pathway): IELTS Academic overall 7.0 (L7/R7/W6.5/S7); OET Listening 350, Reading 360, Writing 350, Speaking 360; PTE Academic overall 63 (L58/R59/W60/S76); TOEFL iBT overall 91 (L22/R22/W23/S24). Scores must be achieved within a defined recency window (2 years) and generally in one sitting.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.optometryboard.gov.au/News/2018-09-10-New-results-format-for-OET-Eng-test.aspx",
+      "name": "Optometry Board - New OET results format; minimum grade B / 350 confirmed",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills.aspx",
+      "name": "Ahpra - English language skills (notes changes to minimum scores effective 23 April 2026)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.aussizzgroup.com/blog/ahpra-english-language-requirement-changes/",
+      "name": "Aussizz Group - AHPRA English requirement changes 2026 (score table)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://academically.com/blogs/ahpra-registration-english-language-requirements-changed-for-healthcare-professionals/",
+      "name": "Academically - AHPRA English requirement changes April 2026 (OET numeric table)",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "oetGrade",
+    "value": "OET minimum for optometry: grade B in each of the four sub-tests (Listening/Reading/Writing/Speaking) under the standard in force to 22 April 2026 (numeric equivalent 350). From 23 April 2026 the test pathway is stated numerically as Listening 350, Reading 360, Writing 350, Speaking 360, with Ahpra advising the required proficiency level is equivalent (still essentially grade-B level).",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.optometryboard.gov.au/News/2018-09-10-New-results-format-for-OET-Eng-test.aspx",
+      "name": "Optometry Board - OET minimum grade B / 350 in each component",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.aussizzgroup.com/blog/ahpra-english-language-requirement-changes/",
+      "name": "Aussizz Group - new OET numeric scores 2026",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://academically.com/blogs/ahpra-registration-english-language-requirements-changed-for-healthcare-professionals/",
+      "name": "Academically - new OET numeric scores 2026",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Overseas-qualified optometrists whose qualification is not an approved Australian/NZ program must have their competency assessed by the Optometry Council of Australia and New Zealand (OCANZ). The OCANZ Competency in Optometry Examination (standard assessment pathway) has stages: (1) application/eligibility assessment, (2) written examination (Multiple-Choice Question Paper and Short Answer Question Paper, delivered as remote online-proctored exam), (3) Cultural Safety Training (online), and (4) clinical/practical examination held at the Australian College of Optometry in Melbourne. On successful completion, the candidate applies to the Optometry Board of Australia via Ahpra for general registration. English language skills and other registration standards (criminal history, recency of practice, PII, CPD) also apply.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.ocanz.org/examination/",
+      "name": "OCANZ - Examination (assessment stages for overseas optometrists)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ocanz.org/assets/66b0fe1c05/Assessment-of-Optometrists-with-Overseas-Qualifications-updated-November-2025.pdf",
+      "name": "OCANZ - Assessment of Optometrists with Overseas Qualifications (Nov 2025)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Ahpra requires primary-source verification of identity and qualifications; overseas qualifications and competency are assessed by OCANZ before Board registration. Applicants provide certified documents, proof of identity, evidence of English language skills, and criminal-history checks (including international checks where applicable).",
+    "corroborated": false,
+    "verifyStatus": "partially-verified",
+    "sources": [
+     {
+      "url": "https://www.ocanz.org/examination/",
+      "name": "OCANZ - assessment/eligibility documentation for overseas optometrists",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/FAQ.aspx",
+      "name": "Ahpra - evidence pathways for English language skills",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "Optometry Board of Australia registration fees (fee schedule effective 18 September 2025): general registration application fee AUD $361; annual general registration renewal fee AUD $376 (national fee; a lower NSW figure ~AUD $312 applies due to the NSW surcharge structure). These are Board/Ahpra fees only and are separate from OCANZ assessment and examination fees, which are payable to OCANZ.",
+    "corroborated": false,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.optometryboard.gov.au/Registration/Fees.aspx",
+      "name": "Optometry Board of Australia - Fees schedule (effective 18 Sept 2025)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Optometrist (ANZSCO 251411) is a recognised skilled occupation for Australian migration; overseas optometrists typically enter via skilled or employer-sponsored visa streams, and skills assessment for migration is undertaken by OCANZ. A visa is a Department of Home Affairs matter and is separate from Ahpra/Board registration, though registration/OCANZ assessment supports the skills-assessment requirement.",
+    "corroborated": false,
+    "verifyStatus": "partially-verified",
+    "sources": [
+     {
+      "url": "https://www.ocanz.org/examination/",
+      "name": "OCANZ - assessment body for overseas optometrists (used for migration skills assessment)",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "localSearchWording": [
+   "Optometry Board of Australia English language skills registration standard",
+   "OCANZ Competency in Optometry Examination overseas optometrist",
+   "Ahpra optometry general registration overseas qualified",
+   "AHPRA OET numeric scores 23 April 2026 test pathway",
+   "Optometry Board of Australia registration fees 2025"
+  ],
+  "notes": "OET is genuinely accepted by the regulator (Optometry Board of Australia) — confirmed directly from the Board's own OET news page (min grade B / 350 each component) and the shared Ahpra English language skills registration standard, not just OET marketing. Key caveat: Ahpra changed minimum test scores effective 23 April 2026, moving OET to numeric reporting (L350/R360/W350/S360 per two independent secondary sources); the exact post-April-2026 numeric OET values are corroborated only by secondary sources because the Ahpra \"Accepted tests\" detail page and several Board PDFs returned 403/404 to automated fetching — verify against the live Ahpra \"Accepted tests\" page before final use. Registration for overseas optometrists runs through OCANZ competency assessment (written online-proctored exam + cultural safety training + clinical exam in Melbourne) then Board registration via Ahpra. Fees quoted are Board fees effective 18 Sept 2025 (application AUD $361; annual renewal AUD $376) and exclude OCANZ exam fees. oet_accepted=yes.",
+  "_cell": "optometry|Australia"
+ },
+ {
+  "profession": "dietetics",
+  "country": "United Kingdom",
+  "regulator": "Health and Care Professions Council (HCPC)",
+  "oet_accepted": "yes",
+  "oet_note": "HCPC added OET (Occupational English Test) as an approved English language test for international applicants effective 00:01 GMT, 29 January 2025. OET publishes a Dietetics-specific version and HCPC explicitly lists Dietitians among the limited professions for which OET is accepted. HCPC states the requirement in OET numeric scores rather than letter grades: for Dietitians, an overall score of 1400 with no element below 300. In OET's letter-grade scheme, 350–450 = Grade B and 300–340 = Grade C+, so this equates to effectively a Grade B overall average with a minimum of Grade C+ in each of the four sub-tests (Listening, Reading, Writing, Speaking). Note OET is NOT available for all HCPC-regulated professions — it is offered only for a limited set including Dietitians, Chiropodists/Podiatrists, Occupational therapists, Physiotherapists, Radiographers, and Speech and language therapists (SLTs require the higher 1800 / no element below 400). Certificates must be no more than two years old at the point of application.",
+  "localSearchWording": [
+   "HCPC dietitian international registration",
+   "HCPC English language requirements OET IELTS",
+   "HCPC certificate of English language proficiency",
+   "HCPC international scrutiny fee",
+   "BDA international dietitians HCPC"
+  ],
+  "notes": "HCPC is the statutory regulator for dietitians in the UK; \"dietitian\" is a protected title. The British Dietetic Association (BDA) is the professional body/trade union, NOT the regulator — it does not handle registration. OET acceptance confirmed from the HCPC's own official Certificate of English Language Proficiency page (primary source) plus the HCPC news release announcing the change effective 29 Jan 2025. Fee figures are from HCPC's official fees pages, effective 29 April 2025. English requirement corroborated by BDA (secondary/official professional body). Registration is via the international application route; HCPC assesses whether the applicant's education/training meets the UK Standards of Proficiency for Dietitians — there is no routine adaptation exam, but HCPC may request further information or evidence. Dietitians are eligible for the UK Health and Care Worker visa (a route of the Skilled Worker visa) — this is administered by the Home Office/UKVI, not HCPC.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Health and Care Professions Council (HCPC) — the statutory regulator for dietitians (a protected title) in the United Kingdom. Official website: https://www.hcpc-uk.org. The British Dietetic Association (BDA) is the professional body/trade union, not the regulator.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.bda.uk.com/practice-and-education/career-and-workforce/international-dietitians.html",
+      "name": "BDA — International Dietitians",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "HCPC accepts three approved English language tests: (1) IELTS (Academic or General, UKVI and non-UKVI) — most professions incl. dietitians require 7.0 overall with no element below 6.5; (2) TOEFL iBT — for tests taken before 21 Jan 2026, 100/120 for most professions; for tests on/after 21 Jan 2026, overall 5 (Reading 4.5, Listening 5, Writing 4.5, Speaking 5); (3) OET — for Dietitians, 1400 with no element below 300 (effectively Grade B overall / minimum C+ per sub-test). OET was added as an approved test effective 29 January 2025. Certificates must be under 2 years old. TOEFL tests taken in the UK are not accepted.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/",
+      "name": "HCPC — Certificate of English language proficiency (official test scores incl. OET 1400/300 for Dietitians)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/news-and-events/news/2024/new-english-language-requirements-for-international-applicants-to-come-into-effect-in-2025/",
+      "name": "HCPC — New English language requirements effective 29 Jan 2025 (OET added)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.bda.uk.com/practice-and-education/career-and-workforce/international-dietitians.html",
+      "name": "BDA — International Dietitians (IELTS 7.0/6.5, certs <2 years)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "International application route: applicants who trained/practised outside the UK and have not previously been HCPC-registered apply online. HCPC assesses whether the applicant's professional education and training meet the UK Standards of Proficiency for Dietitians. There is no routine competency exam or mandatory adaptation period, but HCPC may request further information/evidence to determine equivalence. Swiss applicants and those with refugee status use a paper application. On approval and payment of the annual registration fee, the applicant is entered on the Register and may use the protected title 'Dietitian'.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/",
+      "name": "HCPC — How to apply via the international application route",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/globalassets/registration/application-forms/international-applications/international-applications---guidance-notes-2025.pdf",
+      "name": "HCPC — International applications guidance notes 2025",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Applicants must submit certified documentary evidence: proof of identity and address, professional qualification certificates and course/curriculum information, evidence of professional experience, and an English language proficiency certificate (IELTS/TOEFL/OET, less than 2 years old). All documents must be certified copies and, where not in English, accompanied by a professional certified translation. Application is primarily online (paper for Swiss/refugee applicants).",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications (documents required)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.bda.uk.com/practice-and-education/career-and-workforce/international-dietitians.html",
+      "name": "BDA — International Dietitians (certified documents, translations)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "International scrutiny (assessment) fee: £678.38 — a one-off, non-refundable payment charged with the international application. Annual registration / renewal fee: £123.34 per year (standard). UK new-graduate reduced rate £61.67 (not applicable to international applicants). These rates took effect from 29 April 2025. Note: OET/IELTS test fees and any translation costs are additional and paid to third parties.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/paying-your-scrutiny-fee/",
+      "name": "HCPC — Paying your scrutiny fee (£678.38)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/your-registration/fees-and-tax/changes-to-our-registration-fees/",
+      "name": "HCPC — Changes to our registration fees (effective 29 Apr 2025)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Dietitians are eligible for the UK Health and Care Worker visa (a route within the Skilled Worker visa), administered by the Home Office/UK Visas and Immigration — not by HCPC. It requires sponsorship by an approved employer (e.g. NHS trust) with a Certificate of Sponsorship, a job in an eligible occupation (dietitian, SOC code 2232), and meeting the salary threshold. HCPC registration itself does not grant the right to work; a separate immigration route is required for non-UK/Irish nationals.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://www.gov.uk/health-care-worker-visa",
+      "name": "GOV.UK — Health and Care Worker visa: Overview",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.gov.uk/government/publications/skilled-worker-visa-eligible-occupations/skilled-worker-visa-eligible-occupations-and-codes",
+      "name": "GOV.UK — Skilled Worker visa eligible occupations and codes",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "dietetics|United Kingdom"
+ },
+ {
+  "profession": "dietetics",
+  "country": "Australia",
+  "regulator": "Dietitians Australia (self-regulating professional body / Australia's official skills assessing authority for dietitians)",
+  "oet_accepted": "yes",
+  "oet_note": "OET is explicitly accepted by Dietitians Australia on its own English language proficiency page for dietetic skills recognition. Required grade: minimum score of 350 (Grade B) in EACH of the four components (listening, reading, writing, speaking). Both paper-based and computer-based OET versions are accepted. Results are valid for 2 years and must be current at both application and examination stages. Note: dietetics in Australia is self-regulated (NOT registered under AHPRA/Ahpra as a regulated health profession), so the English requirement is set by Dietitians Australia as the credentialing/assessing body, not a statutory regulator. Applicants with qualifications from Canada, Ireland, New Zealand, South Africa, UK, USA (or a recent Australian accredited degree) may be exempt from English testing.",
+  "localSearchWording": [
+   "Dietitians Australia skills recognition English language proficiency",
+   "Dietetic Skills Recognition DSR overseas educated dietitian",
+   "Accredited Practising Dietitian APD overseas qualified",
+   "Dietitian ANZSCO 251111 skills assessment visa",
+   "Dietitians Australia OET Grade B requirement"
+  ],
+  "notes": "Dietetics in Australia is self-regulated. Dietitians Australia (formerly Dietitians Association of Australia / DAA) administers the Accredited Practising Dietitian (APD) credential and is the Australian Government-authorised skills assessing authority for the migration occupation Dietitian (ANZSCO 251111). It is NOT part of Ahpra/AHPRA. Two distinct pathways exist: (1) Dietetic Skills Recognition (DSR) to practise as an APD, and (2) a separate, cheaper Skills Migration Assessment for a visa (which requires DSR Stage 2 to have been passed). All facts below are sourced from Dietitians Australia's own official website (dietitiansaustralia.org.au) = official/primary. Fees valid until 31 March 2026 at time of retrieval; confirm current figures. Visa subclasses are administered by the Department of Home Affairs, not Dietitians Australia.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Dietitians Australia — self-regulating professional body that administers the Accredited Practising Dietitian (APD) credential via Dietetic Skills Recognition (DSR), and is the Australian Government-authorised skills assessing authority for Dietitian (ANZSCO 251111). Official URL: https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia. Dietetics is self-regulated, not registered under Ahpra.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia",
+      "name": "Dietitians Australia — Skills recognition in Australia",
+      "confidence": "official"
+     },
+     {
+      "url": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/skills-assessment-visa",
+      "name": "Dietitians Australia — Skills assessment for a visa",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Three tests accepted (min scores): IELTS Academic — 7 in each of the four components and overall 7 (One Skill Retake results accepted); OET — 350 (Grade B) in each of the four components (paper or computer version); Pearson PTE Academic — 65 across all components (Academic, computer-based). TOEFL is NOT accepted. OET's role: fully accepted as one of the approved tests at Grade B. All results valid for 2 years and must be current at application and exam. Exemptions available for qualifications from Canada, Ireland, New Zealand, South Africa, UK, USA and recent Australian accredited degrees.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/process-overseas-educated-dietitians/english-language-proficiency",
+      "name": "Dietitians Australia — English language requirements for skills recognition",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Dietetic Skills Recognition (DSR) is a three-stage process assessing skills against the National Competency Standards: Stage 1 — DSR eligibility assessment (professional recognition in home country, recency of practice within 3 years, English proficiency, a 4-year tertiary degree covering human biosciences and food/nutrition science with >=100 days supervised placement); up to 6 weeks. Stage 2 — written MCQ exam (online, 150 minutes, 120 questions; typically March and September). Stage 3 — oral exam (120-minute counselling interview via Zoom, three client role-play scenarios; typically April and October). Each exam may be attempted up to 3 times; all stages plus joining the APD Program must be completed within 3 years of DSR approval. Cultural Awareness (Aboriginal and Torres Strait Islander) assessment required. Passing enables APD status, Medicare/DVA provider numbers, and private health insurer recognition.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/process-overseas-educated-dietitians",
+      "name": "Dietitians Australia — Process for overseas-educated dietitians",
+      "confidence": "official"
+     },
+     {
+      "url": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/process-overseas-educated-dietitians/dietetic-skills-recognition-criteria",
+      "name": "Dietitians Australia — Dietetic Skills Recognition Criteria",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Applicants must submit CERTIFIED copies of all original documents: current dietetic registration/credential/licence from country of qualification or practice; academic transcripts and dietetic qualification documents; evidence of >=100 days supervised professional placement; two professional reference letters (from employers/HR/supervisors); CV; completion of the Aboriginal and Torres Strait Islander Cultural Awareness Assessment; two passport-size photographs; copy of passport photo page; English language test results (if required); and name-change documentation if applicable.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/process-overseas-educated-dietitians",
+      "name": "Dietitians Australia — Process for overseas-educated dietitians (documentation)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "In AUD, GST included where applicable, valid to 31 March 2026 (verify current): DSR Stage 1 assessment AUD $1,664; Stage 2 MCQ exam AUD $1,431; Stage 3 oral exam AUD $1,519; Skills Migration Assessment (for a visa) AUD $305; Mutual Recognition Assessment AUD $352. Most fees non-refundable. Additional costs: exam date transfer e.g. AUD $50 (MCQ); appeals AUD $175–$932. Same fees for members and non-members.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/fees-and-payments-skills-recognition",
+      "name": "Dietitians Australia — Fees and payments for skills recognition",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Occupation: Dietitian, ANZSCO 251111, on Australia's skilled occupation list. Dietitians Australia is the Government-authorised skills assessing authority; the Department of Home Affairs uses its assessment for skilled migration visa eligibility. For a visa skills assessment, applicants need either an accredited Australian dietetics qualification OR an overseas qualification plus successful completion of DSR Stage 2. The migration skills assessment (AUD $305) is separate from and cheaper than full DSR; processing up to 6 weeks. Common visa subclasses (administered by Home Affairs, not Dietitians Australia) include skilled independent (189), skilled nominated (190) and employer-sponsored (482/186); confirm eligible visa list with Home Affairs.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "url": "https://dietitiansaustralia.org.au/working-dietetics/skills-recognition-australia/skills-assessment-visa",
+      "name": "Dietitians Australia — Skills assessment for a visa (ANZSCO 251111)",
+      "confidence": "official"
+     }
+    ]
+   }
+  ],
+  "_cell": "dietetics|Australia"
+ },
+ {
+  "profession": "speech and language therapy",
+  "country": "United Kingdom",
+  "regulator": "Health and Care Professions Council (HCPC)",
+  "oet_accepted": "yes",
+  "oet_note": "HCPC explicitly accepts the OET (Occupational English Test) for speech and language therapists, but at a HIGHER threshold than most other HCPC professions. General HCPC professions need OET 1400 total with no element below 300; speech and language therapists must achieve OET 1800 total with no element (Listening, Reading, Writing, Speaking) below 400. On the OET 0-500 numerical scale each subtest maps to a grade (A = 450-500, B = 350-440, C+ = 300-340). So the SLT requirement of no element below 400 is effectively at least a strong Grade B in every subtest, with a total of 1800 (average 450 ≈ Grade A). OET publishes a Speech Pathology version of the test; candidates would sit the profession-relevant version. Certificate must be no more than two years old at the point HCPC receives the application, and taken at an official test centre (not remotely).",
+  "localSearchWording": [
+   "HCPC certificate of English language proficiency",
+   "HCPC international applications speech and language therapist",
+   "HCPC OET requirement speech and language therapist 1800",
+   "RCSLT registration UK"
+  ],
+  "notes": "HCPC is the statutory regulator that grants the protected title \"speech and language therapist\" / \"speech therapist\" in the UK. The Royal College of Speech and Language Therapists (RCSLT) is the professional membership body, NOT the regulator — HCPC registration (not RCSLT membership) is what is legally required to practise. All English-test scores and fees were sourced directly from HCPC's own official pages (hcpc-uk.org). Profession-specific higher English thresholds for SLTs are confirmed on the official HCPC Certificate of English Language Proficiency page. Fees effective 29 April 2025; note HCPC opened a fee consultation in 2026, so amounts could change. TOEFL iBT requirements changed for tests taken on/after 21 January 2026. Visa/SOC info sourced from UK government occupation coding (SOC 2223) and NHS Employers, not from HCPC.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Health and Care Professions Council (HCPC) is the statutory regulator for speech and language therapists in the UK; the title 'speech and language therapist' / 'speech therapist' is protected and requires HCPC registration to practise. The Royal College of Speech and Language Therapists (RCSLT) is the professional body, not the regulator. Official URL: https://www.hcpc-uk.org/",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/",
+      "name": "HCPC — Certificate of English language proficiency",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "HCPC accepts IELTS (Academic), TOEFL iBT and OET. Certificate must be no more than 2 years old when HCPC receives the application and taken at an official test centre. Speech and language therapists have HIGHER thresholds than general professions: IELTS 8.0 overall with no component below 7.5 (general professions: 7.0 overall, no component below 6.5). OET for SLTs: 1800 total with no element below 400 (general professions: 1400 total, no element below 300). TOEFL iBT (tests before 21 Jan 2026) for SLTs: 118/120 (general: 100/120); TOEFL iBT (tests on/after 21 Jan 2026) for SLTs: Reading 5.5, Listening 5.5, Writing 6, Speaking 6, Overall 6 (general: Reading 4.5, Listening 5, Writing 4.5, Speaking 5, Overall 5).",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/",
+      "name": "HCPC — Certificate of English language proficiency",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "oetRole",
+    "value": "OET is an accepted test for HCPC registration as a speech and language therapist, but at an elevated threshold: 1800 total with no element (Listening/Reading/Writing/Speaking) below 400 — versus 1400 total / no element below 300 for most other HCPC professions. On the OET 0-500 scale, A=450-500, B=350-440, C+=300-340, so SLTs need at least strong Grade B in each subtest (total ~Grade A average). OET offers a Speech Pathology profession version.",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/",
+      "name": "HCPC — Certificate of English language proficiency (OET thresholds)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://oet.com/en-us/test/results-and-scoring",
+      "name": "OET — Results and Scoring (0-500 grade bands)",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "registrationPathway",
+    "value": "International applicants apply online via the HCPC international application route (seven sections: personal details, qualifications, professional experience, registrations/memberships, English language evidence, standards of proficiency mapping document, declarations). HCPC assesses education, training and experience against UK standards of proficiency. Possible outcomes: direct registration approval, a requirement to complete a test of competence, or a period of adaptation (supervised practice). Applicants from Norway, Iceland, Liechtenstein and Switzerland use a separate Free Trade Agreement (FTA) route.",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/",
+      "name": "HCPC — How to apply via the international application route",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications (possible outcomes)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "verification",
+    "value": "Applicants must prepare and submit certified copies of required documents (qualifications, English language certificate, etc.). HCPC scrutinises/reviews qualifications, training and experience against UK standards of proficiency as part of the international application assessment; guidance is set out in 'International applications - guidance notes 2025'.",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications (documents & assessment)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/",
+      "name": "HCPC — How to apply",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": false,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "fees",
+    "value": "International scrutiny fee: £678.38 (one-off, non-refundable). Standard annual registration/renewal fee: £123.34 per year (registrants renew every two years, so ~£246.68 per two-year cycle). New UK graduates pay £61.67/year (50% discount for first two professional years). UK approved-programme scrutiny fee: £86.34; readmission/restoration: £185.01. Fees effective 29 April 2025 (a 2026 HCPC fee consultation is underway, so amounts may change).",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/paying-your-scrutiny-fee/",
+      "name": "HCPC — Paying your scrutiny fee (£678.38 non-refundable)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/your-registration/fees-and-tax/changes-to-our-registration-fees/",
+      "name": "HCPC — Changes to our registration fees",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   },
+   {
+    "key": "visa",
+    "value": "Speech and language therapists (UK SOC 2223) are eligible for the UK Skilled Worker route and the Health and Care Worker visa, requiring sponsorship by a licensed employer. HCPC registration is generally needed to work in the role. This is immigration information, not from HCPC.",
+    "sources": [
+     {
+      "url": "https://www.nhsemployers.org/articles/skilled-worker-health-and-care-visa",
+      "name": "NHS Employers — Skilled Worker: Health and Care Visa",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://www.getborderless.co.uk/blog/hiring-speech-and-language-therapists-soc-code-2223",
+      "name": "Getborderless — SLT SOC 2223 visa guide",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": true,
+    "verifyStatus": "verified"
+   }
+  ],
+  "_cell": "speech and language therapy|United Kingdom"
+ },
+ {
+  "profession": "speech pathology",
+  "country": "Australia",
+  "regulator": "Speech Pathology Australia (SPA)",
+  "oet_accepted": "yes",
+  "oet_note": "OET is explicitly accepted by Speech Pathology Australia for overseas-qualified speech pathologists, confirmed on the regulator's own English-requirement documents (OSQCA Guide for Applicants April 2026 and Phase 1 Eligibility DEWR PDF), not just OET marketing. Required standard (April 2026 Guide): overall OET score 1800 with a minimum of 400 in each of the four elements — 400 = OET Grade B, so effectively a minimum Grade B in Listening, Reading, Writing and Speaking. Version note: the Phase 1 DEWR PDF phrases it as two elements in Band 450-500 and two in Band 400-500 (all Grade B+). Results must be under 2 years old, in-person only (no online tests), combinable across max two sittings within 12 months. Exemption if the entry-level qualification was completed in English at a university in the UK/USA/Canada/NZ/Ireland. TOEFL iBT and PTE Academic are NOT accepted (only OET and IELTS Academic).",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Speech Pathology Australia (SPA) is the national professional body, certifying/credentialing authority, and the ONLY assessing authority for speech pathologists seeking skilled migration to Australia (ANZSCO 252712). Note: speech pathology is a self-regulated profession in Australia and is NOT registered under AHPRA/a National Board. Official site: https://www.speechpathologyaustralia.org.au",
+    "sources": [
+     {
+      "url": "https://www.speechpathologyaustralia.org.au/Public/Public/Overseas-trained/Skills-Assessment/Skills-Assessments.aspx",
+      "name": "Speech Pathology Australia — Skills Assessments (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://speechpathologyaustralia.org.au/Common/Uploaded%20files/Smart%20Suite/Smart%20Library/19391023-50c3-4dc0-8a2c-b7e846fc7d2e/osqca-guide-for-applicants-apr-2026.pdf",
+      "name": "SPA — OSQCA Guide for Applicants, April 2026 (official PDF)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Only two English tests are accepted: (1) IELTS Academic — overall band 8.0 with no sub-test below 7.5 (per April 2026 OSQCA Guide); the earlier Phase 1 DEWR document phrases it as two sub-bands of 8.5+ and two of 7.5+ with overall 8.0. (2) OET — overall 1800 with a minimum of 400 (Grade B) in each of the four elements (April 2026 Guide); Phase 1 DEWR document phrases it as two elements at Band 450-500 and two at Band 400-500. OET plays a fully-accepted primary role (equal alternative to IELTS). TOEFL iBT and PTE Academic are NOT accepted. Results valid 2 years; in-person only (no online tests); combinable across max two sittings within 12 months, or IELTS One Skill Retake. Exemption for entry-level qualification taken in English at a university in UK/USA/Canada/NZ/Ireland.",
+    "sources": [
+     {
+      "url": "https://speechpathologyaustralia.org.au/Common/Uploaded%20files/Smart%20Suite/Smart%20Library/19391023-50c3-4dc0-8a2c-b7e846fc7d2e/osqca-guide-for-applicants-apr-2026.pdf",
+      "name": "SPA — OSQCA Guide for Applicants, April 2026 (official PDF)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.speechpathologyaustralia.org.au/Common/Uploaded%20files/Smart%20Suite/Smart%20Library/5bb680ba-065a-4fb9-afde-f2fd4c04ed70/Phase-1-Eligibility-OSQCA-DEWR.pdf",
+      "name": "SPA — Phase 1 Eligibility (OSQCA, DEWR) (official PDF)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Two pathways to have overseas qualifications recognised: (A) Mutual Recognition Agreement (MRA) — for applicants holding FULL certification with a signatory association (ASHA (USA), SAC (Canada), RCSLT (UK), IASLT (Ireland), NZSTA (NZ)) AND who completed their education in an MRA signatory country. (B) Overseas Qualified Competency Assessment (OSQCA) — for those ineligible for MRA. OSQCA launched 1 February 2026 and has FOUR phases: Phase 1 Eligibility (ID + English + recent-practice evidence); Phase 2 Learning (online modules: ethics, evidence-based practice, cultural competency); Phase 3 Written Assessment (portfolio across communication and swallowing cases); Phase 4 Verbal Assessment (videoconference interview, only if Phase 3 passed). Up to three resubmissions per phase within a 2-year validity window. This is an assessment-of-competency pathway, not a single exam.",
+    "sources": [
+     {
+      "url": "https://www.speechpathologyaustralia.org.au/Public/Public/Overseas-trained/Skills-Assessment/Skills-Assessments.aspx",
+      "name": "SPA — Skills Assessments (official)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://speechpathologyaustralia.org.au/Common/Uploaded%20files/Smart%20Suite/Smart%20Library/19391023-50c3-4dc0-8a2c-b7e846fc7d2e/osqca-guide-for-applicants-apr-2026.pdf",
+      "name": "SPA — OSQCA Guide for Applicants, April 2026 (official PDF)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true
+   },
+   {
+    "key": "verification",
+    "value": "Phase 1 requires identity and document verification: clear photographs of passport (photo page, all four corners), birth certificate (all four corners), and at least one additional official photo ID (all four corners). Recent-practice evidence is also required — the Phase 1 DEWR document specifies at least 1000 hours of work as a speech pathologist in the 5 years prior to application; NOTE the April 2026 OSQCA Guide states the 1000-hour rule was removed in favour of evidence of practice as a speech pathologist within the past 15 years (a version discrepancy between the two official documents — confirm the currently in-force requirement directly with SPA).",
+    "sources": [
+     {
+      "url": "https://www.speechpathologyaustralia.org.au/Common/Uploaded%20files/Smart%20Suite/Smart%20Library/5bb680ba-065a-4fb9-afde-f2fd4c04ed70/Phase-1-Eligibility-OSQCA-DEWR.pdf",
+      "name": "SPA — Phase 1 Eligibility (OSQCA, DEWR) (official PDF)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://speechpathologyaustralia.org.au/Common/Uploaded%20files/Smart%20Suite/Smart%20Library/19391023-50c3-4dc0-8a2c-b7e846fc7d2e/osqca-guide-for-applicants-apr-2026.pdf",
+      "name": "SPA — OSQCA Guide for Applicants, April 2026 (official PDF)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": true
+   },
+   {
+    "key": "fees",
+    "value": "OSQCA fees are charged per phase (per April 2026 OSQCA Guide): Phase 1 = AUD $150; Phase 2 = AUD $400; Phase 3 = AUD $1,050; Phase 4 = AUD $400 (total AUD $2,000 for a single pass through all four phases). Resubmissions (up to three per phase) may incur additional fees. English test fees (OET/IELTS) and any separate MRA-pathway fees are additional and not included here.",
+    "sources": [
+     {
+      "url": "https://speechpathologyaustralia.org.au/Common/Uploaded%20files/Smart%20Suite/Smart%20Library/19391023-50c3-4dc0-8a2c-b7e846fc7d2e/osqca-guide-for-applicants-apr-2026.pdf",
+      "name": "SPA — OSQCA Guide for Applicants, April 2026 (official PDF)",
+      "confidence": "official"
+     }
+    ],
+    "corroborated": false
+   },
+   {
+    "key": "visa",
+    "value": "A successful SPA skills assessment (MRA or OSQCA outcome) is the prerequisite for skilled migration under ANZSCO 252712 Speech Pathologist. The visa itself is granted by the Australian Department of Home Affairs, not SPA — relevant skilled visa subclasses include 189 (Skilled Independent), 190 (Skilled Nominated), 491 (Skilled Work Regional), and employer-sponsored options. Speech Pathologist appears on Australian skilled occupation lists. Visa criteria, points and current list status must be verified at homeaffairs.gov.au; SPA only provides the occupational skills assessment.",
+    "sources": [
+     {
+      "url": "https://www.speechpathologyaustralia.org.au/Public/Public/Overseas-trained/Skills-Assessment/Skills-Assessments.aspx",
+      "name": "SPA — Skills Assessments (official; states SPA is the assessing authority for skilled migration)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skill-occupation-list",
+      "name": "Department of Home Affairs — Skilled occupation list",
+      "confidence": "secondary"
+     }
+    ],
+    "corroborated": false
+   }
+  ],
+  "localSearchWording": [
+   "Speech Pathology Australia overseas qualified skills assessment",
+   "SPA OSQCA guide for applicants English requirements",
+   "speech pathologist Australia OET IELTS requirement migration",
+   "Speech Pathology Australia Mutual Recognition Agreement MRA pathway",
+   "ANZSCO 252712 speech pathologist skills assessment"
+  ],
+  "notes": "Speech pathology is SELF-REGULATED in Australia — practitioners are NOT registered with AHPRA or a National Board; the profession's credentialing/assessing body is Speech Pathology Australia (SPA). OET acceptance is CONFIRMED from SPA's own official documents (OSQCA Guide for Applicants April 2026 and the Phase 1 Eligibility DEWR PDF), not from OET marketing or recruiters — oet_accepted = yes, requiring effectively OET Grade B (min 400) in all four sub-tests plus overall 1800. IMPORTANT DATA-QUALITY FLAG: the two official SPA documents give slightly different phrasings of both the English scores and the recent-practice requirement (per-band bands vs overall+per-element for OET; 1000 hours/5 years vs practice within 15 years). The April 2026 OSQCA Guide is the more recent source. The OET-specific page (https://www.speechpathologyaustralia.org.au/Public/Public/Overseas-trained/OET.aspx) is referenced in search results but returned HTTP 404 on direct fetch — could not be read; the two PDF sources corroborate OET acceptance independently. Fees and visa marked not-corroborated (single official source / cross-domain Home Affairs). Recommend the applicant confirm the currently in-force English and practice thresholds directly with SPA before relying on them, given the version discrepancy.",
+  "_cell": "speech pathology|Australia"
+ },
+ {
+  "profession": "podiatry",
+  "country": "United Kingdom",
+  "regulator": "Health and Care Professions Council (HCPC)",
+  "oet_accepted": "yes",
+  "oet_note": "OET is formally accepted by the HCPC for podiatrists/chiropodists, effective for applications submitted from 00:01 GMT on 29 January 2025 (OET was newly added alongside the pre-existing IELTS and TOEFL routes). The profession-specific OET (OET Podiatry version) is valid. Per HCPC's own Certificate of English Language Proficiency page, the required OET result for podiatrists (and all HCPC professions except Speech and Language Therapists) is a total score of 1400 with no individual subtest element below 300 — i.e. an overall performance around Grade B with no subtest below Grade C+. (Speech and Language Therapists require the higher 1800 / no element below 400.) The certificate must be no more than two years old when HCPC receives the application. Note: many recruitment/agency sites summarise this loosely as \"Grade B in all subtests,\" but the authoritative HCPC wording is 1400 total with no element below 300.",
+  "localSearchWording": [
+   "HCPC English language proficiency requirements OET IELTS TOEFL scores",
+   "HCPC Certificate of English language proficiency",
+   "HCPC international applications how to apply podiatrist",
+   "HCPC scrutiny fee international application",
+   "podiatrist Health and Care Worker visa HCPC registration"
+  ],
+  "notes": "All load-bearing facts sourced from official HCPC pages (hcpc-uk.org). Podiatrist/chiropodist is a protected title regulated by HCPC. English-language scores taken directly from HCPC's Certificate of English Language Proficiency page (primary source). OET acceptance and 29 Jan 2025 effective date confirmed by HCPC news release. Fees: international scrutiny fee £678.38 (non-refundable) confirmed on HCPC 'paying your scrutiny fee' page; annual registration fee £123.34/year (£246.68 per two-year cycle) from HCPC fees page — note the £86.34 'scrutiny fee' shown on the UK-applications registration-fee page is the separate UK-graduate scrutiny fee, NOT the international scrutiny fee. Visa route (Health and Care Worker visa) corroborated by Royal College of Podiatry; HCPC registration is a prerequisite. TOEFL scoring changed for tests taken on/after 21 January 2026 (new 1-6 scale) per HCPC.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Health and Care Professions Council (HCPC) — statutory regulator for podiatrists/chiropodists in the UK; 'podiatrist' and 'chiropodist' are protected titles requiring HCPC registration to practise. Website: https://www.hcpc-uk.org",
+    "corroborated": true,
+    "verifyStatus": "official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/",
+      "name": "HCPC — International applications to join the HCPC Register",
+      "confidence": "official"
+     },
+     {
+      "url": "https://rcpod.org.uk/careers/international-entry",
+      "name": "Royal College of Podiatry — International entry into UK podiatry",
+      "confidence": "secondary"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "HCPC recognises three tests. IELTS (Academic): overall 7.0 with no element below 6.5. TOEFL iBT: overall 100/120 for tests taken before 21 January 2026 (new 1–6 scale for tests on/after that date: overall 5, Reading/Writing 4.5, Listening/Speaking 5). OET: total 1400 with no element below 300 (the profession-specific OET Podiatry version is accepted). Speech and Language Therapists have higher thresholds. Certificate must be under two years old at application. Applicants who gained their primary qualification in a designated 'qualifying country' are exempt from taking a test.",
+    "corroborated": true,
+    "verifyStatus": "official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/",
+      "name": "HCPC — Certificate of English language proficiency (scores)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/english-language-proficiency/",
+      "name": "HCPC — Section 5: English language proficiency",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "oetRole",
+    "value": "OET is fully accepted for podiatrists, effective for applications submitted from 00:01 GMT 29 January 2025 (added alongside IELTS and TOEFL). Required result: total 1400 with no subtest below 300 (approx. overall Grade B, minimum Grade C+ per subtest). The profession-specific OET Podiatry paper satisfies this.",
+    "corroborated": true,
+    "verifyStatus": "official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/news-and-events/news/2024/new-english-language-requirements-for-international-applicants-to-come-into-effect-in-2025/",
+      "name": "HCPC — New English language requirements to come into effect in 2025",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/documents/certificate-of-english-language-proficiency/",
+      "name": "HCPC — Certificate of English language proficiency",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Online international application route. Applicant completes an online form (personal details, qualifications, professional experience, registration history, English language proficiency, a Standards of Proficiency mapping document, and declarations). Two Registration Assessors assess the application against HCPC's Standards of Proficiency for chiropodists/podiatrists. Possible outcomes: approval, request for further information, a Test of Competence, or a Period of Adaptation (POA). No separate national licensing exam is mandatory for all applicants — assessment is qualification/competence based.",
+    "corroborated": true,
+    "verifyStatus": "official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/",
+      "name": "HCPC — How to apply via the international application route",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/online-international-applications-guidance",
+      "name": "HCPC — Online international applications guidance",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Applicants must submit certified copies of ID (passport/national ID and proof of address), certified professional qualification certificates, a Course Information Form completed and stamped by the awarding institution, details of professional experience with supervisor/manager contacts, references from previous supervisors, and an English language certificate (unless exempt via a qualifying country). HCPC conducts identity/plagiarism and AI checks and verifies information during review.",
+    "corroborated": true,
+    "verifyStatus": "official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/online-international-applications-guidance",
+      "name": "HCPC — Online international applications guidance (documents/verification)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/",
+      "name": "HCPC — How to apply (certified documents)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "International application scrutiny fee: £678.38, one-off and non-refundable, paid at submission. On approval, the ongoing registration fee is £123.34 per year (£246.68 for the standard two-year renewal cycle); reduced graduate rates apply to UK new graduates only. (Note: the £86.34 'scrutiny fee' listed on the UK-applications page is the separate UK-graduate route fee, not the international fee.)",
+    "corroborated": true,
+    "verifyStatus": "official",
+    "sources": [
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/international-applications/how-to-apply/paying-your-scrutiny-fee/",
+      "name": "HCPC — Paying your scrutiny fee (£678.38)",
+      "confidence": "official"
+     },
+     {
+      "url": "https://www.hcpc-uk.org/registration/getting-on-the-register/uk-applications/paying-the-registration-fee/",
+      "name": "HCPC — Paying the registration fee (£123.34/yr)",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Internationally-qualified podiatrists typically use the UK Health and Care Worker visa (a branch of the Skilled Worker route). Requirements: a confirmed job offer from a licensed sponsor, a Certificate of Sponsorship, and — because it is a healthcare professional role — HCPC registration. HCPC registration must generally be secured before/for the role. The Health and Care Worker visa offers reduced fees and exemption from the Immigration Health Surcharge.",
+    "corroborated": true,
+    "verifyStatus": "secondary",
+    "sources": [
+     {
+      "url": "https://rcpod.org.uk/careers/international-entry",
+      "name": "Royal College of Podiatry — International entry (Health and Care Worker visa)",
+      "confidence": "secondary"
+     },
+     {
+      "url": "https://www.nhsemployers.org/articles/recruitment-overseas-allied-health-professionals",
+      "name": "NHS Employers — Recruitment of overseas allied health professionals",
+      "confidence": "secondary"
+     }
+    ]
+   }
+  ],
+  "_cell": "podiatry|United Kingdom"
+ },
+ {
+  "profession": "podiatry",
+  "country": "Australia",
+  "regulator": "Podiatry Board of Australia (regulated with the Australian Health Practitioner Regulation Agency, AHPRA)",
+  "oet_accepted": "yes",
+  "oet_note": "OET (Medicine/health version) is one of five English tests accepted by the National Boards (including the Podiatry Board) under the shared AHPRA English language skills registration standard. For OET results dated on or before 22 April 2026, the required grade is a minimum of B in Listening, Reading and Speaking and a minimum of C+ in Writing (a single test sitting). For OET taken on or from 23 April 2026, the National Boards updated the numeric minimums to: Listening 350, Reading 360, Writing 350, Speaking 360. The proficiency level is unchanged; the 2018-era 'B in all four components (350)' guidance was superseded by the current split scores. OET must be the version for medicine/health professions.",
+  "localSearchWording": [
+   "Podiatry Board of Australia English language skills registration standard OET",
+   "AHPRA accepted English language tests OET podiatry",
+   "Podiatry Board registration pathways internationally qualified podiatrists"
+  ],
+  "notes": "Podiatry does not have a separate English standard; it uses the AHPRA-wide English language skills registration standard shared by all National Boards. OET is genuinely accepted by the regulator (confirmed on AHPRA's own Accepted English language tests page, not just OET marketing). Scores changed 23 April 2026. Visa/migration is governed by the Department of Home Affairs (podiatrist ANZSCO 252611), separate from professional registration; the Podiatry Board acts as the skills-assessing authority for migration. Several official podiatryboard.gov.au deep-link URLs returned 404 on fetch (likely CMS redirects); facts were confirmed via the pages that resolved and AHPRA's central pages.",
+  "facts": [
+   {
+    "key": "regulator",
+    "value": "Podiatry Board of Australia, operating in partnership with the Australian Health Practitioner Regulation Agency (AHPRA). Official site: https://www.podiatryboard.gov.au",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "Podiatry Board of Australia - official site",
+      "url": "https://www.podiatryboard.gov.au/",
+      "confidence": "official"
+     },
+     {
+      "name": "AHPRA - Registration Standards / English language skills",
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills.aspx",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "englishAcceptedTests",
+    "value": "Five tests accepted under the shared AHPRA English language skills registration standard: IELTS Academic, OET, PTE Academic, TOEFL iBT, and Cambridge (C1 Advanced/C2 Proficiency). Minimums for tests on/before 22 April 2026: IELTS overall 7.0 (L/R/S 7.0, Writing 6.5); OET L/R/S grade B, Writing C+; PTE Academic overall 66 (L/R/S 66, Writing 56); TOEFL iBT overall 94 (L24/R24/W24/S23). From 23 April 2026 the minimums were updated, e.g. OET Listening 350/Reading 360/Writing 350/Speaking 360; PTE overall 63; TOEFL iBT overall 91. OET is accepted (must be the medicine/health version).",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "AHPRA - Accepted English language tests",
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests.aspx",
+      "confidence": "official"
+     },
+     {
+      "name": "Podiatry Board - OET results format news (OET min grade B / 350)",
+      "url": "https://www.podiatryboard.gov.au/News/2018-09-10-New-results-format-for-OET-Eng-test.aspx",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "oetGrade",
+    "value": "OET on/before 22 April 2026: minimum B in Listening, Reading, Speaking and C+ in Writing, in one sitting. OET from 23 April 2026: Listening 350, Reading 360, Writing 350, Speaking 360.",
+    "corroborated": true,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "AHPRA - Accepted English language tests",
+      "url": "https://www.ahpra.gov.au/Registration/Registration-Standards/English-language-skills/Accepted-English-language-tests.aspx",
+      "confidence": "official"
+     },
+     {
+      "name": "Podiatry Board - New results format for OET English test",
+      "url": "https://www.podiatryboard.gov.au/News/2018-09-10-New-results-format-for-OET-Eng-test.aspx",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "registrationPathway",
+    "value": "Internationally qualified podiatrists have two main pathways: (1) Recognised international qualification pathway - if the Board has previously assessed the same qualification (same provider, year, degree title) as substantially equivalent, the applicant may apply directly for general registration; (2) Qualification assessment pathway - submit a portfolio (form PNAQ-70, 'Portfolio for the assessment of non-approved qualifications') for the Board to assess against approved qualifications (outcomes: substantially equivalent, relevant to practice, or ineligible), then apply. Assessment references National Law sections 52-53. New Zealand podiatrists with a current practising certificate may use the Trans-Tasman Mutual Recognition Act 1997. No universal single national bridging exam is mandated; outcome depends on portfolio assessment. English language standard must also be met.",
+    "corroborated": false,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "Podiatry Board - Registration pathways for internationally qualified podiatrists",
+      "url": "https://www.podiatryboard.gov.au/Registration-Endorsement/Internationally-qualified-podiatrists/Registration-pathways-for-internationally-qualified-podiatrists.aspx",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "verification",
+    "value": "Non-recognised qualifications are verified through portfolio assessment (PNAQ-70) under National Law ss 52-53, checking substantial equivalence of the education provider, year and degree. Applicants must also satisfy AHPRA's standard registration checks (identity, qualifications, recency/criminal history) applicable to all National Boards. English proficiency evidenced via an accepted test or an education-based pathway under the English language skills registration standard.",
+    "corroborated": false,
+    "verifyStatus": "partial",
+    "sources": [
+     {
+      "name": "Podiatry Board - Registration pathways for internationally qualified podiatrists",
+      "url": "https://www.podiatryboard.gov.au/Registration-Endorsement/Internationally-qualified-podiatrists/Registration-pathways-for-internationally-qualified-podiatrists.aspx",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "fees",
+    "value": "Fee schedule effective 18 September 2025: application fee for general registration AUD $215; annual general registration fee AUD $431 (national rate; NSW registrants pay AUD $453 including a $22 state surcharge). On initial registration both the application fee and the annual registration fee apply.",
+    "corroborated": false,
+    "verifyStatus": "verified",
+    "sources": [
+     {
+      "name": "Podiatry Board of Australia - Fees",
+      "url": "https://www.podiatryboard.gov.au/registration-endorsement/fees.aspx",
+      "confidence": "official"
+     }
+    ]
+   },
+   {
+    "key": "visa",
+    "value": "Registration is separate from immigration. For skilled migration, Podiatrist is ANZSCO 252611 and the Podiatry Board of Australia is the designated skills-assessing authority (Assessment for migration). Work/skilled visas are granted by the Australian Department of Home Affairs, not the Board. A migration skills assessment does not itself grant registration to practise.",
+    "corroborated": true,
+    "verifyStatus": "partial",
+    "sources": [
+     {
+      "name": "Podiatry Board of Australia - Assessment for migration",
+      "url": "https://www.podiatryboard.gov.au/Registration-Endorsement/Assessment-for-migration.aspx",
+      "confidence": "official"
+     },
+     {
+      "name": "VisaEnvoy - Podiatrist ANZSCO 252611 (assessing authority)",
+      "url": "https://visaenvoy.com/sol/podiatrist/",
+      "confidence": "secondary"
+     }
+    ]
+   }
+  ],
+  "_cell": "podiatry|Australia"
+ }
+]
