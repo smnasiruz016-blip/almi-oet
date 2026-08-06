@@ -125,7 +125,20 @@ export function isCurrentEnoughToIndex(slugOrEntity: string | RegulatorEntity | 
   if (!slug) return false;
   const r = regulatorBySlug(slug);
   if (!r) return false;
-  if (r.verifyStatus === "confirm-official") return false;
+  // `confirm-official` NO LONGER blocks — law #5 as refined on 2026-08-06.
+  //
+  // It used to, here and on the corridor axis, and the corridor axis was fixed
+  // while this was left behind. The two mean different things and only one is a
+  // defect: "sourced from the body, confirm your own case" is a permanent
+  // property of registration material and belongs in a caveat, while "we cannot
+  // stand behind this as current" belongs in noindex. Holding a page out for the
+  // first is punishing it for being careful — which is how the GPhC's page, and
+  // the Irish Medical Council's, were being kept out of the index while saying
+  // nothing wrong.
+  //
+  // What still blocks is what the refinement kept: a genuine conflict between
+  // the base record and enrichment, and a record with no verification date at
+  // all. See lib/journey/currency.ts for the same rule on corridors.
   if (resolveGrades(slug).conflict) return false;
   return Boolean(verifiedOn(r));
 }
@@ -134,7 +147,6 @@ export function isCurrentEnoughToIndex(slugOrEntity: string | RegulatorEntity | 
 export function notCurrentReason(slug: string): string | null {
   const r = regulatorBySlug(slug);
   if (!r) return "no enrichment entry";
-  if (r.verifyStatus === "confirm-official") return "verifyStatus confirm-official";
   if (resolveGrades(slug).conflict) return "base/enrichment grade conflict";
   if (!verifiedOn(r)) return "no lastVerified date";
   return null;
