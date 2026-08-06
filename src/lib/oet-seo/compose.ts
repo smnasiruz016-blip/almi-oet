@@ -59,7 +59,7 @@ import {
   SHARED_DESTINATION,
   SHARED_DESTINATION_FAQ,
   destinationGradeConflicts,
-  australiaCorridors,
+  AU_CORRIDORS,
   corridorFaqFor,
 } from "./corridors";
 import { destinationBySlug, destinationForOrg } from "./destinations";
@@ -726,9 +726,7 @@ export function emitted(): Emitted {
   // cleared under both, so no page moved, but the two were measuring different
   // documents and only one of them was the one that ships.
   const auDest = destinationBySlug("australia");
-  const AU = auDest
-    ? australiaCorridors(auDest.params?.englishNuanceTemplate, auDest.params?.hagueOrigins ?? [])
-    : [];
+  const AU = [...AU_CORRIDORS];
   const auJourneyDest = auDest
     ? {
         regulatorName: auDest.regulatorName,

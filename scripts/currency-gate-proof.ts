@@ -60,42 +60,66 @@ console.log("\n=== THE REFINEMENT ITSELF: reconfirm-official must NOT noindex ==
   expect("no corridor is blocked BY a reconfirm status", blockedByReconfirmAlone.length === 0, true);
 }
 
+// A corridor built HERE, not cloned from the batch. The blocks below used to
+// clone a real corridor and mutate one field; v4 changed the shape of those
+// fields (verificationRoute is now a merged fact carrying the destination's
+// official source, feesTimeline is gone) and five expectations went red without
+// the rule changing at all. Second time this has happened. Fixtures now own
+// their own data end to end.
+function synthetic(over: Partial<Corridor> = {}): Corridor {
+  const official = { url: "https://regulator.example/a", name: "the regulator", confidence: "official" as const };
+  const f = (extra: Record<string, unknown> = {}) => ({
+    value: "A sourced statement.",
+    sources: [official],
+    asOf: "2026-08",
+    ...extra,
+  });
+  return {
+    slug: "nursing__fixture__somewhere",
+    occupationSlug: "nursing",
+    originSlug: "fixture",
+    destinationSlug: "somewhere",
+    originCountry: "Fixtureland",
+    destinationCountry: "Somewhere",
+    originRegulator: f() as never,
+    originRegulatorName: "Fixture Nursing Council (FNC)",
+    verificationRoute: f() as never,
+    attestationChain: f() as never,
+    feesTimeline: f({ sources: [{ url: "https://summary.example/f", name: "a summary", confidence: "secondary" }] }) as never,
+    englishRoute: f() as never,
+    localSearchWording: ["fixture good standing"],
+    lastVerified: "2026-08-06",
+    ...over,
+  } as Corridor;
+}
+const verdictOf = (c: Corridor) => journeyVerdict(c, { conflicts, today: TODAY });
+
 console.log("\n=== SABOTAGE (a): a load-bearing fact on a weak source ===");
 {
-  const c = clone(byOrigin("pakistan"));
-  const before = journeyVerdict(c, { conflicts, today: TODAY });
-  expect("control: pakistan indexable before sabotage", before.indexable, true, before.blockers.join(" · "));
-  c.verificationRoute!.confidence = "secondary";
-  const after = journeyVerdict(c, { conflicts, today: TODAY });
-  expect("secondary load-bearing fact blocks", after.indexable, false, after.blockers.join(" · "));
+  expect("control: the fixture is indexable", verdictOf(synthetic()).indexable, true);
 
-  const d = clone(byOrigin("pakistan"));
-  d.verificationRoute!.confidence = "secondary";
-  d.verificationRoute!.corroboratedBy = ["a second independent source"];
-  expect(
-    "…but corroboration clears it",
-    journeyVerdict(d, { conflicts, today: TODAY }).indexable,
-    true,
-  );
+  const weak = synthetic({
+    verificationRoute: {
+      value: "A summary.",
+      sources: [{ url: "https://summary.example/x", name: "a summary", confidence: "secondary" }],
+      asOf: "2026-08",
+    } as never,
+  });
+  const wv = verdictOf(weak);
+  expect("a load-bearing fact on ONE secondary blocks", wv.indexable, false, wv.blockers.join(" | "));
 
-  const e = clone(byOrigin("pakistan"));
-  delete e.verificationRoute!.sourceUrl;
-  expect(
-    "a load-bearing fact with no source URL blocks",
-    journeyVerdict(e, { conflicts, today: TODAY }).indexable,
-    false,
-  );
+  const noUrl = synthetic({
+    verificationRoute: { value: "A claim with no citation.", asOf: "2026-08" } as never,
+  });
+  expect("a load-bearing fact with no source URL blocks", verdictOf(noUrl).indexable, false);
 }
 
 console.log("\n=== SABOTAGE (a'): a SUPPORTING fact on a weak source must NOT block ===");
 {
-  // Nasir's explicit carve-out: secondary fees/timelines render as "reported"
-  // and do not hold back a page whose core facts are official. Nigeria's
-  // feesTimeline is already secondary in the real data — so this is the control,
-  // not a hypothetical.
-  const ng = byOrigin("nigeria");
-  const v = journeyVerdict(ng, { conflicts, today: TODAY });
-  expect("nigeria's secondary feesTimeline does not block", v.indexable, true, v.blockers.join(" · "));
+  // feesTimeline is deliberately outside LOAD_BEARING: a reported fee is useful
+  // and a wrong one is survivable. The fixture's fee rests on a lone secondary.
+  const v = verdictOf(synthetic());
+  expect("a lone secondary on feesTimeline does NOT block", v.indexable, true, v.blockers.join(" | "));
   expect("…and is surfaced as reported", v.reported.some((r) => r.key === "feesTimeline"), true);
 }
 
@@ -104,9 +128,9 @@ console.log("\n=== CORROBORATION via the sources ARRAY (India's new shape) ===")
   // India's verificationRoute and attestationChain moved from one secondary
   // summary to a `sources` array. The rule: corroborated when >=1 OFFICIAL source
   // OR >=2 INDEPENDENT sources. The loosening must not reach a lone weak source.
-  const india = byOrigin("india");
+  const india = synthetic();
   const v = journeyVerdict(india, { conflicts, today: TODAY });
-  expect("india is now indexable on corroborated sources", v.indexable, true, v.blockers.join(" \u00b7 "));
+  expect("the fixture is indexable on corroborated sources", v.indexable, true, v.blockers.join(" \u00b7 "));
 
   const oneSecondary = clone(india);
   oneSecondary.verificationRoute!.sources = [
@@ -154,7 +178,7 @@ console.log("\n=== CORROBORATION via the sources ARRAY (India's new shape) ===")
   );
 
   expect(
-    "india is NOT listed as merely reported (it has an official source)",
+    "a fact with an official source is NOT listed as merely reported",
     v.reported.some((r) => r.key === "verificationRoute"),
     false,
   );
@@ -175,7 +199,7 @@ console.log("\n=== THE CORROBORATION RULE, on synthetic fixtures ===");
   // So the rule is now proved against fixtures built here, and no real
   // corridor's data can break it. What the live batch is used for is one thing
   // only, below: confirming that a corridor which cleared did so on evidence.
-  const base = clone(byOrigin("pakistan"));
+  const base = synthetic();
   const withRoute = (sources: any[], corroborated?: boolean) => {
     const c = clone(base);
     delete (c.verificationRoute as any).sourceUrl;
@@ -214,10 +238,11 @@ console.log("\n=== THE CORROBORATION RULE, on synthetic fixtures ===");
   expect("the same fixture WITHOUT the false flag clears", withRoute([OFFICIAL, SEC_A]).indexable, true);
 
   // A supporting (non-load-bearing) fact is exempt from all of the above.
-  const fees = clone(byOrigin("nigeria"));
+  // Synthetic, like everything else here — the real Nigeria corridor is blocked
+  // on an unrelated attestation flag, which has nothing to say about fees.
   expect(
-    "a lone secondary on feesTimeline does NOT block",
-    journeyVerdict(fees, { conflicts, today: TODAY }).indexable,
+    "a lone secondary on feesTimeline does NOT block (synthetic)",
+    verdictOf(synthetic()).indexable,
     true,
   );
 }
@@ -256,8 +281,8 @@ console.log("\n=== every corridor that CLEARED did so on evidence ===");
 
 console.log("\n=== an unrecognised verifyStatus FAILS CLOSED ===");
 {
-  const c = clone(byOrigin("ghana"));
-  expect("control: ghana indexable", journeyVerdict(c, { conflicts, today: TODAY }).indexable, true);
+  const c = synthetic();
+  expect("control: the fixture is indexable", journeyVerdict(c, { conflicts, today: TODAY }).indexable, true);
   c.englishRoute!.verifyStatus = "unverifed"; // a typo, not a status
   const v = journeyVerdict(c, { conflicts, today: TODAY });
   expect("a typo'd status blocks rather than reading as clean", v.indexable, false);
@@ -267,7 +292,7 @@ console.log("\n=== an unrecognised verifyStatus FAILS CLOSED ===");
     true,
   );
 
-  const ok = clone(byOrigin("ghana"));
+  const ok = synthetic();
   ok.englishRoute!.verifyStatus = "verified";
   expect('"verified" is recognised and does not block', journeyVerdict(ok, { conflicts, today: TODAY }).indexable, true);
 }
@@ -283,7 +308,7 @@ console.log("\n=== the destination grade check reads v3's word-form grades ===")
 
 console.log("\n=== SABOTAGE (b): staleness ===");
 {
-  const c = clone(byOrigin("philippines"));
+  const c = synthetic();
   c.lastVerified = "2025-01-01"; // ~19 months before TODAY
   expect(
     "lastVerified past the 6-month window blocks",
@@ -291,12 +316,12 @@ console.log("\n=== SABOTAGE (b): staleness ===");
     false,
   );
 
-  const d = clone(byOrigin("philippines"));
+  const d = synthetic();
   d.lastVerified = "2026-04-01"; // ~4 months — inside the default window
   expect("…but 4 months old is still current", journeyVerdict(d, { conflicts, today: TODAY }).indexable, true);
 
   // Fast-churn: a fee read 4 months ago is stale even though the record is not.
-  const e = clone(byOrigin("nigeria"));
+  const e = synthetic();
   e.feesTimeline!.asOf = "2026-03";
   const ev = journeyVerdict(e, { conflicts, today: TODAY });
   expect(
@@ -306,15 +331,15 @@ console.log("\n=== SABOTAGE (b): staleness ===");
     ev.blockers.join(" · "),
   );
 
-  const f = clone(byOrigin("pakistan"));
+  const f = synthetic();
   f.lastVerified = "";
   expect("a corridor with no lastVerified blocks", journeyVerdict(f, { conflicts, today: TODAY }).indexable, false);
 }
 
 console.log("\n=== SABOTAGE (c): a genuine conflict ===");
 {
-  const c = byOrigin("philippines");
-  expect("control: philippines indexable with real conflicts", journeyVerdict(c, { conflicts, today: TODAY }).indexable, true);
+  const c = synthetic();
+  expect("control: the fixture is indexable with real conflicts", journeyVerdict(c, { conflicts, today: TODAY }).indexable, true);
   const v = journeyVerdict(c, {
     conflicts: ["the batch says OET W C+, the base record says B"],
     today: TODAY,
@@ -325,7 +350,7 @@ console.log("\n=== SABOTAGE (c): a genuine conflict ===");
 console.log("\n=== SABOTAGE (d): an explicit stale/unverified status ===");
 {
   for (const status of ["stale", "unverified", "disputed"]) {
-    const c = clone(byOrigin("pakistan"));
+    const c = synthetic();
     c.englishRoute!.verifyStatus = status;
     expect(`verifyStatus "${status}" blocks`, journeyVerdict(c, { conflicts, today: TODAY }).indexable, false);
   }

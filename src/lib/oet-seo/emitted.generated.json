@@ -52,15 +52,9 @@
     "nursing"
   ],
   "journeys": [
-    "/nursing/egypt/united-kingdom",
-    "/nursing/ghana/united-kingdom",
     "/nursing/india/united-kingdom",
-    "/nursing/kenya/united-kingdom",
-    "/nursing/nepal/united-kingdom",
+    "/nursing/kenya/australia",
     "/nursing/nigeria/united-kingdom",
-    "/nursing/pakistan/united-kingdom",
-    "/nursing/philippines/united-kingdom",
-    "/nursing/sri-lanka/united-kingdom",
-    "/nursing/zimbabwe/united-kingdom"
+    "/nursing/philippines/united-kingdom"
   ]
 }

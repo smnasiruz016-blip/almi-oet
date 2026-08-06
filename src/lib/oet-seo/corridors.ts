@@ -35,7 +35,9 @@ import type {
   JourneyDestination,
   SourcedFact,
 } from "@/lib/journey/types";
-import type { DestinationScopedFacts, OriginEntity } from "@/lib/journey/entities";
+import { NEUTRAL_ORIGINS } from "./neutral-origins";
+import { corridorsFor } from "./corridor-compose";
+import { UK_DELTAS, AU_DELTAS } from "./destination-deltas";
 
 type RawSource = { url?: string; name?: string; confidence?: string; note?: string };
 
@@ -183,153 +185,28 @@ function countrySlugOf(country: string): string {
   return country.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-/** THE ORIGINS LIBRARY.
+/** THE ORIGINS LIBRARY — now v4, destination-neutral.
  *
- *  Extracted from the v3 batch, which is the only place these bodies have been
- *  sourced. An origin owns its regulator and its search wording; everything else
- *  it carries was authored FOR a destination and is filed under that destination
- *  rather than promoted to the origin. See entities.ts for why that distinction
- *  is kept rather than flattened — nine of ten verification routes name the NMC
- *  as the recipient, so "the origin's verification route" is not a thing that
- *  exists yet, however much the model would like it to. */
-export const ORIGINS: readonly OriginEntity[] = DATA.corridors.map((c) => {
-  const [, originSlug, destinationSlug] = c.slug.split("__");
-  const regulator = fact(c.originRegulator)!;
-  const scoped: DestinationScopedFacts = {
-    verificationRoute: fact(c.verificationRoute),
-    attestationChain: fact(c.attestationChain),
-    feesTimeline: fact(c.feesTimeline ?? c.verificationEligibilityFeesTimeline),
-    englishRoute: fact(c.englishRoute),
-    localSearchWording: c.localSearchWording,
-  };
-  return {
-    slug: originSlug,
-    country: c.originCountry,
-    regulator,
-    regulatorName: shortRegulatorName(regulator.value) ?? `${c.originCountry}'s nursing regulator`,
-    localSearchWording: c.localSearchWording ?? [],
-    lastVerified: c.lastVerified,
-    verifyStatus: c.verifyStatus,
-    perDestination: { [destinationSlug]: scoped },
-  };
-});
-
-export function originBySlug(slug: string): OriginEntity | undefined {
-  return ORIGINS.find((o) => o.slug === slug);
-}
-
-/** Compose one corridor from an origin and a destination.
+ *  v3's origin halves are superseded. What remains of v3 in this file is the UK
+ *  DESTINATION block (sharedDestination) and the FAQ companion; the origin facts
+ *  come from origins-neutral.json, and the UK-specific parts that used to be
+ *  baked into them are stated once in destination-deltas.ts.
  *
- *  For the United Kingdom this returns exactly what the previous direct parse
- *  returned — same fields, same values, same order — because `perDestination`
- *  holds v3's records verbatim. That equality is asserted, not assumed: see
- *  scripts/verify-spine-invariant.ts, which deep-compares against a direct parse
- *  of the same JSON and fails if a single field moved. A refactor that adds a
- *  capability must not alter existing output, and "I checked the diff" is not the
- *  same claim as "the build refuses to let it differ". */
-export function composeCorridorEntity(
-  origin: OriginEntity,
-  destinationSlug: string,
-  destinationCountry: string,
-  occupationSlug = "nursing",
-): Corridor {
-  const scoped = origin.perDestination[destinationSlug] ?? {};
-  return {
-    slug: `${occupationSlug}__${origin.slug}__${destinationSlug}`,
-    occupationSlug,
-    originSlug: origin.slug,
-    destinationSlug,
-    originCountry: origin.country,
-    destinationCountry,
-    originRegulator: origin.regulator,
-    originRegulatorName: origin.regulatorName,
-    verificationRoute: scoped.verificationRoute!,
-    attestationChain: scoped.attestationChain,
-    feesTimeline: scoped.feesTimeline,
-    englishRoute: scoped.englishRoute,
-    originDistinctSummary: undefined,
-    localSearchWording: scoped.localSearchWording,
-    lastVerified: origin.lastVerified,
-    verifyStatus: origin.verifyStatus,
-  };
-}
+ *  Corridors — both destinations — are now the product of the two. */
+export const ORIGINS = NEUTRAL_ORIGINS;
 
-/** The UK corridor set — now composed through the spine rather than parsed
- *  directly, and byte-identical to what the direct parse produced. */
-export const CORRIDORS: readonly Corridor[] = ORIGINS.map((o) =>
-  composeCorridorEntity(o, "united-kingdom", DATA.sharedDestination.country),
-);
+/** UK corridors, recomposed. These are NOT byte-identical to what v3 produced,
+ *  and are not meant to be: the UK facts that were repeated inside ten origin
+ *  records are now stated once at destination level and joined back on. The
+ *  invariant that replaced byte-equality is that the UK still clears 10/10 and
+ *  stays rich — measured, not assumed. */
+export const CORRIDORS: readonly Corridor[] = corridorsFor(UK_DELTAS);
 
-/** AUSTRALIA corridors, composed from the same origins.
- *
- *  What each one can honestly carry, and what it cannot:
- *    originRegulator     reused — the one reliably destination-neutral fact
- *    attestationChain    reused ONLY where the origin's chain names no
- *                        destination (Pakistan alone, of the nine that have one)
- *    verificationRoute   NOT reused — nine of ten name the NMC as recipient
- *    englishRoute        composed from the destination's own template, since
- *                        every v3 englishRoute is a statement about NMC rules
- *    localSearchWording  NOT reused — these name the UK end; Australian query
- *                        strings have not been sourced, and inventing "how
- *                        people search" is the one thing the composer refuses
- *
- *  The result is deliberately thin, and it is meant to be measured rather than
- *  argued about. */
-const AU_DEST_SLUG = "australia";
+/** Australia corridors, composed exactly the same way from the same origins. */
+export const AU_CORRIDORS: readonly Corridor[] = corridorsFor(AU_DELTAS);
 
-function auEnglishRoute(origin: OriginEntity, template: string | undefined): SourcedFact | undefined {
-  if (!template) return undefined;
-  // The template carries a placeholder for the origin's English-medium status,
-  // which in v3 lives inside a sentence about NMC rules. Lifting a clause out of
-  // a cited sentence is authoring, not quoting, so the placeholder is dropped
-  // rather than filled. What remains is the destination's own sourced position.
-  const value = template
-    .replace(/\{origin_english_medium_status_from_v3\}\.?\s*/g, "")
-    .replace(/\{origin\}/g, origin.country);
-  return {
-    value,
-    sourceUrl:
-      "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/fact-sheet-english-language-skills-registration-standard.aspx",
-    sourceName: "NMBA — English language skills fact sheet (recognised countries, education pathways)",
-    confidence: "official",
-    asOf: "2026-08",
-    verifyStatus: "confirm-official",
-  };
-}
-
-/** True where the origin's attestation chain names no destination, so it holds
- *  for any Hague destination including Australia. */
-function attestationIsPortable(f: SourcedFact | undefined): boolean {
-  if (!f) return false;
-  return !/(UK NMC|NMC UK|the NMC|NMC's|NMC|United Kingdom|UK|British|Britain)/.test(f.value);
-}
-
-export function australiaCorridors(englishTemplate?: string, hagueOrigins: string[] = []): Corridor[] {
-  return ORIGINS.map((o) => {
-    const ukScoped = o.perDestination["united-kingdom"] ?? {};
-    const portableAttestation =
-      hagueOrigins.includes(o.slug) && attestationIsPortable(ukScoped.attestationChain)
-        ? ukScoped.attestationChain
-        : undefined;
-    return {
-      slug: `nursing__${o.slug}__${AU_DEST_SLUG}`,
-      occupationSlug: "nursing",
-      originSlug: o.slug,
-      destinationSlug: AU_DEST_SLUG,
-      originCountry: o.country,
-      destinationCountry: "Australia",
-      originRegulator: o.regulator,
-      originRegulatorName: o.regulatorName,
-      verificationRoute: undefined,
-      attestationChain: portableAttestation,
-      feesTimeline: undefined,
-      englishRoute: auEnglishRoute(o, englishTemplate),
-      originDistinctSummary: undefined,
-      localSearchWording: undefined,
-      lastVerified: "2026-08-06",
-      verifyStatus: undefined,
-    } satisfies Corridor;
-  });
+export function corridorsForDestination(slug: string): readonly Corridor[] {
+  return slug === "australia" ? AU_CORRIDORS : CORRIDORS;
 }
 
 export function corridorFor(
