@@ -32,6 +32,7 @@ import {
   corridorFacts,
   indexVerdict,
   permanentCaveat,
+  sourcesOf,
   type FreshnessPolicy,
   type IndexVerdict,
 } from "./currency";
@@ -245,12 +246,26 @@ export function composeJourney(
     const paras: string[] = [];
     const seen = new Set<string>();
     for (const { label, fact: f } of factsOf(corridor)) {
-      if (!f.sourceName || !f.sourceUrl) continue;
-      const line = `${f.sourceName} — ${label}${f.confidence === "secondary" ? " (reported, not the authority's own page)" : ""}: ${f.sourceUrl}`;
-      if (seen.has(line)) continue;
-      seen.add(line);
-      paras.push(line);
-      facts.push("officialUrl");
+      // EVERY citation, not just the strongest. Where a claim rests on three
+      // sources, showing one and calling it sourced hides the very thing that
+      // makes it stand up — and a reader who wants to check the weakest link
+      // cannot find it. The source's own caveat rides along for the same reason:
+      // a page we could not fetch is not the same as one we read.
+      const srcs = sourcesOf(f);
+      for (const src of srcs) {
+        if (!src.name || !src.url) continue;
+        const tag =
+          src.confidence === "official"
+            ? ""
+            : srcs.length > 1
+              ? " (corroborating)"
+              : " (reported, not the authority's own page)";
+        const line = `${src.name} — ${label}${tag}: ${src.url}${src.note ? ` [${src.note}]` : ""}`;
+        if (seen.has(line)) continue;
+        seen.add(line);
+        paras.push(line);
+        facts.push("officialUrl");
+      }
     }
     facts.push("lastVerified");
     if (verdict.reported.length) {

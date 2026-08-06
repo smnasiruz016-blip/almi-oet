@@ -25,7 +25,7 @@
 // page is indexable or not. It is permanent. Removing it because a page passed
 // is how "verify your own case" quietly becomes "we checked this for you".
 
-import type { Corridor, SourcedFact } from "./types";
+import type { Corridor, FactSource, SourcedFact } from "./types";
 
 /** How long a fact stays current before it has to be re-read at source.
  *
@@ -106,13 +106,63 @@ function windowFor(key: string, p: FreshnessPolicy): number {
   return p.fastChurnKeys.includes(key) ? p.fastChurnMonths : p.defaultMonths;
 }
 
-/** Is this fact's source something we can stand behind for a claim a reader acts
- *  on? Official, or secondary-but-corroborated. A secondary source with no
- *  corroboration and no URL is not evidence, it is a lead. */
+/** Every citation behind a fact, whichever shape it arrived in. The flat
+ *  single-source form and the `sources` array are normalised here so the rules
+ *  below are written once. */
+export function sourcesOf(f: SourcedFact): FactSource[] {
+  if (f.sources?.length) return f.sources;
+  if (f.sourceUrl || f.sourceName) {
+    return [{ url: f.sourceUrl, name: f.sourceName, confidence: f.confidence, note: f.note }];
+  }
+  return [];
+}
+
+/** Two citations to the same site are one citation. Independence is counted by
+ *  host, so a fact cannot corroborate itself by listing one publisher twice. */
+function independentCount(srcs: FactSource[]): number {
+  const hosts = new Set<string>();
+  let unhosted = 0;
+  for (const s of srcs) {
+    if (!s.url) {
+      unhosted += 1;
+      continue;
+    }
+    try {
+      hosts.add(new URL(s.url).host.replace(/^www\./, "").toLowerCase());
+    } catch {
+      unhosted += 1;
+    }
+  }
+  return hosts.size + unhosted;
+}
+
+/** Is this fact's evidence something we can stand behind for a claim a reader
+ *  acts on?
+ *
+ *  CORROBORATED when it carries at least one OFFICIAL source, or at least two
+ *  INDEPENDENT sources. One secondary summary on its own is not evidence, it is
+ *  a lead — that is the case this gate exists to catch and it still blocks.
+ *
+ *  Note what is deliberately NOT consulted: the batch's own `corroborated: true`
+ *  flag. Corroboration is computed from the citations; a record that grants
+ *  itself the status is asserting the conclusion. The flag is still read — by
+ *  `corroborationDiscrepancy` below — but only to catch a batch claiming
+ *  something its own sources do not support. */
 function wellSourced(f: SourcedFact): boolean {
-  if (f.confidence === "official") return true;
+  const srcs = sourcesOf(f);
+  if (srcs.some((s) => s.confidence === "official")) return true;
+  if (independentCount(srcs) >= 2) return true;
   if (f.corroboratedBy?.length) return true;
   return false;
+}
+
+/** The batch says corroborated, the citations say otherwise. Reported as a
+ *  blocker rather than shrugged off: a record whose metadata disagrees with its
+ *  own evidence is exactly the thing a currency gate is for, and silently
+ *  preferring the evidence would let the wrong claim survive unnoticed in the
+ *  data everyone else reads. */
+function corroborationDiscrepancy(f: SourcedFact): boolean {
+  return f.corroborated === true && !wellSourced(f);
 }
 
 export type VerdictInput = {
@@ -166,16 +216,28 @@ export function indexVerdict(input: VerdictInput): IndexVerdict {
       reconfirm.push(ref);
     }
 
-    if (fact.confidence === "secondary") reported.push(ref);
+    // "Reported" means: nothing behind this came from the authority's own page.
+    // A fact with one official source among several is NOT reported, even though
+    // it also cites secondaries — that is corroboration, not hearsay.
+    const s = sourcesOf(fact);
+    if (s.length > 0 && !s.some((x) => x.confidence === "official")) reported.push(ref);
 
     // (a) a load-bearing claim resting only on a weak or unverifiable source.
+    const srcs = sourcesOf(fact);
     if (loadBearing && !wellSourced(fact)) {
-      blockers.push(
-        `${label} is load-bearing but rests on a ${fact.confidence ?? "missing"} source with no corroboration`,
-      );
+      const how =
+        srcs.length === 0
+          ? "no source at all"
+          : srcs.length === 1
+            ? `a single ${srcs[0].confidence ?? "unrated"} source`
+            : `${srcs.length} sources that are neither official nor independent`;
+      blockers.push(`${label} is load-bearing but rests on ${how}, with no corroboration`);
     }
-    if (loadBearing && !fact.sourceUrl) {
+    if (loadBearing && !srcs.some((x) => x.url)) {
       blockers.push(`${label} is load-bearing but cites no source URL`);
+    }
+    if (corroborationDiscrepancy(fact)) {
+      blockers.push(`${label} is marked corroborated but its own sources do not support that`);
     }
 
     // (b) per-fact freshness, on the fact's own asOf where it has one.

@@ -92,6 +92,67 @@ console.log("\n=== SABOTAGE (a'): a SUPPORTING fact on a weak source must NOT bl
   expect("…and is surfaced as reported", v.reported.some((r) => r.key === "feesTimeline"), true);
 }
 
+console.log("\n=== CORROBORATION via the sources ARRAY (India's new shape) ===");
+{
+  // India's verificationRoute and attestationChain moved from one secondary
+  // summary to a `sources` array. The rule: corroborated when >=1 OFFICIAL source
+  // OR >=2 INDEPENDENT sources. The loosening must not reach a lone weak source.
+  const india = byOrigin("india");
+  const v = journeyVerdict(india, { conflicts, today: TODAY });
+  expect("india is now indexable on corroborated sources", v.indexable, true, v.blockers.join(" \u00b7 "));
+
+  const oneSecondary = clone(india);
+  oneSecondary.verificationRoute.sources = [
+    { url: "https://example-summary.com/a", name: "one secondary summary", confidence: "secondary" },
+  ];
+  expect(
+    "a single secondary source in the array STILL blocks",
+    journeyVerdict(oneSecondary, { conflicts, today: TODAY }).indexable,
+    false,
+  );
+
+  const sameHost = clone(india);
+  sameHost.verificationRoute.sources = [
+    { url: "https://example-summary.com/a", name: "summary A", confidence: "secondary" },
+    { url: "https://www.example-summary.com/b", name: "summary B", confidence: "secondary" },
+  ];
+  expect(
+    "two secondaries from the SAME host do not corroborate",
+    journeyVerdict(sameHost, { conflicts, today: TODAY }).indexable,
+    false,
+  );
+
+  const twoHosts = clone(india);
+  twoHosts.verificationRoute.sources = [
+    { url: "https://one.example/a", name: "summary A", confidence: "secondary" },
+    { url: "https://two.example/b", name: "summary B", confidence: "secondary" },
+  ];
+  expect(
+    "two secondaries from DIFFERENT hosts do corroborate",
+    journeyVerdict(twoHosts, { conflicts, today: TODAY }).indexable,
+    true,
+  );
+
+  const lying = clone(india);
+  lying.verificationRoute.corroborated = true;
+  lying.verificationRoute.sources = [
+    { url: "https://one.example/a", name: "lone summary", confidence: "secondary" },
+  ];
+  const lv = journeyVerdict(lying, { conflicts, today: TODAY });
+  expect("a corroborated:true flag its sources do not support blocks", lv.indexable, false);
+  expect(
+    "…and says so explicitly",
+    lv.blockers.some((b) => /marked corroborated but its own sources/.test(b)),
+    true,
+  );
+
+  expect(
+    "india is NOT listed as merely reported (it has an official source)",
+    v.reported.some((r) => r.key === "verificationRoute"),
+    false,
+  );
+}
+
 console.log("\n=== SABOTAGE (b): staleness ===");
 {
   const c = clone(byOrigin("philippines"));

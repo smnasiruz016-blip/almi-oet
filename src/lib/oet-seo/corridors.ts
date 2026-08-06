@@ -29,11 +29,20 @@ import { orgBySlug, gradeLine } from "./data";
 import { regulatorBySlug, verifiedOn, nameVariants } from "./regulators";
 import type { Corridor, JourneyDataset, JourneyDestination, SourcedFact } from "@/lib/journey/types";
 
+type RawSource = { url?: string; name?: string; confidence?: string; note?: string };
+
+/** Facts arrive in TWO shapes and the adapter is where that stops mattering.
+ *  Most carry one inline source. India's verification route and attestation
+ *  chain carry a `sources` array plus a `corroborated` flag, added when they
+ *  stopped resting on a single secondary summary. Everything downstream reads
+ *  the normalised form. */
 type RawFact = {
   value: string;
   sourceUrl?: string;
   sourceName?: string;
   confidence?: string;
+  sources?: RawSource[];
+  corroborated?: boolean;
   asOf?: string;
   verifyStatus?: string;
   note?: string;
@@ -90,11 +99,24 @@ export const SHARED_DESTINATION: SharedDestination = DATA.sharedDestination;
 
 function fact(f: RawFact | undefined): SourcedFact | undefined {
   if (!f?.value) return undefined;
+  const sources = f.sources?.map((s) => ({
+    url: s.url,
+    name: s.name,
+    confidence: s.confidence as SourcedFact["confidence"],
+    note: s.note,
+  }));
+  // The flat fields are kept in sync with the array so a consumer that reads
+  // only `sourceUrl` still gets the STRONGEST citation rather than nothing. The
+  // official one wins; otherwise the first. Nothing is invented — if the array
+  // is absent these stay exactly as the batch wrote them.
+  const primary = sources?.find((x) => x.confidence === "official") ?? sources?.[0];
   return {
     value: f.value,
-    sourceUrl: f.sourceUrl,
-    sourceName: f.sourceName,
-    confidence: f.confidence as SourcedFact["confidence"],
+    sourceUrl: f.sourceUrl ?? primary?.url,
+    sourceName: f.sourceName ?? primary?.name,
+    confidence: (f.confidence as SourcedFact["confidence"]) ?? primary?.confidence,
+    sources,
+    corroborated: f.corroborated,
     asOf: f.asOf,
     verifyStatus: f.verifyStatus,
     note: f.note,

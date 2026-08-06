@@ -45,11 +45,33 @@
  *  it; `verifyStatus: "confirm-official"` marks a fact compiled from published
  *  sources but not yet re-read against the authority's own page, which holds the
  *  page out of the index while still rendering it. */
+/** One citation behind a fact. */
+export type FactSource = {
+  url?: string;
+  name?: string;
+  confidence?: "official" | "secondary" | "notFound";
+  /** An author's caveat about the SOURCE — e.g. "returned 403 to automated
+   *  fetch". Kept, because a source we could not read is a different thing from
+   *  a source we read and trusted, and the page should be able to say which. */
+  note?: string;
+};
+
 export type SourcedFact = {
   value: string;
+  /** THE FLAT SHAPE: one source, inline. Most facts still arrive this way.
+   *  Prefer `sources` when present — see the adapter, which normalises both into
+   *  a single list so nothing downstream has to know which shape it got. */
   sourceUrl?: string;
   sourceName?: string;
   confidence?: "official" | "secondary" | "notFound";
+  /** THE ARRAY SHAPE: several independent citations behind one claim. Added when
+   *  India's verification route and attestation chain stopped resting on a single
+   *  secondary summary. A fact carrying this usually carries no flat fields. */
+  sources?: FactSource[];
+  /** The batch's own claim that this fact is corroborated. Treated as a CLAIM to
+   *  be checked against `sources`, never as the answer: a label that grants
+   *  itself corroboration is not evidence of corroboration. */
+  corroborated?: boolean;
   asOf?: string;
   /** `confirm-official` / `reconfirm-official` → sourced from the official body,
    *  but the reader must verify their own case: a permanent caveat, NOT a reason

@@ -95,12 +95,24 @@
         "sourceUrl": "https://www.indiannursingcouncil.org/", "sourceName": "Indian Nursing Council (official)", "confidence": "official", "asOf": "2026-08"
       },
       "verificationRoute": {
-        "value": "India-distinct federal wrinkle: verification of registration / good standing for going abroad is issued by the STATE Nursing Council of first registration (e.g. Kerala KNMC, Tamil Nadu TNNMC, Karnataka KSNC, Delhi DNC, Maharashtra MNC) — NOT the INC. The nurse applies through her state council's foreign-verification portal, uploads passport + registration certificate + experience proof, pays the fee, and the state council sends the verification directly to the NMC. Some councils (e.g. Karnataka) include a video verification appointment.",
-        "sourceUrl": "https://www.attestationmea.com/foreign-nursing-verification-india/", "sourceName": "AttestationMEA (secondary; corroborated across state-council portals e.g. noc.onlinetnnmc.org)", "confidence": "secondary", "asOf": "2026-08", "verifyStatus": "confirm-official"
+        "value": "India-distinct federal wrinkle: verification of registration / good standing for going abroad is issued by the STATE Nursing Council of first registration (e.g. Tamil Nadu TNMC, Kerala KNMC, Karnataka KSNC, Delhi DNC, Maharashtra MNC) — NOT the Indian Nursing Council. The state council completes its section of the destination regulator's verification form and sends/couriers it directly to that regulator (e.g. the UK NMC); the applicant supplies passport, registration certificate, experience proof and the destination authority's courier address. The INC sets national standards and runs the national register (NRTS) but does not issue foreign verification. Some councils (e.g. Karnataka) include a video verification appointment.",
+        "corroborated": true,
+        "sources": [
+          {"url": "https://www.indiannursingcouncil.org/", "name": "Indian Nursing Council (official) — individual registration held at State Nursing Council level; INC runs national standards/register, not foreign verification", "confidence": "official"},
+          {"url": "https://nursingmanthra.com/tamil-nadu-nurses-midwives-council-tnmc/", "name": "Nursing Manthra — TNMC completes its section of the foreign-verification form and couriers it directly to the foreign authority (fetched, corroborates state-council-issues-verification)", "confidence": "secondary"},
+          {"url": "https://www.attestationmea.com/foreign-nursing-verification-india/", "name": "AttestationMEA — state-council foreign verification (KSNC/KNMC/DNC/TNNMC)", "confidence": "secondary"}
+        ],
+        "asOf": "2026-08", "verifyStatus": "confirm-official"
       },
       "attestationChain": {
-        "value": "Attestation chain for Indian nursing credentials going abroad: notary → State authentication (Home/HRD) → Ministry of External Affairs (MEA). The UK is a Hague country, so the MEA issues an APOSTILLE (no embassy legalisation needed). State nursing council verification is a separate credential step.",
-        "sourceUrl": "https://www.attestationmea.com/foreign-nursing-verification-india/", "sourceName": "AttestationMEA (secondary)", "confidence": "secondary", "asOf": "2026-08", "verifyStatus": "confirm-official"
+        "value": "For Indian nursing/educational documents used in the UK: the document is authenticated at the State level (Home Department / HRD / SDM as applicable), then APOSTILLED by the Ministry of External Affairs (MEA). Because both India and the UK are parties to the Hague Apostille Convention, an MEA apostille needs no further UK embassy legalisation. State nursing-council verification is a separate credential step from document apostille.",
+        "corroborated": true,
+        "sources": [
+          {"url": "https://www.mea.gov.in/apostille-menu", "name": "Ministry of External Affairs (official) — Apostille for Hague Convention member countries", "confidence": "official", "note": "Primary page returned 403 to automated fetch this session; URL is authoritative, policy corroborated by the independent sources below."},
+          {"url": "https://worldwidetranscripts.com/everything-you-need-to-know-about-mea-apostille-services/", "name": "corroboration — MEA apostille chain (State authentication → MEA apostille)", "confidence": "secondary"},
+          {"url": "https://schmidt-export.com/consular-legalization-and-apostille/apostille-india", "name": "corroboration — India is an Apostille state; apostille (not consular legalisation) applies for Hague countries incl. UK", "confidence": "secondary"}
+        ],
+        "asOf": "2026-08", "verifyStatus": "confirm-official"
       },
       "englishRoute": {
         "value": "India is NOT on the NMC majority-English list. The 'taught and examined in English' route exists but needs transcript + UK-employer clinical-English evidence (SIFE); Indian medium of instruction is variable, so in practice most Indian nurses evidence English via OET or IELTS Academic.",
