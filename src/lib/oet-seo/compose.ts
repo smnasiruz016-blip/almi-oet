@@ -59,7 +59,6 @@ import {
   SHARED_DESTINATION,
   SHARED_DESTINATION_FAQ,
   destinationGradeConflicts,
-  australiaCorridors,
   corridorFaqFor,
 } from "./corridors";
 import { destinationBySlug, destinationForOrg } from "./destinations";
@@ -715,42 +714,33 @@ export function emitted(): Emitted {
   // they all point at the same destination record, so if the batch and the base
   // disagree about the NMC's grades, every corridor is resting on the conflict.
   const destConflicts = destinationGradeConflicts();
-  // Australia is judged by the same gate, in the same pass, against the same
-  // siblings. Nothing is exempted for being new: if a second destination's
-  // corridors cannot clear the bar the UK's cleared, that is the measurement the
-  // entity spine was built to produce.
+  // ONE corridor per origin, to its dominant destination. NOT origin × every
+  // destination — that grid was built, measured and retired on 2026-08-06.
   //
-  // The FAQ is composed in HERE too, which it was not before. The report passed
-  // `faqs` and this pass did not, so the gate has been judging corridors on text
-  // the page does not have — ~120 words short, per corridor. Every corridor
-  // cleared under both, so no page moved, but the two were measuring different
-  // documents and only one of them was the one that ships.
-  const auDest = destinationBySlug("australia");
-  const AU = auDest
-    ? australiaCorridors(auDest.params?.englishNuanceTemplate, auDest.params?.hagueOrigins ?? [])
-    : [];
-  const auJourneyDest = auDest
-    ? {
-        regulatorName: auDest.regulatorName,
-        requirementLine: null,
-        sharedStepsHref: `/register/${auDest.orgSlug}`,
-        sharedStepsSummary: auDest.sharedStepsSummary,
-        destinationVerifiedOn: "2026-08-06",
-      }
-    : null;
-  const ALL_CORRIDORS = [...CORRIDORS, ...AU];
+  // The measurement: same-origin cross-destination overlap ran 54-60%, over the
+  // 40% gate on 10 of 10 pairs, because pakistan→UK and pakistan→Australia share
+  // the whole origin half and differ only at the destination end. Composing the
+  // grid also dragged the UK from 10 sitemapped to 3. Australia keeps what it
+  // actually earned — /register/au-ahpra at 1,243 words, a rich destination page
+  // that clears on its own — and gets no corridor pages.
+  //
+  // The neutral-origins and entity-spine capability stays in the codebase; it is
+  // the right shape for destination and profession pages. It is simply not used
+  // to multiply origins by destinations.
+  //
+  // The FAQ is composed in HERE, which it was not before v3+FAQ: the report
+  // passed `faqs` and this pass did not, so the gate was judging corridors on
+  // ~120 words less text than ships.
   const jComposed = new Map<string, Composed | null>(
-    ALL_CORRIDORS.map((c) => [
+    CORRIDORS.map((c) => [
       c.slug,
-      c.destinationSlug === "australia" && auJourneyDest
-        ? composeJourney(c, auJourneyDest, "nurses", { conflicts: destConflicts })
-        : composeJourney(c, destinationFor(c), "nurses", {
-            conflicts: destConflicts,
-            faqs: corridorFaqFor(c.slug),
-          }),
+      composeJourney(c, destinationFor(c), "nurses", {
+        conflicts: destConflicts,
+        faqs: corridorFaqFor(c.slug),
+      }),
     ]),
   );
-  for (const c of largestFirst([...ALL_CORRIDORS], (x) => x.slug, jComposed)) {
+  for (const c of largestFirst([...CORRIDORS], (x) => x.slug, jComposed)) {
     const comp = jComposed.get(c.slug) ?? null;
     if (!comp) {
       skipped.push({ type: "journey", slug: c.slug, reasons: ["no composable data"] });
