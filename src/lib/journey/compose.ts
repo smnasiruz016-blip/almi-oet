@@ -152,7 +152,7 @@ export function composeJourney(
           `Getting your ${from} documents attested`,
         paras: [
           sentence(corridor.attestationChain.value),
-          `Run this alongside the ${reg} verification, not after it.`,
+          `Run it alongside the ${reg} verification, not after.`,
         ],
       },
       ["attestationChain"],
@@ -179,8 +179,8 @@ export function composeJourney(
     const paras: string[] = [sentence(corridor.englishRoute.value)];
     paras.push(
       unconfirmed
-        ? `Assume you are sitting a test until ${dest.regulatorName} confirms otherwise in writing. It turns on your individual ${from} training record, not on your nationality.`
-        : `It turns on your individual ${from} training record, not on your nationality.`,
+        ? `Assume you are sitting a test until ${dest.regulatorName} says otherwise in writing — it turns on your ${from} training record, not your nationality.`
+        : `It turns on your ${from} training record, not your nationality.`,
     );
     // The SCORES are shared: identical for all four origins, owned by the base
     // record, rendered on the destination page. Named and linked, never restated.
@@ -190,9 +190,7 @@ export function composeJourney(
       // three routes and their evidence thresholds are identical for all ten
       // origins, and paraphrasing them per corridor is how v2 came to tell every
       // reader that the taught-in-English route required employer SIFE.
-      paras.push(
-        `What routes (1) to (3) mean, and the score each test needs, are the same whichever country you trained in — they are set out on the ${dest.regulatorName} page.`,
-      );
+      paras.push(`Routes (1) to (3) and the scores each needs are on the ${dest.regulatorName} page.`);
     }
     push(
       {
@@ -220,7 +218,7 @@ export function composeJourney(
         id: "destination",
         heading: `What ${to} asks of everyone`,
         paras: [
-          `Past the ${from} steps above, nothing changes for a ${one} from ${from}: ${dest.regulatorName} asks everyone for ${dest.sharedStepsSummary}, set out in full on its own page rather than repeated here.`,
+          `Past the ${from} steps above, a ${one} from ${from} does what everyone does: ${dest.regulatorName} asks for ${dest.sharedStepsSummary}, set out on its own page.`,
         ],
       },
       ["sharedSteps"],
@@ -235,7 +233,7 @@ export function composeJourney(
         id: "wording",
         heading: `What this route is called in ${from}`,
         paras: [
-          `In ${from} people search for this as ${list(corridor.localSearchWording.map((w) => `"${w}"`))}. Those name ${reg}, which is why guidance written from the ${corridor.destinationCountry} end is hard to find from ${from}.`,
+          `In ${from} people search for this as ${list(corridor.localSearchWording.map((w) => `"${w}"`))} — phrases naming ${reg}, not the ${corridor.destinationCountry} end.`,
         ],
       },
       ["localSearchWording"],
@@ -280,7 +278,10 @@ export function composeJourney(
         `Reported rather than read from the authority's own page: ${list(verdict.reported.map((p) => p.label))}. Treat ${verdict.reported.length === 1 ? "it" : "them"} as indicative and check the current figure before budgeting.`,
       );
     }
-    paras.push(permanentCaveat(dest.regulatorName, reg, corridor.lastVerified));
+    // The full caveat renders above the fold on every page — see RichPage's
+    // `caveat` prop, which is NOT conditional on the verdict. Here the section
+    // only needs to date the facts it just cited.
+    paras.push(`Last verified ${corridor.lastVerified}.`);
     push({ id: "source", heading: "Sources and last verified", paras }, []);
   }
 

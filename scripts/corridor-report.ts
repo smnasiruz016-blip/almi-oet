@@ -10,7 +10,12 @@
 //
 // No silent caps: every corridor is listed with its reason.
 
-import { CORRIDORS, destinationFor, destinationGradeConflicts } from "../src/lib/oet-seo/corridors";
+import {
+  CORRIDORS,
+  destinationFor,
+  destinationGradeConflicts,
+  corridorsWithoutRegulatorName,
+} from "../src/lib/oet-seo/corridors";
 import { composeJourney, journeyVerdict } from "../src/lib/journey/compose";
 import { GATE, fingerprint, largestFirst, type Composed } from "../src/lib/oet-seo/compose-core";
 
@@ -84,11 +89,21 @@ for (const c of largestFirst([...CORRIDORS], (x) => x.slug, composed)) {
 
 console.log("\n=== PAIRWISE OVERLAP (symmetric, independent of accept order) ===");
 const origins = CORRIDORS.map((c) => c.originSlug);
+const fpCache = new Map<string, Set<string>>();
 const fpOf = (o: string) => {
-  const c = CORRIDORS.find((x) => x.originSlug === o)!;
-  return fingerprint(byslug.get(c.slug)!.sections, byslug.get(c.slug)!.tables);
+  if (!fpCache.has(o)) {
+    const c = CORRIDORS.find((x) => x.originSlug === o)!;
+    fpCache.set(o, fingerprint(byslug.get(c.slug)!.sections, byslug.get(c.slug)!.tables));
+  }
+  return fpCache.get(o)!;
 };
-let worstPair = 0;
+
+// n corridors means n(n-1)/2 pairs — 6 at four, 45 at ten. Dumping all of them
+// buries the only rows that decide anything, so the distribution is summarised
+// and the tail is named. Every pair over the gate is ALWAYS listed in full: a
+// summary that could hide a breach is not a summary, it is a silent cap.
+type Pair = { a: string; b: string; v: number };
+const pairs: Pair[] = [];
 for (let i = 0; i < origins.length; i += 1) {
   for (let j = i + 1; j < origins.length; j += 1) {
     const fa = fpOf(origins[i]);
@@ -97,14 +112,22 @@ for (let i = 0; i < origins.length; i += 1) {
     for (const g of fb) if (fa.has(g)) h++;
     let h2 = 0;
     for (const g of fa) if (fb.has(g)) h2++;
-    const worst = Math.max(h / fb.size, h2 / fa.size);
-    worstPair = Math.max(worstPair, worst);
-    console.log(
-      `  ${(origins[i] + " vs " + origins[j]).padEnd(26)} ${(worst * 100).toFixed(0).padStart(3)}%  ${worst > GATE.siblingOverlap ? "OVER " : "under"}`,
-    );
+    pairs.push({ a: origins[i], b: origins[j], v: Math.max(h / fb.size, h2 / fa.size) });
   }
 }
-console.log(`  worst pair: ${(worstPair * 100).toFixed(0)}% (gate ≤ ${GATE.siblingOverlap * 100}%)`);
+pairs.sort((x, y) => y.v - x.v);
+const pct = (v: number) => `${(v * 100).toFixed(0)}%`;
+const worstPair = pairs[0]?.v ?? 0;
+const median = pairs.length ? pairs[Math.floor(pairs.length / 2)].v : 0;
+console.log(`  ${pairs.length} pairs across ${origins.length} corridors`);
+console.log(`  min ${pct(pairs[pairs.length - 1].v)} \u00b7 median ${pct(median)} \u00b7 max ${pct(worstPair)}   (gate \u2264 ${GATE.siblingOverlap * 100}%)`);
+console.log("  worst offenders:");
+for (const p of pairs.slice(0, 5)) {
+  console.log(`    ${(p.a + " vs " + p.b).padEnd(30)} ${pct(p.v).padStart(4)}  ${p.v > GATE.siblingOverlap ? "OVER " : "under"}`);
+}
+const over = pairs.filter((p) => p.v > GATE.siblingOverlap);
+console.log(`  pairs OVER the gate: ${over.length}`);
+for (const p of over) console.log(`    !! ${p.a} vs ${p.b} ${pct(p.v)}`);
 
 // The ceiling. This is the number that decides whether a shortfall is the
 // composer's fault or the dataset's: how much sourced origin material exists
@@ -142,6 +165,14 @@ for (const c of CORRIDORS) {
     `     reported (secondary, supporting only)  : ${v.reported.length ? v.reported.map((x) => x.key).join(", ") : "none"}`,
   );
   console.log(`     BLOCKERS                               : ${v.blockers.length ? v.blockers.join(" · ") : "none"}`);
+}
+
+const noName = corridorsWithoutRegulatorName();
+if (noName.length) {
+  console.log("\n=== REGULATOR NAME FELL BACK TO A GENERIC PHRASE ===");
+  console.log("   (the batch's originRegulator value does not open with a derivable name;");
+  console.log("    the page says \"<Country>'s nursing regulator\" rather than guessing)");
+  for (const sl of noName) console.log(`  ${sl}`);
 }
 
 console.log("\n=== EMITTED vs SKIPPED (no silent caps) ===");
