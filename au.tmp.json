@@ -1,0 +1,91 @@
+{
+  "_meta": {
+    "name": "AlmiOET destination block — Australia (NMBA/AHPRA), nursing — v1",
+    "purpose": "Second destination for the nursing corridors. PROVES the compounding thesis: reuse the 10 origins already sourced in v3 (regulator, verification-issuance, attestation base, English-medium status) and add ONLY this destination block. Corridors = origin × destination.",
+    "lastCompiled": "2026-08-06",
+    "sourcing": "All load-bearing facts from official NMBA/AHPRA pages (see sources). Confirm-official flags on the few secondary/uncorroborated numbers (exact PTE/TOEFL minimums, exact annual/application fee amounts).",
+    "reuse_note": "AHPRA requires a Certificate of Registration Status / Good Standing sent DIRECTLY to AHPRA by each overseas regulator from the last 5 years — the SAME board-to-board mechanism as the NMC. So each origin's verification-issuance fact (how PNMC/NMCN/state council/PRC/NMC Ghana/NCK/NCZ/Egyptian Syndicate/SLNC/NNC issues good standing) reuses unchanged; only the RECIPIENT changes (AHPRA instead of the NMC). Attestation base reuses per origin; only the final legalisation step re-points (see destinationParams).",
+    "compose_instruction_for_CC": "Generate corridors /nursing/{origin}/australia for the same 10 origins as v3, composed from: (a) the shared ORIGIN facts (originRegulator, verification-issuance, attestation base, English-medium status) reused from v3; (b) this Australia destination block (shared, render once on a /register/au-nmba page, linked from each corridor); (c) the destinationParams deltas below. Same gate, same corroboration rule, same currency gate, same law #3 (shared AU facts once on the destination page, not per corridor). Keep the permanent 'confirm current details with the NMBA/AHPRA and your national council' caveat + lastVerified on every page."
+  },
+  "destination": {
+    "slug": "australia",
+    "occupation": "nursing",
+    "country": "Australia",
+    "regulator": {
+      "value": "Nurses are registered by the Nursing and Midwifery Board of Australia (NMBA), a National Board under the National Registration and Accreditation Scheme; the Australian Health Practitioner Regulation Agency (AHPRA) administers registration and manages applications on the NMBA's behalf. You must be registered with the NMBA (via AHPRA) to practise as a nurse in Australia.",
+      "sources": [
+        {"url": "https://www.ahpra.gov.au/Registration/International-practitioners.aspx", "name": "AHPRA — Information for international practitioners", "confidence": "official"},
+        {"url": "https://www.nursingmidwiferyboard.gov.au/registration-standards/english-language-skills.aspx", "name": "NMBA — Registration standards", "confidence": "official"}
+      ],
+      "corroborated": true, "asOf": "2026-08", "verifyStatus": "verified"
+    },
+    "englishAcceptedTests": {
+      "value": "Under the NMBA English language skills (ELS) registration standard, accepted tests are OET, IELTS Academic, PTE Academic, TOEFL iBT and Cambridge English (C1 Advanced / C2 Proficiency). Confirmed minimums: IELTS Academic overall 7 with at least 7 in Listening/Reading/Speaking and 6.5 in Writing (Writing lowered from 7 to 6.5 in the 2025 revision); OET at least grade B in each of the four components. Results from a maximum of two sittings within 12 months can be combined if the minimum is met in each component across the sittings; different test providers cannot be combined; the IELTS One Skill Retake does not count as an extra sitting. Results generally valid two years (extendable if practising/studying in English in a recognised country since). Revised ELS standard effective 18 March 2025.",
+      "sources": [
+        {"url": "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/fact-sheet-english-language-skills-registration-standard.aspx", "name": "NMBA — English language skills fact sheet", "confidence": "official"},
+        {"url": "https://www.nursingmidwiferyboard.gov.au/registration-standards/english-language-skills.aspx", "name": "NMBA — English language skills registration standard", "confidence": "official"}
+      ],
+      "corroborated": true, "asOf": "2026-08", "verifyStatus": "confirm-official",
+      "note": "Exact PTE Academic and TOEFL iBT minimums were only secondary-sourced this pass — do NOT publish specific PTE/TOEFL numbers until confirmed on the official ELS standard PDF. OET grade B and the IELTS 7/6.5 minimums are official."
+    },
+    "englishExemptionPathways": {
+      "value": "The ELS standard also offers non-test pathways: (1) at least six years of combined primary and secondary education taught and assessed in English in a recognised country (including at least two years in years 7–12), plus the nursing qualification taught and assessed in English in a recognised country; or (2) at least five years of continuous education taught and assessed solely in English in a recognised country, including the tertiary nursing qualification. The NMBA publishes a list of ~35 recognised countries where English is a native/first language (Australia, Canada, Ireland, New Zealand, UK, USA, many Caribbean nations, Malta, Guyana, etc.). South Africa was removed, with reliance on South African education/experience allowed only if the application is lodged before 18 March 2026.",
+      "sources": [
+        {"url": "https://www.nursingmidwiferyboard.gov.au/Codes-Guidelines-Statements/FAQ/fact-sheet-english-language-skills-registration-standard.aspx", "name": "NMBA — ELS fact sheet (recognised countries, education pathways)", "confidence": "official"}
+      ],
+      "corroborated": false, "asOf": "2026-08", "verifyStatus": "confirm-official",
+      "note": "Single official fact sheet (official = acceptable). None of the 10 batch origins is on the recognised-country list, and the education pathways require English schooling/education IN a recognised country, which study in the origin does not satisfy — so the practical outcome for all 10 origins is that most applicants take OET or IELTS."
+    },
+    "registrationPathwayIQNM": {
+      "value": "Internationally qualified nurses register through the NMBA's IQNM model: (1) Self-check — an online tool that assigns a stream (Stream A = substantially equivalent qualification; Stream B = relevant but not substantially equivalent; Stream C = not eligible to progress). (2) Portfolio and Orientation — a non-refundable AUD $410 fee covers self-check and orientation. (3) Outcomes-based assessment (Stream A and B registered nurses): a multiple-choice cognitive exam — the NCLEX-RN, delivered via NCSBN/Pearson VUE — which must be passed before the OSCE (Objective Structured Clinical Examination), held at Adelaide Health Simulation in Adelaide. After passing both, the applicant lodges the final registration application with AHPRA.",
+      "sources": [
+        {"url": "https://www.nursingmidwiferyboard.gov.au/Accreditation/IQNM/Self-check-and-Portfolio/Completing-the-Self-check.aspx", "name": "NMBA — IQNM Self-check (streams; $410)", "confidence": "official"},
+        {"url": "https://www.nursingmidwiferyboard.gov.au/accreditation/iqnm/examination/registered-nurses.aspx", "name": "NMBA — IQNM examination for registered nurses (NCLEX MCQ + OSCE)", "confidence": "official"},
+        {"url": "https://www.nursingmidwiferyboard.gov.au/Accreditation/IQNM/Examination/Objective-structured-clinical-exam.aspx", "name": "NMBA — OSCE", "confidence": "official"}
+      ],
+      "corroborated": true, "asOf": "2026-08", "verifyStatus": "verified"
+    },
+    "verification": {
+      "value": "AHPRA/NMBA requires primary-source verification of overseas registration: a Certificate of Registration Status (CORS) or Certificate of Good Standing must be sent DIRECTLY to AHPRA by each overseas regulatory authority the applicant has registered with in the past five years (from the regulator, not the applicant). These certificates are valid for three months from issue. Applicants also undergo an international criminal history check.",
+      "sources": [
+        {"url": "https://www.nursingmidwiferyboard.gov.au/Accreditation/IQNM/Registration/Applying-for-registration.aspx", "name": "NMBA — IQNM applying for registration (CORS/COGS direct from regulator)", "confidence": "official"},
+        {"url": "https://www.ahpra.gov.au/Registration/Registration-Process/Criminal-history-checks/International-Criminal-History.aspx", "name": "AHPRA — international criminal history checks", "confidence": "official"}
+      ],
+      "corroborated": true, "asOf": "2026-08", "verifyStatus": "verified"
+    },
+    "fees": {
+      "value": "IQNM assessment fees (official): self-check + Orientation Part 1 is a non-refundable AUD $410; the nursing OSCE is AUD $4,000 per attempt. The NCLEX-RN MCQ carries separate NCSBN/Pearson VUE fees. A separate application fee and the annual registration fee apply at final registration; the NMBA sets its fee schedule each financial year — verify current amounts.",
+      "sources": [
+        {"url": "https://www.nursingmidwiferyboard.gov.au/Accreditation/IQNM/Self-check-and-Portfolio/Completing-the-Self-check.aspx", "name": "NMBA — self-check ($410)", "confidence": "official"},
+        {"url": "https://www.nursingmidwiferyboard.gov.au/accreditation/iqnm/examination/registered-nurses.aspx", "name": "NMBA — IQNM examination (OSCE $4,000)", "confidence": "official"}
+      ],
+      "corroborated": true, "asOf": "2026-08", "verifyStatus": "confirm-official",
+      "note": "Annual registration fee (~AUD $193) and exact application fee are secondary/unconfirmed — official NMBA fees page 403'd this pass. Do not publish those specific numbers until confirmed."
+    },
+    "visa": {
+      "value": "Registration with the NMBA is separate from immigration. Registered Nurse is on Australia's skilled occupation lists; common routes include employer-sponsored Skills in Demand (subclass 482) and points-tested permanent skilled visas (subclass 189 Skilled Independent, 190 Skilled Nominated). Skilled migration also requires a separate ANMAC skills assessment (distinct from NMBA registration). Confirm current options with the Department of Home Affairs.",
+      "sources": [
+        {"url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing", "name": "Department of Home Affairs — visa listing", "confidence": "official"}
+      ],
+      "corroborated": false, "asOf": "2026-08", "verifyStatus": "confirm-official"
+    }
+  },
+  "destinationParams": {
+    "note": "The deltas the composer applies when reusing a v3 origin for the Australia destination.",
+    "verificationRecipient": "AHPRA (the origin regulator sends the Certificate of Good Standing / Registration Status DIRECTLY to AHPRA — same board-to-board mechanism as the NMC, different recipient). Reuse each origin's verification-issuance fact unchanged; only re-point the recipient to AHPRA.",
+    "attestation": {
+      "hagueOrigins_apostille": "Australia is a party to the Hague Apostille Convention, so for apostille-country origins (Pakistan, India, Philippines) an apostille is valid for use in Australia with no further legalisation — reuse the origin's apostille fact unchanged. (Confirm-official: Australia's acceptance of the specific apostille.)",
+      "nonHagueOrigins_legalisation": "For non-Hague origins (Ghana, Kenya, Zimbabwe, Egypt, Sri Lanka, Nepal), reuse the origin's authentication chain up to its foreign ministry, but the FINAL legalisation step re-points to the AUSTRALIAN diplomatic mission (Australian high commission/embassy) rather than the British one. State generically as 'then legalised by the Australian mission'; the exact office is confirm-official.",
+      "verifyStatus": "confirm-official"
+    },
+    "englishNuanceTemplate": "{origin} is not on the NMBA's list of recognised English-speaking countries, and the NMBA's non-test education pathways require English-medium schooling/education completed IN a recognised country — which study in {origin} does not satisfy. {origin_english_medium_status_from_v3}. So in practice most {origin} nurses evidence English to the NMBA via OET (grade B) or IELTS Academic (7 / 6.5). Confirm current NMBA rules.",
+    "reuseFromV3": ["originRegulator", "verificationRoute (re-point recipient to AHPRA)", "attestationChain (re-point final step per above)", "localSearchWording (add Australia/AHPRA/NMBA phrasing)"]
+  },
+  "sharedDestinationFaq": [
+    {"q": "What OET score do I need to register as a nurse in Australia?", "a": "The NMBA requires OET grade B in each of the four components, or IELTS Academic overall 7 with at least 7 in Listening, Reading and Speaking and 6.5 in Writing. You can combine two sittings of the same test within 12 months, but not across different test providers.", "groundedIn": "destination.englishAcceptedTests"},
+    {"q": "What is the AHPRA / NMBA IQNM assessment?", "a": "It is the pathway for internationally qualified nurses: an online self-check that sorts you into a stream, a portfolio and orientation stage (AUD $410), and then an outcomes-based assessment — the NCLEX-RN multiple-choice exam followed by an OSCE at Adelaide Health Simulation.", "groundedIn": "destination.registrationPathwayIQNM"},
+    {"q": "How does AHPRA verify my overseas registration?", "a": "Each overseas regulator you have registered with in the last five years must send a Certificate of Registration Status or Good Standing directly to AHPRA — it comes from the regulator, not from you — and it is valid for three months.", "groundedIn": "destination.verification"},
+    {"q": "How is registering as a nurse in Australia different from the UK?", "a": "Australia's assessment uses the NCLEX-RN multiple-choice exam plus an OSCE in Adelaide, where the UK uses its own CBT plus an OSCE. English rules and recognised-country lists differ, and Australia also needs a separate ANMAC skills assessment for a skilled visa.", "groundedIn": "howItDiffersFromUK_NMC"}
+  ],
+  "howItDiffersFromUK_NMC": "Australia: NMBA IQNM model — self-check (Stream A/B/C) → orientation ($410) → NCLEX-RN MCQ + OSCE at Adelaide Health Simulation. UK: NMC CBT + OSCE at UK test centres. English: NMBA accepts OET/IELTS/PTE/TOEFL/Cambridge, combines two sittings within 12 months, and offers 6-year/5-year English-education pathways in ~35 recognised countries. Verification: both require primary-source good standing sent directly by the origin regulator (NMC vs AHPRA). Australia additionally needs an ANMAC skills assessment for skilled migration."
+}

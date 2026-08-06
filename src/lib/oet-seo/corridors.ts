@@ -35,6 +35,7 @@ import type {
   JourneyDestination,
   SourcedFact,
 } from "@/lib/journey/types";
+import type { DestinationScopedFacts, OriginEntity } from "@/lib/journey/entities";
 
 type RawSource = { url?: string; name?: string; confidence?: string; note?: string };
 
@@ -182,31 +183,82 @@ function countrySlugOf(country: string): string {
   return country.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-/** Slugs arrive as "{occupation}__{origin}__{destination}". Parsed once here so
- *  no other file has to know the encoding. */
-export const CORRIDORS: readonly Corridor[] = DATA.corridors.map((c) => {
-  const [occupationSlug, originSlug, destinationSlug] = c.slug.split("__");
-  const originRegulator = fact(c.originRegulator)!;
-  return {
-    slug: c.slug,
-    occupationSlug,
-    originSlug,
-    destinationSlug,
-    originCountry: c.originCountry,
-    destinationCountry: DATA.sharedDestination.country,
-    originRegulator,
-    originRegulatorName:
-      shortRegulatorName(originRegulator.value) ?? `${c.originCountry}'s nursing regulator`,
-    verificationRoute: fact(c.verificationRoute)!,
+/** THE ORIGINS LIBRARY.
+ *
+ *  Extracted from the v3 batch, which is the only place these bodies have been
+ *  sourced. An origin owns its regulator and its search wording; everything else
+ *  it carries was authored FOR a destination and is filed under that destination
+ *  rather than promoted to the origin. See entities.ts for why that distinction
+ *  is kept rather than flattened — nine of ten verification routes name the NMC
+ *  as the recipient, so "the origin's verification route" is not a thing that
+ *  exists yet, however much the model would like it to. */
+export const ORIGINS: readonly OriginEntity[] = DATA.corridors.map((c) => {
+  const [, originSlug, destinationSlug] = c.slug.split("__");
+  const regulator = fact(c.originRegulator)!;
+  const scoped: DestinationScopedFacts = {
+    verificationRoute: fact(c.verificationRoute),
     attestationChain: fact(c.attestationChain),
     feesTimeline: fact(c.feesTimeline ?? c.verificationEligibilityFeesTimeline),
     englishRoute: fact(c.englishRoute),
-    originDistinctSummary: c.originDistinctSummary,
     localSearchWording: c.localSearchWording,
+  };
+  return {
+    slug: originSlug,
+    country: c.originCountry,
+    regulator,
+    regulatorName: shortRegulatorName(regulator.value) ?? `${c.originCountry}'s nursing regulator`,
+    localSearchWording: c.localSearchWording ?? [],
     lastVerified: c.lastVerified,
     verifyStatus: c.verifyStatus,
+    perDestination: { [destinationSlug]: scoped },
   };
 });
+
+export function originBySlug(slug: string): OriginEntity | undefined {
+  return ORIGINS.find((o) => o.slug === slug);
+}
+
+/** Compose one corridor from an origin and a destination.
+ *
+ *  For the United Kingdom this returns exactly what the previous direct parse
+ *  returned — same fields, same values, same order — because `perDestination`
+ *  holds v3's records verbatim. That equality is asserted, not assumed: see
+ *  scripts/verify-spine-invariant.ts, which deep-compares against a direct parse
+ *  of the same JSON and fails if a single field moved. A refactor that adds a
+ *  capability must not alter existing output, and "I checked the diff" is not the
+ *  same claim as "the build refuses to let it differ". */
+export function composeCorridorEntity(
+  origin: OriginEntity,
+  destinationSlug: string,
+  destinationCountry: string,
+  occupationSlug = "nursing",
+): Corridor {
+  const scoped = origin.perDestination[destinationSlug] ?? {};
+  return {
+    slug: `${occupationSlug}__${origin.slug}__${destinationSlug}`,
+    occupationSlug,
+    originSlug: origin.slug,
+    destinationSlug,
+    originCountry: origin.country,
+    destinationCountry,
+    originRegulator: origin.regulator,
+    originRegulatorName: origin.regulatorName,
+    verificationRoute: scoped.verificationRoute!,
+    attestationChain: scoped.attestationChain,
+    feesTimeline: scoped.feesTimeline,
+    englishRoute: scoped.englishRoute,
+    originDistinctSummary: undefined,
+    localSearchWording: scoped.localSearchWording,
+    lastVerified: origin.lastVerified,
+    verifyStatus: origin.verifyStatus,
+  };
+}
+
+/** The UK corridor set — now composed through the spine rather than parsed
+ *  directly, and byte-identical to what the direct parse produced. */
+export const CORRIDORS: readonly Corridor[] = ORIGINS.map((o) =>
+  composeCorridorEntity(o, "united-kingdom", DATA.sharedDestination.country),
+);
 
 export function corridorFor(
   occupationSlug: string,
