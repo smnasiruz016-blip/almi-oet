@@ -125,7 +125,7 @@ export async function transcribeAudio(args: {
   } catch (err) {
     await recordTranscriptionCost({
       userId: args.userId,
-      feature: "speak-about-photo.transcribe",
+      feature: "speaking-roleplay.transcribe",
       model: "whisper-1",
       durationSeconds: args.durationSeconds,
       success: false,
@@ -136,7 +136,7 @@ export async function transcribeAudio(args: {
   if (!res.ok) {
     await recordTranscriptionCost({
       userId: args.userId,
-      feature: "speak-about-photo.transcribe",
+      feature: "speaking-roleplay.transcribe",
       model: "whisper-1",
       durationSeconds: args.durationSeconds,
       success: false,
@@ -146,7 +146,7 @@ export async function transcribeAudio(args: {
   }
   await recordTranscriptionCost({
     userId: args.userId,
-    feature: "speak-about-photo.transcribe",
+    feature: "speaking-roleplay.transcribe",
     model: "whisper-1",
     durationSeconds: args.durationSeconds,
     success: true,
