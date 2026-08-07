@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { PROFESSION_LIST } from "@/lib/oet/professions";
 import { OET_ORIGIN_SLUGS } from "./origins";
 import { ORGANISATIONS, ROLE_ORG_PAIRS } from "./data";
+import { emittedNurseUkPaths } from "./nurse-uk-emitted";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "https://almioet.almiworld.com";
 export const CHUNK_SIZE = 45_000;
@@ -32,6 +33,17 @@ function baseUrls(): MetadataRoute.Sitemap {
     for (const o of OET_ORIGIN_SLUGS) {
       out.push({ url: `${SITE_URL}/${p.slug}/from-${o}`, changeFrequency: "monthly", priority: 0.5 });
     }
+  }
+  // The nationality-first test batch — ADDED to the existing surface, not
+  // replacing any of it. 15 URLs on top of 240,328, so the live sitemap goes to
+  // 240,343 and every old URL keeps its entry. The prune that retires the
+  // profession×origin×org leaves is a separate decision and is NOT taken here.
+  //
+  // Gated at build time rather than hard-coded: `emittedNurseUkPaths()` runs the
+  // real quality gate over the batch, so a page that stopped clearing would drop
+  // out of the sitemap instead of shipping thin.
+  for (const p of emittedNurseUkPaths()) {
+    out.push({ url: `${SITE_URL}${p}`, changeFrequency: "monthly", priority: 0.9 });
   }
   _base = out;
   return out;
