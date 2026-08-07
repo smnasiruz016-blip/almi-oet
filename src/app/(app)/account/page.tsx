@@ -1,5 +1,10 @@
-// Account page — slim version: plan + email status only. A "recent attempts"
-// block can be added back here later (the AlmiPrep account page is the template).
+// Account page — plan, email, profession, and "My Progress".
+//
+// The progress view is ported from AlmiPrep's account page so a user moving
+// between AlmiWorld products finds their scores in the same place, laid out the
+// same way. The QUERIES could not be ported: Prep keeps four attempt tables and
+// AlmiOET keeps one (`OetAttempt`, discriminated by subTest). The sections, the
+// ordering, the empty states and the row layout are Prep's.
 
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -16,6 +21,7 @@ import {
 import { ResendVerificationButton } from "@/components/ResendVerificationButton";
 import { getMyReview } from "@/lib/reviews";
 import { ReviewCard } from "@/components/reviews/ReviewCard";
+import { MyProgress, type ProgressAttempt } from "@/components/oet/MyProgress";
 
 async function setProfession(formData: FormData) {
   "use server";
@@ -40,6 +46,27 @@ export default async function AccountPage({
   const proActive = isProActive(user);
   const verified = isEmailVerified(user);
   const myReview = await getMyReview();
+
+  // Recent SCORED attempts, newest first. One query across all four sub-tests —
+  // the component groups them — and capped at 40 so a heavy user's account page
+  // stays a page rather than a transcript. IN_PROGRESS attempts are excluded:
+  // an unfinished attempt has no estimate and would render as an empty row.
+  const recentAttempts = (await prisma.oetAttempt.findMany({
+    where: { userId: user.id, status: "SCORED" },
+    orderBy: { submittedAt: "desc" },
+    take: 40,
+    select: {
+      id: true,
+      subTest: true,
+      taskType: true,
+      gradeEstimate: true,
+      submittedAt: true,
+      sessionId: true,
+      pointsEarned: true,
+      pointsMax: true,
+      item: { select: { title: true } },
+    },
+  })) as ProgressAttempt[];
 
   return (
     <div className="space-y-8">
@@ -108,6 +135,11 @@ export default async function AccountPage({
           )}
         </div>
       </section>
+
+      <div id="progress">
+        <h2 className="sr-only">My Progress</h2>
+        <MyProgress attempts={recentAttempts} />
+      </div>
 
       <section className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-almi-ink">Email</h2>
