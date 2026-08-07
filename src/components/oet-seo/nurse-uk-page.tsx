@@ -7,6 +7,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { composeNurseUk } from "@/lib/oet-seo/nurse-uk-compose";
+import { siblingsFor, NURSE_HUB_PATH } from "@/lib/oet-seo/nurse-uk-links";
 import { RichPage, buildRichMetadata } from "./rich-page";
 
 export function buildNurseUkMetadata(nationality: string): Metadata {
@@ -29,15 +30,24 @@ export function NurseUkPage({ nationality }: { nationality: string }) {
       eyebrow="AlmiOET · Nurse to the UK"
       title={c.h1}
       subtitle={`${c.data.origin} to the NHS — cost in local currency, NMC steps, and what the job pays.`}
+      // The middle crumb points at the hub rather than at /nursing. Every one of
+      // the fifteen therefore links to /nurse, which is what gives the hub its
+      // inbound links, and the hub links back to all fifteen. Before this the
+      // batch was reachable from nothing and GSC reported "No referring page"
+      // for every URL.
       trail={[
         { label: "AlmiOET", href: "/" },
-        { label: "Nursing", href: "/nursing" },
+        { label: "Nurses to the UK", href: NURSE_HUB_PATH },
         { label: `${c.data.origin} to the UK`, href: c.path },
       ]}
       sections={prose}
       tables={c.tables}
       faqs={c.faqs}
       related={[
+        {
+          heading: "Nurses from other countries",
+          links: siblingsFor(nationality),
+        },
         {
           heading: "The bodies behind each step",
           links: [

@@ -3,6 +3,7 @@ import { PROFESSION_LIST } from "@/lib/oet/professions";
 import { OET_ORIGIN_SLUGS } from "./origins";
 import { ORGANISATIONS, ROLE_ORG_PAIRS } from "./data";
 import { emittedNurseUkPaths } from "./nurse-uk-emitted";
+import { NURSE_HUB_PATH } from "./nurse-uk-links";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "https://almioet.almiworld.com";
 export const CHUNK_SIZE = 45_000;
@@ -42,6 +43,7 @@ function baseUrls(): MetadataRoute.Sitemap {
   // Gated at build time rather than hard-coded: `emittedNurseUkPaths()` runs the
   // real quality gate over the batch, so a page that stopped clearing would drop
   // out of the sitemap instead of shipping thin.
+  out.push({ url: `${SITE_URL}${NURSE_HUB_PATH}`, changeFrequency: "monthly", priority: 0.9 });
   for (const p of emittedNurseUkPaths()) {
     out.push({ url: `${SITE_URL}${p}`, changeFrequency: "monthly", priority: 0.9 });
   }
