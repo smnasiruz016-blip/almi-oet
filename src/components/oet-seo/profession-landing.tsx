@@ -82,7 +82,7 @@ export function ProfessionLanding({ professionSlug }: { professionSlug: string }
             href={GET_STARTED_HREF}
             className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
           >
-            Start your 7-day free trial
+            Start 7-day free trial
           </Link>
           <span className="text-xs text-almi-text-muted">
             $12/month · 7-day free trial · never copied from OET
