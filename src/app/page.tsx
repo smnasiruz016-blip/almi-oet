@@ -155,7 +155,7 @@ export default function Home() {
                 href="/signup"
                 className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-almi-coral/30"
               >
-                Start your 7-day free trial
+                Start 7-day free trial
               </Link>
               <Link href="/login" className="text-sm font-medium text-almi-coral hover:underline">
                 Already have an account? Log in →
@@ -267,7 +267,7 @@ export default function Home() {
           </ul>
           <div className="mt-8">
             <Link href="/signup" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep">
-              Start your 7-day free trial
+              Start 7-day free trial
             </Link>
           </div>
           <p className="mt-4 text-sm text-almi-text-muted">
@@ -304,7 +304,7 @@ export default function Home() {
           </p>
           <div className="mt-8">
             <Link href="/signup" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep">
-              Start your 7-day free trial
+              Start 7-day free trial
             </Link>
           </div>
         </div>
