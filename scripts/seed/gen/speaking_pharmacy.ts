@@ -24,7 +24,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "private pharmacy consultation room",
       "patientRole": "The patient is a 29-year-old who feels more anxious and jittery and is thinking of stopping the tablets this evening.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain that early worsening and a delayed onset of benefit are common, advise against stopping abruptly, agree clear safety-net advice including signs that need urgent help, and arrange GP follow-up to review progress.",
       "candidateRole": "You are the pharmacist. A patient started an SSRI ten days ago and says they feel worse, not better.",
@@ -45,7 +45,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy counter",
       "patientRole": "The patient is the parent of a 2-year-old, who is worried and wants to give as much medicine as possible to bring the temperature down fast.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain weight-appropriate dosing of liquid paracetamol, the importance of not exceeding the stated frequency, the role of fluids and comfort, and clear safety-net signs that mean the child should be seen by a doctor urgently.",
       "candidateRole": "You are the pharmacist advising a parent whose toddler has a fever.",
@@ -66,7 +66,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A community pharmacy counter.",
       "patientRole": "The patient is a 41-year-old asking by name for a strong codeine medicine they have been buying frequently for daily headaches over several weeks.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Find out the nature, frequency and duration of the headaches and current painkiller use, explain why you cannot supply the codeine product today, raise the possibility of medication-overuse headache, and refer the patient to their GP for assessment.",
       "candidateRole": "You are the pharmacist responding to a patient requesting an over-the-counter codeine-based painkiller for persistent headaches.",
@@ -87,7 +87,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "private pharmacy consultation room",
       "patientRole": "The patient is a 22-year-old who is anxious and embarrassed, and wants the matter dealt with quickly.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Sensitively ask the time since unprotected intercourse, explain the options and the importance of taking it as soon as possible, advise on what to do if vomiting occurs, and signpost ongoing contraception and sexual-health follow-up.",
       "candidateRole": "You are the pharmacist responding to a request for emergency contraception.",
@@ -108,7 +108,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy counter",
       "patientRole": "The patient is a 38-year-old with asthma who is considering stopping the inhaler because of the mouth symptoms.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain the likely link to the inhaled steroid, advise rinsing and spitting after each dose, discuss whether a spacer would help, recommend assessment of the oral symptoms, and stress that the preventer should not simply be stopped.",
       "candidateRole": "You are the pharmacist. A patient using a preventer inhaler complains of a sore, white-coated mouth.",
@@ -129,7 +129,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy counter",
       "patientRole": "The patient is a 31-year-old who is certain antibiotics are the only thing that will help and is unhappy that they cannot buy them.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain that most sore throats are viral and self-limiting, recommend symptomatic relief, set clear safety-net advice on when to see a GP, and explain why antibiotics are not appropriate here.",
       "candidateRole": "You are the pharmacist. A patient asks you to recommend antibiotics for a three-day sore throat.",
@@ -150,7 +150,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy consultation room",
       "patientRole": "The patient is a 49-year-old who mentions, in passing, that they have been taking the tablet every day because daily seemed 'more thorough'.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Calmly establish exactly how the patient has been taking the medicine, explain that methotrexate is a once-weekly dose and why daily dosing is dangerous, advise on what to do now, and arrange urgent contact with the prescriber.",
       "candidateRole": "You are the pharmacist dispensing methotrexate to a patient with rheumatoid arthritis.",
@@ -171,7 +171,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A community pharmacy consultation room.",
       "patientRole": "The patient is a 34-year-old recently started on a brown preventer inhaler in addition to their blue reliever inhaler.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Find out the patient's understanding of the two inhalers, explain the difference between the preventer and the reliever, check and advise on inhaler technique and rinsing the mouth, and agree a plan for daily use even when feeling well.",
       "candidateRole": "You are the pharmacist providing a first prescription of a preventer (corticosteroid) inhaler to a patient newly diagnosed with asthma.",
@@ -192,7 +192,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy consultation room",
       "patientRole": "The patient is a 78-year-old who finds the routine overwhelming and admits to sometimes skipping doses to 'have a rest' from the tablets.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explore which medicines cause the most difficulty, check understanding of what each is for, discuss practical aids such as a dosette box, and agree which items to raise with the GP for possible review.",
       "candidateRole": "You are the pharmacist conducting a medicines-use review with a patient taking nine regular medications.",
@@ -213,7 +213,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "pharmacy stop-smoking service room",
       "patientRole": "The patient is a 45-year-old who has tried to quit twice before and relapsed, and is sceptical that anything will work this time.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explore the patient's smoking pattern and past attempts, explain how combining a patch with a faster-acting product helps cravings, set expectations about withdrawal, and arrange a follow-up to maintain support.",
       "candidateRole": "You are the pharmacist supporting a patient who wants to quit smoking and is asking about patches and gum.",
@@ -234,7 +234,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy consultation room",
       "patientRole": "The patient is a 54-year-old who has just collected the prescription and is unsure why they need it when they feel well.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain how and when to take metformin (with or after meals), set realistic expectations about gradual dose increases, warn about common gastrointestinal effects that usually settle, and reassure the patient that feeling well does not mean treatment is unnecessary.",
       "candidateRole": "You are the pharmacist dispensing a first prescription for metformin 500mg to a patient newly diagnosed with type 2 diabetes by their GP.",
@@ -255,7 +255,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy counter",
       "patientRole": "The patient is a 60-year-old who read online that statins damage muscles and has decided not to restart.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explore the nature and timing of the muscle symptoms, explain that not all aches are statin-related, advise against simply abandoning treatment, and recommend a GP review to assess and possibly adjust therapy.",
       "candidateRole": "You are the pharmacist. A patient tells you they stopped their statin a week ago because of aching legs.",
@@ -276,7 +276,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy counter",
       "patientRole": "The patient is a 63-year-old who just wants to collect their usual medicine and get to work, and is irritated by any delay.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain why you have noticed a discrepancy, reassure the patient you are acting in their interest, advise that you will check with the prescriber before dispensing, and agree a safe interim plan so the patient is not left without treatment.",
       "candidateRole": "You are the pharmacist. A patient's repeat prescription shows their blood-pressure tablet at double the strength they have been taking for a year.",
@@ -297,7 +297,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy consultation room",
       "patientRole": "The patient is a 41-year-old who is excited about the trip but has never travelled across several time zones while on insulin.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Advise on carrying insulin in hand luggage, keeping supplies cool, managing doses across time zones, packing extra supplies and a letter from the prescriber, and recognising and treating hypoglycaemia while travelling.",
       "candidateRole": "You are the pharmacist. A patient with insulin-treated diabetes is flying long-haul next week and asks how to manage their medicines.",
@@ -318,7 +318,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community pharmacy counter",
       "patientRole": "The patient is a 67-year-old who has used ibuprofen for years and does not see why their blood-thinner should change anything.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain the bleeding risk of combining warfarin with ibuprofen, suggest paracetamol as a safer first choice, and advise the patient to speak to their anticoagulation clinic if pain is not controlled. Manage the patient's frustration without being dismissive.",
       "candidateRole": "You are the pharmacist. A patient on long-term warfarin asks for ibuprofen for a sore knee.",

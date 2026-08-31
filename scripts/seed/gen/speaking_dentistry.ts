@@ -24,7 +24,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a general dental surgery",
       "patientRole": "The patient is a 34-year-old who has never had a tooth out, dreads the needle, and is worried about feeling everything and being off work the next day.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Find out what specifically worries the patient; reassure about local anaesthetic and that they should feel pressure but not pain; explain the brief procedure and aftercare (bite on gauze, avoid rinsing/smoking, painkillers, possible mild swelling); agree on proceeding today or arranging a follow-up if not ready.",
       "candidateRole": "You are the dentist. A patient needs a non-restorable upper molar extracted today and is visibly anxious. Acknowledge the anxiety, explain what the procedure involves, address pain and recovery concerns, and reach agreement on going ahead.",
@@ -45,7 +45,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a community dental clinic",
       "patientRole": "The parent is cautious, has read online that fluoride is 'harmful', and prefers 'natural' approaches, but does want to stop the decay getting worse.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Find out what the parent has read and what worries them; explain how fluoride varnish works and that the small applied dose is safe and effective; acknowledge their wish to limit sugar naturally; discuss diet, snacking frequency and brushing; agree a plan the parent is comfortable with, even if that means revisiting varnish next visit.",
       "candidateRole": "You are the dentist. A parent has brought their 6-year-old, who has early decay in two molars. You want to apply fluoride varnish and discuss diet, but the parent is hesitant about fluoride. Explore their concerns, give balanced information, and agree a prevention plan.",
@@ -66,7 +66,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a children's dental clinic",
       "patientRole": "The parent is anxious and feels they have already done their best and may be judged as a bad parent.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain what you have found and the likely contributing factors without blaming the parent. Agree a few practical, realistic changes and outline what treatment the child will need.",
       "candidateRole": "You are the dentist. A three-year-old has several cavities, partly linked to a bedtime bottle of sweetened milk.",
@@ -87,7 +87,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a dental surgery",
       "patientRole": "The patient just wants the pain gone quickly and is leaning towards extraction because it sounds simpler and cheaper.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Compare the two options fairly, including longer-term consequences of losing the tooth. Respect the patient's right to choose while making sure the decision is properly informed.",
       "candidateRole": "You are the dentist. A patient has a badly infected back tooth that could be saved with root canal treatment or removed by extraction.",
@@ -108,7 +108,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a cosmetic dental practice",
       "patientRole": "The patient is a 27-year-old preparing for their wedding who has fixed ideas about the exact shade and shape they want.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Discuss what is realistically achievable for their teeth and face, explain the irreversible nature of veneers, and manage expectations honestly while keeping the conversation positive.",
       "candidateRole": "You are the dentist. A patient wants very bright, uniform veneers based on photos they have brought in.",
@@ -129,7 +129,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a dental surgery",
       "patientRole": "The patient is a 41-year-old in a high-pressure job who waves off the problem as just stress that will pass.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain the link between grinding and the damage you can see, discuss protective options such as a night guard, and encourage the patient to take the longer-term damage seriously.",
       "candidateRole": "You are the dentist. A patient has worn, flattened teeth and reports jaw soreness and morning headaches consistent with night-time grinding.",
@@ -150,7 +150,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a community dental clinic",
       "patientRole": "The patient is a 29-year-old who had a frightening dental experience as a child and now avoids treatment.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Acknowledge the patient's fear without dismissing it, explain the practical steps you can take to make the appointment manageable, and agree a signal system so they feel in control during treatment.",
       "candidateRole": "You are the dentist. A patient needs a moderate cavity filled but becomes visibly distressed as soon as equipment is switched on.",
@@ -171,7 +171,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a dental surgery",
       "patientRole": "The patient is a 68-year-old who is frustrated, finding it hard to eat, and wondering if the denture was made wrong.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Acknowledge the discomfort, explain why some adjustment is normal for a new denture, describe what you will do today, and set realistic expectations for settling in.",
       "candidateRole": "You are the dentist. A patient has returned because their recently fitted lower denture is rubbing and causing a sore spot.",
@@ -192,7 +192,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a dental surgery seeing an emergency walk-in",
       "patientRole": "The patient is shaken, in pain, and worried about how they will look if the tooth cannot be saved.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Calm the patient, explain what you will do now to try to save or replace the tooth, and set out the immediate plan and what to expect over the coming days.",
       "candidateRole": "You are the dentist. A patient has arrived shortly after a front tooth was knocked out in a fall, bringing the tooth with them.",
@@ -213,7 +213,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a dental surgery",
       "patientRole": "The patient is a 36-year-old who thinks bleeding when brushing is normal and not worth worrying about.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain in plain terms what the bleeding indicates, why it matters if left untreated, and what daily changes and follow-up will help. Keep the patient engaged rather than lecturing.",
       "candidateRole": "You are the dentist. During a check-up you have found early gum disease with bleeding and inflammation along the gum line.",
@@ -234,7 +234,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a dental surgery",
       "patientRole": "The patient is keen to keep whitening for an upcoming event and is reluctant to stop despite the discomfort.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain what is likely causing the sensitivity, advise on safe use of whitening products, and offer a realistic alternative that meets the patient's goal without harming their teeth.",
       "candidateRole": "You are the dentist. A patient has developed marked tooth sensitivity after using a strong whitening kit bought online.",
@@ -255,7 +255,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a private dental surgery",
       "patientRole": "The patient is a 44-year-old self-employed plumber who has just been told the crown will not be fully covered by their insurance.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain clearly why a crown is the recommended option rather than another large filling. Acknowledge the cost concern, outline the realistic alternatives and their trade-offs, and agree a sensible next step without pressuring the patient.",
       "candidateRole": "You are the dentist. A patient has a heavily filled molar that has cracked, and you have recommended a crown to protect it.",
@@ -276,7 +276,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a dental surgery",
       "patientRole": "The patient is hesitant about local anaesthetic and X-rays and is inclined to delay all treatment until after the birth.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Reassure the patient with clear, honest information about what is safe during pregnancy, explain why delaying may not be wise, and agree a comfortable plan.",
       "candidateRole": "You are the dentist. A patient in the second trimester of pregnancy needs a routine filling but is worried treatment could harm the baby.",
@@ -297,7 +297,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a dental surgery",
       "patientRole": "The patient is a 55-year-old heavy smoker who feels fine and is reluctant to be referred for further checks.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explain why the patch needs to be looked at by a specialist without causing unnecessary alarm. Discuss smoking honestly and agree a clear referral plan the patient will follow through on.",
       "candidateRole": "You are the dentist. During an examination you have noticed a persistent white patch on the side of the tongue in a long-term smoker.",
@@ -318,7 +318,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "an orthodontic clinic",
       "patientRole": "The patient is a 16-year-old who finds the retainer uncomfortable and embarrassing and does not see the point now the braces are off.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Engage the teenager respectfully, explain why the teeth move back without a retainer, and agree a realistic plan they are willing to stick to.",
       "candidateRole": "You are the dentist. A teenager finished brace treatment recently but has stopped wearing their retainer, and their teeth are beginning to shift.",

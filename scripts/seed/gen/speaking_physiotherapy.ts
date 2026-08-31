@@ -24,7 +24,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community musculoskeletal physiotherapy clinic",
       "patientRole": "The patient is a warehouse worker who has been avoiding bending and lifting entirely for fear of 'slipping the disc again'.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Acknowledge how frightening the original episode was. Explain that prolonged avoidance of movement can slow recovery and weaken supporting muscles. Gently challenge the belief that the spine is fragile. Agree a graded plan to reintroduce bending and light lifting.",
       "candidateRole": "You are the physiotherapist reviewing a patient six weeks after an acute episode of back and leg pain that has now settled.",
@@ -45,7 +45,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "an outpatient physiotherapy clinic",
       "patientRole": "The patient is a 28-year-old keen runner who has been resting completely, keeping the ankle elevated and avoiding all weight-bearing for fear of 'making it worse'.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Find out how the patient has been managing the ankle. Explain that protected early movement and graded weight-bearing aid recovery and that prolonged total rest can slow it. Reassure that some discomfort with controlled loading is expected and safe. Advise a progressive plan (range-of-motion, gradual weight-bearing, balance work) and agree realistic short-term goals.",
       "candidateRole": "You are the physiotherapist seeing a patient one week after a grade II lateral ankle sprain sustained running. Imaging has excluded fracture.",
@@ -66,7 +66,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "women's health physiotherapy clinic",
       "patientRole": "The patient has stopped the exercises because she is exhausted caring for a newborn and feels embarrassed discussing the symptoms.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Acknowledge how demanding caring for a newborn is. Gently explore the symptoms and the embarrassment the patient feels. Explain why continuing the pelvic floor exercises now supports long-term recovery. Agree a simple routine she can fit around caring for the baby.",
       "candidateRole": "You are the physiotherapist reviewing a patient several weeks after childbirth who was started on pelvic floor exercises.",
@@ -87,7 +87,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "outpatient physiotherapy clinic",
       "patientRole": "The patient is a retired teacher who has stopped doing the prescribed home exercises because they cause discomfort.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Find out why the patient has stopped the home exercises. Explain why consistent rehab matters for regaining knee range and strength. Reassure them that some discomfort during exercise is expected and is not causing harm. Agree a realistic daily routine they feel able to follow.",
       "candidateRole": "You are the physiotherapist seeing a patient three weeks after a total knee replacement.",
@@ -108,7 +108,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "sports physiotherapy clinic",
       "patientRole": "The patient is keen to enter a half-marathon in two weeks and wants to resume full training immediately.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Recognise the patient's motivation and the importance of the event. Explain why returning to full running too soon risks re-injury. Outline the criteria the hamstring needs to meet before full loading. Negotiate a staged return and discuss realistic expectations for the upcoming race.",
       "candidateRole": "You are the physiotherapist seeing an amateur runner four weeks after a grade two hamstring strain.",
@@ -129,7 +129,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "a community musculoskeletal physiotherapy clinic",
       "patientRole": "The patient is a 45-year-old warehouse worker who is convinced that an MRI scan and bed rest are needed and is frustrated that previous appointments have only offered exercises.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Find out the patient's beliefs about the cause of the pain and the impact on work and daily life. Explain why imaging is not usually helpful for non-specific back pain and why staying active is recommended over bed rest. Address concerns sensitively without dismissing them. Advise on graded activity, pacing and movement, and agree on a manageable next step.",
       "candidateRole": "You are the physiotherapist assessing a patient with non-specific chronic low back pain of eight months' duration, with no red-flag features identified.",
@@ -150,7 +150,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "outpatient physiotherapy clinic",
       "patientRole": "The patient wants you to recommend stronger painkillers so they can avoid the discomfort of the stretching exercises.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Acknowledge the patient's discomfort and frustration. Explain your role and why prescribing medication is the doctor's decision, not yours. Discuss how the exercises and other strategies can help manage pain during recovery. Agree how to make the exercises more tolerable.",
       "candidateRole": "You are the physiotherapist treating a patient with a frozen shoulder who is partway through a rehabilitation programme.",
@@ -171,7 +171,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community stroke rehabilitation team",
       "patientRole": "The patient has become discouraged because progress feels slow and they have started leaving the affected arm out of daily tasks.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Acknowledge the patient's frustration with the pace of recovery. Explain why regularly using the affected arm, even in small ways, supports recovery. Encourage them to include the arm in everyday activities. Agree a few practical tasks to practise before your next visit.",
       "candidateRole": "You are the physiotherapist visiting a patient recovering from a stroke that has weakened their left arm.",
@@ -192,7 +192,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "pulmonary rehabilitation physiotherapy clinic",
       "patientRole": "The patient stops any activity the moment they feel breathless and believes exertion is dangerous for their lungs.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explore how breathlessness currently limits the patient's daily life. Explain that becoming breathless during controlled exercise is expected and not harmful. Introduce breathing techniques to manage the sensation. Agree a manageable starting level of activity for the programme.",
       "candidateRole": "You are the physiotherapist enrolling a patient with severe COPD into a pulmonary rehabilitation programme.",
@@ -213,7 +213,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "primary care physiotherapy clinic",
       "patientRole": "The patient says they are too busy and too tired to exercise and is sceptical that it will make any difference.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explore the patient's daily routine and the barriers they describe. Explain in simple terms how regular activity can help blood sugar control and energy levels. Find a type of activity that fits the patient's life. Agree one small, realistic change to start with.",
       "candidateRole": "You are the physiotherapist seeing a patient referred for an activity programme to help manage type 2 diabetes.",
@@ -234,7 +234,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "occupational physiotherapy clinic",
       "patientRole": "The patient is a scaffolder who wants to go straight back to full overhead lifting because they are worried about their income.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explore the patient's financial and work pressures. Explain why a graded return protects the healing shoulder and reduces the risk of further time off. Discuss modified duties as a bridge back to full work. Agree a staged plan and what to do if symptoms flare.",
       "candidateRole": "You are the physiotherapist seeing a patient recovering from a rotator cuff injury sustained at work.",
@@ -255,7 +255,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "surgical ward, acute hospital",
       "patientRole": "The patient is reluctant to take deep breaths or sit up because of pain around the wound.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Acknowledge the patient's pain and worry. Explain why deep breathing and early movement help prevent chest complications after surgery. Show how to support the wound while breathing and coughing. Agree to start with a few gentle exercises now.",
       "candidateRole": "You are the physiotherapist visiting a patient on the day after abdominal surgery to start breathing and mobility exercises.",
@@ -276,7 +276,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "community falls-prevention physiotherapy clinic",
       "patientRole": "The patient has since become very cautious, rarely leaving their chair, and has cancelled social outings.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Find out how the fall has affected the patient's confidence and daily life. Explain that reducing activity can actually increase fall risk by weakening the legs. Introduce the idea of supervised balance and strength exercises. Agree a small first step to rebuild confidence safely.",
       "candidateRole": "You are the physiotherapist seeing an older adult who fell at home last month but was not seriously injured.",
@@ -297,7 +297,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "paediatric physiotherapy outpatient clinic",
       "patientRole": "The parent is anxious about letting the child move the wrist and wants to keep it protected for several more weeks.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Acknowledge the parent's wish to protect their child. Explain why gentle movement now helps the wrist regain its normal function. Reassure them that the bone has healed and the planned exercises are safe. Show simple activities the child can do at home and agree how to encourage them.",
       "candidateRole": "You are the physiotherapist seeing the parent of an eight-year-old whose wrist cast has just been removed after a fracture.",
@@ -318,7 +318,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "persistent pain management physiotherapy service",
       "patientRole": "The patient swings between overdoing activity on good days and resting completely on bad days, leaving them exhausted.",
-      "prepSeconds": 60,
+      "prepSeconds": 120,
       "speakSeconds": 300,
       "candidateCard": "Explore the patient's current boom-and-bust activity pattern. Explain the principle of pacing and activity baselines in plain terms. Help the patient see how steady, planned activity can reduce flare-ups over time. Agree one activity to begin pacing this week.",
       "candidateRole": "You are the physiotherapist working with a patient who has had widespread pain for over two years.",
