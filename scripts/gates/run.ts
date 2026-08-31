@@ -6,11 +6,19 @@
  * would re-couple the two and fail a build whenever the database blinked. The seed
  * source is what this repo can actually promise about.
  *
- * KNOWN LIMIT, stated rather than hidden: prod currently holds MORE items than the
- * seed source (450 vs 390 at the time of writing), so passing these gates does not
- * prove the served bank is clean — only that what ships FROM THIS REPO is. Closing
- * that gap means reconciling source with prod; until then the served floor is
- * checked separately at boot.
+ * SCOPE, measured 2026-08-31 — the gap this comment used to warn about has CLOSED.
+ * It previously said prod held MORE items than the seed source (450 vs 390), so a
+ * green here proved nothing about the served bank. A read-only query on 2026-08-31
+ * found production at 507 rows, 507 active, 0 inactive, matching gen/ 1:1 on
+ * (taskType, profession, title) with 0 rows on either side. So today a green here
+ * DOES describe the served bank.
+ *
+ * That is a fact about that date, not an invariant: nothing in this file reads
+ * Postgres, so if a row is edited or deactivated in the database and never written
+ * back to gen/, these gates will not see it. The claim is "source and prod agreed
+ * when last measured", never "source and prod agree". Re-measure before relying on
+ * it. The stale version of this note understated a good gate, which is its own
+ * hazard — the next reader mistrusts the gate instead of the comment.
  *
  *   G1 item-id       — identity is unique and resolvable
  *   G2 floor         — >= 15 per task type, and per profession for Writing/Speaking
