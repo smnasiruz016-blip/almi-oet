@@ -17,6 +17,7 @@
  *   G3 distribution  — no MCQ part gameable from answer position
  *   G4 structure     — payload shape valid per task type; all 12 professions covered
  *   G5 audio         — every Listening script has pre-rendered audio committed
+ *   G6 prep time     — Speaking prepSeconds inside OET's published range
  */
 import { existsSync } from "node:fs";
 import { join } from "node:path";
@@ -168,7 +169,52 @@ const fail = (gate: string, msg: string) => failures.push(`${gate}  ${msg}`);
 }
 
 // ── report ───────────────────────────────────────────────────────────────────
-const GATES = ["G1 item-id", "G2 floor", "G3 distribution", "G4 structure", "G5 audio"];
+// ── G6 · Speaking preparation time ───────────────────────────────────────────
+// A criterion-4 defect, not a preference: every Speaking item shipped with
+// prepSeconds = 60, giving a learner ONE minute where the exam gives two to
+// three. Practice that misdescribes the test is worse than no practice, because
+// the learner rehearses a tempo they will not meet on the day.
+//
+// THE SOURCE. OET's own Speaking page states candidates get
+//
+//     "2-3 minutes to prepare for each"
+//
+// role-play.  https://occupationalenglishtest.org/test-information/speaking/
+//
+// PROVENANCE, stated so nobody has to guess: that sentence comes from Nasir's
+// dated re-read of the official site on 2026-08-31. It was NOT retrieved by this
+// repo's tooling — the site answers 403 to automated fetches and never completes
+// loading in an automated browser, so an unattended re-check is not possible.
+// Re-verify by hand before treating these bounds as current.
+//
+// WHY 120 AND NOT 180. OET publishes a RANGE. 120 is inside it and is a condition
+// a learner may actually face; 180 would train only for the easiest case. 60 was
+// wrong because it sat OUTSIDE the range entirely.
+//
+// THE BOUNDS BELOW ARE HAND-TYPED LITERALS. They are never derived from the items
+// this gate checks. A verifier that reads its expectation from its subject proves
+// only that the subject agrees with itself — which was exactly as true when every
+// item said 60.
+const PREP_MIN_SECONDS = 120; // "2 minutes"
+const PREP_MAX_SECONDS = 180; // "3 minutes"
+{
+  for (const it of items) {
+    if (it.taskType !== "SPEAKING_ROLEPLAY") continue;
+    const prep = (it.payload as { prepSeconds?: unknown }).prepSeconds;
+    if (typeof prep !== "number" || !Number.isFinite(prep)) {
+      fail("G6", `"${it.title}" has no numeric prepSeconds`);
+      continue;
+    }
+    if (prep < PREP_MIN_SECONDS || prep > PREP_MAX_SECONDS) {
+      fail(
+        "G6",
+        `"${it.title}" has prepSeconds ${prep}, outside OET's published ${PREP_MIN_SECONDS}-${PREP_MAX_SECONDS}s (2-3 minutes)`,
+      );
+    }
+  }
+}
+
+const GATES = ["G1 item-id", "G2 floor", "G3 distribution", "G4 structure", "G5 audio", "G6 prep time"];
 console.log(`[gates] ${items.length} seed items scanned`);
 for (const g of GATES) {
   const hits = failures.filter((f) => f.startsWith(g.slice(0, 2)));
