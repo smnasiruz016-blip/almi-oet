@@ -1,0 +1,71 @@
+# CI — where the gates and the test suite actually run.
+#
+# WHY THIS FILE EXISTS. The runtime test suite was added to `gate:all`, which is
+# inside `build`, which is what Vercel runs to deploy. That broke the production
+# deploy of #14: Vercel runs the build step with NODE_ENV=production, React 19
+# exports `act` only from its development build, and all 7 tests died on
+# `TypeError: act is not a function`.
+#
+# almiworld_product_standard §4: "Gates do NOT belong in the Vercel deploy build
+# — keep them in CI. Keep only fast, DB-free gates in the build." We wrote that
+# rule and then broke it.
+#
+# Taking the suite out of the build is only half the fix. A suite with no home
+# is a deleted proof, and the green that follows is worth nothing. This is the
+# other half: the suite runs here, on every push and every pull request, and the
+# run is the evidence.
+#
+# 🔴 NO DATABASE, NO SECRETS. Verified on 2026-09-01 by running every step with
+# DATABASE_URL unset: run.ts, sources.ts, timing.tsx, validate-seed.ts and
+# report-shape.ts all exit 0 without it. `prisma generate` (postinstall) reads
+# schema.prisma and does not contact the database. Nothing below reads `secrets`.
+# If a future gate needs one, move that gate out of this workflow — do not add a
+# secret to make it pass.
+
+name: CI
+
+on:
+  push:
+  pull_request:
+
+# Superseded runs on the same branch are pointless; cancel them.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    # Explicit and minimal: this workflow reads code and writes nothing.
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install (npm ci)
+        run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      # G1-G7, S1-S3, T1-T9, and the seed payload validator. All read
+      # scripts/seed/gen and src/; none opens a connection.
+      - name: Gates
+        run: npm run gate:all
+
+      # The runtime behaviour suite — the only place React effects actually run.
+      # It is NO LONGER part of `build`; this step is the only thing standing
+      # between a dead countdown and production.
+      - name: Runtime tests
+        run: npm test
+
+      # A report, not a gate: it always exits 0 and blocks nothing. It runs here
+      # so the measured-vs-published shape of the bank is visible in the log of
+      # every single run, instead of only when somebody remembers to ask.
+      - name: Shape report
+        run: npm run report:shape
