@@ -458,7 +458,7 @@ function humanPrep(totalSeconds: number): string {
  *  markup and make it unassertable by scripts/gates/timing.tsx. */
 export function skipPreparationExplanation(prepSeconds: number): string {
   return (
-    `Practice only. In a full mock test — and in the real OET — you get ` +
+    `You have got this skip option only in practice. In a full mock test — and in the real OET — you get ` +
     `${humanPrep(prepSeconds)} to prepare and there is no skip.`
   );
 }

@@ -245,7 +245,7 @@ for (const taskType of ["READING_PART_B", "READING_PART_C"]) {
 // not imported from the component, so a reworded component fails this check
 // rather than redefining what it is checked against.
 const SKIP_SENTENCE =
-  "Practice only. In a full mock test — and in the real OET — you get 2 minutes to prepare and there is no skip.";
+  "You have got this skip option only in practice. In a full mock test — and in the real OET — you get 2 minutes to prepare and there is no skip.";
 const SKIP_BUTTON = "Skip preparation";
 {
   const card = {
