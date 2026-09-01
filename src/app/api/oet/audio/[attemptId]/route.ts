@@ -18,6 +18,7 @@ import { hasPaidAccess } from "@/lib/billing/plans";
 import { prisma } from "@/lib/prisma";
 import { synthesizeSpeech, synthesizeDialogue } from "@/lib/ai/openai";
 import { AUDIO_DIR, audioFileName, audioKey } from "@/lib/oet/audio";
+import { serveAudio } from "@/lib/oet/serve-audio";
 
 export const runtime = "nodejs";
 
@@ -72,18 +73,7 @@ export async function GET(
   }
 
   const file = await prerendered(parsed.data);
-  if (file) {
-    return new Response(new Uint8Array(file), {
-      headers: {
-        "Content-Type": "audio/mpeg",
-        "Content-Length": String(file.length),
-        // Pre-rendered audio is identical for every learner, but it is still
-        // paid content behind an ownership check — private, not shared cache.
-        "Cache-Control": "private, max-age=3600",
-        "X-Audio-Source": "prerendered",
-      },
-    });
-  }
+  if (file) return serveAudio(file, _req);
 
   console.warn(
     `[oet.audio] no rendered file for item ${attempt.item.id} (${attempt.item.title}) — falling back to paid TTS`,
@@ -97,6 +87,9 @@ export async function GET(
     return new Response(audio, {
       headers: {
         "Content-Type": "audio/mpeg",
+        // Not range-served: this body is synthesised per request, so a second
+        // range request would re-synthesise and re-bill rather than seek.
+        "Accept-Ranges": "none",
         "Cache-Control": "private, no-store",
         "X-Audio-Source": "openai-tts",
       },
