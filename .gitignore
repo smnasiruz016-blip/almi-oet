@@ -17,3 +17,8 @@ dist/
 .env*
 
 scripts/*-rollback-*.json
+
+# Playwright run artefacts (traces, failure screenshots). The COMMITTED
+# screenshots the PR links to live in docs/e2e and are written deliberately.
+tests/e2e/.artifacts/
+playwright-report/

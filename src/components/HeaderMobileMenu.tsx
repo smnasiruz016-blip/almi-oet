@@ -6,9 +6,21 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FAMILY_NAV, PRODUCT_NAV, GET_STARTED_HREF } from "./GlobalHeader";
+import { FAMILY_NAV, GET_STARTED_HREF, type NavItem } from "./GlobalHeader";
 
-export function HeaderMobileMenu() {
+// The nav and the trial flag are DERIVED ONCE in GlobalHeader and handed down.
+// This component holds no copy of the signed-in/signed-out rule: a drawer that
+// still said "Log in" to a paying learner would be exactly the bug the desktop
+// row was fixed for.
+export function HeaderMobileMenu({
+  productNav,
+  trialCta,
+  logout,
+}: {
+  productNav: NavItem[];
+  trialCta: boolean;
+  logout: () => void | Promise<void>;
+}) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -82,7 +94,7 @@ export function HeaderMobileMenu() {
               </a>
             ))}
             <div className="my-2 border-t border-almi-bg-peach" />
-            {PRODUCT_NAV.map((item) => (
+            {productNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -92,14 +104,25 @@ export function HeaderMobileMenu() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href={GET_STARTED_HREF}
-              onClick={() => setOpen(false)}
-              className="mt-3 inline-flex min-h-[48px] items-center justify-center rounded-pill bg-almi-coral px-5 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
-              style={{ borderRadius: 9999 }}
-            >
-              Start 7-day free trial
-            </Link>
+            {trialCta ? (
+              <Link
+                href={GET_STARTED_HREF}
+                onClick={() => setOpen(false)}
+                className="mt-3 inline-flex min-h-[48px] items-center justify-center rounded-pill bg-almi-coral px-5 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
+                style={{ borderRadius: 9999 }}
+              >
+                Start 7-day free trial
+              </Link>
+            ) : (
+              <form action={logout} className="mt-3">
+                <button
+                  type="submit"
+                  className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-almi-ink/20 px-5 py-3 text-base font-semibold text-almi-ink hover:border-almi-coral"
+                >
+                  Log out
+                </button>
+              </form>
+            )}
           </nav>
         </div>
       )}

@@ -11,6 +11,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import { isAdmin } from "@/lib/founder";
+import { GlobalHeader } from "@/components/GlobalHeader";
 import { AdminSidebar } from "./_components/AdminSidebar";
 
 export const metadata: Metadata = {
@@ -27,6 +28,8 @@ export default async function AdminLayout({
   if (!user || !isAdmin(user.email)) redirect("/");
 
   return (
+    <>
+      <GlobalHeader user={user} />
     <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
       <div className="flex items-center justify-between gap-4">
         <div>
@@ -42,5 +45,6 @@ export default async function AdminLayout({
         <div className="min-w-0 flex-1">{children}</div>
       </div>
     </div>
+    </>
   );
 }

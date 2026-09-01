@@ -71,7 +71,9 @@ export function ExerciseList({
             className="flex flex-wrap items-center gap-3 px-4 py-3"
           >
             <span className="w-6 shrink-0 text-xs font-semibold text-almi-text-muted">{i + 1}</span>
-            <span className="min-w-0 flex-1 text-sm text-almi-ink">{ex.title}</span>
+            <span data-testid="exercise-title" className="min-w-0 flex-1 text-sm text-almi-ink">
+              {ex.title}
+            </span>
             <span
               className={
                 "shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold " + STATUS_CLASS[ex.status]
@@ -86,6 +88,7 @@ export function ExerciseList({
                 <input type="hidden" name="itemId" value={ex.id} />
                 <button
                   type="submit"
+                  data-testid="exercise-start"
                   className="inline-flex min-h-[40px] items-center rounded-full border border-almi-ink/15 bg-almi-bg px-4 py-2 text-sm font-semibold text-almi-ink hover:border-almi-coral"
                 >
                   {ex.status === "NOT_STARTED" ? "Start" : "Again"}
