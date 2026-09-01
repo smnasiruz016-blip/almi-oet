@@ -10,6 +10,7 @@ import { PROFESSION_LIST } from "@/lib/oet/professions";
 import { speakingPrepPolicy } from "@/lib/oet/prep-policy";
 import { OetComposer } from "@/components/oet/composer-map";
 import { ExamChrome } from "@/components/oet/ExamChrome";
+import { ExamPageRail } from "@/components/oet/ExamPageRail";
 import { OetResult } from "@/components/oet/OetResult";
 import { OetSessionResult } from "@/components/oet/OetSessionResult";
 import type { OetTaskType } from "@prisma/client";
@@ -130,6 +131,9 @@ export default async function SessionPage({
         pageNumber={session.currentStep + 1}
         pageCount={session.targetCount}
         onFinishHref={libraryHref}
+        rail={
+          <ExamPageRail pageNumber={session.currentStep + 1} pageCount={session.targetCount} />
+        }
       >
       <OetComposer
         attemptId={current.id}
