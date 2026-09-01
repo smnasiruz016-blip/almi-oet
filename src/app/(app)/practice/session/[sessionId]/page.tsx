@@ -5,8 +5,9 @@
 import { notFound, redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { getSessionView, advanceSession } from "@/lib/oet/session";
+import { continuePracticeChain } from "@/lib/oet/entry";
+import { chainView, libraryHrefFor } from "@/lib/oet/chain";
 import { OET_TASKS } from "@/lib/oet/registry";
-import { PROFESSION_LIST } from "@/lib/oet/professions";
 import { speakingPrepPolicy } from "@/lib/oet/prep-policy";
 import { OetComposer } from "@/components/oet/composer-map";
 import { ExamChrome } from "@/components/oet/ExamChrome";
@@ -66,7 +67,43 @@ export default async function SessionPage({
   if (!session) notFound();
 
   if (session.status === "COMPLETED") {
-    return <OetSessionResult session={session} attempts={session.attempts} />;
+    // 🔴 THE CHAIN. A finished practice set now offers the NEXT exercise in the
+    // same pool, in the same order the list page numbers them, instead of
+    // dead-ending on a link back to the library. A mock has no single task type
+    // to continue within, so it gets no chain and keeps its old ending.
+    //
+    // Everything here is read from the database at request time: the total, the
+    // position, the title. Nothing on this screen is a literal.
+    const chain =
+      session.mode === "PRACTICE_SET" && session.attempts.length > 0
+        ? await chainView({
+            taskType: session.attempts[0].taskType,
+            profession: session.profession,
+            userId: user.id,
+            excludeIds: session.attempts.map((a) => a.itemId),
+            userProfession: user.targetProfession ?? null,
+          })
+        : null;
+
+    async function continueChain(formData: FormData) {
+      "use server";
+      // The form carries a session id and, for the explicit start-over, a flag.
+      // It carries no item id: which exercise comes next is decided server-side
+      // from the session row, and the entitlement check runs first — see
+      // src/lib/oet/entry.ts.
+      await continuePracticeChain(sessionId, {
+        restart: String(formData.get("restart") ?? "") === "1",
+      });
+    }
+
+    return (
+      <OetSessionResult
+        session={session}
+        attempts={session.attempts}
+        chain={chain}
+        continueAction={continueChain}
+      />
+    );
   }
 
   const current = session.attempts.find((a) => a.sessionStep === session.currentStep);
@@ -76,14 +113,16 @@ export default async function SessionPage({
   // The set length is stated as a set length, not left to be inferred. "Step 1 of
   // 3" alone reads as "there are 3 of these in total" when the bank holds 21.
   const stepLabel = `Step ${session.currentStep + 1} of ${session.targetCount}`;
-  // Link back to the library UNDER the session's profession where there is one,
-  // so the learner lands on their own material rather than on a redirect. Shared
-  // sub-tests (Listening/Reading) carry no profession, so they fall back to the
-  // chooser, which sends them on with one click.
-  const professionSlug = session.profession
-    ? PROFESSION_LIST.find((p) => p.profession === session.profession)?.slug
-    : undefined;
-  const libraryHref = professionSlug ? `/practice/${professionSlug}/${def.slug}` : "/practice";
+  // Link back to the library UNDER a profession segment. Shared sub-tests
+  // (Listening/Reading) carry no profession on the session, so the link borrows
+  // the learner's own — the list is identical for every profession — instead of
+  // dropping them on the chooser. libraryHrefFor is the same function the
+  // results screen and the chain use, so all three point at one page.
+  const libraryHref = libraryHrefFor(
+    current.taskType,
+    session.profession,
+    user.targetProfession ?? null,
+  );
   const setLabel =
     session.mode === "MOCK"
       ? `${session.targetCount} items in this mock`

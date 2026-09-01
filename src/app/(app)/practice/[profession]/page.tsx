@@ -54,7 +54,16 @@ function TaskCard({
       <p className="mt-2 text-sm text-almi-text">{def.blurb}</p>
       {def.live && (
         <p className="mt-3 flex flex-wrap items-baseline gap-x-2 text-sm">
-          <span className="font-semibold text-almi-ink">
+          {/* Tagged so a gate can read this number back OUT of the rendered
+              markup rather than trusting the prop that went in. `total` is
+              poolCounts() for this task and this profession — see
+              tests/pool-visible.test.tsx, which fails if a literal appears
+              here. */}
+          <span
+            data-testid="task-card-count"
+            data-task-type={def.taskType}
+            className="font-semibold text-almi-ink"
+          >
             {total} {total === 1 ? "exercise" : "exercises"}
           </span>
           <span className="text-almi-text-muted">
