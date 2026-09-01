@@ -168,34 +168,78 @@ function QuestionField({
 }
 
 // ---- Listening: play-once audio + questions ----
+/**
+ * Listening audio.
+ *
+ * THE ELEMENT STREAMS THE ROUTE. It used to fetch() the route, build a Blob, make
+ * an object URL and play that. The blob round-trip bought nothing — the route is
+ * cookie-authenticated and a same-origin <audio src> carries the same cookie, so
+ * the paywall and the ownership check are unchanged — and it put a whole transfer
+ * and decode step between the bytes and the speaker that nothing could observe.
+ *
+ * 🔴 THE STATE IS DERIVED FROM ELEMENT EVENTS, NEVER FROM `await play()`.
+ *
+ * The previous version did this:
+ *
+ *     audio.onended = () => setState("done");
+ *     await audio.play();
+ *     setState("playing");
+ *
+ * If the audio ended BEFORE `play()` resolved, "done" was written and then
+ * immediately overwritten by "playing" — and the badge sat on "Playing…"
+ * forever. If it ended after, the badge read "Played". SAME DEFECT, TWO
+ * SYMPTOMS, decided by a race. Both were reported from production on the same
+ * item within a day of each other, which is why the observed symptom changed
+ * without anything being deployed. `setState` after an await is not a state
+ * machine; the element's own events are.
+ *
+ * 🔴 SILENCE MUST NOT CONSUME THE PLAY. OET's rule is that a recording is heard
+ * once, and the button disables to honour it. But a learner who heard nothing has
+ * lost the item with no way back, so "played" now requires EVIDENCE of playback:
+ * the element must report progress past PROGRESS_SECONDS. An element that ends
+ * without ever advancing is a failed play, the button stays live, and it says so.
+ */
+const PROGRESS_SECONDS = 1;
+
 function ListeningAudio({ attemptId }: { attemptId: string }) {
   const [state, setState] = useState<"idle" | "loading" | "playing" | "done" | "error">("idle");
+  const [message, setMessage] = useState<string | null>(null);
+  const [src, setSrc] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const urlRef = useRef<string | null>(null);
+  const progressedRef = useRef(false);
 
-  useEffect(
-    () => () => {
-      if (urlRef.current) URL.revokeObjectURL(urlRef.current);
-    },
-    [],
-  );
-
-  async function play() {
-    setState("loading");
+  // Ask the route why it refused, so a paywall reads as a paywall rather than as
+  // "audio could not be played". The element only tells us that it failed.
+  async function explainFailure() {
     try {
       const res = await fetch(`/api/oet/audio/${attemptId}`);
-      if (!res.ok) throw new Error("audio");
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      urlRef.current = url;
-      const audio = new Audio(url);
-      audioRef.current = audio;
-      audio.onended = () => setState("done");
-      audio.onerror = () => setState("error");
-      await audio.play();
-      setState("playing");
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as { error?: string } | null;
+        setMessage(data?.error ?? `Audio unavailable (HTTP ${res.status}).`);
+        return;
+      }
+      setMessage("The audio downloaded but could not be played. Press Retry.");
+    } catch {
+      setMessage("Network error while loading the audio. Press Retry.");
+    }
+  }
+
+  async function play() {
+    setMessage(null);
+    progressedRef.current = false;
+    setState("loading");
+    // Setting src starts the load; preload="none" means nothing is fetched until
+    // this point, so the audio is never pulled before the learner asks for it.
+    const url = `/api/oet/audio/${attemptId}?t=${Date.now()}`;
+    setSrc(url);
+    const el = audioRef.current;
+    if (!el) return;
+    el.src = url;
+    try {
+      await el.play();
     } catch {
       setState("error");
+      void explainFailure();
     }
   }
 
@@ -222,9 +266,42 @@ function ListeningAudio({ attemptId }: { attemptId: string }) {
           {state === "error" && "Retry"}
         </button>
       </div>
+
+      <audio
+        ref={audioRef}
+        preload="none"
+        controls={state === "playing" || state === "done"}
+        className={state === "playing" || state === "done" ? "mt-3 w-full" : "hidden"}
+        // Terminal states are FINAL. `playing` can arrive after `ended` — that
+        // ordering is exactly what buried the old state machine — so a late one
+        // must not resurrect a finished play.
+        onPlaying={() => setState((s) => (s === "done" || s === "error" ? s : "playing"))}
+        onTimeUpdate={(e) => {
+          if (e.currentTarget.currentTime > PROGRESS_SECONDS) progressedRef.current = true;
+        }}
+        onEnded={() => {
+          if (progressedRef.current) {
+            setState("done");
+            return;
+          }
+          // It "ended" without ever playing anything. That is the silent-play
+          // failure: do NOT spend the one play on it.
+          setState("error");
+          setMessage(
+            "That played back silently — no audio actually ran, so it hasn't been counted. Press Retry.",
+          );
+        }}
+        onError={() => {
+          setState("error");
+          void explainFailure();
+        }}
+      >
+        {src ? <source src={src} type="audio/mpeg" /> : null}
+      </audio>
+
       {state === "error" && (
         <p className="mt-2 text-xs font-medium text-almi-coral-deep">
-          Audio could not be played. Press Retry. (Listening audio needs the OPENAI_API_KEY set.)
+          {message ?? "Audio could not be played. Press Retry."}
         </p>
       )}
     </div>
@@ -458,7 +535,7 @@ function humanPrep(totalSeconds: number): string {
  *  markup and make it unassertable by scripts/gates/timing.tsx. */
 export function skipPreparationExplanation(prepSeconds: number): string {
   return (
-    `Practice only. In a full mock test — and in the real OET — you get ` +
+    `You have got this skip option only in practice. In a full mock test — and in the real OET — you get ` +
     `${humanPrep(prepSeconds)} to prepare and there is no skip.`
   );
 }

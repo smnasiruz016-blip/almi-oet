@@ -17,9 +17,15 @@ import { prisma } from "@/lib/prisma";
 import { OET_TASKS, MOCK_PLAN } from "@/lib/oet/registry";
 import { fractionToEstimate, type GradeEstimate } from "@/lib/oet/scale";
 import { isPerProfession } from "@/lib/oet/types";
+import { poolWhere } from "@/lib/oet/pool";
 
 const DIFFICULTIES: OetDifficulty[] = ["FOUNDATION", "CORE", "STRETCH"];
-const PRACTICE_SET_STEPS = 3;
+/** Items served in one PRACTICE_SET run of an auto-marked task type.
+ *  Exported because the practice screens now SAY this number up front: a
+ *  learner who is handed 3 items with no context reads 3 as the size of the
+ *  library, which is how a bank of 21 looked like one test. A hard-coded 3 in
+ *  the UI would be free to drift from the engine, so the UI imports this. */
+export const PRACTICE_SET_STEPS = 3;
 
 function fractionOf(a: { pointsEarned: number; pointsMax: number }): number {
   return a.pointsMax ? a.pointsEarned / a.pointsMax : 0;
@@ -96,7 +102,14 @@ async function pickItemId(
   formPrefix?: string | null,
 ): Promise<string | null> {
   const subTest = OET_TASKS[taskType].subTest;
-  const professionFilter = isPerProfession(subTest) ? { profession } : { profession: null };
+  // 🔴 THE POOL IS DEFINED ONCE, IN pool.ts, AND SHARED WITH THE UI.
+  //
+  // This used to build `{ taskType, active: true, ...professionFilter }` inline.
+  // The practice screens now print how many exercises a learner has, and a count
+  // computed from a SECOND copy of this filter would be free to drift from the
+  // set actually drawn from — advertising 21 while handing out of a pool of 18,
+  // silently. Same function, one definition, no drift possible.
+  const base = poolWhere(taskType, profession);
   const notIn = excludeIds.length ? { id: { notIn: excludeIds } } : {};
   // Form coherence applies to the objective sub-tests only; Writing and Speaking
   // are per-profession and belong to no form.
@@ -106,18 +119,18 @@ async function pickItemId(
   // Prefer the difficulty pool, then any unused item, then anything at all — all
   // three within the form when one is set.
   let pool = await prisma.oetItem.findMany({
-    where: { taskType, active: true, difficulty, ...professionFilter, ...formFilter, ...notIn },
+    where: { ...base, difficulty, ...formFilter, ...notIn },
     select: { id: true },
   });
   if (pool.length === 0) {
     pool = await prisma.oetItem.findMany({
-      where: { taskType, active: true, ...professionFilter, ...formFilter, ...notIn },
+      where: { ...base, ...formFilter, ...notIn },
       select: { id: true },
     });
   }
   if (pool.length === 0 && !formPrefix) {
     pool = await prisma.oetItem.findMany({
-      where: { taskType, active: true, ...professionFilter },
+      where: base,
       select: { id: true },
     });
   }
@@ -151,14 +164,19 @@ async function createStepAttempt(params: {
   profession: OetProfession | null;
   excludeIds?: string[];
   formPrefix?: string | null;
+  /** A specific exercise the learner chose. Already validated against their pool
+   *  by startSession; when absent the picker chooses at random as before. */
+  itemId?: string | null;
 }): Promise<boolean> {
-  const itemId = await pickItemId(
-    params.taskType,
-    params.difficulty,
-    params.profession,
-    params.excludeIds ?? [],
-    params.formPrefix,
-  );
+  const itemId =
+    params.itemId ??
+    (await pickItemId(
+      params.taskType,
+      params.difficulty,
+      params.profession,
+      params.excludeIds ?? [],
+      params.formPrefix,
+    ));
   if (!itemId) return false;
   await prisma.oetAttempt.create({
     data: {
@@ -179,6 +197,12 @@ export async function startSession(input: {
   mode: "PRACTICE_SET" | "MOCK";
   taskType?: OetTaskType;
   profession?: OetProfession | null;
+  /** Start on a SPECIFIC exercise the learner chose from the browsable list.
+   *  Ignored for MOCK, where the form decides. Validated against the learner's
+   *  own pool before use — a chosen id is user input, and accepting it unchecked
+   *  would let anyone open any item in the bank regardless of profession or
+   *  active flag. */
+  itemId?: string | null;
 }): Promise<string | null> {
   if (input.mode === "MOCK") {
     const profession = input.profession ?? null;
@@ -217,6 +241,20 @@ export async function startSession(input: {
   const def = OET_TASKS[taskType];
   const profession = isPerProfession(def.subTest) ? (input.profession ?? null) : null;
   const targetCount = def.scoringMode === "DETERMINISTIC" ? PRACTICE_SET_STEPS : 1;
+
+  // A chosen exercise must be IN THIS LEARNER'S POOL. poolWhere is the same
+  // filter the picker draws from, so "choose your own" can never reach an item
+  // the random path would not have offered — a deactivated item, or another
+  // profession's Writing task.
+  let chosenId: string | null = null;
+  if (input.itemId) {
+    const found = await prisma.oetItem.findFirst({
+      where: { ...poolWhere(taskType, profession), id: input.itemId },
+      select: { id: true },
+    });
+    if (!found) return null;
+    chosenId = found.id;
+  }
   const startDifficulty = await pickPracticeStart(input.userId, taskType);
   const session = await prisma.oetSession.create({
     data: {
@@ -235,6 +273,7 @@ export async function startSession(input: {
     taskType,
     difficulty: startDifficulty,
     profession,
+    itemId: chosenId,
   });
   if (!ok) {
     await prisma.oetSession.delete({ where: { id: session.id } });
