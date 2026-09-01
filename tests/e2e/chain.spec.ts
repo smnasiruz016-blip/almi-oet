@@ -69,6 +69,18 @@ async function shot(page: Page, name: string, focus?: string) {
   await page.screenshot({ path: join(SHOTS, name), fullPage: false });
 }
 
+/** A screenshot of one ELEMENT, for things taller than the viewport — the
+ *  fifteen-row list does not fit in 900px and a viewport shot of it would show a
+ *  handful of rows and prove nothing about the rest. */
+async function elementShot(page: Page, name: string, testId: string) {
+  // The header is `position: sticky`, so scrolling an element into view parks it
+  // on top of the element's first rows. Un-stick it for the capture only — this
+  // changes the picture, never the page under test, and it is undone immediately.
+  await page.addStyleTag({ content: '[data-testid="global-header"]{position:static !important}' });
+  await page.locator(`[data-testid="${testId}"]`).screenshot({ path: join(SHOTS, name) });
+  await page.reload();
+}
+
 /** Strings a signed-in learner must never be shown. Hand-typed from the header
  *  Nasir screenshotted, not imported from the component. */
 const SIGNED_OUT_ONLY = ["Log in", "Start 7-day free trial"];
@@ -127,7 +139,9 @@ test.describe("the next-exercise chain, in a real browser", () => {
     const N = titles.length;
     expect(N, "the seeded pool must not be empty").toBeGreaterThan(1);
     expect(declaredTotal, "the page's own count must equal the rows it rendered").toBe(N);
-    await shot(page, "02-library-signed-in.png");
+    // The list ELEMENT, all N rows: 00 already shows the header at the top of
+    // this same page, and two identical images are not two pieces of evidence.
+    await elementShot(page, "02-library-list.png", "exercise-list");
 
     // ── start at exercise 1, from the list ───────────────────────────────────
     await page.getByTestId("exercise-start").first().click();
@@ -203,6 +217,6 @@ test.describe("the next-exercise chain, in a real browser", () => {
     // The walk scored all of them, so the library says so.
     const done = await page.getByText("Done", { exact: true }).count();
     expect(done).toBe(titles.length);
-    await shot(page, "05-library-all-done.png");
+    await elementShot(page, "05-library-all-done.png", "exercise-list");
   });
 });

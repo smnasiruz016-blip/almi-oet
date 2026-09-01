@@ -55,7 +55,7 @@ export function ExerciseList({
 }) {
   if (rows.length === 0) return null;
   return (
-    <section>
+    <section data-testid="exercise-list">
       <h2
         data-testid="exercise-list-heading"
         className="text-sm font-bold uppercase tracking-wider text-almi-text-muted"
