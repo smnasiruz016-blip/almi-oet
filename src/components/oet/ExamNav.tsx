@@ -14,12 +14,25 @@
  *
  * Dropping <ExamNav> from the session page removes this and nothing else.
  */
-export function ExamNav({ backHref }: { backHref?: string }) {
+export function ExamNav({
+  backHref,
+  sealedNotice,
+}: {
+  backHref?: string;
+  /** Set on a sealed section. States the rule AND that we inferred it. */
+  sealedNotice?: string;
+}) {
   return (
-    <div
-      data-testid="exam-nav"
-      className="mt-6 flex items-center justify-end gap-3 border-t border-almi-bg-peach pt-4"
-    >
+    <div className="mt-6 border-t border-almi-bg-peach pt-4">
+      {sealedNotice && (
+        <p
+          data-testid="exam-sealed-notice"
+          className="mb-3 rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-2 text-xs text-almi-ink"
+        >
+          {sealedNotice}
+        </p>
+      )}
+      <div data-testid="exam-nav" className="flex items-center justify-end gap-3">
       {backHref ? (
         <a
           data-testid="exam-back"
@@ -45,6 +58,7 @@ export function ExamNav({ backHref }: { backHref?: string }) {
       >
         Next &gt;
       </span>
+      </div>
     </div>
   );
 }

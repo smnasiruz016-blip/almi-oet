@@ -64,6 +64,13 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { GRADE_FLOORS_PUBLISHED } from "../../src/lib/oet/exam-shape";
 import { gradeForScore } from "../../src/lib/oet/scale";
+import {
+  READING_PART_A_NO_RETURN,
+  READING_PART_A_TIME_LIMIT,
+  READING_PARTS_BC_TIME_LIMIT,
+  sealedSectionNotice,
+  type Provenance,
+} from "../../src/lib/oet/section-rules";
 
 const ROOT = process.cwd();
 const SOURCES_DIR = join(ROOT, "docs", "sources");
@@ -319,8 +326,68 @@ const show = (rows: readonly { grade: string; floor: number }[]) =>
   }
 }
 
+// ── S4 · every section rule declares WHERE IT CAME FROM ──────────────────────
+//
+// scale.ts shipped an invented grade band for 27 days because a confident comment
+// is indistinguishable from a sourced one. src/lib/oet/section-rules.ts fixes that
+// STRUCTURALLY: a quoted rule and an inferred rule are different shapes, so an
+// inference has no `quote` field to put words into.
+//
+// This asserts the shapes hold, and — hand-typed — asserts which kind each rule
+// is. If someone "upgrades" the no-return rule to quoted, they have to supply a
+// sentence and a URL, and this gate's hand-typed expectation goes red until a
+// human changes it deliberately.
+{
+  const rules: [string, { value: unknown; provenance: Provenance }][] = [
+    ["READING_PART_A_TIME_LIMIT", READING_PART_A_TIME_LIMIT],
+    ["READING_PARTS_BC_TIME_LIMIT", READING_PARTS_BC_TIME_LIMIT],
+    ["READING_PART_A_NO_RETURN", READING_PART_A_NO_RETURN],
+  ];
+  if (rules.length === 0) fail("S4", "no section rules found — this gate would pass over nothing");
+
+  for (const [name, rule] of rules) {
+    const p = rule.provenance;
+    if (p.kind === "quoted") {
+      if (!p.quote || p.quote.trim().length < 10) fail("S4", `${name} is quoted but carries no sentence`);
+      if (!/^https?:\/\//.test(p.url ?? "")) fail("S4", `${name} is quoted but carries no URL`);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(p.read ?? "")) fail("S4", `${name} is quoted but records no read date`);
+    } else if (p.kind === "inferred") {
+      if (!p.from?.length) fail("S4", `${name} is inferred from nothing`);
+      if (!p.because || p.because.trim().length < 20) fail("S4", `${name} is inferred with no reasoning`);
+      if (!p.correctWhen || p.correctWhen.trim().length < 20) {
+        fail("S4", `${name} is inferred with no statement of what would settle it`);
+      }
+      // An inference must not smuggle a sentence in through another field.
+      if (JSON.stringify(p).includes('"quote"')) fail("S4", `${name} is inferred but carries a quote field`);
+    } else {
+      fail("S4", `${name} has an unrecognised provenance kind`);
+    }
+  }
+
+  // HAND-TYPED. These say what each rule IS, and are never read from the module.
+  if (READING_PART_A_TIME_LIMIT.provenance.kind !== "quoted") {
+    fail("S4", "READING_PART_A_TIME_LIMIT must be quoted — OET publishes the 15 minutes");
+  }
+  if (READING_PARTS_BC_TIME_LIMIT.provenance.kind !== "quoted") {
+    fail("S4", "READING_PARTS_BC_TIME_LIMIT must be quoted — OET publishes the 45 minutes");
+  }
+  if (READING_PART_A_NO_RETURN.provenance.kind !== "inferred") {
+    fail(
+      "S4",
+      "READING_PART_A_NO_RETURN is marked as QUOTED. Nobody has read OET stating it — the FAQ " +
+        "did not load on 2026-09-01. If it has now been read, change this expectation by hand in " +
+        "the same edit as the sentence and URL.",
+    );
+  }
+  // The learner-facing sentence must SAY it is our reading, not the exam's rule.
+  const notice = sealedSectionNotice("Reading Part A");
+  if (!/not a rule we have seen OET state/.test(notice)) {
+    fail("S4", "the sealed-section notice no longer tells the learner the no-return rule is ours");
+  }
+}
+
 // ── report ───────────────────────────────────────────────────────────────────
-const GATES = ["S1 manifest", "S2 unsourced-verified", "S3 grade floors"];
+const GATES = ["S1 manifest", "S2 unsourced-verified", "S3 grade floors", "S4 rule provenance"];
 for (const g of GATES) {
   const hits = failures.filter((f) => f.startsWith(g.slice(0, 2)));
   console.log(`  ${hits.length === 0 ? "PASS" : "FAIL"}  ${g}${hits.length ? ` (${hits.length})` : ""}`);

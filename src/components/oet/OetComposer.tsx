@@ -360,6 +360,128 @@ function ListeningComposer({
   );
 }
 
+/**
+ * READING TEXTS THE CANDIDATE CAN HIGHLIGHT.
+ *
+ * OET tells candidates to practise highlighting, and we had nothing — a
+ * candidate who practises here and then meets a highlightable text on the day is
+ * learning the tool during the exam.
+ *
+ * Selection-based, not click-per-word: that is how highlighting works everywhere
+ * else, and a candidate should not have to learn OUR interaction. Select text and
+ * press Highlight; press Clear to drop them all.
+ *
+ * 🔴 THE MARKS ARE LOCAL AND DISPOSABLE. They are never submitted, never scored
+ * and never stored — they are a reading aid, and a highlight posted to the server
+ * would be answer-shaped data we have no use for. They are lost on reload, which
+ * matches the exam and is one fewer thing to explain.
+ */
+function HighlightableTexts({ texts }: { texts: ReadingText[] }) {
+  // Offsets into each text body, kept sorted and non-overlapping.
+  const [marks, setMarks] = useState<Record<string, [number, number][]>>({});
+  const hostRef = useRef<HTMLDivElement | null>(null);
+
+  function addFromSelection() {
+    const sel = typeof window !== "undefined" ? window.getSelection() : null;
+    if (!sel || sel.isCollapsed || sel.rangeCount === 0) return;
+    const range = sel.getRangeAt(0);
+    // Only accept a selection that sits inside ONE text body, so a drag across
+    // two passages cannot produce offsets that belong to neither.
+    const host = (range.commonAncestorContainer as HTMLElement)?.parentElement?.closest?.(
+      "[data-reading-body]",
+    ) as HTMLElement | null;
+    if (!host || !hostRef.current?.contains(host)) return;
+    const id = host.getAttribute("data-reading-body");
+    if (!id) return;
+
+    const pre = document.createRange();
+    pre.selectNodeContents(host);
+    pre.setEnd(range.startContainer, range.startOffset);
+    const start = pre.toString().length;
+    const end = start + range.toString().length;
+    if (end <= start) return;
+
+    setMarks((m) => {
+      const next = [...(m[id] ?? []), [start, end] as [number, number]].sort((a, b) => a[0] - b[0]);
+      // Merge overlaps, so highlighting the same phrase twice does not nest.
+      const merged: [number, number][] = [];
+      for (const r of next) {
+        const last = merged[merged.length - 1];
+        if (last && r[0] <= last[1]) last[1] = Math.max(last[1], r[1]);
+        else merged.push([...r] as [number, number]);
+      }
+      return { ...m, [id]: merged };
+    });
+    sel.removeAllRanges();
+  }
+
+  function render(id: string, body: string) {
+    const ranges = marks[id] ?? [];
+    if (ranges.length === 0) return body;
+    const out: React.ReactNode[] = [];
+    let cursor = 0;
+    ranges.forEach(([a, b], i) => {
+      if (a > cursor) out.push(body.slice(cursor, a));
+      out.push(
+        <mark key={i} data-testid="reading-highlight" className="rounded bg-almi-accent/40 px-0.5">
+          {body.slice(a, b)}
+        </mark>,
+      );
+      cursor = b;
+    });
+    if (cursor < body.length) out.push(body.slice(cursor));
+    return out;
+  }
+
+  const total = Object.values(marks).reduce((n, r) => n + r.length, 0);
+
+  return (
+    <div className="space-y-3" data-testid="reading-texts">
+      <div className="flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          data-testid="highlight-add"
+          onClick={addFromSelection}
+          className="inline-flex min-h-[36px] items-center rounded-full border border-almi-ink/15 bg-almi-paper px-4 py-1.5 text-xs font-semibold text-almi-ink hover:border-almi-coral"
+        >
+          Highlight selection
+        </button>
+        <button
+          type="button"
+          data-testid="highlight-clear"
+          onClick={() => setMarks({})}
+          disabled={total === 0}
+          className="inline-flex min-h-[36px] items-center rounded-full border border-almi-bg-peach px-4 py-1.5 text-xs font-semibold text-almi-text-muted hover:border-almi-coral disabled:opacity-50"
+        >
+          Clear {total > 0 ? `(${total})` : ""}
+        </button>
+        <span className="text-xs text-almi-text-muted">
+          Select any part of a text, then Highlight. Marks are yours only — never submitted or
+          scored.
+        </span>
+      </div>
+
+      <div ref={hostRef} className="space-y-3">
+        {texts.map((t) => (
+          <div key={t.id} className="rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3">
+            {t.heading && (
+              <p className="text-xs font-bold uppercase tracking-wider text-almi-accent-deep">
+                {t.id}. {t.heading}
+              </p>
+            )}
+            <p
+              data-reading-body={t.id}
+              className="mt-1 whitespace-pre-wrap text-sm text-almi-text selection:bg-almi-accent/40"
+            >
+              {render(t.id, t.body)}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ---- Reading: texts/passages + questions + a COUNTDOWN ----
 //
 // This replaces `ElapsedTimer`, which counted UP from 00:00. A stopwatch tells a
@@ -422,18 +544,7 @@ function ReadingComposer({
         </p>
       )}
 
-      <div className="space-y-3">
-        {texts.map((t) => (
-          <div key={t.id} className="rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3">
-            {t.heading && (
-              <p className="text-xs font-bold uppercase tracking-wider text-almi-accent-deep">
-                {t.id}. {t.heading}
-              </p>
-            )}
-            <p className="mt-1 whitespace-pre-wrap text-sm text-almi-text">{t.body}</p>
-          </div>
-        ))}
-      </div>
+      <HighlightableTexts texts={texts} />
 
       <div className="space-y-3">
         {questions.map((q) => (
