@@ -8,12 +8,25 @@ import { requireUser } from "@/lib/auth";
 import { hasPaidAccess } from "@/lib/billing/plans";
 import { OET_TASKS } from "@/lib/oet/registry";
 import type { TaskDef } from "@/lib/oet/registry";
-import { SUBTEST_LABEL } from "@/lib/oet/types";
+import { SUBTEST_LABEL, isPerProfession } from "@/lib/oet/types";
+import { poolCounts, completedCounts } from "@/lib/oet/pool";
 import type { OetSubTest } from "@prisma/client";
 
 const SUBTEST_ORDER: OetSubTest[] = ["LISTENING", "READING", "WRITING", "SPEAKING"];
 
-function TaskCard({ def }: { def: TaskDef }) {
+// 🔴 THE COUNT IS THE POINT OF THIS CARD.
+//
+// This page used to render the registry and nothing else: eight cards, no
+// numbers. The bank held 21 Listening Part A items and 15 Writing tasks per
+// profession, all active, all reachable across repeated sessions — and the
+// product never said so. A learner saw one card per skill and reasonably
+// concluded there was one test per skill.
+//
+// `total` comes from poolCounts(), which runs the SAME query the picker draws
+// from (src/lib/oet/pool.ts), against the database, on every request. There is no
+// hard-coded 15 or 21 anywhere on this page: a number typed into the UI is the
+// defect class that has cost this product twice this week.
+function TaskCard({ def, total, done }: { def: TaskDef; total: number; done: number }) {
   const tag = def.scoringMode === "AI" ? "AI feedback" : "Auto-marked";
   const inner = (
     <>
@@ -22,9 +35,19 @@ function TaskCard({ def }: { def: TaskDef }) {
         <span className="text-xs text-almi-text-muted">{def.live ? tag : "Coming soon"}</span>
       </div>
       <p className="mt-2 text-sm text-almi-text">{def.blurb}</p>
+      {def.live && (
+        <p className="mt-3 flex flex-wrap items-baseline gap-x-2 text-sm">
+          <span className="font-semibold text-almi-ink">
+            {total} {total === 1 ? "exercise" : "exercises"}
+          </span>
+          <span className="text-almi-text-muted">
+            {done > 0 ? `· you’ve done ${done}` : "· none done yet"}
+          </span>
+        </p>
+      )}
       <p className="mt-3 text-sm font-semibold">
         {def.live ? (
-          <span className="text-almi-coral">Practise →</span>
+          <span className="text-almi-coral">Browse &amp; practise →</span>
         ) : (
           <span className="text-almi-text-muted">Coming soon</span>
         )}
@@ -51,6 +74,17 @@ export default async function PracticePage() {
   if (!hasPaidAccess(user)) redirect("/pricing");
   const tasks = Object.values(OET_TASKS);
 
+  // Counted at request time, per learner. Writing and Speaking are filtered to
+  // this learner's own profession, so they read 15 rather than the 180 the bank
+  // holds across twelve professions — 180 would be a claim about material this
+  // learner will never be shown.
+  const profession = user.targetProfession ?? null;
+  const [totals, done] = await Promise.all([
+    poolCounts(profession),
+    completedCounts(user.id, profession),
+  ]);
+  const needsProfession = !profession;
+
   return (
     <div className="space-y-8">
       <header>
@@ -68,14 +102,29 @@ export default async function PracticePage() {
       {SUBTEST_ORDER.map((subTest) => {
         const group = tasks.filter((t) => t.subTest === subTest);
         if (group.length === 0) return null;
+        const perProfession = isPerProfession(subTest);
         return (
           <section key={subTest}>
             <h2 className="text-sm font-bold uppercase tracking-wider text-almi-text-muted">
               {SUBTEST_LABEL[subTest]}
             </h2>
+            {perProfession && needsProfession && (
+              <p className="mt-2 rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-2 text-sm text-almi-ink">
+                These are specific to your profession. Set yours on{" "}
+                <a href="/account" className="font-semibold underline">
+                  your account
+                </a>{" "}
+                and the exercise counts below will fill in.
+              </p>
+            )}
             <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {group.map((def) => (
-                <TaskCard key={def.taskType} def={def} />
+                <TaskCard
+                  key={def.taskType}
+                  def={def}
+                  total={totals[def.taskType] ?? 0}
+                  done={done[def.taskType] ?? 0}
+                />
               ))}
             </div>
           </section>

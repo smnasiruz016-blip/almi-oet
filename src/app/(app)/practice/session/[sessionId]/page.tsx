@@ -68,7 +68,13 @@ export default async function SessionPage({
   if (!current) notFound();
 
   const def = OET_TASKS[current.taskType];
+  // The set length is stated as a set length, not left to be inferred. "Step 1 of
+  // 3" alone reads as "there are 3 of these in total" when the bank holds 21.
   const stepLabel = `Step ${session.currentStep + 1} of ${session.targetCount}`;
+  const setLabel =
+    session.mode === "MOCK"
+      ? `${session.targetCount} items in this mock`
+      : `${session.targetCount} ${session.targetCount === 1 ? "item" : "items"} in this set`;
   const isLast = session.currentStep + 1 >= session.targetCount;
 
   if (current.status === "SCORED") {
@@ -99,6 +105,13 @@ export default async function SessionPage({
       <header>
         <p className="text-xs font-bold uppercase tracking-wider text-almi-accent-deep">
           {def.label} · {stepLabel}
+        </p>
+        <p className="mt-1 text-xs text-almi-text-muted">
+          {setLabel}. Your full library is on the{" "}
+          <a href={`/practice/${def.slug}`} className="font-medium underline">
+            {def.label}
+          </a>{" "}
+          page.
         </p>
         <h1 className="mt-1 text-2xl font-semibold text-almi-ink">{current.item.title}</h1>
       </header>
