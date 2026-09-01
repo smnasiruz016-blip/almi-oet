@@ -6,6 +6,7 @@ import { notFound, redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { getSessionView, advanceSession } from "@/lib/oet/session";
 import { OET_TASKS } from "@/lib/oet/registry";
+import { PROFESSION_LIST } from "@/lib/oet/professions";
 import { speakingPrepPolicy } from "@/lib/oet/prep-policy";
 import { OetComposer } from "@/components/oet/composer-map";
 import { OetResult } from "@/components/oet/OetResult";
@@ -71,6 +72,14 @@ export default async function SessionPage({
   // The set length is stated as a set length, not left to be inferred. "Step 1 of
   // 3" alone reads as "there are 3 of these in total" when the bank holds 21.
   const stepLabel = `Step ${session.currentStep + 1} of ${session.targetCount}`;
+  // Link back to the library UNDER the session's profession where there is one,
+  // so the learner lands on their own material rather than on a redirect. Shared
+  // sub-tests (Listening/Reading) carry no profession, so they fall back to the
+  // chooser, which sends them on with one click.
+  const professionSlug = session.profession
+    ? PROFESSION_LIST.find((p) => p.profession === session.profession)?.slug
+    : undefined;
+  const libraryHref = professionSlug ? `/practice/${professionSlug}/${def.slug}` : "/practice";
   const setLabel =
     session.mode === "MOCK"
       ? `${session.targetCount} items in this mock`
@@ -108,7 +117,7 @@ export default async function SessionPage({
         </p>
         <p className="mt-1 text-xs text-almi-text-muted">
           {setLabel}. Your full library is on the{" "}
-          <a href={`/practice/${def.slug}`} className="font-medium underline">
+          <a href={libraryHref} className="font-medium underline">
             {def.label}
           </a>{" "}
           page.

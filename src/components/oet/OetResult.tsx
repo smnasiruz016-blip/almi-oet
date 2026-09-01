@@ -169,7 +169,10 @@ export function OetResult({
             showing the uncertainty.
           </p>
           <Link
-            href={`/practice/${def.slug}`}
+            // This component has no profession in scope, and /practice/<task-slug>
+            // is no longer a route. The chooser knows the learner's profession and
+            // sends them straight through, so this is one hop rather than a guess.
+            href="/practice"
             className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-almi-coral px-6 py-3 text-sm font-semibold text-almi-ink hover:bg-almi-coral-deep"
           >
             Practise again →
