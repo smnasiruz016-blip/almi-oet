@@ -8,7 +8,11 @@
     "build": "prisma generate && npm run gate:all && next build",
     "db:deploy": "prisma migrate deploy",
     "seed:prod": "tsx scripts/seed/append.ts",
-    "gate:all": "tsx scripts/gates/run.ts && tsx scripts/validate-seed.ts",
+    "gate:all": "tsx scripts/gates/run.ts && tsx scripts/gates/sources.ts && tsx scripts/gates/timing.tsx && vitest run && tsx scripts/validate-seed.ts",
+    "gate:sources": "tsx scripts/gates/sources.ts",
+    "gate:timing": "tsx scripts/gates/timing.tsx",
+    "test": "vitest run",
+    "report:shape": "tsx scripts/report-shape.ts",
     "start": "next start",
     "postinstall": "prisma generate",
     "seed:listening": "tsx scripts/seed/listening.ts",
@@ -40,7 +44,9 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "jsdom": "^30.0.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.11"
   }
 }

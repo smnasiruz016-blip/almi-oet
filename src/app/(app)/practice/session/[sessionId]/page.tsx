@@ -6,6 +6,7 @@ import { notFound, redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { getSessionView, advanceSession } from "@/lib/oet/session";
 import { OET_TASKS } from "@/lib/oet/registry";
+import { speakingPrepPolicy } from "@/lib/oet/prep-policy";
 import { OetComposer } from "@/components/oet/composer-map";
 import { OetResult } from "@/components/oet/OetResult";
 import { OetSessionResult } from "@/components/oet/OetSessionResult";
@@ -106,6 +107,10 @@ export default async function SessionPage({
         taskType={current.taskType}
         prompt={current.item.prompt}
         payload={sanitizePayload(current.taskType, current.item.payload)}
+        // Derived from the session row, never decided here. MOCK = mandatory
+        // preparation; PRACTICE_SET = skippable with the explanation shown. An
+        // unrecognised mode falls back to mandatory. See prep-policy.ts.
+        allowSkipPreparation={speakingPrepPolicy(session).allowSkip}
       />
     </div>
   );

@@ -12,6 +12,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { OetTaskType } from "@prisma/client";
+import { TIMING } from "@/lib/oet/exam-shape";
 
 const SUBMIT_BTN =
   "inline-flex min-h-[44px] items-center justify-center rounded-full bg-almi-coral px-6 py-3 text-sm font-semibold text-almi-ink hover:bg-almi-coral-deep disabled:opacity-60";
@@ -52,6 +53,71 @@ function useSubmit(attemptId: string) {
   return { submit, submitting, error };
 }
 
+// ---- Timing ----------------------------------------------------------------
+//
+// 🔴 THESE COUNTDOWNS ARE THE POINT OF THIS FILE'S 2026-08-31 CHANGE.
+//
+// Measured on 2026-08-31, before any of this existed:
+//   - `timeLimitSeconds` was stored on every seed item and read NOWHERE in src/.
+//   - Reading's only timer was `ElapsedTimer`, which counted UP from 00:00 and
+//     was therefore not a limit at all.
+//   - `prepSeconds` was stored on all 507 items, validated by a schema and
+//     guarded by gate G6 — and never destructured by SpeakingComposer. Of the
+//     five payload fields the Speaking composer read, prepSeconds was not one.
+//   - Only `speakSeconds` reached a learner.
+//
+// A stored number the product never reads is not a feature. G6 was green for
+// weeks over a value nothing rendered, which is why scripts/gates/timing.tsx
+// asserts what the RENDERED MARKUP contains rather than what the payload holds.
+//
+// Every duration below comes from TIMING in src/lib/oet/exam-shape.ts, where each
+// number sits beside the OET sentence and URL it was read from. None is written
+// as a literal here.
+function mmss(totalSeconds: number): string {
+  const s = Math.max(0, Math.floor(totalSeconds));
+  return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+}
+
+/** Counts DOWN from `totalSeconds`, and stops at zero. Paused when !running. */
+function useCountdown(totalSeconds: number, running = true): number {
+  const [left, setLeft] = useState(totalSeconds);
+  useEffect(() => setLeft(totalSeconds), [totalSeconds]);
+  useEffect(() => {
+    if (!running) return;
+    const t = setInterval(() => setLeft((s) => (s <= 0 ? 0 : s - 1)), 1000);
+    return () => clearInterval(t);
+  }, [running, totalSeconds]);
+  return left;
+}
+
+function Countdown({ secondsLeft, label }: { secondsLeft: number; label: string }) {
+  const out = secondsLeft <= 0;
+  const low = !out && secondsLeft <= 60;
+  return (
+    <span
+      role="timer"
+      aria-live="off"
+      className={`rounded-full px-3 py-1 text-xs font-semibold ${
+        out
+          ? "bg-almi-coral text-almi-ink"
+          : low
+            ? "bg-almi-coral/15 text-almi-coral-deep"
+            : "bg-almi-bg-peach text-almi-text-muted"
+      }`}
+    >
+      {out ? `⏱ Time is up — ${label}` : `⏱ ${mmss(secondsLeft)} ${label}`}
+    </span>
+  );
+}
+
+// When a countdown expires we DISABLE further answering and leave Submit
+// enabled. We deliberately do not auto-submit: OET's Part A is strictly timed,
+// so the limit has to bite, but silently posting a learner's half-finished work
+// on a timer destroys something they cannot get back. Locking the inputs makes
+// the constraint real without taking the decision away from them.
+const TIME_UP_NOTE =
+  "Time is up. You can't change your answers now — submit to see how you did.";
+
 // ---- Shared question types (sanitized — no answer keys) ----
 type Option = { id: string; text: string };
 type Question = { id: string; stem?: string; label?: string; options?: Option[] };
@@ -60,10 +126,12 @@ function QuestionField({
   q,
   value,
   onChange,
+  disabled = false,
 }: {
   q: Question;
   value: string;
   onChange: (v: string) => void;
+  disabled?: boolean;
 }) {
   return (
     <div className="rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3">
@@ -78,6 +146,7 @@ function QuestionField({
                 value={o.id}
                 checked={value === o.id}
                 onChange={() => onChange(o.id)}
+                disabled={disabled}
                 className="mt-1"
               />
               <span>{o.text}</span>
@@ -89,6 +158,7 @@ function QuestionField({
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          disabled={disabled}
           className={`mt-2 ${FIELD}`}
           placeholder="Type your answer"
         />
@@ -197,30 +267,35 @@ function ListeningComposer({
   );
 }
 
-// ---- Reading: texts/passages + questions + elapsed timer ----
-function ElapsedTimer() {
-  const [secs, setSecs] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setSecs((s) => s + 1), 1000);
-    return () => clearInterval(t);
-  }, []);
-  const mm = String(Math.floor(secs / 60)).padStart(2, "0");
-  const ss = String(secs % 60).padStart(2, "0");
-  return (
-    <span className="rounded-full bg-almi-bg-peach px-3 py-1 text-xs font-semibold text-almi-text-muted">
-      ⏱ {mm}:{ss}
-    </span>
-  );
-}
-
+// ---- Reading: texts/passages + questions + a COUNTDOWN ----
+//
+// This replaces `ElapsedTimer`, which counted UP from 00:00. A stopwatch tells a
+// learner how long they took; it never tells them they have run out, which is
+// the only thing Reading Part A's timing actually is:
+//
+//   "Part A is strictly timed and you must complete all 20 question items
+//    within 15 minutes."
+//   — https://oet.com/en-us/post/reading-part-a-the-complete-guide
+//
+//   "You have 45 minutes in total to complete Reading Parts B and C."
+//   — https://oet.com/en-us/post/reading-part-b-the-complete-guide
+//
+// ⚠️ SCOPE, STATED RATHER THAN HIDDEN. OET's 45 minutes covers Parts B and C
+// TOGETHER — six Part B extracts plus two Part C texts, in one sitting. This
+// composer serves ONE item at a time, so it gives each B or C item the whole 45
+// minutes. That is more generous than the exam, not less, and it is the honest
+// shape available until sessions carry a sub-test-wide clock. Part A's 15 minutes
+// is exact, because one Part A item IS the whole of Part A.
 type ReadingText = { id: string; heading?: string; body: string };
 
 function ReadingComposer({
   attemptId,
+  taskType,
   prompt,
   payload,
 }: {
   attemptId: string;
+  taskType: OetTaskType;
   prompt: string;
   payload: unknown;
 }) {
@@ -234,12 +309,25 @@ function ReadingComposer({
   const texts = p.texts ?? p.passages ?? [];
   const questions: Question[] = p.questions ?? [];
 
+  const limitSeconds =
+    taskType === "READING_PART_A" ? TIMING.readingPartASeconds : TIMING.readingPartsBandCSeconds;
+  const secondsLeft = useCountdown(limitSeconds);
+  const expired = secondsLeft <= 0;
+
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between gap-3">
         <p className="text-sm text-almi-text">{prompt}</p>
-        <ElapsedTimer />
+        <Countdown
+          secondsLeft={secondsLeft}
+          label={taskType === "READING_PART_A" ? "left (Part A)" : "left (Parts B & C)"}
+        />
       </div>
+      {expired && (
+        <p className="rounded-xl border border-almi-coral/40 bg-almi-coral/10 px-4 py-3 text-sm font-semibold text-almi-ink">
+          {TIME_UP_NOTE}
+        </p>
+      )}
 
       <div className="space-y-3">
         {texts.map((t) => (
@@ -261,6 +349,7 @@ function ReadingComposer({
             q={q}
             value={answers[q.id] ?? ""}
             onChange={(v) => setAnswers((a) => ({ ...a, [q.id]: v }))}
+            disabled={expired}
           />
         ))}
       </div>
@@ -273,15 +362,54 @@ function ReadingComposer({
 }
 
 // ---- Writing (Phase 2 grades it) ----
+// OET Writing is TWO timed phases, not one 45-minute block:
+//
+//   "The five minutes of reading time at the start of the Writing sub-test…"
+//   "…the remaining 40 minutes to write a response of the required length and
+//    check over what you have written."
+//   — https://oet.com/ready/writing
+//
+// 5 + 40 = 45, which is why two OET pages appeared to disagree about 45 vs 40.
+// Both were right. Case notes are readable throughout; only the composer is
+// held shut during the reading phase, which is what the reading time IS.
 function WritingComposer({ attemptId, prompt, payload }: { attemptId: string; prompt: string; payload: unknown }) {
   const { submit, submitting, error } = useSubmit(attemptId);
   const [text, setText] = useState("");
   const p = payload as { caseNotes?: string; recipient?: string; taskInstruction?: string; wordMin?: number; wordMax?: number };
   const words = text.trim() ? text.trim().split(/\s+/).length : 0;
 
+  const [phase, setPhase] = useState<"reading" | "writing">("reading");
+  const readingLeft = useCountdown(TIMING.writingReadingSeconds, phase === "reading");
+  const writingLeft = useCountdown(TIMING.writingWritingSeconds, phase === "writing");
+  useEffect(() => {
+    if (phase === "reading" && readingLeft <= 0) setPhase("writing");
+  }, [phase, readingLeft]);
+  const reading = phase === "reading";
+  const expired = !reading && writingLeft <= 0;
+
   return (
     <div className="space-y-5">
-      <p className="text-sm text-almi-text">{prompt}</p>
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-sm text-almi-text">{prompt}</p>
+        {reading ? (
+          <Countdown secondsLeft={readingLeft} label="reading time" />
+        ) : (
+          <Countdown secondsLeft={writingLeft} label="left to write" />
+        )}
+      </div>
+      {reading && (
+        <p className="rounded-xl border border-almi-teal/30 bg-almi-teal/5 px-4 py-3 text-sm text-almi-text">
+          <span className="font-semibold text-almi-ink">Reading time.</span> Read the case notes.
+          You can&apos;t start writing yet — that matches the exam, where the first{" "}
+          {Math.round(TIMING.writingReadingSeconds / 60)} minutes are for reading only. You&apos;ll
+          then have {mmss(TIMING.writingWritingSeconds)} to write.
+        </p>
+      )}
+      {expired && (
+        <p className="rounded-xl border border-almi-coral/40 bg-almi-coral/10 px-4 py-3 text-sm font-semibold text-almi-ink">
+          {TIME_UP_NOTE}
+        </p>
+      )}
       {p.caseNotes && (
         <div className="rounded-xl border border-almi-bg-peach bg-almi-paper p-4">
           <p className="text-xs font-bold uppercase tracking-wider text-almi-text-muted">Case notes</p>
@@ -294,36 +422,109 @@ function WritingComposer({ attemptId, prompt, payload }: { attemptId: string; pr
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows={12}
-        className="w-full rounded-xl border border-almi-bg-peach bg-almi-bg px-4 py-3 text-sm"
-        placeholder="Write your letter here…"
+        disabled={reading || expired}
+        className="w-full rounded-xl border border-almi-bg-peach bg-almi-bg px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-60"
+        placeholder={reading ? "Writing opens when the reading time ends…" : "Write your letter here…"}
       />
       <p className="text-xs text-almi-text-muted">
         {words} words{p.wordMin ? ` · OET expects ${p.wordMin}–${p.wordMax ?? p.wordMin}` : ""}. You&apos;ll get honest feedback against the six OET writing criteria.
       </p>
       {error && <p className="text-sm font-medium text-almi-coral-deep">{error}</p>}
-      <button type="button" onClick={() => submit({ text })} disabled={submitting} className={SUBMIT_BTN}>
+      <button
+        type="button"
+        onClick={() => submit({ text })}
+        disabled={submitting || reading}
+        className={SUBMIT_BTN}
+      >
         {submitting ? "Submitting…" : "Submit letter"}
       </button>
     </div>
   );
 }
 
+/** Whole minutes read as "2 minutes"; anything else falls back to mm:ss so the
+ *  sentence can never claim a duration the timer beside it is not counting. */
+function humanPrep(totalSeconds: number): string {
+  if (totalSeconds > 0 && totalSeconds % 60 === 0) {
+    const m = totalSeconds / 60;
+    return `${m} ${m === 1 ? "minute" : "minutes"}`;
+  }
+  return mmss(totalSeconds);
+}
+
+/** The sentence shown beside the skip button, in the owner's words. Built as ONE
+ *  string rather than JSX fragments: React's server renderer inserts `<!-- -->`
+ *  between adjacent text nodes, which would split the sentence in the rendered
+ *  markup and make it unassertable by scripts/gates/timing.tsx. */
+export function skipPreparationExplanation(prepSeconds: number): string {
+  return (
+    `Practice only. In a full mock test — and in the real OET — you get ` +
+    `${humanPrep(prepSeconds)} to prepare and there is no skip.`
+  );
+}
+
 // ---- Speaking: record the role-play → Whisper transcript → AI grade ----
-function SpeakingComposer({ attemptId, prompt, payload }: { attemptId: string; prompt: string; payload: unknown }) {
+function SpeakingComposer({
+  attemptId,
+  prompt,
+  payload,
+  allowSkipPreparation,
+}: {
+  attemptId: string;
+  prompt: string;
+  payload: unknown;
+  allowSkipPreparation?: boolean;
+}) {
   const router = useRouter();
+  // 🔴 `prepSeconds` IS READ HERE. It was not, until 2026-08-31.
+  //
+  // The destructured payload shape below used to be
+  // { setting, candidateRole, patientRole, candidateCard, speakSeconds } — five
+  // fields, and prepSeconds was not one of them. So the number was stored on all
+  // 507 items, schema-validated, and guarded by gate G6 against OET's published
+  // 2–3 minute range, while the learner got no preparation phase at all: the
+  // "Start recording" button was live the moment the card appeared.
+  //
+  // It is taken FROM THE PAYLOAD, per item, never written as a literal. The
+  // fallback is TIMING.speakingPrepSecondsMin (exam-shape.ts, "2-3 minutes to
+  // prepare for each"), used only if an item somehow arrives without the field.
   const p = payload as {
     setting?: string;
     candidateRole?: string;
     patientRole?: string;
     candidateCard?: string;
+    prepSeconds?: number;
     speakSeconds?: number;
   };
-  const cap = p.speakSeconds ?? 300;
+  const cap = p.speakSeconds ?? TIMING.speakingSpeakSeconds;
+  const prepTotal =
+    typeof p.prepSeconds === "number" && Number.isFinite(p.prepSeconds) && p.prepSeconds >= 0
+      ? p.prepSeconds
+      : TIMING.speakingPrepSecondsMin;
   const startedAt = useState(() => Date.now())[0];
 
   const [phase, setPhase] = useState<"idle" | "recording" | "recorded" | "submitting">("idle");
   const [secs, setSecs] = useState(0);
   const [error, setError] = useState<string | null>(null);
+
+  // The preparation phase runs before recording can start, exactly as the exam
+  // does.
+  //
+  // ── SKIPPABLE IN PRACTICE, MANDATORY IN A MOCK ──────────────────────────────
+  //
+  // 🔴 `allowSkipPreparation` DEFAULTS TO NO SKIP, AND THE `=== true` IS LOAD-BEARING.
+  // The prop is optional, so a caller that forgets it, passes undefined, or
+  // passes a value that is merely truthy gets the EXAM-LIKE behaviour. Nothing
+  // here can turn a mock into a practice run by omission — the only way to get a
+  // skip button is to positively ask for one.
+  //
+  // The decision itself is not made here. It is derived from the session record
+  // by speakingPrepPolicy() in src/lib/oet/prep-policy.ts, which every caller
+  // shares, so the rule cannot be right on one screen and wrong on another.
+  const allowSkip = allowSkipPreparation === true;
+  const [skipped, setSkipped] = useState(false);
+  const prepLeft = useCountdown(prepTotal, phase === "idle" && !skipped);
+  const preparing = phase === "idle" && !skipped && prepLeft > 0;
   const [typed, setTyped] = useState("");
   const [showType, setShowType] = useState(false);
 
@@ -451,9 +652,48 @@ function SpeakingComposer({ attemptId, prompt, payload }: { attemptId: string; p
       {!showType && (
         <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/5 px-4 py-4">
           {phase === "idle" && (
-            <button type="button" onClick={startRecording} className={SUBMIT_BTN}>
-              ● Start recording
-            </button>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <Countdown
+                  secondsLeft={preparing ? prepLeft : 0}
+                  label={preparing ? "preparation time" : "— recording can start"}
+                />
+              </div>
+              {preparing && (
+                <p className="text-sm text-almi-text">
+                  <span className="font-semibold text-almi-ink">Preparation time.</span> Read your
+                  task card and plan how you&apos;ll open. Recording starts when this reaches zero —
+                  OET gives you {mmss(prepTotal)} to prepare for each role-play.
+                </p>
+              )}
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={startRecording}
+                  disabled={preparing}
+                  className={SUBMIT_BTN}
+                >
+                  ● Start recording
+                </button>
+                {preparing && allowSkip && (
+                  <button
+                    type="button"
+                    onClick={() => setSkipped(true)}
+                    className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-almi-ink/15 bg-almi-paper px-5 py-3 text-sm font-semibold text-almi-ink hover:border-almi-coral"
+                  >
+                    Skip preparation
+                  </button>
+                )}
+              </div>
+              {/* Always visible while preparing — never a tooltip, never behind an
+                  info icon. A learner who skips has to be told, in the same
+                  glance, what they are opting out of. */}
+              {preparing && allowSkip && (
+                <p className="text-sm font-medium text-almi-coral-deep">
+                  {skipPreparationExplanation(prepTotal)}
+                </p>
+              )}
+            </div>
           )}
           {phase === "recording" && (
             <div className="flex items-center gap-3">
@@ -497,7 +737,12 @@ function SpeakingComposer({ attemptId, prompt, payload }: { attemptId: string; p
         </div>
       )}
 
-      {!showType && phase === "idle" && (
+      {/* 🔴 `!preparing` closes a BYPASS, not a cosmetic case. Without it this
+          link opened the transcript box and its Submit button during the
+          preparation phase — so in a MOCK, where there is deliberately no skip,
+          a learner could click here and start composing immediately. A mandatory
+          phase with an unlocked side door is not mandatory. */}
+      {!showType && phase === "idle" && !preparing && (
         <button type="button" onClick={() => setShowType(true)} className="text-xs font-semibold text-almi-text-muted underline">
           No microphone? Type your transcript instead
         </button>
@@ -513,22 +758,36 @@ export function OetComposer({
   taskType,
   prompt,
   payload,
+  allowSkipPreparation,
 }: {
   attemptId: string;
   taskType: OetTaskType;
   prompt: string;
   payload: unknown;
+  /** Speaking only. OPTIONAL AND SAFE-BY-DEFAULT: omitted or undefined means the
+   *  preparation phase is mandatory. Callers must not compute this themselves —
+   *  pass speakingPrepPolicy(session).allowSkip from src/lib/oet/prep-policy.ts. */
+  allowSkipPreparation?: boolean;
 }) {
   if (taskType === "WRITING_LETTER") {
     return <WritingComposer attemptId={attemptId} prompt={prompt} payload={payload} />;
   }
   if (taskType === "SPEAKING_ROLEPLAY") {
-    return <SpeakingComposer attemptId={attemptId} prompt={prompt} payload={payload} />;
+    return (
+      <SpeakingComposer
+        attemptId={attemptId}
+        prompt={prompt}
+        payload={payload}
+        allowSkipPreparation={allowSkipPreparation}
+      />
+    );
   }
   if (taskType.startsWith("LISTENING")) {
     return <ListeningComposer attemptId={attemptId} prompt={prompt} payload={payload} />;
   }
-  return <ReadingComposer attemptId={attemptId} prompt={prompt} payload={payload} />;
+  return (
+    <ReadingComposer attemptId={attemptId} taskType={taskType} prompt={prompt} payload={payload} />
+  );
 }
 
 export type ComposerArgs = { attemptId: string; prompt: string; payload: unknown };

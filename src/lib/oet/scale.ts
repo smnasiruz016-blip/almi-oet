@@ -3,17 +3,41 @@
 // OET reports a score from 0 to 500 for each sub-test (in 10-point increments),
 // each mapped to an A–E grade.
 //
-// Grade boundaries, re-verified 2026-08-04 against the current published OET
-// scale. The previous values in this file (C 200–290, D 100–190, E 0–90) were
-// WRONG below C+ and misgraded real performance: a 220 was shown as C when OET
-// awards D. Corrected:
+// GRADE BOUNDARIES — from an artefact committed in this repo, not from memory.
 //
-//     A  450–500   (CEFR C2)
-//     B  350–440   (CEFR C1)   ← the grade most regulators require
-//     C+ 300–340
-//     C  250–290
-//     D  200–240
-//     E    0–190
+//   docs/sources/oet-understanding-your-score-2025-10-15.pdf
+//   sha256 3d2511deaf24e98c04a95abd389387843fdb111372cbf05454c86d0e2c3b3634
+//   26329 bytes · fetched by hand 2026-08-31 · provenance in docs/sources/README.md
+//
+// Its published table, transcribed row for row:
+//
+//     A   450–500
+//     B   400–440
+//     B   350–390
+//     C+  300–340
+//     C   250–290
+//     C   200–240
+//
+// So the floors are A 450, B 350, C+ 300, C 200.
+//
+// 🔴 WHAT WAS HERE BEFORE, AND WHY IT IS GONE. This file used to carry a comment
+// claiming the earlier values "were WRONG below C+" and that "a 220 was shown as
+// C when OET awards D". THAT COMMENT WAS FALSE. The PDF above puts 200–240 under
+// C. It was written on 2026-08-04 with the word "re-verified" and no artefact of
+// any kind, and it shipped a C floor of 250 for 27 days — so a score of 220 was
+// graded D by us and C by OET's own document. A confident sentence with no file
+// beside it is a claim, not evidence. `npm run gate:sources` now fails if
+// "verified"/"re-verified" appears beside a number in this file without a
+// docs/sources/ filename in the same comment block.
+//
+// 🔴 D AND E ARE NOT DEFINED HERE, DELIBERATELY. The PDF has NO D row and NO E
+// row. OET's Results-and-Scoring page nevertheless says grades run "from A
+// (highest) to E (lowest)". Two official OET sources, and they disagree about
+// what lies below 200. Both are recorded (see docs/sources/README.md); neither is
+// resolved in the other's favour. Restoring C's floor to 200 is sourced.
+// Inventing a D range or an E range beneath it is not — so `gradeForScore`
+// returns null below 200 and callers print the score range with the words
+// "below the published grade bands" rather than a letter nothing backs.
 //
 // OVERALL SCORE: this file previously asserted "There is NO composite/overall".
 // That is no longer true — since 29 January 2025 OET also reports an overall
@@ -37,14 +61,25 @@ export const OET_STEP = 10; // OET reports in 10-point increments
 export const OET_BENCHMARK_B = 350; // Grade B — the common regulator benchmark
 
 // Official grade boundaries (lower bound of each grade), highest first.
+//
+// Every floor here is read off the transcribed table at the top of this file.
+// There is no row below C, because the artefact publishes none. Adding one is a
+// content decision that needs a new artefact in docs/sources/, not an edit here.
+//
+// `scripts/gates/sources.ts` cross-checks this array, floor for floor, against
+// GRADE_FLOORS_PUBLISHED in src/lib/oet/exam-shape.ts. Both sides are hand-typed
+// from the PDF; neither is derived from the other.
 const GRADE_FLOORS: { grade: OetGrade; floor: number }[] = [
   { grade: "A", floor: 450 },
   { grade: "B", floor: 350 },
   { grade: "C+", floor: 300 },
-  { grade: "C", floor: 250 },
-  { grade: "D", floor: 200 },
-  { grade: "E", floor: 0 },
+  { grade: "C", floor: 200 },
 ];
+
+/** The wording every caller must use where `gradeForScore` returns null. It is
+ *  not "Grade E" and not "below E": it is the absence of a published band, and it
+ *  says so. Exported so the phrase exists once, and so a gate can grep for it. */
+export const BELOW_PUBLISHED_BANDS = "below the published grade bands";
 
 /** OET has reported an overall score since 29 Jan 2025, alongside the four
  *  sub-test scores. AlmiOET does not yet derive one: the official method is not
@@ -68,12 +103,20 @@ export function snapRange(lo: number, hi: number): Range {
   return [a, b] as const;
 }
 
-/** The official OET letter grade for a 0–500 score. */
-export function gradeForScore(score: number): OetGrade {
+/** The official OET letter grade for a 0–500 score, or null below 200.
+ *
+ *  null is not "we failed to compute one". It means OET's own scoring document
+ *  publishes no band containing this score, and we will not print a letter we
+ *  cannot source. Render `BELOW_PUBLISHED_BANDS` beside the score range instead.
+ *
+ *  This previously returned "E". "E" is a grade OET's Results-and-Scoring page
+ *  names but the scoring PDF gives no range for — so returning it put a specific
+ *  letter on a score whose band no official source defines. */
+export function gradeForScore(score: number): OetGrade | null {
   for (const { grade, floor } of GRADE_FLOORS) {
     if (score >= floor) return grade;
   }
-  return "E";
+  return null;
 }
 
 // Coarse performance buckets. `fraction` is 0..1 — the share of the available
@@ -99,7 +142,7 @@ export function fractionToRange(fraction: number): Range {
   return snapRange(chosen.range[0], chosen.range[1]);
 }
 
-export type GradeEstimate = { lo: number; hi: number; grade: OetGrade };
+export type GradeEstimate = { lo: number; hi: number; grade: OetGrade | null };
 
 /** Turn a 0..1 fraction into a full estimate: a 0–500 range + the grade of its
  *  midpoint. The grade is the honest "most likely" band for this practice run. */
@@ -113,13 +156,28 @@ export function rangeMidpoint(range: Range): number {
   return (range[0] + range[1]) / 2;
 }
 
-/** CEFR alignment for a 0–500 score, re-verified 2026-08-04 against OET's own
- *  published CEFR alignment:
+/** CEFR alignment for a 0–500 score:
  *
  *      A  (450–500) → C2
  *      B  (350–440) → C1
  *      C+ (300–340) → B2
- *      C / D / E    → NO CEFR level is claimed
+ *      C and below  → NO CEFR level is claimed
+ *
+ *  🔴 THIS MAPPING IS UNSOURCED IN THIS REPO. It previously carried the words
+ *  "re-verified 2026-08-04 against OET's own published CEFR alignment". No
+ *  artefact backing that exists. The one artefact we hold,
+ *  docs/sources/oet-understanding-your-score-2025-10-15.pdf, was read end to end
+ *  on 2026-08-31: it contains the grade table and the band descriptors and NO
+ *  CEFR alignment of any kind. So the claim of verification was removed — the
+ *  same failure that put a wrong C floor in this file for 27 days, caught here by
+ *  `npm run gate:sources`, which fails on "verified" beside a score with no
+ *  docs/sources/ file named in the same comment block.
+ *
+ *  THE NUMBERS ARE UNCHANGED. Removing an unsourced claim is not licence to
+ *  invent a sourced one: a number moves only together with a quoted sentence and
+ *  a URL, and there is none here yet. Treat this function as an open item for the
+ *  owner — either an artefact lands in docs/sources/ and this comment names it,
+ *  or the hint stops being shown.
  *
  *  The previous version mapped anything ≥200 to B2 and everything below to
  *  "below B2", citing the UK NARIC study. That over-claimed: it handed a B2

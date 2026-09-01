@@ -26,10 +26,20 @@
  *   G4 structure     — payload shape valid per task type; all 12 professions covered
  *   G5 audio         — every Listening script has pre-rendered audio committed
  *   G6 prep time     — Speaking prepSeconds inside OET's published range
+ *   G7 divergence    — the handwritten seed files agree with gen/ BY VALUE
  */
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { GEN_ITEMS } from "../seed/gen/index";
+import { ITEMS as HW_LISTENING } from "../seed/listening";
+import { ITEMS as HW_READING } from "../seed/reading";
+import { ITEMS as HW_WRITING } from "../seed/writing-letter";
+import { ITEMS as HW_SPEAKING } from "../seed/speaking-roleplay";
+import {
+  checkHandwrittenAgainstGen,
+  formatDivergenceReport,
+  type SeedLike,
+} from "../seed/divergence";
 import { AUDIO_DIR, audioFileName, audioKey } from "../../src/lib/oet/audio";
 
 const FLOOR = 15;
@@ -222,7 +232,48 @@ const PREP_MAX_SECONDS = 180; // "3 minutes"
   }
 }
 
-const GATES = ["G1 item-id", "G2 floor", "G3 distribution", "G4 structure", "G5 audio", "G6 prep time"];
+// ── G7 · handwritten seed files vs gen/, BY VALUE ────────────────────────────
+// G6 above reads GEN_ITEMS only. That is the whole reason prepSeconds 60 could
+// sit in scripts/seed/speaking-roleplay.ts for as long as it did while gen/ said
+// 120 and G6 went green: nothing compared the two copies to each other.
+//
+// This runs the SAME function scripts/seed/append.ts uses to refuse to seed —
+// see scripts/seed/divergence.ts — so the rule cannot be true in one place and
+// false in the other, and it is provable here with no database attached.
+//
+// The handwritten set is a fixed population: if it ever reaches zero, the check
+// below has nothing to compare and would pass vacuously, so the count is
+// asserted rather than assumed.
+{
+  const handwritten = [
+    ...HW_LISTENING,
+    ...HW_READING,
+    ...HW_WRITING,
+    ...HW_SPEAKING,
+  ] as unknown as SeedLike[];
+
+  if (handwritten.length === 0) {
+    fail("G7", "the handwritten seed set is EMPTY — this gate would pass over nothing");
+  }
+  const report = checkHandwrittenAgainstGen(handwritten, GEN_ITEMS as unknown as SeedLike[]);
+  if (report.compared === 0 && handwritten.length > 0) {
+    fail("G7", `${handwritten.length} handwritten item(s) but 0 matched gen/ by identity`);
+  }
+  for (const line of formatDivergenceReport(report)) fail("G7", line);
+  console.log(
+    `[gates] G7 compared ${report.compared} of ${handwritten.length} handwritten item(s) against gen/ by value`,
+  );
+}
+
+const GATES = [
+  "G1 item-id",
+  "G2 floor",
+  "G3 distribution",
+  "G4 structure",
+  "G5 audio",
+  "G6 prep time",
+  "G7 divergence",
+];
 console.log(`[gates] ${items.length} seed items scanned`);
 for (const g of GATES) {
   const hits = failures.filter((f) => f.startsWith(g.slice(0, 2)));
