@@ -15,12 +15,25 @@
 # other half: the suite runs here, on every push and every pull request, and the
 # run is the evidence.
 #
-# 🔴 NO DATABASE, NO SECRETS. Verified on 2026-09-01 by running every step with
-# DATABASE_URL unset: run.ts, sources.ts, timing.tsx, validate-seed.ts and
-# report-shape.ts all exit 0 without it. `prisma generate` (postinstall) reads
-# schema.prisma and does not contact the database. Nothing below reads `secrets`.
-# If a future gate needs one, move that gate out of this workflow — do not add a
-# secret to make it pass.
+# 🔴 NO DATABASE, AND NO GATE NEEDS A SECRET. Verified on 2026-09-01 by running
+# every step with DATABASE_URL unset: run.ts, sources.ts, timing.tsx,
+# validate-seed.ts, report-shape.ts and the vitest suite all exit 0 without it.
+# `prisma generate` (postinstall) reads schema.prisma and does not contact the
+# database. If a future gate needs a credential, move that gate out of this
+# workflow — do not add a secret to make it pass.
+#
+# ⚠️ THE ONE CREDENTIAL, AND IT IS NOT FOR A GATE. `npm ci` cannot run at all
+# without one: package.json depends on @smnasiruz016-blip/almi-data, which is
+# published to GitHub Packages, and the repo's committed .npmrc already reads
+# `//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}`. The first CI run failed
+# on exactly that — `npm error code E401 ... unauthenticated`.
+#
+# It is fed the automatic GITHUB_TOKEN, which Actions mints per run and destroys
+# afterwards. Nobody stores it, nobody rotates it, and it is not in the repo's
+# secrets. Its scope here is `packages: read` and `contents: read` and nothing
+# else. This is the registry credential the install needs to exist; it is not a
+# database URL and it is not an API key, and no gate below is passing because of
+# it — every one of them was verified green with no environment at all.
 
 name: CI
 
@@ -36,9 +49,12 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    # Explicit and minimal: this workflow reads code and writes nothing.
+    # Explicit and minimal: this workflow reads code and a package, and writes
+    # nothing. `packages: read` exists only so `npm ci` can fetch
+    # @smnasiruz016-blip/almi-data from GitHub Packages.
     permissions:
       contents: read
+      packages: read
     steps:
       - uses: actions/checkout@v4
 
@@ -47,8 +63,13 @@ jobs:
           node-version: 24
           cache: npm
 
+      # NODE_AUTH_TOKEN is scoped to THIS STEP ONLY. The gates, the tests and the
+      # report all run below without it — they were verified green with no
+      # environment at all, and nothing after this step can read it.
       - name: Install (npm ci)
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Typecheck
         run: npx tsc --noEmit
