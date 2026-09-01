@@ -109,13 +109,27 @@ export default async function ProfessionPracticePage({
   const def = professionBySlug(slug);
   if (!def) notFound();
 
-  // Viewing a profession page is the same statement as choosing the tile, so a
-  // learner who arrives here by link (or by changing the URL) has their material
-  // set to what they are actually looking at. Otherwise the page would show one
-  // profession's Writing while the picker served another's.
-  if (user.targetProfession !== def.profession) {
-    await setTargetProfession(user.id, def.profession);
-  }
+  // 🔴 A GET MUST NOT MUTATE. THIS PAGE WRITES NOTHING.
+  //
+  // It used to call setTargetProfession() here, on the reasoning that viewing a
+  // profession is the same statement as choosing it. That was wrong, and the
+  // consequence was concrete: opening somebody's shared /practice/dentistry link
+  // silently changed YOUR profession, and the next Writing task you were served
+  // came from a bank you never chose. A read that rewrites the reader's account
+  // is a defect however tidy it makes the page.
+  //
+  // The URL is now the source of truth for what is DISPLAYED, and nothing else.
+  // targetProfession changes only through an explicit POST, in one writer
+  // (src/lib/oet/set-profession.ts), from a tile the learner actually clicked.
+  //
+  // The worry that motivated the write — that the page could show one
+  // profession's material under another's name — is answered by NAMING it below
+  // rather than by silently reconciling it.
+  const viewing = def.profession;
+  const stored = user.targetProfession ?? null;
+  const viewingSomeoneElses = stored !== null && stored !== viewing;
+  const storedDef = stored ? PROFESSION_LIST.find((p) => p.profession === stored) : undefined;
+  const noProfessionSet = stored === null;
 
   const [totals, done] = await Promise.all([
     poolCounts(def.profession),
@@ -135,6 +149,35 @@ export default async function ProfessionPracticePage({
         <h1 className="mt-1 text-3xl font-semibold text-almi-ink">{def.label}</h1>
         <p className="mt-2 max-w-2xl text-sm text-almi-text">{def.blurb}</p>
       </header>
+
+      {/* Named, not reconciled. Plain words, always visible, no modal. */}
+      {viewingSomeoneElses && storedDef && (
+        <div
+          data-testid="profession-mismatch-notice"
+          className="rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink"
+        >
+          You&apos;re viewing <span className="font-semibold">{def.label}</span>. Your profession is{" "}
+          <span className="font-semibold">{storedDef.label}</span> — that is what a practice set
+          or a mock will draw your Writing and Speaking from until you change it.{" "}
+          <Link href="/practice" className="font-semibold underline">
+            Switch to {def.label}
+          </Link>
+          .
+        </div>
+      )}
+      {noProfessionSet && (
+        <div
+          data-testid="profession-mismatch-notice"
+          className="rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink"
+        >
+          You&apos;re viewing <span className="font-semibold">{def.label}</span>, but you
+          haven&apos;t set a profession yet.{" "}
+          <Link href="/practice" className="font-semibold underline">
+            Choose {def.label}
+          </Link>{" "}
+          and your Writing and Speaking will come from it.
+        </div>
+      )}
 
       <p className="rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3 text-sm text-almi-text">
         <span className="font-semibold text-almi-ink">
