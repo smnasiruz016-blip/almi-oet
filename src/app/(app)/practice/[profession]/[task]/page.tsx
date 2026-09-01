@@ -10,10 +10,12 @@ import { startSession, PRACTICE_SET_STEPS } from "@/lib/oet/session";
 import { taskBySlug } from "@/lib/oet/registry";
 import { SUBTEST_LABEL, isPerProfession } from "@/lib/oet/types";
 import { listPool } from "@/lib/oet/pool";
+import { professionBySlug } from "@/lib/oet/professions";
 
 async function beginAction(formData: FormData) {
   "use server";
   const slug = String(formData.get("slug") ?? "");
+  const professionSlugForRedirect = String(formData.get("professionSlug") ?? "");
   // Optional: the exercise the learner picked from the list below. startSession
   // re-checks it against their own pool, so this is a preference, not a grant.
   const chosen = String(formData.get("itemId") ?? "").trim() || null;
@@ -23,7 +25,12 @@ async function beginAction(formData: FormData) {
   // Card-first: starting ANY practice set needs a subscription, not only the
   // AI-graded ones. Previously Listening and Reading started without one.
   if (!hasPaidAccess(user)) redirect("/pricing");
-  const profession = isPerProfession(def.subTest) ? user.targetProfession : null;
+  // The profession comes from the URL the learner was on, re-resolved through the
+  // registry rather than trusted as a string, and falls back to their stored one
+  // if the form somehow arrives without it. Writing/Speaking are drawn from this.
+  const chosenProfession =
+    professionBySlug(professionSlugForRedirect)?.profession ?? user.targetProfession ?? null;
+  const profession = isPerProfession(def.subTest) ? chosenProfession : null;
   const id = await startSession({
     userId: user.id,
     mode: "PRACTICE_SET",
@@ -31,7 +38,7 @@ async function beginAction(formData: FormData) {
     profession,
     itemId: chosen,
   });
-  if (!id) redirect(`/practice/${def.slug}?empty=1`);
+  if (!id) redirect(`/practice/${professionSlugForRedirect}/${def.slug}?empty=1`);
   redirect(`/practice/session/${id}`);
 }
 
@@ -39,25 +46,31 @@ export default async function TaskStartPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ task: string }>;
+  params: Promise<{ profession: string; task: string }>;
   searchParams: Promise<{ empty?: string }>;
 }) {
   const user = await requireUser();
-  const { task } = await params;
+  const { profession: professionSlug, task } = await params;
+  // The profession segment is part of the URL, so a wrong one must not silently
+  // serve another profession's material under its name.
+  const professionDef = professionBySlug(professionSlug);
+  if (!professionDef) notFound();
   const { empty } = await searchParams;
   const def = taskBySlug(task);
   if (!def || !def.live) notFound();
 
   const isObjective = def.scoringMode === "DETERMINISTIC";
   const needsPaid = !hasPaidAccess(user);
-  const needsProfession = isPerProfession(def.subTest) && !user.targetProfession;
 
   // 🔴 THE BROWSABLE LIST. Every exercise this learner can be given, from the
   // database, at request time — the same pool the picker draws from. Before this,
   // the only way to reach an exercise was to be handed a random one, so a bank of
   // 21 was indistinguishable from a bank of 1.
-  const profession = isPerProfession(def.subTest) ? user.targetProfession : null;
-  const pool = needsPaid || needsProfession ? [] : await listPool(def.taskType, profession, user.id);
+  // The profession comes from the URL segment, already validated against the
+  // registry, so this page cannot show one profession's material under another's
+  // name even if the learner's stored profession says otherwise.
+  const profession = isPerProfession(def.subTest) ? professionDef.profession : null;
+  const pool = needsPaid ? [] : await listPool(def.taskType, profession, user.id);
   const setSize = isObjective ? PRACTICE_SET_STEPS : 1;
   const doneCount = pool.filter((e) => e.status === "SCORED").length;
 
@@ -83,16 +96,7 @@ export default async function TaskStartPage({
         </p>
       )}
 
-      {needsProfession ? (
-        <div className="rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink">
-          Choose your healthcare profession first so we can show the right Writing and Speaking
-          material.{" "}
-          <a href="/account" className="font-semibold underline">
-            Set your profession
-          </a>
-          .
-        </div>
-      ) : needsPaid ? (
+      {needsPaid ? (
         <div className="rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink">
           Practice is part of a subscription, and the 7-day trial is free.{" "}
           <a href="/pricing" className="font-semibold underline">
@@ -119,6 +123,7 @@ export default async function TaskStartPage({
             </p>
             <form action={beginAction} className="mt-4">
               <input type="hidden" name="slug" value={def.slug} />
+              <input type="hidden" name="professionSlug" value={professionDef.slug} />
               <button
                 type="submit"
                 className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
@@ -158,6 +163,7 @@ export default async function TaskStartPage({
                     </span>
                     <form action={beginAction} className="shrink-0">
                       <input type="hidden" name="slug" value={def.slug} />
+              <input type="hidden" name="professionSlug" value={professionDef.slug} />
                       <input type="hidden" name="itemId" value={ex.id} />
                       <button
                         type="submit"

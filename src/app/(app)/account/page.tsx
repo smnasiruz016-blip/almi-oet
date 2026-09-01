@@ -7,6 +7,7 @@ import type { OetProfession } from "@prisma/client";
 import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { PROFESSION_LIST } from "@/lib/oet/professions";
+import { parseProfession, setTargetProfession } from "@/lib/oet/set-profession";
 import {
   getUserPlan,
   PLAN_DISPLAY_NAME,
@@ -20,12 +21,10 @@ import { ReviewCard } from "@/components/reviews/ReviewCard";
 async function setProfession(formData: FormData) {
   "use server";
   const user = await requireUser();
-  const value = String(formData.get("profession") ?? "");
-  const valid = PROFESSION_LIST.some((p) => p.profession === value);
-  await prisma.user.update({
-    where: { id: user.id },
-    data: { targetProfession: valid ? (value as OetProfession) : null },
-  });
+  // Shared with the profession tiles on /practice. Two writers of the same field
+  // drift; this one is written in src/lib/oet/set-profession.ts and called from
+  // both, so the tile and the dropdown cannot disagree about what they store.
+  await setTargetProfession(user.id, parseProfession(formData.get("profession")));
   redirect("/account?saved=1");
 }
 
