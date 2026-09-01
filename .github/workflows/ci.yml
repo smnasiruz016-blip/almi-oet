@@ -79,6 +79,24 @@ jobs:
       - name: Gates
         run: npm run gate:all
 
+      # The three gates the "next exercise" chain brought with it, run BY NAME so
+      # a failure in the CI log says which promise broke rather than "a test
+      # failed". None of them opens a connection: gate:next-exercise drives the
+      # pure picker, gate:pool-visible renders the real pages against a fake
+      # Prisma, gate:chain-is-paid enumerates the entry module's exports and
+      # reads the source tree.
+      #
+      # 🔴 THEY ARE DELIBERATELY NOT IN `gate:all`. gate:all runs inside `build`,
+      # which Vercel runs with NODE_ENV=production, where React 19 does not
+      # export `act` — the exact failure that broke the deploy of #14. Test gates
+      # live here.
+      #
+      # `npm test` below runs these files again as part of the whole suite. The
+      # duplication is the point: this step names them, that step guarantees they
+      # cannot be dropped from the suite by deleting a line from this file.
+      - name: Chain gates
+        run: npm run gate:chain
+
       # The runtime behaviour suite — the only place React effects actually run.
       # It is NO LONGER part of `build`; this step is the only thing standing
       # between a dead countdown and production.

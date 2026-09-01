@@ -4,24 +4,17 @@
 // subscription and a chosen profession.
 
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { hasPaidAccess } from "@/lib/billing/plans";
-import { startSession } from "@/lib/oet/session";
+import { beginMockSession } from "@/lib/oet/entry";
 
 async function startMockAction() {
   "use server";
-  const user = await requireUser();
-  if (!hasPaidAccess(user)) redirect("/pricing");
-  if (!user.targetProfession) redirect("/account?needprofession=1");
-  const id = await startSession({
-    userId: user.id,
-    mode: "MOCK",
-    profession: user.targetProfession,
-  });
-  if (!id) redirect("/practice?mockempty=1");
-  redirect(`/practice/session/${id}`);
+  // The entitlement check, the profession check and the session creation all
+  // live in the one door — src/lib/oet/entry.ts. This page no longer keeps its
+  // own copy of the guard, so it cannot drift from the other two entry points.
+  await beginMockSession();
 }
 
 export default async function MockStartPage() {
