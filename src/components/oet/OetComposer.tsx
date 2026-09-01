@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { OetTaskType } from "@prisma/client";
 import { TIMING } from "@/lib/oet/exam-shape";
+import { usePublishTimer } from "@/components/oet/ExamChrome";
 
 const SUBMIT_BTN =
   "inline-flex min-h-[44px] items-center justify-center rounded-full bg-almi-coral px-6 py-3 text-sm font-semibold text-almi-ink hover:bg-almi-coral-deep disabled:opacity-60";
@@ -90,8 +91,23 @@ function useCountdown(totalSeconds: number, running = true): number {
   return left;
 }
 
+/**
+ * ONE CLOCK PER SECTION, DISPLAYED WHEREVER THE FRAME WANTS IT.
+ *
+ * The composer owns the countdown because the composer knows the phase — Writing
+ * runs five minutes of reading time and then forty of writing, and a frame that
+ * recomputed that would be a second implementation free to disagree with this
+ * one. So the value is PUBLISHED upward and ExamChrome renders it in the fixed
+ * top bar, labelled by what it counts.
+ *
+ * With no frame mounted, `usePublishTimer` returns false and this draws itself
+ * inline exactly as before. The timing gates gate the composer, and they must
+ * keep passing whether or not the frame is around it.
+ */
 function Countdown({ secondsLeft, label }: { secondsLeft: number; label: string }) {
+  const takenByChrome = usePublishTimer({ label, secondsLeft });
   const out = secondsLeft <= 0;
+  if (takenByChrome) return null;
   const low = !out && secondsLeft <= 60;
   return (
     <span

@@ -9,6 +9,7 @@ import { OET_TASKS } from "@/lib/oet/registry";
 import { PROFESSION_LIST } from "@/lib/oet/professions";
 import { speakingPrepPolicy } from "@/lib/oet/prep-policy";
 import { OetComposer } from "@/components/oet/composer-map";
+import { ExamChrome } from "@/components/oet/ExamChrome";
 import { OetResult } from "@/components/oet/OetResult";
 import { OetSessionResult } from "@/components/oet/OetSessionResult";
 import type { OetTaskType } from "@prisma/client";
@@ -124,6 +125,12 @@ export default async function SessionPage({
         </p>
         <h1 className="mt-1 text-2xl font-semibold text-almi-ink">{current.item.title}</h1>
       </header>
+      <ExamChrome
+        sectionLabel={def.label}
+        pageNumber={session.currentStep + 1}
+        pageCount={session.targetCount}
+        onFinishHref={libraryHref}
+      >
       <OetComposer
         attemptId={current.id}
         taskType={current.taskType}
@@ -134,6 +141,7 @@ export default async function SessionPage({
         // unrecognised mode falls back to mandatory. See prep-policy.ts.
         allowSkipPreparation={speakingPrepPolicy(session).allowSkip}
       />
+      </ExamChrome>
     </div>
   );
 }
