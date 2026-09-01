@@ -11,6 +11,7 @@ import { speakingPrepPolicy } from "@/lib/oet/prep-policy";
 import { OetComposer } from "@/components/oet/composer-map";
 import { ExamChrome } from "@/components/oet/ExamChrome";
 import { ExamPageRail } from "@/components/oet/ExamPageRail";
+import { ExamNav } from "@/components/oet/ExamNav";
 import { OetResult } from "@/components/oet/OetResult";
 import { OetSessionResult } from "@/components/oet/OetSessionResult";
 import type { OetTaskType } from "@prisma/client";
@@ -134,6 +135,7 @@ export default async function SessionPage({
         rail={
           <ExamPageRail pageNumber={session.currentStep + 1} pageCount={session.targetCount} />
         }
+        nav={<ExamNav />}
       >
       <OetComposer
         attemptId={current.id}
