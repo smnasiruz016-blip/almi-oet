@@ -1,7 +1,14 @@
 // Full-mock / practice-set aggregate. OET scores each sub-test independently, so
-// we show one practice estimate per sub-test that the session touched — and
-// NEVER a composite/overall (OET has none). The honest range + grade per
-// sub-test comes from aggregateSession.
+// we show one practice estimate per sub-test that the session touched, and never
+// a composite/overall of our own. The honest range + grade per sub-test comes
+// from aggregateSession.
+//
+// This comment used to justify that with "(OET has none)". That was FALSE — OET
+// has reported an overall score since 29 January 2025, and the user-facing copy
+// in this very file already said so correctly, which is how a false comment sat
+// directly above true prose. The justification, unchanged, is
+// overallScoreSupported() in scale.ts: we will not derive a number by a method
+// OET has not published to us.
 
 import Link from "next/link";
 import type { OetAttempt, OetItem, OetSession, OetSubTest } from "@prisma/client";

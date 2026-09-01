@@ -21,6 +21,19 @@
 // The four files are still imported — not to be seeded, but to be CHECKED. If
 // one ever gains an item gen/ does not have, that item would be silently dropped
 // from every future seed, so we fail loudly instead.
+//
+// THAT CHECK USED TO COMPARE (taskType, profession, title) AND NOTHING ELSE, so
+// an item present in BOTH sets with a payload that DISAGREED passed silently.
+// It did, for 24 Speaking items: gen/ carried prepSeconds 120 and
+// speaking-roleplay.ts carried 60. G6 in scripts/gates/run.ts reads GEN_ITEMS
+// only, so it could not see the 60s either — two checks over the same content,
+// and neither looked at the disagreement between the copies.
+//
+// The comparison now includes PAYLOAD VALUES, and lives in ./divergence.ts so
+// that scripts/gates/run.ts (G7) can run the SAME code with no database
+// attached. A rule provable only by connecting to production is a rule nobody
+// runs; and a second, inline copy of the comparison would be free to rot away
+// from this one. One implementation, two callers.
 
 import { PrismaClient } from "@prisma/client";
 import { ITEMS as LISTENING } from "./listening";
@@ -28,6 +41,7 @@ import { ITEMS as READING } from "./reading";
 import { ITEMS as WRITING } from "./writing-letter";
 import { ITEMS as SPEAKING } from "./speaking-roleplay";
 import { GEN_ITEMS } from "./gen";
+import { checkHandwrittenAgainstGen, formatDivergenceReport, type SeedLike } from "./divergence";
 
 const prisma = new PrismaClient();
 const DRY = process.argv.includes("--dry");
@@ -48,15 +62,20 @@ async function main() {
     throw new Error(`Duplicate (taskType,profession,title) in seed source: ${[...new Set(dupes)].join(", ")}`);
   }
 
-  // gen/ must remain a superset of the hand-written sets, or dropping them here
-  // loses content silently.
-  const sourceKeySet = new Set(sourceKeys);
-  const orphans = HANDWRITTEN.map((it) =>
-    key(it.taskType as string, (it.profession as string | null) ?? null, it.title),
-  ).filter((k) => !sourceKeySet.has(k));
-  if (orphans.length > 0) {
+  // gen/ must remain a superset of the hand-written sets BY IDENTITY (or dropping
+  // them here loses content silently) AND must agree with them BY VALUE wherever
+  // both hold the same item (or the two copies drift apart unnoticed, which is
+  // exactly how prepSeconds 60 survived beside prepSeconds 120).
+  const report = checkHandwrittenAgainstGen(
+    HANDWRITTEN as unknown as SeedLike[],
+    ALL as unknown as SeedLike[],
+  );
+  const lines = formatDivergenceReport(report);
+  if (lines.length > 0) {
     throw new Error(
-      `Hand-written seed item(s) missing from gen/ — they would never be seeded: ${[...new Set(orphans)].join(", ")}`,
+      [`Hand-written seed files diverge from gen/ (${report.compared} item(s) compared):`, ...lines].join(
+        "\n",
+      ),
     );
   }
 

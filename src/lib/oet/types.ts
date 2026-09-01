@@ -4,7 +4,8 @@
 // Reading, Writing, Speaking), each mapped to an A–E grade. Since 29 Jan 2025 it
 // ALSO reports an overall score — AlmiOET does not compute one, by choice rather
 // than because none exists; see overallScoreSupported() in scale.ts. Boundaries
-// live in scale.ts and were re-verified 2026-08-04. AlmiOET turns practice into
+// live in scale.ts, transcribed from the artefact committed at
+// docs/sources/oet-understanding-your-score-2025-10-15.pdf. AlmiOET turns practice into
 // an HONEST estimate RANGE on this scale — deliberately wide, because a practice
 // task is not a calibrated live exam — and always tells the user to confirm the
 // score they need with their own regulator.
@@ -14,8 +15,23 @@ import type { OetSubTest, OetTaskType } from "@prisma/client";
 export type { OetSubTest, OetTaskType, OetProfession } from "@prisma/client";
 
 // The OET letter grades, best (A) to lowest (E). C+ sits between C and B.
+//
+// 🔴 "D" AND "E" ARE KEPT AS TYPE MEMBERS, BUT NO PUBLISHED RANGE BACKS THEM.
+// OET's Results-and-Scoring page says grades run "from A (highest) to E
+// (lowest)", so the letters exist. The scoring document we hold —
+// docs/sources/oet-understanding-your-score-2025-10-15.pdf — publishes NO D row
+// and NO E row, so no score interval maps to either. Two official OET sources,
+// and they disagree about what lies below 200; both are recorded in
+// docs/sources/README.md and neither is resolved in the other's favour.
+//
+// Consequence: `gradeForScore` in scale.ts NEVER returns "D" or "E". It returns
+// null below 200 and the UI prints `BELOW_PUBLISHED_BANDS` beside the range. The
+// members stay so that a stored row written before 2026-08-31 (there are rows
+// holding "E") still type-checks when it is read back — not because we can place
+// them on the scale.
 export type OetGrade = "A" | "B" | "C+" | "C" | "D" | "E";
 
+// Every letter OET names. NOT the set this product can award: see above.
 export const OET_GRADES: readonly OetGrade[] = ["A", "B", "C+", "C", "D", "E"] as const;
 
 // A practice-estimate range on the 0–500 OET scale, always 10-point aligned.
@@ -23,7 +39,9 @@ export type Range = readonly [number, number];
 
 // Per-sub-test practice estimate. OET scores each sub-test independently, so this
 // is a single estimate (not a multi-skill object). null = not enough evidence yet.
-export type GradeEstimate = { lo: number; hi: number; grade: OetGrade } | null;
+// `grade: null` means the score sits below every published band — distinct from
+// the outer `| null`, which means "not enough evidence to estimate at all".
+export type GradeEstimate = { lo: number; hi: number; grade: OetGrade | null } | null;
 
 export const SUBTEST_LABEL: Record<OetSubTest, string> = {
   LISTENING: "Listening",

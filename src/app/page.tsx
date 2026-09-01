@@ -3,6 +3,7 @@ import Link from "next/link";
 import { OET_TASKS } from "@/lib/oet/registry";
 import { SUBTEST_LABEL } from "@/lib/oet/types";
 import { PROFESSION_LIST } from "@/lib/oet/professions";
+import { BELOW_PUBLISHED_BANDS, formatRange, fractionToEstimate } from "@/lib/oet/scale";
 import type { OetSubTest } from "@prisma/client";
 import { TestimonialsSection } from "@/components/reviews/TestimonialsSection";
 
@@ -95,12 +96,40 @@ const faqJsonLd = {
 };
 
 // Illustrative sample — clearly labelled, never a real user, never a real OET score.
-const SAMPLE = [
-  { name: "Listening", range: "350–450", grade: "B" },
-  { name: "Reading", range: "350–450", grade: "B" },
-  { name: "Writing", range: "280–400", grade: "C+" },
-  { name: "Speaking", range: "350–450", grade: "B" },
+//
+// 🔴 DERIVED FROM THE SCORING ENGINE, NOT HAND-COPIED FROM IT.
+//
+// This used to be four hard-coded strings: "350–450"/"B" and "280–400"/"C+".
+// They matched fractionToEstimate() on the day someone typed them and nothing
+// bound them to it afterwards, so a change to BUCKETS or GRADE_FLOORS would have
+// left the homepage advertising numbers the product no longer produces — silently,
+// with no gate able to see it. That is the same failure as a comment claiming a
+// number is verified: a copy that looks authoritative and answers to nothing.
+//
+// Now each row is whatever fractionToEstimate() actually returns for its fraction.
+// The fractions were chosen so the RENDERED PAGE IS UNCHANGED by this edit:
+//
+//     0.85 → [350, 450] midpoint 400 → Grade B    ("350–450 · B")
+//     0.75 → [280, 400] midpoint 340 → Grade C+   ("280–400 · C+")
+//
+// If the engine changes, this card changes with it. That is the point.
+const SAMPLE_FRACTIONS: { name: string; fraction: number }[] = [
+  { name: "Listening", fraction: 0.85 },
+  { name: "Reading", fraction: 0.85 },
+  { name: "Writing", fraction: 0.75 },
+  { name: "Speaking", fraction: 0.85 },
 ];
+
+const SAMPLE = SAMPLE_FRACTIONS.map(({ name, fraction }) => {
+  const estimate = fractionToEstimate(fraction);
+  return {
+    name,
+    range: formatRange([estimate.lo, estimate.hi]),
+    // null means the midpoint sits below every band OET publishes. The sample
+    // card obeys the same rule as a real result rather than printing a letter.
+    grade: estimate.grade ?? BELOW_PUBLISHED_BANDS,
+  };
+});
 
 function ScoreMockup() {
   return (
