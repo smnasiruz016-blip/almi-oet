@@ -28,6 +28,7 @@
  *  A10 no two DIFFERENT answers inside one item normalise alike
  *  A11 every Listening variant's words are in that item's own audioScript,
  *      with a WRITTEN PER-VARIANT exemption list and no baseline
+ *  A12 the same, for every Reading variant against that item's own texts
  *
  * ── HOW IT WAS SEEN RED ─────────────────────────────────────────────────────
  *
@@ -404,8 +405,19 @@ const FUNCTION_WORDS = new Set([
 /** Inflectional endings — the difference between two forms of ONE word. The
  *  optional doubled consonant covers sit→sitting, and the list is written out
  *  rather than inferred so that adding to it is a visible decision. */
+//
+// ⚠️ `ised` and `age` were added on 2 September 2026 because the Reading audit
+// names `mobile → mobilised` and `dose → dosage` as forms that MUST survive —
+// "ek hi lafz ka khandan", one word's family. Without them A12 flagged two
+// variants their own author had already ruled on, which would have been the
+// checker disagreeing with the rule it exists to enforce.
+//
+// `age` is the looser of the two: with a three-letter shared stem it also makes
+// "man"/"manage" and "pack"/"package" read as one word. That is a real cost and
+// it is accepted knowingly — it can only ever let a variant PASS the audio/text
+// check, never change how a candidate is marked.
 const INFLECTION =
-  /^(|e|d|s|es|ed|y|ie|ies|th|le|ly|er|est|al|ion|less|ness|iness|ity|ility|ment|ement|ation|ating|ying|tion|sion|[bcdfglmnprstz]?(ing|ed|er|est))$/;
+  /^(|e|d|s|es|ed|y|ie|ies|th|le|ly|er|est|al|age|ion|ised|less|ness|iness|ity|ility|ment|ement|ation|ating|ying|tion|sion|[bcdfglmnprstz]?(ing|ed|er|est))$/;
 
 function sharedPrefix(a: string, b: string): number {
   let i = 0;
@@ -471,7 +483,11 @@ type VariantExemption = {
   item: string;
   gap: string;
   variant: string;
-  source: "ruling-2026-09-02" | "irregular-form";
+  source:
+    | "ruling-2026-09-02"
+    | "irregular-form"
+    | "reading-audit-2026-09-02"
+    | "pending-decision";
   why: string;
 };
 
@@ -556,90 +572,360 @@ const A11_EXEMPT_VARIANT: VariantExemption[] = [
   },
 ];
 
+/**
+ * 🔴 A12's WRITTEN, PER-VARIANT EXEMPTION LIST — from Nasir's Reading Part A
+ * audit of 2 September 2026.
+ *
+ * He measured all 158 Reading variants against their own texts himself, was
+ * suspicious of 37, and found 8 that were genuinely wrong. Those 8 are withdrawn
+ * in this change. The remaining suspicions were his counting being rough, not the
+ * content being wrong, and he wrote down why each survives:
+ *
+ *   number ↔ word          28 / twenty-eight, 18 / eighteen
+ *   another form           massage/massaging, remove/removing/removal,
+ *                          mobile/mobilised/mobility, dehydrated/dehydration
+ *   spelling or joining    non-blanching/nonblanching, hypoactive/hypo-active,
+ *                          tai chi/taichi, night/night-time
+ *   a real spelling split  dietitian / dietician
+ *   an abbreviation        occupational therapist / OT, UTI
+ *   longer, nothing new    capacity / mental capacity, condition / clinical
+ *                          condition, urinary / urinary tract, bifocals /
+ *                          bifocal glasses / bifocal lenses
+ *
+ * Most of those pass A12 on their own, because the shared tolerance already
+ * covers number, form, spelling and hyphenation. The rows below are the ones
+ * that do NOT — an abbreviation the text spells out, or an added word the text
+ * never prints. Each is named per variant, never per word: exempting `mental`
+ * everywhere would forgive the next variant that used it to mean something new.
+ *
+ * ⚠️ HIS LIST NAMED THESE, AND MY RUN FLAGGED EXACTLY THESE. Nothing more was
+ * flagged, so nothing here is my judgement about content — see the PR body,
+ * where that is stated as the thing I would have stopped on.
+ */
+/**
+ * 🔴 NOT MINE TO DECIDE — handed back, not resolved.
+ *
+ * The Reading audit told me to stop and report anything my own run flagged
+ * beyond the exemptions it named, rather than judge it myself. It flagged four.
+ * Two were my ending list being narrower than the audit's own rule (it names
+ * `mobile → mobilised` and `dose → dosage` as forms that must survive), so the
+ * RULE was widened — see INFLECTION above. These two are not that. They are
+ * content questions, and they are Nasir's:
+ *
+ *   `occupational therapist` — the text prints "an occupational-therapy home
+ *      assessment". It never prints "therapist". This is not only a variant
+ *      question: the item's own ANSWER is "an occupational therapist", so A12 is
+ *      reporting that a seeded answer names a person the source never names.
+ *
+ *   `night-time` — the delirium text says "worse at night" and "at night",
+ *      never "time". The audit's survivors table does list `night → night-time`,
+ *      and the identical variant was ruled a per-variant exemption for two
+ *      LISTENING items on 2 September — but it was not among the exemptions
+ *      this audit named for Reading, so adding it is a decision and the
+ *      instruction was not to make one.
+ *
+ * ⚠️ THIS LIST IS A TO-DO, NOT AN ALLOWANCE, so it is stricter than the
+ * exemption lists: a row that has STOPPED failing fails the build, because a
+ * resolved question should be deleted rather than left lying here.
+ */
+const A12_PENDING_DECISION: VariantExemption[] = [
+  {
+    item: "OET Form 2 · Reading Part A — Preventing falls in older adults",
+    gap: "an occupational therapist",
+    variant: "occupational therapist",
+    source: "pending-decision",
+    why: "the text prints 'occupational-therapy', never 'therapist' — and this is the item's own answer, not just a variant",
+  },
+  {
+    item: "OET Form 3 · Reading Part A — Delirium in hospital",
+    gap: "night",
+    variant: "night-time",
+    source: "pending-decision",
+    why: "the text says 'at night', never 'time'; the same variant is an exemption on two Listening items, but this one was not named",
+  },
+];
+
+const A12_EXEMPT_VARIANT: VariantExemption[] = [
+  {
+    item: "Part A — Malnutrition screening",
+    gap: "dietitian",
+    variant: "dietician",
+    source: "reading-audit-2026-09-02",
+    why: "both spellings are current English; failing a nurse on the spelling is not what this question measures",
+  },
+  {
+    item: "OET Form 1 · Reading Part A — Preventing pressure injuries",
+    gap: "the dietitian",
+    variant: "dietician",
+    source: "reading-audit-2026-09-02",
+    why: "same spelling split, in the other item that asks for it",
+  },
+  {
+    item: "Part A — Informed consent essentials",
+    gap: "capacity",
+    variant: "mental capacity",
+    source: "reading-audit-2026-09-02",
+    why: "'mental' names nothing new — the text's capacity IS mental capacity",
+  },
+  {
+    item: "OET Form 1 · Reading Part A — Preventing pressure injuries",
+    gap: "condition",
+    variant: "clinical condition",
+    source: "reading-audit-2026-09-02",
+    why: "'clinical' names nothing new in a clinical text",
+  },
+  {
+    item: "OET Form 1 · Reading Part A — Preventing pressure injuries",
+    gap: "non-blanching redness",
+    variant: "redness that does not blanch",
+    source: "reading-audit-2026-09-02",
+    why: "the same fact written as a clause instead of a compound",
+  },
+  {
+    item: "OET Form 2 · Reading Part A — Preventing falls in older adults",
+    gap: "an occupational therapist",
+    variant: "OT",
+    source: "reading-audit-2026-09-02",
+    why: "the standard abbreviation of the words the text prints in full",
+  },
+  {
+    item: "OET Form 2 · Reading Part A — Preventing falls in older adults",
+    gap: "bifocals",
+    variant: "bifocal glasses",
+    source: "reading-audit-2026-09-02",
+    why: "'glasses' names nothing new — bifocals ARE glasses",
+  },
+  {
+    item: "OET Form 2 · Reading Part A — Preventing falls in older adults",
+    gap: "bifocals",
+    variant: "bifocal lenses",
+    source: "reading-audit-2026-09-02",
+    why: "same reason as 'bifocal glasses'",
+  },
+  {
+    item: "OET Form 3 · Reading Part A — Delirium in hospital",
+    gap: "urinary",
+    variant: "urinary tract",
+    source: "reading-audit-2026-09-02",
+    why: "'tract' names nothing new — the text's urinary source IS the urinary tract",
+  },
+  {
+    item: "OET Form 3 · Reading Part A — Delirium in hospital",
+    gap: "urinary",
+    variant: "urinary tract infection",
+    source: "reading-audit-2026-09-02",
+    why: "same reason, written out in full",
+  },
+  {
+    item: "OET Form 3 · Reading Part A — Delirium in hospital",
+    gap: "urinary",
+    variant: "UTI",
+    source: "reading-audit-2026-09-02",
+    why: "the standard abbreviation of 'urinary tract infection'",
+  },
+];
+
 const exemptKey = (item: string, gap: string, variant: string) => `${item}||${gap}||${variant}`;
-const A11_EXEMPT_BY_KEY = new Map(
-  A11_EXEMPT_VARIANT.map((e) => [exemptKey(e.item, e.gap, e.variant), e]),
-);
-if (A11_EXEMPT_BY_KEY.size !== A11_EXEMPT_VARIANT.length) {
-  fail("A11", "the per-variant exemption list contains a duplicate row");
-}
 
-let audioChecked = 0;
-let audioExempted = 0;
-let audioFunctionSkipped = 0;
-let itemsWithAudio = 0;
-/** Keys that exist in the overlay, so a row pointing at deleted content fails. */
-const exemptSeen = new Set<string>();
-/** Keys that were actually needed — the rest are reported, not failed. */
-const exemptLoadBearing = new Set<string>();
+/** One variant of one answer, as the checks below see it. */
+type VariantCase = { itemTitle: string; gapLabel: string; variant: string };
 
-for (const item of LISTENING) {
-  const script = item.payload.audioScript ?? "";
-  if (!script.trim()) {
-    fail("A11", `"${item.title}" has no audioScript to check its variants against`);
-    continue;
+type SourceCheckResult = {
+  checked: number;
+  abbreviations: number;
+  functionWords: number;
+  sources: number;
+  loadBearing: Set<string>;
+};
+
+/**
+ * 🔴 A11 AND A12 ARE THE SAME CHECK OVER DIFFERENT SOURCES, so they are the same
+ * FUNCTION over different sources. Listening variants must be built from the
+ * item's `audioScript`; Reading variants from the item's own `texts`. The
+ * tolerance — form, spelling, number, hyphen, the abbreviation list, the
+ * function words, the per-variant exemptions — is shared by construction. Two
+ * copies would be two things that could drift, and a Reading check that was
+ * quietly more forgiving than the Listening one is precisely the inconsistency
+ * this whole series of corrections has been about.
+ */
+function runSourceWordCheck(opts: {
+  check: "A11" | "A12";
+  /** What the source is called in a failure message. */
+  sourceName: string;
+  /** The text every variant of this item must be built from. */
+  sourceFor: (itemTitle: string) => string;
+  /** Every (item, answer, variant) triple to check. */
+  cases: VariantCase[];
+  exemptions: VariantExemption[];
+  /** Questions handed back to the author, not answered here. */
+  pending?: VariantExemption[];
+}): SourceCheckResult {
+  const { check, sourceName, sourceFor, cases, exemptions } = opts;
+  const pending = opts.pending ?? [];
+  const pendingByKey = new Map(pending.map((e) => [exemptKey(e.item, e.gap, e.variant), e]));
+  const pendingSeen = new Set<string>();
+  const pendingLoadBearing = new Set<string>();
+
+  const byKey = new Map(exemptions.map((e) => [exemptKey(e.item, e.gap, e.variant), e]));
+  if (byKey.size !== exemptions.length) {
+    fail(check, `the ${check} per-variant exemption list contains a duplicate row`);
   }
-  itemsWithAudio += 1;
-  const audioTokens = normalizeTokens(script);
-  const audioWords = new Set(audioTokens);
-  const audioJoined = audioTokens.join("");
-  for (const gap of item.payload.gaps ?? []) {
-    for (const variant of listeningAcceptFor(item.title, gap.label)) {
-      audioChecked += 1;
-      const key = exemptKey(item.title, gap.label, variant);
-      const exempt = A11_EXEMPT_BY_KEY.get(key);
-      if (exempt) exemptSeen.add(key);
 
-      // A run-on spelling of words the script says separately ("buttonhook" for
-      // "button hook") is still the script's own wording.
-      if (audioJoined.includes(normalize(variant))) continue;
+  const seen = new Set<string>();
+  const loadBearing = new Set<string>();
+  let checked = 0;
+  let abbreviations = 0;
+  let functionWords = 0;
 
-      // Collect EVERY missing word first, so an exempt row can be told apart
-      // from one that never needed exempting.
-      const missing: string[] = [];
-      for (const word of normalizeTokens(variant)) {
-        if (AUDIO_EXEMPT_TOKENS.has(word)) {
-          audioExempted += 1;
-          continue;
-        }
-        if (FUNCTION_WORDS.has(word)) {
-          audioFunctionSkipped += 1;
-          continue;
-        }
-        if (wordInAudio(word, audioWords)) continue;
-        missing.push(word);
-      }
-      if (missing.length === 0) continue;
-      if (exempt) {
-        exemptLoadBearing.add(key);
+  // Tokenise each source once, not once per variant.
+  const tokensFor = new Map<string, { words: Set<string>; joined: string }>();
+  for (const c of cases) {
+    if (tokensFor.has(c.itemTitle)) continue;
+    const text = sourceFor(c.itemTitle);
+    if (!text.trim()) {
+      fail(check, `"${c.itemTitle}" has no ${sourceName} to check its variants against`);
+      continue;
+    }
+    const toks = normalizeTokens(text);
+    tokensFor.set(c.itemTitle, { words: new Set(toks), joined: toks.join("") });
+  }
+
+  for (const c of cases) {
+    const src = tokensFor.get(c.itemTitle);
+    if (!src) continue; // already reported as sourceless
+    checked += 1;
+    const key = exemptKey(c.itemTitle, c.gapLabel, c.variant);
+    const exempt = byKey.get(key);
+    if (exempt) seen.add(key);
+    const isPending = pendingByKey.has(key);
+    if (isPending) pendingSeen.add(key);
+
+    // A run-on spelling of words the source writes separately ("buttonhook" for
+    // "button hook", "taichi" for "tai chi") is still the source's own wording.
+    if (src.joined.includes(normalize(c.variant))) continue;
+
+    // Collect EVERY missing word first, so an exempt row can be told apart from
+    // one that never needed exempting.
+    const missing: string[] = [];
+    for (const word of normalizeTokens(c.variant)) {
+      if (AUDIO_EXEMPT_TOKENS.has(word)) {
+        abbreviations += 1;
         continue;
       }
-      for (const word of missing) {
-        fail(
-          "A11",
-          `"${item.title}" / "${gap.label}": variant "${variant}" uses "${word}", ` +
-            "which that item's audioScript never says, and it is not on the " +
-            "written per-variant exemption list",
-        );
+      if (FUNCTION_WORDS.has(word)) {
+        functionWords += 1;
+        continue;
       }
+      if (wordInAudio(word, src.words)) continue;
+      missing.push(word);
+    }
+    if (missing.length === 0) continue;
+    if (exempt) {
+      loadBearing.add(key);
+      continue;
+    }
+    if (isPending) {
+      pendingLoadBearing.add(key);
+      continue;
+    }
+    for (const word of missing) {
+      fail(
+        check,
+        `"${c.itemTitle}" / "${c.gapLabel}": variant "${c.variant}" uses "${word}", ` +
+          `which that item's ${sourceName} never says, and it is not on the ` +
+          "written per-variant exemption list",
+      );
+    }
+  }
+
+  // The list cannot rot: a row pointing at a variant that is no longer in the
+  // overlay is an excuse for content that does not exist.
+  for (const e of exemptions) {
+    const key = exemptKey(e.item, e.gap, e.variant);
+    if (!seen.has(key)) {
+      fail(
+        check,
+        "exemption points at a variant that is not in the overlay — delete the row: " +
+          `"${e.item}" / "${e.gap}" / "${e.variant}"`,
+      );
+    }
+  }
+  // A to-do is stricter than an allowance: a row that no longer fails is a
+  // question that has been answered, and it should be deleted rather than left.
+  for (const e of pending) {
+    const key = exemptKey(e.item, e.gap, e.variant);
+    if (!pendingSeen.has(key)) {
+      fail(check, `pending row points at a variant not in the overlay — delete it: "${e.variant}"`);
+    } else if (!pendingLoadBearing.has(key)) {
+      fail(check, `pending row no longer fails — it is resolved, delete it: "${e.variant}"`);
+    }
+  }
+  if (tokensFor.size === 0) fail(check, `no item had a ${sourceName} — ${check} was vacuous`);
+  if (checked === 0) fail(check, `no variant reached ${check} — it was vacuous`);
+
+  return { checked, abbreviations, functionWords, sources: tokensFor.size, loadBearing };
+}
+
+// ── A11 · run it over Listening, against each item's audioScript ────────────
+const A11_CASES: VariantCase[] = [];
+for (const item of LISTENING) {
+  for (const gap of item.payload.gaps ?? []) {
+    for (const variant of listeningAcceptFor(item.title, gap.label)) {
+      A11_CASES.push({ itemTitle: item.title, gapLabel: gap.label, variant });
+    }
+  }
+}
+const A11_AUDIO = new Map(LISTENING.map((i) => [i.title, i.payload.audioScript ?? ""]));
+const a11 = runSourceWordCheck({
+  check: "A11",
+  sourceName: "audioScript",
+  sourceFor: (t) => A11_AUDIO.get(t) ?? "",
+  cases: A11_CASES,
+  exemptions: A11_EXEMPT_VARIANT,
+});
+
+// ── A12 · THE SAME CHECK OVER READING, AGAINST EACH ITEM'S OWN TEXTS ────────
+//
+// 🔴 THIS IS THE HOLE THE PREVIOUS CHANGE LEFT OPEN AND SAID SO. A11 was
+// deliberately kept off Reading Part A because the source there is printed text
+// rather than an audio script, and that was recorded as unfinished work in two
+// PRs running. Nasir then audited all 158 Reading variants by hand and found
+// eight that no gate could have caught — `a hard surface`, `an external
+// surface`, `off the mattress`, `dry`, `postural hypotension`, `lying and
+// standing`, `orthostatic`, `moving`. They are withdrawn in this change, and
+// this check is what stops the next eight.
+//
+// The source is the item's own `texts` — every heading and body, which is
+// exactly what the candidate reads. "match" questions are excluded: their
+// answers are text ids and leniency never touches them.
+
+/** title → the item's whole printed text. */
+const READING_TEXT = new Map(
+  READING.map((i) => [
+    i.title,
+    ((i.payload as { texts?: { heading?: string; body?: string }[] }).texts ?? [])
+      .map((t) => `${t.heading ?? ""} ${t.body ?? ""}`)
+      .join(" "),
+  ]),
+);
+
+const A12_CASES: VariantCase[] = [];
+for (const item of READING) {
+  for (const q of (item.payload.questions ?? []).filter((x) => x.kind !== "match")) {
+    for (const variant of readingAcceptFor(item.title, q.answer)) {
+      A12_CASES.push({ itemTitle: item.title, gapLabel: q.answer, variant });
     }
   }
 }
 
-// The list cannot rot: a row pointing at a variant that is no longer in the
-// overlay is an excuse for content that does not exist.
-for (const e of A11_EXEMPT_VARIANT) {
-  const key = exemptKey(e.item, e.gap, e.variant);
-  if (!exemptSeen.has(key)) {
-    fail(
-      "A11",
-      `exemption points at a variant that is not in the overlay — delete the row: ` +
-        `"${e.item}" / "${e.gap}" / "${e.variant}"`,
-    );
-  }
-}
-if (itemsWithAudio === 0) fail("A11", "no Listening item had an audioScript — A11 was vacuous");
-if (audioChecked === 0) fail("A11", "no variant reached the audio check — A11 was vacuous");
+const a12 = runSourceWordCheck({
+  check: "A12",
+  sourceName: "texts",
+  sourceFor: (t) => READING_TEXT.get(t) ?? "",
+  cases: A12_CASES,
+  exemptions: A12_EXEMPT_VARIANT,
+  pending: A12_PENDING_DECISION,
+});
 
 
 // ── report ─────────────────────────────────────────────────────────────────
@@ -647,25 +933,41 @@ console.log(
   `[gate:accept-lists] ${LISTENING.length} Listening Part A item(s), ${listeningGaps} gap(s); ` +
     `${READING.length} Reading Part A item(s), ${readingFree} free-text answer(s); ` +
     `${CASES.length} answer(s) checked, ${numericChecked} with a numeric counterpart; ` +
-    `${audioChecked} Listening variant(s) against ${itemsWithAudio} audio script(s) ` +
-    `(${audioExempted} abbreviation(s), ${audioFunctionSkipped} function word(s), ` +
-    `${A11_EXEMPT_VARIANT.length} per-variant exemption(s), ` +
-    `${exemptLoadBearing.size} of them load-bearing)`,
+    `A11: ${a11.checked} Listening variant(s) against ${a11.sources} audio script(s); ` +
+    `A12: ${a12.checked} Reading variant(s) against ${a12.sources} text set(s); ` +
+    `(${a11.abbreviations + a12.abbreviations} abbreviation(s), ` +
+    `${a11.functionWords + a12.functionWords} function word(s), ` +
+    `${A11_EXEMPT_VARIANT.length + A12_EXEMPT_VARIANT.length} per-variant exemption(s), ` +
+    `${a11.loadBearing.size + a12.loadBearing.size} load-bearing)`,
 );
-const notLoadBearing = A11_EXEMPT_VARIANT.filter(
-  (e) => !exemptLoadBearing.has(exemptKey(e.item, e.gap, e.variant)),
-);
-if (notLoadBearing.length > 0) {
+function reportExemptions(
+  check: string,
+  exemptions: VariantExemption[],
+  loadBearing: Set<string>,
+) {
+  const idle = exemptions.filter((e) => !loadBearing.has(exemptKey(e.item, e.gap, e.variant)));
+  if (idle.length === 0) return;
   console.log(
-    `  NOTE  ${notLoadBearing.length} of ${A11_EXEMPT_VARIANT.length} per-variant ` +
-      "exemption(s) are not load-bearing today — kept deliberately, see the file:",
+    `  NOTE  ${idle.length} of ${exemptions.length} ${check} per-variant exemption(s) ` +
+      "are not load-bearing today — kept deliberately, see the file:",
   );
-  for (const e of notLoadBearing) {
+  for (const e of idle) console.log(`        "${e.variant}" — ${e.item} / ${e.gap}`);
+}
+if (A12_PENDING_DECISION.length > 0) {
+  console.log(
+    `  🔴 A12 HANDED BACK — ${A12_PENDING_DECISION.length} variant(s) flagged by this run that ` +
+      "the audit did not name. NOT decided here:",
+  );
+  for (const e of A12_PENDING_DECISION) {
     console.log(`        "${e.variant}" — ${e.item} / ${e.gap}`);
+    console.log(`           ${e.why}`);
   }
 }
+reportExemptions("A11", A11_EXEMPT_VARIANT, a11.loadBearing);
+reportExemptions("A12", A12_EXEMPT_VARIANT, a12.loadBearing);
+
 for (const check of [
-  "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11",
+  "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11", "A12",
 ]) {
   // startsWith(check) alone would make "A1" swallow "A10" and "A11"; the two
   // spaces after the key are part of how fail() writes them.
