@@ -11,6 +11,7 @@
 import { z } from "zod";
 import type { TaskRunResult } from "@/lib/oet/registry";
 import { markObjective, objectiveResponseSchema } from "@/lib/oet/tasks/objective";
+import { listeningAcceptFor } from "@/lib/oet/accept-lists";
 
 export { objectiveResponseSchema };
 
@@ -48,9 +49,19 @@ export type ListeningMcqPayload = z.infer<typeof listeningMcqPayloadSchema>;
 export function scoreListeningPartA(
   payload: ListeningPartAPayload,
   response: z.infer<typeof objectiveResponseSchema>,
+  /** The item's title. Used ONLY to look up the authored accept-lists; when it
+   *  is absent the marking falls back to the payload's own variants, which is
+   *  what happened before the overlay existed. */
+  title?: string,
 ): TaskRunResult {
   return markObjective(
-    payload.gaps.map((g) => ({ id: g.id, answer: g.answer, variants: g.variants })),
+    payload.gaps.map((g) => ({
+      id: g.id,
+      answer: g.answer,
+      // The overlay is MERGED with whatever the payload already carried, never
+      // substituted for it — a variant authored into the seed keeps working.
+      variants: [...(g.variants ?? []), ...listeningAcceptFor(title, g.label)],
+    })),
     response,
   );
 }
