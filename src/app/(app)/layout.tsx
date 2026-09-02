@@ -4,6 +4,7 @@
 
 import { requireUser } from "@/lib/auth";
 import { logoutAction } from "@/lib/auth/logout-action";
+import { emailGateScope } from "@/lib/billing/email-gate";
 import { EmailVerifyBanner } from "@/components/EmailVerifyBanner";
 import { GlobalHeader } from "@/components/GlobalHeader";
 import { Sidebar } from "@/components/Sidebar";
@@ -25,7 +26,15 @@ export default async function AppLayout({
           header now takes it. See src/components/GlobalHeader.tsx for why the
           read lives here and not one level up. */}
       <GlobalHeader user={user} />
-      {!user.emailVerified && <EmailVerifyBanner email={user.email} />}
+      {/* The banner is shown only when it has something TRUE to say, and it is
+          told which true thing. `!user.emailVerified` alone put "Paid features
+          are gated" above comped accounts, for whom practice was open. */}
+      {emailGateScope(user) !== "NOTHING" && (
+        <EmailVerifyBanner
+          email={user.email}
+          scope={emailGateScope(user) as "AI_ONLY" | "ALL_PAID"}
+        />
+      )}
       <Sidebar email={user.email} isAdmin={admin} logout={logoutAction} />
       <main className="flex-1 px-4 py-8 sm:px-6 md:ml-60 md:px-8">
         <div className="mx-auto w-full max-w-5xl">{children}</div>

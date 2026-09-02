@@ -19,6 +19,8 @@ import { prisma } from "@/lib/prisma";
 import { OET_HANDLERS } from "@/lib/oet/registry";
 import { fractionToEstimate } from "@/lib/oet/scale";
 import { transcribeAudio } from "@/lib/ai/openai";
+import { checkBeforeTranscription, checkBeforeGrading } from "@/lib/oet/substance";
+import { aiFeedbackBlockedByEmail } from "@/lib/billing/email-gate";
 
 export const runtime = "nodejs";
 
@@ -97,7 +99,10 @@ export async function POST(req: Request): Promise<NextResponse> {
   // an address nobody has proven they own could burn metered tokens on every
   // submit. Checked AFTER the paid gate so the 402 stays the first answer for a
   // free account, and BEFORE transcription so no unverified request costs money.
-  if (handler.mode === "AI" && !user.emailVerified) {
+  // The predicate is shared with the banner that DESCRIBES this rule to the
+  // learner — see src/lib/billing/email-gate.ts. A description that was its own
+  // copy of the rule would be free to drift from it, and did.
+  if (handler.mode === "AI" && aiFeedbackBlockedByEmail(user)) {
     return NextResponse.json(
       { ok: false, error: "Verify your email address before using AI feedback.", verifyUrl: "/account" },
       { status: 403 },
@@ -131,6 +136,35 @@ export async function POST(req: Request): Promise<NextResponse> {
     }
   }
 
+  // ── 🔴 SUBSTANCE BEFORE TOKENS ────────────────────────────────────────────
+  //
+  // MEASURED 2 Sep 2026, counting calls at the model boundary: an empty letter,
+  // a whitespace-only letter, a zero-length recording and an empty transcript
+  // each reached a paid model, wrote a cost-ledger row, and marked the attempt
+  // SCORED. Four of six empty cases. The trial cap does not catch them —
+  // trialAiAllowance() is UNCAPPED for any status that is not "trialing", so a
+  // paying subscriber had nothing between them and the money.
+  //
+  // This runs AFTER the entitlement gates (money before tokens is unchanged)
+  // and BEFORE transcribeAudio(), which is the first paid call on the Speaking
+  // path. Returning here leaves the attempt IN_PROGRESS, so a learner who
+  // submits blank by accident can still do the exercise properly.
+  //
+  // The rule itself is in src/lib/oet/substance.ts — one definition, no I/O.
+  if (handler.mode === "AI") {
+    const pre = checkBeforeTranscription({
+      taskType: attempt.taskType,
+      audio: audio ? { bytes: audio.file.size, durationSeconds: audio.durationSeconds } : null,
+      response: responseValue,
+    });
+    if (!pre.ok) {
+      return NextResponse.json(
+        { ok: false, error: pre.message, reason: pre.reason },
+        { status: 422 },
+      );
+    }
+  }
+
   // Speaking: transcribe the uploaded audio before scoring.
   if (audio) {
     try {
@@ -146,6 +180,20 @@ export async function POST(req: Request): Promise<NextResponse> {
       return NextResponse.json(
         { ok: false, error: "Could not transcribe your recording. Try again." },
         { status: 500 },
+      );
+    }
+  }
+
+  // The second half of substance-before-tokens. Whisper can return an empty
+  // string for a recording that was large enough to look real — the upload
+  // check above cannot see that, and by here the transcription is already paid
+  // for. The GRADING call is not, and this is where it is saved.
+  if (handler.mode === "AI") {
+    const post = checkBeforeGrading({ taskType: attempt.taskType, response: responseValue });
+    if (!post.ok) {
+      return NextResponse.json(
+        { ok: false, error: post.message, reason: post.reason },
+        { status: 422 },
       );
     }
   }

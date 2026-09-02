@@ -18,6 +18,7 @@
     "gate:chain": "npm run gate:next-exercise && npm run gate:pool-visible && npm run gate:chain-is-paid",
     "test": "vitest run",
     "test:e2e": "tsx scripts/e2e/run.mts",
+    "gate:no-tokens-for-nothing": "tsx scripts/measure/blank-submit.mts",
     "report:shape": "tsx scripts/report-shape.ts",
     "start": "next start",
     "postinstall": "prisma generate",

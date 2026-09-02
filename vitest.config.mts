@@ -32,6 +32,12 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     include: ["tests/**/*.test.tsx", "tests/**/*.test.ts"],
+    // tests/db needs a real PostgreSQL, which this project does not provision.
+    // It has its own config and its own runner — see vitest.db.config.mts and
+    // scripts/measure/blank-submit.mts. Excluded here so `npm test` does not
+    // fail for the wrong reason; a gate that fails for the wrong reason is a
+    // gate somebody switches off.
+    exclude: ["node_modules/**", "tests/db/**", "tests/e2e/**"],
     env: { NODE_ENV: "test" },
   },
   resolve: {

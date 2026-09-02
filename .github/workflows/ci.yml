@@ -143,6 +143,15 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
+      # 🔴 DOES AN EMPTY SUBMISSION REACH A PAID MODEL? Counted at the boundary
+      # with the Anthropic client and transcribeAudio replaced by counters — NO
+      # REAL MODEL IS EVER CALLED, here or anywhere. Its own throwaway database,
+      # on a different port from the walk below, and the same assertDisposable()
+      # guard. It regenerates docs/measurements/blank-submit.md, so the counts
+      # are in the repo and a change to them shows up as a diff.
+      - name: No tokens for nothing
+        run: npm run gate:no-tokens-for-nothing
+
       # Boots the throwaway database, migrates it, seeds an entitled learner and
       # the fifteen-per-part floor the server insists on, builds, starts, walks.
       - name: End-to-end walk
