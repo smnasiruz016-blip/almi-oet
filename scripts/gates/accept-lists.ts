@@ -43,6 +43,8 @@
  * hand-typed literals, because the whole point of a refusal case is that it is
  * not derived from the thing being tested.
  */
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { GEN_ITEMS } from "../seed/gen/index";
 import {
   LISTENING_PART_A_ACCEPT,
@@ -1165,6 +1167,50 @@ const a12 = runSourceWordCheck({
 });
 
 
+
+// ---- 🔴 OVERLAY DEAD ---- counted, not failed ----------------------------
+//
+// The Reading half of the overlay is keyed by item TITLE, and on 3 September 2026
+// the eighteen titles it names were retired from production. It now serves
+// nothing, and it is kept only so `retire-fragments.mts --restore` can bring
+// those items back WITHOUT re-opening the marking defect PR #35 closed. See the
+// header of src/lib/oet/accept-lists.ts.
+//
+// 🔴 THE RETIRED SET IS READ FROM THE CHECKED-IN RETIRE LISTS, NEVER TYPED HERE.
+// A hand-typed count is a second copy of the truth and would drift the first time
+// a list changed — which is the whole family of mistake this evening was spent on.
+//
+// IT PRINTS, IT DOES NOT FAIL. This is a state we chose; a gate that fails on it
+// is noise, and noise is how gates get switched off. The number may only shrink:
+// when it reaches 0 the Reading half of the overlay goes, and so does this block.
+const RETIRE_DIR = join(import.meta.dirname, "..", "retire");
+const retiredTitles = new Set<string>();
+let retireListsRead = 0;
+for (const file of readdirSync(RETIRE_DIR).filter((f) => f.endsWith(".json"))) {
+  const rows = JSON.parse(readFileSync(join(RETIRE_DIR, file), "utf8")) as {
+    taskType: string;
+    title: string;
+  }[];
+  retireListsRead += 1;
+  for (const r of rows) retiredTitles.add(r.title);
+}
+// Population before the guard: with no list read every count below is 0, and the
+// line would report a clean overlay it never actually looked at.
+if (retireListsRead === 0) {
+  fail("A0", `no retire list found in ${RETIRE_DIR} — the OVERLAY DEAD count would be vacuous`);
+}
+const deadKeys: string[] = [];
+let deadVariants = 0;
+for (const [title, answers] of Object.entries(READING_PART_A_ACCEPT)) {
+  if (!retiredTitles.has(title)) continue;
+  deadKeys.push(title);
+  for (const variants of Object.values(answers)) deadVariants += variants.length;
+}
+let liveListeningVariants = 0;
+for (const answers of Object.values(LISTENING_PART_A_ACCEPT)) {
+  for (const variants of Object.values(answers)) liveListeningVariants += variants.length;
+}
+
 // ── report ─────────────────────────────────────────────────────────────────
 console.log(
   `[gate:accept-lists] ${LISTENING.length} Listening Part A item(s), ${listeningGaps} gap(s); ` +
@@ -1202,6 +1248,12 @@ if (A12_PENDING_DECISION.length > 0) {
 }
 reportExemptions("A11", A11_EXEMPT_VARIANT, a11.loadBearing);
 reportExemptions("A12", A12_EXEMPT_VARIANT, a12.loadBearing);
+
+console.log(
+  `OVERLAY DEAD: ${deadKeys.length} key(s) naming retired items, ` +
+    `${deadVariants} variant(s) serving nothing ` +
+    `(from ${retireListsRead} retire list(s); Listening's ${liveListeningVariants} are live)`,
+);
 
 for (const check of [
   "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10", "A11", "A12",
