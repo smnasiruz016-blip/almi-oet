@@ -125,6 +125,64 @@ test.describe("Reading Part A, full length, in a real browser", () => {
     console.log(`[e2e] Part A "${A.title}": four texts rendered, ${words} words on screen`);
 
     await shot(page, "10-part-a-texts.png", "reading-texts");
+
+    // 🔴 AND IT MUST STILL READ IN A NARROW COLUMN. The bodies were authored
+    // with hard newlines every ~110 characters and the composer preserves what it
+    // is given, so on any container narrower than that each authored line wrapped
+    // a SECOND time and the paragraphs came out ragged, breaking mid-sentence at
+    // the authoring width. 423 of those newlines were removed on 3 September 2026.
+    // A wide viewport hides that defect; this is the width that shows it.
+    await page.setViewportSize({ width: 430, height: 900 });
+    await page.reload();
+    const narrow = page.getByTestId("reading-texts");
+    await expect(narrow).toBeVisible();
+    const narrowText = (await narrow.innerText()).replace(/\s+/g, " ").trim();
+    for (const [i, tail] of A.textTails.entries()) {
+      expect(narrowText, `text ${"ABCD"[i]} does not survive a narrow column`).toContain(
+        tail.replace(/\s+/g, " ").trim(),
+      );
+    }
+    expect(narrowText).not.toContain("|");
+    expect(narrowText).not.toContain("**");
+
+    // Every LINE the browser actually laid out. A hard newline the author left in
+    // shows up here as a short line in the middle of a paragraph; wrapping done by
+    // the browser fills the column.
+    const laidOut: string[] = await narrow.evaluate((el) => {
+      const out: string[] = [];
+      // ONLY the body paragraphs. The composer marks each one with
+      // data-reading-body; the heading beside it is its own <p> and is
+      // legitimately a short line.
+      for (const para of Array.from(el.querySelectorAll("p[data-reading-body]"))) {
+        for (const raw of (para.textContent ?? "").split("\n")) {
+          const t = raw.trim();
+          if (t) out.push(t);
+        }
+      }
+      return out;
+    });
+    // A bullet is a legitimately short line; a bullet holding a second "- " is the
+    // flattened list this walk exists to catch.
+    const bullets = laidOut.filter((l) => l.startsWith("- "));
+    expect(bullets.length, "the two bullet lists must still be bullet lists").toBeGreaterThan(2);
+    for (const b of bullets) {
+      expect(b.slice(2), `a bullet list ran together onto one line: ${b.slice(0, 80)}`).not.toMatch(
+        / - /,
+      );
+    }
+    // No source line may be a mid-paragraph fragment any more.
+    const fragments = laidOut.filter((l) => !l.startsWith("- ") && l.length < 60 && !/[.:;?]$/.test(l));
+    expect(
+      fragments,
+      `${fragments.length} paragraph line(s) still break at the authoring width, not the column`,
+    ).toEqual([]);
+
+    console.log(
+      `[e2e] narrow column (430px): ${laidOut.length} laid-out line(s), ` +
+        `${bullets.length} bullet(s), 0 mid-paragraph fragments`,
+    );
+    await shot(page, "10b-part-a-texts-narrow.png", "reading-texts");
+    await page.setViewportSize({ width: 1360, height: 900 });
   });
 
   test("a matching, a short answer, a sentence completion and a VARIANT are all marked right, and the score and the screen agree", async ({
