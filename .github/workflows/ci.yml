@@ -108,3 +108,53 @@ jobs:
       # every single run, instead of only when somebody remembers to ask.
       - name: Shape report
         run: npm run report:shape
+
+  # ── THE BROWSER WALK ──────────────────────────────────────────────────────
+  #
+  # A separate job because it is a different kind of proof and a different cost:
+  # it builds the app, starts it, and drives Chromium through fifteen exercises.
+  # The `verify` job above stays fast and is what most pushes need.
+  #
+  # 🔴 STILL NO SECRET, AND STILL NO PRODUCTION DATABASE. The database is a
+  # throwaway PostgreSQL that scripts/e2e/disposable-db.mts starts on loopback
+  # and deletes afterwards; assertDisposable() refuses any non-loopback host and
+  # refuses a URL equal to DATABASE_URL. No DATABASE_URL is set in this job at
+  # all — the only credential is the same per-run GITHUB_TOKEN `npm ci` needs to
+  # read @smnasiruz016-blip/almi-data from GitHub Packages.
+  e2e:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install (npm ci)
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Browsers are not vendored; this is the only download the job makes.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      # Boots the throwaway database, migrates it, seeds an entitled learner and
+      # the fifteen-per-part floor the server insists on, builds, starts, walks.
+      - name: End-to-end walk
+        run: npm run test:e2e
+
+      # Traces and failure screenshots, so a red run can be read without a local
+      # reproduction. The committed screenshots in docs/e2e are a different
+      # thing — those are written deliberately by the passing walk.
+      - name: Upload Playwright artefacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: tests/e2e/.artifacts/
+          retention-days: 7

@@ -6,6 +6,7 @@ import { PROFESSION_LIST } from "@/lib/oet/professions";
 import { BELOW_PUBLISHED_BANDS, formatRange, fractionToEstimate } from "@/lib/oet/scale";
 import type { OetSubTest } from "@prisma/client";
 import { TestimonialsSection } from "@/components/reviews/TestimonialsSection";
+import { GlobalHeader } from "@/components/GlobalHeader";
 
 // Re-render hourly so newly approved testimonials appear without a redeploy.
 export const revalidate = 3600;
@@ -163,6 +164,16 @@ function ScoreMockup() {
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col bg-almi-bg text-almi-text">
+      {/* 🔴 SIGNED-OUT ON PURPOSE, AND THIS IS THE TRADE-OFF NAMED.
+          This page is `○ (Static)` and the `export const revalidate = 3600`
+          above is a deliberate hourly ISR. Reading the session for the header —
+          here or in the root layout — would make that line do nothing and turn
+          the marketing homepage into a function invocation, with a
+          prisma.review.findMany, on every visit. So a signed-in learner sees the
+          signed-out nav here and only here (plus /forgot-password and the 404).
+          Every page a learner actually practises on is already dynamic and gets
+          the real one. */}
+      <GlobalHeader user={null} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       {/* Hero */}

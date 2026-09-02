@@ -16,6 +16,7 @@ import { ExamNav } from "@/components/oet/ExamNav";
 import { isSealedSection, sealedSectionNotice } from "@/lib/oet/section-rules";
 import { OetResult } from "@/components/oet/OetResult";
 import { OetSessionResult } from "@/components/oet/OetSessionResult";
+import { ChainNext } from "@/components/oet/ChainNext";
 import type { OetTaskType } from "@prisma/client";
 
 // Strip any server-only answer key before sending the payload to the client.
@@ -136,6 +137,41 @@ export default async function SessionPage({
       await advanceSession(sessionId, u.id);
       redirect(`/practice/session/${sessionId}`);
     }
+
+    // 🔴 THE CHAIN REACHES THE END OF EVERY ITEM, NOT ONLY THE END OF A SET.
+    //
+    // PRACTICE_SET_STEPS is 3, so until now "Next exercise →" appeared after
+    // THREE completed items — the feature built to let a learner walk the
+    // library was itself three exercises away. Nasir hit exactly that:
+    // "i think need to fill and submit the test to be able to click next."
+    //
+    // The set flow below is untouched: "Next step →" / "See results →" stay the
+    // primary action and PRACTICE_SET_STEPS stays at 3. This is an ADDITIONAL
+    // exit, and it is the same component, the same server action and the same
+    // entitlement check as the one on the set result.
+    //
+    // A mock is excluded: its plan spans four sub-tests, so there is no single
+    // task pool to continue within.
+    const stepChain =
+      session.mode === "PRACTICE_SET"
+        ? await chainView({
+            taskType: current.taskType,
+            profession: session.profession,
+            userId: user.id,
+            // Everything this session has served so far. Steps beyond the
+            // current one do not exist yet, so leaving mid-set strands nothing.
+            excludeIds: session.attempts.map((a) => a.itemId),
+            userProfession: user.targetProfession ?? null,
+          })
+        : null;
+
+    async function continueChainFromStep(formData: FormData) {
+      "use server";
+      await continuePracticeChain(sessionId, {
+        restart: String(formData.get("restart") ?? "") === "1",
+      });
+    }
+
     return (
       <div className="mx-auto max-w-2xl space-y-6">
         <p className="text-xs font-bold uppercase tracking-wider text-almi-text-muted">{stepLabel}</p>
@@ -143,11 +179,15 @@ export default async function SessionPage({
         <form action={advance}>
           <button
             type="submit"
+            data-testid="advance-set-button"
             className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
           >
             {isLast ? "See results →" : "Next step →"}
           </button>
         </form>
+        {stepChain && (
+          <ChainNext chain={stepChain} continueAction={continueChainFromStep} tone="secondary" />
+        )}
       </div>
     );
   }
@@ -165,7 +205,9 @@ export default async function SessionPage({
           </a>{" "}
           page.
         </p>
-        <h1 className="mt-1 text-2xl font-semibold text-almi-ink">{current.item.title}</h1>
+        <h1 data-testid="session-item-title" className="mt-1 text-2xl font-semibold text-almi-ink">
+          {current.item.title}
+        </h1>
       </header>
       <ExamChrome
         sectionLabel={def.label}

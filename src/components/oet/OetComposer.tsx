@@ -353,7 +353,7 @@ function ListeningComposer({
         ))}
       </div>
       {error && <p className="text-sm font-medium text-almi-coral-deep">{error}</p>}
-      <button type="button" onClick={() => submit({ answers })} disabled={submitting} className={SUBMIT_BTN}>
+      <button type="button" data-testid="submit-answers" onClick={() => submit({ answers })} disabled={submitting} className={SUBMIT_BTN}>
         {submitting ? "Checking…" : "Submit answers"}
       </button>
     </div>
@@ -558,7 +558,7 @@ function ReadingComposer({
         ))}
       </div>
       {error && <p className="text-sm font-medium text-almi-coral-deep">{error}</p>}
-      <button type="button" onClick={() => submit({ answers })} disabled={submitting} className={SUBMIT_BTN}>
+      <button type="button" data-testid="submit-answers" onClick={() => submit({ answers })} disabled={submitting} className={SUBMIT_BTN}>
         {submitting ? "Checking…" : "Submit answers"}
       </button>
     </div>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Allura } from "next/font/google";
 import "./globals.css";
-import { GlobalHeader } from "@/components/GlobalHeader";
 import { GlobalFooter } from "@/components/GlobalFooter";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
@@ -35,8 +34,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${allura.variable} h-full antialiased`}>
+      {/* 🔴 NO HEADER HERE, DELIBERATELY. The header has to know whether someone
+          is signed in, and reading the session in the ROOT layout makes every
+          route under it dynamic — including `/`, which is `○ (Static)` with an
+          explicit `export const revalidate = 3600`. So the header is rendered
+          one level down by each segment, which is where the session read either
+          already happens or is free. The owners are enumerated and asserted in
+          tests/header-session.test.tsx, so this is not a rule anyone has to
+          remember. */}
       <body className="min-h-full flex flex-col">
-        <GlobalHeader />
         <div className="flex flex-1 flex-col">{children}</div>
         <GlobalFooter />
       </body>
