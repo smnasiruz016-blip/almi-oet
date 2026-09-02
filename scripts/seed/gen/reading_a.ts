@@ -6248,10 +6248,10 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q15",
           "kind": "gap",
-          "stem": "The final check happens at the ______________, with the patient.",
-          "answer": "bedside",
+          "stem": "Blood given to the wrong patient is almost never a ______________ error.",
+          "answer": "laboratory",
           "variants": [
-            "the bedside"
+            "a laboratory error"
           ]
         },
         {

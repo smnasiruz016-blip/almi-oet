@@ -494,41 +494,6 @@ if (!folicGap) {
   }
 }
 
-/**
- * 🔴 FLAGGED BY A10, HANDED BACK — NOT DECIDED HERE.
- *
- * Porting Reading Part A sets 10-15 on 2 September 2026, A10 found one collision
- * inside `Part A — Blood transfusion safety`:
- *
- *   q8   "Where is the grouping sample labelled?"        answer "at the bedside"
- *   q15  "The final check happens at the ___, with the patient."  answer "bedside"
- *
- * and the text genuinely says both — "taken and labelled at the bedside" and
- * "The final check happens at the bedside". So unlike the `sugar` collision this
- * check was built for, neither answer is wrong: two questions in one item simply
- * have the same right answer.
- *
- * Whether that is acceptable is an AUTHORING question — it makes one clue serve
- * two questions, which is the kind of thing A10 exists to surface — and content
- * quality is the author's call, not a gate's. So it is recorded, not fixed.
- *
- * ⚠️ A TO-DO, NOT AN ALLOWANCE: a row that has STOPPED colliding fails the
- * build, so a resolved question must be deleted from here rather than left.
- */
-const A10_PENDING_DECISION: { item: string; a: string; b: string; normalised: string }[] = [
-  {
-    item: "Part A — Blood transfusion safety",
-    a: 'answer "at the bedside"',
-    b: 'answer "bedside"',
-    normalised: "bedside",
-  },
-];
-const a10PendingKey = (item: string, norm: string) => `${item}||${norm}`;
-const A10_PENDING_KEYS = new Set(
-  A10_PENDING_DECISION.map((e) => a10PendingKey(e.item, e.normalised)),
-);
-const a10PendingHit = new Set<string>();
-
 // ── A10 · NO TWO ANSWERS INSIDE ONE ITEM MAY NORMALISE ALIKE ───────────────
 //
 // 🔴 THIS IS THE HOLE THE PREVIOUS PR NAMED IN ITS OWN CLOSING LIST and did not
@@ -547,6 +512,15 @@ const a10PendingHit = new Set<string>();
 //
 // This is a benefit of counting, not of looking. Reading the list one entry at a
 // time cannot find it: both halves are individually reasonable.
+//
+// It earned its keep again on 2 September 2026, this time on newly authored
+// content rather than a legacy accept-list. In `Part A — Blood transfusion
+// safety`, q8 ("Where is the grouping sample labelled?") and q15 ("The final
+// check happens at the ___") both rested on "bedside" — and the text says both,
+// so neither answer was wrong. The defect was that one clue then solved two
+// questions and the item was easier than its question count suggested. The owner
+// rewrote q15 onto a different fact in the same text ("almost never a laboratory
+// error"). Nothing is exempted here: A10 passes with no pending list at all.
 type Accepted = { id: string; label: string; strings: string[] };
 
 function collisionsIn(itemTitle: string, entries: Accepted[]) {
@@ -561,11 +535,6 @@ function collisionsIn(itemTitle: string, entries: Accepted[]) {
       own.add(norm);
       const prior = seen.get(norm);
       if (prior && prior.id !== e.id) {
-        const key = a10PendingKey(itemTitle, norm);
-        if (A10_PENDING_KEYS.has(key)) {
-          a10PendingHit.add(key);
-          continue;
-        }
         fail(
           "A10",
           `"${itemTitle}": "${prior.label}" (via "${prior.raw}") and "${e.label}" (via "${raw}") ` +
@@ -599,22 +568,6 @@ for (const item of READING) {
         strings: [q.answer, ...(q.variants ?? []), ...readingAcceptFor(item.title, q.answer)],
       })),
   );
-}
-
-// A to-do that has stopped failing is a question that has been answered.
-for (const e of A10_PENDING_DECISION) {
-  if (!a10PendingHit.has(a10PendingKey(e.item, e.normalised))) {
-    fail("A10", `"${e.item}" no longer collides on "${e.normalised}" — delete the A10 pending row.`);
-  }
-}
-if (A10_PENDING_DECISION.length > 0) {
-  console.log(
-    `  🔴 A10 HANDED BACK — ${A10_PENDING_DECISION.length} collision(s) inside one item. ` +
-      "NOT decided here:",
-  );
-  for (const e of A10_PENDING_DECISION) {
-    console.log(`        ${e.item}: ${e.a} and ${e.b} both normalise to "${e.normalised}"`);
-  }
 }
 
 // ── A11 · EVERY LISTENING VARIANT IS IN THAT ITEM'S OWN AUDIO ──────────────
