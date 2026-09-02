@@ -11,6 +11,7 @@
 import { z } from "zod";
 import type { TaskRunResult } from "@/lib/oet/registry";
 import { markObjective, objectiveResponseSchema } from "@/lib/oet/tasks/objective";
+import { readingAcceptFor } from "@/lib/oet/accept-lists";
 
 export { objectiveResponseSchema };
 
@@ -48,6 +49,8 @@ export type ReadingMcqPayload = z.infer<typeof readingMcqPayloadSchema>;
 export function scoreReadingPartA(
   payload: ReadingPartAPayload,
   response: z.infer<typeof objectiveResponseSchema>,
+  /** The item's title, for the authored accept-lists. See scoreListeningPartA. */
+  title?: string,
 ): TaskRunResult {
   // "match" answers are option/text ids (exact); "gap" answers are free text (lenient).
   return markObjective(
@@ -55,7 +58,15 @@ export function scoreReadingPartA(
       id: q.id,
       answer: q.answer,
       exact: q.kind === "match",
-      variants: q.variants,
+      // 🔴 The overlay is keyed by the question's own `answer`, not by its stem:
+      // Reading stems are long sentences and copying them into the accept-list
+      // file would be a transcription error waiting to happen. It is applied to
+      // free-text questions only — a "match" answer is an id, and leniency has
+      // no business there.
+      variants:
+        q.kind === "match"
+          ? q.variants
+          : [...(q.variants ?? []), ...readingAcceptFor(title, q.answer)],
     })),
     response,
   );
