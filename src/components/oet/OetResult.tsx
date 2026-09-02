@@ -12,7 +12,7 @@ import { GradeEstimate, ESTIMATE_DISCLAIMER } from "@/components/oet/GradeEstima
 import { buildObjectiveReview } from "@/lib/oet/review";
 
 function ObjectiveReview({ def, item, attempt }: { def: TaskDef; item: OetItem; attempt: OetAttempt }) {
-  const review = buildObjectiveReview(def.taskType, item.payload, attempt.response);
+  const review = buildObjectiveReview(def.taskType, item.payload, attempt.response, item.title);
   if (!review || review.total === 0) return null;
   return (
     <section className="rounded-2xl border border-almi-bg-peach bg-almi-bg p-5">

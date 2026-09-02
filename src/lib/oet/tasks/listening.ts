@@ -10,7 +10,11 @@
 
 import { z } from "zod";
 import type { TaskRunResult } from "@/lib/oet/registry";
-import { markObjective, objectiveResponseSchema } from "@/lib/oet/tasks/objective";
+import {
+  markObjective,
+  objectiveResponseSchema,
+  type AnswerKey,
+} from "@/lib/oet/tasks/objective";
 import { listeningAcceptFor } from "@/lib/oet/accept-lists";
 
 export { objectiveResponseSchema };
@@ -46,32 +50,42 @@ export const listeningMcqPayloadSchema = z.object({
 });
 export type ListeningMcqPayload = z.infer<typeof listeningMcqPayloadSchema>;
 
-export function scoreListeningPartA(
+/**
+ * THE LISTENING PART A ANSWER KEY — built once, used by the grader AND the
+ * review. See readingPartAAnswerKey and the header of objective.ts for why the
+ * review is not allowed to build its own.
+ */
+export function listeningPartAAnswerKey(
   payload: ListeningPartAPayload,
-  response: z.infer<typeof objectiveResponseSchema>,
   /** The item's title. Used ONLY to look up the authored accept-lists; when it
    *  is absent the marking falls back to the payload's own variants, which is
    *  what happened before the overlay existed. */
   title?: string,
+): AnswerKey[] {
+  return payload.gaps.map((g) => ({
+    id: g.id,
+    answer: g.answer,
+    // The overlay is MERGED with whatever the payload already carried, never
+    // substituted for it — a variant authored into the seed keeps working.
+    variants: [...(g.variants ?? []), ...listeningAcceptFor(title, g.label)],
+  }));
+}
+
+export function listeningMcqAnswerKey(payload: ListeningMcqPayload): AnswerKey[] {
+  return payload.questions.map((q) => ({ id: q.id, answer: q.answer, exact: true }));
+}
+
+export function scoreListeningPartA(
+  payload: ListeningPartAPayload,
+  response: z.infer<typeof objectiveResponseSchema>,
+  title?: string,
 ): TaskRunResult {
-  return markObjective(
-    payload.gaps.map((g) => ({
-      id: g.id,
-      answer: g.answer,
-      // The overlay is MERGED with whatever the payload already carried, never
-      // substituted for it — a variant authored into the seed keeps working.
-      variants: [...(g.variants ?? []), ...listeningAcceptFor(title, g.label)],
-    })),
-    response,
-  );
+  return markObjective(listeningPartAAnswerKey(payload, title), response);
 }
 
 export function scoreListeningMcq(
   payload: ListeningMcqPayload,
   response: z.infer<typeof objectiveResponseSchema>,
 ): TaskRunResult {
-  return markObjective(
-    payload.questions.map((q) => ({ id: q.id, answer: q.answer, exact: true })),
-    response,
-  );
+  return markObjective(listeningMcqAnswerKey(payload), response);
 }
