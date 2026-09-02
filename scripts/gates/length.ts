@@ -98,22 +98,33 @@
  * the legacy items breach the structure as well as the length — a 49-word Part A
  * has 4 gaps, not 12.
  *
- * ⚠️ WORD COUNTING IS NOT UNIQUE, AND THIS GATE STILL COUNTS PUNCTUATION AS
- * WORDS. It splits on whitespace, so a bullet "-" and a standalone em dash each
- * count as a word; a tokeniser that counts only tokens containing a letter or a
- * digit reads the same items 6-14 words lower.
+ * 🔴 WHAT COUNTS AS A WORD — RULED 3 SEPTEMBER 2026
  *
- * 🔴 THE OWNER HAS RULED THAT AN EM DASH IS NOT A WORD AND A BULLET HYPHEN IS
- * NOT A WORD (3 September 2026), and that the fix lands in ITS OWN COMMIT, AFTER
- * the one item that straddled the ceiling had been cut — so that nobody reading
- * this later can mistake a correctness fix for a convenience. THE INSTRUMENT IS
- * NEVER CHANGED TO ADMIT CONTENT AUTHORED BEFORE IT. That commit is not this
- * one, and when it lands every list in this file is rebuilt from that run.
+ *     A TOKEN COUNTS AS A WORD ONLY IF IT CONTAINS AT LEAST ONE LETTER OR DIGIT.
+ *     An em dash is not a word. A bullet hyphen is not a word.
  *
- * Note which way the present error runs: counting dashes makes every item look
- * LONGER than it is, so this gate is LENIENT AT THE FLOOR — an item could clear
- * 885 on the strength of its punctuation. Nothing sits near a floor today, which
- * is the only reason that is not already a live defect.
+ * OET's own figures — 885, 976, 1009 — are counts of words. A gate that counts
+ * punctuation as words is not measuring what OET measured. Until this change
+ * `words()` split on whitespace and counted a standalone "—" and a bullet "-"
+ * as words, reading every item 6-14 tokens LONGER than it is.
+ *
+ * WHICH WAY THE OLD ERROR RAN MATTERS: counting dashes made items look longer,
+ * so the gate was LENIENT AT THE FLOOR — an item could have cleared 885 on the
+ * strength of its punctuation. This change makes it stricter, which is the
+ * direction the law points.
+ *
+ * 🔴 IT LANDED IN ITS OWN COMMIT, AFTER the one item that straddled the ceiling
+ * had been cut, so nobody reading this later can mistake a correctness fix for a
+ * convenience. THE INSTRUMENT IS NEVER CHANGED TO ADMIT CONTENT AUTHORED BEFORE
+ * IT. Every count in LEGACY_SHORT below was re-measured from the run that made
+ * this change; none was carried over.
+ *
+ * AND IT MOVED NO VERDICT. All 177 governed items were measured under both
+ * tokenisers before the change was made: ZERO items cross a bound either way, so
+ * LEGACY_SHORT's membership is identical and LEGACY DEBT stays 147. Only the
+ * printed counts fall. That is what a correctness fix on an instrument should
+ * look like when the content is already well clear of its bounds — and it is the
+ * reason this was safe to do at all.
  */
 import { GEN_ITEMS } from "../seed/gen/index";
 
@@ -144,11 +155,19 @@ const LAW: Record<string, [number, number]> = {
 
 /**
  * 🔴 HAND-CHECKED-IN, MEASURED, MAY ONLY SHRINK. Each line carries the word
- * count measured on 3 September 2026 UNDER THE CORRECTED LAW, so a reader can
- * see how far short an item is without re-running anything. The Reading Part A
- * counts are texts + question stems combined and are therefore larger than the
- * numbers this list carried before — the items did not change, the measurement
- * did.
+ * count measured on 3 September 2026 UNDER THE CORRECTED LAW AND THE RULED
+ * TOKENISER, so a reader can see how far short an item is without re-running
+ * anything.
+ *
+ * Every count here was RE-MEASURED from the run that made the tokeniser change;
+ * none was carried over. 60 of the 147 fell, because those items carry
+ * standalone punctuation the old whitespace split counted as words.
+ *
+ * MEMBERSHIP IS IDENTICAL, and that was established before the change rather
+ * than discovered after it: all 177 governed items were measured under BOTH
+ * tokenisers, and not one crosses a bound either way. So the may-only-shrink
+ * rule is not being bent by a rebuild here. The Reading Part A counts are texts
+ * + question stems combined.
  */
 const LEGACY_SHORT: string[] = [
   // ── LISTENING_PART_A · 21 item(s), law 550-600 words ──
@@ -167,12 +186,12 @@ const LEGACY_SHORT: string[] = [
   "LISTENING_PART_A::Part A — Ongoing sleep problem", // 75 words
   "LISTENING_PART_A::Part A — Post-operative wound check", // 60 words
   "LISTENING_PART_A::Part A — Suspected urinary infection", // 69 words
-  "LISTENING_PART_A::OET Form 1 · Listening Part A — Physiotherapy consultation (lower back pain)", // 233 words
-  "LISTENING_PART_A::OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)", // 198 words
-  "LISTENING_PART_A::OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)", // 193 words
-  "LISTENING_PART_A::OET Form 2 · Listening Part A — Practice-nurse asthma review", // 165 words
-  "LISTENING_PART_A::OET Form 3 · Listening Part A — Physiotherapist and lower back pain", // 213 words
-  "LISTENING_PART_A::OET Form 3 · Listening Part A — Midwife antenatal booking visit", // 200 words
+  "LISTENING_PART_A::OET Form 1 · Listening Part A — Physiotherapy consultation (lower back pain)", // 229 words
+  "LISTENING_PART_A::OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)", // 193 words
+  "LISTENING_PART_A::OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)", // 190 words
+  "LISTENING_PART_A::OET Form 2 · Listening Part A — Practice-nurse asthma review", // 161 words
+  "LISTENING_PART_A::OET Form 3 · Listening Part A — Physiotherapist and lower back pain", // 210 words
+  "LISTENING_PART_A::OET Form 3 · Listening Part A — Midwife antenatal booking visit", // 197 words
   // ── LISTENING_PART_B · 33 item(s), law 140-165 words ──
   "LISTENING_PART_B::Part B — Alert about a norovirus outbreak", // 53 words
   "LISTENING_PART_B::Part B — Arranging a complex discharge", // 51 words
@@ -189,24 +208,24 @@ const LEGACY_SHORT: string[] = [
   "LISTENING_PART_B::Part B — Switching to a new infusion pump model", // 56 words
   "LISTENING_PART_B::Part B — Updated dressing trolley protocol", // 84 words
   "LISTENING_PART_B::Part B — Verbal handover for a post-operative patient", // 53 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Discharge concern", // 47 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Hand-hygiene audit", // 29 words
+  "LISTENING_PART_B::OET Form 1 · Listening Part B — Discharge concern", // 46 words
+  "LISTENING_PART_B::OET Form 1 · Listening Part B — Hand-hygiene audit", // 28 words
   "LISTENING_PART_B::OET Form 1 · Listening Part B — X-ray result", // 33 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Home exercises", // 31 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Infusion pump training", // 34 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Handling results", // 34 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Low sodium", // 35 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Gloves and hand hygiene", // 36 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Nil by mouth", // 37 words
+  "LISTENING_PART_B::OET Form 1 · Listening Part B — Home exercises", // 30 words
+  "LISTENING_PART_B::OET Form 1 · Listening Part B — Infusion pump training", // 33 words
+  "LISTENING_PART_B::OET Form 1 · Listening Part B — Handling results", // 33 words
+  "LISTENING_PART_B::OET Form 2 · Listening Part B — Low sodium", // 34 words
+  "LISTENING_PART_B::OET Form 2 · Listening Part B — Gloves and hand hygiene", // 35 words
+  "LISTENING_PART_B::OET Form 2 · Listening Part B — Nil by mouth", // 36 words
   "LISTENING_PART_B::OET Form 2 · Listening Part B — Paracetamol order", // 39 words
   "LISTENING_PART_B::OET Form 2 · Listening Part B — Escalating concern", // 41 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Chest pain at reception", // 39 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Sharps bins", // 44 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Transfusion check", // 49 words
+  "LISTENING_PART_B::OET Form 2 · Listening Part B — Chest pain at reception", // 38 words
+  "LISTENING_PART_B::OET Form 3 · Listening Part B — Sharps bins", // 43 words
+  "LISTENING_PART_B::OET Form 3 · Listening Part B — Transfusion check", // 48 words
   "LISTENING_PART_B::OET Form 3 · Listening Part B — Timely notes", // 41 words
   "LISTENING_PART_B::OET Form 3 · Listening Part B — Oxygen as a drug", // 42 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Interpreters", // 40 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Red wristband", // 45 words
+  "LISTENING_PART_B::OET Form 3 · Listening Part B — Interpreters", // 39 words
+  "LISTENING_PART_B::OET Form 3 · Listening Part B — Red wristband", // 44 words
   // ── LISTENING_PART_C · 21 item(s), law 780-880 words ──
   "LISTENING_PART_C::Part C — A multimodal approach to chronic pain management", // 141 words
   "LISTENING_PART_C::Part C — Antibiotic stewardship and the 48-hour review", // 132 words
@@ -220,34 +239,34 @@ const LEGACY_SHORT: string[] = [
   "LISTENING_PART_C::Part C — Responding to agitation in dementia care", // 134 words
   "LISTENING_PART_C::Part C — Sustaining gains in quality improvement projects", // 138 words
   "LISTENING_PART_C::Part C — Tackling malnutrition risk in hospital patients", // 141 words
-  "LISTENING_PART_C::Part C — Talk on hydration in older adults", // 61 words
+  "LISTENING_PART_C::Part C — Talk on hydration in older adults", // 59 words
   "LISTENING_PART_C::Part C — The first hour in recognising sepsis", // 145 words
   "LISTENING_PART_C::Part C — Understanding hesitancy to improve vaccination uptake", // 141 words
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing", // 312 words
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy", // 245 words
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Interview: de-escalation in mental health", // 221 words
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance", // 156 words
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain", // 261 words
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy", // 245 words
+  "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing", // 305 words
+  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy", // 238 words
+  "LISTENING_PART_C::OET Form 2 · Listening Part C — Interview: de-escalation in mental health", // 217 words
+  "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance", // 151 words
+  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain", // 254 words
+  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy", // 240 words
   // ── READING_PART_A · 18 item(s), law 885-1009 words ──
-  "READING_PART_A::Part A — Aseptic non-touch technique", // 134 words
-  "READING_PART_A::Part A — Discharge planning checklist", // 131 words
-  "READING_PART_A::Part A — Falls risk assessment", // 146 words
-  "READING_PART_A::Part A — Hand hygiene texts", // 87 words
-  "READING_PART_A::Part A — Informed consent essentials", // 130 words
-  "READING_PART_A::Part A — Insulin storage and handling", // 141 words
-  "READING_PART_A::Part A — Malnutrition screening", // 129 words
-  "READING_PART_A::Part A — Oxygen cylinder safety", // 131 words
-  "READING_PART_A::Part A — Pain assessment methods", // 142 words
-  "READING_PART_A::Part A — Preventing pressure injuries in immobile patients", // 235 words
-  "READING_PART_A::Part A — Repositioning for skin protection", // 137 words
-  "READING_PART_A::Part A — Safe patient transfers", // 127 words
-  "READING_PART_A::Part A — Source isolation precautions", // 132 words
-  "READING_PART_A::Part A — Urinary catheter care", // 137 words
-  "READING_PART_A::Part A — Wound dressing selection", // 145 words
-  "READING_PART_A::OET Form 1 · Reading Part A — Preventing pressure injuries", // 385 words
-  "READING_PART_A::OET Form 2 · Reading Part A — Preventing falls in older adults", // 375 words
-  "READING_PART_A::OET Form 3 · Reading Part A — Delirium in hospital", // 355 words
+  "READING_PART_A::Part A — Aseptic non-touch technique", // 133 words
+  "READING_PART_A::Part A — Discharge planning checklist", // 130 words
+  "READING_PART_A::Part A — Falls risk assessment", // 145 words
+  "READING_PART_A::Part A — Hand hygiene texts", // 86 words
+  "READING_PART_A::Part A — Informed consent essentials", // 129 words
+  "READING_PART_A::Part A — Insulin storage and handling", // 140 words
+  "READING_PART_A::Part A — Malnutrition screening", // 128 words
+  "READING_PART_A::Part A — Oxygen cylinder safety", // 130 words
+  "READING_PART_A::Part A — Pain assessment methods", // 141 words
+  "READING_PART_A::Part A — Preventing pressure injuries in immobile patients", // 234 words
+  "READING_PART_A::Part A — Repositioning for skin protection", // 136 words
+  "READING_PART_A::Part A — Safe patient transfers", // 126 words
+  "READING_PART_A::Part A — Source isolation precautions", // 131 words
+  "READING_PART_A::Part A — Urinary catheter care", // 136 words
+  "READING_PART_A::Part A — Wound dressing selection", // 144 words
+  "READING_PART_A::OET Form 1 · Reading Part A — Preventing pressure injuries", // 375 words
+  "READING_PART_A::OET Form 2 · Reading Part A — Preventing falls in older adults", // 364 words
+  "READING_PART_A::OET Form 3 · Reading Part A — Delirium in hospital", // 342 words
   // ── READING_PART_B · 33 item(s), law 136-155 words ──
   "READING_PART_B::Part B — Allergy alert documentation", // 89 words
   "READING_PART_B::Part B — Audit memo on documentation timing", // 80 words
@@ -264,30 +283,30 @@ const LEGACY_SHORT: string[] = [
   "READING_PART_B::Part B — Sharps disposal at point of use", // 80 words
   "READING_PART_B::Part B — Staff rostering swap email", // 87 words
   "READING_PART_B::Part B — Visiting policy on protected mealtimes", // 74 words
-  "READING_PART_B::OET Form 1 · Reading Part B — Controlled-drugs policy", // 48 words
+  "READING_PART_B::OET Form 1 · Reading Part B — Controlled-drugs policy", // 47 words
   "READING_PART_B::OET Form 1 · Reading Part B — Sharps memo", // 37 words
   "READING_PART_B::OET Form 1 · Reading Part B — Hand-hygiene guideline", // 40 words
   "READING_PART_B::OET Form 1 · Reading Part B — Medicine label", // 29 words
   "READING_PART_B::OET Form 1 · Reading Part B — Visitor notice", // 35 words
-  "READING_PART_B::OET Form 1 · Reading Part B — Handover note", // 39 words
+  "READING_PART_B::OET Form 1 · Reading Part B — Handover note", // 38 words
   "READING_PART_B::OET Form 2 · Reading Part B — Consent", // 36 words
-  "READING_PART_B::OET Form 2 · Reading Part B — Vaccine fridge log", // 47 words
+  "READING_PART_B::OET Form 2 · Reading Part B — Vaccine fridge log", // 46 words
   "READING_PART_B::OET Form 2 · Reading Part B — Terminology memo", // 28 words
   "READING_PART_B::OET Form 2 · Reading Part B — Protected breaks", // 34 words
-  "READING_PART_B::OET Form 2 · Reading Part B — Specimen labelling", // 33 words
+  "READING_PART_B::OET Form 2 · Reading Part B — Specimen labelling", // 32 words
   "READING_PART_B::OET Form 2 · Reading Part B — Safe discharge", // 33 words
   "READING_PART_B::OET Form 3 · Reading Part B — Penicillin allergy label", // 59 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Controlled drugs", // 46 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Early warning scores", // 54 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Bare below the elbows", // 45 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Confidentiality in public areas", // 45 words
+  "READING_PART_B::OET Form 3 · Reading Part B — Controlled drugs", // 45 words
+  "READING_PART_B::OET Form 3 · Reading Part B — Early warning scores", // 53 words
+  "READING_PART_B::OET Form 3 · Reading Part B — Bare below the elbows", // 44 words
+  "READING_PART_B::OET Form 3 · Reading Part B — Confidentiality in public areas", // 44 words
   "READING_PART_B::OET Form 3 · Reading Part B — Verbal orders", // 46 words
   // ── READING_PART_C · 21 item(s), law 653-836 words ──
-  "READING_PART_C::Part C — Article on shared decision-making", // 52 words
+  "READING_PART_C::Part C — Article on shared decision-making", // 51 words
   "READING_PART_C::Part C — Evidence, experience and the bedside", // 136 words
   "READING_PART_C::Part C — Knowing a patient over time", // 146 words
   "READING_PART_C::Part C — Practising to protect ourselves", // 131 words
-  "READING_PART_C::Part C — Rethinking the value of clinical handover", // 230 words
+  "READING_PART_C::Part C — Rethinking the value of clinical handover", // 229 words
   "READING_PART_C::Part C — Running on empty in the caring professions", // 128 words
   "READING_PART_C::Part C — Sitting with not knowing", // 145 words
   "READING_PART_C::Part C — The arithmetic patients actually hear", // 151 words
@@ -298,16 +317,23 @@ const LEGACY_SHORT: string[] = [
   "READING_PART_C::Part C — What we do with our mistakes", // 144 words
   "READING_PART_C::Part C — When empathy becomes a clinical skill", // 141 words
   "READING_PART_C::Part C — Whose decision is it anyway", // 126 words
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening", // 413 words
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience", // 361 words
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'", // 315 words
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do", // 307 words
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment", // 345 words
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer", // 335 words
+  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening", // 405 words
+  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience", // 359 words
+  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'", // 310 words
+  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do", // 302 words
+  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment", // 341 words
+  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer", // 333 words
 ];
 
+/**
+ * 🔴 THE ONE PLACE THIS FILE DECIDES WHAT A WORD IS.
+ *
+ * Split on whitespace, then keep only the tokens carrying a letter or a digit.
+ * "—" alone is dropped; "-" alone is dropped; "mid-sentence", "1:1000",
+ * "92%" and "18" are all words. See the ruling in the header.
+ */
 const words = (s: string | undefined): number =>
-  s && s.trim() ? s.trim().split(/\s+/).length : 0;
+  s ? (s.match(/[^\s]+/g) ?? []).filter((t) => /[A-Za-z0-9]/.test(t)).length : 0;
 
 function textWords(item: Item): number {
   if (item.taskType.startsWith("LISTENING")) return words(item.payload.audioScript);
