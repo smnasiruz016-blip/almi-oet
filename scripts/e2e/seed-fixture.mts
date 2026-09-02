@@ -55,6 +55,37 @@ export type Fixture = {
    *  does NOT trust this — it reads the rendered list — but it is printed so a
    *  failure can be read without a database. */
   seededTitles: string[];
+  /** Everything the Reading Part A walk needs, computed FROM THE SEEDED PAYLOAD
+   *  rather than typed out here — see partAWalk(). */
+  partA: PartAWalk;
+};
+
+/**
+ * THE READING PART A WALK, DERIVED FROM THE ITEM ITSELF.
+ *
+ * Nothing below is hand-typed. The answers are read out of the payload the app
+ * is about to serve, so the walk cannot drift from the content: if an answer key
+ * changed, the walk changes with it and still asserts the same thing — that the
+ * product marks a right answer right.
+ *
+ * `variantAnswer` is the one that matters most. It is NOT the question's own
+ * `answer`; it is one of its authored `variants`, so a pass proves the accept
+ * list is reaching the grader and not merely sitting in the payload.
+ */
+export type PartAWalk = {
+  taskSlug: string;
+  title: string;
+  /** The last words of each of the four texts, in order. The walk asserts each
+   *  is on screen — a truncated or collapsed text fails on its own tail. */
+  textTails: string[];
+  /** questions 1-7: choose the text. */
+  matching: { id: string; optionId: string; stem: string };
+  /** questions 8-14: a question, answered with a word or short phrase. */
+  shortAnswer: { id: string; answer: string; stem: string };
+  /** questions 15-20: a sentence with a blank in it. */
+  completion: { id: string; answer: string; stem: string };
+  /** answered with an AUTHORED VARIANT, never with the primary answer. */
+  variant: { id: string; primary: string; variantAnswer: string; stem: string };
 };
 
 /** src/instrumentation.ts refuses to start the server below this per-part. It is
@@ -70,6 +101,112 @@ const OBJECTIVE_PARTS = [
 ] as const;
 /** The part the browser walks. */
 const WALK_TASK = "READING_PART_B";
+/** …and the part the second walk reads. */
+const PART_A = "READING_PART_A";
+
+/**
+ * 🔴 THE FIFTEEN, IDENTIFIED BY THE LAW AND NOT BY A LIST OF TITLES.
+ *
+ * The seed source holds 33 Reading Part A items: eighteen legacy ones that are
+ * short of the measured law, and the fifteen full-length ones. `slice(0, 15)`
+ * would take the eighteen's first fifteen — the harness would then have proved
+ * the product renders the items that are on their way out.
+ *
+ * ⚠️ THE STRUCTURAL HALF OF THE LAW IS NOT ENOUGH, AND THIS WAS MEASURED THE
+ * HARD WAY. The first version of this filter asked only for FOUR texts and
+ * TWENTY questions. Three legacy items carry exactly that shape and are still
+ * 355-385 words combined, and one of them sorts FIRST — so the walk opened
+ * `OET Form 1 · Reading Part A — Preventing pressure injuries`, rendered 266
+ * words, and failed on its own word-count assertion. That failure is the reason
+ * the assertion is there.
+ *
+ * So the filter is the WHOLE law: four texts, twenty questions, AND the
+ * combined length gate:length measures — every text body plus every question
+ * stem — inside 885-1009. No title is typed here, so an item joins the walk by
+ * becoming full length and leaves it by ceasing to be.
+ */
+const PART_A_MIN = 885;
+const PART_A_MAX = 1009;
+const words = (s: string | undefined): number =>
+  s && s.trim() ? s.trim().split(/\s+/).length : 0;
+
+function isFullLengthPartA(item: Prisma.OetItemCreateManyInput): boolean {
+  const p = item.payload as {
+    texts?: { body?: string }[];
+    questions?: { stem?: string }[];
+  } | null;
+  const texts = p?.texts ?? [];
+  const questions = p?.questions ?? [];
+  if (texts.length !== 4 || questions.length !== 20) return false;
+  const combined =
+    texts.reduce((n, t) => n + words(t.body), 0) +
+    questions.reduce((n, q) => n + words(q.stem), 0);
+  return combined >= PART_A_MIN && combined <= PART_A_MAX;
+}
+
+/** Build the Part A walk from one item's own payload. Throws rather than
+ *  guesses: a missing question kind is a finding about the bank, not something
+ *  for a test to paper over. */
+function partAWalk(item: Prisma.OetItemCreateManyInput): PartAWalk {
+  const payload = item.payload as {
+    texts: { body?: string }[];
+    questions: {
+      id: string;
+      kind?: string;
+      stem?: string;
+      answer?: string;
+      variants?: string[];
+      options?: { id: string }[];
+    }[];
+  };
+  const qs = payload.questions;
+  const need = <T,>(v: T | undefined, what: string): T => {
+    if (v === undefined) throw new Error(`[e2e] ${item.title}: no ${what} — refusing to walk it`);
+    return v;
+  };
+
+  // A matching question is the one carrying options; the free-text questions
+  // carry none. THE BANK STORES BOTH FREE-TEXT KINDS AS `gap`, so the two are
+  // told apart the way a candidate tells them apart — a sentence completion has
+  // the blank printed in it, a short answer is a question.
+  const matching = need(
+    qs.find((q) => (q.options?.length ?? 0) > 0 && q.answer),
+    "matching question",
+  );
+  const freeText = qs.filter((q) => (q.options?.length ?? 0) === 0 && q.answer);
+  const hasBlank = (q: { stem?: string }) => /_{3,}/.test(q.stem ?? "");
+  const shortAnswer = need(
+    freeText.find((q) => !hasBlank(q)),
+    "short-answer question",
+  );
+  const completion = need(
+    freeText.find(hasBlank),
+    "sentence-completion question",
+  );
+  const variant = need(
+    freeText.find(
+      (q) =>
+        (q.variants?.length ?? 0) > 0 && q.id !== shortAnswer.id && q.id !== completion.id,
+    ),
+    "free-text question carrying an authored variant",
+  );
+
+  const tail = (body: string) => body.trim().split(/\s+/).slice(-8).join(" ");
+  return {
+    taskSlug: "reading-part-a",
+    title: item.title,
+    textTails: payload.texts.map((t) => tail(String(t.body ?? ""))),
+    matching: { id: matching.id, optionId: matching.answer!, stem: matching.stem ?? "" },
+    shortAnswer: { id: shortAnswer.id, answer: shortAnswer.answer!, stem: shortAnswer.stem ?? "" },
+    completion: { id: completion.id, answer: completion.answer!, stem: completion.stem ?? "" },
+    variant: {
+      id: variant.id,
+      primary: variant.answer!,
+      variantAnswer: variant.variants![0],
+      stem: variant.stem ?? "",
+    },
+  };
+}
 
 export async function seedFixture(url: string): Promise<Fixture> {
   assertDisposable(url);
@@ -78,7 +215,8 @@ export async function seedFixture(url: string): Promise<Fixture> {
     const all = GEN_ITEMS as Prisma.OetItemCreateManyInput[];
     const items: Prisma.OetItemCreateManyInput[] = [];
     for (const part of OBJECTIVE_PARTS) {
-      const forPart = all.filter((i) => i.taskType === part).slice(0, FLOOR);
+      const pool = all.filter((i) => i.taskType === part);
+      const forPart = (part === PART_A ? pool.filter(isFullLengthPartA) : pool).slice(0, FLOOR);
       if (forPart.length < FLOOR) {
         throw new Error(
           `[e2e] the seed source holds only ${forPart.length} ${part} items; ` +
@@ -103,6 +241,16 @@ export async function seedFixture(url: string): Promise<Fixture> {
       },
     });
 
+    const partAPool = items.filter((i) => i.taskType === PART_A);
+    if (partAPool.length < FLOOR) {
+      throw new Error(
+        `[e2e] only ${partAPool.length} FULL-LENGTH Reading Part A item(s) in the seed ` +
+          `source; the walk needs ${FLOOR}. A short item must never be walked as if it ` +
+          `were one of the corrected ones.`,
+      );
+    }
+    const partAItem = partAPool[0];
+
     const seeded = await prisma.oetItem.findMany({
       where: { taskType: WALK_TASK, active: true, profession: null },
       orderBy: { title: "asc" },
@@ -115,6 +263,7 @@ export async function seedFixture(url: string): Promise<Fixture> {
       professionSlug: "nursing",
       taskSlug: "reading-part-b",
       seededTitles: seeded.map((s) => s.title),
+      partA: partAWalk(partAItem),
     };
   } finally {
     await prisma.$disconnect();

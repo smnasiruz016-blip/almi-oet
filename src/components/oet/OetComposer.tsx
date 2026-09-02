@@ -200,6 +200,12 @@ function QuestionField({
       ) : (
         <input
           type="text"
+          // The radio branch above has always carried name={q.id}; this one did
+          // not, so a free-text answer could not be addressed by its question id
+          // from outside React — the browser walk could reach a matching
+          // question and not a gap. There is no <form> here, so a name changes
+          // nothing a learner can see; it makes the field identifiable.
+          name={q.id}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
