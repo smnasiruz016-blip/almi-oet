@@ -5661,5 +5661,1906 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       ]
     },
     "guidanceNote": "Four texts on one topic: match first, then answer in one to three words taken straight from the text — several wordings are accepted, so write what you read."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_A",
+    "profession": null,
+    "title": "Part A — Acute kidney injury",
+    "prompt": "Read the four texts and answer the twenty questions. Answer questions 1–7 by choosing the text (A–D). Answer questions 8–20 with a word or short phrase taken from the texts.",
+    "difficulty": "CORE",
+    "topicTag": "acute-kidney-injury",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "texts": [
+        {
+          "id": "A",
+          "heading": "Recognising acute kidney injury",
+          "body": "Acute kidney injury is a sudden fall in kidney function, not a disease in itself. It is defined by a rise\nin serum creatinine of 26 micromol/L or more within 48 hours, a rise to one and a half times the baseline\nwithin seven days, or a urine output below 0.5 mL/kg/hour for more than six hours.\n\nThe commonest cause on a general ward is dehydration. A patient who has been vomiting, a patient who was\nkept nil by mouth for a procedure that was then delayed, and a patient given a diuretic in hot weather\narrive at the same place by three different roads.\n\nMost cases are found on a blood result rather than at the bedside, and that is exactly why the fluid chart\nmatters. A patient whose urine output is falling has told you something before the laboratory does."
+        },
+        {
+          "id": "B",
+          "heading": "The first response",
+          "body": "Stop the drugs that make it worse. The list is short enough to remember: nonsteroidal anti-inflammatory\ndrugs, angiotensin-converting enzyme inhibitors, angiotensin receptor blockers and diuretics. Metformin\ndoes not damage the kidney, but it accumulates when the kidney fails, so it is held as well.\n\nAssess the fluid state before giving fluid. A patient who is dry needs a fluid challenge; a patient who is\noverloaded will drown in one. Look at the jugular venous pressure, the lung bases and the weight chart,\nnot the creatinine alone.\n\nExclude obstruction. A bladder scan takes two minutes, and a blocked catheter is the easiest cause there\nis to fix.\n\nSend a urine dipstick. Blood and protein together, in a patient who is not catheterised, point away from\ndehydration and towards the kidney itself. That patient needs a specialist opinion the same day."
+        },
+        {
+          "id": "C",
+          "heading": "Monitoring",
+          "body": "Once acute kidney injury is recognised, the observations change. Record fluid in and fluid out on the same\nchart and total it every twelve hours; two charts kept by two people prove nothing.\n\nWeigh the patient daily, at the same time, on the same scales. A kilogram is a litre, and the weight chart\nwill show a change before the creatinine does.\n\nRepeat the creatinine and the potassium at least daily. Potassium is the number that kills first: above\n6.5 mmol/L it is an emergency whatever the patient looks like, and an electrocardiogram is part of that\nassessment rather than an optional extra.\n\nAgree who totals the chart and write that person's name on it. A column that everyone assumes somebody\nelse has added up is a column that nobody adds up at all.\n\nAsk for renal replacement therapy when the potassium, the acidosis, the fluid overload or the uraemia\ncannot be controlled by any other means."
+        },
+        {
+          "id": "D",
+          "heading": "Preventing the next one",
+          "body": "An episode of acute kidney injury is not a closed event. A patient who has had one is at higher risk of\nanother, and at higher risk of chronic kidney disease years later.\n\nGive every patient sick day rules in writing before they go home: which medicines to stop during vomiting,\ndiarrhoea or fever, and when to start them again. Advice given aloud on a ward round is forgotten by the\ncar park.\n\nRestart held medicines deliberately, with a named person and a date, and write both in the discharge\nletter. Medicines that are held and never restarted are a recognised harm.\n\nArrange a repeat blood test in the community. A creatinine that has not returned to baseline by three\nmonths is chronic kidney disease, and it needs a different plan.\n\nSay plainly to the patient, in words they can repeat at home, that a kidney which has recovered is not the\nsame as a kidney that was never injured at all."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "match",
+          "stem": "the drugs that should be held immediately?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "kind": "match",
+          "stem": "the numbers that define the condition?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "kind": "match",
+          "stem": "how often the patient should be weighed?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "what should be written in the discharge letter?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "the commonest cause seen on a general ward?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "the scan that rules out a blocked bladder?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "the potassium level that is an emergency?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "kind": "gap",
+          "stem": "By how much must serum creatinine rise within 48 hours?",
+          "answer": "26 micromol/L",
+          "variants": [
+            "26 micromol per litre",
+            "26"
+          ]
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "What is the commonest cause on a general ward?",
+          "answer": "dehydration",
+          "variants": []
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Which scan excludes obstruction?",
+          "answer": "a bladder scan",
+          "variants": [
+            "bladder scan"
+          ]
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Which drug is held because it accumulates rather than because it harms the kidney?",
+          "answer": "metformin",
+          "variants": []
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Which number kills first?",
+          "answer": "potassium",
+          "variants": []
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "What does one kilogram of body weight represent?",
+          "answer": "a litre",
+          "variants": [
+            "one litre",
+            "litre"
+          ]
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "What must every patient be given in writing before going home?",
+          "answer": "sick day rules",
+          "variants": [
+            "the sick day rules"
+          ]
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Nonsteroidal anti-inflammatory drugs, angiotensin-converting enzyme inhibitors, angiotensin receptor blockers and ______________ should all be stopped.",
+          "answer": "diuretics",
+          "variants": []
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Blood and protein together on the dipstick point towards the ______________ itself.",
+          "answer": "kidney",
+          "variants": [
+            "the kidney"
+          ]
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Fluid in and fluid out should be totalled every ______________.",
+          "answer": "twelve hours",
+          "variants": [
+            "12 hours"
+          ]
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Above 6.5 mmol/L, potassium is an ______________.",
+          "answer": "emergency",
+          "variants": [
+            "an emergency"
+          ]
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "A creatinine that has not returned to baseline by three months is ______________.",
+          "answer": "chronic kidney disease",
+          "variants": []
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Held medicines must be restarted with a named person and a ______________.",
+          "answer": "date",
+          "variants": [
+            "a date"
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "Four texts on one topic: match first, then answer in one to three words taken straight from the text — several wordings are accepted, so write what you read."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_A",
+    "profession": null,
+    "title": "Part A — Blood transfusion safety",
+    "prompt": "Read the four texts and answer the twenty questions. Answer questions 1–7 by choosing the text (A–D). Answer questions 8–20 with a word or short phrase taken from the texts.",
+    "difficulty": "CORE",
+    "topicTag": "blood-transfusion-safety",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "texts": [
+        {
+          "id": "A",
+          "heading": "Before the transfusion",
+          "body": "A transfusion begins with a decision, not with a bag. Record why the patient needs blood, what the\nalternative was, and what the patient was told. Consent is a conversation, and it belongs in the notes.\n\nThe sample for grouping is taken and labelled at the bedside, by the same person, in one unbroken action.\nLabels written in advance, and labels written at the desk, are the two commonest routes to giving the\nwrong blood to the wrong patient.\n\nAsk the patient to state their full name and date of birth. Do not read the details out and wait to be\nagreed with; a frightened or drowsy patient will agree with almost anything.\n\nThe request form and the sample must carry the same details, written by the same hand at the same moment.\nA form completed by one person for a sample taken by another breaks the only link the laboratory has.\n\nTwo samples taken at different times are required before a first transfusion, so that one mislabelled tube\ncannot decide a blood group on its own."
+        },
+        {
+          "id": "B",
+          "heading": "Checking the unit",
+          "body": "The final check happens at the bedside, with the patient, immediately before the transfusion starts. It\ncannot be done at the desk and it cannot be done in advance.\n\nCheck the identity band against the compatibility label on the bag: family name, first name, date of birth\nand the identification number. Check the donation number and the blood group on the bag against the label.\nCheck the expiry date. Then look at the bag itself, for leaks, clumps or an unusual colour.\n\nOne trained person may perform this check alone, but they may not be interrupted while performing it.\n\nIf anything at all does not match, stop, and return the unit to the laboratory. Do not correct a label.\n\nBlood given to the wrong patient is almost never a laboratory error. It is a bedside error, and this check\nis the last place at which it can still be caught."
+        },
+        {
+          "id": "C",
+          "heading": "During the transfusion",
+          "body": "Take a full set of observations before the unit is started, again at fifteen minutes, and again when the\nunit is finished. The fifteen-minute set matters most: severe reactions declare themselves early, and a\npatient who is going to deteriorate usually does so inside that window.\n\nWrite the donation number on the observation chart as the unit is started, so that a reaction can later be\ntraced back to the exact bag.\n\nKeep the patient where they can be seen. A transfusion running in a side room with the door closed is a\ntransfusion nobody is watching.\n\nOne unit must be completed within four hours of leaving the controlled fridge. Blood that has been out\nlonger than that is returned, not hurried.\n\nStop at the first sign of fever, rigors, breathlessness, low blood pressure, pain in the loin or the\nchest, or a rash — and keep the giving set."
+        },
+        {
+          "id": "D",
+          "heading": "When something goes wrong",
+          "body": "Stop the transfusion, keep the intravenous line open with sodium chloride, and re-check the identity of\nthe patient against the unit. Most severe reactions turn out to be a failure of identification somewhere\nearlier in the chain.\n\nTell the laboratory at once, and send back the unit, the giving set and fresh samples. The laboratory\ncannot investigate what it does not receive.\n\nRecord what happened and report it through the national haemovigilance scheme. Reporting is not an\nadmission of blame; it is how the next patient is protected.\n\nA fever of one degree with no other feature may allow the transfusion to continue more slowly, but that\ndecision belongs to a doctor who has seen the patient, and not to the person who started the unit."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "match",
+          "stem": "what to do when a label does not match?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "kind": "match",
+          "stem": "how many samples are needed before a first transfusion?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "kind": "match",
+          "stem": "when the observations must be repeated?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "who must be told first when a reaction occurs?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "where the grouping sample must be labelled?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "what to look for on the bag itself?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "the time limit for completing one unit?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "kind": "gap",
+          "stem": "Where is the grouping sample labelled?",
+          "answer": "at the bedside",
+          "variants": [
+            "the bedside",
+            "bedside"
+          ]
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "How many samples are required before a first transfusion?",
+          "answer": "two samples",
+          "variants": [
+            "two"
+          ]
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Which set of observations matters most?",
+          "answer": "the fifteen-minute set",
+          "variants": [
+            "fifteen-minute",
+            "at fifteen minutes"
+          ]
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Within how long must one unit be completed?",
+          "answer": "four hours",
+          "variants": [
+            "4 hours",
+            "within four hours"
+          ]
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "What is kept open with sodium chloride?",
+          "answer": "the intravenous line",
+          "variants": [
+            "intravenous line"
+          ]
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "What must be kept when a transfusion is stopped?",
+          "answer": "the giving set",
+          "variants": [
+            "giving set"
+          ]
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Through which scheme is a reaction reported?",
+          "answer": "haemovigilance",
+          "variants": [
+            "national haemovigilance"
+          ]
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Blood given to the wrong patient is almost never a ______________ error.",
+          "answer": "laboratory",
+          "variants": [
+            "a laboratory error"
+          ]
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "A person performing the final check may not be ______________.",
+          "answer": "interrupted",
+          "variants": []
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Blood that has been out of the fridge too long is ______________, not hurried.",
+          "answer": "returned",
+          "variants": []
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Most severe reactions are a failure of ______________.",
+          "answer": "identification",
+          "variants": []
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "The laboratory cannot investigate what it does not ______________.",
+          "answer": "receive",
+          "variants": []
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Consent is a conversation and it belongs in the ______________.",
+          "answer": "notes",
+          "variants": [
+            "the notes"
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "Four texts on one topic: match first, then answer in one to three words taken straight from the text — several wordings are accepted, so write what you read."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_A",
+    "profession": null,
+    "title": "Part A — Chest pain and acute coronary syndrome",
+    "prompt": "Read the four texts and answer the twenty questions. Answer questions 1–7 by choosing the text (A–D). Answer questions 8–20 with a word or short phrase taken from the texts.",
+    "difficulty": "CORE",
+    "topicTag": "chest-pain-and-acute-coronary-syndrome",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "texts": [
+        {
+          "id": "A",
+          "heading": "The first ten minutes",
+          "body": "Chest pain that may be cardiac is a time-critical presentation. Record an electrocardiogram within ten\nminutes of the patient's arrival, and have it read by somebody competent to interpret it straight away. A\ntracing lying in a tray is not a test.\n\nGive aspirin 300 mg to chew, unless the patient has already taken it or is allergic to it. Chewing\nmatters, because it is absorbed faster that way than as a tablet swallowed whole.\n\nAsk when the pain began. The clock that governs treatment starts at the onset of pain, not at the moment\nthe patient reached the department, and a delay at home counts against the patient just as much as a delay\non the ward.\n\nPain spreading to the jaw or the left arm, with sweating and nausea, is the classic picture. Older\npatients, women, and patients with diabetes are more likely to present without it, and they are the\npatients most often sent home."
+        },
+        {
+          "id": "B",
+          "heading": "Reading the tracing",
+          "body": "ST elevation in two leads looking at the same territory, or a new left bundle branch block, is treated as\na blocked artery until it is proved otherwise. That patient needs the catheter laboratory, not a ward bed.\n\nWhere there is no ST elevation, the diagnosis rests on the troponin. A single normal troponin taken early\nexcludes nothing; it is the second sample, taken after the interval the local laboratory specifies, that\nexcludes it.\n\nA completely normal tracing does not exclude a heart attack either. Between a quarter and a third of\ntracings are normal at first presentation, and the tracing is repeated whenever the pain continues or\nchanges in character.\n\nCompare with an old tracing wherever one exists. A change is worth far more than a snapshot, and the old\ntracing is usually in the notes of somebody who has already thought about this patient once before."
+        },
+        {
+          "id": "C",
+          "heading": "Oxygen, opiates, and what not to give",
+          "body": "Oxygen is given only when the saturation is below 94 per cent. Given routinely to a patient who is not\nhypoxic it does not help, and it may do harm.\n\nMorphine relieves pain and reduces the work of the heart, but it slows the absorption of the antiplatelet\ndrugs given alongside it, so it is kept for pain that has not settled with a nitrate.\n\nDo not give a nitrate to a patient who has taken a drug for erectile dysfunction within the previous\ntwenty-four hours. The fall in blood pressure can be profound, and the patient may not volunteer the\ninformation unless asked directly and in private.\n\nReassurance is part of the treatment and not a substitute for it. A patient who is frightened has a faster\nheart rate and a heart that is working harder, and both of those make the injury worse.\n\nDo not give an intramuscular injection of anything at all. It raises the enzymes used to interpret the\nblood tests, and it makes clot-busting treatment more dangerous."
+        },
+        {
+          "id": "D",
+          "heading": "After the immediate phase",
+          "body": "Every patient leaves with a plan they can say out loud: which medicines, what each one is for, and exactly\nwhat to do if the pain comes back. A plan the patient cannot repeat is a plan that stayed in the hospital.\n\nCardiac rehabilitation reduces death and readmission more reliably than most of the drugs do, and it\nremains the part of the plan most often left out of the discharge letter.\n\nAsk about mood before discharge. Low mood after a heart attack is common, and it is the strongest single\npredictor of whether the patient will take the medicines at all.\n\nSmoking is the modifiable factor with the largest and fastest effect. A brief, specific offer of help made\nat the bedside works better than advice given in general terms on the day of discharge."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "match",
+          "stem": "the time limit for recording the tracing?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "kind": "match",
+          "stem": "the drug that must not follow a treatment for erectile dysfunction?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "kind": "match",
+          "stem": "what makes a second blood sample necessary?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "what is most often missing from the discharge letter?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "how the first tablet should be taken?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "why an old tracing is useful?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "why injections into muscle are avoided?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "kind": "gap",
+          "stem": "Within how long must an electrocardiogram be recorded?",
+          "answer": "ten minutes",
+          "variants": [
+            "10 minutes",
+            "within ten minutes"
+          ]
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "How much aspirin is given?",
+          "answer": "300 mg",
+          "variants": [
+            "300 milligrams"
+          ]
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "What must the patient do with the aspirin?",
+          "answer": "chew",
+          "variants": [
+            "chew it"
+          ]
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Which blood test carries the diagnosis when there is no ST elevation?",
+          "answer": "the troponin",
+          "variants": [
+            "troponin"
+          ]
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Below which saturation is oxygen given?",
+          "answer": "94 per cent",
+          "variants": [
+            "94%",
+            "below 94 per cent"
+          ]
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Which treatment reduces death and readmission?",
+          "answer": "cardiac rehabilitation",
+          "variants": [
+            "rehabilitation"
+          ]
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Which problem best predicts whether the medicines will be taken?",
+          "answer": "low mood",
+          "variants": [
+            "mood"
+          ]
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "A new left bundle branch block is treated as a ______________ until proved otherwise.",
+          "answer": "blocked artery",
+          "variants": []
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "The clock that governs treatment starts at the ______________ of pain.",
+          "answer": "onset",
+          "variants": [
+            "the onset"
+          ]
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Morphine slows the absorption of the ______________ drugs.",
+          "answer": "antiplatelet",
+          "variants": []
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Between a quarter and a third of tracings are ______________ at first presentation.",
+          "answer": "normal",
+          "variants": [
+            "completely normal"
+          ]
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "An intramuscular injection makes clot-busting treatment more ______________.",
+          "answer": "dangerous",
+          "variants": []
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Smoking is the modifiable factor with the largest and fastest ______________.",
+          "answer": "effect",
+          "variants": []
+        }
+      ]
+    },
+    "guidanceNote": "Four texts on one topic: match first, then answer in one to three words taken straight from the text — several wordings are accepted, so write what you read."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_A",
+    "profession": null,
+    "title": "Part A — An asthma attack in adults",
+    "prompt": "Read the four texts and answer the twenty questions. Answer questions 1–7 by choosing the text (A–D). Answer questions 8–20 with a word or short phrase taken from the texts.",
+    "difficulty": "CORE",
+    "topicTag": "an-asthma-attack-in-adults",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "texts": [
+        {
+          "id": "A",
+          "heading": "How bad is this attack",
+          "body": "Assess the severity before treating, and write the numbers down. A patient who cannot complete a sentence\nin one breath, whose peak flow is between 33 and 50 per cent of best or predicted, whose respiratory rate\nis 25 or more, or whose heart rate is 110 or more, is having an acute severe attack.\n\nThe life-threatening features differ in kind and not merely in degree: a silent chest, exhaustion,\nconfusion, a saturation below 92 per cent, or a peak flow below 33 per cent. A normal carbon dioxide level\nin a patient who is this unwell is not reassuring. It means the patient is tiring.\n\nAsk about the last attack, about courses of steroid in the past year, and about any admission to intensive\ncare. A previous near-fatal attack is the strongest single predictor of another one.\n\nDo not judge the severity by how calm the patient appears. Some of the sickest are quiet because they no\nlonger have the breath to be anything else."
+        },
+        {
+          "id": "B",
+          "heading": "Treatment",
+          "body": "Give oxygen to hold the saturation between 94 and 98 per cent, and do not wait for a blood gas before\ngiving it.\n\nSalbutamol is given through a nebuliser driven by oxygen in an acute severe or life-threatening attack. A\nspacer is enough for milder attacks, and used properly it works just as well.\n\nGive prednisolone by mouth, or hydrocortisone if the patient cannot swallow, and give it early. Steroid\ngiven in the first hour changes the outcome; steroid given at the end of the shift changes the paperwork.\n\nAdd ipratropium in a severe or life-threatening attack, or where the response to salbutamol has been poor.\n\nMagnesium sulfate is given as a single intravenous dose, and it is a decision for a senior doctor.\n\nWrite on the chart the time each treatment was actually given, not the time it was prescribed. The gap\nbetween those two times is where most of the delay in an attack hides.\n\nAntibiotics are not given routinely. Most attacks are triggered by a virus, and a wheeze on its own is not\nevidence of infection."
+        },
+        {
+          "id": "C",
+          "heading": "Watching the response",
+          "body": "Repeat the peak flow fifteen to thirty minutes after treatment begins, and again before any decision to\nsend the patient home. The measurement is only as good as the effort behind it, so watch it being done.\n\nMonitor the saturation continuously while nebulisers are running, and record the heart rate. Salbutamol\nraises it, and a rising rate is not on its own a reason to stop.\n\nCheck the potassium. Repeated salbutamol drives it down, and a low potassium in a tiring patient is a\ndangerous combination.\n\nA patient who has improved is not yet a patient who is well. Deterioration after apparent improvement is\ncommon in the hours that follow, and it is why the observation period is not negotiable."
+        },
+        {
+          "id": "D",
+          "heading": "Before they go home",
+          "body": "Nobody is discharged on a peak flow below 75 per cent of best or predicted, or while the reading still\nswings widely between morning and evening.\n\nEvery patient goes home on a course of steroid tablets, with a written action plan, and with the inhaler\ntechnique checked in front of somebody. Technique is checked, never asked about: most patients say theirs\nis fine, and most of them are wrong.\n\nArrange review by the general practitioner within two working days, and by a specialist clinic within four\nweeks of an admission.\n\nGive the plan to somebody who lives with the patient as well. A person who is breathless and frightened at\nthree in the morning is not the person best placed to read it for the first time.\n\nAsk the patient what they believe caused this attack. The answer often names the missed preventer, the new\ncat, or the month the prescription quietly ran out."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "match",
+          "stem": "which steroid is swallowed and which is not?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "kind": "match",
+          "stem": "the features that make an attack life-threatening?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "kind": "match",
+          "stem": "how soon the peak flow is repeated?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "how soon the family doctor should see the patient?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "the strongest predictor of a further attack?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "when magnesium is considered?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "the blood result that falls with repeated treatment?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "kind": "gap",
+          "stem": "Below which peak flow is an attack life-threatening?",
+          "answer": "33 per cent",
+          "variants": [
+            "33%",
+            "below 33 per cent"
+          ]
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Which kind of chest is a life-threatening sign?",
+          "answer": "a silent chest",
+          "variants": [
+            "silent chest",
+            "silent"
+          ]
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "What must the nebuliser be driven by?",
+          "answer": "oxygen",
+          "variants": []
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Which steroid is given by mouth?",
+          "answer": "prednisolone",
+          "variants": []
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Which drug is added when the response to salbutamol has been poor?",
+          "answer": "ipratropium",
+          "variants": []
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Which blood result is driven down by repeated salbutamol?",
+          "answer": "potassium",
+          "variants": [
+            "the potassium"
+          ]
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Within how long should the general practitioner review the patient?",
+          "answer": "two working days",
+          "variants": [
+            "2 working days"
+          ]
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "A normal carbon dioxide level in a patient this unwell means the patient is ______________.",
+          "answer": "tiring",
+          "variants": []
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Oxygen is given to hold the saturation between 94 and ______________ per cent.",
+          "answer": "98",
+          "variants": [
+            "98 per cent"
+          ]
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Antibiotics are not given routinely because most attacks are triggered by a ______________.",
+          "answer": "virus",
+          "variants": [
+            "a virus"
+          ]
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Nobody is discharged on a peak flow below ______________ per cent of best or predicted.",
+          "answer": "75",
+          "variants": [
+            "75 per cent"
+          ]
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Inhaler technique must be ______________ rather than asked about.",
+          "answer": "checked",
+          "variants": []
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "A specialist clinic should see the patient within ______________ weeks of an admission.",
+          "answer": "four",
+          "variants": [
+            "four weeks"
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "Four texts on one topic: match first, then answer in one to three words taken straight from the text — several wordings are accepted, so write what you read."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_A",
+    "profession": null,
+    "title": "Part A — Venepuncture and handling the sample",
+    "prompt": "Read the four texts and answer the twenty questions. Answer questions 1–7 by choosing the text (A–D). Answer questions 8–20 with a word or short phrase taken from the texts.",
+    "difficulty": "CORE",
+    "topicTag": "venepuncture-and-handling-the-sample",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "texts": [
+        {
+          "id": "A",
+          "heading": "Before the needle",
+          "body": "Identify the patient in their own words before anything is prepared. Ask for the full name and the date of\nbirth, and check both against the request. A patient who is asked to confirm details that have been read\nout to them will confirm them, and that is exactly the failure the process exists to prevent.\n\nCheck what the request is for, because the order in which the tubes are filled depends on it, and check\nwhether the patient was supposed to be fasting.\n\nAsk about a previous faint. A patient who has fainted before is a patient who will be lying down for this\none, and saying so out loud costs nothing.\n\nLook at both arms before choosing. Avoid an arm with a drip running into it, an arm on the side of\nprevious breast surgery, and an arm with a fistula. If the only available site is one of these, ask before\nproceeding rather than explaining afterwards."
+        },
+        {
+          "id": "B",
+          "heading": "Taking the sample",
+          "body": "Apply the tourniquet no more than one hand's width above the chosen site, and release it as soon as the\nblood begins to flow. A tourniquet left on for more than a minute changes the potassium and the calcium,\nand what comes back is then the tourniquet's result rather than the patient's.\n\nLet the alcohol dry completely before the needle goes in. Wet alcohol stings, and it can disturb an\nalcohol level.\n\nDo not ask the patient to pump their fist. Repeated clenching raises the potassium on its own.\n\nFill the tubes in the order the laboratory specifies, so that an additive from one tube cannot carry over\ninto the next.\n\nChoose the vein by feel and not by sight. A vein that is easy to see and impossible to feel is often a\nvein that will roll away from the needle, and a second attempt costs the patient more than the first one\ndid.\n\nInvert each tube gently, the stated number of times. Shaking breaks the red cells, and a broken sample\nlooks like a sick patient."
+        },
+        {
+          "id": "C",
+          "heading": "Labelling and transport",
+          "body": "Label every tube at the bedside, in front of the patient, before leaving them. A tube labelled anywhere\nelse is a tube nobody can trust, and the laboratory will reject it.\n\nWrite the name, the date of birth, the identification number, and the date and time the sample was taken.\nA missing time makes some results impossible to interpret at all.\n\nNever pre-label a tube, and never label from a sticker sheet belonging to another patient.\n\nBlood cultures go to the laboratory straight away and are not refrigerated. A blood gas is analysed within\nminutes. Most other tubes tolerate a delay, although a delay changes the potassium in any of them.\n\nIf a sample has been delayed, write that on the form instead of hoping that nobody notices. A result\ninterpreted without knowing the delay is worse than no result at all, because somebody will act on it."
+        },
+        {
+          "id": "D",
+          "heading": "Afterwards",
+          "body": "Press on the site with a clean swab until the bleeding has stopped, and do not let the patient bend the\narm instead. Bending traps blood under the skin and makes the bruise the patient will remember you by.\n\nDispose of the needle into the sharps container yourself, at the point of use. Do not resheath it, do not\nhand it to anybody else, and do not put it down.\n\nAsk the patient to stay seated for a few minutes if they look pale, and stay within sight of them while\nthey do.\n\nRecord in the notes what was taken and when. A repeat sample taken only because nobody wrote down the\nfirst one is a second needle the patient never needed."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "match",
+          "stem": "what must be written on the tube?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "kind": "match",
+          "stem": "how long the tourniquet may stay on?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "kind": "match",
+          "stem": "which arms should be avoided?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "how the needle should be disposed of?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "what to ask a patient who has fainted before?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "why the tubes are filled in a set order?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "which sample must not be refrigerated?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "kind": "gap",
+          "stem": "How far above the site is the tourniquet applied?",
+          "answer": "one hand's width",
+          "variants": [
+            "a hand's width"
+          ]
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Which result rises if the patient pumps their fist?",
+          "answer": "the potassium",
+          "variants": [
+            "potassium"
+          ]
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "What must dry completely before the needle goes in?",
+          "answer": "the alcohol",
+          "variants": [
+            "alcohol"
+          ]
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Where must every tube be labelled?",
+          "answer": "at the bedside",
+          "variants": [
+            "the bedside",
+            "bedside"
+          ]
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Which samples are not refrigerated?",
+          "answer": "blood cultures",
+          "variants": [
+            "cultures"
+          ]
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "What must never be done to a used needle?",
+          "answer": "resheath",
+          "variants": [
+            "resheath it"
+          ]
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "What should a pale patient be asked to do?",
+          "answer": "stay seated",
+          "variants": []
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Shaking a tube breaks the ______________.",
+          "answer": "red cells",
+          "variants": [
+            "the red cells"
+          ]
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "A tube labelled away from the bedside is one the laboratory will ______________.",
+          "answer": "reject",
+          "variants": [
+            "reject it"
+          ]
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "A missing ______________ makes some results impossible to interpret.",
+          "answer": "time",
+          "variants": [
+            "the time"
+          ]
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Press on the site with a clean ______________ until the bleeding has stopped.",
+          "answer": "swab",
+          "variants": [
+            "a clean swab"
+          ]
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "The needle is disposed of at the ______________ of use.",
+          "answer": "point",
+          "variants": [
+            "the point"
+          ]
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "A delay must be written on the ______________.",
+          "answer": "form",
+          "variants": [
+            "the form"
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "Four texts on one topic: match first, then answer in one to three words taken straight from the text — several wordings are accepted, so write what you read."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_A",
+    "profession": null,
+    "title": "Part A — Sharps injury and exposure to blood",
+    "prompt": "Read the four texts and answer the twenty questions. Answer questions 1–7 by choosing the text (A–D). Answer questions 8–20 with a word or short phrase taken from the texts.",
+    "difficulty": "CORE",
+    "topicTag": "sharps-injury-and-exposure-to-blood",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "texts": [
+        {
+          "id": "A",
+          "heading": "The first few minutes",
+          "body": "Stop what you are doing. Encourage the wound to bleed gently under running water, but do not scrub it and\ndo not suck it. Wash it with soap and water, and then cover it.\n\nA splash to the eye or the mouth is washed out with plenty of water. Contact lenses are taken out and\nwashed separately, and the eye is irrigated again once they are out.\n\nReport the injury at once to the person in charge, however small it looks and however busy the ward is.\nThe clock that matters starts now: preventive treatment against HIV works best within a few hours, and its\nvalue falls with every hour that passes.\n\nDo not decide for yourself that the source patient is low risk. That judgement belongs to the occupational\nhealth service, which holds information about the source that you do not have and should not have."
+        },
+        {
+          "id": "B",
+          "heading": "The risk assessment",
+          "body": "The assessment weighs three things: the device, the injury, and the source. A hollow needle that has been\nsitting in a vein carries far more risk than a solid suture needle, and a deep injury more than a scratch.\n\nBlood carries the highest risk. Saliva, urine, vomit and faeces carry none at all unless they are visibly\nbloodstained.\n\nThe three viruses considered are hepatitis B, hepatitis C and HIV. They are considered together because\none injury exposes a person to all three at once, and because the actions taken about each of them are\ndifferent and cannot wait for one another.\n\nConsent for testing is asked of the source patient by somebody who is not the injured member of staff. A\npatient may refuse, and a refusal is not evidence of infection.\n\nThe injured person's own hepatitis B status is checked at the same time. A booster is often all that is\nneeded, and the record of the last one is usually the piece nobody can find."
+        },
+        {
+          "id": "C",
+          "heading": "What may be offered",
+          "body": "Preventive treatment against HIV is a course of tablets, begun as soon as possible and continued for four\nweeks. It causes nausea in many of the people who take it, and courses are stopped early because of the\nside effects far more often than because the risk has been revised.\n\nThere is no vaccine and no preventive treatment for hepatitis C. Instead the person is tested at\nintervals, and treatment now cures the great majority of those found to be infected.\n\nFor hepatitis B a vaccine exists, and immunoglobulin may be added for somebody who is not immune. Somebody\nwho was vaccinated years ago and has never had the response measured counts as unknown rather than immune,\nand unknown is treated as not immune until the laboratory says otherwise.\n\nFollow-up blood tests are arranged over the months that follow, and they are the part most often missed\nonce the fright has worn off."
+        },
+        {
+          "id": "D",
+          "heading": "Preventing the next one",
+          "body": "Most injuries happen at two moments: while a needle is being resheathed, and while a container that is\nalready too full is being used. Neither of those is bad luck.\n\nFill a container to the line and no further, close it when it reaches the line, and label it with the ward\nand the date.\n\nTake the container to the patient rather than carrying an unprotected needle across a room. The distance\nbetween the bedside and the container is where a great many injuries are waiting.\n\nUse a safety device wherever one is provided, and activate it before the needle is put down. A guard that\nwas never engaged protects nobody.\n\nReport every injury, even where no treatment follows. The pattern of injuries on a ward is the only\nevidence anybody has for changing the way that ward works."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "kind": "match",
+          "stem": "how a container should be filled?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "kind": "match",
+          "stem": "what to do with contact lenses?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "kind": "match",
+          "stem": "which fluids carry no risk unless bloodstained?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "how long the course of tablets lasts?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "who decides whether the source is low risk?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "who asks the source patient for consent?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "which infection has no vaccine?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "kind": "gap",
+          "stem": "What must not be done to the wound?",
+          "answer": "scrub",
+          "variants": [
+            "scrub it"
+          ]
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "What is a splash to the eye washed out with?",
+          "answer": "plenty of water",
+          "variants": [
+            "water"
+          ]
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Which kind of needle carries far more risk?",
+          "answer": "a hollow needle",
+          "variants": [
+            "hollow needle",
+            "hollow"
+          ]
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "For how long is the course of tablets continued?",
+          "answer": "four weeks",
+          "variants": [
+            "4 weeks"
+          ]
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "What may be added for somebody who is not immune to hepatitis B?",
+          "answer": "immunoglobulin",
+          "variants": []
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "What is the usual reason a course is stopped early?",
+          "answer": "the side effects",
+          "variants": [
+            "side effects"
+          ]
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "What must be activated before the needle is put down?",
+          "answer": "a safety device",
+          "variants": [
+            "safety device"
+          ]
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Preventive treatment against HIV works best within a few ______________.",
+          "answer": "hours",
+          "variants": [
+            "a few hours"
+          ]
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "A refusal by the source patient is not evidence of ______________.",
+          "answer": "infection",
+          "variants": []
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "The injured person's own ______________ status is checked at the same time.",
+          "answer": "hepatitis B",
+          "variants": []
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Follow-up blood tests are the part most often ______________.",
+          "answer": "missed",
+          "variants": []
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "A container should be filled to the ______________ and no further.",
+          "answer": "line",
+          "variants": [
+            "the line"
+          ]
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Report every injury even where no ______________ follows.",
+          "answer": "treatment",
+          "variants": []
+        }
+      ]
+    },
+    "guidanceNote": "Four texts on one topic: match first, then answer in one to three words taken straight from the text — several wordings are accepted, so write what you read."
   }
 ];

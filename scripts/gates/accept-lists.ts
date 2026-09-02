@@ -197,6 +197,133 @@ const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
     answer: "cleansed",
     why: "Finding 2 withdrew 'cleaned' and 'washed' as DIFFERENT words and specified variants: [] — cleansed is the only accepted form",
   },
+  // ── sets 10-15, ported 2026-09-02 ─────────────────────────────────────────
+  // Every row below is an answer whose accepted list the author closed in the
+  // source with `qubool: sirf <x> — is ka koi doosra lafz nahi` ("only x; it has
+  // no other word"). The porter emits `variants: []` for those and refuses to
+  // invent one, so this list is where that decision is recorded. Generated once
+  // from the ported items and checked in as a literal — never computed at build
+  // time, on the same terms as LEGACY_SHORT.
+  {
+    item: "Part A — Acute kidney injury",
+    answer: "dehydration",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Acute kidney injury",
+    answer: "metformin",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Acute kidney injury",
+    answer: "potassium",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Acute kidney injury",
+    answer: "diuretics",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Acute kidney injury",
+    answer: "chronic kidney disease",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Blood transfusion safety",
+    answer: "interrupted",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Blood transfusion safety",
+    answer: "returned",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Blood transfusion safety",
+    answer: "identification",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Blood transfusion safety",
+    answer: "receive",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Chest pain and acute coronary syndrome",
+    answer: "blocked artery",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Chest pain and acute coronary syndrome",
+    answer: "antiplatelet",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Chest pain and acute coronary syndrome",
+    answer: "dangerous",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Chest pain and acute coronary syndrome",
+    answer: "effect",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — An asthma attack in adults",
+    answer: "oxygen",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — An asthma attack in adults",
+    answer: "prednisolone",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — An asthma attack in adults",
+    answer: "ipratropium",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — An asthma attack in adults",
+    answer: "tiring",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — An asthma attack in adults",
+    answer: "checked",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Venepuncture and handling the sample",
+    answer: "stay seated",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Sharps injury and exposure to blood",
+    answer: "immunoglobulin",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Sharps injury and exposure to blood",
+    answer: "infection",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Sharps injury and exposure to blood",
+    answer: "hepatitis B",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Sharps injury and exposure to blood",
+    answer: "missed",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
+  {
+    item: "Part A — Sharps injury and exposure to blood",
+    answer: "treatment",
+    why: "author closed the accepted list with 'sirf' — this wording only",
+  },
 ];
 const A4_SINGLE_KEY = new Set(A4_SINGLE_FORM.map((e) => `${e.item}||${e.answer}`));
 const a4SingleSeen = new Set<string>();
@@ -385,6 +512,15 @@ if (!folicGap) {
 //
 // This is a benefit of counting, not of looking. Reading the list one entry at a
 // time cannot find it: both halves are individually reasonable.
+//
+// It earned its keep again on 2 September 2026, this time on newly authored
+// content rather than a legacy accept-list. In `Part A — Blood transfusion
+// safety`, q8 ("Where is the grouping sample labelled?") and q15 ("The final
+// check happens at the ___") both rested on "bedside" — and the text says both,
+// so neither answer was wrong. The defect was that one clue then solved two
+// questions and the item was easier than its question count suggested. The owner
+// rewrote q15 onto a different fact in the same text ("almost never a laboratory
+// error"). Nothing is exempted here: A10 passes with no pending list at all.
 type Accepted = { id: string; label: string; strings: string[] };
 
 function collisionsIn(itemTitle: string, entries: Accepted[]) {
