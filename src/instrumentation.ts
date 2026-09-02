@@ -6,7 +6,17 @@
 // guard at module scope, `next start` listened happily and only 500'd on the first
 // credential request.)
 
-/** Served-exercise floor. Same number the build gate enforces on the seed source. */
+/** Served-exercise floor. Same number the build gate enforces on the seed source.
+ *
+ *  ⚠️ READING PART A SITS AT EXACTLY 15 AS OF 3 SEPTEMBER 2026. The eighteen
+ *  legacy items were retired that evening (33 active → 15), so the margin under
+ *  this guard is ZERO: deactivating or retiring ONE more Reading Part A item
+ *  stops the server from starting, on the next deploy, for every learner.
+ *
+ *  🔴 THE ANSWER IS MORE ITEMS, NEVER A LOWER FLOOR. This number does not move.
+ *  It is the law, and the law is the point — a part below floor serves a thin
+ *  bank with nothing to say so, which is the failure the whole guard exists for.
+ *  Reading Part B lands in the same place when its 33 legacy items are retired. */
 const FLOOR = 15;
 
 /** The six objective parts. Writing and Speaking are per-profession and are covered

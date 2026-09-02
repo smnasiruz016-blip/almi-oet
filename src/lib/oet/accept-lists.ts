@@ -1,6 +1,38 @@
 /**
  * ACCEPT LISTS — the authored answers, as a CODE-SIDE OVERLAY.
  *
+ * ── 🔴 THE READING HALF OF THIS FILE SERVES NOTHING (3 September 2026) ──
+ *
+ * `READING_PART_A_ACCEPT` has eighteen keys, and they are EXACTLY the eighteen
+ * legacy Reading Part A titles retired from production on 3 September 2026.
+ * Measured after that retire: the 195 gap answers still being served carry 161
+ * variants in their own payloads and 🔴 ZERO from this overlay. Its 150
+ * variant strings reach nothing a learner can open.
+ *
+ * IT IS KEPT ANYWAY, AND NOT OUT OF SENTIMENT. `scripts/retire-fragments.mts
+ * --restore` can put those eighteen items back in one command. A restore with
+ * this half deleted would mark right answers WRONG on exactly the 150 variants
+ * that were made honest that same evening — the defect closed in PR #35, walked
+ * back in through the door marked "cleanup". A restore that quietly reintroduces
+ * a defect is worse than a dead file.
+ *
+ * SO IT IS COUNTED, because a dead thing that is counted does not get forgotten.
+ * `gate:accept-lists` prints on every run:
+ *
+ *     OVERLAY DEAD: <n> key(s) naming retired items, <m> variant(s) serving nothing
+ *
+ * computed from the checked-in retire lists in scripts/retire/, never typed by
+ * hand. Today that is 18 and 150. IT PRINTS, IT DOES NOT FAIL — a gate that
+ * fails on a state we chose deliberately is noise, and noise is how gates get
+ * switched off.
+ *
+ * THE NUMBER MAY ONLY SHRINK. When it reaches 0 — when the restore window is
+ * closed and those eighteen are gone for good — `READING_PART_A_ACCEPT` goes,
+ * and the printed line goes with it.
+ *
+ * `LISTENING_PART_A_ACCEPT` IS UNTOUCHED BY ANY OF THIS. All 21 Listening Part A
+ * items are live and its 380 variants are doing real work on every attempt.
+ *
  * ── WHY THIS IS NOT A SEED CHANGE ───────────────────────────────────────────
  *
  * `scripts/seed/append.ts` is INSERT-ONLY (it dedupes on `taskType::title`), so
