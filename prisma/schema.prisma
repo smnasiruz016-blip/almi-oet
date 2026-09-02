@@ -242,6 +242,9 @@ model OetItem {
   //   LISTENING_PART_A   { audioScript, speakers:[{role,voice}], gaps:[{id,label,answer}] }
   //   LISTENING_PART_B/C { audioScript, speakers, questions:[{id,stem,options,answer}] }
   //   READING_PART_A     { texts:[{id,heading,body}], questions:[{id,kind,answer}] }
+  //       kind is match|gap ONLY. A short answer (Q8-14) and a sentence
+  //       completion (Q15-20) are both "gap" — a rule written for one of them
+  //       has nothing in the data to attach to. See tasks/reading.ts.
   //   READING_PART_B/C   { passages:[{id,body}], questions:[{id,stem,options,answer}] }
   //   WRITING_LETTER     { caseNotes, recipient, taskInstruction, letterType, wordMin, wordMax }
   //   SPEAKING_ROLEPLAY  { setting, candidateRole, patientRole, candidateCard, patientConcern, prepSeconds, speakSeconds }

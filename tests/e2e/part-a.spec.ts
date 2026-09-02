@@ -127,7 +127,7 @@ test.describe("Reading Part A, full length, in a real browser", () => {
     await shot(page, "10-part-a-texts.png", "reading-texts");
   });
 
-  test("a matching, a short answer, a sentence completion and a VARIANT are all scored right \u2014 and the review screen disagrees", async ({
+  test("a matching, a short answer, a sentence completion and a VARIANT are all marked right, and the score and the screen agree", async ({
     page,
   }) => {
     await signIn(page);
@@ -137,7 +137,7 @@ test.describe("Reading Part A, full length, in a real browser", () => {
     await page.locator(`input[name="${A.matching.id}"][value="${A.matching.optionId}"]`).check();
     await page.locator(`input[name="${A.shortAnswer.id}"]`).fill(A.shortAnswer.answer);
     await page.locator(`input[name="${A.completion.id}"]`).fill(A.completion.answer);
-    // \ud83d\udd34 NOT the primary answer. If the accept list is not reaching the grader
+    // 🔴 NOT the primary answer. If the accept list is not reaching the grader
     // this is the assertion that fails, and it fails alone.
     expect(A.variant.variantAnswer).not.toBe(A.variant.primary);
     await page.locator(`input[name="${A.variant.id}"]`).fill(A.variant.variantAnswer);
@@ -150,11 +150,22 @@ test.describe("Reading Part A, full length, in a real browser", () => {
     expect(res.status(), `submit was refused: ${await res.text()}`).toBe(200);
     await expect(page.getByTestId("exercise-chain")).toBeVisible();
 
-    // \u2500\u2500 WHAT THE LEARNER IS SCORED \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+    // ── THE SCORE AND THE SCREEN, READ SEPARATELY, MUST AGREE ───────────
     //
-    // This line is written from markObjective, the function that actually marks
-    // the attempt and writes pointsEarned. Four answers, four points: the
-    // authored variant IS accepted by the grader.
+    // These are two different lines, written by two different callers:
+    //
+    //     4 / 20 practice points          ← markObjective, the score that is stored
+    //     Answer review · 4/20 correct     ← buildObjectiveReview, what the learner reads
+    //
+    // On 3 September 2026 they read 4 and 3. review.ts owned its own comparison
+    // — trim, lowercase, collapse spaces — against `q.answer` alone, so it never
+    // saw `variants` or the accept-list overlay: 688 of the bank's 882 accepted
+    // answers were SCORED RIGHT AND SHOWN WRONG. That is worse than a wrong
+    // score, because it teaches the mistake.
+    //
+    // review.ts now asks isAnswerCorrect() on the graders' own key. This test
+    // reads BOTH numbers off the page and requires them to match — asserting
+    // only one of them is how the two were allowed to drift apart.
     const points = page.getByText(/\d+ \/ \d+ practice points/);
     await expect(points).toBeVisible();
     const pText = (await points.innerText()).replace(/\s+/g, " ").trim();
@@ -166,29 +177,6 @@ test.describe("Reading Part A, full length, in a real browser", () => {
       "four answers were given and every one of them is right, so four must be SCORED right",
     ).toBe(4);
 
-    // \u2500\u2500 \ud83d\udd34 AND WHAT THE LEARNER IS TOLD, WHICH IS NOT THE SAME THING \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-    //
-    // MEASURED ON 3 SEPTEMBER 2026, ON ONE SCREEN, AT THE SAME MOMENT:
-    //
-    //     4 / 20 practice points          \u2190 markObjective, the score
-    //     Answer review \u00b7 3/20 correct     \u2190 buildObjectiveReview, the screen
-    //
-    // buildObjectiveReview has its OWN normalise() \u2014 trim, lowercase, collapse
-    // spaces, strip trailing punctuation \u2014 and compares against `q.answer`
-    // ALONE. It never sees `q.variants`, never calls readingAcceptFor() or
-    // listeningAcceptFor(), and applies none of the spelling leniency that
-    // markObjective applies. So a learner who answers with an accepted variant
-    // is scored right and shown a \u2717 next to "Correct: <the other wording>".
-    //
-    // Measured across the whole bank the same day: 361 questions carry at least
-    // one accepted variant, 882 variant strings were run through BOTH paths, and
-    // 688 of them are SCORED RIGHT AND SHOWN WRONG \u2014 259 in Listening Part A,
-    // 429 in Reading Part A.
-    //
-    // \u26a0\ufe0f THIS ASSERTION IS DELIBERATELY WRITTEN TO THE DEFECT, on the same terms
-    // as gate:length's pending lists: WHEN THE REVIEW IS FIXED THIS TEST FAILS,
-    // and whoever fixes it changes the 3 to a 4 and deletes this block. A test
-    // that quietly tolerated both numbers would let the defect outlive the fix.
     const review = page.getByText(/Answer review · \d+\/\d+ correct/);
     await expect(review).toBeVisible();
     // innerText keeps the element's own line breaks and the heading is
@@ -200,40 +188,37 @@ test.describe("Reading Part A, full length, in a real browser", () => {
     expect(Number(m![2])).toBe(20);
     expect(
       Number(m![1]),
-      "the review screen has started agreeing with the score \u2014 if the variant is now " +
-        "shown correct, change this 3 to a 4 and delete the block above it",
-    ).toBe(3);
+      `the review screen says ${m![1]}/20 while the score says ${pm![1]}/20 — the two ` +
+        "graders have drifted apart again; see src/lib/oet/review.ts",
+    ).toBe(Number(pm![1]));
+    expect(Number(m![1]), "and both of them must be four").toBe(4);
 
-    // The three answered with the PRIMARY key are shown right\u2026
-    for (const q of [A.matching, A.shortAnswer, A.completion]) {
+    // ── EVERY ONE OF THE FOUR, INCLUDING THE VARIANT ──────────────
+    for (const q of [A.matching, A.shortAnswer, A.completion, A.variant]) {
       const row = page.locator("li", { hasText: q.stem.slice(0, 40) }).first();
       await expect(row, `no result row for ${JSON.stringify(q.stem.slice(0, 40))}`).toBeVisible();
-      await expect(row, `${q.id} was not shown correct`).toContainText("\u2713");
+      await expect(row, `${q.id} was not shown correct`).toContainText("✓");
       // A wrong row prints "Correct: <the key>". A right one never does.
       await expect(row).not.toContainText("Correct:");
     }
-    // \u2026and the one answered with an accepted VARIANT is shown wrong, and is told
-    // the "correct" answer is the other wording of the same thing.
+    // 🔴 The variant row is the one this whole fix is about: the learner typed a
+    // wording that is not the key, and must be shown their own words with a tick.
     const variantRow = page.locator("li", { hasText: A.variant.stem.slice(0, 40) }).first();
-    await expect(variantRow).toBeVisible();
     await expect(variantRow).toContainText(A.variant.variantAnswer);
-    await expect(variantRow, "the variant row is no longer shown wrong \u2014 see above").toContainText(
-      "\u2717",
-    );
-    await expect(variantRow).toContainText(`Correct: ${A.variant.primary}`);
+    await expect(variantRow, "the variant is shown wrong again").not.toContainText("✗");
 
     console.log(
-      `[e2e] \ud83d\udd34 MEASURED \u2014 SCORED 4/20, SHOWN 3/20. Answered ` +
+      `[e2e] MEASURED — SCORED 4/20 and SHOWN 4/20. Answered ` +
         `${JSON.stringify(A.variant.variantAnswer)} where the key is ` +
-        `${JSON.stringify(A.variant.primary)}: markObjective accepted it, ` +
-        `buildObjectiveReview printed \u2717 and "Correct: ${A.variant.primary}".`,
+        `${JSON.stringify(A.variant.primary)}: accepted by the grader AND shown ` +
+        `correct on the review screen.`,
     );
     // Frame the evidence: the points line and the review rows, not the footer
     // a plain viewport shot would find at the bottom of a long result page.
     await points.scrollIntoViewIfNeeded();
     await shot(page, "12-part-a-review.png");
     await variantRow.scrollIntoViewIfNeeded();
-    await shot(page, "12b-part-a-variant-shown-wrong.png");
+    await shot(page, "12b-part-a-variant-accepted.png");
   });
 
   test("the chain offers a different full-length item and lands on it", async ({ page }) => {

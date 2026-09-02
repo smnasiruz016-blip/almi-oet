@@ -168,9 +168,18 @@ export function normalizeTokens(s: string): string[] {
   return tokens;
 }
 
-function firstValue(v: string | string[] | undefined): string {
-  if (Array.isArray(v)) return v[0] ?? "";
-  return v ?? "";
+/**
+ * Pull one learner answer out of a stored response.
+ *
+ * EXPORTED because the review screen needs the same string the grader marked.
+ * It used to read the response itself, with its own array handling; two readers
+ * of one shape is the same class of mistake as two comparers of one answer.
+ */
+export function answerFor(response: unknown, id: string): string {
+  const answers = (response as { answers?: Record<string, unknown> } | null)?.answers ?? {};
+  const v = answers[id];
+  if (Array.isArray(v)) return String(v[0] ?? "");
+  return v == null ? "" : String(v);
 }
 
 /** `variants` are ADDITIONAL accepted answers, marked identically to `answer`.
@@ -178,6 +187,34 @@ function firstValue(v: string | string[] | undefined): string {
  *  heard phrase ("moving boxes" / "lifting boxes"), and marking one of them wrong
  *  penalises a candidate for the authoring, not for the listening. */
 export type AnswerKey = { id: string; answer: string; exact?: boolean; variants?: string[] };
+
+/**
+ * 🔴 THE ONE PLACE A GIVEN ANSWER IS COMPARED TO A KEY. There is no second one,
+ * and adding one is the defect this function exists to prevent.
+ *
+ * Measured on 3 September 2026: `src/lib/oet/review.ts` carried its OWN
+ * comparison — trim, lowercase, collapse spaces, strip trailing punctuation —
+ * against `q.answer` alone. It never read `variants`, never merged the
+ * accept-list overlay, and applied none of the seven leniency rules above. On
+ * one result screen, at one moment, a learner saw:
+ *
+ *     4 / 20 practice points          ← this file, the score
+ *     Answer review · 3/20 correct     ← review.ts, the screen
+ *
+ * 688 of the 882 authored accepted answers in the bank were scored right and
+ * shown wrong. A wrong score is a wrong number; that TEACHES THE MISTAKE — a
+ * learner who wrote "five minutes" and reads "✗ Correct: 5 minutes" corrects
+ * themselves away from a correct answer.
+ *
+ * So the verdict lives here and callers ask it. Anything that wants to know
+ * whether an answer is right imports this; nothing reimplements it.
+ */
+export function isAnswerCorrect(key: AnswerKey, given: string): boolean {
+  const accepted = [key.answer, ...(key.variants ?? [])];
+  return key.exact
+    ? accepted.some((a) => given.trim() === a.trim())
+    : accepted.some((a) => normalize(given) === normalize(a));
+}
 
 /** Mark a set of answers against a key. `exact` items (MCQ/matching by id) must
  *  match exactly; the rest use lenient normalised comparison (gap fill). Any
@@ -189,11 +226,7 @@ export function markObjective(
   let correct = 0;
   const detail: { id: string; correct: boolean }[] = [];
   for (const k of key) {
-    const given = firstValue(response.answers[k.id]);
-    const accepted = [k.answer, ...(k.variants ?? [])];
-    const ok = k.exact
-      ? accepted.some((a) => given.trim() === a.trim())
-      : accepted.some((a) => normalize(given) === normalize(a));
+    const ok = isAnswerCorrect(k, answerFor(response, k.id));
     if (ok) correct += 1;
     detail.push({ id: k.id, correct: ok });
   }
