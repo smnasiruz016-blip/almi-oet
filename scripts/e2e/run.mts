@@ -161,7 +161,16 @@ async function main() {
     // 7 · the walk
     run(
       "npx playwright test",
-      { ...process.env, E2E_BASE_URL: BASE_URL, E2E_FIXTURE_FILE: fixtureFile },
+      {
+        ...process.env,
+        E2E_BASE_URL: BASE_URL,
+        E2E_FIXTURE_FILE: fixtureFile,
+        // The retire walk arranges state the product offers no UI for — it runs
+        // scripts/retire-fragments.mts against THIS database, the real script
+        // rather than a hand-rolled UPDATE. assertDisposable() has already
+        // refused anything that is not a throwaway server.
+        E2E_DATABASE_URL: url,
+      },
       "playwright",
     );
   } finally {
