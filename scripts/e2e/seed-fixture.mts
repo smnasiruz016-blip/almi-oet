@@ -58,6 +58,12 @@ export type Fixture = {
   /** Everything the Reading Part A walk needs, computed FROM THE SEEDED PAYLOAD
    *  rather than typed out here — see partAWalk(). */
   partA: PartAWalk;
+  /** Reading Part A as PRODUCTION holds it: the corrected full-length items and
+   *  the legacy short ones that are on their way out, so the retire can be
+   *  walked here before it is run there. Titles only; the walk reads the
+   *  rendered list for everything it asserts. */
+  partAFullLengthTitles: string[];
+  partALegacyTitles: string[];
 };
 
 /**
@@ -216,7 +222,11 @@ export async function seedFixture(url: string): Promise<Fixture> {
     const items: Prisma.OetItemCreateManyInput[] = [];
     for (const part of OBJECTIVE_PARTS) {
       const pool = all.filter((i) => i.taskType === part);
-      const forPart = (part === PART_A ? pool.filter(isFullLengthPartA) : pool).slice(0, FLOOR);
+      // 🔴 READING PART A IS SEEDED WHOLE, and the others are cut to the floor.
+      // The retire walk has to see what production sees: the corrected items AND
+      // the legacy ones it is about to hide. Cutting Part A to fifteen would mean
+      // retiring nothing, or retiring the very items the learner is left with.
+      const forPart = part === PART_A ? pool : pool.slice(0, FLOOR);
       if (forPart.length < FLOOR) {
         throw new Error(
           `[e2e] the seed source holds only ${forPart.length} ${part} items; ` +
@@ -241,15 +251,24 @@ export async function seedFixture(url: string): Promise<Fixture> {
       },
     });
 
-    const partAPool = items.filter((i) => i.taskType === PART_A);
-    if (partAPool.length < FLOOR) {
+    const partAAll = items.filter((i) => i.taskType === PART_A);
+    const partAFull = partAAll.filter(isFullLengthPartA);
+    const partALegacy = partAAll.filter((i) => !isFullLengthPartA(i));
+    if (partAFull.length < FLOOR) {
       throw new Error(
-        `[e2e] only ${partAPool.length} FULL-LENGTH Reading Part A item(s) in the seed ` +
+        `[e2e] only ${partAFull.length} FULL-LENGTH Reading Part A item(s) in the seed ` +
           `source; the walk needs ${FLOOR}. A short item must never be walked as if it ` +
           `were one of the corrected ones.`,
       );
     }
-    const partAItem = partAPool[0];
+    // The retire leaves exactly the full-length ones standing, and the server's
+    // own floor is FLOOR. If that ever stopped being true the walk would prove
+    // the retire safe on a bank the product would refuse to boot with.
+    if (partAFull.length < FLOOR) throw new Error("[e2e] the retire would breach the floor");
+    if (partALegacy.length === 0) {
+      throw new Error("[e2e] no legacy Reading Part A item is left to walk the retire against");
+    }
+    const partAItem = partAFull[0];
 
     const seeded = await prisma.oetItem.findMany({
       where: { taskType: WALK_TASK, active: true, profession: null },
@@ -264,6 +283,8 @@ export async function seedFixture(url: string): Promise<Fixture> {
       taskSlug: "reading-part-b",
       seededTitles: seeded.map((s) => s.title),
       partA: partAWalk(partAItem),
+      partAFullLengthTitles: partAFull.map((i) => i.title),
+      partALegacyTitles: partALegacy.map((i) => i.title),
     };
   } finally {
     await prisma.$disconnect();
