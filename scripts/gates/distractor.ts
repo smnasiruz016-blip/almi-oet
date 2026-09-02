@@ -45,6 +45,26 @@
  *   · an entry that now measures CLEAN  -> exit 1, saying so. A stale exemption
  *     is how a debt list turns into a permanent excuse.
  *
+ * ── 🔴 A THRESHOLD IS NEVER WIDENED TO ADMIT CONTENT AUTHORED AFTER IT ──────
+ *
+ * This was tested on 2 September 2026, the day the gate was written. One of
+ * fifteen newly authored Reading Part B items breached D2 at 2.00x —
+ * "Notice: quality control on blood glucose meters", options of 7 / 12 / 5
+ * words. The argument for letting it through was a decent one: the oversized
+ * option was a DISTRACTOR and the key was the SHORTEST, so the item worked
+ * against the very bias D1 exists to remove.
+ *
+ * The owner ruled the other way, and the reasoning is worth keeping: ANY option
+ * that stands out by size is a signal. A learner who meets three options where
+ * one is twice the length of its neighbours learns to treat the odd one as the
+ * trap — the same wrong skill D1 removes, only pointing the other way. The
+ * distractor was rewritten to nine words; the item now sits inside D2 with the
+ * key still the shortest and D1 untouched.
+ *
+ * CONTENT MOVES; THE THRESHOLD DOES NOT. If a threshold here is ever genuinely
+ * wrong, change it in its own commit with its own reason — never as a side
+ * effect of making today's item fit.
+ *
  * ⚠️ THE COMMAND SIZED ONLY THE FIRST OF THE THREE. It specified a single
  * LEGACY_TELL of "the 138 offending triples", which is D1. Measured here, D2
  * fails on 65 further legacy questions and D3 fails on all
@@ -278,33 +298,6 @@ const LEGACY_OVERSIZE: string[] = [
   "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q8", // 4.00x
 ];
 
-/**
- * 🔴 NOT LEGACY — HANDED BACK, NOT DECIDED HERE.
- *
- * One of the fifteen newly authored Reading Part B items breaches D2, and it is
- * NOT the same defect D1 is about:
- *
- *   Part B — Notice: quality control on blood glucose meters, q1
- *     A) reported to the manufacturer within three months.        7 words
- *     B) kept on the trolley until somebody is able to check it again.  12 words
- *     C) labelled and removed from service.                        5 words  <- KEY
- *
- * The oversized option is a DISTRACTOR and the key is the SHORTEST of the three,
- * so this item works against the very bias D1 exists to remove. With three short
- * options a 2.0x ratio is seven words, not a towering option — which reads as a
- * limit of the 1.6x threshold on short stems rather than a defect in the item.
- *
- * That threshold is the author's, written fresh in this command, and no earlier
- * ruling of his contradicts it — so it is not mine to widen. The item is
- * recorded here, printed on every run, and left for him to rule on.
- *
- * ⚠️ A TO-DO, NOT AN ALLOWANCE: a row that has STOPPED breaching fails the
- * build, so a resolved question is deleted rather than left standing.
- */
-const D2_PENDING_DECISION: string[] = [
-  "READING_PART_B::Part B — Notice: quality control on blood glucose meters::q1", // 2.00x
-];
-
 /** D3 · a single option letter holding more than 45% of the keys, per taskType.
  *  A RATCHET: the recorded percentage may not be exceeded, and a taskType that
  *  reaches 45% or below must be deleted from this list. */
@@ -321,12 +314,10 @@ const fail = (msg: string) => failures.push(msg);
 
 const tellExempt = new Set(LEGACY_TELL);
 const overExempt = new Set(LEGACY_OVERSIZE);
-const pendingExempt = new Set(D2_PENDING_DECISION);
 const skewByType = new Map(LEGACY_SKEW.map((s) => [s.taskType, s]));
 
 const tellSeen = new Set<string>();
 const overSeen = new Set<string>();
-const pendingSeen = new Set<string>();
 const skewSeen = new Set<string>();
 
 let mcq = 0;
@@ -365,17 +356,10 @@ for (const item of ITEMS) {
     const oversize = worst > 1.6;
     if (oversize) {
       if (overExempt.has(key)) overSeen.add(key);
-      else if (pendingExempt.has(key)) pendingSeen.add(key);
       else fail(`D2 ${key} — an option is ${worst.toFixed(2)}x the mean of the others`);
-    } else {
-      if (overExempt.has(key)) {
-        overSeen.add(key);
-        fail(`D2 ${key} is in LEGACY_OVERSIZE but no longer breaches — delete it.`);
-      }
-      if (pendingExempt.has(key)) {
-        pendingSeen.add(key);
-        fail(`D2 ${key} is in D2_PENDING_DECISION but no longer breaches — delete it.`);
-      }
+    } else if (overExempt.has(key)) {
+      overSeen.add(key);
+      fail(`D2 ${key} is in LEGACY_OVERSIZE but no longer breaches — delete it.`);
     }
 
     const t = perType.get(item.taskType) ?? { q: 0, keys: new Map<string, number>() };
@@ -411,7 +395,6 @@ for (const [taskType, v] of perType) {
 // ── the lists cannot rot ────────────────────────────────────────────────────
 for (const k of tellExempt) if (!tellSeen.has(k)) fail(`D1 ${k} is in LEGACY_TELL but not in the bank — delete it.`);
 for (const k of overExempt) if (!overSeen.has(k)) fail(`D2 ${k} is in LEGACY_OVERSIZE but not in the bank — delete it.`);
-for (const k of pendingExempt) if (!pendingSeen.has(k)) fail(`D2 ${k} is in D2_PENDING_DECISION but not in the bank — delete it.`);
 for (const s of LEGACY_SKEW) if (!skewSeen.has(s.taskType)) fail(`D3 ${s.taskType} is in LEGACY_SKEW but has no questions — delete it.`);
 
 // Population before the guard: a gate over nothing passes vacuously.
@@ -419,12 +402,6 @@ if (mcq === 0) fail("no multiple-choice question was found — the gate is vacuo
 
 console.log(`[gate:distractor] ${mcq} multiple-choice question(s) across ${perType.size} task type(s)`);
 console.log(`DISTRACTOR DEBT: ${tellNow} questions where the key is the longest option`);
-if (D2_PENDING_DECISION.length > 0) {
-  console.log(
-    `  🔴 D2 HANDED BACK — ${D2_PENDING_DECISION.length} newly authored question(s). NOT decided here:`,
-  );
-  for (const k of D2_PENDING_DECISION) console.log(`        ${k}`);
-}
 if (failures.length > 0) {
   console.error(`\n[gate:distractor] ${failures.length} failure(s):`);
   for (const f of failures.slice(0, 40)) console.error(`  ${f}`);

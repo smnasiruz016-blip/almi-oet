@@ -1502,7 +1502,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "kept on the trolley until somebody is able to check it again."
+              "text": "left on the trolley for somebody else to check."
             },
             {
               "id": "c",
