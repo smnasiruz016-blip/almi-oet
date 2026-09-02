@@ -268,6 +268,17 @@ model OetAttempt {
   taskType OetTaskType
   status   OetAttemptStatus @default(IN_PROGRESS)
 
+  // 🔴 THE SERVER'S CLOCK FOR THIS ATTEMPT. Set when the attempt is created, from
+  // the published limit for its task type — never from anything the client
+  // sends. Before this column the countdown lived only in OetComposer, so F5
+  // handed the candidate a fresh timer and "Part A is strictly timed" was
+  // decoration.
+  //
+  // NULL means no server deadline, which is the behaviour every attempt had
+  // before this column existed and the behaviour every task type still has
+  // except Reading — see src/lib/oet/deadline.ts for why the others are null.
+  deadlineAt DateTime?
+
   // The user's raw response; shape depends on taskType:
   //   Listening / Reading  { answers: { [questionId]: string | string[] } }
   //   WRITING_LETTER        { text: string }

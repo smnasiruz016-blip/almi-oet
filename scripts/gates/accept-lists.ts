@@ -128,6 +128,68 @@ for (const [title, keys] of Object.entries(READING_PART_A_ACCEPT)) {
   }
 }
 
+/**
+ * 🔴 ANSWERS THAT ARE DELIBERATELY SINGLE-FORM.
+ *
+ * A4 asks that every free-text answer has an accept-list. Nine Reading Part A
+ * sets authored on 1-2 September carry their accept-lists in the payload, and in
+ * eight places the author wrote that there is nothing else to accept —
+ * `qubool: sirf glucagon — is ka koi doosra lafz nahi` ("only glucagon; it has
+ * no other word"), or an accepted list whose only entry is the answer itself.
+ * The porting instruction was explicit: emit an EMPTY variants array, never a
+ * guessed one.
+ *
+ * So A4 needs to know the difference between "nobody wrote an accept-list" and
+ * "the author wrote that there isn't one". This list is the second. It is
+ * per-answer, carries the author's own reason, and is CLOSED both ways: an
+ * answer with no accept-list that is not named here fails the build, and a row
+ * here whose answer HAS gained an accept-list also fails, so it cannot rot.
+ */
+const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
+  {
+    item: "Part A — Anaphylaxis",
+    answer: "glucagon",
+    why: "author: 'sirf glucagon — is ka koi doosra lafz nahi' (a drug name has no synonym)",
+  },
+  {
+    item: "Part A — Hypoglycaemia",
+    answer: "glucagon",
+    why: "author: 'sirf glucagon — is ka koi doosra lafz nahi'",
+  },
+  {
+    item: "Part A — High-risk medicines",
+    answer: "methotrexate",
+    why: "author: 'sirf methotrexate — dawa ka naam hai' (it is a drug name)",
+  },
+  {
+    item: "Part A — Pressure ulcer prevention",
+    answer: "shear",
+    why: "author: 'sirf shear'",
+  },
+  {
+    item: "Part A — Sepsis",
+    answer: "source control",
+    why: "author: 'sirf yehi — text ka apna lafz hai' (only this; it is the text's own term)",
+  },
+  {
+    item: "Part A — Pressure ulcer prevention",
+    answer: "drainage",
+    why: "the author's only other entry was a REFUSAL: 'discharge NAHIN — wo lafz text mein nahi hai'",
+  },
+  {
+    item: "Part A — Preventing blood clots in hospital",
+    answer: "blood",
+    why: "the author's accepted list is the answer alone: 'qubool: blood'",
+  },
+  {
+    item: "Part A — Wound infection and antibiotics",
+    answer: "effective",
+    why: "the author's accepted list is the answer alone: 'qubool: effective'",
+  },
+];
+const A4_SINGLE_KEY = new Set(A4_SINGLE_FORM.map((e) => `${e.item}||${e.answer}`));
+const a4SingleSeen = new Set<string>();
+
 // ── A4 · coverage — no free-text answer without an accept-list ──────────────
 //
 // The handoff states the bank is fully covered: 146 Listening gaps and 54
@@ -137,7 +199,15 @@ let listeningGaps = 0;
 for (const item of LISTENING) {
   for (const gap of item.payload.gaps ?? []) {
     listeningGaps += 1;
-    if (listeningAcceptFor(item.title, gap.label).length === 0) {
+    // An accept-list may live in EITHER place. The overlay is how the original
+    // bank got one without a database write; a payload `variants` array is how
+    // newly authored items carry their own, and reading.ts prefers the payload
+    // when it is non-empty. A4 asks whether the answer HAS an accept-list, not
+    // where it is kept.
+    if (
+      listeningAcceptFor(item.title, gap.label).length === 0 &&
+      (gap.variants ?? []).length === 0
+    ) {
       fail("A4", `no accept-list for "${item.title}" → "${gap.label}"`);
     }
   }
@@ -146,9 +216,29 @@ let readingFree = 0;
 for (const item of READING) {
   for (const q of (item.payload.questions ?? []).filter((x) => x.kind !== "match")) {
     readingFree += 1;
-    if (readingAcceptFor(item.title, q.answer).length === 0) {
+    const hasList =
+      readingAcceptFor(item.title, q.answer).length > 0 || (q.variants ?? []).length > 0;
+    const singleKey = `${item.title}||${q.answer}`;
+    if (A4_SINGLE_KEY.has(singleKey)) {
+      a4SingleSeen.add(singleKey);
+      if (hasList) {
+        fail(
+          "A4",
+          `"${item.title}" → "${q.answer}" is listed as single-form but now HAS an ` +
+            "accept-list — delete the A4_SINGLE_FORM row",
+        );
+      }
+      continue;
+    }
+    if (!hasList) {
       fail("A4", `no accept-list for "${item.title}" → answer "${q.answer}"`);
     }
+  }
+}
+
+for (const e of A4_SINGLE_FORM) {
+  if (!a4SingleSeen.has(`${e.item}||${e.answer}`)) {
+    fail("A4", `single-form row points at an answer that is not in the bank — delete it: "${e.item}" / "${e.answer}"`);
   }
 }
 

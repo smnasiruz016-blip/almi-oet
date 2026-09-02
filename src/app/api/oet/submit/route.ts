@@ -21,6 +21,7 @@ import { fractionToEstimate } from "@/lib/oet/scale";
 import { transcribeAudio } from "@/lib/ai/openai";
 import { checkBeforeTranscription, checkBeforeGrading } from "@/lib/oet/substance";
 import { aiFeedbackBlockedByEmail } from "@/lib/billing/email-gate";
+import { isPastDeadline } from "@/lib/oet/deadline";
 
 export const runtime = "nodejs";
 
@@ -70,6 +71,24 @@ export async function POST(req: Request): Promise<NextResponse> {
   }
   if (attempt.status === "SCORED") {
     return NextResponse.json({ ok: true, alreadyScored: true });
+  }
+
+  // 🔴 A CLOCK THAT ONLY EXISTS IN THE BROWSER IS DECORATION. The countdown used
+  // to live entirely in OetComposer, so F5 handed the candidate a fresh one.
+  // This is the same deadline the countdown now renders from, checked where it
+  // cannot be reloaded away. Attempts created before the column existed carry
+  // NULL and are never refused.
+  if (isPastDeadline(attempt.deadlineAt)) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "Time is up for this exercise, so it can't be marked. Nothing has been " +
+          "used up — start it again when you're ready.",
+        reason: "PAST_DEADLINE",
+      },
+      { status: 422 },
+    );
   }
 
   const handler = OET_HANDLERS[attempt.taskType];

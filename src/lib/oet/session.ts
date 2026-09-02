@@ -18,6 +18,7 @@ import { OET_TASKS, MOCK_PLAN } from "@/lib/oet/registry";
 import { fractionToEstimate, type GradeEstimate } from "@/lib/oet/scale";
 import { isPerProfession } from "@/lib/oet/types";
 import { poolWhere } from "@/lib/oet/pool";
+import { attemptDeadline } from "@/lib/oet/deadline";
 
 const DIFFICULTIES: OetDifficulty[] = ["FOUNDATION", "CORE", "STRETCH"];
 /** Items served in one PRACTICE_SET run of an auto-marked task type.
@@ -178,6 +179,14 @@ async function createStepAttempt(params: {
       params.formPrefix,
     ));
   if (!itemId) return false;
+  // 🔴 THE CLOCK STARTS ON THE SERVER, NOT IN THE BROWSER. Read from the item so
+  // a per-item limit is honoured, and never from anything the client sent — a
+  // deadline a candidate can choose is not a deadline. Null for the task types
+  // whose screens show no overall countdown; see src/lib/oet/deadline.ts.
+  const item = await prisma.oetItem.findUnique({
+    where: { id: itemId },
+    select: { timeLimitSeconds: true },
+  });
   await prisma.oetAttempt.create({
     data: {
       userId: params.userId,
@@ -187,6 +196,7 @@ async function createStepAttempt(params: {
       status: "IN_PROGRESS",
       sessionId: params.sessionId,
       sessionStep: params.step,
+      deadlineAt: attemptDeadline(params.taskType, item?.timeLimitSeconds ?? 0),
     },
   });
   return true;

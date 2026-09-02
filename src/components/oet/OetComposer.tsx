@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { OetTaskType } from "@prisma/client";
 import { TIMING } from "@/lib/oet/exam-shape";
+import { secondsRemaining } from "@/lib/oet/deadline";
 import { usePublishTimer } from "@/components/oet/ExamChrome";
 
 const SUBMIT_BTN =
@@ -80,6 +81,33 @@ function mmss(totalSeconds: number): string {
 }
 
 /** Counts DOWN from `totalSeconds`, and stops at zero. Paused when !running. */
+/**
+ * 🔴 A COUNTDOWN THAT SURVIVES F5.
+ *
+ * useCountdown below starts at `totalSeconds` every time the component mounts,
+ * which is why a reload used to hand the candidate a fresh fifteen minutes. This
+ * one recomputes from `OetAttempt.deadlineAt`, stamped by the server when the
+ * attempt was created, so a reload shows LESS time rather than more.
+ *
+ * `deadlineAt` is null for every attempt made before the column existed and for
+ * every task type whose screen shows no overall clock — in that case this falls
+ * back to `fallbackSeconds`, i.e. exactly the old behaviour, rather than
+ * inventing a deadline nobody was shown.
+ */
+function useDeadlineCountdown(deadlineAt: string | null | undefined, fallbackSeconds: number): number {
+  const fromServer = secondsRemaining(deadlineAt);
+  const [left, setLeft] = useState(fromServer ?? fallbackSeconds);
+  useEffect(() => {
+    setLeft(secondsRemaining(deadlineAt) ?? fallbackSeconds);
+    const t = setInterval(() => {
+      const next = secondsRemaining(deadlineAt);
+      setLeft((prev) => (next === null ? Math.max(0, prev - 1) : next));
+    }, 1000);
+    return () => clearInterval(t);
+  }, [deadlineAt, fallbackSeconds]);
+  return left;
+}
+
 function useCountdown(totalSeconds: number, running = true): number {
   const [left, setLeft] = useState(totalSeconds);
   useEffect(() => setLeft(totalSeconds), [totalSeconds]);
@@ -508,11 +536,14 @@ function ReadingComposer({
   taskType,
   prompt,
   payload,
+  deadlineAt,
 }: {
   attemptId: string;
   taskType: OetTaskType;
   prompt: string;
   payload: unknown;
+  /** The server's clock for this attempt, ISO, or null. */
+  deadlineAt?: string | null;
 }) {
   const { submit, submitting, error } = useSubmit(attemptId);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -526,7 +557,9 @@ function ReadingComposer({
 
   const limitSeconds =
     taskType === "READING_PART_A" ? TIMING.readingPartASeconds : TIMING.readingPartsBandCSeconds;
-  const secondsLeft = useCountdown(limitSeconds);
+  // The server's deadline decides; limitSeconds is only the fallback for an
+  // attempt created before OetAttempt.deadlineAt existed.
+  const secondsLeft = useDeadlineCountdown(deadlineAt, limitSeconds);
   const expired = secondsLeft <= 0;
 
   return (
@@ -963,11 +996,15 @@ export function OetComposer({
   prompt,
   payload,
   allowSkipPreparation,
+  deadlineAt,
 }: {
   attemptId: string;
   taskType: OetTaskType;
   prompt: string;
   payload: unknown;
+  /** `OetAttempt.deadlineAt` as an ISO string, or null when the attempt has no
+   *  server clock. Passed straight through; never computed in the browser. */
+  deadlineAt?: string | null;
   /** Speaking only. OPTIONAL AND SAFE-BY-DEFAULT: omitted or undefined means the
    *  preparation phase is mandatory. Callers must not compute this themselves —
    *  pass speakingPrepPolicy(session).allowSkip from src/lib/oet/prep-policy.ts. */
@@ -990,7 +1027,13 @@ export function OetComposer({
     return <ListeningComposer attemptId={attemptId} prompt={prompt} payload={payload} />;
   }
   return (
-    <ReadingComposer attemptId={attemptId} taskType={taskType} prompt={prompt} payload={payload} />
+    <ReadingComposer
+      attemptId={attemptId}
+      taskType={taskType}
+      prompt={prompt}
+      payload={payload}
+      deadlineAt={deadlineAt}
+    />
   );
 }
 
