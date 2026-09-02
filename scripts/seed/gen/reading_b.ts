@@ -1349,5 +1349,620 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ]
     }
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Missed doses on the drug chart",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "missed-doses-on",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Every dose that is not given must be accounted for on the chart at the time, using the omission code that\napplies, and never left as an empty box. An empty box records nothing. It cannot be told apart from a dose\nthat was given and not signed for, and the next person to read the chart has no way of deciding which of\nthe two happened.\n\nWhere a dose is omitted because the medicine was unavailable, the code is entered and the pharmacy team is\ncontacted during that shift, rather than at the next routine round.\n\nWhere a dose is omitted because the patient declined it, the reason the patient gave is written in the\nnotes and not on the chart.\n\nTwo consecutive omissions of any critical medicine are escalated to the prescriber before the third dose\nfalls due."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The passage states that an empty box on the chart is unacceptable because",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "a signed dose and an unsigned one look the same."
+            },
+            {
+              "id": "b",
+              "text": "the pharmacy team cannot then supply a replacement in time."
+            },
+            {
+              "id": "c",
+              "text": "the patient's own reason must be written on the chart."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The passage names the ambiguity itself as the fault; the pharmacy and the patient's reason are separate rules in the same text."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Checking the position of a feeding tube",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "checking-the-position",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "The position of a newly placed tube is confirmed before anything at all is passed down it, including\nwater. Aspirate is obtained and tested on pH indicator paper made for human gastric aspirate, and a\nreading of 5.5 or below allows feeding to begin.\n\nWhere no aspirate can be obtained, turn the patient onto their side and try again after fifteen to twenty\nminutes. Advancing or withdrawing the tube by ten centimetres may also help.\n\nAir must not be pushed down the tube and listened for with a stethoscope. That test has been withdrawn\nbecause it cannot distinguish the stomach from the lung.\n\nIf the pH is above 5.5, or no aspirate is obtained after two attempts, an X-ray is requested and reported\nby somebody trained to confirm the position."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The guideline says the stethoscope test is no longer used because it",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "needs equipment that is not always available on the ward."
+            },
+            {
+              "id": "b",
+              "text": "cannot tell the stomach apart from the lung."
+            },
+            {
+              "id": "c",
+              "text": "delays feeding by fifteen to twenty minutes."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The reason given is that the test cannot separate two placements; the delay belongs to the aspirate attempt, not to the withdrawn test."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Memo: totalling the fluid balance chart",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "memo-totalling-the",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "From Monday, fluid balance charts will be totalled at the end of every shift rather than once in\ntwenty-four hours. Write the running total in the box provided and sign it, so that the next shift begins\nwith a figure instead of a column of entries to add up.\n\nPlease record what was actually taken and not what was offered. A jug left at the bedside is not intake,\nand a cup half returned is not a full cup.\n\nOutput includes the losses that are easiest to forget: vomit, drain fluid, stoma output and heavy wound\nexudate.\n\nWhere an amount cannot be measured, write what it was and state that it was not measured, rather than\nleaving the line blank."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The memo asks staff to change the way charts are",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "totalled, so that each shift inherits a figure."
+            },
+            {
+              "id": "b",
+              "text": "signed, so that every entry can be traced to a person."
+            },
+            {
+              "id": "c",
+              "text": "stored, so that the next shift is able to find them quickly."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "Signing is mentioned, but as part of the new totalling routine rather than as the change itself; storage is not mentioned at all."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Notice: quality control on blood glucose meters",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "notice-quality-control",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Every meter on the ward must have its internal quality control run at the start of each day on which it is\nused, and the result logged. A meter that has not been controlled that day is not used on a patient,\nwhatever the hurry.\n\nControl solutions are dated when they are opened and discarded three months later, or at the\nmanufacturer's expiry date if that falls first. A solution kept beyond either date will give a result that\nlooks entirely normal and means nothing.\n\nIf a control result falls outside the printed range, the meter is taken out of service and labelled. Do\nnot leave it on the trolley for somebody else to find. Report it the same day."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The notice instructs that a meter failing its control must be",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "reported to the manufacturer within three months."
+            },
+            {
+              "id": "b",
+              "text": "left on the trolley for somebody else to check."
+            },
+            {
+              "id": "c",
+              "text": "labelled and removed from service."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The three-month rule belongs to the control solution, not the meter, and leaving it on the trolley is exactly what the notice forbids."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Policy extract: patients with latex allergy",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "policy-extract-patients",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "A patient with a known or suspected latex allergy is nursed with latex-free equipment from the moment of\nadmission, and the alert is added to the record before any procedure is booked.\n\nLatex-free does not mean powder-free. Powdered latex gloves are not used anywhere in this department,\nbecause the powder carries latex protein into the air and a patient in an adjoining bay can react without\never having been touched.\n\nTheatre is informed at the point of listing and not on the morning of surgery, so that the case can be\nplaced first on the list and the room can be left standing empty overnight.\n\nStaff who develop a rash after using gloves report it to occupational health, rather than quietly changing\nglove brand on their own."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The policy explains that theatre is told at the point of listing so that the case can be",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "cancelled if latex-free equipment cannot be found."
+            },
+            {
+              "id": "b",
+              "text": "placed first, with the room left empty overnight."
+            },
+            {
+              "id": "c",
+              "text": "performed by staff who have no history of rash."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The listing rule exists to buy the empty room and the first slot; the rash rule is about staff and is unconnected to the timing of the list."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — A resuscitation decision when the patient moves",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "a-resuscitation-decision",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "A decision not to attempt resuscitation is recorded on the form, and the form travels with the patient. It\nis not valid on its own once the patient moves into a different service: the receiving team reviews it and\neither adopts it or replaces it, and records which of the two it did.\n\nThe decision concerns cardiopulmonary resuscitation and nothing else. It does not limit antibiotics,\nfluids, pain relief, admission to hospital or any other treatment, and staff who read it as a general\nceiling of care have misread it.\n\nThe conversation with the patient, or with those close to a patient who lacks capacity, is recorded with\nthe date and with who was present. A form that has no conversation behind it will not survive a review."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The passage states that a form arriving with a patient from another service",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "also limits antibiotics, fluids and admission to hospital."
+            },
+            {
+              "id": "b",
+              "text": "remains valid without any review by the new team."
+            },
+            {
+              "id": "c",
+              "text": "must be reviewed, then adopted or replaced."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The text says explicitly that the decision covers resuscitation only, and that validity does not carry across on its own."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Policy extract: when to refer a safeguarding concern",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "policy-extract-when",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "A concern is referred when you believe that an adult with care and support needs is experiencing, or is at\nrisk of, abuse or neglect, and cannot protect themselves. You do not need proof, and you do not need to\nhave decided that abuse has taken place. That decision belongs to the safeguarding team.\n\nRefer the concern; do not investigate it. Asking a series of questions to satisfy yourself first can\ncontaminate an account that may be needed later.\n\nTell the person that you are making a referral, unless telling them would place them or somebody else at\ngreater risk. Where you do not tell them, record the reason.\n\nReferrals are made the same working day. A concern held overnight so that it can be raised on the ward\nround is a concern that has been delayed."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The policy states that a member of staff who has a concern should",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "refer it without first establishing that abuse occurred."
+            },
+            {
+              "id": "b",
+              "text": "question the person until the account is clear enough."
+            },
+            {
+              "id": "c",
+              "text": "wait for the ward round before making the referral."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "Both other options are named in the text as things not to do — questioning contaminates the account, and holding the concern overnight is a delay."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Guideline: offering a chaperone",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "guideline-offering-a",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "A chaperone is offered for every intimate examination, whatever the gender of the patient and of the\nclinician, and the offer is made before the patient undresses.\n\nThe chaperone is a trained member of staff. A relative or a friend may stay at the patient's request, but\nthey do not count as the chaperone, and their presence does not remove the need to make the offer.\n\nRecord the offer, the name and role of the chaperone, and, where the offer was declined, that it was\ndeclined. An entry reading only 'chaperone present' names nobody and proves nothing.\n\nWhere no chaperone is available and the examination can wait, it waits."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The guideline states that a relative who stays during the examination",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "removes the need to record that an offer was made."
+            },
+            {
+              "id": "b",
+              "text": "does not take the place of a trained chaperone."
+            },
+            {
+              "id": "c",
+              "text": "must be named in the record as the chaperone."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The relative may stay, but the offer still stands and the recorded chaperone must be the trained member of staff."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Policy extract: fitting bed rails",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "policy-extract-fitting",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Bed rails are not a routine measure, and they are not fitted because a patient is old, confused, or alone\nin a side room. They are fitted after an individual assessment which records the particular risk they are\nintended to reduce.\n\nRails do not prevent falls. They prevent a patient rolling out of bed. A patient who is trying to get out\nof bed will climb over them, and a fall from that height is worse than the fall the rails were fitted to\nstop.\n\nReassess whenever the patient's condition changes, and at least weekly. Record the reassessment even where\nnothing has changed, because an unrecorded reassessment cannot be told apart from one that never happened."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The extract warns that fitting rails for a patient who is trying to get out of bed",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "prevents that patient from rolling out of the bed."
+            },
+            {
+              "id": "b",
+              "text": "satisfies the requirement for a weekly reassessment."
+            },
+            {
+              "id": "c",
+              "text": "can make the fall worse."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "Rolling out of bed is the risk rails do address, which is precisely why they do not help the patient who climbs."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Memo: the forty-eight hour antimicrobial review",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "memo-the-forty",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Every antimicrobial started in this hospital carries a review point at forty-eight hours, and the review\nis written on the chart even where the decision is to continue unchanged. Four outcomes are available:\nstop, switch from the drip to tablets, change the drug, or continue with a stated end date.\n\nContinue with no end date is not one of them. A course with no end date is the commonest way in which a\nthree-day treatment becomes a three-week one.\n\nThe indication is written on the chart when the drug is prescribed, and not added later from memory. A\ndrug with no indication cannot be reviewed by anybody except the person who started it, and that person\nmay be off duty."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The memo states that continuing a drug without an end date",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "is how a short course quietly becomes a long one."
+            },
+            {
+              "id": "b",
+              "text": "is acceptable where the indication is already on the chart."
+            },
+            {
+              "id": "c",
+              "text": "requires the prescriber to be on duty for the review."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The indication rule and the absent prescriber are separate points in the memo, neither of which makes an open-ended course acceptable."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Prescribing oxygen on the drug chart",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "prescribing-oxygen-on",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Oxygen is a drug and it is prescribed. The prescription states a target saturation range and not a fixed\nnumber of litres, because the amount the patient needs changes through the day while the target does not.\n\nThe usual target is 94 to 98 per cent. For a patient at risk of carbon dioxide retention the target is 88\nto 92 per cent, and that range is written on the chart at the moment the risk is identified, rather than\nafter the first blood gas comes back.\n\nRecord the delivery device and the flow rate at every observation round. A saturation written down without\nthe oxygen beside it can be read a shift later as a patient who was breathing air."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The passage explains that a target range is prescribed rather than a flow rate because",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "a blood gas is needed before the range can be chosen."
+            },
+            {
+              "id": "b",
+              "text": "what the patient needs changes although the target does not."
+            },
+            {
+              "id": "c",
+              "text": "the delivery device is recorded at every observation round."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The blood gas is named as something the range must not wait for, and the device recording is a separate instruction."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Extract: patient property and valuables",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "extract-patient-property",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Property brought in with a patient is listed on the property form at the point of admission, by two\nmembers of staff, and the patient or their relative signs the list wherever they are able to.\n\nValuables are not kept in the bedside locker. They go to the safe and the receipt goes in the notes. A\nlocker key held at the nurses' station is not a safe.\n\nWhere a patient arrives unconscious and alone, the list is still made by two members of staff and\ncountersigned, and the fact that nobody could confirm it is written on the form.\n\nDo not record a yellow metal ring as a gold ring. You are recording what you can see."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The extract states that a ring should be described by",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "the value that the patient's relative gives for it."
+            },
+            {
+              "id": "b",
+              "text": "the metal it is most likely to be made of."
+            },
+            {
+              "id": "c",
+              "text": "what can actually be seen."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The closing instruction draws the line between what is observed and what is assumed, whoever the assumption comes from."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Telling a patient when something has gone wrong",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "telling-a-patient",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Where a patient has come to moderate harm or worse, they are told. The conversation happens as soon as is\npracticable and in person, and it is not held back until the investigation has finished. What is known and\nwhat is not yet known are both said out loud.\n\nAn apology is not an admission of liability, and no member of staff should be advised to withhold one.\n\nWrite down what was said, who said it, who was present, and what the patient asked. Follow it in writing,\nsetting out what will happen next and by when.\n\nWhere the patient has died, the duty is owed to those who were close to them."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The passage states that the conversation takes place",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "before the investigation has been completed."
+            },
+            {
+              "id": "b",
+              "text": "only once the facts are fully established."
+            },
+            {
+              "id": "c",
+              "text": "in writing rather than face to face."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The written follow-up comes after the conversation and does not replace it, and waiting for the full facts is what the passage rules out."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Separating clinical waste",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "separating-clinical-waste",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "Waste is separated at the point at which it is produced, and it is never sorted again afterwards. A bag\nthat has been closed is not reopened.\n\nSharps go into the rigid container whether or not they are contaminated, and a sharp found inside a waste\nbag is treated as an injury waiting to happen rather than as a sorting mistake.\n\nCytotoxic and cytostatic waste has its own container and does not enter the ordinary clinical stream at\nany point.\n\nBags are filled to three-quarters, closed with the tag, and labelled with the ward. An unlabelled bag\ncannot be traced back, and every unlabelled bag is a ward that will never be told."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The passage states that waste which has been bagged wrongly",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "is emptied out and separated again on the ward."
+            },
+            {
+              "id": "b",
+              "text": "stays as it is; the bag is not reopened."
+            },
+            {
+              "id": "c",
+              "text": "is labelled with the ward it came from and traced."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "Labelling and tracing are how the ward is told afterwards, not a reason to open the bag."
+  },
+  {
+    "subTest": "READING",
+    "taskType": "READING_PART_B",
+    "profession": null,
+    "title": "Part B — Supervising a student and countersigning",
+    "prompt": "Read the short workplace text and answer the question by choosing the best option (a, b or c).",
+    "difficulty": "CORE",
+    "topicTag": "supervising-a-student",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "payload": {
+      "passages": [
+        {
+          "id": "p1",
+          "body": "A student may carry out a task only where it is within the level they have reached, and where a registered\nmember of staff has agreed to it beforehand. Agreement afterwards is not supervision.\n\nCountersigning means that the registered member of staff was present, or has satisfied themselves by some\nother means that the entry is accurate. It does not mean that the student is considered reliable in\ngeneral.\n\nDo not countersign an administration you did not witness. A signature saying that a drug was checked when\nit was not is a false record, whatever was intended by it.\n\nA student who is asked to work beyond their level should say so, and should be thanked for saying so."
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "The passage states that countersigning an entry means the staff member",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "considers the student reliable in general."
+            },
+            {
+              "id": "b",
+              "text": "has agreed to the task after it was done."
+            },
+            {
+              "id": "c",
+              "text": "was present, or has checked the entry another way."
+            }
+          ]
+        }
+      ]
+    },
+    "guidanceNote": "The passage rejects both the general judgement of the student and agreement given after the event."
   }
 ];
