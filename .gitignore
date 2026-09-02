@@ -22,3 +22,7 @@ scripts/*-rollback-*.json
 # screenshots the PR links to live in docs/e2e and are written deliberately.
 tests/e2e/.artifacts/
 playwright-report/
+
+# 🔴 No OET publication is ever committed here. Sources are CITED, never stored
+# — see docs/sources/README.md and gate S1 in scripts/gates/sources.ts.
+docs/sources/*.pdf

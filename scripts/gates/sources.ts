@@ -9,10 +9,10 @@
  *
  * So this gate makes the artefact the thing under test:
  *
- *   S1  MANIFEST <-> DISK.  Re-hash every file in docs/sources/ and fail on
- *       (a) a file listed in docs/sources/README.md that is missing from disk,
- *       (b) a file whose sha256 or byte count no longer matches its manifest row,
- *       (c) a file present on disk but absent from the manifest.
+ *   S1  CITED, NEVER STORED.  Fail if
+ *       (a) docs/sources/ holds any file but README.md — a stored publication,
+ *       (b) the citation table is missing, empty, or has an empty cell,
+ *       (c) a citation has no URL or no ISO retrieval date to follow.
  *
  *   S2  UNSOURCED "VERIFIED".  Fail if a comment block in scale.ts contains the
  *       word "verified" or "re-verified" beside an OET-scale number and does NOT
@@ -59,8 +59,7 @@
  * and neither is resolved in the other's favour, so gradeForScore returns null
  * below 200 and this gate asserts it never returns "D" or "E".
  */
-import { createHash } from "node:crypto";
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { GRADE_FLOORS_PUBLISHED } from "../../src/lib/oet/exam-shape";
 import { gradeForScore } from "../../src/lib/oet/scale";
@@ -80,25 +79,44 @@ const SCALE = join(ROOT, "src", "lib", "oet", "scale.ts");
 const failures: string[] = [];
 const fail = (gate: string, msg: string) => failures.push(`${gate}  ${msg}`);
 
-// ── S1 · manifest <-> disk ───────────────────────────────────────────────────
-// The manifest is a markdown table in docs/sources/README.md:
-//   | file | sha256 | bytes | fetched |
-type Row = { file: string; sha256: string; bytes: number; fetched: string };
+// ── S1 · CITED, NEVER STORED ─────────────────────────────────────────────────
+//
+// 🔴 THIS CHECK WAS INVERTED ON 2 SEPTEMBER 2026, AND THAT IS THE POINT.
+//
+// It used to re-hash `docs/sources/oet-understanding-your-score-2025-10-15.pdf`
+// and fail if the bytes had moved. That guarded the wrong thing: the file was
+// OET's own copyrighted publication, and keeping a byte-perfect copy of it in a
+// public repository is not provenance, it is redistribution. Hashing it every
+// build made the copy load-bearing.
+//
+// The rule now is the one written at the top of docs/sources/README.md:
+//
+//   NO OET PUBLICATION, PAGE, QUESTION, PASSAGE OR SCRIPT IS EVER COMMITTED TO
+//   THIS REPOSITORY; SOURCES ARE CITED, NEVER STORED.
+//
+// So S1 asserts the opposite of what it used to:
+//   (a) docs/sources/ holds nothing but README.md — no stored publication;
+//   (b) the citation table has at least one row and no empty cell, so a number
+//       that claims to be OET's can still be traced to a title, a URL and a date.
+//
+// ⚠️ WHAT THIS COSTS, STATED PLAINLY. Nobody can re-hash the artefact any more.
+// The grade bands are now held by a citation plus TWO independent hand-typed
+// transcriptions inside this repo — exam-shape.ts GRADE_FLOORS_PUBLISHED and
+// HAND_TYPED_FROM_THE_PDF below — which S3 cross-checks against each other. Two
+// readers agreeing is weaker than a hash, and it is the strongest thing that is
+// left once the file is correctly gone. Re-verification is a human opening the
+// cited page.
+type Citation = { source: string; publisher: string; retrieved: string; reference: string };
 
-function parseManifest(md: string): Row[] {
-  const rows: Row[] = [];
+function parseCitations(md: string): Citation[] {
+  const rows: Citation[] = [];
   for (const line of md.split(/\r?\n/)) {
     const t = line.trim();
     if (!t.startsWith("|")) continue;
     const cells = t.split("|").slice(1, -1).map((c) => c.trim());
     if (cells.length !== 4) continue;
-    if (!/^[0-9a-f]{64}$/i.test(cells[1])) continue; // skips the header and the --- rule
-    rows.push({
-      file: cells[0],
-      sha256: cells[1].toLowerCase(),
-      bytes: Number(cells[2]),
-      fetched: cells[3],
-    });
+    if (/^-+$/.test(cells[0]) || cells[0].toLowerCase() === "source") continue;
+    rows.push({ source: cells[0], publisher: cells[1], retrieved: cells[2], reference: cells[3] });
   }
   return rows;
 }
@@ -108,13 +126,24 @@ function parseManifest(md: string): Row[] {
   try {
     md = readFileSync(MANIFEST, "utf8");
   } catch {
-    fail("S1", "docs/sources/README.md is missing — the manifest IS the record of provenance");
+    fail("S1", "docs/sources/README.md is missing — the citation list IS the record of provenance");
   }
 
-  const rows = parseManifest(md);
+  const rows = parseCitations(md);
   if (md && rows.length === 0) {
     // A gate over an empty population passes vacuously. Say so loudly instead.
-    fail("S1", "docs/sources/README.md parsed to ZERO manifest rows — the table format changed");
+    fail("S1", "docs/sources/README.md parsed to ZERO citation rows — the table format changed");
+  }
+  for (const r of rows) {
+    for (const [field, value] of Object.entries(r)) {
+      if (!value) fail("S1", `citation "${r.source}" has an empty ${field} — a citation must be followable`);
+    }
+    if (!/^https?:\/\//.test(r.reference)) {
+      fail("S1", `citation "${r.source}" has no URL in its reference cell: ${JSON.stringify(r.reference)}`);
+    }
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(r.retrieved)) {
+      fail("S1", `citation "${r.source}" has no ISO retrieval date: ${JSON.stringify(r.retrieved)}`);
+    }
   }
 
   let onDisk: string[] = [];
@@ -123,39 +152,12 @@ function parseManifest(md: string): Row[] {
   } catch {
     fail("S1", "docs/sources/ does not exist");
   }
-
-  for (const row of rows) {
-    const path = join(SOURCES_DIR, row.file);
-    let buf: Buffer;
-    try {
-      buf = readFileSync(path);
-    } catch {
-      fail("S1", `${row.file} is listed in the manifest but MISSING from docs/sources/`);
-      continue;
-    }
-    const sha = createHash("sha256").update(buf).digest("hex");
-    if (sha !== row.sha256) {
-      fail(
-        "S1",
-        `${row.file} HASH CHANGED — manifest ${row.sha256}, on disk ${sha}. ` +
-          "The file our numbers were read from is not the file on disk any more.",
-      );
-    }
-    const bytes = statSync(path).size;
-    if (bytes !== row.bytes) {
-      fail("S1", `${row.file} is ${bytes} bytes, manifest says ${row.bytes}`);
-    }
-  }
-
-  const listed = new Set(rows.map((r) => r.file));
   for (const f of onDisk) {
-    if (!listed.has(f)) {
-      fail(
-        "S1",
-        `${f} is in docs/sources/ but NOT listed in README.md — an artefact with no ` +
-          "recorded provenance is not a source, it is a file someone left behind",
-      );
-    }
+    fail(
+      "S1",
+      `docs/sources/${f} is a STORED source. Sources are cited, never stored — ` +
+        "delete it and add a citation row to README.md instead.",
+    );
   }
 }
 
@@ -387,7 +389,7 @@ const show = (rows: readonly { grade: string; floor: number }[]) =>
 }
 
 // ── report ───────────────────────────────────────────────────────────────────
-const GATES = ["S1 manifest", "S2 unsourced-verified", "S3 grade floors", "S4 rule provenance"];
+const GATES = ["S1 cited-never-stored", "S2 unsourced-verified", "S3 grade floors", "S4 rule provenance"];
 for (const g of GATES) {
   const hits = failures.filter((f) => f.startsWith(g.slice(0, 2)));
   console.log(`  ${hits.length === 0 ? "PASS" : "FAIL"}  ${g}${hits.length ? ` (${hits.length})` : ""}`);

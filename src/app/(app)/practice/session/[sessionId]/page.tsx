@@ -234,6 +234,9 @@ export default async function SessionPage({
         // preparation; PRACTICE_SET = skippable with the explanation shown. An
         // unrecognised mode falls back to mandatory. See prep-policy.ts.
         allowSkipPreparation={speakingPrepPolicy(session).allowSkip}
+        // The server's clock, as an ISO string. The countdown renders from this
+        // so a reload recomputes the time left instead of restarting it.
+        deadlineAt={current.deadlineAt ? current.deadlineAt.toISOString() : null}
       />
       </ExamChrome>
     </div>

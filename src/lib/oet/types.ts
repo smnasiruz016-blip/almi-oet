@@ -4,8 +4,8 @@
 // Reading, Writing, Speaking), each mapped to an A–E grade. Since 29 Jan 2025 it
 // ALSO reports an overall score — AlmiOET does not compute one, by choice rather
 // than because none exists; see overallScoreSupported() in scale.ts. Boundaries
-// live in scale.ts, transcribed from the artefact committed at
-// docs/sources/oet-understanding-your-score-2025-10-15.pdf. AlmiOET turns practice into
+// live in scale.ts, transcribed from "Understanding OET scores" — cited, not
+// stored, in docs/sources/README.md. AlmiOET turns practice into
 // an HONEST estimate RANGE on this scale — deliberately wide, because a practice
 // task is not a calibrated live exam — and always tells the user to confirm the
 // score they need with their own regulator.
@@ -18,8 +18,8 @@ export type { OetSubTest, OetTaskType, OetProfession } from "@prisma/client";
 //
 // 🔴 "D" AND "E" ARE KEPT AS TYPE MEMBERS, BUT NO PUBLISHED RANGE BACKS THEM.
 // OET's Results-and-Scoring page says grades run "from A (highest) to E
-// (lowest)", so the letters exist. The scoring document we hold —
-// docs/sources/oet-understanding-your-score-2025-10-15.pdf — publishes NO D row
+// (lowest)", so the letters exist. The scoring document we cite —
+// "Understanding OET scores", see docs/sources/README.md — publishes NO D row
 // and NO E row, so no score interval maps to either. Two official OET sources,
 // and they disagree about what lies below 200; both are recorded in
 // docs/sources/README.md and neither is resolved in the other's favour.

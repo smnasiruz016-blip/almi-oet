@@ -3,11 +3,20 @@
 // OET reports a score from 0 to 500 for each sub-test (in 10-point increments),
 // each mapped to an A–E grade.
 //
-// GRADE BOUNDARIES — from an artefact committed in this repo, not from memory.
+// GRADE BOUNDARIES — CITED, not remembered. The artefact is no longer stored.
 //
-//   docs/sources/oet-understanding-your-score-2025-10-15.pdf
-//   sha256 3d2511deaf24e98c04a95abd389387843fdb111372cbf05454c86d0e2c3b3634
-//   26329 bytes · fetched by hand 2026-08-31 · provenance in docs/sources/README.md
+//   "Understanding OET scores", Occupational English Test, retrieved 2026-08-31
+//   via https://www.occupationalenglishtest.org/re-marking-policy -> "Learn more"
+//   Citation register: docs/sources/README.md
+//
+// 🔴 THE PDF WAS REMOVED FROM THIS REPOSITORY ON 2026-09-02. It is OET's own
+// copyrighted publication, and keeping a byte-perfect copy of it here was
+// redistribution, not provenance. The numbers below stay, because a published
+// grade boundary is a FACT and facts are not the copyrighted part — but nobody
+// can re-hash the artefact any more. What guards them now is the citation above
+// plus two independent hand-typed transcriptions (this file and
+// scripts/gates/sources.ts) that gate S3 cross-checks. Two readers agreeing is
+// weaker than a hash. Re-verification is a human opening the cited page.
 //
 // Its published table, transcribed row for row:
 //
@@ -165,8 +174,8 @@ export function rangeMidpoint(range: Range): number {
  *
  *  🔴 THIS MAPPING IS UNSOURCED IN THIS REPO. It previously carried the words
  *  "re-verified 2026-08-04 against OET's own published CEFR alignment". No
- *  artefact backing that exists. The one artefact we hold,
- *  docs/sources/oet-understanding-your-score-2025-10-15.pdf, was read end to end
+ *  artefact backing that exists. The one artefact we cite,
+ *  "Understanding OET scores" (see docs/sources/README.md), was read end to end
  *  on 2026-08-31: it contains the grade table and the band descriptors and NO
  *  CEFR alignment of any kind. So the claim of verification was removed — the
  *  same failure that put a wrong C floor in this file for 27 days, caught here by

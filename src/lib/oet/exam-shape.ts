@@ -263,12 +263,13 @@ export const WRITING_WORDS = { min: 180, max: 200 } as const;
 export const WORD_COUNT_PENALTY_IS_OURS_NOT_OETS = true;
 
 // ─────────────────────────────────────────────────────────────────────────────
-// GRADE BANDS — from the official PDF the owner fetched, committed and hashed
+// GRADE BANDS — from the official page the owner read; CITED, never stored
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * `docs/sources/oet-understanding-your-score-2025-10-15.pdf`
- * sha256 3d2511deaf24e98c04a95abd389387843fdb111372cbf05454c86d0e2c3b3634
+ * "Understanding OET scores", Occupational English Test, retrieved 2026-08-31.
+ * Cited in docs/sources/README.md; the PDF itself is deliberately NOT in this
+ * repository — see the standing rule at the top of that file.
  * Published table: A 450-500 · B 400-440 and 350-390 · C+ 300-340 · C 250-290 and 200-240.
  *
  * 🔴 The document has NO D row and NO E row, yet OET's Results-and-Scoring page
