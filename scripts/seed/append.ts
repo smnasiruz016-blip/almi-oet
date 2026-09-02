@@ -35,6 +35,10 @@
 // runs; and a second, inline copy of the comparison would be free to rot away
 // from this one. One implementation, two callers.
 
+// 🔴 FIRST, and before @prisma/client: tsx does not load .env.local, so a
+// PrismaClient built above this line would have no DATABASE_URL. An explicitly
+// set variable still wins — see scripts/load-env.mts.
+import "../load-env.mjs";
 import { PrismaClient } from "@prisma/client";
 import { ITEMS as LISTENING } from "./listening";
 import { ITEMS as READING } from "./reading";

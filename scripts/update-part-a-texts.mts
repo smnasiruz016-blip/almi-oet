@@ -46,6 +46,10 @@
  * active item count unchanged. The script counts active rows before and after
  * and fails loudly if that number moves.
  */
+// 🔴 FIRST, and before @prisma/client: tsx does not load .env.local, so a
+// PrismaClient built above this line would have no DATABASE_URL. An explicitly
+// set variable still wins — see scripts/load-env.mts.
+import "./load-env.mjs";
 import { readFileSync, writeFileSync, renameSync, unlinkSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { PrismaClient } from "@prisma/client";
