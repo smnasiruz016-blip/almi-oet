@@ -1,16 +1,54 @@
 /**
  * gate:length — THE LENGTH LAW, AND THE DEBT IT MAKES VISIBLE.
  *
- * The item COUNT has passed for a while: 21 Listening Part A, 33 Part B, 18
- * Reading Part A, all above the fifteen-per-skill law. The item LENGTH has not.
- * Measured from scripts/seed/gen on 2 September 2026:
+ * ── 🔴 THE LAW, AND WHERE EVERY NUMBER COMES FROM ───────────────────────────
  *
- *   LISTENING_PART_A  550-600 words, 12 gaps   shortest  49   median  75    0/21 pass
- *   READING_PART_A    560-640 words            shortest  64   median  95    0/18 pass
- *   LISTENING_PART_C  500-600 words            shortest  59   median 141    0/21 pass
- *   READING_PART_C    750-850 words            shortest  51   median 144    0/21 pass
- *   LISTENING_PART_B  150-200 words            shortest  29   median  45    0/33 pass
- *   READING_PART_B    100-150 words            shortest  28   median  48    1/33 pass
+ * Every bound below is cited. The first version of this table was written from a
+ * prose summary rather than from the measured files, and four of the six laws
+ * were wrong — READING_PART_A wrong in SHAPE, not only in numbers. A law with no
+ * citation is how that happened, so no bound may be added here without one.
+ *
+ * Two source files, both measured from OET's own twenty sample papers:
+ *   ZABTA     C:\Projects\_handoffs\AlmiOET_likhne_ka_zabta.md
+ *   MEASURED  C:\Projects\_handoffs\AlmiOET_official_measured_2026-09-01.md
+ *
+ *   LISTENING_PART_A  550-600   ZABTA §2 line 38 ("550–600 lafz ka script", 12 gaps)
+ *   LISTENING_PART_B  140-165   ZABTA §2 line 39 ("140–165 lafz")
+ *   LISTENING_PART_C  780-880   ZABTA §2 line 40 ("780–880 lafz")
+ *   READING_PART_A    885-1009  MEASURED line 73 ("chaar text + 20 sawal, kul |
+ *                               885 – 976 – 1009 lafz") — low, median, high
+ *   READING_PART_B    136-155   ZABTA §2 line 36; MEASURED line 57 ("136 – 155
+ *                               lafz (naapa gaya)")
+ *   READING_PART_C    750-850   ZABTA §2 line 37 ("750–850 lafz")
+ *
+ * ⚠️ READING_PART_C IS THE ONE PLACE THE TWO SOURCES DISAGREE, AND THIS FILE HAS
+ * NOT PICKED A SIDE. MEASURED line 16 records OET's own Part C texts at
+ * 653 – 812 – 836; ZABTA §2 says 750–850. They agree at the top to within 14
+ * words and disagree at the bottom by 97. The bound here is ZABTA's 750-850,
+ * unchanged from before, because changing it was not asked for and because
+ * nothing in the bank is anywhere near either floor — every one of the 21 Part C
+ * items is under 420 words, so the two candidate floors produce an identical
+ * verdict on every item we own. The disagreement is therefore recorded, not
+ * resolved. See the report accompanying this change.
+ *
+ * ── 🔴 READING PART A IS MEASURED COMBINED ──────────────────────────────────
+ *
+ * OET measured the four texts AND the twenty question stems together, as one
+ * number: 885 – 976 – 1009. Measuring the texts alone against a 560-640 bound —
+ * which is what this gate did before — let fifteen items pass at 770-846
+ * combined when the real floor is 885. All fifteen were already in production.
+ *
+ * So textWords() for READING_PART_A sums every payload.texts[].body PLUS every
+ * payload.questions[].stem.
+ *
+ * OPTION TEXT IS DELIBERATELY EXCLUDED, and this is not an oversight to
+ * re-derive: in Part A the only questions carrying options are the matching
+ * questions, and their options are the bare letters "A", "B", "C", "D". They
+ * contribute four tokens per matching question of pure noise and nothing that a
+ * candidate reads as prose. The short-answer and gap questions carry no options
+ * at all.
+ *
+ * ── THE DEBT ────────────────────────────────────────────────────────────────
  *
  * A learner who trains on a 75-word Part A and then sits a 550-word Part A has
  * not been prepared. That is the debt. This gate stops it growing and counts it
@@ -28,6 +66,17 @@
  *   · a title in the list that now MEETS the law -> exit 1, saying so. A stale
  *     exemption is how a debt list turns into a permanent excuse.
  *
+ * ⚠️ THE LIST WAS REBUILT ON 3 SEPTEMBER 2026, AND THAT REBUILD IS THE ONE TIME
+ * IT HAS GROWN. The previous 146 rows were measured under the four wrong laws
+ * above, so both their membership and their printed counts were wrong. Every row
+ * below carries a count re-measured on 3 September 2026 under the corrected law.
+ * Membership moved by exactly one item: all 146 previous rows still breach, and
+ *   READING_PART_B::Part B — Interpreter use during clinical consultations
+ * joins them — it is 100 words, which met the old and wrong 100-150 bound (it was
+ * the single item that passed it) and does not meet the measured 136-155. It is
+ * an old bank item, not a new one; nothing short has been allowed to ship. From
+ * here the may-only-shrink rule applies again with no exception.
+ *
  * Every run prints LEGACY DEBT: <n>, so the number is in front of us.
  *
  * It also carries the FINDABILITY check — a Reading Part A answer must appear in
@@ -43,10 +92,12 @@
  * the legacy items breach the structure as well as the length — a 49-word Part A
  * has 4 gaps, not 12.
  *
- * ⚠️ WORD COUNTING IS NOT UNIQUE. Measured independently against the supplied
- * list on 2 Sep 2026: the same 146 titles, zero membership disagreement, and six
- * counts differing by 1-6 words on items that are 400+ words short either way.
- * The verdicts are identical; only the tokenisation differs.
+ * ⚠️ WORD COUNTING IS NOT UNIQUE, AND ON 3 SEPTEMBER 2026 IT DECIDED A VERDICT
+ * FOR THE FIRST TIME. This gate splits on whitespace, so a bullet "-" and a
+ * standalone em dash each count as a word. A tokeniser that counts only tokens
+ * containing a letter or a digit reads the same items 6-14 words lower. On items
+ * hundreds of words from their bound the difference is invisible; on ONE item it
+ * straddles the ceiling. See OVER_LENGTH_PENDING.
  */
 import { GEN_ITEMS } from "../seed/gen/index";
 
@@ -58,24 +109,30 @@ type Item = {
     gaps?: unknown[];
     texts?: { heading?: string; body?: string }[];
     passages?: { body?: string }[];
-    questions?: { id?: string; kind?: string; answer?: string }[];
+    questions?: { id?: string; kind?: string; stem?: string; answer?: string }[];
   };
 };
 
-/** taskType -> [min, max] words of the item's own text. */
+/**
+ * taskType -> [min, max] words of the item's own text. Sources for every bound
+ * are in the header block above; do not add a row here without one.
+ */
 const LAW: Record<string, [number, number]> = {
   LISTENING_PART_A: [550, 600],
-  LISTENING_PART_B: [150, 200],
-  LISTENING_PART_C: [500, 600],
-  READING_PART_A: [560, 640],
-  READING_PART_B: [100, 150],
+  LISTENING_PART_B: [140, 165],
+  LISTENING_PART_C: [780, 880],
+  READING_PART_A: [885, 1009],
+  READING_PART_B: [136, 155],
   READING_PART_C: [750, 850],
 };
 
 /**
  * 🔴 HAND-CHECKED-IN, MEASURED, MAY ONLY SHRINK. Each line carries the word
- * count measured on 2 September 2026, so a reader can see how far short an item
- * was without re-running anything.
+ * count measured on 3 September 2026 UNDER THE CORRECTED LAW, so a reader can
+ * see how far short an item is without re-running anything. The Reading Part A
+ * counts are texts + question stems combined and are therefore larger than the
+ * numbers this list carried before — the items did not change, the measurement
+ * did.
  */
 const LEGACY_SHORT: string[] = [
   // ── LISTENING_PART_A · 21 item(s), law 550-600 words ──
@@ -100,7 +157,7 @@ const LEGACY_SHORT: string[] = [
   "LISTENING_PART_A::OET Form 2 · Listening Part A — Practice-nurse asthma review", // 165 words
   "LISTENING_PART_A::OET Form 3 · Listening Part A — Physiotherapist and lower back pain", // 213 words
   "LISTENING_PART_A::OET Form 3 · Listening Part A — Midwife antenatal booking visit", // 200 words
-  // ── LISTENING_PART_B · 33 item(s), law 150-200 words ──
+  // ── LISTENING_PART_B · 33 item(s), law 140-165 words ──
   "LISTENING_PART_B::Part B — Alert about a norovirus outbreak", // 53 words
   "LISTENING_PART_B::Part B — Arranging a complex discharge", // 51 words
   "LISTENING_PART_B::Part B — Changes to the weekend roster", // 51 words
@@ -134,7 +191,7 @@ const LEGACY_SHORT: string[] = [
   "LISTENING_PART_B::OET Form 3 · Listening Part B — Oxygen as a drug", // 42 words
   "LISTENING_PART_B::OET Form 3 · Listening Part B — Interpreters", // 40 words
   "LISTENING_PART_B::OET Form 3 · Listening Part B — Red wristband", // 45 words
-  // ── LISTENING_PART_C · 21 item(s), law 500-600 words ──
+  // ── LISTENING_PART_C · 21 item(s), law 780-880 words ──
   "LISTENING_PART_C::Part C — A multimodal approach to chronic pain management", // 141 words
   "LISTENING_PART_C::Part C — Antibiotic stewardship and the 48-hour review", // 132 words
   "LISTENING_PART_C::Part C — Building a culture of patient safety on the ward", // 139 words
@@ -147,7 +204,7 @@ const LEGACY_SHORT: string[] = [
   "LISTENING_PART_C::Part C — Responding to agitation in dementia care", // 134 words
   "LISTENING_PART_C::Part C — Sustaining gains in quality improvement projects", // 138 words
   "LISTENING_PART_C::Part C — Tackling malnutrition risk in hospital patients", // 141 words
-  "LISTENING_PART_C::Part C — Talk on hydration in older adults", // 59 words
+  "LISTENING_PART_C::Part C — Talk on hydration in older adults", // 61 words
   "LISTENING_PART_C::Part C — The first hour in recognising sepsis", // 145 words
   "LISTENING_PART_C::Part C — Understanding hesitancy to improve vaccination uptake", // 141 words
   "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing", // 312 words
@@ -156,26 +213,26 @@ const LEGACY_SHORT: string[] = [
   "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance", // 156 words
   "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain", // 261 words
   "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy", // 245 words
-  // ── READING_PART_A · 18 item(s), law 560-640 words ──
-  "READING_PART_A::Part A — Aseptic non-touch technique", // 95 words
-  "READING_PART_A::Part A — Discharge planning checklist", // 91 words
-  "READING_PART_A::Part A — Falls risk assessment", // 100 words
-  "READING_PART_A::Part A — Hand hygiene texts", // 64 words
-  "READING_PART_A::Part A — Informed consent essentials", // 82 words
-  "READING_PART_A::Part A — Insulin storage and handling", // 95 words
-  "READING_PART_A::Part A — Malnutrition screening", // 89 words
-  "READING_PART_A::Part A — Oxygen cylinder safety", // 94 words
-  "READING_PART_A::Part A — Pain assessment methods", // 100 words
-  "READING_PART_A::Part A — Preventing pressure injuries in immobile patients", // 188 words
-  "READING_PART_A::Part A — Repositioning for skin protection", // 97 words
-  "READING_PART_A::Part A — Safe patient transfers", // 86 words
-  "READING_PART_A::Part A — Source isolation precautions", // 91 words
-  "READING_PART_A::Part A — Urinary catheter care", // 92 words
-  "READING_PART_A::Part A — Wound dressing selection", // 107 words
-  "READING_PART_A::OET Form 1 · Reading Part A — Preventing pressure injuries", // 236 words
-  "READING_PART_A::OET Form 2 · Reading Part A — Preventing falls in older adults", // 220 words
-  "READING_PART_A::OET Form 3 · Reading Part A — Delirium in hospital", // 215 words
-  // ── READING_PART_B · 32 item(s), law 100-150 words ──
+  // ── READING_PART_A · 18 item(s), law 885-1009 words ──
+  "READING_PART_A::Part A — Aseptic non-touch technique", // 134 words
+  "READING_PART_A::Part A — Discharge planning checklist", // 131 words
+  "READING_PART_A::Part A — Falls risk assessment", // 146 words
+  "READING_PART_A::Part A — Hand hygiene texts", // 87 words
+  "READING_PART_A::Part A — Informed consent essentials", // 130 words
+  "READING_PART_A::Part A — Insulin storage and handling", // 141 words
+  "READING_PART_A::Part A — Malnutrition screening", // 129 words
+  "READING_PART_A::Part A — Oxygen cylinder safety", // 131 words
+  "READING_PART_A::Part A — Pain assessment methods", // 142 words
+  "READING_PART_A::Part A — Preventing pressure injuries in immobile patients", // 235 words
+  "READING_PART_A::Part A — Repositioning for skin protection", // 137 words
+  "READING_PART_A::Part A — Safe patient transfers", // 127 words
+  "READING_PART_A::Part A — Source isolation precautions", // 132 words
+  "READING_PART_A::Part A — Urinary catheter care", // 137 words
+  "READING_PART_A::Part A — Wound dressing selection", // 145 words
+  "READING_PART_A::OET Form 1 · Reading Part A — Preventing pressure injuries", // 385 words
+  "READING_PART_A::OET Form 2 · Reading Part A — Preventing falls in older adults", // 375 words
+  "READING_PART_A::OET Form 3 · Reading Part A — Delirium in hospital", // 355 words
+  // ── READING_PART_B · 33 item(s), law 136-155 words ──
   "READING_PART_B::Part B — Allergy alert documentation", // 89 words
   "READING_PART_B::Part B — Audit memo on documentation timing", // 80 words
   "READING_PART_B::Part B — Clinical escalation policy", // 88 words
@@ -186,10 +243,11 @@ const LEGACY_SHORT: string[] = [
   "READING_PART_B::Part B — Equipment recall action notice", // 81 words
   "READING_PART_B::Part B — Incident reporting timeframe", // 73 words
   "READING_PART_B::Part B — Infection control hand hygiene memo", // 82 words
+  "READING_PART_B::Part B — Interpreter use during clinical consultations", // 100 words
   "READING_PART_B::Part B — Medicines policy extract", // 38 words
   "READING_PART_B::Part B — Sharps disposal at point of use", // 80 words
   "READING_PART_B::Part B — Staff rostering swap email", // 87 words
-  "READING_PART_B::Part B — Visiting policy on protected mealtimes", // 80 words
+  "READING_PART_B::Part B — Visiting policy on protected mealtimes", // 74 words
   "READING_PART_B::OET Form 1 · Reading Part B — Controlled-drugs policy", // 48 words
   "READING_PART_B::OET Form 1 · Reading Part B — Sharps memo", // 37 words
   "READING_PART_B::OET Form 1 · Reading Part B — Hand-hygiene guideline", // 40 words
@@ -209,11 +267,11 @@ const LEGACY_SHORT: string[] = [
   "READING_PART_B::OET Form 3 · Reading Part B — Confidentiality in public areas", // 45 words
   "READING_PART_B::OET Form 3 · Reading Part B — Verbal orders", // 46 words
   // ── READING_PART_C · 21 item(s), law 750-850 words ──
-  "READING_PART_C::Part C — Article on shared decision-making", // 51 words
+  "READING_PART_C::Part C — Article on shared decision-making", // 52 words
   "READING_PART_C::Part C — Evidence, experience and the bedside", // 136 words
   "READING_PART_C::Part C — Knowing a patient over time", // 146 words
   "READING_PART_C::Part C — Practising to protect ourselves", // 131 words
-  "READING_PART_C::Part C — Rethinking the value of clinical handover", // 229 words
+  "READING_PART_C::Part C — Rethinking the value of clinical handover", // 230 words
   "READING_PART_C::Part C — Running on empty in the caring professions", // 128 words
   "READING_PART_C::Part C — Sitting with not knowing", // 145 words
   "READING_PART_C::Part C — The arithmetic patients actually hear", // 151 words
@@ -223,7 +281,7 @@ const LEGACY_SHORT: string[] = [
   "READING_PART_C::Part C — What a good team really shares", // 136 words
   "READING_PART_C::Part C — What we do with our mistakes", // 144 words
   "READING_PART_C::Part C — When empathy becomes a clinical skill", // 141 words
-  "READING_PART_C::Part C — Whose decision is it anyway", // 127 words
+  "READING_PART_C::Part C — Whose decision is it anyway", // 126 words
   "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening", // 413 words
   "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience", // 361 words
   "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'", // 315 words
@@ -232,13 +290,51 @@ const LEGACY_SHORT: string[] = [
   "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer", // 335 words
 ];
 
+/**
+ * 🔴 ONE ROW, AND IT IS A MEASUREMENT DISPUTE, NOT A DEBT. NOT DECIDED HERE.
+ *
+ * "Part A — Chest pain and acute coronary syndrome" is one of the fifteen new
+ * full-length Reading Part A items. It is not short and it is not legacy; it is
+ * FOUR WORDS OVER the 1009 ceiling — and only under this gate's tokeniser:
+ *
+ *   this gate, split on whitespace                       1013   (4 over)
+ *   letters-and-digits tokens only                       1006   (inside)
+ *
+ * The difference is seven standalone punctuation tokens — bullet hyphens and em
+ * dashes — that this gate counts as words. The author who wrote and measured the
+ * fifteen reported the set as 934-1006, and 1006 is exactly this item under the
+ * second tokeniser, so the two measurements agree about the text and disagree
+ * only about what a word is.
+ *
+ * That is a question about the instrument, and the instrument is not content's
+ * to settle nor content the instrument's. Two ways out, both the author's call:
+ *   · trim four words from the item, or
+ *   · stop counting standalone punctuation as words HERE — which would move the
+ *     printed count of every bulleted item in the bank and must be re-measured
+ *     across all 177 governed items, not just this one.
+ *
+ * ⚠️ THIS IS STRICTER THAN AN EXEMPTION, on the same terms as
+ * FINDABILITY_PENDING below: a row that STOPS failing fails the build, so
+ * whichever way it is settled, this row has to be deleted rather than left
+ * lying. It is counted and printed separately from LEGACY DEBT, because calling
+ * a 1013-word item "debt" next to a 49-word Part A would be a lie about both.
+ */
+const OVER_LENGTH_PENDING: string[] = [
+  "READING_PART_A::Part A — Chest pain and acute coronary syndrome", // 1013 words, law 885-1009
+];
+
 const words = (s: string | undefined): number =>
   s && s.trim() ? s.trim().split(/\s+/).length : 0;
 
 function textWords(item: Item): number {
   if (item.taskType.startsWith("LISTENING")) return words(item.payload.audioScript);
   if (item.taskType === "READING_PART_A") {
-    return (item.payload.texts ?? []).reduce((n, t) => n + words(t.body), 0);
+    // Combined: the four texts AND the twenty question stems, because that is
+    // what OET's own 885-976-1009 was measured over. Option text is excluded on
+    // purpose — see the header.
+    const texts = (item.payload.texts ?? []).reduce((n, t) => n + words(t.body), 0);
+    const stems = (item.payload.questions ?? []).reduce((n, q) => n + words(q.stem), 0);
+    return texts + stems;
   }
   return (item.payload.passages ?? []).reduce((n, t) => n + words(t.body), 0);
 }
@@ -267,23 +363,46 @@ const ITEMS = GEN_ITEMS as unknown as Item[];
 const governed = ITEMS.filter((i) => LAW[i.taskType]);
 const failures: string[] = [];
 const exempt = new Set(LEGACY_SHORT);
+const pending = new Set(OVER_LENGTH_PENDING);
 const stillShort = new Set<string>();
+const stillOver = new Set<string>();
 
 // Population before the guard: a gate that iterates nothing passes vacuously.
 if (governed.length === 0) failures.push("no item is governed by a length law — the gate is vacuous");
 if (exempt.size !== LEGACY_SHORT.length) {
   failures.push(`LEGACY_SHORT contains a duplicate (${LEGACY_SHORT.length} rows, ${exempt.size} unique)`);
 }
+if (pending.size !== OVER_LENGTH_PENDING.length) {
+  failures.push(
+    `OVER_LENGTH_PENDING contains a duplicate (${OVER_LENGTH_PENDING.length} rows, ${pending.size} unique)`,
+  );
+}
+// One key, one list. A key in both would be exempt twice and counted twice.
+for (const key of pending) {
+  if (exempt.has(key)) failures.push(`${key} is in BOTH LEGACY_SHORT and OVER_LENGTH_PENDING.`);
+}
 
 for (const item of governed) {
   const key = `${item.taskType}::${item.title}`;
   const why = breaches(item);
-  const listed = exempt.has(key);
+  const listed = exempt.has(key) || pending.has(key);
   if (why.length > 0) {
-    if (listed) stillShort.add(key);
-    else failures.push(`${key} — ${why.join("; ")}`);
+    if (exempt.has(key)) stillShort.add(key);
+    else if (pending.has(key)) {
+      // OVER_LENGTH_PENDING excuses ONE thing: a breach of the MAXIMUM, alone.
+      // A blanket exemption on a live item would hide it going short, or losing a
+      // text or a question, for as long as the row sits here.
+      const law = LAW[item.taskType];
+      if (why.length === 1 && textWords(item) > law[1]) stillOver.add(key);
+      else
+        failures.push(
+          `${key} — ${why.join("; ")} — OVER_LENGTH_PENDING excuses a breach of the ` +
+            "MAXIMUM and nothing else",
+        );
+    } else failures.push(`${key} — ${why.join("; ")}`);
   } else if (listed) {
-    failures.push(`${key} now meets the law — delete it from LEGACY_SHORT.`);
+    const list = exempt.has(key) ? "LEGACY_SHORT" : "OVER_LENGTH_PENDING";
+    failures.push(`${key} now meets the law — delete it from ${list}.`);
   }
 }
 for (const key of exempt) {
@@ -291,6 +410,12 @@ for (const key of exempt) {
     failures.push(`${key} is in LEGACY_SHORT but not in the bank — delete it.`);
   }
 }
+for (const key of pending) {
+  if (!governed.some((i) => `${i.taskType}::${i.title}` === key)) {
+    failures.push(`${key} is in OVER_LENGTH_PENDING but not in the bank — delete it.`);
+  }
+}
+
 
 /**
  * 🔴 FLAGGED BY THIS CHECK, HANDED BACK — NOT DECIDED HERE.
@@ -415,10 +540,10 @@ for (const e of FINDABILITY_PENDING) {
   }
 }
 
-const green = governed.length - stillShort.size;
+const green = governed.length - stillShort.size - stillOver.size;
 console.log(
   `[gate:length] ${governed.length} governed item(s): ${green} meet the law, ` +
-    `${stillShort.size} exempt as legacy debt`,
+    `${stillShort.size} exempt as legacy debt, ${stillOver.size} pending a tokeniser ruling`,
 );
 console.log(
   `[gate:length] findability: ${findabilityChecked} Part A answer(s) across ` +
@@ -432,6 +557,13 @@ if (FINDABILITY_PENDING.length > 0) {
   for (const e of FINDABILITY_PENDING) {
     console.log(`        ${e.title} / ${e.qid} — ${JSON.stringify(e.answer)}`);
   }
+}
+if (OVER_LENGTH_PENDING.length > 0) {
+  console.log(
+    `  🔴 OVER LENGTH HANDED BACK — ${OVER_LENGTH_PENDING.length} item(s) over the ceiling ` +
+      "under this gate's tokeniser and inside it under a letters-only one. NOT decided here:",
+  );
+  for (const key of OVER_LENGTH_PENDING) console.log(`        ${key}`);
 }
 console.log(`LEGACY DEBT: ${stillShort.size} items still short of the law`);
 if (failures.length > 0) {
