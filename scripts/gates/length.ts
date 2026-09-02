@@ -19,17 +19,23 @@
  *                               885 – 976 – 1009 lafz") — low, median, high
  *   READING_PART_B    136-155   ZABTA §2 line 36; MEASURED line 57 ("136 – 155
  *                               lafz (naapa gaya)")
- *   READING_PART_C    750-850   ZABTA §2 line 37 ("750–850 lafz")
+ *   READING_PART_C    653-836   MEASURED line 16 ("text ki lambai | 653 – 812 –
+ *                               836") — low, median, high
  *
- * ⚠️ READING_PART_C IS THE ONE PLACE THE TWO SOURCES DISAGREE, AND THIS FILE HAS
- * NOT PICKED A SIDE. MEASURED line 16 records OET's own Part C texts at
- * 653 – 812 – 836; ZABTA §2 says 750–850. They agree at the top to within 14
- * words and disagree at the bottom by 97. The bound here is ZABTA's 750-850,
- * unchanged from before, because changing it was not asked for and because
- * nothing in the bank is anywhere near either floor — every one of the 21 Part C
- * items is under 420 words, so the two candidate floors produce an identical
- * verdict on every item we own. The disagreement is therefore recorded, not
- * resolved. See the report accompanying this change.
+ * ⚠️ READING_PART_C: 653-836 IS THE LAW, 750-850 IS THE AUTHORING TARGET.
+ * The two sources disagreed — MEASURED line 16 records OET's own Part C texts
+ * at 653 – 812 – 836, ZABTA §2 line 37 says 750–850 — and the owner ruled on
+ * 3 September 2026: WHERE A MEASURED RANGE AND A ROUND NUMBER DISAGREE, THE
+ * MEASUREMENT GOVERNS. 750–850 reads as a round-numbered target derived from
+ * the measurement rather than a second measurement of its own, so it stays as
+ * the range to AUTHOR inside, and 653-836 is the range this gate enforces. A
+ * new Part C text should be written at 750-850; it is not in BREACH until it
+ * leaves 653-836.
+ *
+ * THIS CHANGED NO VERDICT ON THE DAY IT WAS ADOPTED, and that is why it was
+ * safe to adopt: every one of the 21 Part C items is under 420 words, so both
+ * candidate floors fail all 21 identically. Nothing was rescued or condemned
+ * by the change.
  *
  * ── 🔴 READING PART A IS MEASURED COMBINED ──────────────────────────────────
  *
@@ -92,12 +98,22 @@
  * the legacy items breach the structure as well as the length — a 49-word Part A
  * has 4 gaps, not 12.
  *
- * ⚠️ WORD COUNTING IS NOT UNIQUE, AND ON 3 SEPTEMBER 2026 IT DECIDED A VERDICT
- * FOR THE FIRST TIME. This gate splits on whitespace, so a bullet "-" and a
- * standalone em dash each count as a word. A tokeniser that counts only tokens
- * containing a letter or a digit reads the same items 6-14 words lower. On items
- * hundreds of words from their bound the difference is invisible; on ONE item it
- * straddles the ceiling. See OVER_LENGTH_PENDING.
+ * ⚠️ WORD COUNTING IS NOT UNIQUE, AND THIS GATE STILL COUNTS PUNCTUATION AS
+ * WORDS. It splits on whitespace, so a bullet "-" and a standalone em dash each
+ * count as a word; a tokeniser that counts only tokens containing a letter or a
+ * digit reads the same items 6-14 words lower.
+ *
+ * 🔴 THE OWNER HAS RULED THAT AN EM DASH IS NOT A WORD AND A BULLET HYPHEN IS
+ * NOT A WORD (3 September 2026), and that the fix lands in ITS OWN COMMIT, AFTER
+ * the one item that straddled the ceiling had been cut — so that nobody reading
+ * this later can mistake a correctness fix for a convenience. THE INSTRUMENT IS
+ * NEVER CHANGED TO ADMIT CONTENT AUTHORED BEFORE IT. That commit is not this
+ * one, and when it lands every list in this file is rebuilt from that run.
+ *
+ * Note which way the present error runs: counting dashes makes every item look
+ * LONGER than it is, so this gate is LENIENT AT THE FLOOR — an item could clear
+ * 885 on the strength of its punctuation. Nothing sits near a floor today, which
+ * is the only reason that is not already a live defect.
  */
 import { GEN_ITEMS } from "../seed/gen/index";
 
@@ -123,7 +139,7 @@ const LAW: Record<string, [number, number]> = {
   LISTENING_PART_C: [780, 880],
   READING_PART_A: [885, 1009],
   READING_PART_B: [136, 155],
-  READING_PART_C: [750, 850],
+  READING_PART_C: [653, 836],
 };
 
 /**
@@ -266,7 +282,7 @@ const LEGACY_SHORT: string[] = [
   "READING_PART_B::OET Form 3 · Reading Part B — Bare below the elbows", // 45 words
   "READING_PART_B::OET Form 3 · Reading Part B — Confidentiality in public areas", // 45 words
   "READING_PART_B::OET Form 3 · Reading Part B — Verbal orders", // 46 words
-  // ── READING_PART_C · 21 item(s), law 750-850 words ──
+  // ── READING_PART_C · 21 item(s), law 653-836 words ──
   "READING_PART_C::Part C — Article on shared decision-making", // 52 words
   "READING_PART_C::Part C — Evidence, experience and the bedside", // 136 words
   "READING_PART_C::Part C — Knowing a patient over time", // 146 words
@@ -288,39 +304,6 @@ const LEGACY_SHORT: string[] = [
   "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do", // 307 words
   "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment", // 345 words
   "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer", // 335 words
-];
-
-/**
- * 🔴 ONE ROW, AND IT IS A MEASUREMENT DISPUTE, NOT A DEBT. NOT DECIDED HERE.
- *
- * "Part A — Chest pain and acute coronary syndrome" is one of the fifteen new
- * full-length Reading Part A items. It is not short and it is not legacy; it is
- * FOUR WORDS OVER the 1009 ceiling — and only under this gate's tokeniser:
- *
- *   this gate, split on whitespace                       1013   (4 over)
- *   letters-and-digits tokens only                       1006   (inside)
- *
- * The difference is seven standalone punctuation tokens — bullet hyphens and em
- * dashes — that this gate counts as words. The author who wrote and measured the
- * fifteen reported the set as 934-1006, and 1006 is exactly this item under the
- * second tokeniser, so the two measurements agree about the text and disagree
- * only about what a word is.
- *
- * That is a question about the instrument, and the instrument is not content's
- * to settle nor content the instrument's. Two ways out, both the author's call:
- *   · trim four words from the item, or
- *   · stop counting standalone punctuation as words HERE — which would move the
- *     printed count of every bulleted item in the bank and must be re-measured
- *     across all 177 governed items, not just this one.
- *
- * ⚠️ THIS IS STRICTER THAN AN EXEMPTION, on the same terms as
- * FINDABILITY_PENDING below: a row that STOPS failing fails the build, so
- * whichever way it is settled, this row has to be deleted rather than left
- * lying. It is counted and printed separately from LEGACY DEBT, because calling
- * a 1013-word item "debt" next to a 49-word Part A would be a lie about both.
- */
-const OVER_LENGTH_PENDING: string[] = [
-  "READING_PART_A::Part A — Chest pain and acute coronary syndrome", // 1013 words, law 885-1009
 ];
 
 const words = (s: string | undefined): number =>
@@ -363,56 +346,28 @@ const ITEMS = GEN_ITEMS as unknown as Item[];
 const governed = ITEMS.filter((i) => LAW[i.taskType]);
 const failures: string[] = [];
 const exempt = new Set(LEGACY_SHORT);
-const pending = new Set(OVER_LENGTH_PENDING);
 const stillShort = new Set<string>();
-const stillOver = new Set<string>();
 
 // Population before the guard: a gate that iterates nothing passes vacuously.
 if (governed.length === 0) failures.push("no item is governed by a length law — the gate is vacuous");
 if (exempt.size !== LEGACY_SHORT.length) {
   failures.push(`LEGACY_SHORT contains a duplicate (${LEGACY_SHORT.length} rows, ${exempt.size} unique)`);
 }
-if (pending.size !== OVER_LENGTH_PENDING.length) {
-  failures.push(
-    `OVER_LENGTH_PENDING contains a duplicate (${OVER_LENGTH_PENDING.length} rows, ${pending.size} unique)`,
-  );
-}
-// One key, one list. A key in both would be exempt twice and counted twice.
-for (const key of pending) {
-  if (exempt.has(key)) failures.push(`${key} is in BOTH LEGACY_SHORT and OVER_LENGTH_PENDING.`);
-}
 
 for (const item of governed) {
   const key = `${item.taskType}::${item.title}`;
   const why = breaches(item);
-  const listed = exempt.has(key) || pending.has(key);
+  const listed = exempt.has(key);
   if (why.length > 0) {
-    if (exempt.has(key)) stillShort.add(key);
-    else if (pending.has(key)) {
-      // OVER_LENGTH_PENDING excuses ONE thing: a breach of the MAXIMUM, alone.
-      // A blanket exemption on a live item would hide it going short, or losing a
-      // text or a question, for as long as the row sits here.
-      const law = LAW[item.taskType];
-      if (why.length === 1 && textWords(item) > law[1]) stillOver.add(key);
-      else
-        failures.push(
-          `${key} — ${why.join("; ")} — OVER_LENGTH_PENDING excuses a breach of the ` +
-            "MAXIMUM and nothing else",
-        );
-    } else failures.push(`${key} — ${why.join("; ")}`);
+    if (listed) stillShort.add(key);
+    else failures.push(`${key} — ${why.join("; ")}`);
   } else if (listed) {
-    const list = exempt.has(key) ? "LEGACY_SHORT" : "OVER_LENGTH_PENDING";
-    failures.push(`${key} now meets the law — delete it from ${list}.`);
+    failures.push(`${key} now meets the law — delete it from LEGACY_SHORT.`);
   }
 }
 for (const key of exempt) {
   if (!governed.some((i) => `${i.taskType}::${i.title}` === key)) {
     failures.push(`${key} is in LEGACY_SHORT but not in the bank — delete it.`);
-  }
-}
-for (const key of pending) {
-  if (!governed.some((i) => `${i.taskType}::${i.title}` === key)) {
-    failures.push(`${key} is in OVER_LENGTH_PENDING but not in the bank — delete it.`);
   }
 }
 
@@ -540,10 +495,10 @@ for (const e of FINDABILITY_PENDING) {
   }
 }
 
-const green = governed.length - stillShort.size - stillOver.size;
+const green = governed.length - stillShort.size;
 console.log(
   `[gate:length] ${governed.length} governed item(s): ${green} meet the law, ` +
-    `${stillShort.size} exempt as legacy debt, ${stillOver.size} pending a tokeniser ruling`,
+    `${stillShort.size} exempt as legacy debt`,
 );
 console.log(
   `[gate:length] findability: ${findabilityChecked} Part A answer(s) across ` +
@@ -557,13 +512,6 @@ if (FINDABILITY_PENDING.length > 0) {
   for (const e of FINDABILITY_PENDING) {
     console.log(`        ${e.title} / ${e.qid} — ${JSON.stringify(e.answer)}`);
   }
-}
-if (OVER_LENGTH_PENDING.length > 0) {
-  console.log(
-    `  🔴 OVER LENGTH HANDED BACK — ${OVER_LENGTH_PENDING.length} item(s) over the ceiling ` +
-      "under this gate's tokeniser and inside it under a letters-only one. NOT decided here:",
-  );
-  for (const key of OVER_LENGTH_PENDING) console.log(`        ${key}`);
 }
 console.log(`LEGACY DEBT: ${stillShort.size} items still short of the law`);
 if (failures.length > 0) {
