@@ -89,7 +89,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
     "Afternoon snack (two or three)": ["biscuits", "two or three biscuits"],
     "Water intake per day": ["two glasses", "two glasses of water", "two"],
     "Evening activity: walks the ___": ["dog"],
-    "Change: swap white toast for ___": ["wholegrain", "whole grain", "wholegrain bread", "wholegrain toast"],
+    "Change: swap white toast for ___": ["wholegrain", "whole grain", "wholegrain toast"],
     "Reduce this in coffee gradually": ["sugar"],
     "Replace fizzy drink with ___": ["water"],
   },
@@ -176,7 +176,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
     "Location": ["centre", "center", "centre of the chest"],
     "Onset trigger": ["climbing the stairs", "climbing stairs", "stairs"],
     "Radiates to": ["left arm", "down the left arm", "left arm and jaw"],
-    "Associated symptom": ["breathless", "breathlessness", "short of breath", "shortness of breath", "sweaty", "sweating"],
+    "Associated symptom": ["breathless", "breathlessness", "sweaty", "sweating"],
   },
   "Part A — Child with fever": {
     "Onset": ["yesterday evening", "yesterday", "evening"],
@@ -215,7 +215,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
   "Part A — Mental-health check-in": {
     "Mood": ["low", "quite low", "low mood"],
     "Loss of": ["interest", "interest in things", "enjoyment"],
-    "Sleep pattern": ["wake very early", "waking early", "early waking", "wakes at four", "waking at four", "early morning waking"],
+    "Sleep pattern": ["wake very early", "waking early", "early waking", "wakes at four", "waking at four"],
     "Appetite": ["barely eating", "not eating"],
     "Concentration": ["can not focus", "cannot focus", "can not concentrate"],
   },

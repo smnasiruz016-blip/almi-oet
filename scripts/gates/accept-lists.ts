@@ -26,7 +26,8 @@
  *      unfalsifiable: a normaliser that returned "" would pass A5–A7 perfectly
  *   A9 `400 mg` is refused on the folic-acid gap
  *  A10 no two DIFFERENT answers inside one item normalise alike
- *  A11 every Listening variant's words are in that item's own audioScript
+ *  A11 every Listening variant's words are in that item's own audioScript,
+ *      with a WRITTEN PER-VARIANT exemption list and no baseline
  *
  * ── HOW IT WAS SEEN RED ─────────────────────────────────────────────────────
  *
@@ -426,147 +427,151 @@ function wordInAudio(word: string, audioWords: Set<string>): boolean {
 }
 
 /**
- * 🔴 A CLOSED BASELINE — variants A11 says are NOT in their item's audio, that
- * are NOT abbreviations, and that the 2 September correction did not withdraw.
+ * 🔴 THE WRITTEN, PER-VARIANT EXEMPTION LIST — Nasir's ruling of 2 September 2026.
  *
- * They are recorded rather than removed for one reason: the correction was
- * explicit that exactly 63 variants come out and nothing else, and choosing to
- * delete more would be authoring content, which is not mine to do. Every one is
- * named here so it is visible instead of silent, and they are the finding this
- * gate hands back.
+ * A11 found twelve variants whose words the script never says. He ruled on all
+ * twelve: four were withdrawn, and these eight stay. The reason he gave is a
+ * rule, not a shrug:
  *
- * ⚠️ THE LIST IS CLOSED AND SELF-CLEANING. A variant that is missing from the
- * audio and NOT on this list fails the build. And an entry here that has STOPPED
- * failing also fails the build, so the list cannot rot once a decision is made.
+ *   AN ADDED WORD IS ACCEPTABLE ONLY WHEN IT NAMES NOTHING NEW — when it says
+ *   nothing about the thing that was not already said.
  *
- * Note `left side`: the correction's own table lists `the left` / `left side`
- * under ACCEPTED, and the script says "only on the left going up" — so this one
- * is a conflict inside the correction itself, not an oversight to tidy away.
+ *   `level` in "HbA1c level"      an HbA1c IS a level               kept
+ *   `side` in "left side"         "the left" IS a side              kept
+ *   `outside` for "outer ankle"   the same place, reordered         kept
+ *   `medicine` for "medication"   one word's family                 kept
+ *   `bread` for "toast"           a DIFFERENT thing                  withdrawn
+ *   `short of breath`             built from other words, not       withdrawn
+ *                                 another form of "breathless"
+ *   `morning` for "around four"   the script never mentions morning withdrawn
+ *
+ * That last group is why the ruling holds together: refusing `burning` on
+ * `stings` and accepting `short of breath` on `breathless` would have been the
+ * same inconsistency twice.
+ *
+ * ── 🔴 PER VARIANT, NEVER PER WORD ─────────────────────────────────────────
+ *
+ * Each entry names the ITEM, the GAP and the VARIANT. Exempting the word
+ * `level` everywhere would let a real synonym through the next time somebody
+ * wrote one. `night-time` is exempt in two items and is listed twice for
+ * exactly that reason — the two rows are not interchangeable.
+ *
+ * This list is CLOSED: a variant whose words are not in its script and which is
+ * not named here FAILS THE BUILD. And an entry pointing at a variant that no
+ * longer exists in the overlay also FAILS, so it cannot rot into a list of
+ * excuses for content that has been deleted.
+ *
+ * ⚠️ An entry that is not currently load-bearing is REPORTED, not failed. The
+ * ruling required both `night-time` rows, and one of them passes today only
+ * because its own script happens to say "six times a day" — "times" reduces to
+ * "time". That is a coincidence of wording, not a decision, and the day it
+ * changes the row is the thing that keeps the gate green.
  */
-type AudioNote = { title: string; label: string; variant: string; word: string; why: string };
+type VariantExemption = {
+  item: string;
+  gap: string;
+  variant: string;
+  source: "ruling-2026-09-02" | "irregular-form";
+  why: string;
+};
 
-/** Same word as one the script says, in a form the WRITTEN morphology above
- *  cannot derive because English is irregular here. Not a content question. */
-const AUDIO_IRREGULAR: AudioNote[] = [
+const A11_EXEMPT_VARIANT: VariantExemption[] = [
   {
-    title: "Part A — Diabetes annual check",
-    label: "Weight change",
-    variant: "weight loss",
-    word: "loss",
-    why: "the script says \"lost about four kilos\"; loss/lost is one word, irregularly",
-  },
-  {
-    title: "Part A — Post-operative wound check",
-    label: "Pain trend",
-    variant: "getting worse",
-    word: "getting",
-    why: "the script says \"has actually got worse\"; getting/got is one word, irregularly",
-  },
-];
-
-/** 🔴 A DIFFERENT WORD FROM THE ONE THE SCRIPT SAYS — the same class as the 63
- *  that were withdrawn on 2 September, found by running the check over the whole
- *  list. They are recorded rather than deleted because the correction was
- *  explicit that exactly 63 come out and nothing else; choosing to remove more
- *  is authoring, and that is Nasir's to do. This list IS the finding. */
-const AUDIO_PENDING_DECISION: AudioNote[] = [
-  {
-    title: "OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)",
-    label: "Rail is only on",
-    variant: "left side",
-    word: "side",
-    why: "script says \"only on the left going up\" — but the correction's own table lists `the left` / `left side` under ACCEPTED, so this is a conflict inside the correction, not an oversight",
-  },
-  {
-    title: "OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)",
-    label: "Rail is only on",
-    variant: "left-hand side",
-    word: "side",
-    why: "same as `left side` above",
-  },
-  {
-    title: "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)",
-    label: "Referred because this was high",
+    item: "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)",
+    gap: "Referred because this was high",
     variant: "HbA1c level",
-    word: "level",
-    why: "script says \"your HbA1c was a little high\" — never the word level",
+    source: "ruling-2026-09-02",
+    why: "'level' names nothing new — an HbA1c IS a level",
   },
   {
-    title: "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)",
-    label: "Referred because this was high",
+    item: "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)",
+    gap: "Referred because this was high",
     variant: "blood sugar level",
-    word: "level",
-    why: "same as `HbA1c level` above",
+    source: "ruling-2026-09-02",
+    why: "same reason; 'blood sugar' is itself said in the script",
   },
   {
-    title: "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)",
-    label: "Change: swap white toast for ___",
-    variant: "wholegrain bread",
-    word: "bread",
-    why: "`bread` was withdrawn from the breakfast gap in the same item on 2 September, and kept here",
+    item: "OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)",
+    gap: "Rail is only on",
+    variant: "left side",
+    source: "ruling-2026-09-02",
+    why: "'the left' IS a side — no new information",
   },
   {
-    title: "Part A — Ankle injury after a fall",
-    label: "Site of worst swelling",
+    item: "OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)",
+    gap: "Rail is only on",
+    variant: "left-hand side",
+    source: "ruling-2026-09-02",
+    why: "same reason as 'left side'",
+  },
+  {
+    item: "Part A — Ankle injury after a fall",
+    gap: "Site of worst swelling",
     variant: "outside of the ankle",
-    word: "outside",
-    why: "script says \"on the outer ankle\"",
+    source: "ruling-2026-09-02",
+    why: "another ordering of 'outer ankle' — the same place",
   },
   {
-    title: "Part A — Ankle injury after a fall",
-    label: "Site of worst swelling",
+    item: "Part A — Ankle injury after a fall",
+    gap: "Site of worst swelling",
     variant: "outer side of the ankle",
-    word: "side",
-    why: "script says \"on the outer ankle\" — outer is said, side is not",
+    source: "ruling-2026-09-02",
+    why: "same reason as 'outside of the ankle'",
   },
   {
-    title: "Part A — Chest pain assessment",
-    label: "Associated symptom",
-    variant: "short of breath",
-    word: "short",
-    why: "script says \"quite breathless\" — a paraphrase, same class as the withdrawn `pudding`",
-  },
-  {
-    title: "Part A — Chest pain assessment",
-    label: "Associated symptom",
-    variant: "shortness of breath",
-    word: "shortness",
-    why: "same as `short of breath` above",
-  },
-  {
-    title: "Part A — Medication side-effect",
-    label: "Suspected cause",
+    item: "Part A — Medication side-effect",
+    gap: "Suspected cause",
     variant: "blood pressure medicine",
-    word: "medicine",
-    why: "script says \"blood pressure medication\"",
+    source: "ruling-2026-09-02",
+    why: "'medication' and 'medicine' are one word's family",
   },
   {
-    title: "Part A — Medication side-effect",
-    label: "Worse timing",
+    item: "Part A — Asthma flare-up",
+    gap: "Worse timing",
     variant: "night-time",
-    word: "time",
-    why: "script says \"worse at night\"",
+    source: "ruling-2026-09-02",
+    why: "a compound of 'night' — nothing new said",
   },
   {
-    title: "Part A — Mental-health check-in",
-    label: "Sleep pattern",
-    variant: "early morning waking",
-    word: "morning",
-    why: "script says \"I wake very early, around four\" — never morning",
+    item: "Part A — Medication side-effect",
+    gap: "Worse timing",
+    variant: "night-time",
+    source: "ruling-2026-09-02",
+    why: "same reason as the Asthma flare-up row; the two are NOT interchangeable",
+  },
+  // ── not the ruling's: a limit of the written morphology above ─────────────
+  {
+    item: "Part A — Diabetes annual check",
+    gap: "Weight change",
+    variant: "weight loss",
+    source: "irregular-form",
+    why: "the script says 'lost about four kilos'; loss/lost is one word, irregularly, and the ending list cannot derive it",
+  },
+  {
+    item: "Part A — Post-operative wound check",
+    gap: "Pain trend",
+    variant: "getting worse",
+    source: "irregular-form",
+    why: "the script says 'has actually got worse'; getting/got is one word, irregularly",
   },
 ];
 
-const AUDIO_PENDING: AudioNote[] = [...AUDIO_IRREGULAR, ...AUDIO_PENDING_DECISION];
+const exemptKey = (item: string, gap: string, variant: string) => `${item}||${gap}||${variant}`;
+const A11_EXEMPT_BY_KEY = new Map(
+  A11_EXEMPT_VARIANT.map((e) => [exemptKey(e.item, e.gap, e.variant), e]),
+);
+if (A11_EXEMPT_BY_KEY.size !== A11_EXEMPT_VARIANT.length) {
+  fail("A11", "the per-variant exemption list contains a duplicate row");
+}
 
 let audioChecked = 0;
 let audioExempted = 0;
 let audioFunctionSkipped = 0;
 let itemsWithAudio = 0;
-const pendingHit = new Set<string>();
-const pendingKey = (t: string, l: string, v: string, w: string) => `${t}||${l}||${v}||${w}`;
-const PENDING = new Set(
-  AUDIO_PENDING.map((p) => pendingKey(p.title, p.label, p.variant, p.word)),
-);
+/** Keys that exist in the overlay, so a row pointing at deleted content fails. */
+const exemptSeen = new Set<string>();
+/** Keys that were actually needed — the rest are reported, not failed. */
+const exemptLoadBearing = new Set<string>();
 
 for (const item of LISTENING) {
   const script = item.payload.audioScript ?? "";
@@ -581,9 +586,17 @@ for (const item of LISTENING) {
   for (const gap of item.payload.gaps ?? []) {
     for (const variant of listeningAcceptFor(item.title, gap.label)) {
       audioChecked += 1;
+      const key = exemptKey(item.title, gap.label, variant);
+      const exempt = A11_EXEMPT_BY_KEY.get(key);
+      if (exempt) exemptSeen.add(key);
+
       // A run-on spelling of words the script says separately ("buttonhook" for
       // "button hook") is still the script's own wording.
       if (audioJoined.includes(normalize(variant))) continue;
+
+      // Collect EVERY missing word first, so an exempt row can be told apart
+      // from one that never needed exempting.
+      const missing: string[] = [];
       for (const word of normalizeTokens(variant)) {
         if (AUDIO_EXEMPT_TOKENS.has(word)) {
           audioExempted += 1;
@@ -594,24 +607,35 @@ for (const item of LISTENING) {
           continue;
         }
         if (wordInAudio(word, audioWords)) continue;
-        const key = pendingKey(item.title, gap.label, variant, word);
-        if (PENDING.has(key)) {
-          pendingHit.add(key);
-          continue;
-        }
+        missing.push(word);
+      }
+      if (missing.length === 0) continue;
+      if (exempt) {
+        exemptLoadBearing.add(key);
+        continue;
+      }
+      for (const word of missing) {
         fail(
           "A11",
           `"${item.title}" / "${gap.label}": variant "${variant}" uses "${word}", ` +
-            "which that item's audioScript never says",
+            "which that item's audioScript never says, and it is not on the " +
+            "written per-variant exemption list",
         );
       }
     }
   }
 }
-// The baseline cannot rot: an entry that no longer fails is an entry to delete.
-for (const key of PENDING) {
-  if (!pendingHit.has(key)) {
-    fail("A11", `stale AUDIO_PENDING entry — it no longer fails, delete it: ${key}`);
+
+// The list cannot rot: a row pointing at a variant that is no longer in the
+// overlay is an excuse for content that does not exist.
+for (const e of A11_EXEMPT_VARIANT) {
+  const key = exemptKey(e.item, e.gap, e.variant);
+  if (!exemptSeen.has(key)) {
+    fail(
+      "A11",
+      `exemption points at a variant that is not in the overlay — delete the row: ` +
+        `"${e.item}" / "${e.gap}" / "${e.variant}"`,
+    );
   }
 }
 if (itemsWithAudio === 0) fail("A11", "no Listening item had an audioScript — A11 was vacuous");
@@ -624,16 +648,20 @@ console.log(
     `${READING.length} Reading Part A item(s), ${readingFree} free-text answer(s); ` +
     `${CASES.length} answer(s) checked, ${numericChecked} with a numeric counterpart; ` +
     `${audioChecked} Listening variant(s) against ${itemsWithAudio} audio script(s) ` +
-    `(${audioExempted} exempt, ${audioFunctionSkipped} function word(s), ` +
-    `${AUDIO_PENDING.length} pending)`,
+    `(${audioExempted} abbreviation(s), ${audioFunctionSkipped} function word(s), ` +
+    `${A11_EXEMPT_VARIANT.length} per-variant exemption(s), ` +
+    `${exemptLoadBearing.size} of them load-bearing)`,
 );
-if (AUDIO_PENDING.length > 0) {
+const notLoadBearing = A11_EXEMPT_VARIANT.filter(
+  (e) => !exemptLoadBearing.has(exemptKey(e.item, e.gap, e.variant)),
+);
+if (notLoadBearing.length > 0) {
   console.log(
-    `  NOTE  A11 carries ${AUDIO_IRREGULAR.length} irregular form(s) and ` +
-      `${AUDIO_PENDING_DECISION.length} variant(s) awaiting a decision:`,
+    `  NOTE  ${notLoadBearing.length} of ${A11_EXEMPT_VARIANT.length} per-variant ` +
+      "exemption(s) are not load-bearing today — kept deliberately, see the file:",
   );
-  for (const n of AUDIO_PENDING_DECISION) {
-    console.log(`        "${n.variant}" (${n.word}) — ${n.title} / ${n.label}`);
+  for (const e of notLoadBearing) {
+    console.log(`        "${e.variant}" — ${e.item} / ${e.gap}`);
   }
 }
 for (const check of [
