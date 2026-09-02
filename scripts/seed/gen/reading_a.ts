@@ -2634,6 +2634,15 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       ]
     }
   },
+  // The nine sets below are the authored source verbatim, with two mechanical changes
+  // only: markdown emphasis delimiters removed, and tables rewritten as plain labelled
+  // lines — src/components/oet/OetComposer.tsx renders body through whitespace-pre-wrap
+  // and parses no markdown.
+  //
+  // The teacher's pass of 2026-09-02 also corrected two answers that were not findable
+  // in their own text (Acute stroke q9, Sepsis q19), withdrew two accepted answers that
+  // were different words rather than other forms (Wound infection q15), and added two
+  // right answers the texts print (Hypoglycaemia q14, Wound infection q14).
   {
     "subTest": "READING",
     "taskType": "READING_PART_A",
@@ -2654,12 +2663,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "B",
           "heading": "Immediate management",
-          "body": "Position first. Lie the patient flat with the legs raised if breathing allows; sit them up if\nbreathing is difficult; use the recovery position if unconscious. Do not stand or walk the\npatient — sudden standing during a reaction has caused cardiac arrest.\n\nAdrenaline 1 mg/mL (1:1000), intramuscular, into the anterolateral thigh:\n\n| Age | Dose | Volume |\n|---|---|---|\n| Adult and child over 12 years | 500 micrograms | 0.5 mL |\n| Child 6–12 years | 300 micrograms | 0.3 mL |\n| Child 6 months – 6 years | 150 micrograms | 0.15 mL |\n| Child under 6 months | 100–150 micrograms | 0.1–0.15 mL |\n\nRepeat after 5 minutes if there is no improvement.\n\nEstablish the airway, give high-flow oxygen, and give an intravenous fluid bolus. Antihistamines and\ncorticosteroids are not first-line treatment and must never delay adrenaline.\n\nWhere more than two doses are needed, or where the reaction does not settle, seek critical care help\nearly rather than repeating intramuscular doses indefinitely."
+          "body": "Position first. Lie the patient flat with the legs raised if breathing allows; sit them up if\nbreathing is difficult; use the recovery position if unconscious. Do not stand or walk the\npatient — sudden standing during a reaction has caused cardiac arrest.\n\nAdrenaline 1 mg/mL (1:1000), intramuscular, into the anterolateral thigh:\n\nAdrenaline dose by age, with the volume to draw up:\nAdult and child over 12 years — 500 micrograms, 0.5 mL.\nChild 6–12 years — 300 micrograms, 0.3 mL.\nChild 6 months to 6 years — 150 micrograms, 0.15 mL.\nChild under 6 months — 100–150 micrograms, 0.1–0.15 mL.\n\nRepeat after 5 minutes if there is no improvement.\n\nEstablish the airway, give high-flow oxygen, and give an intravenous fluid bolus. Antihistamines and\ncorticosteroids are not first-line treatment and must never delay adrenaline.\n\nWhere more than two doses are needed, or where the reaction does not settle, seek critical care help\nearly rather than repeating intramuscular doses indefinitely."
         },
         {
           "id": "C",
           "heading": "After the reaction",
-          "body": "Mast cell tryptase. Take the first sample as soon as feasible once treatment has started — do not\ndelay resuscitation to take it. Take a second at 1 to 2 hours and a third at 24 hours or at follow-up,\nthe last serving as the patient's own baseline.\n\nBiphasic reactions occur in up to 20 per cent of cases, usually within 12 hours of the first.\n\nObservation period after treatment:\n\n| Observe for | When |\n|---|---|\n| 2 hours | good response to a single dose given within 30 minutes of onset, complete resolution |\n| 6 hours | two doses required, or a previous biphasic reaction |\n| 12 hours or overnight | more than two doses, severe asthma, ongoing reaction, late-night presentation, or no access to emergency care |\n\nBefore discharge: two adrenaline auto-injectors, training in their use, a written emergency plan,\nand referral to a specialist allergy service."
+          "body": "Mast cell tryptase. Take the first sample as soon as feasible once treatment has started — do not\ndelay resuscitation to take it. Take a second at 1 to 2 hours and a third at 24 hours or at follow-up,\nthe last serving as the patient's own baseline.\n\nBiphasic reactions occur in up to 20 per cent of cases, usually within 12 hours of the first.\n\nObservation period after treatment:\n\nHow long to observe, and when:\nObserve 2 hours — good response to a single dose given within 30 minutes of onset, complete resolution.\nObserve 6 hours — two doses required, or a previous biphasic reaction.\nObserve 12 hours or overnight — more than two doses, severe asthma, ongoing reaction, late-night presentation, or no access to emergency care.\n\nBefore discharge: two adrenaline auto-injectors, training in their use, a written emergency plan,\nand referral to a specialist allergy service."
         },
         {
           "id": "D",
@@ -2989,7 +2998,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "B",
           "heading": "The first hour",
-          "body": "Where sepsis is suspected with any red flag, complete all six actions within one hour. Recognition,\nnot arrival, starts the clock.\n\n| | Action |\n|---|---|\n| 1 | Give high-flow oxygen, targeting 94–98 per cent (88–92 per cent if at risk of hypercapnia) |\n| 2 | Take blood cultures, and consider source control |\n| 3 | Give intravenous antimicrobials — do not wait for cultures if taking them will delay treatment |\n| 4 | Give intravenous fluid: 500 mL crystalloid in under 15 minutes, reassess, repeat to 30 mL/kg |\n| 5 | Measure serum lactate |\n| 6 | Measure hourly urine output |\n\nEscalate to critical care if the lactate remains above 2 mmol/L after fluid, or if vasopressors are\nneeded to maintain a mean arterial pressure of 65 mmHg."
+          "body": "Where sepsis is suspected with any red flag, complete all six actions within one hour. Recognition,\nnot arrival, starts the clock.\n\nThe six actions, in order:\n1. Give high-flow oxygen, targeting 94–98 per cent (88–92 per cent if at risk of hypercapnia).\n2. Take blood cultures, and consider source control.\n3. Give intravenous antimicrobials — do not wait for cultures if taking them will delay treatment.\n4. Give intravenous fluid: 500 mL crystalloid in under 15 minutes, reassess, repeat to 30 mL/kg.\n5. Measure serum lactate.\n6. Measure hourly urine output.\n\nEscalate to critical care if the lactate remains above 2 mmol/L after fluid, or if vasopressors are\nneeded to maintain a mean arterial pressure of 65 mmHg."
         },
         {
           "id": "C",
@@ -3280,11 +3289,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q19",
           "kind": "gap",
-          "stem": "In a child, a dry nappy indicates ______________.",
-          "answer": "reduced urine output",
-          "variants": [
-            "low urine output"
-          ]
+          "stem": "In a child, a dry nappy carries the weight that ______________ carries in adults.",
+          "answer": "blood pressure",
+          "variants": []
         },
         {
           "id": "q20",
@@ -3319,7 +3326,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "B",
           "heading": "Categories of damage",
-          "body": "| Category | What is seen |\n|---|---|\n| 1 | Intact skin with non-blanching redness |\n| 2 | Partial-thickness loss of dermis: a shallow open ulcer, or an intact or ruptured blister |\n| 3 | Full-thickness loss; subcutaneous fat may be visible; bone, tendon and muscle are not exposed |\n| 4 | Full-thickness loss with exposed bone, tendon or muscle |\n| Unstageable | Base covered by slough or eschar, so the depth cannot be determined |\n| Deep tissue injury | Purple or maroon intact skin, or a blood-filled blister |\n\nDo not reverse-grade. An ulcer that is healing is recorded as a healing category 3, never as a\ncategory 2.\n\nStable dry eschar on the heel is not debrided. It acts as a natural cover and is left intact unless\nthere is redness, fluctuance or drainage."
+          "body": "Category 1 — intact skin with non-blanching redness.\nCategory 2 — partial-thickness loss of dermis: a shallow open ulcer, or an intact or ruptured blister.\nCategory 3 — full-thickness loss; subcutaneous fat may be visible; bone, tendon and muscle are not exposed.\nCategory 4 — full-thickness loss with exposed bone, tendon or muscle.\nUnstageable — base covered by slough or eschar, so the depth cannot be determined.\nDeep tissue injury — purple or maroon intact skin, or a blood-filled blister.\n\nDo not reverse-grade. An ulcer that is healing is recorded as a healing category 3, never as a\ncategory 2.\n\nStable dry eschar on the heel is not debrided. It acts as a natural cover and is left intact unless\nthere is redness, fluctuance or drainage."
         },
         {
           "id": "C",
@@ -3645,7 +3652,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "B",
           "heading": "Immediate treatment",
-          "body": "Treat first and document afterwards. Never send a symptomatic patient for a laboratory result before\ntreating.\n\n| Patient | Give |\n|---|---|\n| Conscious, able to swallow | 15–20 g fast-acting carbohydrate: 4–5 glucose tablets, or 150–200 mL of pure fruit juice |\n| Conscious but uncooperative | glucose gel squeezed between the gum and the cheek |\n| Unconscious or unable to swallow | nothing by mouth; 1 mg glucagon by intramuscular injection, or intravenous glucose |\n\nDo not reach for a chocolate bar or a biscuit as the first treatment. The fat in them slows absorption\ndown, and a patient who needs sugar within minutes does not have those minutes to spare. The same\napplies to a fizzy drink from which the sugar has been removed.\n\nRecheck the glucose after 15 minutes. If it is still below 4.0 mmol/L, repeat the fast-acting\ncarbohydrate. Once the level is above 4.0, give a portion of long-acting carbohydrate such as toast or\na sandwich, or the next meal if it is due."
+          "body": "Treat first and document afterwards. Never send a symptomatic patient for a laboratory result before\ntreating.\n\nConscious, able to swallow — 15–20 g fast-acting carbohydrate: 4–5 glucose tablets, or 150–200 mL of pure fruit juice.\nConscious but uncooperative — glucose gel squeezed between the gum and the cheek.\nUnconscious or unable to swallow — nothing by mouth; 1 mg glucagon by intramuscular injection, or intravenous glucose.\n\nDo not reach for a chocolate bar or a biscuit as the first treatment. The fat in them slows absorption\ndown, and a patient who needs sugar within minutes does not have those minutes to spare. The same\napplies to a fizzy drink from which the sugar has been removed.\n\nRecheck the glucose after 15 minutes. If it is still below 4.0 mmol/L, repeat the fast-acting\ncarbohydrate. Once the level is above 4.0, give a portion of long-acting carbohydrate such as toast or\na sandwich, or the next meal if it is due."
         },
         {
           "id": "C",
@@ -3894,7 +3901,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "insulin and sulfonylureas",
           "variants": [
             "insulin and sulfonylurea",
-            "insulin and the tablets"
+            "insulin and the tablets",
+            "insulin and sulfonylurea tablets"
           ]
         },
         {
@@ -4180,11 +4188,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "q9",
           "kind": "gap",
           "stem": "Which single fact decides which treatments are available?",
-          "answer": "the time last known well",
+          "answer": "the time of onset",
           "variants": [
-            "last known well",
             "time of onset",
-            "when it started",
+            "the time last known well",
+            "last known well",
+            "when the symptoms started",
             "the time it started"
           ]
         },
@@ -5250,7 +5259,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             "keep them",
             "save it",
             "keep leftovers",
-            "store it"
+            "store it",
+            "keep what is left"
           ]
         },
         {
@@ -5258,10 +5268,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "A wound must be ______________ before the sample is taken.",
           "answer": "cleansed",
-          "variants": [
-            "cleaned",
-            "washed"
-          ]
+          "variants": []
         },
         {
           "id": "q16",

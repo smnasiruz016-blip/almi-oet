@@ -30,6 +30,11 @@
  *
  * Every run prints LEGACY DEBT: <n>, so the number is in front of us.
  *
+ * It also carries the FINDABILITY check — a Reading Part A answer must appear in
+ * its own texts, because the instruction on the page says the answer comes from
+ * them. See the block above the report for why that is here and not in
+ * gate:accept-lists.
+ *
  * ── WHAT "MEETS THE LAW" MEANS ──────────────────────────────────────────────
  *
  * Length, plus the structural rules that come with it where the law states one:
@@ -51,9 +56,9 @@ type Item = {
   payload: {
     audioScript?: string;
     gaps?: unknown[];
-    texts?: { body?: string }[];
+    texts?: { heading?: string; body?: string }[];
     passages?: { body?: string }[];
-    questions?: unknown[];
+    questions?: { id?: string; kind?: string; answer?: string }[];
   };
 };
 
@@ -287,11 +292,147 @@ for (const key of exempt) {
   }
 }
 
+/**
+ * 🔴 FLAGGED BY THIS CHECK, HANDED BACK — NOT DECIDED HERE.
+ *
+ * The teacher's pass of 2 September 2026 found two Part A answers that were not
+ * printed in their own texts and corrected both. Running the check over all nine
+ * new items finds FIVE. The command that asked for the check expected zero, and
+ * the standing rule is that the code wins and that content quality is the
+ * author's call, not a gate's — so these are recorded, not fixed.
+ *
+ * They fall into two kinds, and the difference matters:
+ *
+ *   THE SAME WORD IN ANOTHER FORM — the check as specified compares literally
+ *   (lowercase, whitespace, dashes, apostrophes) with no morphology, so a form
+ *   difference fails it:
+ *     "cleansed"                    text prints "Cleanse the wound first."
+ *     "insulin and sulfonylureas"   text prints "Insulin and the sulfonylurea
+ *                                   tablets are the two treatments…"
+ *   ⚠️ `cleansed` is a CONTRADICTION INSIDE THE COMMAND: Finding 2 rules it KEEP
+ *   because it is "the same word in another form", while Finding 6's literal
+ *   comparison fails it. Both cannot hold. That is the author's to settle.
+ *
+ *   A DIFFERENT WORDING — the same class as the two the teacher's pass caught,
+ *   and not reachable by any tolerance:
+ *     "label it"                     text prints "Label a syringe the moment it
+ *                                    is drawn up…"
+ *     "when it is clinically infected" text prints "Swab only where the wound is
+ *                                    clinically infected on the findings above."
+ *     "keep it"                      text prints "…or keep what is left for next
+ *                                    time." (Finding 3.2 added "keep what is
+ *                                    left" as a VARIANT while leaving the
+ *                                    unfindable phrase as the primary — the
+ *                                    opposite of what Finding 1a did.)
+ *
+ * ⚠️ THIS LIST IS A TO-DO, NOT AN ALLOWANCE. It is stricter than an exemption: a
+ * row that has STOPPED failing fails the build, so a question that is fixed must
+ * be deleted from here rather than left lying.
+ */
+const FINDABILITY_PENDING: { title: string; qid: string; answer: string }[] = [
+  { title: "Part A — Wound infection and antibiotics", qid: "q15", answer: "cleansed" },
+  { title: "Part A — Hypoglycaemia", qid: "q14", answer: "insulin and sulfonylureas" },
+  { title: "Part A — High-risk medicines", qid: "q11", answer: "label it" },
+  {
+    title: "Part A — Wound infection and antibiotics",
+    qid: "q9",
+    answer: "when it is clinically infected",
+  },
+  { title: "Part A — Wound infection and antibiotics", qid: "q14", answer: "keep it" },
+];
+const findabilityPendingKey = (t: string, q: string) => `${t}||${q}`;
+const FINDABILITY_PENDING_KEYS = new Set(
+  FINDABILITY_PENDING.map((e) => findabilityPendingKey(e.title, e.qid)),
+);
+const findabilityPendingHit = new Set<string>();
+
+// ── FINDABILITY · a Part A answer must be IN its own text ───────────────────
+//
+// Reading Part A tells the candidate to answer "with a word or short phrase from
+// the texts". An answer that is not in the texts cannot be answered that way, and
+// no gate could see it: the accept-list checks (A0-A12) compare a variant against
+// the OVERLAY or the payload, never against the source the candidate is reading.
+//
+// The teacher's pass of 2 September 2026 found two by hand — "the time last known
+// well" (Acute stroke) and "reduced urine output" (Sepsis), neither printed
+// anywhere in its item. Both are corrected in this change. This is the check that
+// would have caught them, and it costs nothing.
+//
+// PRIMARY ANSWERS ONLY. A variant is allowed to be a form the text does not
+// print — that is what a variant is for; A12 already governs the overlay's
+// variants against the same texts.
+//
+// 🔴 LEGACY ITEMS ARE EXCLUDED, ON THE SAME TERMS AS THE LENGTH LAW. They were
+// authored before this rule and would flood the output. The exclusion rides on
+// LEGACY_SHORT, so it inherits that list's rule exactly: THE LIST MAY ONLY
+// SHRINK. An item that leaves it starts being checked here too, and there is no
+// second list to forget about.
+function findNorm(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[\u2010-\u2015\u2212]/g, "-")
+    .replace(/[\u2018\u2019\u02bc]/g, "'")
+    .replace(/[\u201c\u201d]/g, '"')
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+let findabilityChecked = 0;
+let findabilityItems = 0;
+for (const item of ITEMS) {
+  if (item.taskType !== "READING_PART_A") continue;
+  if (exempt.has(`${item.taskType}::${item.title}`)) continue;
+  findabilityItems += 1;
+  const source = findNorm(
+    (item.payload.texts ?? []).map((t) => `${t.heading ?? ""} ${t.body ?? ""}`).join(" "),
+  );
+  for (const q of item.payload.questions ?? []) {
+    if (q.kind !== "gap" || !q.answer) continue;
+    findabilityChecked += 1;
+    if (!source.includes(findNorm(q.answer))) {
+      const key = findabilityPendingKey(item.title, q.id ?? "?");
+      if (FINDABILITY_PENDING_KEYS.has(key)) {
+        findabilityPendingHit.add(key);
+        continue;
+      }
+      failures.push(
+        `${item.title} / ${q.id ?? "?"} — answer ${JSON.stringify(q.answer)} is NOT in that ` +
+          "item's own texts, and Part A says the answer comes from the texts",
+      );
+    }
+  }
+}
+// Population before the guard: if no item is governed the check proves nothing.
+if (findabilityItems === 0) {
+  failures.push("no non-legacy READING_PART_A item exists — the findability check is vacuous");
+}
+// A to-do that has stopped failing is a question that has been answered.
+for (const e of FINDABILITY_PENDING) {
+  if (!findabilityPendingHit.has(findabilityPendingKey(e.title, e.qid))) {
+    failures.push(
+      `${e.title} / ${e.qid} is in FINDABILITY_PENDING but no longer fails — delete the row.`,
+    );
+  }
+}
+
 const green = governed.length - stillShort.size;
 console.log(
   `[gate:length] ${governed.length} governed item(s): ${green} meet the law, ` +
     `${stillShort.size} exempt as legacy debt`,
 );
+console.log(
+  `[gate:length] findability: ${findabilityChecked} Part A answer(s) across ` +
+    `${findabilityItems} non-legacy item(s) checked against their own texts`,
+);
+if (FINDABILITY_PENDING.length > 0) {
+  console.log(
+    `  🔴 FINDABILITY HANDED BACK — ${FINDABILITY_PENDING.length} answer(s) not printed in ` +
+      "their own texts. NOT decided here:",
+  );
+  for (const e of FINDABILITY_PENDING) {
+    console.log(`        ${e.title} / ${e.qid} — ${JSON.stringify(e.answer)}`);
+  }
+}
 console.log(`LEGACY DEBT: ${stillShort.size} items still short of the law`);
 if (failures.length > 0) {
   console.error(`\n[gate:length] ${failures.length} failure(s):`);

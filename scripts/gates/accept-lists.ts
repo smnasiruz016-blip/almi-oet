@@ -186,6 +186,17 @@ const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
     answer: "effective",
     why: "the author's accepted list is the answer alone: 'qubool: effective'",
   },
+  // ── added by the teacher's pass of 2026-09-02 ────────────────────────────
+  {
+    item: "Part A — Sepsis",
+    answer: "blood pressure",
+    why: "Finding 1b replaced an inference question with a retrieval one over the same sentence and specified variants: [] — 'blood pressure' is printed in that sentence",
+  },
+  {
+    item: "Part A — Wound infection and antibiotics",
+    answer: "cleansed",
+    why: "Finding 2 withdrew 'cleaned' and 'washed' as DIFFERENT words and specified variants: [] — cleansed is the only accepted form",
+  },
 ];
 const A4_SINGLE_KEY = new Set(A4_SINGLE_FORM.map((e) => `${e.item}||${e.answer}`));
 const a4SingleSeen = new Set<string>();
