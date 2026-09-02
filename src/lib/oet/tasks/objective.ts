@@ -87,6 +87,16 @@ function depluralise(word: string): string {
  * match that an authored variant then covers; it cannot create a false accept.
  */
 export function normalize(s: string): string {
+  return normalizeTokens(s).join("");
+}
+
+/**
+ * The same pipeline as normalize(), stopping one step earlier — before the
+ * spaces are dropped. Exported so gate:accept-lists check A11 can ask "does this
+ * WORD appear in the audio script" using the marker's own rules rather than a
+ * second, slightly different, copy of them.
+ */
+export function normalizeTokens(s: string): string[] {
   let t = String(s ?? "").toLowerCase();
 
   // (6) symbols that are words. Done BEFORE punctuation is stripped, or the
@@ -152,10 +162,10 @@ export function normalize(s: string): string {
   // (5) plural leniency, per token.
   tokens = tokens.map(depluralise);
 
-  // (4, continued) spaces themselves stop mattering, which is what makes
-  // "hotwater bottle" equal to "hot water bottle". Done LAST, so every rule
-  // above still had words to work on.
-  return tokens.join("");
+  // (4, continued) the caller joins these with no separator, which is what
+  // makes "hotwater bottle" equal to "hot water bottle". Dropping the spaces is
+  // LAST, so every rule above still had words to work on.
+  return tokens;
 }
 
 function firstValue(v: string | string[] | undefined): string {
