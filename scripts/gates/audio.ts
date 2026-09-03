@@ -17,6 +17,22 @@
  *   A3  the encoding is the one the key promises
  *   A4  the audio is long enough to be a consultation, not a click
  *   A5  the audio is not silence
+ *   A6  no segment SPEAKS a speaker label
+ *
+ * ── A6 · WHY A SIXTH CHECK WAS ADDED ON 3 SEPTEMBER 2026 ────────────────────
+ *
+ * A1-A5 open the file and ask whether it is real audio. None of them asks what
+ * the audio SAYS. On 3 September, measuring the 103 new Listening items through
+ * `segmentsFor` — the renderer's own function, rather than through
+ * `splitDialogue` — showed that a SINGLE-SPEAKER script fell to a fallback that
+ * spoke the whole script, label and all. Twenty-two live items already begin by
+ * reading "Manager:", "Doctor:", "Nurse A:" or "Speaker:" out loud, and three of
+ * the new extracts would have joined them.
+ *
+ * A6 reads the segments the renderer will speak and fails if one starts with a
+ * label. It runs through `segmentsFor`, so it is checking the real path and not
+ * a description of it — remove `stripLeadingLabel` from that function and this
+ * check goes red, which is how it was proved.
  *
  * ── HOW "NOT SILENCE" IS MEASURED WITHOUT A DECODER ─────────────────────────
  *
@@ -42,7 +58,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { GEN_ITEMS } from "../seed/gen/index";
-import { AUDIO_DIR, audioFileName, audioKey } from "../../src/lib/oet/audio";
+import { AUDIO_DIR, audioFileName, audioKey, segmentsFor } from "../../src/lib/oet/audio";
 
 // ── Hand-typed expectations. Never read from src/lib/oet/audio.ts, so a change
 // there cannot quietly redefine what "correct" means. If a deliberate re-encode
@@ -185,6 +201,18 @@ for (const it of listening) {
     fail("A1", `${label} has no audioScript`);
     continue;
   }
+  // ── A6 · what the renderer will SAY, not just what is on disk ──────────────
+  // A leading "Role:" at the start of a segment is a label being read aloud.
+  // The bound is the same one stripLeadingLabel uses: at most four words and
+  // forty characters before the colon, so an ordinary mid-sentence colon is not
+  // mistaken for a label.
+  for (const seg of segmentsFor(it.payload as { audioScript: string; speakers?: { role: string; voice: string }[] })) {
+    const spoken = seg.text.match(/^\s*([^\s:][^:\n]{0,39}):\s/)?.[1];
+    if (spoken && spoken.trim().split(/\s+/).length <= 4 && !/[.!?,;]/.test(spoken)) {
+      fail("A6", `${label} — a segment SPEAKS the label "${spoken}:" before the extract starts`);
+    }
+  }
+
   const key = audioKey(it.payload as { audioScript: string; speakers?: { role: string; voice: string }[] });
   claimed.add(key);
   const path = join(process.cwd(), AUDIO_DIR, audioFileName(key));

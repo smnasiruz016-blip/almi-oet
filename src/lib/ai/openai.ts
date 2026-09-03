@@ -6,7 +6,7 @@ import { TTS_USD_PER_1K_CHARS } from "@/lib/ai/models";
 import { computeTranscriptionCostCents } from "@/lib/ai/cost";
 import { recordExternalCost, recordTranscriptionCost } from "@/lib/ai/anthropic-client";
 // One implementation, shared with the offline renderer — see lib/oet/audio.ts.
-import { splitDialogue, type DialogueSpeaker } from "@/lib/oet/audio";
+import { splitDialogue, stripLeadingLabel, type DialogueSpeaker } from "@/lib/oet/audio";
 
 const OPENAI_BASE = "https://api.openai.com/v1";
 
@@ -96,7 +96,11 @@ export async function synthesizeDialogue(
   userId: string | null,
 ): Promise<ArrayBuffer> {
   const segments = splitDialogue(script, speakers);
-  if (segments.length < 2) return synthesizeSpeech(script, userId, speakers[0]?.voice);
+  // A script with one speaker keeps its label until it is stripped here — the
+  // same rule the offline renderer uses, so both paths speak the same words.
+  if (segments.length < 2) {
+    return synthesizeSpeech(stripLeadingLabel(script), userId, speakers[0]?.voice);
+  }
   const buffers: ArrayBuffer[] = [];
   for (const seg of segments) {
     buffers.push(await synthesizeSpeech(seg.text, userId, seg.voice));

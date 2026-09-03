@@ -326,12 +326,19 @@ const LEGACY_OVERSIZE: string[] = [
  *  A RATCHET: the recorded percentage may not be exceeded, and a taskType that
  *  reaches 45% or below must be deleted from this list. */
 const LEGACY_SKEW: { taskType: string; maxPct: number; letter: string }[] = [
-  { taskType: "LISTENING_PART_B", maxPct: 58, letter: "a" },
-  { taskType: "LISTENING_PART_C", maxPct: 48, letter: "b" },
   { taskType: "READING_PART_B", maxPct: 48, letter: "b" },
   // READING_PART_C left this list on 3 September 2026: the twenty-one
   // full-length items brought it from 50%% "b" to 33%%, under the 45%% cap.
   // The ratchet requires the row to go, and a stale row fails the build.
+  //
+  // LISTENING_PART_B and LISTENING_PART_C left it the same day, for the same
+  // reason — the 118 full-length Listening items:
+  //   LISTENING_PART_B  "a" was 19/33 = 58%, now 49/123 = 40%  (recorded 58)
+  //   LISTENING_PART_C  "b" was 32/66 = 48%, now 61/156 = 39%  (recorded 48)
+  // Both are under the 45% cap, so the ratchet requires both rows to go. The
+  // counts are what was measured; the percentages are Math.round of them, which
+  // is what this gate computes. The command that ordered this work quoted 39%
+  // for Part B by flooring 39.84% — same 49/123, a different rounding.
 ];
 
 /**

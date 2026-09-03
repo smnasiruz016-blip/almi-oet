@@ -78,6 +78,48 @@ export type Fixture = {
   partBSecond: PartBWalk;
   partBFullLengthTitles: string[];
   partBLegacyTitles: string[];
+  /** The three Listening walks, on the same terms as the Reading ones: an item
+   *  written to the measured law, with everything the walk answers with read off
+   *  its own payload. Added 3 September 2026 with the 118 new items. */
+  listeningA: ListeningAWalk;
+  listeningB: ListeningMcqWalk;
+  listeningC: ListeningMcqWalk;
+  listeningAFullLengthTitles: string[];
+  listeningBFullLengthTitles: string[];
+  listeningCFullLengthTitles: string[];
+};
+
+/**
+ * LISTENING PART A: one consultation and twelve gaps.
+ *
+ * Every gap is answered, and one of them is answered with an AUTHORED VARIANT
+ * rather than the primary answer — the same reasoning as the Reading Part A
+ * walk. A pass on the variant proves the accept list reaches the grader; a walk
+ * that only ever types the primary answer would still pass if the accept list
+ * were dead.
+ */
+export type ListeningAWalk = {
+  taskSlug: string;
+  title: string;
+  /** Every gap, with the exact text to type into it. */
+  answers: { id: string; label: string; text: string }[];
+  /** Which of the above is being answered with a variant, so the walk can say so. */
+  variantGapId: string | null;
+  gapCount: number;
+};
+
+/** Listening Part B and Part C: an extract or a recording, and its questions.
+ *  Part B has one question, Part C has six; the shape is the same. */
+export type ListeningMcqWalk = {
+  taskSlug: string;
+  title: string;
+  questionCount: number;
+  /** Answered with the item's own key. */
+  right: { id: string; stem: string; optionId: string }[];
+  /** One question answered with a known-wrong option, so a bank that marks
+   *  everything correct cannot pass. Null when the item has one question only
+   *  and it is already being answered right — Part B is walked twice instead. */
+  wrong: { id: string; stem: string; optionId: string; correctOptionId: string } | null;
 };
 
 /**
@@ -243,6 +285,120 @@ function isFullLengthPartC(item: Prisma.OetItemCreateManyInput): boolean {
   );
 }
 
+/**
+ * 🔴 THE FULL-LENGTH LISTENING ITEMS, IDENTIFIED BY THE LAW — NEVER BY slice().
+ *
+ * The seed source now holds 34 Listening Part A items, 123 Part B and 36 Part C,
+ * and in every one of the three the LEGACY items come first, because
+ * `listening_a.ts` is imported before `listening_a_sets.ts`. `pool.slice(0, 15)`
+ * — which is what this fixture did for the Listening parts until 3 September
+ * 2026 — takes fifteen legacy items every time. The walk would then have opened
+ * a 65-word "Part A — Antenatal visit" with four gaps and proved the product
+ * renders the very items this work exists to replace.
+ *
+ * The law is the whole law, structure included, and the bounds are the ones
+ * `scripts/gates/length.ts` enforces with its citations: 550-600 words and
+ * exactly 12 gaps; 140-165 and one three-option question; 780-880 and SIX
+ * three-option questions.
+ */
+const LISTENING_A_MIN = 550;
+const LISTENING_A_MAX = 600;
+const LISTENING_B_MIN = 140;
+const LISTENING_B_MAX = 165;
+const LISTENING_C_MIN = 780;
+const LISTENING_C_MAX = 880;
+
+type ListeningPayload = {
+  audioScript?: string;
+  speakers?: { role: string; voice: string }[];
+  gaps?: { id: string; label?: string; answer?: string; variants?: string[] }[];
+  questions?: { id: string; stem?: string; answer?: string; options?: { id: string }[] }[];
+};
+
+function isFullLengthListeningA(item: Prisma.OetItemCreateManyInput): boolean {
+  const p = item.payload as ListeningPayload | null;
+  const n = words(p?.audioScript);
+  return n >= LISTENING_A_MIN && n <= LISTENING_A_MAX && (p?.gaps ?? []).length === 12;
+}
+
+function isFullLengthListeningMcq(
+  item: Prisma.OetItemCreateManyInput,
+  min: number,
+  max: number,
+  questionCount: number,
+): boolean {
+  const p = item.payload as ListeningPayload | null;
+  const n = words(p?.audioScript);
+  const qs = p?.questions ?? [];
+  return (
+    n >= min &&
+    n <= max &&
+    qs.length === questionCount &&
+    qs.every((q) => (q.options?.length ?? 0) === 3)
+  );
+}
+
+/**
+ * The Part A walk: all twelve gaps, one of them answered with an authored
+ * variant. Throws rather than guesses — a gap with no answer is a finding about
+ * the bank, not something a test should paper over.
+ */
+function listeningAWalk(item: Prisma.OetItemCreateManyInput): ListeningAWalk {
+  const p = item.payload as ListeningPayload;
+  const gaps = p.gaps ?? [];
+  if (gaps.length !== 12) throw new Error(`[e2e] ${item.title}: ${gaps.length} gaps, law 12`);
+  // The first gap that carries an authored variant is answered with the VARIANT,
+  // so the accept list is on the walked path and not merely in the payload.
+  const variantGap = gaps.find((g) => (g.variants?.length ?? 0) > 0);
+  return {
+    taskSlug: "listening-part-a",
+    title: item.title,
+    gapCount: gaps.length,
+    variantGapId: variantGap?.id ?? null,
+    answers: gaps.map((g) => {
+      if (!g.answer) throw new Error(`[e2e] ${item.title}: gap ${g.id} has no answer`);
+      const useVariant = g.id === variantGap?.id;
+      return {
+        id: g.id,
+        label: g.label ?? "",
+        text: useVariant ? g.variants![0] : g.answer,
+      };
+    }),
+  };
+}
+
+/** Part B and Part C: answer every question with its key, and hold back one
+ *  known-wrong option (Part C only, which has six) for the control. */
+function listeningMcqWalk(
+  item: Prisma.OetItemCreateManyInput,
+  taskSlug: string,
+  withWrong: boolean,
+): ListeningMcqWalk {
+  const p = item.payload as ListeningPayload;
+  const qs = p.questions ?? [];
+  if (qs.length === 0) throw new Error(`[e2e] ${item.title}: no questions to walk`);
+  for (const q of qs) {
+    if (!q.answer) throw new Error(`[e2e] ${item.title}: question ${q.id} has no key`);
+  }
+  const last = qs[qs.length - 1];
+  const wrongOpt = withWrong ? last.options!.find((o) => o.id !== last.answer) : undefined;
+  if (withWrong && !wrongOpt) throw new Error(`[e2e] ${item.title}: every option is the answer`);
+  const right = (withWrong ? qs.slice(0, -1) : qs).map((q) => ({
+    id: q.id,
+    stem: q.stem ?? "",
+    optionId: q.answer!,
+  }));
+  return {
+    taskSlug,
+    title: item.title,
+    questionCount: qs.length,
+    right,
+    wrong: wrongOpt
+      ? { id: last.id, stem: last.stem ?? "", optionId: wrongOpt.id, correctOptionId: last.answer! }
+      : null,
+  };
+}
+
 function partCWalk(item: Prisma.OetItemCreateManyInput): PartCWalk {
   const payload = item.payload as {
     passages: { body?: string }[];
@@ -371,8 +527,14 @@ export async function seedFixture(url: string): Promise<Fixture> {
       // Reading Part A and Part B are seeded WHOLE; the other four are cut to
       // the floor. Both retires have to be walkable here before they are run
       // there, and a pool cut to fifteen would mean retiring nothing.
-      const forPart =
-        part === PART_A || part === PART_B || part === PART_C ? pool : pool.slice(0, FLOOR);
+      // 🔴 EVERY PART IS NOW SEEDED WHOLE. Until 3 September 2026 the three
+      // Listening parts were cut with `pool.slice(0, FLOOR)`, and the legacy
+      // items sort first in GEN_ITEMS — so the fixture held fifteen 37-to-114
+      // word fragments and not one of the full-length items. A Listening walk
+      // written against that pool would have opened a legacy item and passed.
+      // Seeding whole costs a few hundred rows in a throwaway database and
+      // removes the question.
+      const forPart = pool;
       if (forPart.length < FLOOR) {
         throw new Error(
           `[e2e] the seed source holds only ${forPart.length} ${part} items; ` +
@@ -442,6 +604,29 @@ export async function seedFixture(url: string): Promise<Fixture> {
       throw new Error("[e2e] no legacy Reading Part C item is left to walk its retire against");
     }
 
+    // ── the three Listening pools, chosen by the law ─────────────────────────
+    const listeningAFull = items
+      .filter((i) => i.taskType === "LISTENING_PART_A")
+      .filter(isFullLengthListeningA);
+    const listeningBFull = items
+      .filter((i) => i.taskType === "LISTENING_PART_B")
+      .filter((i) => isFullLengthListeningMcq(i, LISTENING_B_MIN, LISTENING_B_MAX, 1));
+    const listeningCFull = items
+      .filter((i) => i.taskType === "LISTENING_PART_C")
+      .filter((i) => isFullLengthListeningMcq(i, LISTENING_C_MIN, LISTENING_C_MAX, 6));
+    for (const [part, pool, want] of [
+      ["LISTENING_PART_A", listeningAFull, 13],
+      ["LISTENING_PART_B", listeningBFull, 90],
+      ["LISTENING_PART_C", listeningCFull, 15],
+    ] as const) {
+      if (pool.length !== want) {
+        throw new Error(
+          `[e2e] ${pool.length} full-length ${part} item(s) in the seed source, expected ${want}. ` +
+            "A short item must never be walked as if it were one of the new ones.",
+        );
+      }
+    }
+
     const seeded = await prisma.oetItem.findMany({
       where: { taskType: WALK_TASK, active: true, profession: null },
       orderBy: { title: "asc" },
@@ -464,6 +649,14 @@ export async function seedFixture(url: string): Promise<Fixture> {
       partBSecond: partBWalk(partBFull[1]),
       partBFullLengthTitles: partBFull.map((i) => i.title),
       partBLegacyTitles: partBLegacy.map((i) => i.title),
+      listeningA: listeningAWalk(listeningAFull[0]),
+      // Part B carries ONE question, so the key and a known-wrong option cannot
+      // be walked on the same item: the second item takes the wrong option.
+      listeningB: listeningMcqWalk(listeningBFull[0], "listening-part-b", false),
+      listeningC: listeningMcqWalk(listeningCFull[0], "listening-part-c", true),
+      listeningAFullLengthTitles: listeningAFull.map((i) => i.title),
+      listeningBFullLengthTitles: listeningBFull.map((i) => i.title),
+      listeningCFullLengthTitles: listeningCFull.map((i) => i.title),
     };
   } finally {
     await prisma.$disconnect();

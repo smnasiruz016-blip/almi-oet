@@ -294,7 +294,7 @@ function ListeningAudio({ attemptId }: { attemptId: string }) {
   }
 
   return (
-    <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/5 px-4 py-4">
+    <div data-testid="listening-audio" className="rounded-xl border border-almi-teal/30 bg-almi-teal/5 px-4 py-4">
       <div className="flex items-center gap-3">
         <span aria-hidden className="text-xl">🎧</span>
         <div className="flex-1">
@@ -305,6 +305,8 @@ function ListeningAudio({ attemptId }: { attemptId: string }) {
         </div>
         <button
           type="button"
+          data-testid="listening-play"
+          data-state={state}
           onClick={play}
           disabled={state === "loading" || state === "playing" || state === "done"}
           className="inline-flex min-h-[40px] items-center justify-center rounded-full bg-almi-teal px-4 py-2 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60"
@@ -319,6 +321,7 @@ function ListeningAudio({ attemptId }: { attemptId: string }) {
 
       <audio
         ref={audioRef}
+        data-testid="listening-audio-el"
         preload="none"
         controls={state === "playing" || state === "done"}
         className={state === "playing" || state === "done" ? "mt-3 w-full" : "hidden"}
@@ -376,7 +379,7 @@ function ListeningComposer({
     <div className="space-y-5">
       <p className="text-sm text-almi-text">{prompt}</p>
       <ListeningAudio attemptId={attemptId} />
-      <div className="space-y-3">
+      <div data-testid="listening-questions" className="space-y-3">
         {questions.map((q) => (
           <QuestionField
             key={q.id}
@@ -585,7 +588,7 @@ function ReadingComposer({
 
       <HighlightableTexts texts={texts} />
 
-      <div className="space-y-3">
+      <div data-testid="listening-questions" className="space-y-3">
         {questions.map((q) => (
           <QuestionField
             key={q.id}
