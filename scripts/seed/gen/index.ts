@@ -4,6 +4,12 @@
 import { Prisma } from "@prisma/client";
 import { ITEMS as LISTENING_A } from "./listening_a";
 import { ITEMS as LISTENING_B } from "./listening_b";
+// The 118 full-length Listening items of 3 September 2026. Separate modules from
+// listening_a/listening_b/listening_c, which are generated FROM PRODUCTION and
+// must keep describing the rows already there — see their headers.
+import { ITEMS as LISTENING_A_SETS } from "./listening_a_sets";
+import { ITEMS as LISTENING_B_SETS } from "./listening_b_sets";
+import { ITEMS as LISTENING_C_SETS } from "./listening_c_sets";
 import { ITEMS as LISTENING_C } from "./listening_c";
 import { ITEMS as READING_A } from "./reading_a";
 import { ITEMS as READING_B } from "./reading_b";
@@ -36,6 +42,9 @@ import { ITEMS as S_VET } from "./speaking_veterinary_science";
 export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...LISTENING_A,
   ...LISTENING_B,
+  ...LISTENING_A_SETS,
+  ...LISTENING_B_SETS,
+  ...LISTENING_C_SETS,
   ...LISTENING_C,
   ...READING_A,
   ...READING_B,

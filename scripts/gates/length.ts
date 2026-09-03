@@ -93,10 +93,19 @@
  * ── WHAT "MEETS THE LAW" MEANS ──────────────────────────────────────────────
  *
  * Length, plus the structural rules that come with it where the law states one:
- * Listening Part A carries exactly 12 gaps, Reading Part A exactly 4 texts and
- * 20 questions. An exempted title is exempt from the whole of its law, because
- * the legacy items breach the structure as well as the length — a 49-word Part A
- * has 4 gaps, not 12.
+ * Listening Part A carries exactly 12 gaps, LISTENING PART C EXACTLY 6 QUESTIONS,
+ * Reading Part A exactly 4 texts and 20 questions. An exempted title is exempt
+ * from the whole of its law, because the legacy items breach the structure as
+ * well as the length — a 49-word Part A has 4 gaps, not 12.
+ *
+ * 🔴 THE PART C QUESTION COUNT WAS ADDED ON 3 SEPTEMBER 2026, AND IT NEEDED NO
+ * NEW DEBT LIST. The command that asked for it expected a second hand-typed list
+ * of 21 legacy rows. Measured instead of assumed: 15 of the 21 legacy Part C
+ * items carry 2 questions and 6 carry 6, and ALL 21 ARE ALREADY IN LEGACY_SHORT
+ * for their length. Because an exempted title is exempt from the whole of its
+ * law — the rule directly above, which is how the 12-gap rule already works —
+ * a second list would have had zero rows in it. A gate over an empty list proves
+ * nothing, and adding one would have been the new standard, not the existing one.
  *
  * 🔴 WHAT COUNTS AS A WORD — RULED 3 SEPTEMBER 2026
  *
@@ -358,6 +367,16 @@ function breaches(item: Item): string[] {
   if (item.taskType === "LISTENING_PART_A") {
     const gaps = (item.payload.gaps ?? []).length;
     if (gaps !== 12) out.push(`${gaps} gaps, law 12`);
+  }
+  // 🔴 ADDED 3 SEPTEMBER 2026. Nothing counted Listening Part C's questions
+  // anywhere — not here, not in gate:distractor, which only ever looks at the
+  // options a question already has. That is the same blind spot that let a
+  // Reading Part C item ship with two questions instead of eight: a structural
+  // law with no check attached to it. Source: ZABTA §2 line 40, "6 per
+  // recording".
+  if (item.taskType === "LISTENING_PART_C") {
+    const qs = (item.payload.questions ?? []).length;
+    if (qs !== 6) out.push(`${qs} questions, law 6`);
   }
   if (item.taskType === "READING_PART_A") {
     const texts = (item.payload.texts ?? []).length;

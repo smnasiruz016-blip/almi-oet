@@ -17,7 +17,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { hasPaidAccess } from "@/lib/billing/plans";
 import { prisma } from "@/lib/prisma";
 import { synthesizeSpeech, synthesizeDialogue } from "@/lib/ai/openai";
-import { AUDIO_DIR, audioFileName, audioKey } from "@/lib/oet/audio";
+import { AUDIO_DIR, audioFileName, audioKey, stripLeadingLabel } from "@/lib/oet/audio";
 import { serveAudio } from "@/lib/oet/serve-audio";
 
 export const runtime = "nodejs";
@@ -83,7 +83,16 @@ export async function GET(
     const audio =
       speakers.length >= 2
         ? await synthesizeDialogue(parsed.data.audioScript, speakers, user.id)
-        : await synthesizeSpeech(parsed.data.audioScript, user.id, speakers[0]?.voice);
+        : // 🔴 stripLeadingLabel, not the raw script. A single-speaker item takes
+          // this branch, and its script opens "Presenter: …" — which was spoken
+          // out loud. synthesizeDialogue's own fallback was fixed on 3 September
+          // 2026; this call bypasses it, so it needs the same rule. Both paths
+          // now speak the same words as the offline renderer.
+          await synthesizeSpeech(
+            stripLeadingLabel(parsed.data.audioScript),
+            user.id,
+            speakers[0]?.voice,
+          );
     return new Response(audio, {
       headers: {
         "Content-Type": "audio/mpeg",

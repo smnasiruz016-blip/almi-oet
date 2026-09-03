@@ -90,6 +90,38 @@ export function splitDialogue(
   return segments;
 }
 
+/**
+ * 🔴 STRIP A LEADING SPEAKER LABEL FROM A SCRIPT THAT COULD NOT BE SPLIT.
+ *
+ * `splitDialogue` removes labels only when it finds TWO OR MORE of them; a
+ * single-speaker script (a briefing, a talk, a presentation) has one label and
+ * falls to the whole-script fallback, which spoke it out loud. Measured on
+ * 3 September 2026: 22 LIVE items begin their audio by reading the label —
+ * "Manager:", "Doctor:", "Nurse A:", "Speaker:" — before the extract starts. It
+ * is not a rendering artefact a learner can ignore; it is the first thing they
+ * hear, in an exam where the recording plays once.
+ *
+ * The rule is deliberately narrow so it cannot eat content:
+ *   · only at the very START of the script,
+ *   · at most four words before the colon and at most 40 characters,
+ *   · no sentence punctuation inside it,
+ *   · the colon must be followed by whitespace.
+ * "Nurse educator: The commonest error…" loses its label. "One thing I want to
+ * flag today: the rota" does not — it is over four words. A clock time
+ * ("at 14:00") is untouched because it is not at position 0.
+ *
+ * Shared by the offline renderer and the on-demand OpenAI fallback, because a
+ * second copy of this rule would mean the two paths speak different words.
+ */
+export function stripLeadingLabel(script: string): string {
+  return script.replace(/^\s*([^\s:][^:\n]{0,39}):\s+/, (whole, label: string) => {
+    const wordCount = label.trim().split(/\s+/).length;
+    if (wordCount > 4) return whole;
+    if (/[.!?,;]/.test(label)) return whole;
+    return "";
+  });
+}
+
 export type ListeningAudioPayload = {
   audioScript: string;
   speakers?: DialogueSpeaker[];
@@ -97,13 +129,14 @@ export type ListeningAudioPayload = {
 
 /** The Piper-voiced segments an item renders to, in playback order. A script
  *  that cannot be split (or has one speaker) is one segment in that speaker's
- *  voice — the same fallback the on-demand path takes. */
+ *  voice — the same fallback the on-demand path takes — with its leading label
+ *  removed, because the fallback used to speak it. See stripLeadingLabel. */
 export function segmentsFor(payload: ListeningAudioPayload): { piperVoice: string; text: string }[] {
   const speakers = payload.speakers ?? [];
   const { plan } = planVoices(speakers);
   const fallback = plan.get(speakers[0]?.voice ?? "") ?? PIPER_MALE;
   const split = splitDialogue(payload.audioScript, speakers);
-  if (split.length < 2) return [{ piperVoice: fallback, text: payload.audioScript }];
+  if (split.length < 2) return [{ piperVoice: fallback, text: stripLeadingLabel(payload.audioScript) }];
   return split.map((s) => ({ piperVoice: plan.get(s.voice) ?? fallback, text: s.text }));
 }
 

@@ -212,12 +212,12 @@
       "bytes": 101250
     },
     {
-      "key": "6b2f10ba45ba7354",
+      "key": "837e722c045da112",
       "title": "Part B — Handover extract",
       "taskType": "LISTENING_PART_B",
-      "file": "6b2f10ba45ba7354.mp3",
+      "file": "837e722c045da112.mp3",
       "rendered": true,
-      "bytes": 66925
+      "bytes": 62537
     },
     {
       "key": "616c156319123a88",
@@ -300,140 +300,1084 @@
       "bytes": 68806
     },
     {
-      "key": "27f4af602b00734f",
+      "key": "3b06e6afed46c8c6",
       "title": "OET Form 1 · Listening Part B — Hand-hygiene audit",
       "taskType": "LISTENING_PART_B",
-      "file": "27f4af602b00734f.mp3",
+      "file": "3b06e6afed46c8c6.mp3",
       "rendered": true,
-      "bytes": 52976
+      "bytes": 49528
     },
     {
-      "key": "43e3172e75b2b441",
+      "key": "0c4239bb6096fb48",
       "title": "OET Form 1 · Listening Part B — X-ray result",
       "taskType": "LISTENING_PART_B",
-      "file": "43e3172e75b2b441.mp3",
+      "file": "0c4239bb6096fb48.mp3",
       "rendered": true,
-      "bytes": 57051
+      "bytes": 56268
     },
     {
-      "key": "fd2b78412d484839",
+      "key": "563e4bdedd63ec79",
       "title": "OET Form 1 · Listening Part B — Home exercises",
       "taskType": "LISTENING_PART_B",
-      "file": "fd2b78412d484839.mp3",
+      "file": "563e4bdedd63ec79.mp3",
       "rendered": true,
-      "bytes": 65828
+      "bytes": 59872
     },
     {
-      "key": "eb8077041ebb43cc",
+      "key": "e9d60f13e8111bc8",
       "title": "OET Form 1 · Listening Part B — Infusion pump training",
       "taskType": "LISTENING_PART_B",
-      "file": "eb8077041ebb43cc.mp3",
+      "file": "e9d60f13e8111bc8.mp3",
       "rendered": true,
-      "bytes": 63477
+      "bytes": 55484
     },
     {
-      "key": "3753dca2d8e76a92",
+      "key": "423c249dc469e21e",
       "title": "OET Form 1 · Listening Part B — Handling results",
       "taskType": "LISTENING_PART_B",
-      "file": "3753dca2d8e76a92.mp3",
+      "file": "423c249dc469e21e.mp3",
+      "rendered": true,
+      "bytes": 62067
+    },
+    {
+      "key": "d16a5dd9e456087c",
+      "title": "OET Form 2 · Listening Part B — Low sodium",
+      "taskType": "LISTENING_PART_B",
+      "file": "d16a5dd9e456087c.mp3",
+      "rendered": true,
+      "bytes": 73665
+    },
+    {
+      "key": "0dc7f756204352c0",
+      "title": "OET Form 2 · Listening Part B — Gloves and hand hygiene",
+      "taskType": "LISTENING_PART_B",
+      "file": "0dc7f756204352c0.mp3",
+      "rendered": true,
+      "bytes": 66769
+    },
+    {
+      "key": "d763fdb441a9a38e",
+      "title": "OET Form 2 · Listening Part B — Nil by mouth",
+      "taskType": "LISTENING_PART_B",
+      "file": "d763fdb441a9a38e.mp3",
+      "rendered": true,
+      "bytes": 49841
+    },
+    {
+      "key": "a6e1ae640a300273",
+      "title": "OET Form 2 · Listening Part B — Paracetamol order",
+      "taskType": "LISTENING_PART_B",
+      "file": "a6e1ae640a300273.mp3",
       "rendered": true,
       "bytes": 68179
     },
     {
-      "key": "32077e87f32c5474",
-      "title": "OET Form 2 · Listening Part B — Low sodium",
-      "taskType": "LISTENING_PART_B",
-      "file": "32077e87f32c5474.mp3",
-      "rendered": true,
-      "bytes": 70374
-    },
-    {
-      "key": "4e582eddcd0ef820",
-      "title": "OET Form 2 · Listening Part B — Gloves and hand hygiene",
-      "taskType": "LISTENING_PART_B",
-      "file": "4e582eddcd0ef820.mp3",
-      "rendered": true,
-      "bytes": 72098
-    },
-    {
-      "key": "3a5726c758fbeab3",
-      "title": "OET Form 2 · Listening Part B — Nil by mouth",
-      "taskType": "LISTENING_PART_B",
-      "file": "3a5726c758fbeab3.mp3",
-      "rendered": true,
-      "bytes": 51722
-    },
-    {
-      "key": "1a2a2282c6e9aa0a",
-      "title": "OET Form 2 · Listening Part B — Paracetamol order",
-      "taskType": "LISTENING_PART_B",
-      "file": "1a2a2282c6e9aa0a.mp3",
-      "rendered": true,
-      "bytes": 76486
-    },
-    {
-      "key": "9382f0c180077c24",
+      "key": "12e1c739f8e4db82",
       "title": "OET Form 2 · Listening Part B — Escalating concern",
       "taskType": "LISTENING_PART_B",
-      "file": "9382f0c180077c24.mp3",
+      "file": "12e1c739f8e4db82.mp3",
       "rendered": true,
-      "bytes": 70530
+      "bytes": 61126
     },
     {
-      "key": "f49cb8742224bc72",
+      "key": "9980e01e9234e402",
       "title": "OET Form 2 · Listening Part B — Chest pain at reception",
       "taskType": "LISTENING_PART_B",
-      "file": "f49cb8742224bc72.mp3",
+      "file": "9980e01e9234e402.mp3",
       "rendered": true,
-      "bytes": 66142
+      "bytes": 55954
     },
     {
-      "key": "1a847f6d277008f5",
+      "key": "bb6cc68bc5c07263",
       "title": "OET Form 3 · Listening Part B — Sharps bins",
       "taskType": "LISTENING_PART_B",
-      "file": "1a847f6d277008f5.mp3",
+      "file": "bb6cc68bc5c07263.mp3",
       "rendered": true,
-      "bytes": 71628
+      "bytes": 68179
     },
     {
-      "key": "623ce0c5ca17bc74",
+      "key": "99ebff99a5dc7517",
       "title": "OET Form 3 · Listening Part B — Transfusion check",
       "taskType": "LISTENING_PART_B",
-      "file": "623ce0c5ca17bc74.mp3",
+      "file": "99ebff99a5dc7517.mp3",
       "rendered": true,
-      "bytes": 92473
+      "bytes": 87144
     },
     {
-      "key": "0356c4546a575a3d",
+      "key": "99418249c071dbe1",
       "title": "OET Form 3 · Listening Part B — Timely notes",
       "taskType": "LISTENING_PART_B",
-      "file": "0356c4546a575a3d.mp3",
+      "file": "99418249c071dbe1.mp3",
       "rendered": true,
-      "bytes": 59716
+      "bytes": 60656
     },
     {
-      "key": "b52615a5228a50fa",
+      "key": "894f14cd2e772f83",
       "title": "OET Form 3 · Listening Part B — Oxygen as a drug",
       "taskType": "LISTENING_PART_B",
-      "file": "b52615a5228a50fa.mp3",
+      "file": "894f14cd2e772f83.mp3",
       "rendered": true,
-      "bytes": 87301
+      "bytes": 79151
     },
     {
-      "key": "2993e7794a78de28",
+      "key": "2620e34890de9bae",
       "title": "OET Form 3 · Listening Part B — Interpreters",
       "taskType": "LISTENING_PART_B",
-      "file": "2993e7794a78de28.mp3",
+      "file": "2620e34890de9bae.mp3",
       "rendered": true,
-      "bytes": 68963
+      "bytes": 67396
     },
     {
-      "key": "dadfb8e602fe621f",
+      "key": "5d7681037d039a08",
       "title": "OET Form 3 · Listening Part B — Red wristband",
       "taskType": "LISTENING_PART_B",
-      "file": "dadfb8e602fe621f.mp3",
+      "file": "5d7681037d039a08.mp3",
       "rendered": true,
-      "bytes": 91219
+      "bytes": 83696
+    },
+    {
+      "key": "247f66b0c51a06f6",
+      "title": "Listening Part A · script 3 — Dietetics (unintentional weight loss)",
+      "taskType": "LISTENING_PART_A",
+      "file": "247f66b0c51a06f6.mp3",
+      "rendered": true,
+      "bytes": 1059056
+    },
+    {
+      "key": "db54e36b34e06427",
+      "title": "Listening Part A · script 4 — Podiatry (an ulcer under the foot in diabetes)",
+      "taskType": "LISTENING_PART_A",
+      "file": "db54e36b34e06427.mp3",
+      "rendered": true,
+      "bytes": 1011409
+    },
+    {
+      "key": "c2aa0e73ea41808f",
+      "title": "Listening Part A · script 5 — Dentistry (jaw pain and night grinding)",
+      "taskType": "LISTENING_PART_A",
+      "file": "c2aa0e73ea41808f.mp3",
+      "rendered": true,
+      "bytes": 1010468
+    },
+    {
+      "key": "ea96ac512652e873",
+      "title": "Listening Part A · script 6 — Optometry (difficulty driving at night)",
+      "taskType": "LISTENING_PART_A",
+      "file": "ea96ac512652e873.mp3",
+      "rendered": true,
+      "bytes": 1042442
+    },
+    {
+      "key": "8a36b40d78c3c3c9",
+      "title": "Listening Part A · script 7 — Pharmacy (a medicines review)",
+      "taskType": "LISTENING_PART_A",
+      "file": "8a36b40d78c3c3c9.mp3",
+      "rendered": true,
+      "bytes": 1023007
+    },
+    {
+      "key": "7cbe178a9abc1d0e",
+      "title": "Listening Part A · script 8 — Nursing (a leg ulcer at a home visit)",
+      "taskType": "LISTENING_PART_A",
+      "file": "7cbe178a9abc1d0e.mp3",
+      "rendered": true,
+      "bytes": 1044480
+    },
+    {
+      "key": "3c9555ef75e12acb",
+      "title": "Listening Part A · script 9 — Veterinary science (a stiff older dog)",
+      "taskType": "LISTENING_PART_A",
+      "file": "3c9555ef75e12acb.mp3",
+      "rendered": true,
+      "bytes": 1092597
+    },
+    {
+      "key": "d23907b6eb710e05",
+      "title": "Listening Part A · script 10 — Radiography (safety checks before an MRI scan)",
+      "taskType": "LISTENING_PART_A",
+      "file": "d23907b6eb710e05.mp3",
+      "rendered": true,
+      "bytes": 1071125
+    },
+    {
+      "key": "21935edf60aa9c0f",
+      "title": "Listening Part A · script 11 — Speech pathology (hoarseness in a teacher)",
+      "taskType": "LISTENING_PART_A",
+      "file": "21935edf60aa9c0f.mp3",
+      "rendered": true,
+      "bytes": 1033665
+    },
+    {
+      "key": "8c6c1e4bd0891345",
+      "title": "Listening Part A · script 12 — Occupational therapy (recovery after a wrist fracture)",
+      "taskType": "LISTENING_PART_A",
+      "file": "8c6c1e4bd0891345.mp3",
+      "rendered": true,
+      "bytes": 1042442
+    },
+    {
+      "key": "c678653db81c0285",
+      "title": "Listening Part A · script 13 — Medicine (breathlessness with an irregular pulse)",
+      "taskType": "LISTENING_PART_A",
+      "file": "c678653db81c0285.mp3",
+      "rendered": true,
+      "bytes": 1009371
+    },
+    {
+      "key": "1cd78be3874b75a5",
+      "title": "Listening Part A · script 14 — Physiotherapy (knee pain in a runner)",
+      "taskType": "LISTENING_PART_A",
+      "file": "1cd78be3874b75a5.mp3",
+      "rendered": true,
+      "bytes": 1034292
+    },
+    {
+      "key": "63bf96ae738d74fb",
+      "title": "Listening Part A · script 15 — Nursing (a pre-operative assessment)",
+      "taskType": "LISTENING_PART_A",
+      "file": "63bf96ae738d74fb.mp3",
+      "rendered": true,
+      "bytes": 1057645
+    },
+    {
+      "key": "5830597b65e1a3a8",
+      "title": "Listening Part B · set 1 — Two nurses handing over on a medical ward",
+      "taskType": "LISTENING_PART_B",
+      "file": "5830597b65e1a3a8.mp3",
+      "rendered": true,
+      "bytes": 289175
+    },
+    {
+      "key": "cebf61fb90d2660f",
+      "title": "Listening Part B · set 1 — A pharmacist briefing ward staff",
+      "taskType": "LISTENING_PART_B",
+      "file": "cebf61fb90d2660f.mp3",
+      "rendered": true,
+      "bytes": 279771
+    },
+    {
+      "key": "582200293fd9439f",
+      "title": "Listening Part B · set 1 — A physiotherapist and a student outside a patient's home",
+      "taskType": "LISTENING_PART_B",
+      "file": "582200293fd9439f.mp3",
+      "rendered": true,
+      "bytes": 256888
+    },
+    {
+      "key": "2162d1b4fd04310c",
+      "title": "Listening Part B · set 1 — A department manager briefing a team",
+      "taskType": "LISTENING_PART_B",
+      "file": "2162d1b4fd04310c.mp3",
+      "rendered": true,
+      "bytes": 233221
+    },
+    {
+      "key": "4c65c5430c1078ed",
+      "title": "Listening Part B · set 1 — A doctor telephoning a patient's daughter",
+      "taskType": "LISTENING_PART_B",
+      "file": "4c65c5430c1078ed.mp3",
+      "rendered": true,
+      "bytes": 230870
+    },
+    {
+      "key": "b8fa865b9c87fa46",
+      "title": "Listening Part B · set 1 — Two radiographers in a booking office",
+      "taskType": "LISTENING_PART_B",
+      "file": "b8fa865b9c87fa46.mp3",
+      "rendered": true,
+      "bytes": 271621
+    },
+    {
+      "key": "11af74eb40d9dd86",
+      "title": "Listening Part B · set 2 — A dietitian and a staff nurse reviewing a fluid balance chart",
+      "taskType": "LISTENING_PART_B",
+      "file": "11af74eb40d9dd86.mp3",
+      "rendered": true,
+      "bytes": 264098
+    },
+    {
+      "key": "6884029a9b0942dc",
+      "title": "Listening Part B · set 2 — An occupational therapist debriefing two students after a home visit",
+      "taskType": "LISTENING_PART_B",
+      "file": "6884029a9b0942dc.mp3",
+      "rendered": true,
+      "bytes": 242312
+    },
+    {
+      "key": "e55df305f7ebdc98",
+      "title": "Listening Part B · set 2 — Two doctors discussing an entry on a handover list",
+      "taskType": "LISTENING_PART_B",
+      "file": "e55df305f7ebdc98.mp3",
+      "rendered": true,
+      "bytes": 297952
+    },
+    {
+      "key": "38f14960a1cc4c7a",
+      "title": "Listening Part B · set 2 — A speech and language therapist briefing a healthcare assistant",
+      "taskType": "LISTENING_PART_B",
+      "file": "38f14960a1cc4c7a.mp3",
+      "rendered": true,
+      "bytes": 260179
+    },
+    {
+      "key": "a86e110122528db7",
+      "title": "Listening Part B · set 2 — A practice manager talking to a general practitioner about recalls",
+      "taskType": "LISTENING_PART_B",
+      "file": "a86e110122528db7.mp3",
+      "rendered": true,
+      "bytes": 285414
+    },
+    {
+      "key": "7a1a4f2bc15ea3b7",
+      "title": "Listening Part B · set 2 — A podiatrist and a diabetes specialist nurse reviewing a footcare pathway",
+      "taskType": "LISTENING_PART_B",
+      "file": "7a1a4f2bc15ea3b7.mp3",
+      "rendered": true,
+      "bytes": 282749
+    },
+    {
+      "key": "22d4ae7a16b82675",
+      "title": "Listening Part B · set 3 — A dentist and a dental nurse reviewing a consent form",
+      "taskType": "LISTENING_PART_B",
+      "file": "22d4ae7a16b82675.mp3",
+      "rendered": true,
+      "bytes": 257828
+    },
+    {
+      "key": "24f5c3cea9bafe73",
+      "title": "Listening Part B · set 3 — A veterinary surgeon debriefing a student after a consultation",
+      "taskType": "LISTENING_PART_B",
+      "file": "24f5c3cea9bafe73.mp3",
+      "rendered": true,
+      "bytes": 245916
+    },
+    {
+      "key": "b940f338504ac928",
+      "title": "Listening Part B · set 3 — An optometrist speaking to a practice receptionist",
+      "taskType": "LISTENING_PART_B",
+      "file": "b940f338504ac928.mp3",
+      "rendered": true,
+      "bytes": 272248
+    },
+    {
+      "key": "dee3e3a69424137f",
+      "title": "Listening Part B · set 3 — Two theatre nurses at the end of a list",
+      "taskType": "LISTENING_PART_B",
+      "file": "dee3e3a69424137f.mp3",
+      "rendered": true,
+      "bytes": 272091
+    },
+    {
+      "key": "9817450805fa21df",
+      "title": "Listening Part B · set 3 — A paediatrician and a practice nurse looking at a growth chart",
+      "taskType": "LISTENING_PART_B",
+      "file": "9817450805fa21df.mp3",
+      "rendered": true,
+      "bytes": 285414
+    },
+    {
+      "key": "51daa89e65be6db7",
+      "title": "Listening Part B · set 3 — A community pharmacist briefing a delivery driver",
+      "taskType": "LISTENING_PART_B",
+      "file": "51daa89e65be6db7.mp3",
+      "rendered": true,
+      "bytes": 260493
+    },
+    {
+      "key": "959750379e3f242a",
+      "title": "Listening Part B · set 4 — A radiographer telephoning a junior doctor about a request",
+      "taskType": "LISTENING_PART_B",
+      "file": "959750379e3f242a.mp3",
+      "rendered": true,
+      "bytes": 255948
+    },
+    {
+      "key": "ed5ab15584b7f281",
+      "title": "Listening Part B · set 4 — A speech and language therapist and a ward nurse",
+      "taskType": "LISTENING_PART_B",
+      "file": "ed5ab15584b7f281.mp3",
+      "rendered": true,
+      "bytes": 254694
+    },
+    {
+      "key": "435f0ca3bdef3a25",
+      "title": "Listening Part B · set 4 — A dietitian and a care home manager",
+      "taskType": "LISTENING_PART_B",
+      "file": "435f0ca3bdef3a25.mp3",
+      "rendered": true,
+      "bytes": 239961
+    },
+    {
+      "key": "f0f3653cba3a81be",
+      "title": "Listening Part B · set 4 — An occupational therapist and a housing officer",
+      "taskType": "LISTENING_PART_B",
+      "file": "f0f3653cba3a81be.mp3",
+      "rendered": true,
+      "bytes": 286197
+    },
+    {
+      "key": "90d008e7d7ec28d2",
+      "title": "Listening Part B · set 4 — A physiotherapist speaking to a patient's son by telephone",
+      "taskType": "LISTENING_PART_B",
+      "file": "90d008e7d7ec28d2.mp3",
+      "rendered": true,
+      "bytes": 247484
+    },
+    {
+      "key": "03b20807f66bd138",
+      "title": "Listening Part B · set 4 — Two nurses handing over at the end of a night shift",
+      "taskType": "LISTENING_PART_B",
+      "file": "03b20807f66bd138.mp3",
+      "rendered": true,
+      "bytes": 233378
+    },
+    {
+      "key": "40f60b41074b1a54",
+      "title": "Listening Part B · set 5 — A ward pharmacist and a doctor checking a discharge prescription",
+      "taskType": "LISTENING_PART_B",
+      "file": "40f60b41074b1a54.mp3",
+      "rendered": true,
+      "bytes": 270210
+    },
+    {
+      "key": "4f6b687c019d867f",
+      "title": "Listening Part B · set 5 — A physiotherapist telephoning an orthopaedic surgeon",
+      "taskType": "LISTENING_PART_B",
+      "file": "4f6b687c019d867f.mp3",
+      "rendered": true,
+      "bytes": 296228
+    },
+    {
+      "key": "f8169ba6db444da4",
+      "title": "Listening Part B · set 5 — A dietitian and a night nurse reviewing an overnight feed",
+      "taskType": "LISTENING_PART_B",
+      "file": "f8169ba6db444da4.mp3",
+      "rendered": true,
+      "bytes": 270054
+    },
+    {
+      "key": "361c9aa71bc94629",
+      "title": "Listening Part B · set 5 — A radiographer and a porter at the department door",
+      "taskType": "LISTENING_PART_B",
+      "file": "361c9aa71bc94629.mp3",
+      "rendered": true,
+      "bytes": 255477
+    },
+    {
+      "key": "153b2922ee1683b9",
+      "title": "Listening Part B · set 5 — An optometrist speaking to a patient's daughter",
+      "taskType": "LISTENING_PART_B",
+      "file": "153b2922ee1683b9.mp3",
+      "rendered": true,
+      "bytes": 261747
+    },
+    {
+      "key": "78a666d22483ebfe",
+      "title": "Listening Part B · set 5 — A speech and language therapist and a dietitian",
+      "taskType": "LISTENING_PART_B",
+      "file": "78a666d22483ebfe.mp3",
+      "rendered": true,
+      "bytes": 257201
+    },
+    {
+      "key": "0cb0a0ce7d727343",
+      "title": "Listening Part B · set 6 — Two occupational therapists reviewing a discharge checklist",
+      "taskType": "LISTENING_PART_B",
+      "file": "0cb0a0ce7d727343.mp3",
+      "rendered": true,
+      "bytes": 285414
+    },
+    {
+      "key": "1a2c0732ec1d2060",
+      "title": "Listening Part B · set 6 — A veterinary nurse and a practice receptionist",
+      "taskType": "LISTENING_PART_B",
+      "file": "1a2c0732ec1d2060.mp3",
+      "rendered": true,
+      "bytes": 249208
+    },
+    {
+      "key": "9c08ca8fb7c3ba41",
+      "title": "Listening Part B · set 6 — A podiatrist and a practice nurse looking at a toe",
+      "taskType": "LISTENING_PART_B",
+      "file": "9c08ca8fb7c3ba41.mp3",
+      "rendered": true,
+      "bytes": 260493
+    },
+    {
+      "key": "f8eb90e30086687e",
+      "title": "Listening Part B · set 6 — A doctor and a medical student outside a side room",
+      "taskType": "LISTENING_PART_B",
+      "file": "f8eb90e30086687e.mp3",
+      "rendered": true,
+      "bytes": 247641
+    },
+    {
+      "key": "5395a0fa0eecc0e5",
+      "title": "Listening Part B · set 6 — A staff nurse and a healthcare assistant with a turn chart",
+      "taskType": "LISTENING_PART_B",
+      "file": "5395a0fa0eecc0e5.mp3",
+      "rendered": true,
+      "bytes": 271464
+    },
+    {
+      "key": "267a16b7b9ad6ece",
+      "title": "Listening Part B · set 6 — A community pharmacist telephoning a general practice",
+      "taskType": "LISTENING_PART_B",
+      "file": "267a16b7b9ad6ece.mp3",
+      "rendered": true,
+      "bytes": 249521
+    },
+    {
+      "key": "d6da979305db88ec",
+      "title": "Listening Part B · set 7 — Two nurses at an emergency department triage desk",
+      "taskType": "LISTENING_PART_B",
+      "file": "d6da979305db88ec.mp3",
+      "rendered": true,
+      "bytes": 278517
+    },
+    {
+      "key": "d82b9a23bf1c9d43",
+      "title": "Listening Part B · set 7 — A community nurse telephoning a general practitioner",
+      "taskType": "LISTENING_PART_B",
+      "file": "d82b9a23bf1c9d43.mp3",
+      "rendered": true,
+      "bytes": 247797
+    },
+    {
+      "key": "75cd380bc42174a0",
+      "title": "Listening Part B · set 7 — A dental therapist and a practice receptionist",
+      "taskType": "LISTENING_PART_B",
+      "file": "75cd380bc42174a0.mp3",
+      "rendered": true,
+      "bytes": 241528
+    },
+    {
+      "key": "32bd94b316d10d33",
+      "title": "Listening Part B · set 7 — A paediatric dietitian and a mother in clinic",
+      "taskType": "LISTENING_PART_B",
+      "file": "32bd94b316d10d33.mp3",
+      "rendered": true,
+      "bytes": 221779
+    },
+    {
+      "key": "a66e7ce4307faf5d",
+      "title": "Listening Part B · set 7 — A physiotherapist and a ward manager",
+      "taskType": "LISTENING_PART_B",
+      "file": "a66e7ce4307faf5d.mp3",
+      "rendered": true,
+      "bytes": 251402
+    },
+    {
+      "key": "ed38557a11d52277",
+      "title": "Listening Part B · set 7 — A radiographer and a radiologist reviewing a report",
+      "taskType": "LISTENING_PART_B",
+      "file": "ed38557a11d52277.mp3",
+      "rendered": true,
+      "bytes": 263471
+    },
+    {
+      "key": "2ccf083d14ade031",
+      "title": "Listening Part B · set 8 — A pharmacist and a pre-registration student",
+      "taskType": "LISTENING_PART_B",
+      "file": "2ccf083d14ade031.mp3",
+      "rendered": true,
+      "bytes": 268173
+    },
+    {
+      "key": "58311cc10dd3a520",
+      "title": "Listening Part B · set 8 — Two optometrists discussing a school screening letter",
+      "taskType": "LISTENING_PART_B",
+      "file": "58311cc10dd3a520.mp3",
+      "rendered": true,
+      "bytes": 262217
+    },
+    {
+      "key": "6eeaa70f0ebb18c8",
+      "title": "Listening Part B · set 8 — A staff nurse and a patient's son",
+      "taskType": "LISTENING_PART_B",
+      "file": "6eeaa70f0ebb18c8.mp3",
+      "rendered": true,
+      "bytes": 275383
+    },
+    {
+      "key": "cff2190a512b7406",
+      "title": "Listening Part B · set 8 — A veterinary surgeon and a dairy farmer",
+      "taskType": "LISTENING_PART_B",
+      "file": "cff2190a512b7406.mp3",
+      "rendered": true,
+      "bytes": 240901
+    },
+    {
+      "key": "33b797068c28a8f2",
+      "title": "Listening Part B · set 8 — A speech and language therapist and a class teacher",
+      "taskType": "LISTENING_PART_B",
+      "file": "33b797068c28a8f2.mp3",
+      "rendered": true,
+      "bytes": 217077
+    },
+    {
+      "key": "d6530407b260f981",
+      "title": "Listening Part B · set 8 — An occupational therapist speaking to an employer",
+      "taskType": "LISTENING_PART_B",
+      "file": "d6530407b260f981.mp3",
+      "rendered": true,
+      "bytes": 221936
+    },
+    {
+      "key": "7403bee8a10dd1f7",
+      "title": "Listening Part B · set 9 — A podiatrist and a diabetes specialist nurse",
+      "taskType": "LISTENING_PART_B",
+      "file": "7403bee8a10dd1f7.mp3",
+      "rendered": true,
+      "bytes": 239177
+    },
+    {
+      "key": "bedde29d9e03b342",
+      "title": "Listening Part B · set 9 — Two nurses after a morning medication round",
+      "taskType": "LISTENING_PART_B",
+      "file": "bedde29d9e03b342.mp3",
+      "rendered": true,
+      "bytes": 280868
+    },
+    {
+      "key": "07427f06422d7084",
+      "title": "Listening Part B · set 9 — A nurse and a doctor at the nurses' station",
+      "taskType": "LISTENING_PART_B",
+      "file": "07427f06422d7084.mp3",
+      "rendered": true,
+      "bytes": 249521
+    },
+    {
+      "key": "a2cd3ff2e4bc7901",
+      "title": "Listening Part B · set 9 — A dietitian and a hospital catering manager",
+      "taskType": "LISTENING_PART_B",
+      "file": "a2cd3ff2e4bc7901.mp3",
+      "rendered": true,
+      "bytes": 264881
+    },
+    {
+      "key": "049556e55d01f4fe",
+      "title": "Listening Part B · set 9 — A physiotherapist and a patient in an outpatient clinic",
+      "taskType": "LISTENING_PART_B",
+      "file": "049556e55d01f4fe.mp3",
+      "rendered": true,
+      "bytes": 227265
+    },
+    {
+      "key": "c9cf495f21391072",
+      "title": "Listening Part B · set 9 — A pharmacist and a care home nurse",
+      "taskType": "LISTENING_PART_B",
+      "file": "c9cf495f21391072.mp3",
+      "rendered": true,
+      "bytes": 255791
+    },
+    {
+      "key": "72e1be0eeeea15da",
+      "title": "Listening Part B · set 10 — A staff nurse and a phlebotomist on a ward round",
+      "taskType": "LISTENING_PART_B",
+      "file": "72e1be0eeeea15da.mp3",
+      "rendered": true,
+      "bytes": 253283
+    },
+    {
+      "key": "365a56d764cf3cee",
+      "title": "Listening Part B · set 10 — A dietitian and a diabetes specialist nurse",
+      "taskType": "LISTENING_PART_B",
+      "file": "365a56d764cf3cee.mp3",
+      "rendered": true,
+      "bytes": 260179
+    },
+    {
+      "key": "de1648a72b2ff80f",
+      "title": "Listening Part B · set 10 — A radiographer and a ward nurse in the imaging department",
+      "taskType": "LISTENING_PART_B",
+      "file": "de1648a72b2ff80f.mp3",
+      "rendered": true,
+      "bytes": 241685
+    },
+    {
+      "key": "6c12df52cfe8f841",
+      "title": "Listening Part B · set 10 — An optometrist and a patient at the end of an examination",
+      "taskType": "LISTENING_PART_B",
+      "file": "6c12df52cfe8f841.mp3",
+      "rendered": true,
+      "bytes": 200307
+    },
+    {
+      "key": "a6adbbff77363697",
+      "title": "Listening Part B · set 10 — A pharmacist and a ward sister after a near miss",
+      "taskType": "LISTENING_PART_B",
+      "file": "a6adbbff77363697.mp3",
+      "rendered": true,
+      "bytes": 223033
+    },
+    {
+      "key": "19f19e991d8e8b58",
+      "title": "Listening Part B · set 10 — A physiotherapist and a nurse beside a post-operative bed",
+      "taskType": "LISTENING_PART_B",
+      "file": "19f19e991d8e8b58.mp3",
+      "rendered": true,
+      "bytes": 240117
+    },
+    {
+      "key": "56413f36691a87ec",
+      "title": "Listening Part B · set 11 — A dentist speaking to a parent on the telephone",
+      "taskType": "LISTENING_PART_B",
+      "file": "56413f36691a87ec.mp3",
+      "rendered": true,
+      "bytes": 220682
+    },
+    {
+      "key": "735dce93dff93d00",
+      "title": "Listening Part B · set 11 — A speech and language therapist and a nurse on a stroke ward",
+      "taskType": "LISTENING_PART_B",
+      "file": "735dce93dff93d00.mp3",
+      "rendered": true,
+      "bytes": 262530
+    },
+    {
+      "key": "01820f4071a769e9",
+      "title": "Listening Part B · set 11 — A veterinary surgeon and a veterinary nurse",
+      "taskType": "LISTENING_PART_B",
+      "file": "01820f4071a769e9.mp3",
+      "rendered": true,
+      "bytes": 232594
+    },
+    {
+      "key": "2e945a3dcd1f6cdf",
+      "title": "Listening Part B · set 11 — An occupational therapist and a patient at a home visit",
+      "taskType": "LISTENING_PART_B",
+      "file": "2e945a3dcd1f6cdf.mp3",
+      "rendered": true,
+      "bytes": 234005
+    },
+    {
+      "key": "bf905061347a6013",
+      "title": "Listening Part B · set 11 — A podiatrist and a physiotherapist in a joint clinic",
+      "taskType": "LISTENING_PART_B",
+      "file": "bf905061347a6013.mp3",
+      "rendered": true,
+      "bytes": 234945
+    },
+    {
+      "key": "7eb38ca29f33ef7c",
+      "title": "Listening Part B · set 11 — A staff nurse and a doctor on a ward round",
+      "taskType": "LISTENING_PART_B",
+      "file": "7eb38ca29f33ef7c.mp3",
+      "rendered": true,
+      "bytes": 253910
+    },
+    {
+      "key": "e00c5e7e78464a8b",
+      "title": "Listening Part B · set 12 — A community pharmacist and a patient at the counter",
+      "taskType": "LISTENING_PART_B",
+      "file": "e00c5e7e78464a8b.mp3",
+      "rendered": true,
+      "bytes": 239334
+    },
+    {
+      "key": "7887b3410fd92ef8",
+      "title": "Listening Part B · set 12 — A radiographer and a student in the imaging department",
+      "taskType": "LISTENING_PART_B",
+      "file": "7887b3410fd92ef8.mp3",
+      "rendered": true,
+      "bytes": 251716
+    },
+    {
+      "key": "32437ce1cf36eee8",
+      "title": "Listening Part B · set 12 — A dietitian and a community nurse at a care home",
+      "taskType": "LISTENING_PART_B",
+      "file": "32437ce1cf36eee8.mp3",
+      "rendered": true,
+      "bytes": 246387
+    },
+    {
+      "key": "be0ecb4b4caeb1ec",
+      "title": "Listening Part B · set 12 — A doctor and a hospital interpreter outside a side room",
+      "taskType": "LISTENING_PART_B",
+      "file": "be0ecb4b4caeb1ec.mp3",
+      "rendered": true,
+      "bytes": 241841
+    },
+    {
+      "key": "aa45bd49ff532c8e",
+      "title": "Listening Part B · set 12 — A staff nurse and a healthcare assistant",
+      "taskType": "LISTENING_PART_B",
+      "file": "aa45bd49ff532c8e.mp3",
+      "rendered": true,
+      "bytes": 229146
+    },
+    {
+      "key": "b633f4389250b3c3",
+      "title": "Listening Part B · set 12 — An occupational therapist and a physiotherapist",
+      "taskType": "LISTENING_PART_B",
+      "file": "b633f4389250b3c3.mp3",
+      "rendered": true,
+      "bytes": 236512
+    },
+    {
+      "key": "89e46a9646fa356a",
+      "title": "Listening Part B · set 13 — A staff nurse and a doctor at the nurses' station",
+      "taskType": "LISTENING_PART_B",
+      "file": "89e46a9646fa356a.mp3",
+      "rendered": true,
+      "bytes": 231967
+    },
+    {
+      "key": "9c765a4db5eeb00e",
+      "title": "Listening Part B · set 13 — A community pharmacist and a patient",
+      "taskType": "LISTENING_PART_B",
+      "file": "9c765a4db5eeb00e.mp3",
+      "rendered": true,
+      "bytes": 246857
+    },
+    {
+      "key": "3a6d65b6b4e4017e",
+      "title": "Listening Part B · set 13 — A radiographer and a junior doctor",
+      "taskType": "LISTENING_PART_B",
+      "file": "3a6d65b6b4e4017e.mp3",
+      "rendered": true,
+      "bytes": 239961
+    },
+    {
+      "key": "14d37c7935996a38",
+      "title": "Listening Part B · set 13 — A physiotherapist and a family carer at a home visit",
+      "taskType": "LISTENING_PART_B",
+      "file": "14d37c7935996a38.mp3",
+      "rendered": true,
+      "bytes": 231810
+    },
+    {
+      "key": "54e99857700d298d",
+      "title": "Listening Part B · set 13 — A dietitian and a school nurse",
+      "taskType": "LISTENING_PART_B",
+      "file": "54e99857700d298d.mp3",
+      "rendered": true,
+      "bytes": 236512
+    },
+    {
+      "key": "fbf804c87b8c4adf",
+      "title": "Listening Part B · set 13 — An optometrist and an optical assistant",
+      "taskType": "LISTENING_PART_B",
+      "file": "fbf804c87b8c4adf.mp3",
+      "rendered": true,
+      "bytes": 248581
+    },
+    {
+      "key": "f280e099fcd7a816",
+      "title": "Listening Part B · set 14 — A dentist and a dental nurse reviewing the day's list",
+      "taskType": "LISTENING_PART_B",
+      "file": "f280e099fcd7a816.mp3",
+      "rendered": true,
+      "bytes": 243409
+    },
+    {
+      "key": "31035fc2d779be2d",
+      "title": "Listening Part B · set 14 — A veterinary surgeon and a client",
+      "taskType": "LISTENING_PART_B",
+      "file": "31035fc2d779be2d.mp3",
+      "rendered": true,
+      "bytes": 240117
+    },
+    {
+      "key": "a91bf6f57209e881",
+      "title": "Listening Part B · set 14 — A staff nurse and a student nurse",
+      "taskType": "LISTENING_PART_B",
+      "file": "a91bf6f57209e881.mp3",
+      "rendered": true,
+      "bytes": 257985
+    },
+    {
+      "key": "cd6bfd464e314dd4",
+      "title": "Listening Part B · set 14 — A speech and language therapist and a parent",
+      "taskType": "LISTENING_PART_B",
+      "file": "cd6bfd464e314dd4.mp3",
+      "rendered": true,
+      "bytes": 220682
+    },
+    {
+      "key": "1b6fd40cf4c876b4",
+      "title": "Listening Part B · set 14 — A podiatrist and a practice nurse",
+      "taskType": "LISTENING_PART_B",
+      "file": "1b6fd40cf4c876b4.mp3",
+      "rendered": true,
+      "bytes": 262374
+    },
+    {
+      "key": "e499e214865ce353",
+      "title": "Listening Part B · set 14 — An occupational therapist and a social worker",
+      "taskType": "LISTENING_PART_B",
+      "file": "e499e214865ce353.mp3",
+      "rendered": true,
+      "bytes": 250619
+    },
+    {
+      "key": "8e1ee7da5a5fc9fb",
+      "title": "Listening Part B · set 15 — A pharmacist and a prescriber reviewing the system",
+      "taskType": "LISTENING_PART_B",
+      "file": "8e1ee7da5a5fc9fb.mp3",
+      "rendered": true,
+      "bytes": 261590
+    },
+    {
+      "key": "d999813b57e50d0e",
+      "title": "Listening Part B · set 15 — A physiotherapist and a ward nurse",
+      "taskType": "LISTENING_PART_B",
+      "file": "d999813b57e50d0e.mp3",
+      "rendered": true,
+      "bytes": 230400
+    },
+    {
+      "key": "b22b480b9282a847",
+      "title": "Listening Part B · set 15 — A radiographer and a ward nurse before a scan",
+      "taskType": "LISTENING_PART_B",
+      "file": "b22b480b9282a847.mp3",
+      "rendered": true,
+      "bytes": 233848
+    },
+    {
+      "key": "8881a781a947635c",
+      "title": "Listening Part B · set 15 — A dietitian and a doctor on a ward round",
+      "taskType": "LISTENING_PART_B",
+      "file": "8881a781a947635c.mp3",
+      "rendered": true,
+      "bytes": 275069
+    },
+    {
+      "key": "9433175c68b44a08",
+      "title": "Listening Part B · set 15 — A ward sister and a patient's daughter",
+      "taskType": "LISTENING_PART_B",
+      "file": "9433175c68b44a08.mp3",
+      "rendered": true,
+      "bytes": 246543
+    },
+    {
+      "key": "c8cce959efb7d694",
+      "title": "Listening Part B · set 15 — A veterinary surgeon and a nurse discussing a consent form",
+      "taskType": "LISTENING_PART_B",
+      "file": "c8cce959efb7d694.mp3",
+      "rendered": true,
+      "bytes": 215980
+    },
+    {
+      "key": "fb0eab16af585dfd",
+      "title": "Listening Part C · item 1 — PRESENTATION: the four hours before an arrest",
+      "taskType": "LISTENING_PART_C",
+      "file": "fb0eab16af585dfd.mp3",
+      "rendered": true,
+      "bytes": 1266573
+    },
+    {
+      "key": "faeddf87900e06c1",
+      "title": "Listening Part C · item 2 — INTERVIEW: a district nurse on pressure damage",
+      "taskType": "LISTENING_PART_C",
+      "file": "faeddf87900e06c1.mp3",
+      "rendered": true,
+      "bytes": 1331618
+    },
+    {
+      "key": "fee21771d32af701",
+      "title": "Listening Part C · item 3 — PRESENTATION: how a diagnosis goes wrong",
+      "taskType": "LISTENING_PART_C",
+      "file": "fee21771d32af701.mp3",
+      "rendered": true,
+      "bytes": 1447288
+    },
+    {
+      "key": "f03467c49aa12c6a",
+      "title": "Listening Part C · item 4 — INTERVIEW: a pharmacist on stopping medicines",
+      "taskType": "LISTENING_PART_C",
+      "file": "f03467c49aa12c6a.mp3",
+      "rendered": true,
+      "bytes": 1466566
+    },
+    {
+      "key": "4228cfc35eabd01b",
+      "title": "Listening Part C · item 5 — PRESENTATION: the word \"confused\"",
+      "taskType": "LISTENING_PART_C",
+      "file": "4228cfc35eabd01b.mp3",
+      "rendered": true,
+      "bytes": 1334282
+    },
+    {
+      "key": "7351c7b0fa4bcd94",
+      "title": "Listening Part C · item 6 — INTERVIEW: eating when swallowing is unsafe",
+      "taskType": "LISTENING_PART_C",
+      "file": "7351c7b0fa4bcd94.mp3",
+      "rendered": true,
+      "bytes": 1370801
+    },
+    {
+      "key": "f7832ee8fce370e4",
+      "title": "Listening Part C · item 7 — PRESENTATION: the ward round as a procedure",
+      "taskType": "LISTENING_PART_C",
+      "file": "f7832ee8fce370e4.mp3",
+      "rendered": true,
+      "bytes": 1420956
+    },
+    {
+      "key": "3b70f56fa1a56871",
+      "title": "Listening Part C · item 8 — INTERVIEW: the finding nobody was looking for",
+      "taskType": "LISTENING_PART_C",
+      "file": "3b70f56fa1a56871.mp3",
+      "rendered": true,
+      "bytes": 1446818
+    },
+    {
+      "key": "92ff2ea4d30de6d3",
+      "title": "Listening Part C · item 9 — PRESENTATION: what handover is actually for",
+      "taskType": "LISTENING_PART_C",
+      "file": "92ff2ea4d30de6d3.mp3",
+      "rendered": true,
+      "bytes": 1393998
+    },
+    {
+      "key": "964336c63cd87176",
+      "title": "Listening Part C · item 10 — INTERVIEW: knowing the woman",
+      "taskType": "LISTENING_PART_C",
+      "file": "964336c63cd87176.mp3",
+      "rendered": true,
+      "bytes": 1528163
+    },
+    {
+      "key": "bd177be6360898a9",
+      "title": "Listening Part C · item 11 — PRESENTATION: the consultation that never happened",
+      "taskType": "LISTENING_PART_C",
+      "file": "bd177be6360898a9.mp3",
+      "rendered": true,
+      "bytes": 1414060
+    },
+    {
+      "key": "0157631cc5ac2467",
+      "title": "Listening Part C · item 12 — INTERVIEW: what frailty looks like in a house",
+      "taskType": "LISTENING_PART_C",
+      "file": "0157631cc5ac2467.mp3",
+      "rendered": true,
+      "bytes": 1408731
+    },
+    {
+      "key": "b009d1bbede669bb",
+      "title": "Listening Part C · item 13 — PRESENTATION: pain in people who cannot tell you",
+      "taskType": "LISTENING_PART_C",
+      "file": "b009d1bbede669bb.mp3",
+      "rendered": true,
+      "bytes": 1361554
+    },
+    {
+      "key": "cd27a34b201666aa",
+      "title": "Listening Part C · item 14 — INTERVIEW: a dietitian on a child who is not growing",
+      "taskType": "LISTENING_PART_C",
+      "file": "cd27a34b201666aa.mp3",
+      "rendered": true,
+      "bytes": 1269708
+    },
+    {
+      "key": "627cd8e39ae869ec",
+      "title": "Listening Part C · item 15 — PRESENTATION: the ordinary economics of a wound",
+      "taskType": "LISTENING_PART_C",
+      "file": "627cd8e39ae869ec.mp3",
+      "rendered": true,
+      "bytes": 1516878
     },
     {
       "key": "a049463ac6005bc5",
@@ -532,12 +1476,12 @@
       "bytes": 247954
     },
     {
-      "key": "eed88ff22a90c6d3",
+      "key": "748c6b58870eefbe",
       "title": "Part C — Talk on hydration in older adults",
       "taskType": "LISTENING_PART_C",
-      "file": "eed88ff22a90c6d3.mp3",
+      "file": "748c6b58870eefbe.mp3",
       "rendered": true,
-      "bytes": 122723
+      "bytes": 122880
     },
     {
       "key": "af8d17403c093c57",
@@ -564,12 +1508,12 @@
       "bytes": 553743
     },
     {
-      "key": "4996f41b09c90a2d",
+      "key": "27ad2bfb690150ba",
       "title": "OET Form 1 · Listening Part C — Presentation: polypharmacy",
       "taskType": "LISTENING_PART_C",
-      "file": "4996f41b09c90a2d.mp3",
+      "file": "27ad2bfb690150ba.mp3",
       "rendered": true,
-      "bytes": 456098
+      "bytes": 445753
     },
     {
       "key": "4509af5b15f593dc",
@@ -580,12 +1524,12 @@
       "bytes": 387134
     },
     {
-      "key": "3b1ccba779450c71",
+      "key": "8ce91ba038d9a8d0",
       "title": "OET Form 2 · Listening Part C — Presentation: antimicrobial resistance",
       "taskType": "LISTENING_PART_C",
-      "file": "3b1ccba779450c71.mp3",
+      "file": "8ce91ba038d9a8d0.mp3",
       "rendered": true,
-      "bytes": 290586
+      "bytes": 287138
     },
     {
       "key": "50d57d73e3ef7cd9",
@@ -596,12 +1540,12 @@
       "bytes": 446694
     },
     {
-      "key": "304586b6e5650f2d",
+      "key": "b41523ae1b301552",
       "title": "OET Form 3 · Listening Part C — Presentation: health literacy",
       "taskType": "LISTENING_PART_C",
-      "file": "304586b6e5650f2d.mp3",
+      "file": "b41523ae1b301552.mp3",
       "rendered": true,
-      "bytes": 382746
+      "bytes": 374596
     }
   ]
 }
