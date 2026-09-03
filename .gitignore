@@ -26,3 +26,6 @@ playwright-report/
 # 🔴 No OET publication is ever committed here. Sources are CITED, never stored
 # — see docs/sources/README.md and gate S1 in scripts/gates/sources.ts.
 docs/sources/*.pdf
+
+# Scratch measurement files left in the repo root — never committed.
+val_tmp.mts
