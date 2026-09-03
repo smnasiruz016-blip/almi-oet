@@ -1,7 +1,7 @@
 // GENERATED — DO NOT HAND-EDIT.
 //
 // Source:  C:/Projects/_handoffs/AlmiOET_Listening_PartA_13_items.json
-//          sha256(first 16) = 4afb766b7906aa09
+//          sha256(first 16) = b125cc661b4f8377
 // Built by scripts/seed/gen/_build_listening_sets.mts, which validates every
 // payload against the runtime zod schema in src/lib/oet/tasks/listening.ts
 // before writing. 13 LISTENING_PART_A item(s).
@@ -233,13 +233,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "g8",
-          "label": "Response to the monofilament",
-          "answer": "felt nothing",
+          "label": "Monofilament testing: sensation absent at ______ sites",
+          "answer": "six",
           "variants": [
-            "nothing",
-            "none",
-            "no sensation",
-            "could not feel it"
+            "6",
+            "all six",
+            "six sites"
           ]
         },
         {
@@ -1668,10 +1667,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "g12",
-          "label": "Expected to settle in",
-          "answer": "six weeks",
+          "label": "Exercises to be done ______ times a week",
+          "answer": "four",
           "variants": [
-            "6 weeks"
+            "4",
+            "four times"
           ]
         }
       ],

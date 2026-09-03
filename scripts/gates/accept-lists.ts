@@ -327,8 +327,90 @@ const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
 ];
+/**
+ * 🔴 THE SAME LIST, FOR LISTENING GAPS — ADDED 3 SEPTEMBER 2026 BY OWNER'S RULING.
+ *
+ * A4's Listening branch had no single-form escape at all: it asked only whether
+ * an accept-list existed, in the overlay or in the payload. The thirteen new
+ * full-length Part A scripts carry eight gaps whose answer is a drug name or a
+ * named condition, and those cannot take an accept-list — a variant on a drug
+ * name is the name of a DIFFERENT medicine.
+ *
+ * THE RULE THE OWNER WROTE, and the reason this list exists rather than eight
+ * invented variant arrays:
+ *
+ *     A drug name, and a disease name spoken verbatim, are single-form answers.
+ *     An accept-list on either would widen the key to something the candidate
+ *     did not hear.
+ *
+ * Every `why` below is the OWNER'S OWN WORDING, pasted from the ruling of
+ * 3 September 2026. None of it was written here. A reason invented by the agent
+ * and a reason ruled by the owner look identical in a file, and after that
+ * nobody can tell which decision was whose.
+ *
+ * Closed both ways, exactly like the Reading list above: an answer with no
+ * accept-list that is not named here fails the build, and a row here whose
+ * answer HAS gained an accept-list also fails, so it cannot rot. `gap` is the
+ * gap's label — documentation for the reader; the key is item + answer, which
+ * A10 already proves is unique inside one item.
+ */
+const A4_SINGLE_FORM_LISTENING: { item: string; gap: string; answer: string; why: string }[] = [
+  {
+    item: "Listening Part A · script 3 — Dietetics (unintentional weight loss)",
+    gap: "Food stopped altogether",
+    answer: "bread",
+    why: "owner: A common noun heard verbatim and having no second legitimate wording. \"Breads\" is reached by the depluralise rule, not by an accept-list.",
+  },
+  {
+    item: "Listening Part A · script 3 — Dietetics (unintentional weight loss)",
+    gap: "Food she would always accept",
+    answer: "custard",
+    why: "owner: As above: one word, heard verbatim, with no synonym a candidate could reasonably write instead.",
+  },
+  {
+    item: "Listening Part A · script 3 — Dietetics (unintentional weight loss)",
+    gap: "Medication that may reduce appetite",
+    answer: "metformin",
+    why: "owner: A drug name. A drug name has exactly one correct form, and any variant accepted here would be the name of a different medicine. Case and punctuation are already handled by the normaliser.",
+  },
+  {
+    item: "Listening Part A · script 6 — Optometry (difficulty driving at night)",
+    gap: "Family history: mother had",
+    answer: "glaucoma",
+    why: "owner: A named condition spoken verbatim. A lay paraphrase (\"pressure in the eye\") is a different answer to a different question and must not be accepted here.",
+  },
+  {
+    item: "Listening Part A · script 6 — Optometry (difficulty driving at night)",
+    gap: "Current medication",
+    answer: "amlodipine",
+    why: "owner: A drug name — see metformin above.",
+  },
+  {
+    item: "Listening Part A · script 7 — Pharmacy (a medicines review)",
+    gap: "Medicine bought without a prescription",
+    answer: "ibuprofen",
+    why: "owner: A drug name — see metformin above.",
+  },
+  {
+    item: "Listening Part A · script 8 — Nursing (a leg ulcer at a home visit)",
+    gap: "Analgesia taken before the visit",
+    answer: "paracetamol",
+    why: "owner: A drug name — see metformin above.",
+  },
+  {
+    item: "Listening Part A · script 15 — Nursing (a pre-operative assessment)",
+    gap: "Medicine to stop before surgery",
+    answer: "ibuprofen",
+    why: "owner: A drug name — see metformin above.",
+  },
+];
+
 const A4_SINGLE_KEY = new Set(A4_SINGLE_FORM.map((e) => `${e.item}||${e.answer}`));
+const A4_SINGLE_LISTENING_KEY = new Set(
+  A4_SINGLE_FORM_LISTENING.map((e) => `${e.item}||${e.answer}`),
+);
 const a4SingleSeen = new Set<string>();
+const a4SingleListeningSeen = new Set<string>();
 
 // ── A4 · coverage — no free-text answer without an accept-list ──────────────
 //
@@ -344,10 +426,21 @@ for (const item of LISTENING) {
     // newly authored items carry their own, and reading.ts prefers the payload
     // when it is non-empty. A4 asks whether the answer HAS an accept-list, not
     // where it is kept.
-    if (
-      listeningAcceptFor(item.title, gap.label).length === 0 &&
-      (gap.variants ?? []).length === 0
-    ) {
+    const hasList =
+      listeningAcceptFor(item.title, gap.label).length > 0 || (gap.variants ?? []).length > 0;
+    const singleKey = `${item.title}||${gap.answer}`;
+    if (A4_SINGLE_LISTENING_KEY.has(singleKey)) {
+      a4SingleListeningSeen.add(singleKey);
+      if (hasList) {
+        fail(
+          "A4",
+          `"${item.title}" → "${gap.label}" is listed as single-form but now HAS an ` +
+            "accept-list — delete the A4_SINGLE_FORM_LISTENING row",
+        );
+      }
+      continue;
+    }
+    if (!hasList) {
       fail("A4", `no accept-list for "${item.title}" → "${gap.label}"`);
     }
   }
@@ -381,6 +474,48 @@ for (const e of A4_SINGLE_FORM) {
     fail("A4", `single-form row points at an answer that is not in the bank — delete it: "${e.item}" / "${e.answer}"`);
   }
 }
+for (const e of A4_SINGLE_FORM_LISTENING) {
+  if (!a4SingleListeningSeen.has(`${e.item}||${e.answer}`)) {
+    fail(
+      "A4",
+      `single-form row points at a gap that is not in the bank — delete it: "${e.item}" / "${e.answer}"`,
+    );
+  }
+}
+
+/**
+ * 🔴 A7 · A MEASURED LIMIT OF THE MARKER, NOT A DEFECT IN THE CONTENT.
+ * Ruled by the owner on 3 September 2026, in its own words:
+ *
+ *     Marker limitation, measured 3 September 2026: `normalize()` removes the
+ *     hedge before the article, so "about a year" reduces to "year" while the
+ *     gate's probe "the about a year" reduces to "aboutayear". The content is
+ *     correct; the probe order is not reachable by any candidate answer. Fixing
+ *     the order changes the marking of every live item and therefore belongs in
+ *     its own change, with the before/after count in front of the owner.
+ *
+ * The owner asked for that count before any change: run the old and the new
+ * normaliser over every answer string saved on `OetAttempt` and report how many
+ * verdicts move, in each direction. NO CHANGE BEFORE THE COUNT.
+ *
+ * Two rows, keyed by the case's `where` (item title → gap label). Closed both
+ * ways, like every other list in this file: a case listed here that starts
+ * PASSING fails the build, so the day `normalize()` is fixed these rows must go.
+ */
+const A7_MARKER_LIMIT: { where: string; answer: string; why: string }[] = [
+  {
+    where: "Listening Part A · script 6 — Optometry (difficulty driving at night) → Duration of the problem",
+    answer: "about a year",
+    why: "hedge-then-article: \"about a year\" normalises to \"year\", the probe \"the about a year\" to \"aboutayear\"",
+  },
+  {
+    where: "Listening Part A · script 12 — Occupational therapy (recovery after a wrist fracture) → Grip strength compared with the other side",
+    answer: "about half",
+    why: "hedge-then-article: \"about half\" normalises to \"half\", the probe \"the about half\" to \"abouthalf\"",
+  },
+];
+const A7_MARKER_LIMIT_KEY = new Set(A7_MARKER_LIMIT.map((e) => e.where));
+const a7LimitSeen = new Set<string>();
 
 // ── A5-A7 · the marking actually accepts what it should ────────────────────
 type Case = { where: string; answer: string; variants: readonly string[] };
@@ -428,8 +563,20 @@ for (const c of CASES) {
     }
   }
   // A7a · "the " + answer.
-  if (!accepts(c.answer, c.variants, `the ${c.answer}`)) {
-    fail("A7", `${c.where}: "the ${c.answer}" is not accepted`);
+  {
+    const ok = accepts(c.answer, c.variants, `the ${c.answer}`);
+    const listed = A7_MARKER_LIMIT_KEY.has(c.where);
+    if (listed) {
+      a7LimitSeen.add(c.where);
+      if (ok) {
+        fail(
+          "A7",
+          `${c.where}: "the ${c.answer}" IS accepted now — delete the A7_MARKER_LIMIT row`,
+        );
+      }
+    } else if (!ok) {
+      fail("A7", `${c.where}: "the ${c.answer}" is not accepted`);
+    }
   }
   // A7b · the digit/word counterpart, where the answer opens with one.
   const first = c.answer.trim().split(/\s+/)[0]?.toLowerCase() ?? "";
@@ -445,6 +592,13 @@ for (const c of CASES) {
 }
 if (numericChecked === 0) {
   fail("A7", "no answer in the bank starts with a number — the numeric check was vacuous");
+}
+// The limit list cannot rot either: a row naming a case that no longer exists is
+// an exemption for nothing.
+for (const e of A7_MARKER_LIMIT) {
+  if (!a7LimitSeen.has(e.where)) {
+    fail("A7", `A7_MARKER_LIMIT names a case that is not in the bank — delete it: "${e.where}"`);
+  }
 }
 
 // ── A8 · a wrong answer is REFUSED, or none of the above means anything ────

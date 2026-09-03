@@ -131,8 +131,18 @@ const mcqStats = (qs: Q[]) => {
 const bankTitles = new Set((GEN_ITEMS as { title: string }[]).map((i) => i.title));
 const newATitles = new Set(A.map((i) => i.title));
 const newBTitles = new Set(B.map((i) => i.title));
-/** Titles that were in the bank BEFORE this command's own modules were wired in. */
-const priorTitles = new Set([...bankTitles].filter((t) => !newATitles.has(t) && !newBTitles.has(t)));
+const newCTitles = new Set(C.map((i) => i.title));
+/**
+ * Titles that were in the bank BEFORE this command's own modules were wired in.
+ *
+ * 🔴 ALL THREE new sets are subtracted, not two. The first version subtracted
+ * only A and B — and once listening_c_sets.ts was wired into GEN_ITEMS the Part C
+ * row reported 15 title collisions, every one of them the item against ITSELF.
+ * A collision check whose haystack contains the needles measures nothing.
+ */
+const priorTitles = new Set(
+  [...bankTitles].filter((t) => !newATitles.has(t) && !newBTitles.has(t) && !newCTitles.has(t)),
+);
 
 // ── PART A ──────────────────────────────────────────────────────────────────
 const aWords = A.map((i) => words(i.payload.audioScript));
@@ -194,7 +204,7 @@ flush();
 const cWords = C.map((i) => words(i.payload.audioScript));
 const cQ = C.flatMap((i) => i.payload.questions ?? []);
 const cStat = mcqStats(cQ);
-head(`PART C · ${C.length} items · ${cQ.length} sawal · ${cStat.optCount} option · bank mein ${bankTitles.size} titles`);
+head(`PART C · ${C.length} items · ${cQ.length} sawal · ${cStat.optCount} option · pehle se bank mein ${priorTitles.size} titles`);
 row("audioScript lafz (labels ke saath)", "782 - 847", range(cWords));
 row("andar 780-880", "15", `${cWords.filter((n) => n >= 780 && n <= 880).length}`);
 row("sawal per recording = 6", "15", `${C.filter((i) => (i.payload.questions ?? []).length === 6).length}`);
@@ -224,7 +234,7 @@ row(
 );
 console.log(`  ${"".padEnd(44)} |                        | = ${cStat.spread} (handoff: a 35%, 32/90 = 35.56%)`);
 row("titles unique", "15", `${new Set(C.map((i) => i.title)).size}`);
-row("bank ke titles se takrao", "0", `${C.filter((i) => bankTitles.has(i.title)).length}`);
+row("bank ke titles se takrao", "0", `${C.filter((i) => priorTitles.has(i.title)).length}`);
 row("sirf boli hui baat (lafz)", "781 - 831", range(C.map((i) => words(spoken(i)))));
 flush();
 
@@ -235,7 +245,15 @@ for (const [taskType, incoming] of [
   ["LISTENING_PART_C", cQ],
 ] as const) {
   const liveQ = (GEN_ITEMS as { taskType: string; title: string; payload: { questions?: Q[] } }[])
-    .filter((i) => i.taskType === taskType && !newBTitles.has(i.title))
+    // Same haystack rule as priorTitles above: the bank read here must NOT
+    // contain the items being added, or "before" silently includes "after".
+    .filter(
+      (i) =>
+        i.taskType === taskType &&
+        !newATitles.has(i.title) &&
+        !newBTitles.has(i.title) &&
+        !newCTitles.has(i.title),
+    )
     .flatMap((i) => i.payload.questions ?? []);
   const after = new Map<string, number>();
   for (const q of [...liveQ, ...incoming]) after.set(q.answer, (after.get(q.answer) ?? 0) + 1);
