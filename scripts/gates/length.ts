@@ -136,6 +136,9 @@
  * reason this was safe to do at all.
  */
 import { GEN_ITEMS } from "../seed/gen/index";
+// The tokeniser ruled on 3 September 2026, in its own file so anything that must
+// count the same way can import it WITHOUT running this gate. See words.ts.
+import { words } from "./words";
 
 type Item = {
   taskType: string;
@@ -334,15 +337,6 @@ const LEGACY_SHORT: string[] = [
   "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer", // 333 words
 ];
 
-/**
- * 🔴 THE ONE PLACE THIS FILE DECIDES WHAT A WORD IS.
- *
- * Split on whitespace, then keep only the tokens carrying a letter or a digit.
- * "—" alone is dropped; "-" alone is dropped; "mid-sentence", "1:1000",
- * "92%" and "18" are all words. See the ruling in the header.
- */
-const words = (s: string | undefined): number =>
-  s ? (s.match(/[^\s]+/g) ?? []).filter((t) => /[A-Za-z0-9]/.test(t)).length : 0;
 
 function textWords(item: Item): number {
   if (item.taskType.startsWith("LISTENING")) return words(item.payload.audioScript);
