@@ -190,7 +190,30 @@ async function main() {
   }
 }
 
+/**
+ * 🔴 EXIT WITH `process.exit(1)`, NOT `process.exitCode = 1`. MEASURED, NOT GUESSED.
+ *
+ * On 3 September 2026 the Listening fixture was deliberately pointed at a legacy
+ * item to watch the walk go red. It went red exactly as intended —
+ *
+ *     [e2e] Part A — Ankle injury after a fall: 5 gaps, law 12
+ *
+ * — the database was torn down, NOT ONE BROWSER TEST RAN, and `npm run test:e2e`
+ * exited **0**. A harness that reports success when its own setup fails is the
+ * worst kind of green: every future run could seed nothing, walk nothing and
+ * still pass.
+ *
+ * The cause was measured rather than assumed. `process.exitCode` was read back
+ * as 1 immediately after being set AND after `db.stop()` resolved — it was never
+ * cleared. But a `process.on("exit")` handler installed in the same script
+ * receives code **0**, which only happens when something calls `process.exit(0)`
+ * explicitly: an explicit exit overrides `process.exitCode`. It comes from the
+ * embedded-postgres teardown, below this file.
+ *
+ * `process.exit(1)` cannot be overridden by that, and the message above it is
+ * written synchronously by console.error before the call.
+ */
 main().catch((e) => {
   console.error(e instanceof Error ? e.message : e);
-  process.exitCode = 1;
+  process.exit(1);
 });

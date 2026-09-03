@@ -10,17 +10,19 @@
  *
  * ── WHAT THIS WALK ASSERTS THAT NO COUNT CAN ───────────────────────────────
  *
- *   · the audio ROUTE answers 200 with real bytes, and the player actually
- *     reaches "playing" — the state a silent file never reaches, because the
- *     composer refuses to spend the one play on an `ended` with no progress;
+ *   · the audio ROUTE serves the COMMITTED file (X-Audio-Source: prerendered,
+ *     not the paid TTS fallback — a miss plays and sounds right and still bills
+ *     per play), and the player actually reaches "playing" — the state a silent
+ *     file never reaches, because the composer refuses to spend the one play on
+ *     an `ended` with no progress;
  *   · the audio is MINUTES long, not a click. The duration is read off the
  *     media element, not off the file on disk;
- *   · 🔴 NO SPEAKER LABEL IS SPOKEN. Three new Part B extracts and all fifteen
- *     Part C recordings are monologues, and the renderer's fallback used to
- *     speak "Pharmacist:" and "Presenter:" out loud before the extract began.
- *     22 live items already did. gate:audio's A6 checks the segments; this walk
- *     checks the file the route actually serves, by measuring its length against
- *     the same file rendered from the label-free script;
+ *   · 🔴 the file it plays is the LABEL-FREE render. Three new Part B extracts
+ *     and eight of the fifteen Part C recordings are monologues whose script
+ *     opens "Pharmacist:" or "Presenter:", and the renderer's fallback spoke
+ *     that out loud; 22 live items already did. gate:audio's A6 checks the
+ *     segments the renderer will speak. This walk checks the other half: that
+ *     the route resolves to the file that content key names at all;
  *   · twelve gaps and six questions are ON THE PAGE, not merely in the payload;
  *   · the SCORE and the REVIEW SCREEN agree, in one frame, at 430px — the pair
  *     that must always be read off the page together since PR #35, and the exact
@@ -109,10 +111,19 @@ async function openByTitle(page: Page, taskSlug: string, title: string) {
  * The numbers it returns are read off the media element, so a file that exists,
  * parses, and contains nothing still fails here.
  */
-async function playAndMeasure(page: Page): Promise<{ status: number; duration: number; played: number }> {
+async function playAndMeasure(
+  page: Page,
+): Promise<{ status: number; source: string | null; duration: number; played: number }> {
   const waiting = page.waitForResponse((r) => r.url().includes("/api/oet/audio/"));
   await page.getByTestId("listening-play").click();
-  const status = (await waiting).status();
+  const res = await waiting;
+  const status = res.status();
+  // 🔴 206 IS THE CORRECT ANSWER HERE, and the first version of this walk failed
+  // on it. An <audio> element range-requests as a matter of course, and
+  // src/lib/oet/serve-audio.ts answers Range with 206 Partial Content on purpose
+  // — it was changed to do so on 1 September 2026 precisely because ignoring
+  // Range meant the element could not seek. Asserting 200 asserted the bug.
+  const source = res.headers()["x-audio-source"] ?? null;
 
   const el = page.getByTestId("listening-audio-el");
   await expect(page.getByTestId("listening-play")).toHaveAttribute("data-state", "playing", {
@@ -133,7 +144,7 @@ async function playAndMeasure(page: Page): Promise<{ status: number; duration: n
     a.pause();
     return out;
   });
-  return { status, duration, played };
+  return { status, source, duration, played };
 }
 
 /** The score line and the review line, read off the same rendered page. */
@@ -181,7 +192,10 @@ test.describe("Listening, full length, at 430px", () => {
     await openByTitle(page, A.taskSlug, A.title);
 
     const audio = await playAndMeasure(page);
-    expect(audio.status, "the audio route did not answer 200").toBe(200);
+    expect([200, 206], "the audio route did not serve the file").toContain(audio.status);
+    // Prove it came from the COMMITTED render and not from the paid fallback:
+    // a miss would still play, and still sound right, and still bill per play.
+    expect(audio.source, "the audio came from the paid TTS fallback").toBe("prerendered");
     // A 550-600 word consultation cannot be shorter than a couple of minutes.
     expect(audio.duration, `the consultation is only ${audio.duration}s long`).toBeGreaterThan(120);
     expect(audio.played, "the clock never moved — the file played silently").toBeGreaterThan(1);
@@ -225,7 +239,8 @@ test.describe("Listening, full length, at 430px", () => {
     await openByTitle(page, B.taskSlug, B.title);
 
     const audio = await playAndMeasure(page);
-    expect(audio.status).toBe(200);
+    expect([200, 206]).toContain(audio.status);
+    expect(audio.source, "the audio came from the paid TTS fallback").toBe("prerendered");
     // 140-165 words of speech: under a minute, but never a click.
     expect(audio.duration, `the extract is only ${audio.duration}s long`).toBeGreaterThan(30);
     expect(audio.played).toBeGreaterThan(1);
@@ -259,7 +274,8 @@ test.describe("Listening, full length, at 430px", () => {
     await openByTitle(page, C.taskSlug, C.title);
 
     const audio = await playAndMeasure(page);
-    expect(audio.status).toBe(200);
+    expect([200, 206]).toContain(audio.status);
+    expect(audio.source, "the audio came from the paid TTS fallback").toBe("prerendered");
     expect(audio.duration, `the recording is only ${audio.duration}s long`).toBeGreaterThan(180);
     expect(audio.played).toBeGreaterThan(1);
     console.log(`[e2e] Part C "${C.title}": audio ${audio.duration.toFixed(1)}s`);
