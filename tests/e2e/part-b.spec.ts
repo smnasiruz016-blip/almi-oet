@@ -16,10 +16,11 @@
  * `p.texts ?? p.passages` — so the same defect is possible, and Part B passages
  * have their own paragraph shapes.
  *
- * 🔴 IT IS NOT POSSIBLE, IT IS PRESENT. This walk found it on the first item it
- * opened: 9 hard newlines inside a paragraph at 430px. Measured across the seed,
- * all fifteen are affected — 125 in total — and the 33 legacy extracts have
- * none. It is recorded below rather than fixed; see the block in the narrow test.
+ * 🔴 IT WAS NOT POSSIBLE, IT WAS PRESENT. This walk found it on the first item
+ * it opened: 9 hard newlines inside a paragraph at 430px, 125 across the fifteen,
+ * while the 33 legacy extracts had none. The passages were de-ragged and written
+ * to production the same day, without a single word moving, and the assertion
+ * that recorded the defect now holds it shut at zero.
  *
  * ── AND IT ANSWERS THE QUESTION ─────────────────────────────────────────────
  *
@@ -170,30 +171,19 @@ test.describe("Reading Part B, full length, in a real browser", () => {
     );
     await shot(page, "30b-part-b-extract-narrow.png", "reading-texts");
 
-    // 🔴 HANDED BACK, NOT DECIDED HERE — and the assertion is written TO THE DEFECT.
-    //
-    // The fifteen Part B passages were hard-wrapped at about 110 characters, the
-    // same way the Part A bodies were before 3 September. Measured in the seed:
-    // ALL FIFTEEN are affected, 7 to 10 mid-paragraph newlines each, 125 in total,
-    // longest authored line 108-110 characters. The 33 legacy extracts have ZERO,
-    // so this belongs to the new fifteen alone.
-    //
-    // It is not fixed here because re-wrapping an author's prose is the author's
-    // call, and because the Part A correction came back from them as a corrected
-    // JSON with every word count proved unmoved — including the one that flattened
-    // two bullet lists and had to be repaired. The same care is owed here.
-    //
-    // ⚠️ WHEN THE PASSAGES ARE RE-WRAPPED THIS TEST FAILS, and whoever does it
-    // changes this number to 0 and deletes this block. A test that tolerated any
-    // count would let the ragged text outlive its own fix.
-    const PENDING_HARD_NEWLINES = 9;
+    // The passages were hard-wrapped at ~110 characters when they were seeded on
+    // 3 September 2026 and this walk found it here: 9 mid-paragraph line breaks on
+    // the first item alone, 125 across the fifteen, while the 33 legacy extracts
+    // had none. They were de-ragged the same day and written to production, and
+    // the assertion that recorded the defect is now the assertion that keeps it
+    // shut. Nothing about the words changed: the correction refused to write
+    // unless the word count under both tokenisers, the paragraph-break count AND
+    // the word SEQUENCE were identical on all fifteen.
     expect(
       hard.inParagraph,
-      hard.inParagraph === 0
-        ? "the Part B passages have been re-wrapped — set this to 0 and delete the block above"
-        : `${hard.inParagraph} hard newline(s) inside a paragraph, expected the recorded ` +
-          `${PENDING_HARD_NEWLINES}`,
-    ).toBe(PENDING_HARD_NEWLINES);
+      `${hard.inParagraph} hard newline(s) inside a paragraph: the extract breaks at the ` +
+        "authoring width, not at the column",
+    ).toBe(0);
     await page.setViewportSize({ width: 1360, height: 900 });
   });
 
