@@ -64,6 +64,29 @@ export type Fixture = {
    *  rendered list for everything it asserts. */
   partAFullLengthTitles: string[];
   partALegacyTitles: string[];
+  /** Reading Part B, on the same terms: the fifteen written to the measured
+   *  136-155 law, and the 33 legacy extracts on their way out. */
+  partB: PartBWalk;
+  /** A SECOND full-length item, so the "a wrong option marks wrong" control can
+   *  answer a known-wrong option rather than whichever radio sits second. */
+  partBSecond: PartBWalk;
+  partBFullLengthTitles: string[];
+  partBLegacyTitles: string[];
+};
+
+/**
+ * THE READING PART B WALK, DERIVED FROM THE ITEM ITSELF.
+ *
+ * Part B is one short workplace extract and one three-option question, so there
+ * is one right answer and two wrong ones and nothing is hand-typed here: the key
+ * and a deliberate wrong option are both read off the payload.
+ */
+export type PartBWalk = {
+  taskSlug: string;
+  title: string;
+  /** The last words of the passage. A truncated extract fails on its own tail. */
+  passageTail: string;
+  question: { id: string; stem: string; correctOptionId: string; wrongOptionId: string };
 };
 
 /**
@@ -107,8 +130,9 @@ const OBJECTIVE_PARTS = [
 ] as const;
 /** The part the browser walks. */
 const WALK_TASK = "READING_PART_B";
-/** …and the part the second walk reads. */
+/** …and the parts the later walks read. */
 const PART_A = "READING_PART_A";
+const PART_B = "READING_PART_B";
 
 /**
  * 🔴 THE FIFTEEN, IDENTIFIED BY THE LAW AND NOT BY A LIST OF TITLES.
@@ -148,6 +172,47 @@ function isFullLengthPartA(item: Prisma.OetItemCreateManyInput): boolean {
     texts.reduce((n, t) => n + words(t.body), 0) +
     questions.reduce((n, q) => n + words(q.stem), 0);
   return combined >= PART_A_MIN && combined <= PART_A_MAX;
+}
+
+/**
+ *  + RED +  THE FIFTEEN PART B ITEMS, IDENTIFIED BY THE LAW.
+ *
+ * Same reasoning as isFullLengthPartA: the seed holds 48 Reading Part B items,
+ * 33 legacy extracts of 28-100 words and the fifteen written to the measured
+ * 136-155. `slice(0, 15)` takes the legacy ones, because they sort first.
+ */
+const PART_B_MIN = 136;
+const PART_B_MAX = 155;
+
+function isFullLengthPartB(item: Prisma.OetItemCreateManyInput): boolean {
+  const p = item.payload as { passages?: { body?: string }[] } | null;
+  const n = (p?.passages ?? []).reduce((a, x) => a + words(x.body), 0);
+  return n >= PART_B_MIN && n <= PART_B_MAX;
+}
+
+function partBWalk(item: Prisma.OetItemCreateManyInput): PartBWalk {
+  const payload = item.payload as {
+    passages: { body?: string }[];
+    questions: { id: string; stem?: string; answer?: string; options?: { id: string }[] }[];
+  };
+  const q = payload.questions[0];
+  if (!q?.answer || (q.options?.length ?? 0) < 2) {
+    throw new Error(`[e2e] ${item.title}: no answerable Part B question — refusing to walk it`);
+  }
+  const wrong = q.options!.find((o) => o.id !== q.answer);
+  if (!wrong) throw new Error(`[e2e] ${item.title}: every option is the answer`);
+  const body = String(payload.passages[0]?.body ?? "");
+  return {
+    taskSlug: "reading-part-b",
+    title: item.title,
+    passageTail: body.trim().split(/\s+/).slice(-8).join(" "),
+    question: {
+      id: q.id,
+      stem: q.stem ?? "",
+      correctOptionId: q.answer,
+      wrongOptionId: wrong.id,
+    },
+  };
 }
 
 /** Build the Part A walk from one item's own payload. Throws rather than
@@ -226,7 +291,10 @@ export async function seedFixture(url: string): Promise<Fixture> {
       // The retire walk has to see what production sees: the corrected items AND
       // the legacy ones it is about to hide. Cutting Part A to fifteen would mean
       // retiring nothing, or retiring the very items the learner is left with.
-      const forPart = part === PART_A ? pool : pool.slice(0, FLOOR);
+      // Reading Part A and Part B are seeded WHOLE; the other four are cut to
+      // the floor. Both retires have to be walkable here before they are run
+      // there, and a pool cut to fifteen would mean retiring nothing.
+      const forPart = part === PART_A || part === PART_B ? pool : pool.slice(0, FLOOR);
       if (forPart.length < FLOOR) {
         throw new Error(
           `[e2e] the seed source holds only ${forPart.length} ${part} items; ` +
@@ -270,6 +338,19 @@ export async function seedFixture(url: string): Promise<Fixture> {
     }
     const partAItem = partAFull[0];
 
+    const partBAll = items.filter((i) => i.taskType === PART_B);
+    const partBFull = partBAll.filter(isFullLengthPartB);
+    const partBLegacy = partBAll.filter((i) => !isFullLengthPartB(i));
+    if (partBFull.length < FLOOR) {
+      throw new Error(
+        `[e2e] only ${partBFull.length} full-length Reading Part B item(s) in the seed ` +
+          `source; the walk needs ${FLOOR}.`,
+      );
+    }
+    if (partBLegacy.length === 0) {
+      throw new Error("[e2e] no legacy Reading Part B item is left to walk its retire against");
+    }
+
     const seeded = await prisma.oetItem.findMany({
       where: { taskType: WALK_TASK, active: true, profession: null },
       orderBy: { title: "asc" },
@@ -285,6 +366,10 @@ export async function seedFixture(url: string): Promise<Fixture> {
       partA: partAWalk(partAItem),
       partAFullLengthTitles: partAFull.map((i) => i.title),
       partALegacyTitles: partALegacy.map((i) => i.title),
+      partB: partBWalk(partBFull[0]),
+      partBSecond: partBWalk(partBFull[1]),
+      partBFullLengthTitles: partBFull.map((i) => i.title),
+      partBLegacyTitles: partBLegacy.map((i) => i.title),
     };
   } finally {
     await prisma.$disconnect();
