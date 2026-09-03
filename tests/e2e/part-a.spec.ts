@@ -95,6 +95,44 @@ async function openByTitle(page: Page, title: string) {
   throw new Error(`the rendered list does not contain ${JSON.stringify(title)}`);
 }
 
+/**
+ * 🔴 HARD NEWLINES INSIDE A PARAGRAPH, READ OFF THE RENDERED PAGE.
+ *
+ * This is the defect itself, not a proxy for it. The composer renders the body
+ * `whitespace-pre-wrap`, so a newline the author left mid-paragraph becomes a
+ * line break the browser cannot undo, and on a column narrower than the
+ * authoring width the paragraph reads ragged.
+ *
+ * A blank line is a PARAGRAPH BREAK and is not counted. A line beginning "- " is
+ * a bullet, and the newline that ends it is structure, not a wrap — those are
+ * counted separately so a list is never mistaken for the defect.
+ *
+ * The first version of this check counted "short lines that do not end in
+ * punctuation" instead. It read 0 on Reading Part B while the source carried 125
+ * mid-paragraph newlines, because an authored line of ~110 characters is not
+ * short. A check that cannot fail on the defect it names is worse than no check.
+ */
+async function hardNewlines(page: Page): Promise<{ inParagraph: number; atBullets: number }> {
+  return page.getByTestId("reading-texts").evaluate((el) => {
+    let inParagraph = 0;
+    let atBullets = 0;
+    for (const para of Array.from(el.querySelectorAll("p[data-reading-body]"))) {
+      const lines = (para.textContent ?? "").split("\n");
+      for (let i = 0; i < lines.length - 1; i++) {
+        const cur = lines[i].trim();
+        const next = lines[i + 1].trim();
+        if (cur === "" || next === "") continue;
+        if (cur.startsWith("- ") || next.startsWith("- ")) {
+          atBullets += 1;
+          continue;
+        }
+        inParagraph += 1;
+      }
+    }
+    return { inParagraph, atBullets };
+  });
+}
+
 test.describe.configure({ mode: "serial" });
 
 test.describe("Reading Part A, full length, in a real browser", () => {
@@ -147,42 +185,33 @@ test.describe("Reading Part A, full length, in a real browser", () => {
     expect(narrowText).not.toContain("|");
     expect(narrowText).not.toContain("**");
 
-    // Every LINE the browser actually laid out. A hard newline the author left in
-    // shows up here as a short line in the middle of a paragraph; wrapping done by
-    // the browser fills the column.
-    const laidOut: string[] = await narrow.evaluate((el) => {
-      const out: string[] = [];
-      // ONLY the body paragraphs. The composer marks each one with
-      // data-reading-body; the heading beside it is its own <p> and is
-      // legitimately a short line.
-      for (const para of Array.from(el.querySelectorAll("p[data-reading-body]"))) {
-        for (const raw of (para.textContent ?? "").split("\n")) {
-          const t = raw.trim();
-          if (t) out.push(t);
-        }
-      }
-      return out;
-    });
-    // A bullet is a legitimately short line; a bullet holding a second "- " is the
-    // flattened list this walk exists to catch.
-    const bullets = laidOut.filter((l) => l.startsWith("- "));
+    const hard = await hardNewlines(page);
+    // A bullet is a legitimately short line; a bullet holding a second "- " is
+    // the flattened list PR #36 repaired.
+    const bullets = (
+      await narrow.evaluate((el) =>
+        Array.from(el.querySelectorAll("p[data-reading-body]"))
+          .flatMap((p) => (p.textContent ?? "").split("\n"))
+          .map((l) => l.trim())
+          .filter((l) => l.startsWith("- ")),
+      )
+    ) as string[];
     expect(bullets.length, "the two bullet lists must still be bullet lists").toBeGreaterThan(2);
     for (const b of bullets) {
       expect(b.slice(2), `a bullet list ran together onto one line: ${b.slice(0, 80)}`).not.toMatch(
         / - /,
       );
     }
-    // No source line may be a mid-paragraph fragment any more.
-    const fragments = laidOut.filter((l) => !l.startsWith("- ") && l.length < 60 && !/[.:;?]$/.test(l));
-    expect(
-      fragments,
-      `${fragments.length} paragraph line(s) still break at the authoring width, not the column`,
-    ).toEqual([]);
 
     console.log(
-      `[e2e] narrow column (430px): ${laidOut.length} laid-out line(s), ` +
-        `${bullets.length} bullet(s), 0 mid-paragraph fragments`,
+      `[e2e] narrow column (430px): ${hard.inParagraph} hard newline(s) inside a ` +
+        `paragraph, ${hard.atBullets} at bullet line ends, ${bullets.length} bullet(s)`,
     );
+    expect(
+      hard.inParagraph,
+      `${hard.inParagraph} hard newline(s) inside a paragraph: the text still breaks at the ` +
+        "authoring width, not at the column",
+    ).toBe(0);
     await shot(page, "10b-part-a-texts-narrow.png", "reading-texts");
     await page.setViewportSize({ width: 1360, height: 900 });
   });
