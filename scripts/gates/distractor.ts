@@ -33,6 +33,30 @@
  *       whether or not it is the key.
  *   D3  within one taskType, no single option letter holds more than 45% of the
  *       keys.
+ *   D4  every MCQ question has the number of options ITS OWN task type's law
+ *       gives. Added 3 September 2026.
+ *   D5  every option is 1-17 words, the range OET's own options measure.
+ *
+ * 🔴 D4 EXISTS BECAUSE NOTHING MEASURED HOW MANY OPTIONS THERE WERE.
+ *
+ * D1 and D2 measure option LENGTHS; gate:length measures TEXT length. Between
+ * them they read every Reading Part C question in the bank and never noticed
+ * that all 78 offered THREE options where OET gives four. A three-option
+ * question is guessed at 33%; the exam pays 25%. It passed every gate we had.
+ *
+ * ⚠️ AND THE LAW IS NOT UNIFORM — IT IS PER TASK TYPE, from
+ * _handoffs/AlmiOET_likhne_ka_zabta.md §2, measured 3 September 2026:
+ *
+ *     Reading Part B      3 options     3 on all 48   — correct
+ *     Reading Part C      4 options     3 on 78, 4 on 168
+ *     Listening Part B    3 options     3 on all 33   — correct
+ *     Listening Part C    3 options     3 on all 66   — correct
+ *
+ * Only Reading Part C is wrong. Gating all four at four would have condemned
+ * 147 correct questions — which is what assuming a uniform law costs.
+ *
+ * D5 was measured before it was written: ZERO options in the bank fall outside
+ * 1-17 words, so it carries no debt list. It is a hard check from birth.
  *
  * ── THE DEBT LISTS, AND THE RULE THEY SHARE ─────────────────────────────────
  *
@@ -305,7 +329,118 @@ const LEGACY_SKEW: { taskType: string; maxPct: number; letter: string }[] = [
   { taskType: "LISTENING_PART_B", maxPct: 58, letter: "a" },
   { taskType: "LISTENING_PART_C", maxPct: 48, letter: "b" },
   { taskType: "READING_PART_B", maxPct: 48, letter: "b" },
-  { taskType: "READING_PART_C", maxPct: 50, letter: "b" },
+  // READING_PART_C left this list on 3 September 2026: the twenty-one
+  // full-length items brought it from 50%% "b" to 33%%, under the 45%% cap.
+  // The ratchet requires the row to go, and a stale row fails the build.
+];
+
+/**
+ * D4 · the number of options each task type's law gives.
+ * Source: _handoffs/AlmiOET_likhne_ka_zabta.md §2. No row without one.
+ */
+const OPTION_COUNT_LAW: Record<string, number> = {
+  READING_PART_B: 3,
+  READING_PART_C: 4,
+  LISTENING_PART_B: 3,
+  LISTENING_PART_C: 3,
+};
+
+/** D5 · the range OET's own options measure. No debt list: measured on
+ *  3 September 2026 and nothing in the bank falls outside it. */
+const OPTION_WORDS_MIN = 1;
+const OPTION_WORDS_MAX = 17;
+
+/**
+ * 🔴 HAND-CHECKED-IN, MEASURED 3 SEPTEMBER 2026, MAY ONLY SHRINK.
+ *
+ * Every question whose option COUNT breaks its task type's law. All 78 are old
+ * Reading Part C items; the twenty-one full-length ones added the same day
+ * carry four options on all 168 of their questions and are not here.
+ *
+ * Same two rules as every other debt list here:
+ *   · a breach that is NOT listed  -> exit 1. New content must be clean.
+ *   · a listed question that now MEETS its law -> exit 1, saying so.
+ */
+const LEGACY_OPTION_COUNT: string[] = [
+  // ── READING_PART_C · 78 question(s), law 4 options ──
+  "READING_PART_C::Part C — Article on shared decision-making::q1", // 3 options, law 4
+  "READING_PART_C::Part C — Article on shared decision-making::q2", // 3 options, law 4
+  "READING_PART_C::Part C — Evidence, experience and the bedside::q1", // 3 options, law 4
+  "READING_PART_C::Part C — Evidence, experience and the bedside::q2", // 3 options, law 4
+  "READING_PART_C::Part C — Knowing a patient over time::q1", // 3 options, law 4
+  "READING_PART_C::Part C — Knowing a patient over time::q2", // 3 options, law 4
+  "READING_PART_C::Part C — Practising to protect ourselves::q1", // 3 options, law 4
+  "READING_PART_C::Part C — Practising to protect ourselves::q2", // 3 options, law 4
+  "READING_PART_C::Part C — Rethinking the value of clinical handover::q1", // 3 options, law 4
+  "READING_PART_C::Part C — Rethinking the value of clinical handover::q2", // 3 options, law 4
+  "READING_PART_C::Part C — Running on empty in the caring professions::q1", // 3 options, law 4
+  "READING_PART_C::Part C — Running on empty in the caring professions::q2", // 3 options, law 4
+  "READING_PART_C::Part C — Sitting with not knowing::q1", // 3 options, law 4
+  "READING_PART_C::Part C — Sitting with not knowing::q2", // 3 options, law 4
+  "READING_PART_C::Part C — The arithmetic patients actually hear::q1", // 3 options, law 4
+  "READING_PART_C::Part C — The arithmetic patients actually hear::q2", // 3 options, law 4
+  "READING_PART_C::Part C — The lost art of letting people finish::q1", // 3 options, law 4
+  "READING_PART_C::Part C — The lost art of letting people finish::q2", // 3 options, law 4
+  "READING_PART_C::Part C — The quiet costs of finding more::q1", // 3 options, law 4
+  "READING_PART_C::Part C — The quiet costs of finding more::q2", // 3 options, law 4
+  "READING_PART_C::Part C — The screen between us::q1", // 3 options, law 4
+  "READING_PART_C::Part C — The screen between us::q2", // 3 options, law 4
+  "READING_PART_C::Part C — What a good team really shares::q1", // 3 options, law 4
+  "READING_PART_C::Part C — What a good team really shares::q2", // 3 options, law 4
+  "READING_PART_C::Part C — What we do with our mistakes::q1", // 3 options, law 4
+  "READING_PART_C::Part C — What we do with our mistakes::q2", // 3 options, law 4
+  "READING_PART_C::Part C — When empathy becomes a clinical skill::q1", // 3 options, law 4
+  "READING_PART_C::Part C — When empathy becomes a clinical skill::q2", // 3 options, law 4
+  "READING_PART_C::Part C — Whose decision is it anyway::q1", // 3 options, law 4
+  "READING_PART_C::Part C — Whose decision is it anyway::q2", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q1", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q2", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q3", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q4", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q5", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q6", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q7", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q8", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q1", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q2", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q3", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q4", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q5", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q6", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q7", // 3 options, law 4
+  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q8", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q1", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q2", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q3", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q4", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q5", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q6", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q7", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q8", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q1", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q2", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q3", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q4", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q5", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q6", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q7", // 3 options, law 4
+  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q8", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q1", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q2", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q3", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q4", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q5", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q6", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q7", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q8", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q1", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q2", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q3", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q4", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q5", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q6", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q7", // 3 options, law 4
+  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q8", // 3 options, law 4
 ];
 
 const ITEMS = GEN_ITEMS as unknown as Item[];
@@ -316,6 +451,9 @@ const tellExempt = new Set(LEGACY_TELL);
 const overExempt = new Set(LEGACY_OVERSIZE);
 const skewByType = new Map(LEGACY_SKEW.map((s) => [s.taskType, s]));
 
+const countExempt = new Set(LEGACY_OPTION_COUNT);
+const countSeen = new Set<string>();
+let optionCountDebt = 0;
 const tellSeen = new Set<string>();
 const overSeen = new Set<string>();
 const skewSeen = new Set<string>();
@@ -362,6 +500,33 @@ for (const item of ITEMS) {
       fail(`D2 ${key} is in LEGACY_OVERSIZE but no longer breaches — delete it.`);
     }
 
+    // ── D4 · how many options, not how long they are ──
+    const lawCount = OPTION_COUNT_LAW[item.taskType];
+    if (lawCount !== undefined) {
+      const listed = countExempt.has(key);
+      if (opts.length !== lawCount) {
+        if (listed) {
+          countSeen.add(key);
+          optionCountDebt += 1;
+        } else {
+          fail(`D4 ${key} — ${opts.length} option(s), law ${lawCount} for ${item.taskType}`);
+        }
+      } else if (listed) {
+        countSeen.add(key);
+        fail(`D4 ${key} now has ${lawCount} options — delete it from LEGACY_OPTION_COUNT.`);
+      }
+    }
+
+    // ── D5 · an option is 1-17 words. No debt list; nothing breaches it. ──
+    for (const [oi, o] of opts.entries()) {
+      const n = lens[oi];
+      if (n < OPTION_WORDS_MIN || n > OPTION_WORDS_MAX) {
+        fail(
+          `D5 ${key} option "${o.id}" — ${n} words, law ${OPTION_WORDS_MIN}-${OPTION_WORDS_MAX}`,
+        );
+      }
+    }
+
     const t = perType.get(item.taskType) ?? { q: 0, keys: new Map<string, number>() };
     t.q += 1;
     t.keys.set(String(q.answer), (t.keys.get(String(q.answer)) ?? 0) + 1);
@@ -393,6 +558,9 @@ for (const [taskType, v] of perType) {
 }
 
 // ── the lists cannot rot ────────────────────────────────────────────────────
+for (const k of countExempt) {
+  if (!countSeen.has(k)) fail(`D4 ${k} is in LEGACY_OPTION_COUNT but not in the bank — delete it.`);
+}
 for (const k of tellExempt) if (!tellSeen.has(k)) fail(`D1 ${k} is in LEGACY_TELL but not in the bank — delete it.`);
 for (const k of overExempt) if (!overSeen.has(k)) fail(`D2 ${k} is in LEGACY_OVERSIZE but not in the bank — delete it.`);
 for (const s of LEGACY_SKEW) if (!skewSeen.has(s.taskType)) fail(`D3 ${s.taskType} is in LEGACY_SKEW but has no questions — delete it.`);
@@ -402,6 +570,7 @@ if (mcq === 0) fail("no multiple-choice question was found — the gate is vacuo
 
 console.log(`[gate:distractor] ${mcq} multiple-choice question(s) across ${perType.size} task type(s)`);
 console.log(`DISTRACTOR DEBT: ${tellNow} questions where the key is the longest option`);
+console.log(`OPTION COUNT DEBT: ${optionCountDebt} question(s) with the wrong number of options`);
 if (failures.length > 0) {
   console.error(`\n[gate:distractor] ${failures.length} failure(s):`);
   for (const f of failures.slice(0, 40)) console.error(`  ${f}`);
