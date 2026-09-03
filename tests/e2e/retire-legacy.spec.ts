@@ -45,11 +45,15 @@ type Fixture = {
   professionSlug: string;
   partAFullLengthTitles: string[];
   partALegacyTitles: string[];
+  partBFullLengthTitles: string[];
+  partBLegacyTitles: string[];
 };
 
 const fixture: Fixture = JSON.parse(readFileSync(process.env.E2E_FIXTURE_FILE!, "utf8"));
 const LIBRARY = `/practice/${fixture.professionSlug}/reading-part-a`;
+const LIBRARY_B = `/practice/${fixture.professionSlug}/reading-part-b`;
 const RETIRE_LIST = "scripts/retire/reading-part-a-legacy.json";
+const RETIRE_LIST_B = "scripts/retire/reading-part-b-legacy.json";
 const SHOTS = join(process.cwd(), "docs", "e2e");
 mkdirSync(SHOTS, { recursive: true });
 
@@ -68,8 +72,8 @@ async function signIn(page: Page) {
   ]);
 }
 
-async function openByTitle(page: Page, title: string): Promise<string> {
-  await page.goto(LIBRARY);
+async function openByTitle(page: Page, title: string, library = LIBRARY): Promise<string> {
+  await page.goto(library);
   await expect(page.getByTestId("exercise-list-heading")).toBeVisible();
   const rows = page.getByTestId("exercise-row");
   const n = await rows.count();
@@ -84,8 +88,8 @@ async function openByTitle(page: Page, title: string): Promise<string> {
   throw new Error(`the rendered list does not contain ${JSON.stringify(title)}`);
 }
 
-async function listTitles(page: Page): Promise<string[]> {
-  await page.goto(LIBRARY);
+async function listTitles(page: Page, library = LIBRARY): Promise<string[]> {
+  await page.goto(library);
   await expect(page.getByTestId("exercise-list-heading")).toBeVisible();
   return (await page.getByTestId("exercise-title").allInnerTexts()).map((t) => t.trim());
 }
@@ -273,8 +277,141 @@ test.describe("retiring the eighteen legacy Reading Part A items", () => {
   });
 });
 
+
+const retiredB = { scoredUrl: "", inProgressUrl: "", scoredTitle: "", inProgressTitle: "" };
+
+test.describe("retiring the thirty-three legacy Reading Part B items", () => {
+  test("a learner has real work against two of the thirty-three", async ({ page }) => {
+    expect(fixture.partBLegacyTitles.length).toBe(33);
+    expect(fixture.partBFullLengthTitles.length).toBe(15);
+    await signIn(page);
+
+    const titles = await listTitles(page, LIBRARY_B);
+    expect(titles.length, "the library must hold the whole Part B bank before the retire").toBe(48);
+
+    retiredB.scoredTitle = fixture.partBLegacyTitles[0];
+    retiredB.scoredUrl = await openByTitle(page, retiredB.scoredTitle, LIBRARY_B);
+    // Part B is one three-option question; answering it at all is the point.
+    await page.locator('input[type="radio"]').first().check();
+    const waiting = page.waitForResponse((r) => r.url().includes("/api/oet/submit"));
+    await page.getByTestId("submit-answers").click();
+    expect((await waiting).status()).toBe(200);
+    await expect(page.getByTestId("exercise-chain")).toBeVisible();
+    await expect(page.getByText(/\d+ \/ \d+ practice points/)).toBeVisible();
+
+    retiredB.inProgressTitle = fixture.partBLegacyTitles[1];
+    retiredB.inProgressUrl = await openByTitle(page, retiredB.inProgressTitle, LIBRARY_B);
+    await page.locator('input[type="radio"]').first().check();
+    // Deliberately NOT submitted.
+    await expect(page.getByTestId("submit-answers")).toBeVisible();
+
+    console.log(
+      `[e2e] Part B before the retire — scored: ${JSON.stringify(retiredB.scoredTitle)}; ` +
+        `in progress: ${JSON.stringify(retiredB.inProgressTitle)}`,
+    );
+  });
+
+  test("the real retire script hides exactly the thirty-three", async () => {
+    const url = process.env.E2E_DATABASE_URL;
+    expect(url, "the runner must hand this spec the throwaway database URL").toBeTruthy();
+    const list = JSON.parse(readFileSync(RETIRE_LIST_B, "utf8")) as { title: string }[];
+    expect(list, "the retire list must be the checked-in one").toHaveLength(33);
+
+    const dry = spawnSync(`npx tsx scripts/retire-fragments.mts ${RETIRE_LIST_B}`, {
+      shell: true,
+      encoding: "utf8",
+      env: { ...process.env, DATABASE_URL: url, DATABASE_URL_UNPOOLED: url },
+    });
+    expect(dry.status, `dry run failed: ${dry.stderr}`).toBe(0);
+    expect(dry.stdout).toContain("DRY RUN");
+    expect(dry.stdout).toMatch(/READING_PART_B: 48 active now -> 15 after/);
+
+    const confirmed = spawnSync(`npx tsx scripts/retire-fragments.mts ${RETIRE_LIST_B} --confirm`, {
+      shell: true,
+      encoding: "utf8",
+      env: { ...process.env, DATABASE_URL: url, DATABASE_URL_UNPOOLED: url },
+    });
+    expect(confirmed.status, `retire failed: ${confirmed.stderr}`).toBe(0);
+    expect(confirmed.stdout).toMatch(/RETIRE complete — 33 row\(s\) updated, 0 deleted/);
+    console.log(
+      "[e2e] Part B retire: " +
+        (confirmed.stdout.match(/\[retire\] READING_PART_B:.*/) ?? ["(no line)"])[0].trim(),
+    );
+  });
+
+  test("the library now offers only the fifteen full-length extracts", async ({ page }) => {
+    await signIn(page);
+    const titles = await listTitles(page, LIBRARY_B);
+    expect(titles).toHaveLength(15);
+    for (const t of fixture.partBLegacyTitles) {
+      expect(titles, `${t} is still being offered`).not.toContain(t);
+    }
+    for (const t of fixture.partBFullLengthTitles) {
+      expect(titles, `${t} was taken away with the legacy items`).toContain(t);
+    }
+    // 🔴 EXACTLY THE FLOOR. instrumentation.ts refuses to boot below 15 active
+    // in any objective part, so after this retire Part B has ZERO margin — the
+    // same place Part A landed. The answer is more items, never a lower floor.
+    expect(titles.length, "Part B is at the boot floor and must not go under it").toBe(15);
+    console.log(`[e2e] Part B library after the retire: ${titles.length} exercise(s), at the floor`);
+    await shot(page, "24-part-b-library-after-retire.png", "exercise-list");
+  });
+
+  test("🔴 THE SCORED PART B ATTEMPT STILL OPENS", async ({ page }) => {
+    await signIn(page);
+    await page.goto(retiredB.scoredUrl);
+    const points = page.getByText(/\d+ \/ \d+ practice points/);
+    await expect(points).toBeVisible();
+    expect((await points.innerText()).replace(/\s+/g, " ")).toContain(retiredB.scoredTitle);
+    await expect(page.getByText(/Answer review · \d+\/\d+ correct/)).toBeVisible();
+    console.log("[e2e] Part B scored attempt still opens after its item was retired");
+    await shot(page, "25-part-b-scored-after-retire.png");
+  });
+
+  test("🔴 THE IN-PROGRESS PART B ATTEMPT STILL OPENS, AND CAN STILL BE FINISHED", async ({
+    page,
+  }) => {
+    await signIn(page);
+    await page.goto(retiredB.inProgressUrl);
+    await expect(page.getByTestId("session-item-title")).toHaveText(retiredB.inProgressTitle);
+    await expect(page.getByTestId("reading-texts")).toBeVisible();
+    await page.locator('input[type="radio"]').first().check();
+
+    const waiting = page.waitForResponse((r) => r.url().includes("/api/oet/submit"));
+    await page.getByTestId("submit-answers").click();
+    const res = await waiting;
+    expect(
+      res.status(),
+      `a learner could not finish a Part B item retired under them: ${await res.text()}`,
+    ).toBe(200);
+    await expect(page.getByTestId("exercise-chain")).toBeVisible();
+    await expect(page.getByText(/\d+ \/ \d+ practice points/)).toBeVisible();
+    console.log("[e2e] Part B in-progress attempt was finished AFTER its item was retired: HTTP 200");
+    await shot(page, "26-part-b-in-progress-finished-after-retire.png");
+  });
+
+  test("--restore puts all thirty-three back", async ({ page }) => {
+    const url = process.env.E2E_DATABASE_URL!;
+    const back = spawnSync(
+      `npx tsx scripts/retire-fragments.mts ${RETIRE_LIST_B} --restore --confirm`,
+      {
+        shell: true,
+        encoding: "utf8",
+        env: { ...process.env, DATABASE_URL: url, DATABASE_URL_UNPOOLED: url },
+      },
+    );
+    expect(back.status, `restore failed: ${back.stderr}`).toBe(0);
+    expect(back.stdout).toMatch(/RESTORE complete — 33 row\(s\) updated, 0 deleted/);
+
+    await signIn(page);
+    const titles = await listTitles(page, LIBRARY_B);
+    expect(titles).toHaveLength(48);
+    console.log(`[e2e] Part B --restore: the library is back to ${titles.length} exercise(s)`);
+  });
+});
+
 // Keep the runner honest: this file writes nothing outside the throwaway server,
-// and the retire list it uses is the checked-in one, not one it invented.
+// and the retire lists it uses are the checked-in ones, not ones it invented.
 test("the retire list this walk used is the file production will be pointed at", () => {
   const list = JSON.parse(readFileSync(RETIRE_LIST, "utf8")) as {
     taskType: string;
@@ -284,4 +421,12 @@ test("the retire list this walk used is the file production will be pointed at",
   for (const r of list) expect(r.taskType).toBe("READING_PART_A");
   const titles = list.map((r) => r.title).sort();
   expect(titles).toEqual([...fixture.partALegacyTitles].sort());
+
+  const listB = JSON.parse(readFileSync(RETIRE_LIST_B, "utf8")) as {
+    taskType: string;
+    title: string;
+  }[];
+  expect(listB).toHaveLength(33);
+  for (const r of listB) expect(r.taskType).toBe("READING_PART_B");
+  expect(listB.map((r) => r.title).sort()).toEqual([...fixture.partBLegacyTitles].sort());
 });
