@@ -273,7 +273,14 @@ if (existsSync(join(process.cwd(), AUDIO_DIR))) {
   }
 }
 
-const GATES = ["A1 file present", "A2 real mp3", "A3 encoding", "A4 duration", "A5 not silent"];
+const GATES = [
+  "A1 file present",
+  "A2 real mp3",
+  "A3 encoding",
+  "A4 duration",
+  "A5 not silent",
+  "A6 no label spoken",
+];
 console.log(
   `[gate:audio] ${listening.length} Listening item(s); ${checked} file(s) opened and parsed; ` +
     `${(totalSeconds / 60).toFixed(1)} min of audio; ${orphans} orphan file(s)`,
