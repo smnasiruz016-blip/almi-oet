@@ -13,10 +13,13 @@
  *  this guard is ZERO: deactivating or retiring ONE more Reading Part A item
  *  stops the server from starting, on the next deploy, for every learner.
  *
+ *  ⚠️ AND READING PART B JOINED IT THE SAME NIGHT: its 33 legacy extracts
+ *  were retired (48 active → 15), so TWO objective parts now sit on the floor
+ *  with no margin at all.
+ *
  *  🔴 THE ANSWER IS MORE ITEMS, NEVER A LOWER FLOOR. This number does not move.
  *  It is the law, and the law is the point — a part below floor serves a thin
- *  bank with nothing to say so, which is the failure the whole guard exists for.
- *  Reading Part B lands in the same place when its 33 legacy items are retired. */
+ *  bank with nothing to say so, which is the failure the whole guard exists for. */
 const FLOOR = 15;
 
 /** The six objective parts. Writing and Speaking are per-profession and are covered
