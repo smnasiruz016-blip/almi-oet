@@ -58,6 +58,12 @@ const nextConfig: NextConfig = {
   // the exact cost this replaces, failing quietly instead of loudly.
   outputFileTracingIncludes: {
     "/api/oet/audio/[attemptId]": ["./audio/oet/**"],
+    // /api/status reads the migration folder at request time and compares it to
+    // what the database says it has applied. Nothing imports these files, so the
+    // tracer cannot see them; without this the endpoint would report "migration
+    // folder not readable" instead of a pending list. See the route's header for
+    // the 43-hour outage that put the check there.
+    "/api/status": ["./prisma/migrations/**"],
   },
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
