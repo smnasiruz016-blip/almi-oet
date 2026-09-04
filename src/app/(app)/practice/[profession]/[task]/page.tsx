@@ -82,7 +82,7 @@ export default async function TaskStartPage({
         <p>
           <span className="font-semibold text-almi-ink">Scoring:</span>{" "}
           {isObjective ? "auto-marked instantly" : "honest AI trait feedback"}, turned into a 0–500
-          practice estimate and an A–E grade for {SUBTEST_LABEL[def.subTest]}.
+          practice estimate and a grade of A, B, C+ or C for {SUBTEST_LABEL[def.subTest]}.
         </p>
       </div>
 

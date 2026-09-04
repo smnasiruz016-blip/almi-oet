@@ -1,5 +1,5 @@
 // Honest single-attempt / step result. Shows the per-sub-test practice estimate
-// (0–500 range + A–E grade), the points earned, and any AI trait feedback. OET
+// (0–500 range + a grade of A, B, C+ or C), the points earned, and any AI trait feedback. OET
 // has no composite/overall, so a single attempt simply shows its own sub-test
 // estimate. Rich per-task review UIs land with each family's phase.
 

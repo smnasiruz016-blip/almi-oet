@@ -18,11 +18,11 @@ export const metadata: Metadata = {
     absolute: "OET Practice Test — Clear or Borderline | AlmiOET",
   },
   description:
-    "OET practice on the real 0–500 scale with an A–E grade per sub-test — see if you're Clear or Borderline before exam day. All 12 healthcare professions. Original material.",
+    "OET practice on the real 0–500 scale with a grade of A, B, C+ or C per sub-test — see if you're Clear or Borderline before exam day. All 12 healthcare professions. Original material.",
   openGraph: {
     title: "AlmiOET — honest Occupational English Test practice for healthcare",
     description:
-      "Original practice on the real 0–500 scale, with an A–E grade per sub-test shown as a range, not an inflated number.",
+      "Original practice on the real 0–500 scale, with a grade of A, B, C+ or C per sub-test shown as a range, not an inflated number.",
   },
 };
 
@@ -32,7 +32,7 @@ const PROMISES = [
   {
     title: "Built around the real OET",
     detail:
-      "Four sub-tests on the real 0–500 scale with an A–E grade each — Listening and Reading common to every profession, Writing and Speaking specific to yours.",
+      "Four sub-tests on the real 0–500 scale with a grade of A, B, C+ or C each — Listening and Reading common to every profession, Writing and Speaking specific to yours.",
   },
   {
     title: "Honest estimates, shown as ranges",
@@ -53,7 +53,7 @@ const PROMISES = [
 const PRICING_LINES = [
   "Honest AI feedback on the Writing letter and Speaking role-play",
   "Auto-marked Listening and Reading practice on every attempt",
-  "A 0–500 estimate and A–E grade per sub-test, shown as ranges",
+  "A 0–500 estimate and a grade of A, B, C+ or C per sub-test, shown as ranges",
   "All 12 professions — Nursing, Medicine, Pharmacy and more",
   "Original practice material — never copied from OET",
   "$12/month with a 7-day free trial, cancel anytime",
@@ -62,7 +62,7 @@ const PRICING_LINES = [
 const FAQ = [
   {
     q: "How is the Occupational English Test scored?",
-    a: "Each of the four sub-tests (Listening, Reading, Writing, Speaking) is scored from 0 to 500 in 10-point steps, mapped to a grade from A to E. Since January 2025 OET also reports an overall score alongside them, and most regulators still set their requirement per sub-test — commonly Grade B (350). AlmiOET estimates each sub-test from your practice and shows it as a range with the most-likely grade; we do not calculate an overall, because we would rather show you nothing than a number we invented.",
+    a: "Each of the four sub-tests (Listening, Reading, Writing, Speaking) is scored from 0 to 500 in 10-point steps, mapped to a published grade band. Since January 2025 OET also reports an overall score alongside them, and most regulators still set their requirement per sub-test — commonly Grade B (350). AlmiOET estimates each sub-test from your practice and shows it as a range with the most-likely grade — A, B, C+ or C, or no letter at all where OET publishes no band; we do not calculate an overall, because we would rather show you nothing than a number we invented.",
   },
   {
     q: "What grade do I need?",
@@ -187,7 +187,7 @@ export default function Home() {
               Practise the OET for healthcare with <span className="text-almi-coral">honest AI feedback.</span>
             </h1>
             <p className="mt-5 text-lg text-almi-text">
-              Original practice on the real 0–500 scale, with an A–E grade for each sub-test — and Writing
+              Original practice on the real 0–500 scale, with a grade of A, B, C+ or C for each sub-test — and Writing
               and Speaking tailored to your profession, so you know what to work on next.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -214,7 +214,7 @@ export default function Home() {
         <div className="mx-auto max-w-3xl">
           <h2 className="text-center text-3xl font-semibold text-almi-ink">An honest estimate, not a fake score</h2>
           <p className="mt-5 text-base text-almi-text">
-            The Occupational English Test grades each sub-test from 0 to 500 with a letter from A to E.
+            The Occupational English Test scores each sub-test from 0 to 500 in 10-point steps, and publishes a grade band for each score.
             The exact raw-to-score conversion is the test owner&apos;s and varies by test form — so anyone
             promising you a precise number from practice is guessing. AlmiOET does the honest thing
             instead: we estimate each sub-test from your practice and show it as a range with the
@@ -247,7 +247,7 @@ export default function Home() {
                   </div>
                   <p className="mt-2 flex-1 text-sm text-almi-text">{parts[0]?.blurb}</p>
                   <span className="mt-3 text-xs text-almi-text-muted">
-                    {parts.length} {parts.length === 1 ? "task" : "parts"} · 0–500 scale, A–E grade
+                    {parts.length} {parts.length === 1 ? "task" : "parts"} · 0–500 scale, grade A · B · C+ · C
                   </span>
                 </li>
               );

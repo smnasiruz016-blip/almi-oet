@@ -8,13 +8,13 @@ import { PricingCheckoutButton } from "./PricingCheckoutButton";
 export const metadata: Metadata = {
   title: "Pricing — 7-day free trial",
   description:
-    "AlmiOET Pro — $12/month, cancel anytime. 7-day free trial. Honest AI feedback on the OET Writing letter and Speaking role-plays, full-length practice, and per-sub-test estimates on the 0–500 / Grade A–E scale.",
+    "AlmiOET Pro — $12/month, cancel anytime. 7-day free trial. Honest AI feedback on the OET Writing letter and Speaking role-plays, full-length practice, and per-sub-test estimates on the 0–500 scale, graded A, B, C+ or C.",
 };
 
 const FEATURES = [
   "Honest AI feedback on the OET Writing letter and Speaking role-plays",
   "Full-length practice across all four sub-tests",
-  "Per-sub-test estimates on the 0–500 / Grade A–E scale, shown as ranges (never a fabricated overall)",
+  "Per-sub-test estimates on the 0–500 scale, graded A, B, C+ or C, shown as ranges (never a fabricated overall)",
   "Adaptive practice that adjusts to your level",
   "Original material — never copied from OET",
   "Cancel anytime from your account",

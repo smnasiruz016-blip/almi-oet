@@ -70,7 +70,7 @@ export default async function SignupPage({
       <h1 className="text-2xl font-semibold text-almi-ink">Create your account</h1>
       <p className="mt-2 text-sm text-almi-text-muted">Then $12/month. Cancel anytime.</p>
       <p className="mt-2 text-sm text-almi-text-muted">
-        Practise the Occupational English Test with honest AI feedback on the 0–500 / Grade A–E scale.
+        Practise the Occupational English Test with honest AI feedback on the 0–500 scale, graded A, B, C+ or C.
       </p>
 
       {error === "taken" && (

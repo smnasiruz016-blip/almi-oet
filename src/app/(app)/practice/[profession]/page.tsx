@@ -193,7 +193,7 @@ export default async function ProfessionPracticePage({
           Listening and Reading below are the same for every profession.
         </span>{" "}
         Only the Writing and Speaking material is specific to {def.label} — that is how the real OET
-        is built. Each sub-test is estimated on the 0–500 scale with an A–E grade, shown as a range.
+        is built. Each sub-test is estimated on the 0–500 scale with a grade of A, B, C+ or C, shown as a range.
       </p>
 
       {SUBTEST_ORDER.map((subTest) => {
