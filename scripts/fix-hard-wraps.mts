@@ -43,6 +43,7 @@ import { join } from "node:path";
 import { PrismaClient } from "@prisma/client";
 import { words } from "./gates/words";
 import { unwrap } from "./wrap-rule";
+import { requireProdWrite } from "./prod-write-guard";
 
 const CONFIRM = process.argv.includes("--confirm");
 const ONE = process.argv.includes("--one");
@@ -157,6 +158,7 @@ try {
   console.log(`\n[fix] rollback likha: ${file} (${todo.length} row(s))`);
 
   let written = 0;
+  requireProdWrite("scripts/fix-hard-wraps.mts");
   for (const j of todo) {
     const row = await prisma.oetItem.findUnique({ where: { id: j.id }, select: { payload: true } });
     if (!row) continue;

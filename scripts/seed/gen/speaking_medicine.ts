@@ -24,7 +24,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "An antenatal clinic",
       "patientRole": "The patient is anxious that she may have already harmed the baby.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Find out exactly what she has taken, reassure where appropriate, advise which remedies are safe in pregnancy and which to avoid, and explain when to seek advice before taking anything new.",
       "candidateRole": "You are the doctor seeing a patient who is 10 weeks pregnant and has been taking over-the-counter medicines for headaches and a cold.",
@@ -45,7 +45,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A cardiology follow-up clinic",
       "patientRole": "The patient feels fine again and is keen to get back to old habits, including smoking.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Discuss the changes that will lower the risk of another event, including stopping smoking, diet and activity, and agree one or two realistic first steps together.",
       "candidateRole": "You are the doctor reviewing a 47-year-old patient two weeks after a mild heart attack.",
@@ -66,7 +66,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A hospital outpatient clinic",
       "patientRole": "The patient came in expecting a routine result and is alone today.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Share the findings sensitively, be honest that further tests are needed before anything is certain, explain the next steps, and support the patient's immediate reaction.",
       "candidateRole": "You are the doctor reviewing a 60-year-old patient whose scan strongly suggests a tumour in the lung that needs urgent further tests.",
@@ -87,7 +87,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A pre-operative assessment clinic",
       "patientRole": "The patient is anxious about anaesthesia and the recovery period.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Outline what to expect before, during and after surgery, explain the realistic recovery timeline and rehabilitation, and answer the patient's concerns about pain control and getting home.",
       "candidateRole": "You are the doctor preparing a 68-year-old patient for a planned total knee replacement next month.",
@@ -108,7 +108,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A general practice clinic",
       "patientRole": "The patient has heard that statins cause muscle problems and memory loss and is reluctant to start.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain why a statin is being recommended, discuss the real frequency of side effects honestly, and agree a plan that includes a trial and review.",
       "candidateRole": "You are the doctor seeing a 58-year-old patient with raised cholesterol and a high cardiovascular risk score.",
@@ -129,7 +129,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A hospital outpatient clinic. The patient has attended to discuss results, but a CT scan was not booked due to an administrative error and has not yet been done.",
       "patientRole": "The patient is a 62-year-old retired teacher being investigated for unintentional weight loss and is anxiously awaiting CT scan results today.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Find out the patient's expectations for today's visit. Explain honestly that the CT scan was not arranged because of a booking error and apologise. Reassure about the interim safety-netting, arrange the scan as a priority and a clear follow-up, and address the patient's concerns.",
       "candidateRole": "You are the hospital doctor (medical registrar) seeing the patient in clinic.",
@@ -150,7 +150,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A general practice clinic",
       "patientRole": "The patient feels well and is reluctant to start a blood-thinning medication.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain what atrial fibrillation is and why it raises stroke risk, discuss the role of anticoagulation, weigh the benefits against the bleeding risk, and agree a way forward.",
       "candidateRole": "You are the doctor seeing a 74-year-old patient newly found to have an irregular heart rhythm, atrial fibrillation.",
@@ -171,7 +171,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A general practice clinic",
       "patientRole": "The patient is worried the rash is contagious and dangerous.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain what shingles is, start antiviral and pain treatment, advise on what to expect and when to seek further help, and reassure about the contagion risk.",
       "candidateRole": "You are the doctor seeing a 71-year-old patient with a painful blistering rash on one side of the chest, consistent with shingles.",
@@ -192,7 +192,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A general practice asthma review",
       "patientRole": "The patient only uses the brown preventer inhaler when feeling breathless and skips it otherwise.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain the difference between the preventer and reliever inhalers, why daily preventer use matters, and agree a simple routine the patient can stick to.",
       "candidateRole": "You are the doctor reviewing a 24-year-old patient with asthma who has needed several reliever prescriptions recently.",
@@ -213,7 +213,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A general practice consulting room. The patient has returned for results after three raised blood-pressure readings over the past month.",
       "patientRole": "The patient is a 45-year-old accountant recently found to have stage 1 hypertension. They feel completely well and are reluctant to start medication.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Find out the patient's understanding of and concerns about the diagnosis. Explain what hypertension means and why treatment matters even without symptoms. Discuss lifestyle measures (diet, salt, alcohol, activity, weight) and the option of starting medication. Agree a realistic plan and arrange follow-up.",
       "candidateRole": "You are the general practitioner.",
@@ -234,7 +234,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A community child health clinic",
       "patientRole": "The parent has read alarming claims online and wants to delay or skip the vaccine.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Listen to the parent's specific worries, address them honestly with the evidence, explain the risks of leaving the child unprotected, and respect that the decision is theirs while encouraging vaccination.",
       "candidateRole": "You are the doctor seeing the parent of a 14-month-old who is due the MMR vaccine.",
@@ -255,7 +255,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A general practice clinic",
       "patientRole": "The patient relies on the tablets and fears being left in pain if the dose is reduced.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Review how well the medication is really helping, explain the risks of long-term opioids, and propose a gradual, supported plan to reduce the dose alongside other approaches.",
       "candidateRole": "You are the doctor reviewing a 55-year-old patient who has taken strong opioid painkillers for chronic back pain for two years.",
@@ -276,7 +276,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A paediatric emergency department",
       "patientRole": "The parent is shaken, having thought their child was dying.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain what a febrile seizure is, reassure about the usually good outcome, advise on what to do if it happens again, and describe the warning signs that need urgent help.",
       "candidateRole": "You are the doctor seeing the parent of a 2-year-old who had a brief seizure during a fever and has now recovered.",
@@ -297,7 +297,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A general practice clinic",
       "patientRole": "The patient is wary of starting tablets and would prefer to fix things with diet alone.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain the diagnosis in plain terms, recommend starting metformin alongside dietary change, describe the common early side effects, and agree a follow-up plan for review.",
       "candidateRole": "You are the doctor seeing a 52-year-old patient whose recent blood tests confirm type 2 diabetes.",
@@ -318,7 +318,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A general practice clinic",
       "patientRole": "The patient is reluctant to admit how bad things have become and is unsure whether to mention darker thoughts.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explore the patient's mood and daily functioning, ask sensitively about safety, and discuss treatment options including talking therapy and possible medication.",
       "candidateRole": "You are the doctor seeing a 30-year-old patient who has felt persistently low and has not been sleeping for several weeks.",
