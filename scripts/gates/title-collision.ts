@@ -61,16 +61,27 @@
  */
 import "../load-env.mjs";
 import { GEN_ITEMS } from "../seed/gen/index";
-import { ITEMS as READING_A_SETS } from "../seed/gen/reading_a_sets";
-import { ITEMS as READING_B_SETS } from "../seed/gen/reading_b_sets";
 
-/** Batches authored but not yet in the database. One line per new gen module,
- *  the same discipline seed/gen/index.ts already asks for. Remove a batch once
- *  it is seeded and confirmed — a stale entry costs nothing but says less. */
-const NEW_BATCHES: { name: string; authored: string; items: unknown[] }[] = [
-  { name: "reading_a_sets", authored: "2026-09-04", items: READING_A_SETS },
-  { name: "reading_b_sets", authored: "2026-09-04", items: READING_B_SETS },
-];
+/**
+ * Batches authored but NOT YET in the database. One line per new gen module, the
+ * same discipline seed/gen/index.ts already asks for.
+ *
+ * 🔴 REMOVE A BATCH THE MOMENT IT IS SEEDED, or every later build fails. Once
+ * the rows exist, the batch's own titles ARE in the database — legitimately —
+ * and this gate cannot tell that apart from the disaster it exists to catch. It
+ * runs inside gate:all, which runs inside `npm run build`, so a stale entry
+ * fails the Vercel deploy, not just a local run.
+ *
+ * That is not a flaw to be papered over; it is the cost of the gate knowing what
+ * is new only because somebody said so. Seeding and clearing this list are one
+ * action with two halves.
+ *
+ * reading_a_sets and reading_b_sets (15 + 15, authored 2026-09-04) were seeded to
+ * production on 2026-09-04: "Inserted 30 new item(s). Skipped 1036 already
+ * present." Verified READING_PART_A 30 active, READING_PART_B 30 active,
+ * /api/status itemsActive 634. Cleared here in the same breath.
+ */
+const NEW_BATCHES: { name: string; authored: string; items: unknown[] }[] = [];
 
 type Item = { taskType: string; profession: string | null; title: string; payload?: unknown };
 
