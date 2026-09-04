@@ -10,6 +10,11 @@ import { ITEMS as LISTENING_B } from "./listening_b";
 import { ITEMS as LISTENING_A_SETS } from "./listening_a_sets";
 import { ITEMS as LISTENING_B_SETS } from "./listening_b_sets";
 import { ITEMS as LISTENING_C_SETS } from "./listening_c_sets";
+// The 360 Writing and Speaking items of 4 September 2026. Separate modules from
+// the per-profession writing_*/speaking_* files, which were generated FROM
+// PRODUCTION and must keep describing the rows already there.
+import { ITEMS as WRITING_SETS } from "./writing_sets";
+import { ITEMS as SPEAKING_SETS } from "./speaking_sets";
 import { ITEMS as LISTENING_C } from "./listening_c";
 import { ITEMS as READING_A } from "./reading_a";
 import { ITEMS as READING_B } from "./reading_b";
@@ -45,6 +50,8 @@ export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...LISTENING_A_SETS,
   ...LISTENING_B_SETS,
   ...LISTENING_C_SETS,
+  ...WRITING_SETS,
+  ...SPEAKING_SETS,
   ...LISTENING_C,
   ...READING_A,
   ...READING_B,

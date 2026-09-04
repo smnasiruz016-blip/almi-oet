@@ -87,7 +87,16 @@ export type Fixture = {
   listeningAFullLengthTitles: string[];
   listeningBFullLengthTitles: string[];
   listeningCFullLengthTitles: string[];
+  /** One Writing and one Speaking item for the learner's own profession, so a
+   *  walk can render an AI-graded task and watch what a retire does to it. */
+  writing: AiWalk;
+  speaking: AiWalk;
 };
+
+/** An AI-graded item, addressed the way the library addresses it. Nothing about
+ *  its payload is carried here: these tasks are graded by a model, so there is
+ *  no key to read off and nothing for a walk to answer "correctly". */
+export type AiWalk = { taskSlug: string; professionSlug: string; title: string };
 
 /**
  * LISTENING PART A: one consultation and twelve gaps.
@@ -178,6 +187,10 @@ export type PartAWalk = {
 /** src/instrumentation.ts refuses to start the server below this per-part. It is
  *  read from the same place the product states it, not retyped as a number. */
 const FLOOR = 15;
+/** The two AI-graded parts. They are seeded WHOLE alongside the objective six so
+ *  a walk can open one — until 4 September 2026 the fixture seeded neither, so
+ *  nothing in this suite had ever rendered a Writing or Speaking item. */
+const AI_PARTS = ["WRITING_LETTER", "SPEAKING_ROLEPLAY"] as const;
 const OBJECTIVE_PARTS = [
   "LISTENING_PART_A",
   "LISTENING_PART_B",
@@ -512,13 +525,25 @@ function partAWalk(item: Prisma.OetItemCreateManyInput): PartAWalk {
   };
 }
 
+/** The first item of the learner's own profession for an AI task. Throws rather
+ *  than guesses: an empty AI pool is a finding about the bank. */
+function aiWalk(
+  items: Prisma.OetItemCreateManyInput[],
+  taskType: string,
+  taskSlug: string,
+): AiWalk {
+  const hit = items.find((i) => i.taskType === taskType && i.profession === "NURSING");
+  if (!hit) throw new Error(`[e2e] no NURSING ${taskType} item in the seed source`);
+  return { taskSlug, professionSlug: "nursing", title: hit.title };
+}
+
 export async function seedFixture(url: string): Promise<Fixture> {
   assertDisposable(url);
   const prisma = new PrismaClient({ datasourceUrl: url });
   try {
     const all = GEN_ITEMS as Prisma.OetItemCreateManyInput[];
     const items: Prisma.OetItemCreateManyInput[] = [];
-    for (const part of OBJECTIVE_PARTS) {
+    for (const part of [...OBJECTIVE_PARTS, ...AI_PARTS]) {
       const pool = all.filter((i) => i.taskType === part);
       // 🔴 READING PART A IS SEEDED WHOLE, and the others are cut to the floor.
       // The retire walk has to see what production sees: the corrected items AND
@@ -556,6 +581,12 @@ export async function seedFixture(url: string): Promise<Fixture> {
         // Entitled without Stripe and without email verification: isComped()
         // short-circuits hasPaidAccess(). A real grant path, not a test-only one.
         compProUntil: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        // 🔴 VERIFIED, because the AI tasks require it. src/app/api/oet/submit
+        // refuses Writing and Speaking for an unverified address BEFORE the
+        // substance guard, so an unverified fixture user would make every AI
+        // probe return 403 and a walk could not tell that apart from anything
+        // else. Verifying is a real path a real learner takes.
+        emailVerified: new Date(),
       },
     });
 
@@ -654,6 +685,8 @@ export async function seedFixture(url: string): Promise<Fixture> {
       // be walked on the same item: the second item takes the wrong option.
       listeningB: listeningMcqWalk(listeningBFull[0], "listening-part-b", false),
       listeningC: listeningMcqWalk(listeningCFull[0], "listening-part-c", true),
+      writing: aiWalk(items, "WRITING_LETTER", "writing-letter"),
+      speaking: aiWalk(items, "SPEAKING_ROLEPLAY", "speaking-roleplay"),
       listeningAFullLengthTitles: listeningAFull.map((i) => i.title),
       listeningBFullLengthTitles: listeningBFull.map((i) => i.title),
       listeningCFullLengthTitles: listeningCFull.map((i) => i.title),

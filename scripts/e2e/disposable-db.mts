@@ -81,6 +81,24 @@ export async function startDisposablePostgres(port = 55432): Promise<DisposableD
     password: "e2e",
     port,
     persistent: false,
+    // 🔴 UTF8 AND A NEUTRAL LOCALE, BOTH FORCED. FOUND 4 SEPTEMBER 2026.
+    //
+    // `initdb` takes its encoding from the HOST's locale. On this machine that
+    // is Icelandic_Iceland.1252, so every throwaway database was created as
+    // WIN1252 — and the first seed that carried a character outside it died:
+    //
+    //   ERROR: character with byte sequence 0xe2 0x89 0xa5 in encoding "UTF8"
+    //   has no equivalent in encoding "WIN1252"
+    //
+    // 0xe2 0x89 0xa5 is "≥", which the Writing case notes use. Production is
+    // Neon, which is UTF8, so the CONTENT was never the problem: the test
+    // database simply could not hold what production holds, and no walk had ever
+    // asked it to because Writing and Speaking were not seeded until today.
+    //
+    // A harness that cannot store the real bank cannot test the real product,
+    // and it fails differently on a different developer's machine — which is the
+    // worse half. The encoding is now the product's, not the laptop's.
+    initdbFlags: ["--encoding=UTF8", "--locale=C"],
   });
   await pg.initialise();
   await pg.start();
