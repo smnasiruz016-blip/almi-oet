@@ -29,6 +29,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { writingLetterPayloadSchema } from "../../../src/lib/oet/tasks/writing-letter";
 import { speakingRoleplayPayloadSchema } from "../../../src/lib/oet/tasks/speaking-roleplay";
+import { unwrap } from "../../wrap-rule";
 
 const OUT_DIR = join(process.cwd(), "scripts", "seed", "gen");
 const PROFESSIONS = [
@@ -106,6 +107,23 @@ for (const set of SETS) {
     if (n !== 15) fail(`${set.file}: ${p} has ${n} items, expected 15`);
   }
   if (bad > 0) continue;
+
+  // 🔴 UNWRAP HERE, so the generated file says exactly what production says.
+  //
+  // The source markdown is hand-wrapped at ~100 characters and those breaks
+  // travelled into the payload, where the composer renders them as visible
+  // splits mid-sentence. The live rows were repaired on 4 September 2026; doing
+  // it in the builder too means the source and the bank cannot drift apart, and
+  // that a future seed cannot put the wraps back.
+  //
+  // `unwrap` is idempotent — text with no wrap left in it comes back unchanged —
+  // so re-running this on already-clean JSON is a no-op.
+  for (const r of rows) {
+    const p = r.payload as Record<string, unknown>;
+    for (const f of ["caseNotes", "candidateCard"]) {
+      if (typeof p[f] === "string") p[f] = unwrap(p[f] as string);
+    }
+  }
 
   const header = `// GENERATED — DO NOT HAND-EDIT.
 //
