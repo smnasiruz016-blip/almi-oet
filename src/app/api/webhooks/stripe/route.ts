@@ -233,7 +233,12 @@ export async function POST(request: Request): Promise<NextResponse> {
     event = JSON.parse(rawBody) as Stripe.Event; // trusted via the router's per-product HMAC
   } else {
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-    if (!webhookSecret || webhookSecret.length < 10) {
+    // Was `webhookSecret.length < 10` — a length read on a credential, which
+    // gate:no-secret-shape now forbids. The prefix check is a MODE check (the
+    // allowed shape is public: Stripe signing secrets are `whsec_…`), and it is
+    // a STRICTER stub-check than a length was: a 20-character placeholder used
+    // to pass, and no longer does.
+    if (!webhookSecret || !webhookSecret.startsWith("whsec_")) {
       console.error(`${logPrefix()} STRIPE_WEBHOOK_SECRET not configured`);
       return new NextResponse("Webhook secret not configured", { status: 500 });
     }
