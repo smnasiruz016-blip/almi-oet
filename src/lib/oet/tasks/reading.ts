@@ -26,6 +26,24 @@ const mcqQuestionSchema = z.object({
   stem: z.string(),
   options: z.array(mcqOptionSchema),
   answer: z.string(),
+  /**
+   * What a Reading Part C question is ABOUT. Applied to the 168 four-option
+   * items on 4 September 2026 from the marker data file; the 78 legacy
+   * three-option questions carry none, deliberately.
+   *
+   *   reference  — the question asks what a word or phrase POINTS TO
+   *   writer     — the answer is the writer's own position: opinion, concession,
+   *                objection, suggestion, or a change of mind
+   *   paragraph  — the answer is the CONTENT of a particular paragraph
+   *
+   * An ARRAY, because one question can legitimately be two of these at once.
+   *
+   * ⚠️ NOT THE SAME FIELD AS READING PART A's `kind`, which is a STRING
+   * ("match" | "gap") and says how a question is ANSWERED. Same name, from the
+   * 3 September ruling; nothing else in common. Optional here because Part B
+   * shares this schema and carries no markers.
+   */
+  kind: z.array(z.enum(["paragraph", "reference", "writer"])).optional(),
 });
 
 /**

@@ -1986,6 +1986,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what does the writer say about the sight test?",
           "answer": "a",
           "options": [
@@ -2009,6 +2010,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"they\" refer to?",
           "answer": "b",
           "options": [
@@ -2032,6 +2034,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, what is said about the commercial setting?",
           "answer": "d",
           "options": [
@@ -2055,6 +2058,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "What is identified as the real quality problem?",
           "answer": "c",
           "options": [
@@ -2078,6 +2082,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, why are children a particular concern?",
           "answer": "b",
           "options": [
@@ -2101,6 +2106,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "In the sixth paragraph, what is said about retinal imaging?",
           "answer": "a",
           "options": [
@@ -2124,6 +2130,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "What has the writer changed in how he explains findings?",
           "answer": "d",
           "options": [
@@ -2147,6 +2154,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what does the writer conclude?",
           "answer": "c",
           "options": [
@@ -2191,6 +2199,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what is said about the pathway?",
           "answer": "a",
           "options": [
@@ -2214,6 +2223,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"These\" refer to?",
           "answer": "b",
           "options": [
@@ -2237,6 +2247,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, how is neuropathy described?",
           "answer": "c",
           "options": [
@@ -2260,6 +2271,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph","writer"],
           "stem": "What is the writer's view of patients who reject prescribed footwear?",
           "answer": "d",
           "options": [
@@ -2283,6 +2295,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what is said about daily foot checks?",
           "answer": "c",
           "options": [
@@ -2306,6 +2319,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "In the sixth paragraph, where is the main delay located?",
           "answer": "d",
           "options": [
@@ -2329,6 +2343,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "Why does the writer object to quoting amputation figures?",
           "answer": "a",
           "options": [
@@ -2352,6 +2367,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph"],
           "stem": "In the final paragraph, which part does the writer say is omitted?",
           "answer": "b",
           "options": [
@@ -2396,6 +2412,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what is said to shape veterinary practice most?",
           "answer": "a",
           "options": [
@@ -2419,6 +2436,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"It\" refer to?",
           "answer": "b",
           "options": [
@@ -2442,6 +2460,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, why are two plans offered?",
           "answer": "c",
           "options": [
@@ -2465,6 +2484,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer now do when an owner asks whether it is time?",
           "answer": "d",
           "options": [
@@ -2488,6 +2508,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what is said about antimicrobial use?",
           "answer": "d",
           "options": [
@@ -2511,6 +2532,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "In the sixth paragraph, why is the breed conversation difficult?",
           "answer": "c",
           "options": [
@@ -2534,6 +2556,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "What is said about distress in the profession?",
           "answer": "a",
           "options": [
@@ -2557,6 +2580,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what does the writer argue?",
           "answer": "b",
           "options": [
@@ -2601,6 +2625,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what made the letter difficult to draft?",
           "answer": "b",
           "options": [
@@ -2624,6 +2649,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, who does the word \"They\" refer to?",
           "answer": "d",
           "options": [
@@ -2647,6 +2673,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, why is \"overdiagnosis\" called a poor term?",
           "answer": "a",
           "options": [
@@ -2670,6 +2697,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "Why is the men's question hard to answer well?",
           "answer": "d",
           "options": [
@@ -2693,6 +2721,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph","writer"],
           "stem": "What is revealed about his view of colleagues who refuse the question?",
           "answer": "b",
           "options": [
@@ -2716,6 +2745,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what change does the writer describe?",
           "answer": "c",
           "options": [
@@ -2739,6 +2769,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "What reservation does the writer raise about the figures?",
           "answer": "d",
           "options": [
@@ -2762,6 +2793,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the sixth paragraph, what does the writer say about critics of screening?",
           "answer": "c",
           "options": [
@@ -2806,6 +2838,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what do the writer's colleagues' stories have in common?",
           "answer": "b",
           "options": [
@@ -2829,6 +2862,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"It\" refer to?",
           "answer": "a",
           "options": [
@@ -2852,6 +2886,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "Why is the standard advice said to address the easier problem?",
           "answer": "d",
           "options": [
@@ -2875,6 +2910,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, what may a shortened rendering indicate?",
           "answer": "b",
           "options": [
@@ -2898,6 +2934,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "What is said about the two minutes before the consultation?",
           "answer": "c",
           "options": [
@@ -2921,6 +2958,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph","writer"],
           "stem": "In the fifth paragraph, what position does the writer take on family interpreters?",
           "answer": "a",
           "options": [
@@ -2944,6 +2982,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "Why must an interpreter be told in advance that bad news is coming?",
           "answer": "c",
           "options": [
@@ -2967,6 +3006,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what does the writer describe as uncomfortable?",
           "answer": "c",
           "options": [
@@ -3011,6 +3051,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what has become recognisable in the clinic room?",
           "answer": "c",
           "options": [
@@ -3034,6 +3075,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"it\" refer to?",
           "answer": "b",
           "options": [
@@ -3057,6 +3099,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "According to the third paragraph, what has changed over twenty years?",
           "answer": "a",
           "options": [
@@ -3080,6 +3123,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "According to the third paragraph, what does the asymmetry do over time?",
           "answer": "c",
           "options": [
@@ -3103,6 +3147,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fourth paragraph, how is the accumulation of medicines explained?",
           "answer": "d",
           "options": [
@@ -3126,6 +3171,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph","writer"],
           "stem": "What point does the writer make about the period before guidelines?",
           "answer": "d",
           "options": [
@@ -3149,6 +3195,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "In the sixth paragraph, where does the writer locate the problem?",
           "answer": "a",
           "options": [
@@ -3172,6 +3219,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer propose that guidelines should state prominently?",
           "answer": "b",
           "options": [
@@ -3216,6 +3264,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph","writer"],
           "stem": "In the first paragraph, what does the writer find most awkward about fatigue?",
           "answer": "d",
           "options": [
@@ -3239,6 +3288,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the third paragraph, who does the word \"they\" refer to?",
           "answer": "a",
           "options": [
@@ -3262,6 +3312,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "What is said about the rota redesign?",
           "answer": "d",
           "options": [
@@ -3285,6 +3336,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph","writer"],
           "stem": "In the third paragraph, what is the writer's objection to incident reports?",
           "answer": "b",
           "options": [
@@ -3308,6 +3360,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fourth paragraph, why is fatigue training called displacement activity?",
           "answer": "a",
           "options": [
@@ -3331,6 +3384,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "Why is a fixed handover format preferred?",
           "answer": "d",
           "options": [
@@ -3354,6 +3408,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "What is acknowledged in the fifth paragraph?",
           "answer": "a",
           "options": [
@@ -3377,6 +3432,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer say has changed in his own thinking?",
           "answer": "c",
           "options": [
@@ -3421,6 +3477,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, why does the conversation compress?",
           "answer": "b",
           "options": [
@@ -3444,6 +3501,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"It\" refer to?",
           "answer": "c",
           "options": [
@@ -3467,6 +3525,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, what does the writer say about the audit that found the department exemplary?",
           "answer": "d",
           "options": [
@@ -3490,6 +3549,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph","writer"],
           "stem": "What is the point of the example of the patient who signed in a corridor?",
           "answer": "a",
           "options": [
@@ -3513,6 +3573,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph","writer"],
           "stem": "In the fourth paragraph, what is conceded about signing?",
           "answer": "c",
           "options": [
@@ -3536,6 +3597,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer identify as his narrow objection?",
           "answer": "b",
           "options": [
@@ -3559,6 +3621,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what did the department change?",
           "answer": "d",
           "options": [
@@ -3582,6 +3645,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph"],
           "stem": "What does the writer say about consent in emergency work?",
           "answer": "a",
           "options": [
@@ -3626,6 +3690,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the second paragraph, which groups benefited most?",
           "answer": "c",
           "options": [
@@ -3649,6 +3714,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the third paragraph, what does the word \"these\" refer to?",
           "answer": "a",
           "options": [
@@ -3672,6 +3738,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer say is most troubling about the loss?",
           "answer": "b",
           "options": [
@@ -3695,6 +3762,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "In the fourth paragraph, what distinction is drawn between services?",
           "answer": "b",
           "options": [
@@ -3718,6 +3786,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, how are the safety failures characterised?",
           "answer": "d",
           "options": [
@@ -3741,6 +3810,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph","writer"],
           "stem": "Why does the writer decline to claim a clinical benefit for the booking change?",
           "answer": "d",
           "options": [
@@ -3764,6 +3834,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "In the sixth paragraph, what is said about the mode of consultation?",
           "answer": "a",
           "options": [
@@ -3787,6 +3858,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer say about part of the sceptical argument?",
           "answer": "b",
           "options": [
@@ -3831,6 +3903,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph","writer"],
           "stem": "In the first paragraph, what is the objection to the term \"waiting list\"?",
           "answer": "a",
           "options": [
@@ -3854,6 +3927,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"These\" refer to?",
           "answer": "d",
           "options": [
@@ -3877,6 +3951,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "According to the third paragraph, why is the sorting not explained to patients?",
           "answer": "b",
           "options": [
@@ -3900,6 +3975,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "What happened where full publication of criteria was tried?",
           "answer": "c",
           "options": [
@@ -3923,6 +3999,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what did the department begin telling patients?",
           "answer": "b",
           "options": [
@@ -3946,6 +4023,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "What distinction is drawn about the complaints received?",
           "answer": "d",
           "options": [
@@ -3969,6 +4047,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "Why does the writer resist calling this a communication problem?",
           "answer": "a",
           "options": [
@@ -3992,6 +4071,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the seventh paragraph, what does the writer conclude about the urgency proxy?",
           "answer": "c",
           "options": [
@@ -4036,6 +4116,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what did the audit finding that most struck the writer concern?",
           "answer": "c",
           "options": [
@@ -4059,6 +4140,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["paragraph"],
           "stem": "In the second paragraph, what had the leaflets not been reviewed by?",
           "answer": "a",
           "options": [
@@ -4082,6 +4164,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph","writer"],
           "stem": "What is the objection to how health literacy is applied?",
           "answer": "d",
           "options": [
@@ -4105,6 +4188,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "In the fourth paragraph, what was done in the redesign?",
           "answer": "b",
           "options": [
@@ -4128,6 +4212,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "What does the writer say about the fall in calls to the ward?",
           "answer": "b",
           "options": [
@@ -4151,6 +4236,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["reference"],
           "stem": "In the sixth paragraph, what does the word \"They\" refer to?",
           "answer": "a",
           "options": [
@@ -4174,6 +4260,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "Which assumptions in the English leaflets does the writer question?",
           "answer": "c",
           "options": [
@@ -4197,6 +4284,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the seventh paragraph, how is the underlying problem characterised?",
           "answer": "a",
           "options": [
@@ -4241,6 +4329,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what is identified as the clinician's difficulty?",
           "answer": "b",
           "options": [
@@ -4264,6 +4353,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"It\" refer to?",
           "answer": "c",
           "options": [
@@ -4287,6 +4377,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, why is a prescribing rate said to mislead?",
           "answer": "d",
           "options": [
@@ -4310,6 +4401,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "What is said about the delayed prescription?",
           "answer": "a",
           "options": [
@@ -4333,6 +4425,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what imbalance is described?",
           "answer": "c",
           "options": [
@@ -4356,6 +4449,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "In the sixth paragraph, what did the practice change?",
           "answer": "d",
           "options": [
@@ -4379,6 +4473,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "What objection does the writer make to the word \"inappropriate\"?",
           "answer": "b",
           "options": [
@@ -4402,6 +4497,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what does the writer say would change his prescribing most?",
           "answer": "a",
           "options": [
@@ -4446,6 +4542,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what change is described?",
           "answer": "c",
           "options": [
@@ -4469,6 +4566,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"they\" refer to?",
           "answer": "b",
           "options": [
@@ -4492,6 +4590,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, what does the writer describe doing on a ward round?",
           "answer": "a",
           "options": [
@@ -4515,6 +4614,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "Why is the line recording a clinician's reasoning often left out?",
           "answer": "d",
           "options": [
@@ -4538,6 +4638,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what failing of templates is identified?",
           "answer": "c",
           "options": [
@@ -4561,6 +4662,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph","writer"],
           "stem": "In the sixth paragraph, what does the writer concede?",
           "answer": "a",
           "options": [
@@ -4584,6 +4686,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "What arrangement is proposed for the note?",
           "answer": "d",
           "options": [
@@ -4607,6 +4710,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph"],
           "stem": "In the final paragraph, what is said about spoken handover?",
           "answer": "b",
           "options": [
@@ -4651,6 +4755,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what is said about falls policies?",
           "answer": "d",
           "options": [
@@ -4674,6 +4779,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"these\" refer to?",
           "answer": "b",
           "options": [
@@ -4697,6 +4803,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, what do bedrails actually achieve?",
           "answer": "c",
           "options": [
@@ -4720,6 +4827,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer say about the vocabulary used for bedrails?",
           "answer": "c",
           "options": [
@@ -4743,6 +4851,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what is said about the best-evidenced interventions?",
           "answer": "a",
           "options": [
@@ -4766,6 +4875,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph","writer"],
           "stem": "What is conceded about action at the bedside?",
           "answer": "d",
           "options": [
@@ -4789,6 +4899,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "In the seventh paragraph, what fault is found with the incident form?",
           "answer": "b",
           "options": [
@@ -4812,6 +4923,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what change does the writer propose?",
           "answer": "a",
           "options": [
@@ -4856,6 +4968,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what does the writer say about the six-month interval?",
           "answer": "b",
           "options": [
@@ -4879,6 +4992,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"It\" refer to?",
           "answer": "c",
           "options": [
@@ -4902,6 +5016,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, which reason for slow adoption is described as least discussed?",
           "answer": "d",
           "options": [
@@ -4925,6 +5040,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer say about the influence of income on decisions?",
           "answer": "a",
           "options": [
@@ -4948,6 +5064,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what argument is made for shorter intervals?",
           "answer": "c",
           "options": [
@@ -4971,6 +5088,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph","writer"],
           "stem": "In the sixth paragraph, what does the writer do with the saved chair time?",
           "answer": "b",
           "options": [
@@ -4994,6 +5112,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "What was the effect of rewriting the recall letter?",
           "answer": "d",
           "options": [
@@ -5017,6 +5136,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what conclusion is reached?",
           "answer": "a",
           "options": [
@@ -5061,6 +5181,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, how is the profession's usual account described?",
           "answer": "d",
           "options": [
@@ -5084,6 +5205,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"It\" refer to?",
           "answer": "b",
           "options": [
@@ -5107,6 +5229,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, what kind of reasons are given for uneaten meals?",
           "answer": "a",
           "options": [
@@ -5130,6 +5253,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "What does the writer say about supplement drinks?",
           "answer": "c",
           "options": [
@@ -5153,6 +5277,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, how is the failure of protected mealtimes explained?",
           "answer": "a",
           "options": [
@@ -5176,6 +5301,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer's three-line record distinguish?",
           "answer": "b",
           "options": [
@@ -5199,6 +5325,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "In the seventh paragraph, what objection is made to weight?",
           "answer": "d",
           "options": [
@@ -5222,6 +5349,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what change is proposed?",
           "answer": "c",
           "options": [
@@ -5266,6 +5394,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what is said to matter most?",
           "answer": "d",
           "options": [
@@ -5289,6 +5418,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"They\" refer to?",
           "answer": "c",
           "options": [
@@ -5312,6 +5442,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph","writer"],
           "stem": "In the third paragraph, why is the word \"reconciliation\" criticised?",
           "answer": "c",
           "options": [
@@ -5335,6 +5466,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "What does the writer say the half-hour is spent on?",
           "answer": "b",
           "options": [
@@ -5358,6 +5490,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what happens to changes made during a stay?",
           "answer": "d",
           "options": [
@@ -5381,6 +5514,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "What is proposed for each medication change?",
           "answer": "a",
           "options": [
@@ -5404,6 +5538,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "In the seventh paragraph, what criticism does the writer make of pharmacy?",
           "answer": "a",
           "options": [
@@ -5427,6 +5562,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what does the writer want patients to do?",
           "answer": "b",
           "options": [
@@ -5471,6 +5607,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what is said about the treatment?",
           "answer": "a",
           "options": [
@@ -5494,6 +5631,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"They\" refer to?",
           "answer": "b",
           "options": [
@@ -5517,6 +5655,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, what did patients give as obstacles?",
           "answer": "d",
           "options": [
@@ -5540,6 +5679,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer now regard as his own failure?",
           "answer": "b",
           "options": [
@@ -5563,6 +5703,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what is said in defence of the exercise sheet?",
           "answer": "d",
           "options": [
@@ -5586,6 +5727,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "Why are fewer exercises preferred?",
           "answer": "a",
           "options": [
@@ -5609,6 +5751,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "What limitation of the applications is identified?",
           "answer": "c",
           "options": [
@@ -5632,6 +5775,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what does the writer identify as most important?",
           "answer": "c",
           "options": [
@@ -5676,6 +5820,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what problem is described?",
           "answer": "a",
           "options": [
@@ -5699,6 +5844,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"It\" refer to?",
           "answer": "c",
           "options": [
@@ -5722,6 +5868,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, what is the usual outcome of a justification call?",
           "answer": "d",
           "options": [
@@ -5745,6 +5892,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "What is said about incidental findings?",
           "answer": "b",
           "options": [
@@ -5768,6 +5916,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what concern about dose is raised?",
           "answer": "c",
           "options": [
@@ -5791,6 +5940,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "In the sixth paragraph, why are protocols said to be insufficient?",
           "answer": "b",
           "options": [
@@ -5814,6 +5964,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "What does the writer say about the radiographer in the assessment area?",
           "answer": "d",
           "options": [
@@ -5837,6 +5988,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what does the writer propose saying to patients?",
           "answer": "a",
           "options": [
@@ -5881,6 +6033,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what is said about the recommendation?",
           "answer": "c",
           "options": [
@@ -5904,6 +6057,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"These\" refer to?",
           "answer": "b",
           "options": [
@@ -5927,6 +6081,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph","writer"],
           "stem": "In the third paragraph, what is the objection to thickened fluids?",
           "answer": "d",
           "options": [
@@ -5950,6 +6105,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "What makes the risk-feeding conversation difficult?",
           "answer": "a",
           "options": [
@@ -5973,6 +6129,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what imbalance is described?",
           "answer": "c",
           "options": [
@@ -5996,6 +6153,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph","writer"],
           "stem": "In the sixth paragraph, what does the writer now record?",
           "answer": "b",
           "options": [
@@ -6019,6 +6177,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "What is said about the question families ask most?",
           "answer": "d",
           "options": [
@@ -6042,6 +6201,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what does the writer say he cannot solve?",
           "answer": "a",
           "options": [
@@ -6086,6 +6246,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "In the first paragraph, what is said about the assessment kitchen?",
           "answer": "b",
           "options": [
@@ -6109,6 +6270,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["reference"],
           "stem": "In the second paragraph, what does the word \"It\" refer to?",
           "answer": "a",
           "options": [
@@ -6132,6 +6294,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "In the third paragraph, what can a ward assessment not reveal?",
           "answer": "c",
           "options": [
@@ -6155,6 +6318,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "Why is issued equipment often unused?",
           "answer": "d",
           "options": [
@@ -6178,6 +6342,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "In the fifth paragraph, what is said about standardised assessment?",
           "answer": "c",
           "options": [
@@ -6201,6 +6366,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "In the sixth paragraph, what is said about families?",
           "answer": "a",
           "options": [
@@ -6224,6 +6390,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph","writer"],
           "stem": "What change has the writer made to his questioning?",
           "answer": "d",
           "options": [
@@ -6247,6 +6414,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph","writer"],
           "stem": "In the final paragraph, what does the writer say about his errors?",
           "answer": "b",
           "options": [
