@@ -659,7 +659,7 @@ function WritingComposer({ attemptId, prompt, payload }: { attemptId: string; pr
       {p.caseNotes && (
         <div className="rounded-xl border border-almi-bg-peach bg-almi-paper p-4">
           <p className="text-xs font-bold uppercase tracking-wider text-almi-text-muted">Case notes</p>
-          <pre className="mt-1 whitespace-pre-wrap font-sans text-sm text-almi-text">{p.caseNotes}</pre>
+          <pre data-testid="writing-case-notes" className="mt-1 whitespace-pre-wrap font-sans text-sm text-almi-text">{p.caseNotes}</pre>
           {p.recipient && <p className="mt-3 text-sm text-almi-text"><span className="font-semibold">Write to:</span> {p.recipient}</p>}
           {p.taskInstruction && <p className="mt-1 text-sm text-almi-text">{p.taskInstruction}</p>}
         </div>
@@ -677,6 +677,7 @@ function WritingComposer({ attemptId, prompt, payload }: { attemptId: string; pr
       </p>
       {error && <p className="text-sm font-medium text-almi-coral-deep">{error}</p>}
       <button
+        data-testid="submit-letter"
         type="button"
         onClick={() => submit({ text })}
         disabled={submitting || reading}
@@ -881,7 +882,7 @@ function SpeakingComposer({
     <div className="space-y-5">
       <p className="text-sm text-almi-text">{prompt}</p>
       {p.candidateCard && (
-        <div className="rounded-xl border border-almi-bg-peach bg-almi-paper p-4">
+        <div data-testid="speaking-card" className="rounded-xl border border-almi-bg-peach bg-almi-paper p-4">
           {p.setting && <p className="text-sm text-almi-text"><span className="font-semibold">Setting:</span> {p.setting}</p>}
           {p.candidateRole && <p className="mt-1 text-sm text-almi-text"><span className="font-semibold">Your role:</span> {p.candidateRole}</p>}
           {p.patientRole && <p className="mt-1 text-sm text-almi-text"><span className="font-semibold">You are speaking with:</span> {p.patientRole}</p>}
@@ -923,6 +924,7 @@ function SpeakingComposer({
                 </button>
                 {preparing && allowSkip && (
                   <button
+                    data-testid="skip-preparation"
                     type="button"
                     onClick={() => setSkipped(true)}
                     className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-almi-ink/15 bg-almi-paper px-5 py-3 text-sm font-semibold text-almi-ink hover:border-almi-coral"
@@ -977,7 +979,7 @@ function SpeakingComposer({
             className="w-full rounded-xl border border-almi-bg-peach bg-almi-bg px-4 py-3 text-sm"
             placeholder="Type a transcript of your role-play…"
           />
-          <button type="button" onClick={submitTyped} disabled={phase === "submitting"} className={SUBMIT_BTN}>
+          <button data-testid="submit-transcript" type="button" onClick={submitTyped} disabled={phase === "submitting"} className={SUBMIT_BTN}>
             {phase === "submitting" ? "Grading…" : "Submit transcript"}
           </button>
         </div>
@@ -989,7 +991,7 @@ function SpeakingComposer({
           a learner could click here and start composing immediately. A mandatory
           phase with an unlocked side door is not mandatory. */}
       {!showType && phase === "idle" && !preparing && (
-        <button type="button" onClick={() => setShowType(true)} className="text-xs font-semibold text-almi-text-muted underline">
+        <button data-testid="type-transcript-instead" type="button" onClick={() => setShowType(true)} className="text-xs font-semibold text-almi-text-muted underline">
           No microphone? Type your transcript instead
         </button>
       )}

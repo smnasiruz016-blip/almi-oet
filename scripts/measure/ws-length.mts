@@ -36,6 +36,14 @@ import { words } from "../gates/words";
 import { GEN_ITEMS } from "../seed/gen/index";
 
 const FROM_GEN = process.argv.includes("--gen");
+/** --json reads the two handoff files, so the SAME tokeniser and the SAME field
+ *  choice measure the incoming items before they are seeded and the live ones
+ *  after. Two scripts would be two definitions of "a word". */
+const FROM_JSON = process.argv.includes("--json");
+const JSON_PATHS: Record<string, string> = {
+  WRITING_LETTER: "C:/Projects/_handoffs/AlmiOET_Writing_ALL_180_items.json",
+  SPEAKING_ROLEPLAY: "C:/Projects/_handoffs/AlmiOET_Speaking_ALL_180_items.json",
+};
 
 const LAW = {
   WRITING_LETTER: [650, 850] as const,
@@ -62,6 +70,15 @@ function governedText(it: Item): string {
 }
 
 async function load(): Promise<Item[]> {
+  if (FROM_JSON) {
+    const { readFileSync } = await import("node:fs");
+    const out: Item[] = [];
+    for (const [taskType, path] of Object.entries(JSON_PATHS)) {
+      const rows = Object.values(JSON.parse(readFileSync(path, "utf8")) as Record<string, Omit<Item, "id">>);
+      rows.forEach((r, n) => out.push({ ...r, taskType, id: `json#${taskType}#${n}` }));
+    }
+    return out;
+  }
   if (FROM_GEN) {
     return (GEN_ITEMS as unknown as Omit<Item, "id">[])
       .filter((i) => i.taskType in LAW)
@@ -86,7 +103,7 @@ if (items.length === 0) {
   console.error("[measure] koi WRITING/SPEAKING item nahi mila — naap se inkar");
   process.exit(1);
 }
-console.log(`source: ${FROM_GEN ? "scripts/seed/gen" : "database (DATABASE_URL)"} · ${items.length} item(s)\n`);
+console.log(`source: ${FROM_JSON ? "_handoffs JSON" : FROM_GEN ? "scripts/seed/gen" : "database (DATABASE_URL)"} · ${items.length} item(s)\n`);
 
 for (const [taskType, [min, max]] of Object.entries(LAW)) {
   const set = items.filter((i) => i.taskType === taskType);
