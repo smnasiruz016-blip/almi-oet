@@ -33,7 +33,8 @@
  * pass this project keeps meeting. The library is read back and the title must
  * be gone from it.
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
 import { test, expect, type Page } from "@playwright/test";
 import { PrismaClient } from "@prisma/client";
 import { assertDisposable } from "../../scripts/e2e/disposable-db.mjs";
@@ -42,6 +43,8 @@ type AiWalk = { taskSlug: string; professionSlug: string; title: string };
 type Fixture = { email: string; password: string; writing: AiWalk; speaking: AiWalk };
 
 const fixture: Fixture = JSON.parse(readFileSync(process.env.E2E_FIXTURE_FILE!, "utf8"));
+const SHOTS = join(process.cwd(), "docs", "e2e");
+mkdirSync(SHOTS, { recursive: true });
 
 async function signIn(page: Page) {
   await page.goto("/login");
@@ -147,12 +150,34 @@ test("🔴 an in-progress Writing and Speaking attempt survives its item being r
 
   const prisma = new PrismaClient({ datasourceUrl: url });
   await signIn(page);
+  // 430px, because that is where the product is used and where the master
+  // standard requires it to be seen. Every screenshot below is at phone width.
+  await page.setViewportSize({ width: 430, height: 900 });
 
   // ── before ────────────────────────────────────────────────────────────────
   const wUrl = await start(page, fixture.writing);
+  // 🔴 SEEN, not counted. gate:length measures the case notes in a file; this is
+  // the same case notes on a phone-width screen, with the word counter the
+  // candidate reads underneath it.
+  const notes = await page.getByTestId("writing-case-notes").innerText();
+  expect(notes.trim().length, "the case notes rendered empty").toBeGreaterThan(200);
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth),
+    "the Writing task scrolls sideways at 430px",
+  ).toBeLessThanOrEqual(0);
+  console.log(`[e2e] Writing "${fixture.writing.title}": ${notes.trim().split(/\s+/).length} words of case notes on screen at 430px`);
+  await page.screenshot({ path: join(SHOTS, "50-writing-430.png") });
   const wBefore = await emptySubmit(prisma, page, fixture.writing.taskSlug);
   await page.goto(wUrl);
   const sUrl = await start(page, fixture.speaking);
+  const card = await page.getByTestId("speaking-card").innerText();
+  expect(card.trim().length, "the role-play card rendered empty").toBeGreaterThan(200);
+  expect(
+    await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth),
+    "the Speaking task scrolls sideways at 430px",
+  ).toBeLessThanOrEqual(0);
+  console.log(`[e2e] Speaking "${fixture.speaking.title}": ${card.trim().split(/\s+/).length} words of card on screen at 430px`);
+  await page.screenshot({ path: join(SHOTS, "51-speaking-430.png") });
   const sBefore = await emptySubmit(prisma, page, fixture.speaking.taskSlug);
 
   expect(await listed(page, fixture.writing), "Writing item should be listed before the retire").toBe(true);

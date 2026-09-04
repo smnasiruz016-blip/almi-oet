@@ -135,6 +135,8 @@
  * look like when the content is already well clear of its bounds — and it is the
  * reason this was safe to do at all.
  */
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { GEN_ITEMS } from "../seed/gen/index";
 // The tokeniser ruled on 3 September 2026, in its own file so anything that must
 // count the same way can import it WITHOUT running this gate. See words.ts.
@@ -146,6 +148,11 @@ type Item = {
   payload: {
     audioScript?: string;
     gaps?: unknown[];
+    caseNotes?: string;
+    setting?: string;
+    candidateRole?: string;
+    patientRole?: string;
+    candidateCard?: string;
     texts?: { heading?: string; body?: string }[];
     passages?: { body?: string }[];
     questions?: { id?: string; kind?: string; stem?: string; answer?: string }[];
@@ -157,6 +164,34 @@ type Item = {
  * are in the header block above; do not add a row here without one.
  */
 const LAW: Record<string, [number, number]> = {
+  // ── 🔴 WRITING AND SPEAKING, ADDED 4 SEPTEMBER 2026 ────────────────────────
+  //
+  // These two task types held 360 of the bank's items — more than half of it —
+  // and were under NO length gate at all until this line. Nothing had ever
+  // measured them, and not one of the 360 legacy items met either bound.
+  //
+  // ⚠️ THE TWO BOUNDS BELOW ARE NOT THE SAME KIND OF NUMBER, and the difference
+  // must not be lost:
+  //
+  //   180-200 IS OET'S OWN FIGURE, and it governs the LETTER THE CANDIDATE
+  //   WRITES — it is not in this table at all; it lives in each item's payload
+  //   as wordMin/wordMax. OET's own page (oet.com/post/writing-word-limit,
+  //   14 Nov 2023, recorded in PRODUCT_SOURCE_OF_TRUTH v0.3 §1.4) says it is a
+  //   GUIDE, "not set to be strictly adhered to", that "assessors will not count
+  //   your words", and that only the BODY of the letter counts.
+  //
+  //   650-850 and 280-330 ARE ALMIWORLD HOUSE STANDARDS. They govern the
+  //   STIMULUS we author — the case notes a candidate works from, and the
+  //   role-play card they are handed. OET publishes no figure for either. They
+  //   were set by the owner on 3 September 2026 and every one of the 180 new
+  //   items of each kind was written to them.
+  //
+  // WHAT IS COUNTED: WRITING_LETTER = payload.caseNotes. SPEAKING_ROLEPLAY =
+  // setting + candidateRole + patientRole + candidateCard, which is the whole of
+  // what the candidate is shown; patientConcern is excluded because the session
+  // page strips it before the payload reaches the client.
+  WRITING_LETTER: [650, 850],
+  SPEAKING_ROLEPLAY: [280, 330],
   LISTENING_PART_A: [550, 600],
   LISTENING_PART_B: [140, 165],
   LISTENING_PART_C: [780, 880],
@@ -340,6 +375,28 @@ const LEGACY_SHORT: string[] = [
 
 function textWords(item: Item): number {
   if (item.taskType.startsWith("LISTENING")) return words(item.payload.audioScript);
+  // 🔴 THE TWO AI TASKS, AND WHICH FIELD EACH LAW COUNTS. Added with the LAW rows
+  // on 4 September 2026 — and the gate itself found this missing: with the rows
+  // in but this branch absent, every one of the 360 measured "0 words, law
+  // 650-850". A bound with no reader is not a law, it is a refusal.
+  //
+  // WRITING_LETTER counts the CASE NOTES: the stimulus we author, not the
+  // recipient line or the task instruction, which are the wrapper around it. It
+  // is NOT the letter the candidate writes — that is governed by the item's own
+  // wordMin/wordMax, which is OET's 180-200 guide.
+  if (item.taskType === "WRITING_LETTER") return words(item.payload.caseNotes);
+  // SPEAKING_ROLEPLAY counts the whole of what the CANDIDATE is shown.
+  // `patientConcern` is excluded on purpose: the session page strips it before
+  // the payload reaches the client, because drawing it out is the task, so
+  // counting it would measure text the candidate never sees.
+  if (item.taskType === "SPEAKING_ROLEPLAY") {
+    return (
+      words(item.payload.setting) +
+      words(item.payload.candidateRole) +
+      words(item.payload.patientRole) +
+      words(item.payload.candidateCard)
+    );
+  }
   if (item.taskType === "READING_PART_A") {
     // Combined: the four texts AND the twenty question stems, because that is
     // what OET's own 885-976-1009 was measured over. Option text is excluded on
@@ -381,8 +438,35 @@ function breaches(item: Item): string[] {
   return out;
 }
 
+/**
+ * 🔴 RETIRED ITEMS ARE NOT GOVERNED — AND THIS IS DELIBERATELY NARROW.
+ *
+ * The 360 legacy Writing and Speaking items were retired on 4 September 2026
+ * (scripts/retire/writing-speaking-legacy.json, run through retire-fragments.mts
+ * AFTER the 360 replacements were verified live). Not one of them met either new
+ * bound. They are switched off in production: no learner is served them, so they
+ * are not debt the product owes anybody, and the owner's ruling was explicit —
+ * "LAW qatarein bina kisi exemption ke", because everything outside the law is
+ * retired. This is that, and it reads the SAME FILE that performed the retire,
+ * so the gate cannot disagree with what was actually switched off.
+ *
+ * ⚠️ IT READS ONLY THIS PR'S LIST, ON PURPOSE, AND HERE IS THE NUMBER THAT
+ * DECISION TURNS ON. `scripts/retire/` also holds three Reading lists — 18 + 33
+ * + 21 = 72 items retired earlier. Applying the same rule to them would be
+ * consistent, and it would take LEGACY DEBT from 147 to 75 at a stroke. That is
+ * a figure the owner tracks and it is not this PR's to move, so it is measured,
+ * stated, and left. See the PR.
+ */
+const RETIRED_HERE: ReadonlySet<string> = new Set(
+  (
+    JSON.parse(
+      readFileSync(join(process.cwd(), "scripts", "retire", "writing-speaking-legacy.json"), "utf8"),
+    ) as { taskType: string; title: string }[]
+  ).map((r) => `${r.taskType}::${r.title}`),
+);
+
 const ITEMS = GEN_ITEMS as unknown as Item[];
-const governed = ITEMS.filter((i) => LAW[i.taskType]);
+const governed = ITEMS.filter((i) => LAW[i.taskType] && !RETIRED_HERE.has(`${i.taskType}::${i.title}`));
 const failures: string[] = [];
 const exempt = new Set(LEGACY_SHORT);
 const stillShort = new Set<string>();

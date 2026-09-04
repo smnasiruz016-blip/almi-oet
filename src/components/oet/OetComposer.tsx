@@ -645,10 +645,19 @@ function WritingComposer({ attemptId, prompt, payload }: { attemptId: string; pr
       </div>
       {reading && (
         <p className="rounded-xl border border-almi-teal/30 bg-almi-teal/5 px-4 py-3 text-sm text-almi-text">
-          <span className="font-semibold text-almi-ink">Reading time.</span> Read the case notes.
-          You can&apos;t start writing yet — that matches the exam, where the first{" "}
-          {Math.round(TIMING.writingReadingSeconds / 60)} minutes are for reading only. You&apos;ll
-          then have {mmss(TIMING.writingWritingSeconds)} to write.
+          {/* 🔴 EVERY SPACE HERE IS AN EXPLICIT {" "}. Seen on a 430px screenshot
+              on 4 September 2026, this paragraph rendered "Reading time.Read the
+              case notes" and "the first 5minutes" — the source had both spaces
+              and the bundler dropped them. It is the same class of defect this
+              project has already paid for once: a space that is correct in the
+              file and absent on the page. Source proof is not render proof, so
+              the spaces are now values, not whitespace. */}
+          <span className="font-semibold text-almi-ink">Reading time.</span>{" "}
+          Read the case notes. You can&apos;t start writing yet — that matches the exam, where the
+          first{" "}
+          {Math.round(TIMING.writingReadingSeconds / 60)}{" "}
+          minutes are for reading only. You&apos;ll then have{" "}
+          {mmss(TIMING.writingWritingSeconds)} to write.
         </p>
       )}
       {expired && (

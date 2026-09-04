@@ -1,0 +1,48 @@
+# POST-DEPLOY — ask production whether it has every migration.
+#
+# 🔴 WHY THIS EXISTS. On 2 September 2026 `3_attempt_deadline` was merged,
+# deployed, and never applied. `session.ts` writes `deadlineAt` on every attempt
+# create, so for about 43 hours NOBODY could start any exercise — and every gate
+# we had stayed green throughout, because not one of them opens the database
+# production uses. The owner found it on a phone.
+#
+# `npm run build` runs `prisma generate` (schema only), `gate:all` (files only)
+# and `next build`. `prisma migrate deploy` is `npm run db:deploy`, a separate
+# step that nothing enforces. The owner's ruling of 4 September 2026 chose
+# detection first — route 4 now, route 2 (migrate inside the build, gated to
+# VERCEL_ENV=production, under the expand→migrate→contract rule) later, and
+# never route 1, because DATABASE_URL is shared by Production, Preview AND
+# Development on this project: a preview build would migrate production.
+#
+# This turns "43 hours" into "the minute the deploy goes Ready". It cannot fix
+# anything and does not try: it reads /api/status, which compares the migration
+# folder shipped in the deployment against what that deployment's own database
+# says it has applied.
+#
+# NO SECRETS. The endpoint is public and returns counts only.
+name: post-deploy
+
+on:
+  deployment_status:
+
+# Two guards, both necessary:
+#   · a deployment_status fires for every state (pending, error, success) and for
+#     every environment — without the `if`, this would run on preview deploys and
+#     on failures, and report on a deployment that does not exist yet;
+#   · Vercel labels the production environment "Production".
+jobs:
+  migrations:
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # tsx only — this never touches the app, so a full `npm ci` (which needs
+      # the private registry) would be a dependency this check does not need and
+      # a way for it to fail for a reason that is not the one it watches for.
+      - name: check production migrations
+        run: npx --yes tsx@4 scripts/check-prod-migrations.mts

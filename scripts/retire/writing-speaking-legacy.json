@@ -1,0 +1,1442 @@
+[
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Advice letter to GP on dental focus before cardiac surgery"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Discharge of implant patient to referring dentist"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Discharge to GP after dental abscess management"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Discharge to GP after suspicious lesion biopsy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Endodontic referral for calcified canal"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Impacted lower third molar referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Orthodontic referral for crowding and impacted canine"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Periodontal referral for advanced bone loss"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to GP for suspected oral candidiasis and dry mouth"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to oral medicine for chronic mucosal lesion"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to oral surgeon after dental trauma"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to oral surgeon for dentigerous cyst"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to prosthodontist for full-mouth rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to special care dentistry for anxious patient"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Transfer of paediatric patient for hospital extractions"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Bariatric pre-surgery liver-shrinking diet advice"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Chronic kidney disease stage 4 dietary management referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Community-acquired malnutrition referral from GP practice"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Discharge: malnutrition & enteral feeding handover"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Dysphagia texture-modified diet discharge to care home"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Gestational diabetes nutrition referral to maternity clinic"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Home enteral PEG feeding handover to community team"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Newly diagnosed coeliac disease advice to patient"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Oncology cachexia nutritional support transfer to palliative team"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Paediatric faltering growth referral to community paediatric team"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Refeeding syndrome risk handover from eating disorder unit"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Type 1 diabetes carbohydrate counting referral for adolescent"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Type 2 diabetes referral to community dietitian"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Ulcerative colitis flare nutrition support referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dietetics — Weight management programme referral for metabolic syndrome"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Advice letter to GP on warfarin to DOAC switch"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Cardiology referral for new atrial fibrillation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Community mental health referral for first-episode depression"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Discharge after community-acquired pneumonia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Discharge after paediatric asthma admission"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Emergency department letter for acute coronary syndrome"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Endocrine referral for poorly controlled type 2 diabetes"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Gastroenterology referral for iron-deficiency anaemia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Geriatric referral after recurrent falls"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — GP referral for suspected DVT"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Neurology referral for first unprovoked seizure"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Paediatric referral for faltering growth"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Respiratory referral for suspected lung malignancy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Surgical referral for symptomatic gallstones"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Transfer of stroke patient to rehabilitation unit"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Advice letter to carer following COPD exacerbation discharge"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge advice for new mother and newborn (postnatal ward)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge advice to parents of an asthmatic child (paediatric ward)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge to community nurse (leg ulcer)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge to community nurse following cellulitis treatment"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge to district nurse following heart failure admission"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to community drug and alcohol service (alcohol withdrawal)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to community mental health team (post-discharge depression)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to diabetes specialist nurse (newly diagnosed type 1)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to falls prevention service from aged care facility"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to wound care clinic (post-operative surgical wound dehiscence)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Transfer to coronary care unit from emergency department (chest pain)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Transfer to palliative care unit (advanced pancreatic cancer)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Transfer to rehabilitation unit (post-hip fracture)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Transfer to stroke rehabilitation ward (acute ischaemic stroke)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Advice to family carer of a person with dementia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Discharge advice after stroke-related upper-limb retraining"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Discharge after stroke rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Discharge from inpatient mental health to community team"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Discharge to GP after total hip replacement"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Falls-prevention referral for recurrent falls at home"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Hand therapy referral after flexor tendon repair"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Hand therapy splinting advice after Dupuytren's release"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Home adaptations referral for advancing multiple sclerosis"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Paediatric referral for handwriting and coordination difficulties"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Referral for upper-limb rehab after rheumatoid arthritis flare"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Transfer to community neuro-rehab after acquired brain injury"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Transfer to hospice OT for advanced cancer fatigue management"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Vocational rehab referral for return to work after back injury"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Occupational Therapy — Wheelchair and pressure-care seating referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Discharge and transfer of stable keratoconus to specialist contact lens clinic"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Discharge letter to GP following resolved corneal abrasion"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Emergency referral for acute retinal detachment with flashes and floaters"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — GP advice letter on severe dry eye disease and lid hygiene management"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — GP letter on newly detected diabetic retinopathy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — GP letter on raised intraocular pressure and suspected open-angle glaucoma"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — GP referral for new ptosis and anisocoria of uncertain cause"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Ophthalmology referral for suspected wet age-related macular degeneration"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Paediatric referral for unilateral amblyopia and accommodative esotropia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Referral for proliferative diabetic retinopathy with new vessels"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Referral for suspected giant cell arteritis with transient visual loss"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Referral for unilateral painful red eye suggesting anterior uveitis"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Referral for visually significant cataract affecting daily function"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Urgent referral for sudden painless vision loss suggesting retinal vein occlusion"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Optometry — Urgent referral for suspected acute angle-closure glaucoma"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — ACE inhibitor and potassium supplement hyperkalaemia risk"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Clopidogrel and omeprazole interaction concern"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Discharge medicines reconciliation to GP"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Gentamicin level handover at hospital discharge"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Insulin regimen confusion and recurrent hypoglycaemia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Levothyroxine and calcium timing affecting control"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Lithium monitoring overdue advice to GP"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Methotrexate dosing error identified at dispensing"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — New prescription duplication of two SSRIs"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — OTC ibuprofen request unsuitable for patient on anticoagulant"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Polypharmacy deprescribing review for elderly patient"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Poor inhaler adherence and technique referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Suspected adverse skin reaction to lamotrigine"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Suspected statin-induced myalgia review"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Warfarin–antibiotic interaction referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Discharge advice to GP following women's health continence programme"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Discharge to GP after lateral ankle sprain rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Discharge to GP after post-stroke rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Discharge to GP after total hip replacement rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to falls clinic for recurrent geriatric falls"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to GP for suspected lumbar radiculopathy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to hand therapy after complex distal radius fracture"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to orthopaedic surgeon for non-improving knee"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to orthopaedic team for suspected rotator cuff tear"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to paediatric service for developmental motor delay"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to rheumatologist for suspected inflammatory arthritis"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to sports medicine for suspected ACL deficiency"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Transfer to cardiac rehabilitation after coronary bypass surgery"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Transfer to community respiratory team after COPD exacerbation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Transfer to neuro-rehabilitation unit after Guillain-Barré syndrome"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Achilles tendinopathy with rupture concern, referral to orthopaedics"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Biomechanical assessment outcome, orthotic advice to referring GP"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Charcot foot suspected, urgent orthopaedic referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Diabetic foot ulcer referral to vascular team"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Diabetic neuropathic ulcer, transfer to community diabetic foot team"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Discharge to GP after nail surgery"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Discharge to GP following resolved cellulitis and ulcer healing"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Ingrown toenail recurrence, referral for partial nail avulsion"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Paediatric in-toeing gait, reassurance letter to GP"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Paediatric Sever's disease, advice letter to school nurse"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Peripheral arterial disease referral to vascular clinic"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Plantar fasciitis not responding, referral to MSK physiotherapy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Recalcitrant plantar verruca, referral for specialist treatment"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Rheumatoid forefoot deformity, referral to MDT foot clinic"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Podiatry — Suspected osteomyelitis in diabetic foot, urgent hospital referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Abdominal aortic aneurysm found on ultrasound screening"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Acute appendicitis confirmed on abdominal ultrasound"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Bone metastases on whole-body bone scintigraphy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Cerebral aneurysm on MR angiography of the brain"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Incidental adrenal mass on CT urogram"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Incidental liver lesions on staging CT"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Incidental pulmonary nodule on CT"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Incidental thyroid nodule on neck CT for trauma"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Lytic bone lesion on knee radiograph requiring MRI"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Paediatric toddler's fracture on tibial radiograph"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Renal calculus on CT KUB for acute flank pain"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Scaphoid fracture missed on initial wrist film"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Suspended mammogram, refer to breast clinic"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Suspicious breast lesion on screening recall ultrasound"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Radiography — Vertebral compression fracture on lumbar spine film"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — AAC funding and support referral for a child with cerebral palsy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Aphasia community team referral after left MCA stroke"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Childhood stammer referral to paediatric SLP clinic"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Cognitive-communication referral after traumatic brain injury"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Communication advice to nursing staff for advanced dementia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Dietitian referral for unintentional weight loss with dysphagia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Discharge summary after paediatric speech sound disorder therapy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Feeding and dysphagia advice letter for a child with cleft palate"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Modified-diet transfer letter for residential aged care"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Outpatient discharge after voice prosthesis rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Paediatric language delay discharge"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Post-stroke dysphagia referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Pre-laryngectomy counselling referral for head and neck cancer"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Transfer to school SLP for developmental language disorder"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Speech Pathology — Voice nodules referral to ENT for a primary teacher"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Advice letter on home care for a diabetic cat newly started on insulin"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Discharge & ongoing management of feline chronic kidney disease"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Discharge and home management of a canine elbow arthroscopy patient"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Discharge of a canine pyometra patient following ovariohysterectomy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Emergency transfer of canine gastric dilatation-volvulus to a 24-hour surgical centre"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral for refractory feline hyperthyroidism for radioiodine therapy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral for suspected cranial cruciate ligament rupture"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral of a canine appendicular osteosarcoma for oncology assessment"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral of a canine cataract for ophthalmic surgical assessment"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral of a chronic canine atopic dermatitis case to a dermatology service"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral of a pet rabbit with dental malocclusion and molar spurs"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral of an equine recurrent colic case for surgical evaluation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral of canine diabetes mellitus with suspected concurrent Cushing's disease"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral of canine immune-mediated haemolytic anaemia to a transfusion service"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Veterinary Science — Referral of feline hypertrophic cardiomyopathy with arterial thromboembolism"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Anxious patient facing a first extraction"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Parent declining fluoride for a child"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Parent of a toddler with multiple early cavities"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Patient choosing between root canal and extraction"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Patient expecting Hollywood-white veneers"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Patient grinding teeth blaming work stress"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Patient who panics at the sound of the drill"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Patient whose new denture keeps rubbing"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Patient with a tooth knocked out in a fall"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Patient with bleeding gums dismissing gum disease"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Patient with sensitive teeth using a home whitening kit"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Patient worried about the cost of a crown"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Pregnant patient afraid of having a filling"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Smoker reluctant to act on a suspicious mouth patch"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dentistry — Teenager refusing to wear their orthodontic retainer"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Dysphagia texture-modified diet advice for a carer"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Faltering growth in a toddler with a worried parent"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Gestational diabetes diet for an anxious expectant mother"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Heart-healthy eating after a first heart attack"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — High-cholesterol patient resistant to dietary change"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — IBS and a self-started elimination diet"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Newly diagnosed coeliac disease advice"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Peanut allergy anxiety and dietary over-restriction"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Reluctance to take prescribed oral nutritional supplements"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Renal diet & phosphate concern in CKD"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Sensitive nutrition support in suspected disordered eating"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Setting up home enteral tube feeding for a carer"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Transition to a balanced plant-based diet without deficiency"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Type 2 diabetes carbohydrate management for a shift worker"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Dietetics — Weight management after a plateau in a motivated patient"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Advising a pregnant patient on safe medication use"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Advising weight and lifestyle change after a heart scare"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Breaking news of a likely cancer diagnosis"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Counselling before a planned knee replacement"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Discussing statins with a patient worried about side effects"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Explaining a delayed test result"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Explaining a new atrial fibrillation diagnosis and blood thinners"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Explaining shingles and managing pain in an older patient"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Helping a patient improve inhaler adherence in asthma"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Newly diagnosed hypertension in clinic"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Persuading a hesitant parent about the MMR vaccine"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Reassessing long-term opioid use for back pain"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Reassuring parents of a child with a febrile seizure"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Starting metformin for type 2 diabetes"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Medicine — Supporting a patient with low mood and poor sleep"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Advising a patient on pressure area care at home"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Calming a patient before an MRI scan"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Discussing comfort care with the daughter of a dying patient"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Discussing wound care with a patient going home with a drain"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Encouraging early mobilisation after hip surgery"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Explaining a fluid and salt limit to a heart failure patient"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Helping a new mother worried about breastfeeding pain"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Helping a teenager manage asthma before leaving hospital"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Preparing an anxious patient for fasting before an operation"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Reassuring a patient anxious about discharge"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Responding to a patient who wants to stop taking blood pressure tablets"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Supporting a man reluctant to use a walking aid in aged care"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Supporting a patient distressed after a panic attack on the ward"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Supporting a patient hesitant about starting insulin"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Nursing — Talking with a parent about a feverish child in the emergency department"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Adaptive feeding and dressing after hand burns"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Anxiety management and graded exposure for activity avoidance"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Cognitive strategies after mild traumatic brain injury"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Driving cessation conversation with an older adult"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Equipment & home adaptation advice"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Falls-prevention routine after a hip fracture"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Fatigue management in multiple sclerosis"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Graded return to work after a back injury"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Joint protection in early rheumatoid hand arthritis"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Mental-health OT: graded return to routine"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Sensory strategies for a child struggling at school"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Splinting and scar management after hand tendon repair"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Supporting a carer of a person with dementia"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Upper-limb retraining after stroke"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Occupational Therapy — Wheelchair and pressure-care advice after spinal cord injury"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Advising a new contact lens wearer on hygiene and safe wear"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Advising a teenager spending long hours on screens about eye comfort"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Breaking news that a patient no longer meets the driving vision standard"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Discussing a colour vision result affecting a career choice"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Encouraging consistent use of glaucoma drops"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Explaining a cataract referral to an anxious patient"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Explaining patching treatment for a child with a lazy eye"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Explaining why a child's prescription is changing more than expected"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Managing chronic dry eye and setting realistic expectations"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Persuading a patient to attend follow-up after a borderline pressure reading"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Reassuring a patient anxious about new floaters"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Reassuring a patient reluctant about diabetic eye screening"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Recommending a cessation of overnight contact lens wear after an infection scare"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Sudden visual change and possible retinal detachment"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Optometry — Supporting a parent whose young child needs glasses full-time"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Antidepressant early side effects and adherence"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Child's fever and correct paracetamol dosing"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Declining an OTC request and GP referral"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Emergency contraception consultation"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Inhaled steroid and oral thrush worry"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Managing a viral sore throat without antibiotics"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Methotrexate weekly dosing safety check"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — New inhaler technique and adherence"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Polypharmacy review for an older patient"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Smoking cessation with nicotine replacement"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Starting metformin for newly diagnosed type 2 diabetes"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Statin side-effect concern and stopping the tablet"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Suspected medication error on a repeat prescription"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Travel advice for a patient with diabetes"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Pharmacy — Warfarin and a new over-the-counter painkiller request"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Addressing fear of movement after a disc-related back episode"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Advising a hesitant patient on early loading after ankle sprain"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Encouraging a new mother to restart pelvic floor rehabilitation"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Encouraging adherence to a knee replacement rehab programme"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Guiding a recreational runner back to sport after a hamstring strain"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Managing a patient with chronic low back pain seeking a scan"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Managing pain medication expectations during shoulder rehabilitation"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Motivating a stroke survivor during arm recovery"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Negotiating exercise expectations with a patient with severe COPD"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Persuading a reluctant patient to begin exercise for type 2 diabetes"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Planning a graded return to manual work after a shoulder injury"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Reassuring a patient anxious about post-operative chest physiotherapy"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Reassuring an older patient after a fall while improving balance"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Supporting a parent of a child with a wrist fracture in a cast"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Physiotherapy — Teaching pacing to a patient with persistent widespread pain"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Advising a recreational runner with an Achilles overuse injury"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Advising an anxious patient at risk of foot ulceration"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Advising on corn self-treatment risks for a patient using blades and acids"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Counselling a patient with chronic plantar heel pain on a long recovery"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Discussing verruca treatment options with an undecided patient"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Encouraging a walking programme for intermittent claudication"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Explaining orthotics for biomechanical heel pain"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Explaining wound care after debridement of a neuropathic ulcer"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Managing a patient who repeatedly skips self-care appointments"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Persuading a patient reluctant to change unsuitable footwear"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Preparing a patient for custom orthoses and a realistic break-in period"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Reassuring a parent worried about a child's flat feet"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Reassuring a patient anxious about ingrown toenail surgery"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Setting realistic expectations for fungal nail treatment"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Podiatry — Teaching diabetic foot self-care to a newly diagnosed patient"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Checking for metal implants before an MRI scan"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Contrast injection anxiety before CT angiogram"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Explaining a barium enema bowel preparation"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Gaining cooperation for a chest X-ray breath-hold"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Immobilising a frightened young child for a forearm X-ray"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Keeping still during an image-guided breast biopsy"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Managing pain and compression during mammography"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — MRI claustrophobia and cooperation"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Patient who did not fast before an abdominal ultrasound"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Pregnancy check before a lumbar spine X-ray"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Preparing a nervous patient for a barium swallow"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Preparing a patient for a DEXA bone density scan"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Radiation dose concern for paediatric CT"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Reassuring a distressed elderly patient before a hip X-ray"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Radiography — Reassuring a patient anxious in the CT scanner bore"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Adult who stammers asking about job-interview speaking"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Call-centre worker with vocal fatigue and hoarseness"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Daughter of a parent with dementia struggling to converse"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Introducing a communication device to a teenager with cerebral palsy"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Parent anxious about a late-talking two-year-old"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Parent declining recommended therapy for a child with a lisp"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Parent of a child who stammers"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Parent worried about unclear speech in a four-year-old"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Patient facing swallowing changes before head and neck cancer treatment"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Reluctance to accept thickened fluids after dysphagia assessment"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Resistance to a softer diet texture in a residential care home"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Spouse of a man with non-fluent aphasia after stroke"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Teenager whose unclear speech is linked to undiagnosed hearing loss"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Voice disorder in a teacher"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Speech Pathology — Young man with a mild brain injury frustrated by word-finding problems"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Addressing separation-related behaviour in a rescue dog"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Advanced dental disease in a small-breed dog"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Daily insulin and monitoring for a newly diagnosed diabetic dog"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Deciding on neutering a young male cat"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Discussing a newly diagnosed diabetic cat"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Discussing quality of life in a dog with advanced cancer"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Heart murmur and lifelong cardiac medication in a small dog"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Itchy skin and a suspected food allergy in a young dog"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Long-term management of feline chronic kidney disease"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Managing an overweight middle-aged Labrador"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Post-operative care after orthopaedic surgery"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Vaccination hesitancy in a new puppy"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Weighing treatment options against cost for a sick rabbit"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Wellness planning for a newly senior dog"
+  },
+  {
+    "taskType": "SPEAKING_ROLEPLAY",
+    "title": "Veterinary Science — Year-round parasite prevention for an outdoor cat"
+  }
+]
