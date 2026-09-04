@@ -1,9 +1,18 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-// Read-only billing self-check. Exposes NO secret values — only key MODE
-// (live/test), boolean validity, and price IDs. Any value that is not a clean
-// `price_…` id is redacted, so a mis-pasted secret can never be echoed.
+// Read-only billing self-check. OWNER ONLY — guarded by ADMIN_API_SECRET
+// (header x-admin-secret), FAIL-CLOSED: if the secret is unset this endpoint
+// always 401s, so it is never open by default. Same guard as /api/admin/stats.
+//
+// Exposes no secret values and no secret SHAPE — only key MODE (live/test),
+// booleans, and price IDs. Any value that is not a clean `price_…` id is
+// redacted, so a mis-pasted secret can never be echoed.
+//
+// 🔴 This comment used to say "Exposes NO secret values" while the handler was
+// returning `keyLen: key.length` and `keyLast4: key.slice(-4)` to anyone who
+// opened the URL. The comment is not what holds this line now — `gate:no-secret-
+// shape` is. Do not re-add a length, a suffix, or a hash of a credential here.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -17,7 +26,13 @@ function keyMode(k: string): string {
 const safeId = (v: string): string =>
   /^price_[A-Za-z0-9]+$/.test(v) ? v : "REDACTED_NON_PRICE_VALUE";
 
-export async function GET() {
+export async function GET(req: Request) {
+  // Fail-closed: no ADMIN_API_SECRET configured means no access, ever.
+  const adminSecret = process.env.ADMIN_API_SECRET;
+  if (!adminSecret || req.headers.get("x-admin-secret") !== adminSecret) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
   const key = process.env.STRIPE_SECRET_KEY ?? "";
   const mode = keyMode(key);
   const priceVars = ["STRIPE_PRICE_ID_MONTHLY", "STRIPE_PRICE_ID_YEARLY", "STRIPE_PRICE_ID"] as const;
@@ -31,10 +46,11 @@ export async function GET() {
     keyPresent: Boolean(key),
     keyMode: mode,
     priceVarsPresent: Object.keys(present),
-    // Non-secret key-shape diagnostics (no key value exposed):
-    keyLen: key.length,
+    // `keyClean` is a BOOLEAN about hygiene — no length, no characters. The
+    // length and the last four characters used to sit here; they answered no
+    // question that keyMode / keyClean / keyValid do not already answer, and
+    // they were being served without auth. See gate:no-secret-shape.
     keyClean: key === key.trim() && !/\s/.test(key), // no leading/trailing/inner whitespace
-    keyLast4: key.slice(-4),
     appUrl: process.env.NEXT_PUBLIC_APP_URL ?? "(unset→fallback)",
     appUrlValid: (() => { try { new URL((process.env.NEXT_PUBLIC_APP_URL ?? "https://almioet.almiworld.com") + "/account?upgraded=true"); return true; } catch { return false; } })(),
   };
