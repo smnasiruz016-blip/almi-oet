@@ -83,7 +83,17 @@
  * an old bank item, not a new one; nothing short has been allowed to ship. From
  * here the may-only-shrink rule applies again with no exception.
  *
- * Every run prints LEGACY DEBT: <n>, so the number is in front of us.
+ * Every run prints the debt out loud, and since 4 September 2026 it prints TWO
+ * numbers, never one:
+ *
+ *     LEGACY DEBT (active, short of the law): 75
+ *     RETIRED and short of the law:          432   <- not served to anybody
+ *
+ * The 147 that used to be printed was both of these added together. Splitting
+ * them did not make the debt smaller — it put each half where it belongs, and
+ * the retired half is broken down by task type underneath so no decision hides
+ * inside an aggregate. See the RETIRED block further down for the ruling, the
+ * verification against production, and the ratchet that keeps the door shut.
  *
  * It also carries the FINDABILITY check — a Reading Part A answer must appear in
  * its own texts, because the instruction on the page says the answer comes from
@@ -135,7 +145,7 @@
  * look like when the content is already well clear of its bounds — and it is the
  * reason this was safe to do at all.
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { GEN_ITEMS } from "../seed/gen/index";
 // The tokeniser ruled on 3 September 2026, in its own file so anything that must
@@ -296,80 +306,8 @@ const LEGACY_SHORT: string[] = [
   "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain", // 254 words
   "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy", // 240 words
   // ── READING_PART_A · 18 item(s), law 885-1009 words ──
-  "READING_PART_A::Part A — Aseptic non-touch technique", // 133 words
-  "READING_PART_A::Part A — Discharge planning checklist", // 130 words
-  "READING_PART_A::Part A — Falls risk assessment", // 145 words
-  "READING_PART_A::Part A — Hand hygiene texts", // 86 words
-  "READING_PART_A::Part A — Informed consent essentials", // 129 words
-  "READING_PART_A::Part A — Insulin storage and handling", // 140 words
-  "READING_PART_A::Part A — Malnutrition screening", // 128 words
-  "READING_PART_A::Part A — Oxygen cylinder safety", // 130 words
-  "READING_PART_A::Part A — Pain assessment methods", // 141 words
-  "READING_PART_A::Part A — Preventing pressure injuries in immobile patients", // 234 words
-  "READING_PART_A::Part A — Repositioning for skin protection", // 136 words
-  "READING_PART_A::Part A — Safe patient transfers", // 126 words
-  "READING_PART_A::Part A — Source isolation precautions", // 131 words
-  "READING_PART_A::Part A — Urinary catheter care", // 136 words
-  "READING_PART_A::Part A — Wound dressing selection", // 144 words
-  "READING_PART_A::OET Form 1 · Reading Part A — Preventing pressure injuries", // 375 words
-  "READING_PART_A::OET Form 2 · Reading Part A — Preventing falls in older adults", // 364 words
-  "READING_PART_A::OET Form 3 · Reading Part A — Delirium in hospital", // 342 words
   // ── READING_PART_B · 33 item(s), law 136-155 words ──
-  "READING_PART_B::Part B — Allergy alert documentation", // 89 words
-  "READING_PART_B::Part B — Audit memo on documentation timing", // 80 words
-  "READING_PART_B::Part B — Clinical escalation policy", // 88 words
-  "READING_PART_B::Part B — Complaints procedure acknowledgement", // 85 words
-  "READING_PART_B::Part B — Consent policy for capacity assessment", // 78 words
-  "READING_PART_B::Part B — Controlled drugs second check", // 76 words
-  "READING_PART_B::Part B — Data protection record access", // 80 words
-  "READING_PART_B::Part B — Equipment recall action notice", // 81 words
-  "READING_PART_B::Part B — Incident reporting timeframe", // 73 words
-  "READING_PART_B::Part B — Infection control hand hygiene memo", // 82 words
-  "READING_PART_B::Part B — Interpreter use during clinical consultations", // 100 words
-  "READING_PART_B::Part B — Medicines policy extract", // 38 words
-  "READING_PART_B::Part B — Sharps disposal at point of use", // 80 words
-  "READING_PART_B::Part B — Staff rostering swap email", // 87 words
-  "READING_PART_B::Part B — Visiting policy on protected mealtimes", // 74 words
-  "READING_PART_B::OET Form 1 · Reading Part B — Controlled-drugs policy", // 47 words
-  "READING_PART_B::OET Form 1 · Reading Part B — Sharps memo", // 37 words
-  "READING_PART_B::OET Form 1 · Reading Part B — Hand-hygiene guideline", // 40 words
-  "READING_PART_B::OET Form 1 · Reading Part B — Medicine label", // 29 words
-  "READING_PART_B::OET Form 1 · Reading Part B — Visitor notice", // 35 words
-  "READING_PART_B::OET Form 1 · Reading Part B — Handover note", // 38 words
-  "READING_PART_B::OET Form 2 · Reading Part B — Consent", // 36 words
-  "READING_PART_B::OET Form 2 · Reading Part B — Vaccine fridge log", // 46 words
-  "READING_PART_B::OET Form 2 · Reading Part B — Terminology memo", // 28 words
-  "READING_PART_B::OET Form 2 · Reading Part B — Protected breaks", // 34 words
-  "READING_PART_B::OET Form 2 · Reading Part B — Specimen labelling", // 32 words
-  "READING_PART_B::OET Form 2 · Reading Part B — Safe discharge", // 33 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Penicillin allergy label", // 59 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Controlled drugs", // 45 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Early warning scores", // 53 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Bare below the elbows", // 44 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Confidentiality in public areas", // 44 words
-  "READING_PART_B::OET Form 3 · Reading Part B — Verbal orders", // 46 words
   // ── READING_PART_C · 21 item(s), law 653-836 words ──
-  "READING_PART_C::Part C — Article on shared decision-making", // 51 words
-  "READING_PART_C::Part C — Evidence, experience and the bedside", // 136 words
-  "READING_PART_C::Part C — Knowing a patient over time", // 146 words
-  "READING_PART_C::Part C — Practising to protect ourselves", // 131 words
-  "READING_PART_C::Part C — Rethinking the value of clinical handover", // 229 words
-  "READING_PART_C::Part C — Running on empty in the caring professions", // 128 words
-  "READING_PART_C::Part C — Sitting with not knowing", // 145 words
-  "READING_PART_C::Part C — The arithmetic patients actually hear", // 151 words
-  "READING_PART_C::Part C — The lost art of letting people finish", // 125 words
-  "READING_PART_C::Part C — The quiet costs of finding more", // 130 words
-  "READING_PART_C::Part C — The screen between us", // 133 words
-  "READING_PART_C::Part C — What a good team really shares", // 136 words
-  "READING_PART_C::Part C — What we do with our mistakes", // 144 words
-  "READING_PART_C::Part C — When empathy becomes a clinical skill", // 141 words
-  "READING_PART_C::Part C — Whose decision is it anyway", // 126 words
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening", // 405 words
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience", // 359 words
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'", // 310 words
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do", // 302 words
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment", // 341 words
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer", // 333 words
 ];
 
 
@@ -439,34 +377,59 @@ function breaches(item: Item): string[] {
 }
 
 /**
- * 🔴 RETIRED ITEMS ARE NOT GOVERNED — AND THIS IS DELIBERATELY NARROW.
+ * 🔴 THE GATE COUNTS WHAT A STUDENT CAN BE SERVED — RULED 4 SEPTEMBER 2026.
  *
- * The 360 legacy Writing and Speaking items were retired on 4 September 2026
- * (scripts/retire/writing-speaking-legacy.json, run through retire-fragments.mts
- * AFTER the 360 replacements were verified live). Not one of them met either new
- * bound. They are switched off in production: no learner is served them, so they
- * are not debt the product owes anybody, and the owner's ruling was explicit —
- * "LAW qatarein bina kisi exemption ke", because everything outside the law is
- * retired. This is that, and it reads the SAME FILE that performed the retire,
- * so the gate cannot disagree with what was actually switched off.
+ * A retired item is `active = false` in production: no learner is ever handed it.
+ * Keeping it in LEGACY DEBT measures something that is not there. So every item
+ * named in `scripts/retire/` is counted SEPARATELY, not silently dropped.
  *
- * ⚠️ IT READS ONLY THIS PR'S LIST, ON PURPOSE, AND HERE IS THE NUMBER THAT
- * DECISION TURNS ON. `scripts/retire/` also holds three Reading lists — 18 + 33
- * + 21 = 72 items retired earlier. Applying the same rule to them would be
- * consistent, and it would take LEGACY DEBT from 147 to 75 at a stroke. That is
- * a figure the owner tracks and it is not this PR's to move, so it is measured,
- * stated, and left. See the PR.
+ * ⚠️ THIS IS NOT A THRESHOLD BEING SOFTENED, and the difference is the whole
+ * point. Every bound in LAW is untouched — 650-850, 280-330, and Reading's and
+ * Listening's own. What changed is the gate's SCOPE: it governs what is served,
+ * not what exists. The owner's words: "hadd bilkul wahi rehti hai. Sirf gate ka
+ * daira durust ho raha hai."
+ *
+ * VERIFIED AGAINST PRODUCTION BEFORE THIS WAS APPLIED, because "the number
+ * matches" is exactly what this project has slipped on before: all 72 items in
+ * the three Reading lists were checked row by row against the live database —
+ * 18 + 33 + 21, every one `active = false`, none missing, none still live.
+ *
+ * ── 🔴 THE RATCHET, AND HOW IT ACTUALLY BITES ───────────────────────────────
+ *
+ * Without it this ruling is a hole: retire an inconvenient item, watch the debt
+ * fall, quietly bring it back later.
+ *
+ * The lists in `scripts/retire/` ARE the record of what is switched off — the
+ * same files `retire-fragments.mts` runs. So bringing an item back means taking
+ * its line out of a list, and the moment that happens the item is governed again
+ * like anything else: it is short, it is not in LEGACY_SHORT, and the build goes
+ * RED. LEGACY_SHORT may only shrink, so it cannot be re-admitted there either.
+ *
+ * The door back in is therefore: fix the item so it meets its law. Which is the
+ * only door there should be.
+ *
+ * Proved by deleting one line from scripts/retire/reading-part-a-legacy.json —
+ * the output is in the PR.
  */
-const RETIRED_HERE: ReadonlySet<string> = new Set(
-  (
-    JSON.parse(
-      readFileSync(join(process.cwd(), "scripts", "retire", "writing-speaking-legacy.json"), "utf8"),
-    ) as { taskType: string; title: string }[]
-  ).map((r) => `${r.taskType}::${r.title}`),
+const RETIRE_DIR = join(process.cwd(), "scripts", "retire");
+const RETIRED: ReadonlySet<string> = new Set(
+  readdirSync(RETIRE_DIR)
+    .filter((f) => f.endsWith(".json"))
+    .flatMap(
+      (f) =>
+        (JSON.parse(readFileSync(join(RETIRE_DIR, f), "utf8")) as { taskType: string; title: string }[]).map(
+          (r) => `${r.taskType}::${r.title}`,
+        ),
+    ),
 );
+// A gate that reads an empty retire directory would silently govern everything
+// and look identical to one that read it correctly. Say so instead.
+if (RETIRED.size === 0) {
+  throw new Error("scripts/retire/ named no items — refusing to run with an empty retire set");
+}
 
 const ITEMS = GEN_ITEMS as unknown as Item[];
-const governed = ITEMS.filter((i) => LAW[i.taskType] && !RETIRED_HERE.has(`${i.taskType}::${i.title}`));
+const governed = ITEMS.filter((i) => LAW[i.taskType]);
 const failures: string[] = [];
 const exempt = new Set(LEGACY_SHORT);
 const stillShort = new Set<string>();
@@ -477,10 +440,22 @@ if (exempt.size !== LEGACY_SHORT.length) {
   failures.push(`LEGACY_SHORT contains a duplicate (${LEGACY_SHORT.length} rows, ${exempt.size} unique)`);
 }
 
+const retiredShort = new Set<string>();
 for (const item of governed) {
   const key = `${item.taskType}::${item.title}`;
   const why = breaches(item);
   const listed = exempt.has(key);
+
+  // Retired: counted, never failed, and never in LEGACY_SHORT — one item must
+  // not appear in two debt numbers.
+  if (RETIRED.has(key)) {
+    if (why.length > 0) retiredShort.add(key);
+    if (listed) {
+      failures.push(`${key} is RETIRED and also in LEGACY_SHORT — delete the LEGACY_SHORT row.`);
+    }
+    continue;
+  }
+
   if (why.length > 0) {
     if (listed) stillShort.add(key);
     else failures.push(`${key} — ${why.join("; ")}`);
@@ -584,6 +559,16 @@ let findabilityChecked = 0;
 let findabilityItems = 0;
 for (const item of ITEMS) {
   if (item.taskType !== "READING_PART_A") continue;
+  // 🔴 RETIRED IS SKIPPED HERE FOR THE SAME REASON AS THE LENGTH LAW, and this
+  // line was added because the gate found it: when the 72 retired Reading items
+  // left LEGACY_SHORT, findability started checking one of them and went red on
+  // "OET Form 2 · Reading Part A — Preventing falls in older adults / q12". That
+  // item is switched off in production. Its answer is nobody's problem, and
+  // reporting it would have been a defect the product cannot serve.
+  //
+  // It also shows the scope rule has to be applied EVERYWHERE the old one was —
+  // exempt-means-skip was doing two jobs, and only one of them moved.
+  if (RETIRED.has(`${item.taskType}::${item.title}`)) continue;
   if (exempt.has(`${item.taskType}::${item.title}`)) continue;
   findabilityItems += 1;
   const source = findNorm(
@@ -636,7 +621,24 @@ if (FINDABILITY_PENDING.length > 0) {
     console.log(`        ${e.title} / ${e.qid} — ${JSON.stringify(e.answer)}`);
   }
 }
-console.log(`LEGACY DEBT: ${stillShort.size} items still short of the law`);
+// 🔴 TWO NUMBERS, ALWAYS BOTH. The debt did not fall by 72 — it moved to the
+// column it belongs in. A single number here would read as progress that never
+// happened.
+console.log(`LEGACY DEBT (active, short of the law): ${stillShort.size} item(s)`);
+console.log(`RETIRED and short of the law:           ${retiredShort.size} item(s)  <- not served to anybody`);
+// Broken down, because one aggregate hides which decision produced it: 72 came
+// from the three Reading retires, 360 from the Writing/Speaking retire of
+// 4 September 2026.
+{
+  const byType = new Map<string, number>();
+  for (const k of retiredShort) {
+    const t = k.split("::")[0];
+    byType.set(t, (byType.get(t) ?? 0) + 1);
+  }
+  for (const t of [...byType.keys()].sort()) {
+    console.log(`    ${t.padEnd(20)} ${byType.get(t)}`);
+  }
+}
 if (failures.length > 0) {
   console.error(`\n[gate:length] ${failures.length} failure(s):`);
   for (const f of failures.slice(0, 40)) console.error(`  ${f}`);
