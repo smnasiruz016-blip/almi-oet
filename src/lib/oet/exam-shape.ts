@@ -311,5 +311,5 @@ export const GRADE_FLOORS_PUBLISHED = [
   { grade: "A", floor: 450 },
   { grade: "B", floor: 350 },
   { grade: "C+", floor: 300 },
-  { grade: "C", floor: 200 }, // 🔴 currently 250 in scale.ts — a 220 is graded D and OET says C
+  { grade: "C", floor: 200 }, // 🔴 was 250 in scale.ts for 27 days — a 220 was graded D, OET says C. Fixed 2026-08-31; tests/scale.test.ts now fails if it comes back.
 ] as const;

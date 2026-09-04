@@ -21,6 +21,7 @@
     "gate:next-exercise": "vitest run tests/next-exercise-chain.test.ts",
     "gate:pool-visible": "vitest run tests/pool-visible.test.tsx",
     "gate:chain-is-paid": "vitest run tests/chain-is-paid.test.ts",
+    "gate:scale": "vitest run tests/scale.test.ts",
     "gate:chain": "npm run gate:next-exercise && npm run gate:pool-visible && npm run gate:chain-is-paid",
     "test": "vitest run",
     "test:e2e": "tsx scripts/e2e/run.mts",
