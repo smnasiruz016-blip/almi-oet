@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     template: "%s · AlmiOET",
   },
   description:
-    "Practise the Occupational English Test for healthcare on the real 0–500 scale, with an A–E grade per sub-test, honest AI feedback, and all 12 professions. Original material, never copied from OET. Part of the AlmiWorld family.",
+    "Practise the Occupational English Test for healthcare on the real 0–500 scale, with a grade of A, B, C+ or C per sub-test, honest AI feedback, and all 12 professions. Original material, never copied from OET. Part of the AlmiWorld family.",
   applicationName: "AlmiOET",
   authors: [{ name: "AlmiWorld" }],
   keywords: ["Occupational English Test", "OET", "OET practice", "OET preparation", "OET for nurses", "OET writing", "OET speaking", "healthcare English test", "AlmiOET", "AlmiWorld"],
   openGraph: {
     title: "AlmiOET — honest Occupational English Test practice for healthcare",
-    description: "Original practice on the real 0–500 scale, with an A–E grade per sub-test, honest AI feedback, and all 12 professions.",
+    description: "Original practice on the real 0–500 scale, with a grade of A, B, C+ or C per sub-test, honest AI feedback, and all 12 professions.",
     url: SITE_URL,
     siteName: "AlmiOET",
     type: "website",

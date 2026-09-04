@@ -1,6 +1,7 @@
 // Honest per-sub-test score display. OET reports each sub-test on a 0–500 scale
-// with an A–E grade, so we show a single estimate RANGE (lo–hi) plus the
-// most-likely grade, never a precise number, and always the standing "practice
+// with a published grade band, so we show a single estimate RANGE (lo–hi) plus
+// the most-likely grade — A, B, C+ or C, or no letter where OET publishes no
+// band — never a precise number, and always the standing "practice
 // estimate, confirm with your regulator" disclaimer.
 //
 // This comment used to add "and NO composite/overall". That was FALSE: OET has

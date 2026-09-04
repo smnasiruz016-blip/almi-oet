@@ -7,6 +7,21 @@ import { isOwner } from "@/lib/auth/owner-check";
 export const STRIPE_PRICE_MONTHLY = process.env.STRIPE_PRICE_ID_MONTHLY ?? "";
 export const STRIPE_PRICE_YEARLY = process.env.STRIPE_PRICE_ID_YEARLY ?? "";
 
+/** The advertised monthly price, in cents — the ONE place the number lives.
+ *
+ *  Until now "$12/month" existed only as prose on the pricing page and in page
+ *  metadata, with the real amount held in Stripe. Nothing tied the two together,
+ *  so the copy could say one figure while checkout charged another and no check
+ *  would notice. `gate:claims` compares the copy against this constant.
+ *
+ *  🔴 THIS IS NOT THE AUTHORITY, STRIPE IS. This constant is what we CLAIM to
+ *  charge; the price object behind STRIPE_PRICE_ID_MONTHLY is what we DO charge.
+ *  /api/billing/health reconciles them at runtime (it retrieves the price and
+ *  reports unit_amount). A gate cannot reach Stripe from CI, so it holds the
+ *  copy to this declared figure and leaves the live reconciliation to health.
+ *  Making the offer configurable is a separate PR. */
+export const PRICE_MONTHLY_CENTS = 1200;
+
 export type PlanKey = "FREE" | "PRO_MONTHLY" | "PRO_YEARLY";
 
 // REMOVED 2026-08-05: a `PLANS` table declaring FREE = 3 attempts/month and
