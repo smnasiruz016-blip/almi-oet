@@ -30,37 +30,19 @@ import EmbeddedPostgres from "embedded-postgres";
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { whyNotDisposable, isThisMachinesDatabase } from "../disposable-url";
 
-const LOOPBACK = new Set(["localhost", "127.0.0.1", "::1", "[::1]"]);
-
-/** Hosts that must never appear. Not a whitelist substitute — the loopback rule
- *  below already decides that — but a named refusal reads better in a log than
- *  "host is not loopback" when someone has pasted a Neon URL by mistake. */
-const NEVER = /neon\.tech|supabase|amazonaws|azure|vercel-storage|\.render\.com/i;
-
+// The predicate lives in scripts/disposable-url.ts — one definition, shared with
+// scripts/prod-write-guard.ts, which cannot import THIS file because it pulls in
+// embedded-postgres.
 export function assertDisposable(url: string): void {
-  let parsed: URL;
-  try {
-    parsed = new URL(url);
-  } catch {
-    throw new Error(`[e2e] E2E_DATABASE_URL is not a URL: refusing to run.`);
-  }
-  if (NEVER.test(url)) {
+  const why =
+    whyNotDisposable(url) ??
+    (isThisMachinesDatabase(url) ? "the target equals this machine's DATABASE_URL" : null);
+  if (why) {
     throw new Error(
-      `[e2e] REFUSING: the database URL names a hosted provider (${parsed.hostname}). ` +
-        `The end-to-end walk writes rows; it runs against a throwaway server only.`,
-    );
-  }
-  if (!LOOPBACK.has(parsed.hostname)) {
-    throw new Error(
-      `[e2e] REFUSING: database host is "${parsed.hostname}", not loopback. ` +
-        `The end-to-end walk writes rows; it runs against a throwaway server only.`,
-    );
-  }
-  if (process.env.DATABASE_URL && url.trim() === process.env.DATABASE_URL.trim()) {
-    throw new Error(
-      `[e2e] REFUSING: the target equals this machine's DATABASE_URL. ` +
-        `That is the production database.`,
+      `[e2e] REFUSING: ${why}. The end-to-end walk writes rows; it runs against a ` +
+        "throwaway server only.",
     );
   }
 }
