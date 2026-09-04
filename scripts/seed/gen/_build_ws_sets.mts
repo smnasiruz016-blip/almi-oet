@@ -30,6 +30,7 @@ import { join } from "node:path";
 import { writingLetterPayloadSchema } from "../../../src/lib/oet/tasks/writing-letter";
 import { speakingRoleplayPayloadSchema } from "../../../src/lib/oet/tasks/speaking-roleplay";
 import { unwrap } from "../../wrap-rule";
+import { TIMING } from "../../../src/lib/oet/exam-shape";
 
 const OUT_DIR = join(process.cwd(), "scripts", "seed", "gen");
 const PROFESSIONS = [
@@ -122,6 +123,30 @@ for (const set of SETS) {
     const p = r.payload as Record<string, unknown>;
     for (const f of ["caseNotes", "candidateCard"]) {
       if (typeof p[f] === "string") p[f] = unwrap(p[f] as string);
+    }
+  }
+
+  // 🔴 PREPARATION TIME IS OET'S NUMBER, NOT THE SOURCE FILE'S. Corrected here
+  // on 4 September 2026 and reported out loud, never silently: the JSON carried
+  // 120 seconds, which is the bottom of an older OET page's "2-3 minutes" range,
+  // and OET's own newer page states three minutes four times. See
+  // src/lib/oet/exam-shape.ts for both citations and the arithmetic that
+  // corroborates it. Enforcing it in the builder is what stops a future seed
+  // putting 120 back, and it is idempotent.
+  if (set.taskType === "SPEAKING_ROLEPLAY") {
+    let corrected = 0;
+    for (const r of rows) {
+      const p = r.payload as Record<string, unknown>;
+      if (Number(p.prepSeconds) !== TIMING.speakingPrepSecondsMin) {
+        p.prepSeconds = TIMING.speakingPrepSecondsMin;
+        corrected += 1;
+      }
+    }
+    if (corrected > 0) {
+      console.log(
+        `  ⚠️ prepSeconds corrected on ${corrected}/${rows.length} item(s) -> ` +
+          `${TIMING.speakingPrepSecondsMin}s (OET: "three minutes to prepare")`,
+      );
     }
   }
 

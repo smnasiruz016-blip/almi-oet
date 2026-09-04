@@ -24,7 +24,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "An outpatient speech pathology clinic",
       "patientRole": "The patient is a graduate who has been avoiding phone calls and interviews because of their stammer.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Discuss realistic goals for managing the stammer rather than eliminating it. Introduce techniques and the idea of voluntary disclosure, and support the patient in deciding whether and how to mention their stammer to an interviewer.",
       "candidateRole": "You are the speech pathologist seeing an adult who stammers and has an important job interview coming up.",
@@ -45,7 +45,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "An outpatient voice clinic",
       "patientRole": "The patient is a call-centre worker who relies on their voice all day and cannot easily take time off.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain the likely link between heavy voice use, dehydration and throat clearing. Recommend practical vocal hygiene steps, discuss hydration and rest breaks, and explain why you also want to confirm there is no underlying issue with the larynx.",
       "candidateRole": "You are the speech pathologist seeing an adult whose voice becomes hoarse and tired by the end of each shift on the phones.",
@@ -66,7 +66,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A memory clinic consulting room",
       "patientRole": "The patient is the daughter, who finds conversations with her parent increasingly upsetting and confusing.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain how dementia affects communication and word-finding. Offer practical strategies such as simple sentences, allowing time and avoiding quizzing, and address her distress when her parent repeats questions or forgets the conversation.",
       "candidateRole": "You are the speech pathologist advising the daughter of a parent in the moderate stages of dementia.",
@@ -87,7 +87,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A paediatric rehabilitation outpatient service",
       "patientRole": "The patient is the teenager, who is self-conscious about looking different in front of school friends.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain how the AAC device can support being understood without replacing their own voice. Address worries about standing out at school, and involve the teenager in choosing how and when they would use it.",
       "candidateRole": "You are the speech pathologist introducing an augmentative and alternative communication device to a teenager with cerebral palsy and unclear speech.",
@@ -108,7 +108,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A community child development centre",
       "patientRole": "The patient is the parent, who has been comparing their child to a cousin of the same age who speaks in sentences.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Reassure the parent about the wide range of normal early language while taking their concern seriously. Explain what you observed today and suggest simple everyday strategies to encourage talking, and agree a follow-up review.",
       "candidateRole": "You are the speech pathologist seeing a parent whose two-year-old uses only a handful of single words.",
@@ -129,7 +129,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A community child health clinic",
       "patientRole": "The patient is the parent, who thinks the lisp is cute, will sort itself out, and is reluctant to commit to regular appointments.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain why this lisp is unlikely to resolve on its own at this age and how short, focused therapy can help. Respect the parent's view, outline what attending would involve, and agree on a manageable next step.",
       "candidateRole": "You are the speech pathologist seeing a seven-year-old with a persistent lisp affecting the s and z sounds.",
@@ -150,7 +150,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "Paediatric speech & language clinic.",
       "patientRole": "The patient is the parent of a 4-year-old. They are worried, feel guilty that they 'caused it' by correcting the child too much, and have read alarming things online. They want to know whether to finish the child's sentences and whether the child will stammer for life.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Reassure that they did not cause the stammer; explain natural recovery is common at this age but monitoring matters; give two or three interaction strategies (slow your own speech, pause before replying, reduce questions, do not finish sentences or tell the child to slow down); explain when therapy would step up; agree a review in a set timeframe & safety-net advice.",
       "candidateRole": "You are the speech pathologist. You are meeting the parent of a 4-year-old who has developed stammering over the past five months (repetitions of whole words & first sounds, occasional blocks, some facial tension). You need to explain that early stammering is common and often resolves, that it is not caused by the parent, recommend a watchful monitoring approach with practical interaction strategies, and agree a review plan.",
@@ -171,7 +171,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A community paediatric clinic",
       "patientRole": "The patient is the parent, who has been told by the preschool that other children cannot understand their child.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain in plain terms which sounds the child is finding tricky and that some errors are still age-appropriate. Outline a simple plan with home practice and a review, and reassure the parent without dismissing the preschool's feedback.",
       "candidateRole": "You are the speech pathologist seeing a four-year-old whose speech sounds are difficult for people outside the family to understand.",
@@ -192,7 +192,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A head and neck cancer pre-treatment clinic",
       "patientRole": "The patient has been told their swallowing and voice may change during and after treatment.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain why you want to start swallowing exercises before treatment begins and what changes to expect. Introduce the idea of prophylactic exercises and ongoing monitoring, and respond honestly to questions about eating and speaking afterwards.",
       "candidateRole": "You are the speech pathologist meeting a patient before they begin chemoradiotherapy for a throat cancer.",
@@ -213,7 +213,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "An acute medical ward in a public hospital",
       "patientRole": "The patient is an older adult who has been told they need mildly thickened fluids and finds the texture unpleasant.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain why thickened fluids have been recommended after the assessment. Acknowledge how unpleasant the texture is, describe the aspiration risk in plain language, and agree a short trial period with a review date rather than presenting it as permanent.",
       "candidateRole": "You are the speech pathologist who has just completed a bedside swallowing assessment for an inpatient recovering from pneumonia.",
@@ -234,7 +234,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A residential aged care facility",
       "patientRole": "The patient is the resident, who loves their normal meals and resents being told to move to a softer, minced and moist texture.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain what the coughing during meals suggests and why a softer texture is being recommended. Discuss how to keep meals enjoyable, respect the resident's right to be involved in decisions, and agree on a plan and review.",
       "candidateRole": "You are the speech pathologist reviewing a resident who has been coughing during meals.",
@@ -255,7 +255,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A stroke rehabilitation unit interview room",
       "patientRole": "The patient is the wife, who keeps finishing her husband's sentences and is exhausted and frightened by the change in him.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain what non-fluent aphasia is and that it is a language problem, not a loss of intelligence. Coach her on supportive communication strategies, and gently address the habit of answering for him without making her feel criticised.",
       "candidateRole": "You are the speech pathologist meeting the wife of a man who developed non-fluent aphasia two weeks after a left-hemisphere stroke.",
@@ -276,7 +276,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A school-based therapy service interview room",
       "patientRole": "The patient is the teenager's mother, who assumed the issue was laziness or a habit that would be outgrown.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain why certain speech sounds may be affected by hearing, and recommend an audiology referral before further speech therapy. Address the mother's surprise sensitively and outline how hearing and speech work would fit together.",
       "candidateRole": "You are the speech pathologist who suspects a teenager's unclear speech and missed sounds may be related to a previously undetected hearing problem.",
@@ -297,7 +297,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "Outpatient voice clinic at a community health centre.",
       "patientRole": "The patient is a 41-year-old full-time teacher whose voice has been rough and tired for four months, worse by the afternoon. They drink a lot of coffee, little water, and often shout over noisy classes. They are anxious it might be something serious.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain that the nodules are benign and very common in people who use their voice heavily; connect them to vocal strain, dehydration and shouting; negotiate two or three practical changes (hydration, reducing throat-clearing & shouting, using a microphone or gesture to gain attention); explain that voice therapy can resolve nodules without surgery; check understanding & address their worry.",
       "candidateRole": "You are the speech pathologist. A secondary-school teacher has been referred with persistent hoarseness. Laryngoscopy (done by ENT) showed bilateral vocal fold nodules with no sinister features. You need to explain the diagnosis in plain language, link it to voice use & habits, agree realistic vocal hygiene changes, and reassure while setting expectations for therapy.",
@@ -318,7 +318,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "payload": {
       "setting": "A community rehabilitation clinic",
       "patientRole": "The patient is the young man, who is keen to return to study and is frustrated when words will not come.",
-      "prepSeconds": 120,
+      "prepSeconds": 180,
       "speakSeconds": 300,
       "candidateCard": "Explain why word-finding and processing can be affected after a brain injury and that improvement often continues over time. Teach compensatory strategies, discuss managing fatigue, and set realistic expectations about returning to study.",
       "candidateRole": "You are the speech pathologist seeing a young man who has word-finding difficulties and slower thinking after a mild traumatic brain injury.",

@@ -41,6 +41,7 @@
 import "./load-env.mjs";
 import { readFileSync } from "node:fs";
 import { PrismaClient } from "@prisma/client";
+import { requireProdWrite } from "./prod-write-guard";
 
 type Row = { taskType: string; title: string };
 
@@ -132,6 +133,8 @@ async function main() {
     );
     return;
   }
+
+  requireProdWrite("scripts/retire-fragments.mts");
 
   // One transaction: either every named row moves or none does.
   const ids = found.filter((f) => f.active !== nextActive).map((f) => f.id);

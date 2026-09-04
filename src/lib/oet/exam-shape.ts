@@ -219,8 +219,32 @@ export const TIMING = {
   /** Writing = 5 minutes reading time, THEN 40 minutes writing. 45 total. */
   writingReadingSeconds: 5 * 60,
   writingWritingSeconds: 40 * 60,
-  /** Per role-play. OET publishes "2-3 minutes to prepare for each". */
-  speakingPrepSecondsMin: 120,
+  /**
+   * 🔴 PER ROLE-PLAY: THREE MINUTES. CORRECTED 4 SEPTEMBER 2026.
+   *
+   * Two OET pages, and they are not equally specific. The older one this file
+   * already cited says "2-3 minutes to prepare for each" — a range — and we took
+   * the BOTTOM of it, 120, and shipped that as the item default. The newer page
+   * states one number and states it four times:
+   *
+   *   "Before each role play, you are given a role card and three minutes to
+   *    prepare."   — oet.com/post/did-you-know-the-oet-speaking-test-gives-you-
+   *                  three-preparation-minutes (14 November 2024)
+   *
+   * A range and a specific figure are not two measurements in conflict; the
+   * specific one is the measurement and the range is a summary of it. Same
+   * ruling as READING_PART_C's 653-836 over 750-850: where a measured value and
+   * a round summary disagree, the measurement governs.
+   *
+   * CORROBORATED ARITHMETICALLY, which is why this is not just a newer page
+   * winning: 2 role plays x (3 prep + 5 speak) = 16 minutes, plus the
+   * introduction, lands on OET's own "approximately 20 minutes" for the Speaking
+   * sub-test. At two minutes it would be 14, which that figure does not fit.
+   *
+   * The min/max pair is kept because scripts/report-shape.ts reports a band, but
+   * BOTH ENDS ARE NOW 180: there is no range left to sit at the bottom of.
+   */
+  speakingPrepSecondsMin: 180,
   speakingPrepSecondsMax: 180,
   speakingSpeakSeconds: 5 * 60,
 } as const;
@@ -238,8 +262,14 @@ export const TIMING_SOURCES = {
     "https://oet.com/ready/writing  " +
     "(This RESOLVES the apparent 45-vs-40 contradiction: 5 + 40 = 45. Both OET pages were right.)",
   speaking:
-    '"2-3 minutes to prepare for each" — ' +
-    "https://www.occupationalenglishtest.org/test-information/speaking/ (read 2026-08-31)",
+    '"Before each role play, you are given a role card and three minutes to prepare." and ' +
+    '"the three-minute preparation time before each role play" — ' +
+    "https://oet.com/post/did-you-know-the-oet-speaking-test-gives-you-three-preparation-minutes " +
+    "(14 November 2024, read 2026-09-04). " +
+    'SUPERSEDES the earlier "2-3 minutes to prepare for each" at ' +
+    "https://www.occupationalenglishtest.org/test-information/speaking/ (read 2026-08-31), which " +
+    "is a range summarising the same figure. We had taken the bottom of that range and shipped " +
+    "120 seconds on 180 live items.",
 } as const;
 
 // ─────────────────────────────────────────────────────────────────────────────

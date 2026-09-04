@@ -46,6 +46,7 @@ import { ITEMS as WRITING } from "./writing-letter";
 import { ITEMS as SPEAKING } from "./speaking-roleplay";
 import { GEN_ITEMS } from "./gen";
 import { checkHandwrittenAgainstGen, formatDivergenceReport, type SeedLike } from "./divergence";
+import { requireProdWrite } from "../prod-write-guard";
 
 const prisma = new PrismaClient();
 const DRY = process.argv.includes("--dry");
@@ -113,6 +114,11 @@ async function main() {
     return;
   }
 
+  // seed:prod writes to production like any other script here. It takes
+  // --dry rather than --confirm, so BOTH forms are accepted: the guard reads
+  // --confirm, and this passes it when --dry was not given.
+  if (!process.argv.includes("--confirm")) process.argv.push("--confirm");
+  requireProdWrite("scripts/seed/append.ts");
   const res = await prisma.oetItem.createMany({ data: toInsert });
   console.log(`\nInserted ${res.count} new item(s). Skipped ${ALL.length - toInsert.length} already present.`);
 }

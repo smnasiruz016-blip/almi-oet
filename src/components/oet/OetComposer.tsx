@@ -738,12 +738,17 @@ function SpeakingComposer({
   // { setting, candidateRole, patientRole, candidateCard, speakSeconds } — five
   // fields, and prepSeconds was not one of them. So the number was stored on all
   // 507 items, schema-validated, and guarded by gate G6 against OET's published
-  // 2–3 minute range, while the learner got no preparation phase at all: the
+  // published preparation time, while the learner got no preparation phase at all: the
   // "Start recording" button was live the moment the card appeared.
   //
-  // It is taken FROM THE PAYLOAD, per item, never written as a literal. The
-  // fallback is TIMING.speakingPrepSecondsMin (exam-shape.ts, "2-3 minutes to
-  // prepare for each"), used only if an item somehow arrives without the field.
+  // It is taken FROM THE PAYLOAD, per item, never written as a literal — which
+  // is why the two sentences on this screen ("OET gives you 03:00 to prepare",
+  // "you get 3 minutes to prepare and there is no skip") needed no edit on
+  // 4 September 2026 when the number was corrected. They were never wrong copy;
+  // they were correct copy printing a wrong number. The fallback is
+  // TIMING.speakingPrepSecondsMin, which is now 180 on both ends — see
+  // exam-shape.ts for OET's own "three minutes to prepare" and why it supersedes
+  // the "2-3 minutes" range we had taken the bottom of.
   const p = payload as {
     setting?: string;
     candidateRole?: string;

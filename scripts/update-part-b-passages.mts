@@ -58,6 +58,7 @@ import "./load-env.mjs";
 import { readFileSync, writeFileSync, renameSync, unlinkSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { PrismaClient } from "@prisma/client";
+import { requireProdWrite } from "./prod-write-guard";
 
 const TASK_TYPE = "READING_PART_B";
 const DEFAULT_JSON = "C:/Projects/_handoffs/AlmiOET_PartB_new_passage_bodies.json";
@@ -174,6 +175,7 @@ async function doRestore(path: string): Promise<void> {
     console.log("\n[part-b] DRY RUN — nothing was written. Re-run with --confirm to restore.");
     return;
   }
+  requireProdWrite("scripts/update-part-b-passages.mts");
   const res = await prisma.$transaction(
     plans.map((p) =>
       prisma.oetItem.update({ where: { id: p.id }, data: { payload: p.payload as never } }),
