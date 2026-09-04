@@ -21,6 +21,11 @@ import "../load-env.mjs";
 import { PrismaClient } from "@prisma/client";
 import { GEN_ITEMS } from "../seed/gen/index";
 import { words } from "../gates/words";
+// 🔴 THE SAME FUNCTION THE FIX USES. Until this import the measurement had its
+// own, looser idea of a wrap and reported 7,245 remaining after the fix had
+// removed every one it was asked to. Two definitions of the same word is how a
+// report and a repair end up disagreeing about whether the job is done.
+import { isWrapBreak } from "../wrap-rule";
 
 const FROM_GEN = process.argv.includes("--gen");
 
@@ -74,7 +79,7 @@ for (const [taskType, field] of Object.entries(FIELD)) {
     const ls = t.split("\n");
     let n = 0;
     for (let i = 0; i < ls.length - 1; i++) {
-      if (ls[i].trim() === "" || ls[i + 1].trim() === "" || isListLine(ls[i + 1])) continue;
+      if (!isWrapBreak(ls[i], ls[i + 1])) continue;
       n += 1;
     }
     if (n > 0) {
@@ -113,6 +118,7 @@ for (const [taskType, field] of Object.entries(FIELD)) {
         joinBeforeList += 1;
         continue;
       }
+      if (!isWrapBreak(cur, next)) continue;
       midSentence += 1;
       affected.add(r.id);
     }

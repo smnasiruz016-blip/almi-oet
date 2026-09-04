@@ -42,6 +42,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { PrismaClient } from "@prisma/client";
 import { words } from "./gates/words";
+import { unwrap } from "./wrap-rule";
 
 const CONFIRM = process.argv.includes("--confirm");
 const ONE = process.argv.includes("--one");
@@ -54,63 +55,9 @@ const RESTORE_FILE = restoreIdx >= 0 ? process.argv[restoreIdx + 1] : null;
 
 const FIELD = { WRITING_LETTER: "caseNotes", SPEAKING_ROLEPLAY: "candidateCard" } as const;
 
-/** A line that begins a list item. The newline before it is structure. */
-const isList = (l: string): boolean => /^\s*([-•*]\s|\d+[.)]\s)/.test(l);
-
-/** A line that begins a new LABELLED FIELD — "Patient: …", "Age: 54",
- *  "Referral written: …". Case notes are laid out as a block of these, and the
- *  newline before one is the layout, not a wrap. */
-const isLabel = (l: string): boolean => /^\s*[A-Z][^:]{0,44}:\s/.test(l);
-
-/**
- * 🔴 A BREAK IS A WRAP ONLY IF THE LINE REACHED THE AUTHOR'S WRAP COLUMN.
- *
- * The command's rule was "every single newline inside a paragraph becomes a
- * space". Measured against the live rows, that rule DESTROYS the case notes:
- *
- *     WESTERGATE DENTAL PRACTICE          ->  WESTERGATE DENTAL PRACTICE Patient:
- *     Patient: Thomas Van Rooyen-Obi          Thomas Van Rooyen-Obi, aged 9 Attended:
- *     Attended: 4 March 2029                  4 March 2029 …
- *
- * That header block is not wrapped prose; every line is a separate field, and
- * that layout is the shape of an OET Writing task. 44% of the Writing breaks are
- * exactly this. The word count does not move either way, which is precisely why
- * no gate could tell the two apart.
- *
- * So the discriminator is the wrap COLUMN, measured from the content itself:
- *
- *   SPEAKING  1391 breaks · every one on a line of 86-104 chars · 0 short lines
- *             · 0 bullets · 0 labels   -> all 1391 are wraps
- *   WRITING   10315 breaks · 4288 on a line >= 80 chars whose next line starts
- *             neither a field nor a bullet -> wraps
- *             · 6027 short or field-starting -> layout, left alone
- *
- * A line the author wrapped is one that hit the column: minimum 80, median 97,
- * maximum 108. A field line is short: median 48.
- */
-export function isWrapBreak(cur: string, next: string): boolean {
-  return (
-    cur.trim() !== "" &&
-    next.trim() !== "" &&
-    cur.length >= 80 &&
-    !isList(next) &&
-    !isLabel(next)
-  );
-}
-
-/** Join wrapped lines; leave paragraph breaks, fields and bullets alone. */
-export function unwrap(text: string): string {
-  const lines = text.replace(/\r\n/g, "\n").split("\n");
-  let out = "";
-  for (let i = 0; i < lines.length; i++) {
-    out += lines[i];
-    const next = lines[i + 1];
-    if (next === undefined) break;
-    out += isWrapBreak(lines[i], next) ? " " : "\n";
-  }
-  // A wrap joined onto a line that already ended in a space would double it.
-  return out.replace(/[ \t]{2,}/g, " ").replace(/[ \t]+\n/g, "\n");
-}
+// The rule lives in scripts/wrap-rule.ts so a measurement can import it
+// without running this repair. See that file for how its three conditions were
+// arrived at, and for the twelve lines that settled the third.
 
 const prisma = new PrismaClient();
 try {
