@@ -21,6 +21,7 @@
     "gate:chain": "npm run gate:next-exercise && npm run gate:pool-visible && npm run gate:chain-is-paid",
     "test": "vitest run",
     "test:e2e": "tsx scripts/e2e/run.mts",
+    "check:prod-migrations": "tsx scripts/check-prod-migrations.mts",
     "gate:no-tokens-for-nothing": "tsx scripts/measure/blank-submit.mts",
     "test:db": "tsx scripts/measure/blank-submit.mts",
     "report:shape": "tsx scripts/report-shape.ts",
