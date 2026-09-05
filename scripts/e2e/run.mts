@@ -103,6 +103,7 @@ async function waitForServer(timeoutMs = 180_000) {
 async function main() {
   let db: DisposableDb | null = null;
   let server: ReturnType<typeof spawn> | null = null;
+  let logStream: ReturnType<typeof createWriteStream> | null = null;
   const workDir = mkdtempSync(join(tmpdir(), "almioet-e2e-"));
 
   try {
@@ -172,19 +173,24 @@ async function main() {
     const serverLog = serverLogPath();
     assertNotInsideOutputDir(serverLog);
     mkdirSync(dirname(serverLog), { recursive: true });
-    const logStream = createWriteStream(serverLog, { flags: "w" });
+    logStream = createWriteStream(serverLog, { flags: "w" });
     server = spawn(`npx next start -p ${PORT}`, {
       shell: true,
+      // Its own process GROUP on POSIX, so teardown can signal the whole tree.
+      // shell:true means the direct child is `sh`; SIGTERM to it leaves
+      // next-server running, and a live next-server keeps a connection pool open
+      // against the throwaway database, which is what made db.stop() hang.
+      detached: process.platform !== "win32",
       stdio: ["ignore", "pipe", "pipe"],
       env: appEnv,
     });
     server.stdout?.on("data", (b: Buffer) => {
       process.stdout.write(b);
-      logStream.write(b);
+      logStream?.write(b);
     });
     server.stderr?.on("data", (b: Buffer) => {
       process.stderr.write(b);
-      logStream.write(b);
+      logStream?.write(b);
     });
     await waitForServer();
     console.log("[e2e] app is up");
@@ -208,17 +214,34 @@ async function main() {
     );
   } finally {
     if (server && !server.killed) {
-      // next start spawns through a shell on Windows; kill the tree.
+      // next start spawns through a shell on BOTH platforms; kill the TREE.
       if (process.platform === "win32" && server.pid) {
         spawnSync("taskkill", ["/pid", String(server.pid), "/t", "/f"], { stdio: "ignore" });
-      } else {
-        server.kill("SIGTERM");
+      } else if (server.pid) {
+        // 🔴 NEGATIVE PID = THE PROCESS GROUP. server.kill() signals `sh` only,
+        // and next-server survives it — proved by the runner's own orphan list
+        // on every CI run: "Terminate orphan process: next-server". A surviving
+        // server holds a pool against the throwaway database, and db.stop()
+        // then waits for a client that is never going away.
+        try {
+          process.kill(-server.pid, "SIGTERM");
+        } catch {
+          // Already gone, or no group. Fall back to the direct child.
+          try {
+            server.kill("SIGTERM");
+          } catch {
+            // nothing left to kill
+          }
+        }
       }
     }
     if (db) {
       console.log("[e2e] stopping the throwaway database…");
       await db.stop();
     }
+    // The second open handle. Never closed, so on the SUCCESS path node had
+    // nothing to exit with even once the database was down.
+    if (logStream) await new Promise<void>((res) => logStream!.end(res));
     rmSync(workDir, { recursive: true, force: true });
   }
 }
