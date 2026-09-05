@@ -52,7 +52,7 @@ and says so: nullable, no backfill, so every existing attempt keeps
 
 | | |
 |---|---|
-| **Applying** | `npm run db:deploy` (`prisma migrate deploy`). **`npm run build` does NOT do this** — it is `prisma generate && gate:all && next build`. Nothing yet forces the apply. |
+| **Applying** | `ALLOW_PROD_WRITE=1 npm run db:deploy -- --confirm`. Both conditions are required, as for every other production write — `db:deploy` was the last command that changed production without them. **`npm run build` does NOT do this** — it is `prisma generate && gate:all && next build`. Nothing yet forces the apply. |
 | **Detecting** | `/api/status` compares the migration folder shipped in the deployment against what that deployment's own database reports, and answers **503** with the pending names. |
 | **Automatically** | `.github/workflows/post-deploy.yml` runs `npm run check:prod-migrations` on every successful **Production** deployment. No secrets — the endpoint is public. |
 | **By hand** | `npm run check:prod-migrations` — run it before any seed, and after any deploy. |

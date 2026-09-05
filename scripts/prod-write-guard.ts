@@ -39,9 +39,16 @@
 
 import { isDisposableUrl } from "./disposable-url";
 
-/** Throws unless BOTH conditions are met. Call it immediately before the first
- *  write, never at import time — a script must still be able to dry-run. */
-export function requireProdWrite(script: string): void {
+/**
+ * Throws unless BOTH conditions are met. Call it immediately before the first
+ * write, never at import time — a script must still be able to dry-run.
+ *
+ * `remedy` overrides the command printed with the refusal. It exists because
+ * `npm run db:deploy` is not run as `npx tsx`, and a refusal that prints the
+ * wrong command hands someone a wrong instruction at the exact moment they are
+ * looking for the right one. Omitted, the `npx tsx` form is unchanged.
+ */
+export function requireProdWrite(script: string, remedy?: string): void {
   // 🔴 THE RULE IS ABOUT PRODUCTION, NOT ABOUT WRITING.
   //
   // The e2e walk runs the REAL retire script against a THROWAWAY database, on
@@ -68,7 +75,7 @@ export function requireProdWrite(script: string): void {
       `\n  A production write needs BOTH, on purpose. One of them can be satisfied by\n` +
       `  accident; both cannot. See scripts/prod-write-guard.ts for the near-miss that\n` +
       `  put this here.\n` +
-      `\n  ALLOW_PROD_WRITE=1 npx tsx ${script} --confirm\n`,
+      `\n  ${remedy ?? `ALLOW_PROD_WRITE=1 npx tsx ${script} --confirm`}\n`,
   );
   process.exit(1);
 }
