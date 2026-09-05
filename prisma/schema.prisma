@@ -235,6 +235,22 @@ model OetItem {
   // NULL for Listening + Reading (common to all professions); SET for Writing +
   // Speaking (per-profession bank). The whole per-profession axis is this column.
   profession       OetProfession?
+  // 🔴 WRITTEN ONCE, THEN IMMUTABLE. NOTHING MAY REGENERATE EITHER OF THESE.
+  //
+  // `slug` and `form` exist so that CODE never has to read `title`. The title is
+  // for a human; anything the machine needs gets its own column. Before this,
+  // src/lib/oet/accept-lists.ts was keyed by the full title string and
+  // session.ts parsed "OET Form N · " out of it with a regex — so renaming an
+  // item would have silently killed the accept-list overlay (right answers
+  // marked wrong) and stopped forms being recognised at all.
+  //
+  // They are seeded from the content's own words the FIRST time and never
+  // recomputed. A value that is derived on every run is a value a later rename
+  // can change, which is the coupling this removes. The backfill refuses any row
+  // whose slug is already set, and GEN_ITEMS carries these BY HAND rather than
+  // through a function, for the same reason.
+  slug             String?        @unique
+  form             String?
   title            String
   // Instruction shown to the test-taker.
   prompt           String         @db.Text
