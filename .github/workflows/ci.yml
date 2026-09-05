@@ -142,7 +142,7 @@ jobs:
     #
     # Measured: 146s. This is ~6x, generous enough that a real slow run is not
     # cut off, short enough that a hang is a fast, readable failure.
-    timeout-minutes: 1
+    timeout-minutes: 15
     permissions:
       contents: read
       packages: read
