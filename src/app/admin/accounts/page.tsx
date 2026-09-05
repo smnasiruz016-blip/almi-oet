@@ -3,6 +3,7 @@
 // 30-day session duration (no lastActiveAt field on User), or updatedAt.
 
 import { prisma } from "@/lib/prisma";
+import { formatDateUTC } from "@/lib/format-date";
 
 export const dynamic = "force-dynamic";
 
@@ -106,13 +107,13 @@ export default async function AccountsPage() {
                 return (
                   <tr key={u.id}>
                     <td className="px-4 py-3 text-almi-ink">{u.email}</td>
-                    <td className="px-4 py-3 text-almi-text-muted">{u.createdAt.toLocaleDateString()}</td>
+                    <td className="px-4 py-3 text-almi-text-muted">{formatDateUTC(u.createdAt)}</td>
                     <td className="px-4 py-3">
                       <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badge.cls}`}>
                         {badge.label}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-almi-text-muted">{la.toLocaleDateString()}</td>
+                    <td className="px-4 py-3 text-almi-text-muted">{formatDateUTC(la)}</td>
                   </tr>
                 );
               })}

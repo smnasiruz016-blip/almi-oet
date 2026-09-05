@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { formatDateUTC } from "@/lib/format-date";
 
 export type AdminReviewRow = {
   id: string;
@@ -92,7 +93,7 @@ export function AdminReviews({ rows: initial }: { rows: AdminReviewRow[] }) {
                 <p className="mt-2 text-sm text-almi-text">{r.text}</p>
                 <p className="mt-2 text-xs text-almi-text-muted">
                   {r.userName?.trim() || "No name"} · {r.userEmail} ·{" "}
-                  {new Date(r.createdAt).toLocaleDateString()}
+                  {formatDateUTC(r.createdAt)}
                 </p>
               </div>
               <div className="flex items-center gap-2">

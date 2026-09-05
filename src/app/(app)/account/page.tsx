@@ -17,6 +17,7 @@ import {
 import { ResendVerificationButton } from "@/components/ResendVerificationButton";
 import { getMyReview } from "@/lib/reviews";
 import { ReviewCard } from "@/components/reviews/ReviewCard";
+import { formatDateUTC } from "@/lib/format-date";
 
 async function setProfession(formData: FormData) {
   "use server";
@@ -82,7 +83,7 @@ export default async function AccountPage({
         {user.subscriptionCurrentPeriodEnd && (
           <p className="mt-2 text-xs text-almi-text-muted">
             {user.subscriptionCancelAtPeriodEnd ? "Ends" : "Renews"}{" "}
-            {new Date(user.subscriptionCurrentPeriodEnd).toLocaleDateString()}
+            {formatDateUTC(user.subscriptionCurrentPeriodEnd)}
           </p>
         )}
 
