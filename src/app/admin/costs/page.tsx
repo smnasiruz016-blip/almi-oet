@@ -8,6 +8,7 @@ import { isAdmin } from "@/lib/founder";
 import { prisma } from "@/lib/prisma";
 import { formatCents } from "@/lib/ai/cost";
 import { reconcileLedger } from "@/lib/ai/ledger-health";
+import { formatDateTimeUTC } from "@/lib/format-date";
 
 export const dynamic = "force-dynamic";
 
@@ -116,7 +117,7 @@ export default async function AdminCostsPage() {
           {recent.map((r) => (
             <div key={r.id} className="flex items-center justify-between gap-3 px-1 text-xs text-almi-text-muted">
               <span className="truncate">
-                {new Date(r.timestamp).toLocaleString()} · {r.feature} · {r.model}
+                {formatDateTimeUTC(r.timestamp)} · {r.feature} · {r.model}
                 {r.success ? "" : " · failed"}
               </span>
               <span className="shrink-0 text-almi-text">{formatCents(r.costCents)}</span>

@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { formatDateUTC } from "@/lib/format-date";
 
 let cachedClient: Resend | null = null;
 
@@ -235,15 +236,10 @@ export async function sendWelcomeEmail(input: {
 
 // Deliberately does NOT restate amounts or act as a receipt — Stripe sends the
 // official receipt. This email confirms access and is honest about the trial.
-function formatDateUTC(d: Date | null | undefined): string | null {
-  if (!d) return null;
-  return d.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-}
+// Date formatting lives in src/lib/format-date.ts so this email and the account
+// page cannot drift apart: one instant is two different DAYS either side of
+// midnight, and both show the SAME subscriptionCurrentPeriodEnd. A copy would
+// only hope they agree; one function makes disagreement impossible.
 
 function renderSubscriptionHtml(input: {
   name?: string | null;

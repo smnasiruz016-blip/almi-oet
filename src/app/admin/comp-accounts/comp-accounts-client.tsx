@@ -12,10 +12,11 @@ import {
   extendCompPro,
   type CompRow,
 } from "@/lib/admin/comp-accounts";
+import { formatDateUTC } from "@/lib/format-date";
 
 function fmtDate(iso: string | null): string {
   if (!iso) return "—";
-  return new Date(iso).toLocaleDateString();
+  return formatDateUTC(iso) ?? "—";
 }
 
 export function CompAccountsClient({
