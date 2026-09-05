@@ -16,6 +16,12 @@ import { ITEMS as LISTENING_C_SETS } from "./listening_c_sets";
 import { ITEMS as WRITING_SETS } from "./writing_sets";
 import { ITEMS as SPEAKING_SETS } from "./speaking_sets";
 import { ITEMS as LISTENING_C } from "./listening_c";
+// The 15 full-length Reading Part A sets and 15 Part B items of 4 September
+// 2026. Separate modules from reading_a/reading_b, which were generated FROM
+// PRODUCTION and must keep describing the rows already there. Both parts stood
+// at exactly 15 active — the boot floor — before these.
+import { ITEMS as READING_A_SETS } from "./reading_a_sets";
+import { ITEMS as READING_B_SETS } from "./reading_b_sets";
 import { ITEMS as READING_A } from "./reading_a";
 import { ITEMS as READING_B } from "./reading_b";
 import { ITEMS as READING_C } from "./reading_c";
@@ -55,6 +61,8 @@ export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...LISTENING_C,
   ...READING_A,
   ...READING_B,
+  ...READING_A_SETS,
+  ...READING_B_SETS,
   ...READING_C,
   ...W_NURSING,
   ...W_MEDICINE,

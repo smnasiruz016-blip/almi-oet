@@ -46,6 +46,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { GEN_ITEMS } from "../seed/gen/index";
+import { READING_SETS_SINGLE_FORM } from "./reading_sets_single_form";
 import {
   LISTENING_PART_A_ACCEPT,
   READING_PART_A_ACCEPT,
@@ -326,6 +327,12 @@ const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
     answer: "treatment",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
+  // The 15 Reading Part A sets of 4 September 2026. DERIVED FROM THE SOURCE by
+  // scripts/seed/gen/_build_reading_sets.mts, not hand-typed: the builder records
+  // an entry only where the author's own "qubool:" line says there is nothing
+  // else to accept, and it STOPS if a question has no "qubool:" line at all —
+  // so an omission can never arrive here dressed as a decision.
+  ...READING_SETS_SINGLE_FORM,
 ];
 /**
  * 🔴 THE SAME LIST, FOR LISTENING GAPS — ADDED 3 SEPTEMBER 2026 BY OWNER'S RULING.

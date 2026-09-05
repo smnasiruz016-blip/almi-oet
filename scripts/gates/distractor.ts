@@ -326,7 +326,13 @@ const LEGACY_OVERSIZE: string[] = [
  *  A RATCHET: the recorded percentage may not be exceeded, and a taskType that
  *  reaches 45% or below must be deleted from this list. */
 const LEGACY_SKEW: { taskType: string; maxPct: number; letter: string }[] = [
-  { taskType: "READING_PART_B", maxPct: 48, letter: "b" },
+  // READING_PART_B left this list on 4 September 2026: the fifteen new
+  // full-length Part B items brought it from 48% "b" to 44%, under the 45% cap.
+  //   "b" was 23/48 = 48%, now 28/63 = 44%  (recorded 48)
+  // The new items were keyed a 5 · b 5 · c 5, so the addition is even and the
+  // improvement comes from diluting the legacy skew rather than from correcting
+  // it. The ratchet requires the row to go, and a stale row fails the build.
+  //
   // READING_PART_C left this list on 3 September 2026: the twenty-one
   // full-length items brought it from 50%% "b" to 33%%, under the 45%% cap.
   // The ratchet requires the row to go, and a stale row fails the build.
