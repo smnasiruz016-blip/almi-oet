@@ -25,6 +25,23 @@ export default defineConfig({
   reporter: [["list"]],
   use: {
     baseURL: BASE_URL,
+    // 🔴 WITHOUT THIS, EVERY NAVIGATION WAIT IS UNBOUNDED.
+    //
+    // playwright-core/types/types.d.ts:3317 — "Maximum operation time in
+    // milliseconds. Defaults to `0` - no timeout." So page.waitForURL() has no
+    // limit of its own and runs to the 300s per-TEST timeout, which then reports
+    // that a test was slow rather than which navigation never arrived.
+    //
+    // That is what cost this repo an hour: the funnel walk waited for a redirect
+    // that never came, sat for the full 300s, and the CI job looked like it had
+    // hung somewhere unknown. Rewriting the condition from negative to positive
+    // improved the MESSAGE and changed the waiting time not at all.
+    //
+    // 15s is generous for a redirect: the walk's own navigations run in ~1s.
+    navigationTimeout: 15_000,
+    // 🔴 actionTimeout is deliberately NOT set globally. The walk is FLOOR (15)
+    // exercises long and some clicks are legitimately slow; a global action
+    // budget would turn honest work into flakes. Bound actions individually.
     viewport: { width: 1360, height: 900 },
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
