@@ -38,7 +38,7 @@
     "gate:chain-is-paid": "vitest run tests/chain-is-paid.test.ts",
     "gate:db-deploy-guarded": "vitest run tests/db-deploy-guarded.test.ts",
     "gate:scale": "vitest run tests/scale.test.ts",
-    "gate:chain": "npm run gate:next-exercise && npm run gate:pool-visible && npm run gate:progress-visible && npm run gate:trial-cap && npm run gate:entitlements && npm run gate:entitlement-contract && npm run gate:admin-learner-agree && npm run gate:analytics-never-blocks && npm run gate:funnel-visible && npm run gate:chain-is-paid && npm run gate:db-deploy-guarded",
+    "gate:chain": "npm run gate:next-exercise && npm run gate:pool-visible && npm run gate:progress-visible && npm run gate:trial-cap && npm run gate:entitlements && npm run gate:entitlement-contract && npm run gate:admin-learner-agree && npm run gate:analytics-never-blocks && npm run gate:funnel-visible && npm run gate:chain-is-paid && npm run gate:db-deploy-guarded && npm run gate:e2e-log",
     "test": "vitest run",
     "test:e2e": "tsx scripts/e2e/run.mts",
     "check:prod-migrations": "tsx scripts/check-prod-migrations.mts",
@@ -53,7 +53,8 @@
     "seed:speaking": "tsx scripts/seed/speaking-roleplay.ts",
     "seed:all": "npm run seed:listening && npm run seed:reading && npm run seed:writing && npm run seed:speaking",
     "seed:append": "tsx scripts/seed/append.ts",
-    "audio:render": "tsx scripts/render-audio.mts"
+    "audio:render": "tsx scripts/render-audio.mts",
+    "gate:e2e-log": "vitest run tests/e2e-log-outside-outputdir.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",
