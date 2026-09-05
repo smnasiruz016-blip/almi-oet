@@ -45,8 +45,8 @@ export default async function MockStartPage() {
       <div className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-5 text-sm text-almi-text">
         <p>
           At the end you get an honest 0–500 estimate and a grade of A, B, C+ or C for each sub-test — shown as a
-          range, not a single number. OET also reports an overall score (since January 2025); we
-          don&apos;t estimate that one, because we won&apos;t invent a figure to sit beside real results.
+          range, not a single number. We don&apos;t give an overall score, because we won&apos;t
+          invent a figure to sit beside real results.
         </p>
       </div>
 

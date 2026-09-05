@@ -1,3 +1,5 @@
+// OET's published scale, bands and timings referenced on this page are cited
+// in docs/sources/README.md — the register, not this comment, is the record.
 import type { Metadata } from "next";
 import Link from "next/link";
 import { OET_TASKS } from "@/lib/oet/registry";
@@ -62,7 +64,7 @@ const PRICING_LINES = [
 const FAQ = [
   {
     q: "How is the Occupational English Test scored?",
-    a: "Each of the four sub-tests (Listening, Reading, Writing, Speaking) is scored from 0 to 500 in 10-point steps, mapped to a published grade band. Since January 2025 OET also reports an overall score alongside them, and most regulators still set their requirement per sub-test — commonly Grade B (350). AlmiOET estimates each sub-test from your practice and shows it as a range with the most-likely grade — A, B, C+ or C, or no letter at all where OET publishes no band; we do not calculate an overall, because we would rather show you nothing than a number we invented.",
+    a: "Each of the four sub-tests (Listening, Reading, Writing, Speaking) is scored from 0 to 500 in 10-point steps, mapped to a published grade band. Most regulators set their requirement per sub-test — commonly Grade B (350). AlmiOET estimates each sub-test from your practice and shows it as a range with the most-likely grade — A, B, C+ or C, or no letter at all where OET publishes no band; we do not calculate an overall score, because we would rather show you nothing than a number we invented.",
   },
   {
     q: "What grade do I need?",

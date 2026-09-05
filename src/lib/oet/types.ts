@@ -1,9 +1,10 @@
 // Shared OET domain primitives.
 //
 // OET reports a score from 0 to 500 for each of the four sub-tests (Listening,
-// Reading, Writing, Speaking), each mapped to an A–E grade. Since 29 Jan 2025 it
-// ALSO reports an overall score — AlmiOET does not compute one, by choice rather
-// than because none exists; see overallScoreSupported() in scale.ts. Boundaries
+// Reading, Writing, Speaking), each mapped to a published grade band. AlmiOET
+// computes no overall score; whether OET reports one is disputed (see the block
+// at the top of scale.ts) and we will not guess at a derivation either way —
+// see overallScoreSupported() in scale.ts. Boundaries
 // live in scale.ts, transcribed from "Understanding OET scores" — cited, not
 // stored, in docs/sources/README.md. AlmiOET turns practice into
 // an HONEST estimate RANGE on this scale — deliberately wide, because a practice

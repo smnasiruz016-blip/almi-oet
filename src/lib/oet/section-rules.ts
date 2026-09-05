@@ -119,6 +119,8 @@ export function isSealedSection(taskType: string): boolean {
  * whether that is the exam's rule or ours, especially while it is ours.
  */
 export function sealedSectionNotice(sectionLabel: string): string {
+  // The 15-minute figure is OET's, cited in docs/sources/README.md and held by
+  // TIMING_SOURCES.readingPartA. The no-return part is OUR reading and says so.
   return (
     `${sectionLabel} is strictly timed and sealed: once it ends you can't return to it. ` +
     `OET publishes the 15-minute limit; the no-return part is our reading of it, not a rule we ` +

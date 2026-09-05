@@ -1,4 +1,5 @@
 // Honest per-sub-test score display. OET reports each sub-test on a 0–500 scale
+// (OET's published scale and bands are cited in docs/sources/README.md.)
 // with a published grade band, so we show a single estimate RANGE (lo–hi) plus
 // the most-likely grade — A, B, C+ or C, or no letter where OET publishes no
 // band — never a precise number, and always the standing "practice
