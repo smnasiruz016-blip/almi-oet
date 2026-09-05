@@ -149,6 +149,68 @@ export const FUNNEL_EVENTS = {
 
 export type FunnelEventName = keyof typeof FUNNEL_EVENTS;
 
+/**
+ * 🔴 THE ORDER OF THE JOURNEY — A PRODUCT FACT, NOT A PAGE'S LAYOUT.
+ *
+ * Which step follows which is what the funnel MEANS. It lives here, beside the
+ * events, for the same reason progress.ts (#63), offer.ts (#67) and
+ * buildProgress() (#68) each ended up in one place: a second copy in a page is
+ * free to drift from this one, and the two would then disagree about where
+ * people drop off — which is the only question the funnel exists to answer.
+ *
+ * /admin/funnel renders this order. The e2e walk asserts the events it observes
+ * arrive in it. Neither writes its own.
+ *
+ * Page views are not steps: a view is not a commitment, and mixing them into a
+ * conversion funnel would flatter every rate in it.
+ */
+export const FUNNEL_STEP_ORDER = [
+  "account_created",
+  "email_verified",
+  "checkout_started",
+  "trial_started",
+  "exercise_submitted",
+  "subscription_active",
+] as const satisfies readonly FunnelEventName[];
+
+/**
+ * 🔴 NOT EVERY CONVERSION EVENT IS A STEP, AND FORCING THEM TO BE WOULD LIE.
+ *
+ * The rule this serves is "an event we collect but never display is an event
+ * nobody sees". The obvious way to enforce it — require every conversion event
+ * to appear in FUNNEL_STEP_ORDER — would put churn and friction INSIDE the
+ * forward funnel, and every rate in it would then be wrong. It is the same
+ * reason page views are not steps: mixing them in flatters or deflates
+ * everything downstream.
+ *
+ * So there are three display groups, and /admin/funnel renders all three. The
+ * gate's fifth condition asks that a conversion event appear in ONE of them —
+ * the condition served, without corrupting the thing it is protecting.
+ */
+
+/** Friction: someone wanted the product and was stopped. Not a step — these
+ *  happen BESIDE the journey, and can happen many times to one person. */
+export const FUNNEL_FRICTION_ORDER = ["paywall_blocked", "trial_cap_hit"] as const satisfies
+  readonly FunnelEventName[];
+
+/** Churn: access ending. Voluntary and involuntary are kept apart because the
+ *  response to each is different. */
+export const FUNNEL_CHURN_ORDER = ["subscription_cancelled", "payment_failed"] as const satisfies
+  readonly FunnelEventName[];
+
+/** Everything /admin/funnel puts on the screen. gate:funnel check 5 reads this. */
+export const FUNNEL_DISPLAYED: readonly FunnelEventName[] = Object.freeze([
+  ...FUNNEL_STEP_ORDER,
+  ...FUNNEL_FRICTION_ORDER,
+  ...FUNNEL_CHURN_ORDER,
+]);
+
+/** Position in the journey, or null for events that are not steps. */
+export function funnelStepIndex(name: string): number | null {
+  const i = (FUNNEL_STEP_ORDER as readonly string[]).indexOf(name);
+  return i === -1 ? null : i;
+}
+
 export const FUNNEL_EVENT_NAMES = Object.freeze(
   Object.keys(FUNNEL_EVENTS) as FunnelEventName[],
 );

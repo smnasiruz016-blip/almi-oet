@@ -28,9 +28,9 @@
  * and refuses a URL equal to this machine's DATABASE_URL.
  */
 import { spawn, spawnSync } from "node:child_process";
-import { writeFileSync, mkdtempSync, rmSync } from "node:fs";
+import { writeFileSync, mkdtempSync, rmSync, mkdirSync, createWriteStream } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
 import { assertDisposable, startDisposablePostgres, type DisposableDb } from "./disposable-db.mjs";
 import { seedFixture } from "./seed-fixture.mjs";
 
@@ -150,10 +150,27 @@ async function main() {
       console.log("[e2e] E2E_SKIP_BUILD=1 — reusing the existing .next build");
     }
     console.log(`[e2e] starting the app on ${BASE_URL}…`);
+    // 🔴 PIPED, NOT INHERITED, SO THE FUNNEL CAN BE READ BACK.
+    //
+    // track() writes an "ANALYTICS {...}" line to the server's stdout. With
+    // stdio:"inherit" those lines go straight to this process's console and
+    // nothing can assert on them. They are teed instead: still printed, and
+    // also written to a file the walk reads to check the ORDER events arrive in.
+    const serverLog = join(process.cwd(), "tests", "e2e", ".artifacts", "server.log");
+    mkdirSync(dirname(serverLog), { recursive: true });
+    const logStream = createWriteStream(serverLog, { flags: "w" });
     server = spawn(`npx next start -p ${PORT}`, {
       shell: true,
-      stdio: "inherit",
+      stdio: ["ignore", "pipe", "pipe"],
       env: appEnv,
+    });
+    server.stdout?.on("data", (b: Buffer) => {
+      process.stdout.write(b);
+      logStream.write(b);
+    });
+    server.stderr?.on("data", (b: Buffer) => {
+      process.stderr.write(b);
+      logStream.write(b);
     });
     await waitForServer();
     console.log("[e2e] app is up");
@@ -170,6 +187,8 @@ async function main() {
         // rather than a hand-rolled UPDATE. assertDisposable() has already
         // refused anything that is not a throwaway server.
         E2E_DATABASE_URL: url,
+        // Where the walk reads the funnel back from.
+        E2E_SERVER_LOG: serverLog,
       },
       "playwright",
     );

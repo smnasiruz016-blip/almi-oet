@@ -68,6 +68,46 @@ export function __setAnalyticsSink(next: (line: string) => void): (line: string)
   return previous;
 }
 
+/**
+ * 🔴 FIRE-AND-FORGET, AND THAT PHRASE HAS TO MEAN SOMETHING EXACT HERE.
+ *
+ * track() is synchronous and returns void, and it is called on the submit path
+ * AFTER the attempt is written SCORED but BEFORE the response is returned. So a
+ * database write placed here must be unable to do three things:
+ *
+ *   throw synchronously   — wrapped
+ *   reject unhandled      — .catch() on the promise, not on the caller. An
+ *                           unhandled rejection can take a Node process down,
+ *                           which would be a far worse outcome than a lost row
+ *   be awaited            — nothing returns a promise to the caller
+ *
+ * The import is dynamic so that a client component which happens to import a
+ * module that imports this one never pulls Prisma into a browser bundle.
+ *
+ * A lost funnel row costs a number on an admin page. A thrown error here costs a
+ * learner the work they just did. Those are not close.
+ */
+function persist(name: FunnelEventName, props: FunnelProps): void {
+  try {
+    void import("@/lib/prisma")
+      .then(({ prisma }) =>
+        prisma.funnelEvent.create({
+          data: {
+            name,
+            // A key, never a person. FORBIDDEN_KEYS are already stripped above.
+            userId: typeof props.userId === "string" ? props.userId : null,
+            props: props as never,
+          },
+        }),
+      )
+      .catch(() => {
+        // Deliberately silent, and deliberately not re-thrown.
+      });
+  } catch {
+    // import() itself failing is still not the caller's problem.
+  }
+}
+
 export function track(name: FunnelEventName, props: FunnelProps = {}): void {
   try {
     // An unknown name is a programming error, not a runtime one. The gate fails
@@ -75,9 +115,12 @@ export function track(name: FunnelEventName, props: FunnelProps = {}): void {
     // silently become a new event name in the data.
     if (!(name in FUNNEL_EVENTS)) return;
     const safe = stripForbidden(props);
+    // The log line stays: it is what the e2e walk reads the funnel back from,
+    // and it is the trail when the database is unreachable.
     emit(
       `ANALYTICS ${JSON.stringify({ name, at: new Date().toISOString(), props: safe })}`,
     );
+    persist(name, safe);
   } catch {
     // Deliberately silent. An analytics failure is not a user-facing failure,
     // and re-throwing here would turn a logging problem into a lost submission.
