@@ -10,12 +10,10 @@
 // owner/comp accounts bypass it entirely — they never had a trial to limit.
 
 import type { OetTaskType } from "@prisma/client";
+import { OFFER } from "@/lib/billing/offer";
 
 /** AI evaluations allowed per task type for the whole trial (not per day). */
-export const TRIAL_AI_LIMITS: Partial<Record<OetTaskType, number>> = {
-  WRITING_LETTER: 2,
-  SPEAKING_ROLEPLAY: 2,
-};
+export const TRIAL_AI_LIMITS: Partial<Record<OetTaskType, number>> = OFFER.trialAiLimits;
 
 export type TrialAllowance = {
   /** False only when a trialling user has spent this task type's allowance. */
