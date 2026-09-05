@@ -48,6 +48,8 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { OET_MAX, OET_MIN, OET_STEP, gradeForScore } from "../../src/lib/oet/scale";
 import { PRICE_MONTHLY_CENTS } from "../../src/lib/billing/plans";
+import { TIMING } from "../../src/lib/oet/exam-shape";
+import { GEN_ITEMS } from "../seed/gen/index";
 import { TRIAL_PERIOD_DAYS } from "../../src/lib/billing/stripe";
 
 const ROOTS = ["src/app", "src/components"];
@@ -186,7 +188,138 @@ for (const file of files) {
   }
 }
 
+// ═════════════════════════════════════════════════════════════════════════════
+// THE SECOND HALF — THE ITEMS' OWN WORDS
+//
+// 🔴 THIS GATE'S SCOPE WAS TOO NARROW, AND IT COST A LIVE DEFECT.
+//
+// Until 5 September 2026 everything above read only src/app and src/components —
+// the marketing surface. On 4 September the Speaking preparation time was
+// corrected from 120 to 180 seconds: exam-shape.ts was fixed, the clock on
+// screen was fixed, gate:exam-numbers was written to hold the payload figure,
+// and every gate went green.
+//
+// The owner then opened a Speaking item and read, two lines under a clock
+// showing 02:57:
+//
+//     "Read your role-play card. You have two minutes to prepare…"
+//
+// All 180 live Speaking items said it. The NUMBER was right everywhere and the
+// SENTENCE was wrong everywhere, and nothing looked, because the sentence lives
+// in item content and this gate only read marketing pages.
+//
+// That is the same shape as the two defects above it in this file: A–E in the
+// copy against four grades in the engine, and markers in the seed against rows
+// in production. Fix the number, leave the words. So the scope moves to where
+// the words are.
+//
+// ── WHY IT MATCHES INSTRUCTION PHRASES, NOT TIMES ───────────────────────────
+//
+// "Any time in item text must match a constant" is unusable here, and that was
+// MEASURED before this was written, not guessed. The bank is clinical prose:
+// WRITING_LETTER alone carries 161 distinct time phrases — "48 hours",
+// "two hours", and "two minutes" eleven times, every one of them about a
+// patient. READING_PART_C says "two minutes" three times, about compressions.
+// A rule over all of them would fire on hundreds of correct lines, and a gate
+// that cries is a gate somebody switches off.
+//
+// So the probes below are EXAM-INSTRUCTION shapes — the sentences that speak to
+// the candidate about the test itself. Measured across the whole bank they
+// match 183 places and nothing clinical.
+const items = GEN_ITEMS as unknown as { taskType: string; title: string; prompt?: string; payload?: unknown }[];
+
+const WORD_NUMBER: Record<string, number> = {
+  one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
+  eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17,
+  eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60,
+  "twenty-five": 25, "forty-five": 45, "thirty-five": 35,
+};
+/** Both forms, because the defect can be written either way — "three" or "3". */
+const minutesOf = (raw: string): number | null => {
+  const t = raw.trim().toLowerCase();
+  if (/^\d+$/.test(t)) return Number(t);
+  return WORD_NUMBER[t] ?? null;
+};
+
+const TIMING_SOURCE = "src/lib/oet/exam-shape.ts · TIMING";
+type TimeClaim = {
+  label: string;
+  re: RegExp;
+  /** taskType -> the minutes that task's own constant gives. */
+  expect: Record<string, { minutes: number; symbol: string }>;
+};
+
+const SPEAKING_PREP = {
+  minutes: TIMING.speakingPrepSecondsMin / 60,
+  symbol: "TIMING.speakingPrepSecondsMin",
+};
+const READING_A = {
+  minutes: TIMING.readingPartASeconds / 60,
+  symbol: "TIMING.readingPartASeconds",
+};
+const WRITING_TOTAL = {
+  minutes: (TIMING.writingReadingSeconds + TIMING.writingWritingSeconds) / 60,
+  symbol: "TIMING.writingReadingSeconds + TIMING.writingWritingSeconds",
+};
+
+const TIME_CLAIMS: TimeClaim[] = [
+  {
+    label: "… minutes to prepare",
+    re: /\b([A-Za-z-]+|\d+)\s+minutes?\s+to\s+prepare\b/gi,
+    expect: { SPEAKING_ROLEPLAY: SPEAKING_PREP },
+  },
+  {
+    label: "you have … minutes",
+    re: /\byou\s+have\s+([A-Za-z-]+|\d+)\s+minutes?\b/gi,
+    expect: {
+      SPEAKING_ROLEPLAY: SPEAKING_PREP,
+      READING_PART_A: READING_A,
+      WRITING_LETTER: WRITING_TOTAL,
+    },
+  },
+  {
+    label: "… minute role-play",
+    re: /\b([A-Za-z-]+|\d+)[- ]minute\s+role[- ]?play\b/gi,
+    expect: {
+      SPEAKING_ROLEPLAY: {
+        minutes: TIMING.speakingSpeakSeconds / 60,
+        symbol: "TIMING.speakingSpeakSeconds",
+      },
+    },
+  },
+];
+
+const claimHits = new Map<string, number>(TIME_CLAIMS.map((c) => [c.label, 0]));
+let itemsRead = 0;
+
+for (const item of items) {
+  itemsRead++;
+  const text = `${item.prompt ?? ""} ${JSON.stringify(item.payload ?? {})}`;
+  for (const claim of TIME_CLAIMS) {
+    const want = claim.expect[item.taskType];
+    if (!want) continue; // this claim says nothing about this task type
+    for (const m of text.matchAll(claim.re)) {
+      claimHits.set(claim.label, (claimHits.get(claim.label) ?? 0) + 1);
+      const said = minutesOf(m[1]);
+      if (said === null) continue; // "a minute", "several minutes" — not a figure
+      if (said !== want.minutes) {
+        findings.push({
+          file: `${item.taskType} · ${item.title}`,
+          line: 0,
+          claim: `item text — ${claim.label}`,
+          found: `"${m[0].trim()}" = ${said} minute(s)`,
+          expected: `${want.minutes} (${want.symbol}, ${TIMING_SOURCE})`,
+        });
+      }
+    }
+  }
+}
+
 // ── a gate over an empty population passes vacuously ────────────────────────
+if (items.length === 0) {
+  console.error("[gate:claims] no seed item was read — the item half would pass over nothing");
+  process.exit(1);
+}
 if (files.length === 0) {
   console.error("[gate:claims] no file read — this gate would pass over nothing");
   process.exit(1);
@@ -203,6 +336,8 @@ const SILENCE_ALLOWED = new Set(["grade letters"]); // this one is silent when t
 const wronglySilent = silent.filter((n) => !SILENCE_ALLOWED.has(n));
 
 console.log(`[gate:claims] ${files.length} file(s) · ${linesRead} line(s) of copy read`);
+console.log(`[gate:claims] ${itemsRead} seed item(s) read for exam-instruction time claims`);
+for (const [label, n] of claimHits) console.log(`  ${String(n).padStart(4)} item claim(s) matching "${label}"`);
 console.log(`  engine grades, swept from gradeForScore(): ${ENGINE_GRADE_LIST}`);
 for (const [name, n] of rowHits) console.log(`  ${String(n).padStart(3)} line(s) claiming ${name}`);
 
@@ -218,7 +353,8 @@ if (wronglySilent.length > 0) {
 if (findings.length > 0) {
   console.error(`\n[gate:claims] ${findings.length} claim(s) the code does not deliver:`);
   for (const f of findings) {
-    console.error(`  ${f.file}:${f.line}  [${f.claim}]`);
+    // Item findings have no line number — they name the item instead.
+    console.error(`  ${f.file}${f.line > 0 ? `:${f.line}` : ""}  [${f.claim}]`);
     console.error(`      copy says: ${f.found}`);
     console.error(`      code says: ${f.expected}`);
   }
