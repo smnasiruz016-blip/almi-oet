@@ -22,6 +22,7 @@ import {
   gradeForScore,
   OET_BENCHMARK_B,
   rangeMidpoint,
+  readinessBand,
 } from "@/lib/oet/scale";
 import type { GradeEstimate as GradeEstimateValue } from "@/lib/oet/scale";
 
@@ -43,7 +44,15 @@ export function GradeEstimate({
       </div>
     );
   }
-  const atBenchmark = estimate.hi >= OET_BENCHMARK_B;
+  // 🔴 THIS WAS `estimate.hi >= OET_BENCHMARK_B`, A BINARY, AND IT MISREAD ITS
+  // OWN BEST CASE. Any range whose TOP touched 350 printed "Within reach of
+  // Grade B" — so a learner estimated 430-500, comfortably Grade A, was told
+  // they were within reach of a grade they had already passed.
+  //
+  // readinessBand() has existed since it was written and nothing called it. It
+  // reads the MIDPOINT, not the optimistic end, and distinguishes four states
+  // instead of two.
+  const band = readinessBand(rangeMidpoint([estimate.lo, estimate.hi]));
 
   // 🔴 THE LETTER IS RECOMPUTED FROM THE RANGE, NOT READ FROM THE STORED ROW.
   //
@@ -84,9 +93,7 @@ export function GradeEstimate({
         </p>
       )}
       <p className="mt-1 text-xs text-almi-text-muted">
-        {atBenchmark
-          ? `Within reach of Grade B (${OET_BENCHMARK_B}) — the grade most regulators ask for.`
-          : `Below the common Grade B (${OET_BENCHMARK_B}) benchmark.`}
+        {`${band} — Grade B (${OET_BENCHMARK_B}) is the grade most regulators ask for.`}
       </p>
     </div>
   );
