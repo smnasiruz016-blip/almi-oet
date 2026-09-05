@@ -120,7 +120,13 @@ async function signIn(page: Page) {
   await page.fill('input[name="email"]', fixture.email);
   await page.fill('input[name="password"]', fixture.password);
   await Promise.all([
-    page.waitForURL((u) => !u.pathname.startsWith("/login")),
+    // The DESTINATION, not "anything that is not /login". Both pages redirect to
+    // /account on success (login/page.tsx:23, signup/page.tsx:60); a failure
+    // redirects BACK with ?error=..., which a negative condition treats as "keep
+    // waiting" and sits on for the full 300s test timeout before saying nothing
+    // useful. Waiting for the destination fails immediately, and playwright's own
+    // message names the URL it wanted.
+    page.waitForURL(/\/account/),
     page.click('button[type="submit"]'),
   ]);
 }
@@ -133,7 +139,9 @@ async function signUp(page: Page) {
   await page.fill('input[name="email"]', email);
   await page.fill('input[name="password"]', `e2e-${randomBytes(9).toString("hex")}`);
   await Promise.all([
-    page.waitForURL((u) => !u.pathname.startsWith("/signup")),
+    // Positive, for the same reason as signIn above: /signup?error=taken and
+    // ?error=invalid both still start with /signup.
+    page.waitForURL(/\/account/),
     page.click('button[type="submit"]'),
   ]);
 }
