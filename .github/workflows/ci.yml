@@ -49,6 +49,9 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    # Measured across five runs: 54, 69, 72, 75, 78 seconds. This is ~8x the
+    # slowest, sized for npm/network variance rather than guessed.
+    timeout-minutes: 10
     # Explicit and minimal: this workflow reads code and a package, and writes
     # nothing. `packages: read` exists only so `npm ci` can fetch
     # @smnasiruz016-blip/almi-data from GitHub Packages.
@@ -123,6 +126,23 @@ jobs:
   # read @smnasiruz016-blip/almi-data from GitHub Packages.
   e2e:
     runs-on: ubuntu-latest
+    # 🔴 A SILENT HANG COST ~11 HOURS ON 5 SEPTEMBER 2026.
+    #
+    # The walk printed "40 passed (1.0m)" and then "stopping the throwaway
+    # database..." and stopped there. next-server survived teardown, held a pool
+    # against the throwaway database, and db.stop() waited for a client that was
+    # never going away. The job showed nothing but "checks pending" the whole
+    # time, and three wrong diagnoses were spent before the log was readable -
+    # logs only exist once a job ENDS, so a job that never ends explains nothing.
+    #
+    # 🔴 THIS LIMIT IS OUTSIDE THE PROCESS, WHICH IS THE POINT. An in-process
+    # watchdog was written for the same job and never fired once, in a 30-second
+    # window or an 11-hour hang: its timer lived on the very event loop that was
+    # stuck. A process cannot reliably time itself out. The runner can.
+    #
+    # Measured: 146s. This is ~6x, generous enough that a real slow run is not
+    # cut off, short enough that a hang is a fast, readable failure.
+    timeout-minutes: 15
     permissions:
       contents: read
       packages: read
