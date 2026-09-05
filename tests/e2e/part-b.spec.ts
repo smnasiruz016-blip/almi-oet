@@ -50,6 +50,11 @@ type Fixture = {
 };
 
 const fixture: Fixture = JSON.parse(readFileSync(process.env.E2E_FIXTURE_FILE!, "utf8"));
+/** The served-exercise floor from src/instrumentation.ts. Kept as a literal here
+ *  rather than imported, because that module connects to a database on import;
+ *  scripts/e2e/seed-fixture.mts holds the same number for the same reason. */
+const BOOT_FLOOR = 15;
+
 const B = fixture.partB;
 const LIBRARY = `/practice/${fixture.professionSlug}/${B.taskSlug}`;
 const SHOTS = join(process.cwd(), "docs", "e2e");
@@ -129,7 +134,16 @@ test.describe.configure({ mode: "serial" });
 
 test.describe("Reading Part B, full length, in a real browser", () => {
   test("the extract renders in full, with no markdown, at 1360px", async ({ page }) => {
-    expect(fixture.partBFullLengthTitles, "the fifteen must be seeded").toHaveLength(15);
+    // A non-vacuity guard, not a law: this walk must not run over an empty bank.
+    // It used to read toHaveLength(15) and went red the day the bank went to 30 —
+    // a test asserting the SIZE of the bank fails every time content is added,
+    // which is the opposite of what it is here to check. FLOOR is the number that
+    // actually matters (src/instrumentation.ts refuses to boot under it), and
+    // scripts/e2e/seed-fixture.mts already hard-fails below it.
+    expect(
+      fixture.partBFullLengthTitles.length,
+      "the full-length Part B items must be seeded, and at or above the boot floor",
+    ).toBeGreaterThanOrEqual(BOOT_FLOOR);
     await signIn(page);
     await openByTitle(page, B.title);
 

@@ -50,6 +50,11 @@ type Fixture = {
 };
 
 const fixture: Fixture = JSON.parse(readFileSync(process.env.E2E_FIXTURE_FILE!, "utf8"));
+/** The served-exercise floor from src/instrumentation.ts. Kept as a literal here
+ *  rather than imported, because that module connects to a database on import;
+ *  scripts/e2e/seed-fixture.mts holds the same number for the same reason. */
+const BOOT_FLOOR = 15;
+
 const LIBRARY = `/practice/${fixture.professionSlug}/reading-part-a`;
 const LIBRARY_B = `/practice/${fixture.professionSlug}/reading-part-b`;
 const RETIRE_LIST = "scripts/retire/reading-part-a-legacy.json";
@@ -161,7 +166,22 @@ test.describe("retiring the eighteen legacy Reading Part A items", () => {
     });
     expect(dry.status, `dry run failed: ${dry.stderr}`).toBe(0);
     expect(dry.stdout).toContain("DRY RUN");
-    expect(dry.stdout).toMatch(/READING_PART_A: 33 active now -> 15 after/);
+    // 🔴 THE DELTA IS THE INVARIANT, NOT THE BANK SIZE. This read
+    // /READING_PART_A: 33 active now -> 15 after/ and went red the day Part A grew
+    // to 48, which is a test failing because the product got better. What the
+    // retire must do is take away EXACTLY the eighteen on the list and leave the
+    // rest standing — and leave Part A at or above the floor it must boot with.
+    const line = dry.stdout.match(/READING_PART_A: (\d+) active now -> (\d+) after/);
+    expect(line, `the dry run did not report a Part A count:\n${dry.stdout}`).toBeTruthy();
+    const before = Number(line![1]);
+    const after = Number(line![2]);
+    expect(before - after, "the retire must take away exactly the eighteen on the list").toBe(
+      list.length,
+    );
+    expect(after, "the retire would leave Part A under the boot floor").toBeGreaterThanOrEqual(
+      BOOT_FLOOR,
+    );
+    console.log(`[e2e] Part A dry run: ${before} active -> ${after} after (-${before - after})`);
 
     const confirmed = spawnSync(`npx tsx scripts/retire-fragments.mts ${RETIRE_LIST} --confirm`, {
       shell: true,
@@ -176,7 +196,7 @@ test.describe("retiring the eighteen legacy Reading Part A items", () => {
     );
   });
 
-  test("the library now offers only the fifteen, and none of the eighteen", async ({ page }) => {
+  test("the library now offers only the full-length items, and none of the eighteen", async ({ page }) => {
     await signIn(page);
     const titles = await listTitles(page);
     expect(titles).toHaveLength(fixture.partAFullLengthTitles.length);
@@ -282,12 +302,17 @@ const retiredB = { scoredUrl: "", inProgressUrl: "", scoredTitle: "", inProgress
 
 test.describe("retiring the thirty-three legacy Reading Part B items", () => {
   test("a learner has real work against two of the thirty-three", async ({ page }) => {
+    // The legacy 33 are a CLOSED set — that number is a fact about the old bank
+    // and may not drift. The full-length count is not: it grew 15 -> 30 on
+    // 4 September and will grow again, so it is checked against the floor.
     expect(fixture.partBLegacyTitles.length).toBe(33);
-    expect(fixture.partBFullLengthTitles.length).toBe(15);
+    expect(fixture.partBFullLengthTitles.length).toBeGreaterThanOrEqual(BOOT_FLOOR);
     await signIn(page);
 
     const titles = await listTitles(page, LIBRARY_B);
-    expect(titles.length, "the library must hold the whole Part B bank before the retire").toBe(48);
+    expect(titles.length, "the library must hold the whole Part B bank before the retire").toBe(
+      fixture.partBFullLengthTitles.length + fixture.partBLegacyTitles.length,
+    );
 
     retiredB.scoredTitle = fixture.partBLegacyTitles[0];
     retiredB.scoredUrl = await openByTitle(page, retiredB.scoredTitle, LIBRARY_B);
@@ -324,7 +349,21 @@ test.describe("retiring the thirty-three legacy Reading Part B items", () => {
     });
     expect(dry.status, `dry run failed: ${dry.stderr}`).toBe(0);
     expect(dry.stdout).toContain("DRY RUN");
-    expect(dry.stdout).toMatch(/READING_PART_B: 48 active now -> 15 after/);
+    // Same as the Part A dry run above: the DELTA is the invariant. This read
+    // /READING_PART_B: 48 active now -> 15 after/ and went red when Part B grew
+    // to 63 — a test failing because the bank got bigger.
+    const lineB = dry.stdout.match(/READING_PART_B: (\d+) active now -> (\d+) after/);
+    expect(lineB, `the dry run did not report a Part B count:\n${dry.stdout}`).toBeTruthy();
+    const beforeB = Number(lineB![1]);
+    const afterB = Number(lineB![2]);
+    expect(
+      beforeB - afterB,
+      "the retire must take away exactly the thirty-three on the list",
+    ).toBe(list.length);
+    expect(afterB, "the retire would leave Part B under the boot floor").toBeGreaterThanOrEqual(
+      BOOT_FLOOR,
+    );
+    console.log(`[e2e] Part B dry run: ${beforeB} active -> ${afterB} after (-${beforeB - afterB})`);
 
     const confirmed = spawnSync(`npx tsx scripts/retire-fragments.mts ${RETIRE_LIST_B} --confirm`, {
       shell: true,
@@ -339,21 +378,31 @@ test.describe("retiring the thirty-three legacy Reading Part B items", () => {
     );
   });
 
-  test("the library now offers only the fifteen full-length extracts", async ({ page }) => {
+  test("the library now offers only the full-length extracts", async ({ page }) => {
     await signIn(page);
     const titles = await listTitles(page, LIBRARY_B);
-    expect(titles).toHaveLength(15);
+    expect(titles).toHaveLength(fixture.partBFullLengthTitles.length);
     for (const t of fixture.partBLegacyTitles) {
       expect(titles, `${t} is still being offered`).not.toContain(t);
     }
     for (const t of fixture.partBFullLengthTitles) {
       expect(titles, `${t} was taken away with the legacy items`).toContain(t);
     }
-    // 🔴 EXACTLY THE FLOOR. instrumentation.ts refuses to boot below 15 active
-    // in any objective part, so after this retire Part B has ZERO margin — the
-    // same place Part A landed. The answer is more items, never a lower floor.
-    expect(titles.length, "Part B is at the boot floor and must not go under it").toBe(15);
-    console.log(`[e2e] Part B library after the retire: ${titles.length} exercise(s), at the floor`);
+    // 🔴 THIS USED TO SAY "EXACTLY THE FLOOR ... ZERO margin", and it was true:
+    // after the retire Part B stood at 15, and instrumentation.ts refuses to boot
+    // below 15 active in any objective part. One more retirement would have
+    // stopped production booting.
+    //
+    // It is no longer true, and that is the whole point of the fifteen new items
+    // seeded on 4 September 2026 — Part B leaves this retire at 30, a margin of
+    // 15. The assertion is kept, pointed at the floor rather than at a literal,
+    // because the rule it enforces never changed: the answer is more items, never
+    // a lower floor.
+    expect(titles.length, "Part B is under the boot floor").toBeGreaterThanOrEqual(BOOT_FLOOR);
+    console.log(
+      `[e2e] Part B library after the retire: ${titles.length} exercise(s), ` +
+        `${titles.length - BOOT_FLOOR} above the floor`,
+    );
     await shot(page, "24-part-b-library-after-retire.png", "exercise-list");
   });
 
@@ -405,7 +454,9 @@ test.describe("retiring the thirty-three legacy Reading Part B items", () => {
 
     await signIn(page);
     const titles = await listTitles(page, LIBRARY_B);
-    expect(titles).toHaveLength(48);
+    expect(titles).toHaveLength(
+      fixture.partBFullLengthTitles.length + fixture.partBLegacyTitles.length,
+    );
     console.log(`[e2e] Part B --restore: the library is back to ${titles.length} exercise(s)`);
   });
 });
