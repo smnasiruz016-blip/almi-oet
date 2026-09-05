@@ -1,3 +1,4 @@
+// What OET publishes about these organisations is cited in docs/sources/README.md.
 // /register/[organization] — one recognising organisation, the professions it
 // accepts OET for, and its published grade. Real data only.
 

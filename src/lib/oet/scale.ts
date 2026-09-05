@@ -48,13 +48,21 @@
 // returns null below 200 and callers print the score range with the words
 // "below the published grade bands" rather than a letter nothing backs.
 //
-// OVERALL SCORE: this file previously asserted "There is NO composite/overall".
-// That is no longer true — since 29 January 2025 OET also reports an overall
-// score alongside the four sub-test scores. The false claim is removed here, but
-// AlmiOET deliberately does NOT compute one yet: OET's official method for
-// deriving it is not something we will guess at, and an invented formula printed
-// next to real sub-test grades would be worse than no number at all. See
-// `overallScoreSupported()` below.
+// 🔴 OVERALL SCORE — DISPUTED, AND NOTHING HERE DECIDES IT.
+//
+// This file has asserted BOTH sides. It first said "There is NO composite/overall".
+// It was then changed to say OET reports one as of a given date in 2025. Neither
+// sentence ever had an artefact behind it, and the second is contradicted by the
+// owner's own browser reading of OET's page, recorded in
+// PRODUCT_SOURCE_OF_TRUTH_AlmiOET.md §1.6.
+//
+// So this comment no longer claims either. The dispute is written down instead,
+// because the next reader will trust whatever is here — which is exactly how the
+// second wrong sentence came to be written on the strength of the first.
+// Resolving it needs a human opening OET's page and an entry in docs/sources/.
+//
+// What does NOT depend on the answer: AlmiOET computes no overall either way,
+// because we will not guess at a derivation. See `overallScoreSupported()` below.
 //
 // AlmiOET turns practice performance into an HONEST estimate RANGE on this scale
 // — deliberately wide, because a practice task is not the calibrated live exam.
@@ -90,12 +98,15 @@ const GRADE_FLOORS: { grade: OetGrade; floor: number }[] = [
  *  says so. Exported so the phrase exists once, and so a gate can grep for it. */
 export const BELOW_PUBLISHED_BANDS = "below the published grade bands";
 
-/** OET has reported an overall score since 29 Jan 2025, alongside the four
- *  sub-test scores. AlmiOET does not yet derive one: the official method is not
- *  published in a form we have verified, and a plausible-looking invented number
- *  shown beside real sub-test grades would read as authoritative while being
- *  guesswork. Kept as an explicit, greppable "not yet" rather than silence, so
- *  the gap is visible instead of looking like an oversight. */
+/** AlmiOET derives no overall score, and this returns false on purpose.
+ *
+ *  🔴 Whether OET ITSELF reports one is DISPUTED — see the block at the top of
+ *  this file. This function does not depend on that answer: even if OET does
+ *  publish an overall, its derivation is not something we have an artefact for,
+ *  and a plausible-looking invented number beside real sub-test grades would read
+ *  as authoritative while being guesswork. Kept as an explicit, greppable
+ *  "not yet" rather than silence, so the gap is visible instead of looking like
+ *  an oversight. */
 export function overallScoreSupported(): false {
   return false;
 }

@@ -1,3 +1,4 @@
+// OET's published scale and sub-test structure are cited in docs/sources/README.md.
 // Session engine for practice sets and the full mock.
 //
 // PRACTICE_SET: a run of several items of ONE task type. We vary the difficulty
@@ -6,8 +7,9 @@
 //
 // MOCK: the full OET in test order (Listening → Reading → Writing → Speaking).
 // Each sub-test is scored independently into its own 0–500 grade. We NEVER
-// compute an overall — OET does report one (since Jan 2025) but its method is
-// not something we will guess at; see overallScoreSupported(). A mock is built
+// compute an overall — whether OET reports one is disputed (see scale.ts), and
+// either way its method is not something we will guess at; see
+// overallScoreSupported(). A mock is built
 // for one profession — its Writing + Speaking items come from that profession's
 // bank; Listening + Reading are common.
 

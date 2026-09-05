@@ -1,12 +1,15 @@
+// (OET's published scale and bands are cited in docs/sources/README.md.)
 // Full-mock / practice-set aggregate. OET scores each sub-test independently, so
 // we show one practice estimate per sub-test that the session touched, and never
 // a composite/overall of our own. The honest range + grade per sub-test comes
 // from aggregateSession.
 //
-// This comment used to justify that with "(OET has none)". That was FALSE — OET
-// has reported an overall score since 29 January 2025, and the user-facing copy
-// in this very file already said so correctly, which is how a false comment sat
-// directly above true prose. The justification, unchanged, is
+// This comment used to justify that with "(OET has none)", and was then changed
+// to assert the opposite — that OET has reported an overall score since a given
+// date. 🔴 BOTH were written without an artefact. Whether OET reports an overall
+// is DISPUTED and unresolved: see PRODUCT_SOURCE_OF_TRUTH_AlmiOET.md §1.6, where
+// the owner's own reading of OET's page says it does not. Nothing here asserts
+// either way any more. The justification, unchanged, is
 // overallScoreSupported() in scale.ts: we will not derive a number by a method
 // OET has not published to us.
 
@@ -53,9 +56,9 @@ export function OetSessionResult({
         </p>
         <h1 className="mt-1 text-2xl font-semibold text-almi-ink">Your practice estimates</h1>
         <p className="mt-2 text-sm text-almi-text">
-          Each sub-test is estimated on its own 0–500 scale with a grade of A, B, C+ or C. OET reports a grade per
-          sub-test and, since January 2025, an overall score too — we don&apos;t estimate that one, because
-          we won&apos;t put a number next to your results that we invented.
+          Each sub-test is estimated on its own 0–500 scale with a grade of A, B, C+ or C. We
+          don&apos;t give an overall score, because we won&apos;t put a number next to your
+          results that we invented.
         </p>
       </header>
 

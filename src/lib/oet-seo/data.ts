@@ -2,6 +2,11 @@
 // "Who Recognises OET" list (Algolia index agility_organisation_en_au), cleaned
 // and slugged. Every record is real — names are exact, required grades are only
 // what OET publishes (null where unpublished). Nothing here is invented.
+//
+// 🔴 Provenance of that list belongs in the citation register: docs/sources/README.md.
+// Naming the Algolia index in a comment is where it was recorded before, which
+// is a comment, not a register — and a comment is what gate:sourced-facts exists
+// to stop being the only record.
 
 import ORGS from "./organisations.json";
 import { PROFESSIONS, PROFESSION_LIST } from "@/lib/oet/professions";
