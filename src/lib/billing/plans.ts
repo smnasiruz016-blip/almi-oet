@@ -1,5 +1,6 @@
 import type { User } from "@prisma/client";
 import { isOwner } from "@/lib/auth/owner-check";
+import { OFFER } from "@/lib/billing/offer";
 
 // Price IDs are sourced from env — founder sets them in Vercel after creating
 // the "AlmiOET Pro" product in the shared AlmiWorld Stripe account.
@@ -20,7 +21,7 @@ export const STRIPE_PRICE_YEARLY = process.env.STRIPE_PRICE_ID_YEARLY ?? "";
  *  reports unit_amount). A gate cannot reach Stripe from CI, so it holds the
  *  copy to this declared figure and leaves the live reconciliation to health.
  *  Making the offer configurable is a separate PR. */
-export const PRICE_MONTHLY_CENTS = 1200;
+export const PRICE_MONTHLY_CENTS = OFFER.priceMonthlyCents;
 
 export type PlanKey = "FREE" | "PRO_MONTHLY" | "PRO_YEARLY";
 
@@ -53,12 +54,24 @@ export function isComped(user: Pick<User, "compProUntil">): boolean {
   return user.compProUntil !== null && user.compProUntil.getTime() > Date.now();
 }
 
-/** Whole days left on an active comp grant (ceil), or null if not comped. */
+/**
+ * Whole days left on an active comp grant (ceil), or null if not comped.
+ *
+ * 🔴 `now` IS A PARAMETER BECAUSE A LIST MUST MEASURE ITS ROWS AGAINST ONE
+ * INSTANT. listCompAccounts renders a whole table; calling Date.now() once per
+ * row measures the first row and the last against different clocks. Comparing
+ * the old inline arithmetic with this function across boundary instants showed
+ * exactly one disagreement — a grant expiring one millisecond past a day
+ * boundary read 2 from a captured `now` and 1 from a fresh one. The formulas
+ * were identical; only the sampling instant differed. Threading it removes the
+ * drift AND makes every row of a table agree with every other.
+ */
 export function getCompProDaysRemaining(
   user: Pick<User, "compProUntil">,
+  now: number = Date.now(),
 ): number | null {
-  if (!isComped(user)) return null;
-  return Math.ceil((user.compProUntil!.getTime() - Date.now()) / DAY_MS);
+  if (user.compProUntil === null || user.compProUntil.getTime() <= now) return null;
+  return Math.ceil((user.compProUntil.getTime() - now) / DAY_MS);
 }
 
 /**

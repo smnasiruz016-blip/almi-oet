@@ -29,8 +29,8 @@
  *   grade letters      gradeForScore()            A, B, C+, C (and null)
  *   "0–500"            OET_MIN / OET_MAX          0, 500
  *   "10-point"         OET_STEP                   10
- *   "$12/month"        PRICE_MONTHLY_CENTS        1200 cents, per month
- *   "7-day free trial" TRIAL_PERIOD_DAYS          7
+ *   "$12/month"        OFFER.priceMonthlyCents    1200 cents, per month
+ *   "7-day free trial" OFFER.trialDays            7
  *
  * Scope is USER-FACING COPY: string and JSX text under src/app/ and
  * src/components/. Comments are skipped — a comment is not a promise to a
@@ -42,15 +42,26 @@
  * The grade set is DERIVED, by sweeping gradeForScore across the whole 0–500
  * scale and collecting what comes back. Nothing here restates "A, B, C+, C" as
  * a literal to compare against. Change the engine's grade set and this gate
- * changes with it; leave the copy behind and the copy is what fails.
+ * changes with it; leave the copy behind and the copy is what fails. *
+ * ── 🔴 THESE ROWS WERE REPOINTED WHEN THE OFFER CONFIG LANDED ──────────────
+ *
+ * They used to read PRICE_MONTHLY_CENTS and TRIAL_PERIOD_DAYS, which were then
+ * hard-coded constants. src/lib/billing/offer.ts is now the one place trial
+ * length, price and caps live, and those two constants are re-exports of it.
+ *
+ * Leaving the gate on the old symbols would have been the exact trap it exists
+ * to prevent: it would keep guarding a value nobody can see any more while the
+ * config that actually drives the product went unguarded — a green check over a
+ * dead constant. When you add an offer value, point this gate at it in the SAME
+ * commit.
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { OET_MAX, OET_MIN, OET_STEP, gradeForScore } from "../../src/lib/oet/scale";
-import { PRICE_MONTHLY_CENTS } from "../../src/lib/billing/plans";
+import { OFFER } from "../../src/lib/billing/offer";
 import { TIMING } from "../../src/lib/oet/exam-shape";
 import { GEN_ITEMS } from "../seed/gen/index";
-import { TRIAL_PERIOD_DAYS } from "../../src/lib/billing/stripe";
+
 
 const ROOTS = ["src/app", "src/components"];
 
@@ -143,9 +154,9 @@ const ROWS: {
     check: (m) => {
       const cents = Math.round(Number(m[1]) * 100);
       return {
-        ok: cents === PRICE_MONTHLY_CENTS,
+        ok: cents === OFFER.priceMonthlyCents,
         found: `$${m[1]}/month (${cents} cents)`,
-        expected: `${PRICE_MONTHLY_CENTS} cents (PRICE_MONTHLY_CENTS)`,
+        expected: `${OFFER.priceMonthlyCents} cents (OFFER.priceMonthlyCents)`,
       };
     },
   },
@@ -153,9 +164,9 @@ const ROWS: {
     name: "the free-trial length",
     re: /\b(\d{1,3})[- ]day (?:free )?trial\b/i,
     check: (m) => ({
-      ok: Number(m[1]) === TRIAL_PERIOD_DAYS,
+      ok: Number(m[1]) === OFFER.trialDays,
       found: `${m[1]}-day trial`,
-      expected: `${TRIAL_PERIOD_DAYS}-day trial (TRIAL_PERIOD_DAYS, the value handed to Stripe)`,
+      expected: `${OFFER.trialDays}-day trial (OFFER.trialDays, the value handed to Stripe)`,
     }),
   },
 ];

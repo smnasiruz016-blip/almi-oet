@@ -1,11 +1,13 @@
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
 import { priceIdToPlanLabel } from "@/lib/billing/plans";
+import { OFFER } from "@/lib/billing/offer";
 
-/** The free-trial length, in days. EXPORTED so that `gate:claims` checks the
- *  public copy against the very constant Stripe is handed at checkout — a gate
- *  reading its own private copy of a number proves nothing. */
-export const TRIAL_PERIOD_DAYS = 7;
+/** The free-trial length, in days — now sourced from the OFFER config so trial
+ *  length, price and caps all move together. Still EXPORTED, because
+ *  gate:claims checks the public copy against the very value Stripe is handed
+ *  at checkout, and a gate reading its own copy of a number proves nothing. */
+export const TRIAL_PERIOD_DAYS = OFFER.trialDays;
 
 let cachedClient: Stripe | null = null;
 

@@ -156,7 +156,19 @@ export function CompAccountsClient({
               <tbody className="divide-y divide-almi-bg-peach bg-almi-paper">
                 {rows.map((r) => (
                   <tr key={r.userId} className={r.isActive ? "" : "opacity-60"}>
-                    <td className="px-4 py-3 text-almi-ink">{r.email}</td>
+                    {/* The name was selected (comp-accounts.ts:130), carried in
+                        CompRow (:111) and populated (:145) — and then dropped on
+                        the floor here. One line; the data was already paid for. */}
+                    <td className="px-4 py-3 text-almi-ink">
+                      {r.name ? (
+                        <>
+                          <span className="block">{r.name}</span>
+                          <span className="block text-xs text-almi-text-muted">{r.email}</span>
+                        </>
+                      ) : (
+                        r.email
+                      )}
+                    </td>
                     <td className="px-4 py-3 text-almi-text-muted">{fmtDate(r.grantedAt)}</td>
                     <td className="px-4 py-3 text-almi-text-muted">{fmtDate(r.expiresAt)}</td>
                     <td className="px-4 py-3">

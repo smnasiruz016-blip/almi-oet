@@ -10,6 +10,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import { isAdmin } from "@/lib/founder";
+import { getCompProDaysRemaining } from "@/lib/billing/plans";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const MAX_DAYS = 1825; // 5 years
@@ -148,7 +149,18 @@ export async function listCompAccounts(): Promise<{
       reason: r.compReason,
       grantedBy: r.compGrantedBy,
       isActive,
-      daysRemaining: isActive ? Math.ceil((untilMs - now) / DAY_MS) : null,
+      // 🔴 ONE DAY CALCULATION, NOT TWO. This line used to repeat
+      // Math.ceil((untilMs - now) / DAY_MS) — the same arithmetic as
+      // getCompProDaysRemaining() in plans.ts, which had ZERO callers. Today they
+      // agree; the day one of them changes to floor, or gains a timezone, admin
+      // and the rest of the product would answer differently about the same grant.
+      // Same shape as the date formatting fixed in #62, same cure: share the
+      // function rather than hope two copies stay equal.
+      //
+      // The behaviours were checked before merging them, not assumed: both return
+      // null when the grant is not active (isComped is `untilMs > now`, which is
+      // exactly the `isActive` test here) and both ceil otherwise.
+      daysRemaining: getCompProDaysRemaining({ compProUntil: r.compProUntil }, now),
     };
   });
 
