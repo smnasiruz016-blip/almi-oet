@@ -1,5 +1,10 @@
-// Account page — slim version: plan + email status only. A "recent attempts"
-// block can be added back here later (the AlmiPrep account page is the template).
+// Account page — plan, card and email status. Deliberately NOT the progress
+// page: this answers "what is my plan and when am I charged", and /progress
+// answers "where am I and what next". The sidebar used to point BOTH questions
+// here, which is why "My Progress" opened a billing card.
+//
+// It carries one line of progress and a link, so a learner who lands here
+// looking for their scores is sent somewhere real instead of finding nothing.
 
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -67,6 +72,13 @@ export default async function AccountPage({
 
       <header>
         <h1 className="text-3xl font-semibold text-almi-ink">Your account</h1>
+        <p className="mt-2 text-sm text-almi-text-muted">
+          Looking for your scores?{" "}
+          <Link href="/progress" className="font-semibold text-almi-coral-deep underline">
+            My Progress
+          </Link>{" "}
+          has your estimate for each sub-test and what to practise next.
+        </p>
         <p className="mt-1 text-sm text-almi-text-muted">{user.email}</p>
       </header>
 

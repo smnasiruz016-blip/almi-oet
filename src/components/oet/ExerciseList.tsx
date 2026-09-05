@@ -26,6 +26,7 @@
  * cannot drift.
  */
 import type { ExerciseRow } from "@/lib/oet/pool";
+import { BELOW_PUBLISHED_BANDS, formatRange } from "@/lib/oet/scale";
 
 const STATUS_LABEL: Record<ExerciseRow["status"], string> = {
   SCORED: "Done",
@@ -71,8 +72,27 @@ export function ExerciseList({
             className="flex flex-wrap items-center gap-3 px-4 py-3"
           >
             <span className="w-6 shrink-0 text-xs font-semibold text-almi-text-muted">{i + 1}</span>
-            <span data-testid="exercise-title" className="min-w-0 flex-1 text-sm text-almi-ink">
-              {ex.title}
+            <span className="min-w-0 flex-1">
+              <span data-testid="exercise-title" className="block text-sm text-almi-ink">
+                {ex.title}
+              </span>
+              {/* 🔴 Every score below was ALREADY stored on the attempt row and
+                  nothing read it — listPool() selected only itemId and status.
+                  Where there is no scored attempt this says so in words; an
+                  empty cell reads as a bug. */}
+              <span data-testid="exercise-score" className="mt-0.5 block text-xs text-almi-text-muted">
+                {ex.latest ? (
+                  <>
+                    Latest {formatRange([ex.latest.lo, ex.latest.hi])}
+                    {ex.latest.grade ? ` · Grade ${ex.latest.grade}` : ` · ${BELOW_PUBLISHED_BANDS}`}
+                    {ex.best && ex.best.at.getTime() !== ex.latest.at.getTime()
+                      ? ` · best ${formatRange([ex.best.lo, ex.best.hi])}`
+                      : ""}
+                  </>
+                ) : (
+                  "Not scored yet"
+                )}
+              </span>
             </span>
             <span
               className={

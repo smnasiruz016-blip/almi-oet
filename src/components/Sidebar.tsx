@@ -5,9 +5,15 @@
 // that opens a slide-in drawer with a backdrop; body scroll locks while open.
 //
 // "Choose a Test" is the user-facing label for /practice (the URL is
-// unchanged). The Admin item only renders for ADMIN_EMAILS users. Active
-// highlighting is computed centrally so the two /account links (My Progress
-// + Account) don't both light up.
+// unchanged). The Admin item only renders for ADMIN_EMAILS users.
+//
+// 🔴 THIS USED TO SAY "the two /account links (My Progress + Account)". It was
+// true: "My Progress" pointed at /account, so the menu named a page that did
+// not exist and opened the billing page instead. /progress exists now and this
+// item points at it, so there is exactly ONE /account link. The comment is
+// corrected with the href rather than after it — a stale comment beside working
+// code is how the Speaking prompt kept saying "two minutes" through three fixes
+// to the clock.
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -20,7 +26,7 @@ function buildItems(isAdmin: boolean): Item[] {
   const items: Item[] = [
     { key: "home", href: "/", icon: "🏠", label: "Home", match: "/" },
     { key: "practice", href: "/practice", icon: "✏️", label: "Choose a Test", match: "/practice" },
-    { key: "progress", href: "/account", icon: "📊", label: "My Progress", match: "/account" },
+    { key: "progress", href: "/progress", icon: "📊", label: "My Progress", match: "/progress" },
     { key: "account", href: "/account", icon: "👤", label: "Account", match: "/account" },
   ];
   // Admin panel (Comp Accounts + Accounts) — only for ADMIN_EMAILS users.
@@ -31,8 +37,12 @@ function buildItems(isAdmin: boolean): Item[] {
   return items;
 }
 
-// Longest matching prefix wins; ties keep the first item (so "My Progress"
-// owns /account and "Account" stays unhighlighted rather than both lighting).
+// Longest matching prefix wins; ties keep the first item.
+//
+// No two items share a `match` any more — "My Progress" is /progress and
+// "Account" is /account — so nothing currently depends on the tie-break. It is
+// kept because the rule is what stops a future pair of overlapping routes from
+// lighting two items at once, not because two items overlap today.
 function activeKey(pathname: string, items: Item[]): string | null {
   let best: string | null = null;
   let bestLen = -1;
