@@ -31,6 +31,7 @@ import { spawn, spawnSync } from "node:child_process";
 import { writeFileSync, mkdtempSync, rmSync, mkdirSync, createWriteStream } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
+import { assertNotInsideOutputDir, serverLogPath } from "./server-log-path.mjs";
 import { assertDisposable, startDisposablePostgres, type DisposableDb } from "./disposable-db.mjs";
 import { seedFixture } from "./seed-fixture.mjs";
 
@@ -156,7 +157,20 @@ async function main() {
     // stdio:"inherit" those lines go straight to this process's console and
     // nothing can assert on them. They are teed instead: still printed, and
     // also written to a file the walk reads to check the ORDER events arrive in.
-    const serverLog = join(process.cwd(), "tests", "e2e", ".artifacts", "server.log");
+    // NOT IN .artifacts. THAT DIRECTORY IS PLAYWRIGHT'S outputDir, AND
+    // PLAYWRIGHT CLEARS IT AT THE START OF EVERY RUN.
+    //
+    // The log was written there when the funnel walk was added, so the sequence
+    // was: this runner creates server.log -> playwright starts -> playwright
+    // wipes its outputDir, taking server.log with it -> the spec reads the path
+    // and gets ENOENT. The stream went on writing to a file with no name, so the
+    // ANALYTICS lines still appeared on the console and the loss was invisible.
+    // Measured, not assumed: a marker file placed in .artifacts is gone after a
+    // playwright run, and so is one held open by a write stream.
+    //
+    // It failed on every platform, on every run. It was never once green.
+    const serverLog = serverLogPath();
+    assertNotInsideOutputDir(serverLog);
     mkdirSync(dirname(serverLog), { recursive: true });
     const logStream = createWriteStream(serverLog, { flags: "w" });
     server = spawn(`npx next start -p ${PORT}`, {

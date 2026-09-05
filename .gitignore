@@ -29,3 +29,4 @@ docs/sources/*.pdf
 
 # Scratch measurement files left in the repo root — never committed.
 val_tmp.mts
+tests/e2e/.logs/
