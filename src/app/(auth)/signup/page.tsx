@@ -4,6 +4,7 @@ import { createHash, randomBytes } from "crypto";
 import { prisma } from "@/lib/prisma";
 import { createSession, getCurrentUser, hashPassword } from "@/lib/auth";
 import { sendEmailVerification } from "@/lib/email";
+import { track } from "@/lib/analytics/track";
 
 const VERIFY_TTL_MS = 24 * 60 * 60 * 1000;
 
@@ -40,6 +41,10 @@ async function signupAction(formData: FormData) {
       emailVerificationLastSentAt: new Date(),
     },
   });
+
+  // AFTER the row exists. Not when the form was rendered, and not on submit
+  // — a failed create must not look like a new account.
+  track("account_created", { userId: user.id });
 
   // Best-effort email send — don't block signup if Resend is down or
   // unconfigured. User can request resend from the banner.

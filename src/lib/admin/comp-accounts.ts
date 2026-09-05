@@ -11,6 +11,7 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 import { isAdmin } from "@/lib/founder";
 import { getCompProDaysRemaining } from "@/lib/billing/plans";
+import { track } from "@/lib/analytics/track";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const MAX_DAYS = 1825; // 5 years
@@ -58,6 +59,8 @@ export async function grantCompPro(input: {
       compReason: input.reason?.trim() || null,
     },
   });
+  // Access granted without money — it must never read as a sale.
+  track("comp_granted", { userId: target.id, days });
   revalidatePath("/admin/comp-accounts");
   return { ok: true };
 }

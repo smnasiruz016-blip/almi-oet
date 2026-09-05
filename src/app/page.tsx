@@ -9,6 +9,7 @@ import { BELOW_PUBLISHED_BANDS, formatRange, fractionToEstimate } from "@/lib/oe
 import type { OetSubTest } from "@prisma/client";
 import { TestimonialsSection } from "@/components/reviews/TestimonialsSection";
 import { GlobalHeader } from "@/components/GlobalHeader";
+import { track } from "@/lib/analytics/track";
 
 // Re-render hourly so newly approved testimonials appear without a redeploy.
 export const revalidate = 3600;
@@ -164,6 +165,10 @@ function ScoreMockup() {
 }
 
 export default function Home() {
+  // Top of the funnel. A page view, and honestly labelled as one — this is
+  // NOT a conversion, and gate:funnel would go red if a conversion event
+  // were emitted from a page.tsx.
+  track("landing_view", { path: "/" });
   return (
     <div className="flex flex-1 flex-col bg-almi-bg text-almi-text">
       {/* 🔴 SIGNED-OUT ON PURPOSE, AND THIS IS THE TRADE-OFF NAMED.

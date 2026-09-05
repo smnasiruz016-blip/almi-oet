@@ -5,6 +5,7 @@ import { verifyRouterSignature } from "@/lib/router-auth";
 import { prisma } from "@/lib/prisma";
 import { isBillingEnabled, priceIdToPlanLabel } from "@/lib/billing/plans";
 import { sendSubscriptionConfirmationEmail } from "@/lib/email";
+import { track } from "@/lib/analytics/track";
 
 // Stripe needs the raw request body for signature verification — must not
 // run through Next's static optimization or any caching layer.
@@ -159,6 +160,20 @@ async function handleSubscriptionEvent(subscription: Stripe.Subscription): Promi
     return;
   }
   await syncSubscriptionToUser(user.id, subscription);
+
+  // 🔴 THE ONLY PLACE trial_started MAY BE EMITTED. A pricing click is an
+  // intention; until Stripe says the card verified, nobody is on a trial.
+  // Firing earlier would inflate the funnel exactly where we are about to
+  // spend money on it. §J: "Do not fire a trial event merely because a user
+  // visited a page."
+  const planLabel = subscription.items.data[0]?.price.id
+    ? priceIdToPlanLabel(subscription.items.data[0].price.id)
+    : null;
+  if (subscription.status === "trialing") {
+    track("trial_started", { userId: user.id, planLabel });
+  } else if (subscription.status === "active") {
+    track("subscription_active", { userId: user.id, planLabel });
+  }
 }
 
 async function handleSubscriptionDeleted(subscription: Stripe.Subscription): Promise<void> {
@@ -184,6 +199,10 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription): Pro
       subscriptionTier: "FREE",
     },
   });
+
+  // Voluntary churn — the number that reads very differently from a failed
+  // payment, so they are separate events.
+  track("subscription_cancelled", { userId: user.id });
 }
 
 async function handleInvoicePaymentFailed(invoice: Stripe.Invoice): Promise<void> {
@@ -202,6 +221,10 @@ async function handleInvoicePaymentFailed(invoice: Stripe.Invoice): Promise<void
     where: { id: user.id },
     data: { subscriptionStatus: "past_due", subscriptionTier: "FREE" },
   });
+
+  // INVOLUNTARY churn — a card that failed, not a person who left. Kept apart
+  // from subscription_cancelled because the response to each is different.
+  track("payment_failed", { userId: user.id });
 }
 
 async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice): Promise<void> {

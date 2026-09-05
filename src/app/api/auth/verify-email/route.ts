@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { sendWelcomeEmail } from "@/lib/email";
+import { track } from "@/lib/analytics/track";
 
 const TOKEN_HEX_RE = /^[a-f0-9]{64}$/;
 
@@ -57,6 +58,9 @@ export async function GET(req: Request): Promise<NextResponse> {
       emailVerificationExpiresAt: null,
     },
   });
+
+  // On the update that SETS emailVerified — not when the link was opened.
+  track("email_verified", { userId: user.id });
 
   // Welcome email — sent once, only on the fresh-verification path (the
   // already-verified branch above returns early, so this never double-sends).

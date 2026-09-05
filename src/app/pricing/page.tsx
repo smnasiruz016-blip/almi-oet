@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { isBillingEnabled } from "@/lib/billing/plans";
 // Family GlobalHeader + GlobalFooter come from the root layout.
 import { PricingCheckoutButton } from "./PricingCheckoutButton";
+import { track } from "@/lib/analytics/track";
 
 export const metadata: Metadata = {
   title: "Pricing — 7-day free trial",
@@ -25,6 +26,10 @@ export default async function PricingPage({
 }: {
   searchParams: Promise<{ cancelled?: string }>;
 }) {
+  // The step before the card, where price objections show up. A view, not a
+  // conversion — checkout_started is fired by the checkout route, and
+  // trial_started only ever by the Stripe webhook.
+  track("pricing_view", { path: "/pricing" });
   const user = await getCurrentUser();
   const params = await searchParams;
   const billingLive = isBillingEnabled();

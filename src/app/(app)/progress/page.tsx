@@ -21,6 +21,7 @@ import { buildProgress } from "@/lib/oet/progress";
 import { formatDateUTC } from "@/lib/format-date";
 import { BELOW_PUBLISHED_BANDS, OET_BENCHMARK_B, formatRange } from "@/lib/oet/scale";
 import { PROFESSIONS, professionLabel } from "@/lib/oet/professions";
+import { track } from "@/lib/analytics/track";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,8 @@ export const metadata = {
 export default async function ProgressPage() {
   const user = await requireUser();
   const progress = await buildProgress(user.id, user.targetProfession ?? null);
+  // A page view, labelled as one. Retention, not conversion.
+  track("progress_view", { path: "/progress" });
 
   return (
     <main className="mx-auto w-full max-w-3xl px-4 py-8" data-testid="progress-page">
