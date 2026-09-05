@@ -41,7 +41,12 @@
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { FUNNEL_EVENTS, FORBIDDEN_KEYS, FUNNEL_EVENT_NAMES } from "../../src/lib/analytics/events";
+import {
+  FUNNEL_EVENTS,
+  FORBIDDEN_KEYS,
+  FUNNEL_EVENT_NAMES,
+  FUNNEL_DISPLAYED,
+} from "../../src/lib/analytics/events";
 
 const ROOTS = ["src"];
 const CALL = /\btrack\(\s*"([a-z_]+)"\s*(,\s*\{([\s\S]*?)\})?\s*\)/g;
@@ -126,6 +131,20 @@ for (const c of calls) {
     } else if (!(def.keys as readonly string[]).includes(k)) {
       fail(`4 · ${c.file}:${c.line} puts "${k}" in "${c.name}", which allows only [${def.keys.join(", ")}]`);
     }
+  }
+}
+
+// ── 5 · every conversion event is actually shown somewhere ─────────────────
+//
+// An event we collect and never display is an event nobody sees. Membership is
+// checked against FUNNEL_DISPLAYED — steps, friction and churn — rather than
+// against the step order alone, because churn inside a forward funnel would
+// make every rate in it wrong.
+const displayed = new Set<string>(FUNNEL_DISPLAYED);
+for (const name of FUNNEL_EVENT_NAMES) {
+  if (!FUNNEL_EVENTS[name].conversion) continue;
+  if (!displayed.has(name)) {
+    fail(`5 · "${name}" is a conversion event and /admin/funnel never shows it — nobody sees it`);
   }
 }
 

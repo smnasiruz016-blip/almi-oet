@@ -49,6 +49,7 @@ type Item = { key: string; href: string; icon: string; label: string; match: str
 const ITEMS: Item[] = [
   { key: "reviews", href: "/admin/reviews", icon: "⭐", label: "Reviews", match: "/admin/reviews" },
   { key: "costs", href: "/admin/costs", icon: "💷", label: "AI Usage", match: "/admin/costs" },
+  { key: "funnel", href: "/admin/funnel", icon: "📉", label: "Funnel", match: "/admin/funnel" },
   {
     key: "comp",
     href: "/admin/comp-accounts",
