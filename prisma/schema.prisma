@@ -83,6 +83,7 @@ model User {
   sessions            Session[]
   passwordResetTokens PasswordResetToken[]
   oetAttempts         OetAttempt[]
+  funnelEvents        FunnelEvent[]
   oetSessions         OetSession[]
   reviews             Review[]
 
@@ -369,4 +370,48 @@ model OetSession {
   attempts OetAttempt[]
 
   @@index([userId, status, startedAt])
+}
+
+/// FUNNEL EVENTS — where people drop off, and nothing about who they are.
+///
+/// Master Standard §J: "Product quality and funnel defects must be fixed before
+/// increasing advertising spend." Before this table there was no way to see
+/// which step loses people — landing, pricing, card, or the first exercise.
+///
+/// APPEND-ONLY. Rows are written by src/lib/analytics/track.ts and never updated.
+///
+/// 🔴 NO PII IN `props`. userId is a foreign key; an email address is a person.
+/// gate:funnel fails the build if email · name · token · stripeCustomerId appear
+/// in any payload, and track() strips them again at runtime for keys that arrive
+/// through a variable the gate cannot read.
+///
+/// 🔴 onDelete: SetNull — AND THAT IS THE MOST IMPORTANT LINE IN THIS MODEL.
+///
+///   Cascade  deleting a user would delete their funnel rows, so last month's
+///            conversion count would CHANGE afterwards — history rewriting itself.
+///   Restrict deleting a user would FAIL, so a UK/EU erasure request could not
+///            be honoured at all.
+///   SetNull  the row stays, the person leaves. The count stays true and the
+///            individual is gone. It is the only option that serves both.
+///
+/// RETENTION: 12 months is the recommendation — long enough to see a year of
+/// drop-off, and past that it is liability without insight. 🔴 THE DECISION IS
+/// THE OWNER'S, and NO deletion job exists yet: a scheduled destructive task is
+/// its own PR and its own GREEN.
+model FunnelEvent {
+  id        String   @id @default(cuid())
+  /// One of FUNNEL_EVENTS in src/lib/analytics/events.ts. Not an enum: the
+  /// catalogue is the source of truth and gate:funnel enforces it, so adding a
+  /// step must not require a migration.
+  name      String
+  userId    String?
+  createdAt DateTime @default(now())
+  /// Allow-listed keys only — see the catalogue.
+  props     Json?
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  /// The funnel page asks "how many of <name> between two dates". Without this
+  /// index that is a table scan the moment the table is real.
+  @@index([name, createdAt])
 }
