@@ -175,7 +175,12 @@ test("the journey emits its funnel in the order the catalogue declares", async (
   const box = page.locator('input[type="text"]').first();
   await expect(box).toBeVisible();
   await box.fill("a deliberate answer");
-  const submitted = page.waitForResponse((r) => r.url().includes("/api/oet/submit"));
+  // An ACTION, not a navigation, so navigationTimeout does not reach it and its
+  // own default is 0 - no timeout. Bounded here rather than globally: see the
+  // note in playwright.config.ts about why actionTimeout stays unset.
+  const submitted = page.waitForResponse((r) => r.url().includes("/api/oet/submit"), {
+    timeout: 30_000,
+  });
   await page.getByTestId("submit-answers").click();
   expect((await submitted).status()).toBe(200);
 
