@@ -4,6 +4,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { formatDateUTC } from "@/lib/format-date";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -106,7 +107,18 @@ export default async function AccountsPage() {
                 const la = lastActive(u.sessions[0]?.expiresAt, u.updatedAt);
                 return (
                   <tr key={u.id}>
-                    <td className="px-4 py-3 text-almi-ink">{u.email}</td>
+                    {/* Section G: the owner can reach a learner's progress from here.
+                        The page it opens computes nothing of its own — it calls the
+                        same buildProgress() the learner's own page uses. */}
+                    <td className="px-4 py-3 text-almi-ink">
+                      <Link
+                        href={`/admin/accounts/${u.id}`}
+                        data-testid="admin-account-link"
+                        className="underline decoration-almi-bg-peach hover:decoration-almi-coral"
+                      >
+                        {u.email}
+                      </Link>
+                    </td>
                     <td className="px-4 py-3 text-almi-text-muted">{formatDateUTC(u.createdAt)}</td>
                     <td className="px-4 py-3">
                       <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${badge.cls}`}>
