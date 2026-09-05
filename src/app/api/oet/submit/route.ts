@@ -22,6 +22,7 @@ import { transcribeAudio } from "@/lib/ai/openai";
 import { checkBeforeTranscription, checkBeforeGrading } from "@/lib/oet/substance";
 import { aiFeedbackBlockedByEmail } from "@/lib/billing/email-gate";
 import { isPastDeadline } from "@/lib/oet/deadline";
+import { track } from "@/lib/analytics/track";
 
 export const runtime = "nodejs";
 
@@ -104,6 +105,8 @@ export async function POST(req: Request): Promise<NextResponse> {
   // Listening and Reading bank could be worked through without ever adding a
   // card. The trial is the free tier now.
   if (!hasPaidAccess(user)) {
+    // Demand meeting the wall. Fired HERE, where the refusal happens.
+    track("paywall_blocked", { userId: user.id, taskType: attempt.taskType });
     return NextResponse.json(
       {
         ok: false,
@@ -143,6 +146,12 @@ export async function POST(req: Request): Promise<NextResponse> {
       bypass: isOwner(user.email) || isComped(user),
     });
     if (!allowance.allowed) {
+      // The moment to ask them to subscribe — a trial that has spent its AI.
+      track("trial_cap_hit", {
+        userId: user.id,
+        taskType: attempt.taskType,
+        limit: allowance.limit ?? 0,
+      });
       return NextResponse.json(
         {
           ok: false,
@@ -258,6 +267,14 @@ export async function POST(req: Request): Promise<NextResponse> {
       submittedAt: new Date(),
       timeSpentSeconds,
     },
+  });
+
+  // Activation. Fired AFTER the attempt is written SCORED — not when the
+  // request arrived, and not when the grader returned. §J: at the actual point.
+  track("exercise_submitted", {
+    userId: user.id,
+    taskType: attempt.taskType,
+    subTest: attempt.subTest,
   });
 
   return NextResponse.json({ ok: true, gradeEstimate });

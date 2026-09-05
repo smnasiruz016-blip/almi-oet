@@ -7,6 +7,7 @@ import {
   priceIdToPlanLabel,
 } from "@/lib/billing/plans";
 import { createCheckoutSession } from "@/lib/billing/stripe";
+import { track } from "@/lib/analytics/track";
 
 export const runtime = "nodejs";
 
@@ -50,6 +51,10 @@ export async function POST(req: Request): Promise<NextResponse> {
   }
 
   try {
+    // An INTENTION to pay. Deliberately NOT a conversion: no card has verified
+    // yet, and counting it as one would flatter the funnel at the exact point
+    // we are about to spend money on it.
+    track("checkout_started", { userId: user.id });
     const { url } = await createCheckoutSession({
       userId: user.id,
       email: user.email,
