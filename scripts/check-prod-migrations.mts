@@ -49,7 +49,9 @@ if (m.inRepo === 0) {
 }
 if (m.pending.length > 0) {
   console.error(`[migrations] 🔴 ${m.pending.length} migration BAQI hai: ${m.pending.join(", ")}`);
-  console.error("[migrations] ilaj: npm run db:deploy  (npm run build ye NAHI chalata)");
+  console.error(
+    "[migrations] ilaj: ALLOW_PROD_WRITE=1 npm run db:deploy -- --confirm  (npm run build ye NAHI chalata)",
+  );
   process.exit(1);
 }
 console.log(`[migrations] ✅ kuch baqi nahi — itemsActive ${body.itemsActive}`);
