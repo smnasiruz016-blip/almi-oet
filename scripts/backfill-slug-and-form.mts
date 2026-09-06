@@ -210,9 +210,14 @@ async function main(): Promise<void> {
   if (after !== 0) die(`${after} row(s) still have no slug after a complete run`);
 }
 
+// 🔴 `process.exit(1)`, not `process.exitCode = 1`. The same rule as
+// scripts/measure/blank-submit.mts and scripts/e2e/run.mts: an explicit exit
+// somewhere below can override `exitCode`, and a production-write script that
+// throws and then leaves with 0 tells its caller the write succeeded.
 main()
-  .catch((e) => {
+  .then(() => prisma.$disconnect())
+  .catch(async (e) => {
     console.error(e);
-    process.exitCode = 1;
-  })
-  .finally(() => prisma.$disconnect());
+    await prisma.$disconnect().catch(() => {});
+    process.exit(1);
+  });
