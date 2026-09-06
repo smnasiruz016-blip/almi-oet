@@ -95,15 +95,15 @@ export function readingPartAAnswerKey(
     id: q.id,
     answer: q.answer,
     exact: q.kind === "match",
-    // 🔴 The overlay is keyed by the question's own `answer`, not by its stem:
-    // Reading stems are long sentences and copying them into the accept-list
-    // file would be a transcription error waiting to happen. It is applied to
-    // free-text questions only — a "match" answer is an id, and leniency has
-    // no business there.
+    // 🔴 The overlay is keyed by the question's `id`, never by its stem or
+    // by its answer text. Reading stems are long sentences, and an answer is
+    // content that gets edited — both are transcription errors waiting to
+    // happen. It is applied to free-text questions only: a "match" answer is
+    // an id, and leniency has no business there.
     variants:
       q.kind === "match"
         ? q.variants
-        : [...(q.variants ?? []), ...readingAcceptFor(slug, q.answer)],
+        : [...(q.variants ?? []), ...readingAcceptFor(slug, q.id)],
   }));
 }
 

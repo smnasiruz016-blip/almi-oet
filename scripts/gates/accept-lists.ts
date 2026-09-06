@@ -18,7 +18,8 @@
  *   A1 every overlay title exists in the seed source
  *   A2 every Listening gap label exists on that item
  *   A3 every Reading key matches EXACTLY ONE question's `answer` on that item
- *   A4 coverage: every free-text answer in the bank HAS an accept-list
+ *   A4 coverage: every MULTI-WORD free-text answer in the bank HAS an
+ *      accept-list; one-word answers are the normaliser's job (see A4 below)
  *   A5 the original answer is accepted
  *   A6 every authored variant is accepted
  *   A7 "the " + the answer is accepted, and so is the digit/word counterpart
@@ -127,29 +128,59 @@ for (const slug of Object.keys(READING_PART_A_ACCEPT)) {
   }
 }
 
-// ── A2 · every Listening label exists on its item ───────────────────────────
-for (const [slug, labels] of Object.entries(LISTENING_PART_A_ACCEPT)) {
+// ── A2 · every Listening key is a gap ID, and its label is still that gap's ──
+//
+// 🔴 THE OVERLAY IS KEYED BY GAP ID, NOT BY LABEL, SINCE 7 SEPTEMBER 2026.
+// The 6 September bank rewrote fifteen Listening items from five gaps to twelve
+// and reworded every label; 45 label-keyed rows went silent in one afternoon.
+// An id survives a rewording. The row still CARRIES the label, and A2 asserts
+// it: a row whose label has drifted off its gap is a row a human can no longer
+// read correctly, and this is the check that says so out loud.
+for (const [slug, rows] of Object.entries(LISTENING_PART_A_ACCEPT)) {
   const item = listeningBySlug.get(slug);
   if (!item) continue; // already reported by A1
-  const known = new Set((item.payload.gaps ?? []).map((g) => g.label));
-  for (const label of Object.keys(labels)) {
-    if (!known.has(label)) {
-      fail("A2", `"${titleOf(slug)}" has no gap labelled "${label}"`);
+  const gaps = item.payload.gaps ?? [];
+  for (const [gapId, row] of Object.entries(rows)) {
+    const hits = gaps.filter((g) => g.id === gapId);
+    if (hits.length !== 1) {
+      fail("A2", `"${titleOf(slug)}" has ${hits.length} gaps with id "${gapId}" (need 1)`);
+      continue;
+    }
+    if (hits[0].label !== row.label) {
+      fail(
+        "A2",
+        `"${titleOf(slug)}" ${gapId}: the row says it belongs to "${row.label}", but that gap ` +
+          `is now labelled "${hits[0].label}" — read the row, then update or delete it`,
+      );
     }
   }
 }
 
-// ── A3 · every Reading key matches exactly one question's answer ────────────
-for (const [slug, keys] of Object.entries(READING_PART_A_ACCEPT)) {
+// ── A3 · every Reading key is a free-text question ID, with its answer ─────
+//
+// Same re-key as A2. The Reading row's `label` is the QUESTION'S OWN ANSWER,
+// which is what the key used to be — so nothing was given up by moving to ids:
+// the row is still checked against the answer it was written for, and it is now
+// also nailed to one question rather than to whichever one happens to share
+// that answer text.
+for (const [slug, rows] of Object.entries(READING_PART_A_ACCEPT)) {
   const item = readingBySlug.get(slug);
   if (!item) continue;
   const free = (item.payload.questions ?? []).filter((q) => q.kind !== "match");
-  for (const key of Object.keys(keys)) {
-    const hits = free.filter((q) => q.answer === key);
+  for (const [qid, row] of Object.entries(rows)) {
+    const hits = free.filter((q) => q.id === qid);
     if (hits.length !== 1) {
       fail(
         "A3",
-        `"${titleOf(slug)}" has ${hits.length} free-text questions whose answer is exactly "${key}" (need 1)`,
+        `"${titleOf(slug)}" has ${hits.length} free-text questions with id "${qid}" (need 1)`,
+      );
+      continue;
+    }
+    if (hits[0].answer !== row.label) {
+      fail(
+        "A3",
+        `"${titleOf(slug)}" ${qid}: the row was written for the answer "${row.label}", but that ` +
+          `question now answers "${hits[0].answer}" — read the row, then update or delete it`,
       );
     }
   }
@@ -446,11 +477,50 @@ const A4_SINGLE_LISTENING_KEY = new Set(
 const a4SingleSeen = new Set<string>();
 const a4SingleListeningSeen = new Set<string>();
 
-// ── A4 · coverage — no free-text answer without an accept-list ──────────────
+// ── A4 · coverage — no MULTI-WORD answer without an accept-list ──────────────
 //
 // The handoff states the bank is fully covered: 146 Listening gaps and 54
 // Reading free-text answers, 200 in all. Asserting it means a NEW item cannot
 // ship without its accept-list — which is the discipline, not an accident.
+//
+// 🔴 NARROWED ON 7 SEPTEMBER 2026, DELIBERATELY, AND HERE IS THE REASON.
+// That rule was written when the bank held 200 free-text answers. It now holds
+// 1032, and 658 of them are ONE WORD. A one-word answer has nothing an
+// accept-list can usefully add: case, surrounding punctuation, a trailing full
+// stop, a leading article, a leading hedge, hyphen-versus-space, a trailing
+// plural and a number written as a word are ALL already folded by normalize()
+// in src/lib/oet/tasks/objective.ts — the same function that marks the
+// candidate. What is left over is a DIFFERENT WORD, and a different word is
+// exactly what this file refuses to accept.
+//
+// 🔴 AND THE COST OF NOT NARROWING IT WAS MEASURED. Demanding a row per
+// answer is what produced a mechanically generated accept-list on 6 September
+// containing hours→hors, four→for, biscuits→biscuitbing and
+// headaches→headacheing — rules that mark WRONG ANSWERS CORRECT. A gate that
+// can only be satisfied by inventing content will be satisfied by invented
+// content.
+//
+// "One word" is decided by the MARKER'S OWN tokeniser, not by counting spaces,
+// so it means one word AFTER normalisation: "a triptan" is one word (the
+// article is stripped), "twenty-eight weeks" is two (the number folds to 28,
+// the unit stays). The class skipped is precisely the class normalize()
+// already covers.
+//
+// ⚠️ WHAT THIS GIVES UP, SAID OUT LOUD: a one-word answer with a legitimate
+// one-word alternative the normaliser cannot reach (throbs / throbbing) no
+// longer has to be recorded here. That is authoring, and it is now caught by
+// reading the content rather than by a build failure. The skipped count is
+// PRINTED on every run so the size of the hole is never a surprise, and A4
+// fails as vacuous if the narrowing ever swallows the whole population.
+// One word AFTER the marker's own normalisation. Hyphens are GLUED rather than
+// split, because for the marker a hyphen is neither a letter nor a boundary:
+// "three-quarters", "three quarters" and "threequarters" are already one and
+// the same answer, so demanding an accept-list row for them would be asking
+// for a variant that cannot exist.
+const oneWordAnswer = (answer: string) =>
+  normalizeTokens(answer.replace(/[-‐-―]/g, "")).length <= 1;
+let a4Required = 0;
+let a4OneWordSkipped = 0;
 let listeningGaps = 0;
 for (const item of LISTENING) {
   for (const gap of item.payload.gaps ?? []) {
@@ -461,7 +531,7 @@ for (const item of LISTENING) {
     // when it is non-empty. A4 asks whether the answer HAS an accept-list, not
     // where it is kept.
     const hasList =
-      listeningAcceptFor(item.slug, gap.label).length > 0 || (gap.variants ?? []).length > 0;
+      listeningAcceptFor(item.slug, gap.id).length > 0 || (gap.variants ?? []).length > 0;
     const singleKey = `${item.slug}||${gap.answer}`;
     if (A4_SINGLE_LISTENING_KEY.has(singleKey)) {
       a4SingleListeningSeen.add(singleKey);
@@ -474,8 +544,17 @@ for (const item of LISTENING) {
       }
       continue;
     }
+    if (!hasList && oneWordAnswer(gap.answer)) {
+      a4OneWordSkipped += 1;
+      continue;
+    }
+    a4Required += 1;
     if (!hasList) {
-      fail("A4", `no accept-list for "${item.title}" → "${gap.label}"`);
+      fail(
+        "A4",
+        `no accept-list for "${item.title}" → "${gap.label}" (answer "${gap.answer}") — ` +
+          "more than one word, so the normaliser cannot stand in for one",
+      );
     }
   }
 }
@@ -484,7 +563,7 @@ for (const item of READING) {
   for (const q of (item.payload.questions ?? []).filter((x) => x.kind !== "match")) {
     readingFree += 1;
     const hasList =
-      readingAcceptFor(item.slug, q.answer).length > 0 || (q.variants ?? []).length > 0;
+      readingAcceptFor(item.slug, q.id).length > 0 || (q.variants ?? []).length > 0;
     const singleKey = `${item.slug}||${q.answer}`;
     if (A4_SINGLE_KEY.has(singleKey)) {
       a4SingleSeen.add(singleKey);
@@ -497,8 +576,17 @@ for (const item of READING) {
       }
       continue;
     }
+    if (!hasList && oneWordAnswer(q.answer)) {
+      a4OneWordSkipped += 1;
+      continue;
+    }
+    a4Required += 1;
     if (!hasList) {
-      fail("A4", `no accept-list for "${item.title}" → answer "${q.answer}"`);
+      fail(
+        "A4",
+        `no accept-list for "${item.title}" → answer "${q.answer}" — more than one ` +
+          "word, so the normaliser cannot stand in for one",
+      );
     }
   }
 }
@@ -515,6 +603,11 @@ for (const e of A4_SINGLE_FORM_LISTENING) {
       `single-form row points at a gap that is not in the bank — delete it: "${e.item}" / "${e.answer}"`,
     );
   }
+}
+// Population AFTER the narrowing. If every answer in the bank ever became one
+// word, A4 would pass by looking at nothing at all.
+if (a4Required === 0) {
+  fail("A4", "the one-word skip swallowed every answer — A4 asserted nothing");
 }
 
 /**
@@ -559,7 +652,7 @@ for (const item of LISTENING) {
     CASES.push({
       where: `${item.title} → ${gap.label}`,
       answer: gap.answer,
-      variants: [...(gap.variants ?? []), ...listeningAcceptFor(item.slug, gap.label)],
+      variants: [...(gap.variants ?? []), ...listeningAcceptFor(item.slug, gap.id)],
     });
   }
 }
@@ -568,7 +661,7 @@ for (const item of READING) {
     CASES.push({
       where: `${item.title} → "${q.answer}"`,
       answer: q.answer,
-      variants: [...(q.variants ?? []), ...readingAcceptFor(item.slug, q.answer)],
+      variants: [...(q.variants ?? []), ...readingAcceptFor(item.slug, q.id)],
     });
   }
 }
@@ -667,7 +760,7 @@ if (!folicGap) {
 } else {
   const variants = [
     ...(folicGap.variants ?? []),
-    ...listeningAcceptFor(FOLIC_SLUG, FOLIC_LABEL),
+    ...listeningAcceptFor(FOLIC_SLUG, folicGap.id),
   ];
   for (const wrong of ["400 mg", "400mg", "400 milligrams", "400 mgs"]) {
     if (accepts(folicGap.answer, variants, wrong)) {
@@ -743,7 +836,7 @@ for (const item of LISTENING) {
     (item.payload.gaps ?? []).map((g) => ({
       id: g.id,
       label: g.label,
-      strings: [g.answer, ...(g.variants ?? []), ...listeningAcceptFor(item.slug, g.label)],
+      strings: [g.answer, ...(g.variants ?? []), ...listeningAcceptFor(item.slug, g.id)],
     })),
   );
 }
@@ -755,7 +848,7 @@ for (const item of READING) {
       .map((q) => ({
         id: q.id,
         label: `answer "${q.answer}"`,
-        strings: [q.answer, ...(q.variants ?? []), ...readingAcceptFor(item.slug, q.answer)],
+        strings: [q.answer, ...(q.variants ?? []), ...readingAcceptFor(item.slug, q.id)],
       })),
   );
 }
@@ -968,35 +1061,7 @@ const A11_EXEMPT_VARIANT: VariantExemption[] = [
     source: "ruling-2026-09-02",
     why: "'medication' and 'medicine' are one word's family",
   },
-  {
-    item: "lis-a-asthma-flare-up",
-    gap: "Worse timing",
-    variant: "night-time",
-    source: "ruling-2026-09-02",
-    why: "a compound of 'night' — nothing new said",
-  },
-  {
-    item: "lis-a-medication-side-effect",
-    gap: "Worse timing",
-    variant: "night-time",
-    source: "ruling-2026-09-02",
-    why: "same reason as the Asthma flare-up row; the two are NOT interchangeable",
-  },
   // ── not the ruling's: a limit of the written morphology above ─────────────
-  {
-    item: "lis-a-diabetes-annual-check",
-    gap: "Weight change",
-    variant: "weight loss",
-    source: "irregular-form",
-    why: "the script says 'lost about four kilos'; loss/lost is one word, irregularly, and the ending list cannot derive it",
-  },
-  {
-    item: "lis-a-post-operative-wound-check",
-    gap: "Pain trend",
-    variant: "getting worse",
-    source: "irregular-form",
-    why: "the script says 'has actually got worse'; getting/got is one word, irregularly",
-  },
 ];
 
 /**
@@ -1054,6 +1119,17 @@ const A11_EXEMPT_VARIANT: VariantExemption[] = [
  * ⚠️ THIS LIST IS A TO-DO, NOT AN ALLOWANCE, so it is stricter than the
  * exemption lists: a row that has STOPPED failing fails the build, because a
  * resolved question should be deleted rather than left lying here.
+ *
+ * 🔴 ONE ROW WAS DELETED ON 7 SEPTEMBER 2026 AND THE QUESTION IS STILL OPEN.
+ * `night-time` on "Reading Part A — Delirium in hospital" (answer `night`)
+ * stopped failing, so this list's own rule required its removal. It did NOT
+ * stop failing because anyone answered it: A12 splits `night-time` into
+ * `night` + `time`, and the item's rewritten text now happens to contain the
+ * word "time" in an unrelated sentence ("…fluctuates through the day…").
+ * A COINCIDENCE OF WORDING IS NOT A RULING. The question Nasir was handed —
+ * is `night-time` acceptable where the text only ever says "at night"? — is
+ * recorded here because A12 can no longer see it, and the row would fail the
+ * build if it were left in.
  */
 const A12_PENDING_DECISION: VariantExemption[] = [
   {
@@ -1062,13 +1138,6 @@ const A12_PENDING_DECISION: VariantExemption[] = [
     variant: "occupational therapist",
     source: "pending-decision",
     why: "the text prints 'occupational-therapy', never 'therapist' — and this is the item's own answer, not just a variant",
-  },
-  {
-    item: "rea-a-f3-delirium-in-hospital",
-    gap: "night",
-    variant: "night-time",
-    source: "pending-decision",
-    why: "the text says 'at night', never 'time'; the same variant is an exemption on two Listening items, but this one was not named",
   },
 ];
 
@@ -1299,7 +1368,7 @@ function runSourceWordCheck(opts: {
 const A11_CASES: VariantCase[] = [];
 for (const item of LISTENING) {
   for (const gap of item.payload.gaps ?? []) {
-    for (const variant of listeningAcceptFor(item.slug, gap.label)) {
+    for (const variant of listeningAcceptFor(item.slug, gap.id)) {
       A11_CASES.push({ itemSlug: item.slug, gapLabel: gap.label, variant });
     }
   }
@@ -1341,7 +1410,7 @@ const READING_TEXT = new Map(
 const A12_CASES: VariantCase[] = [];
 for (const item of READING) {
   for (const q of (item.payload.questions ?? []).filter((x) => x.kind !== "match")) {
-    for (const variant of readingAcceptFor(item.slug, q.answer)) {
+    for (const variant of readingAcceptFor(item.slug, q.id)) {
       A12_CASES.push({ itemSlug: item.slug, gapLabel: q.answer, variant });
     }
   }
@@ -1408,17 +1477,18 @@ if (titleKeyedUnresolved.length > 0) {
 for (const [slug, answers] of Object.entries(READING_PART_A_ACCEPT)) {
   if (!retiredSlugs.has(slug)) continue;
   deadKeys.push(slug);
-  for (const variants of Object.values(answers)) deadVariants += variants.length;
+  for (const row of Object.values(answers)) deadVariants += row.accept.length;
 }
 let liveListeningVariants = 0;
-for (const answers of Object.values(LISTENING_PART_A_ACCEPT)) {
-  for (const variants of Object.values(answers)) liveListeningVariants += variants.length;
+for (const rows of Object.values(LISTENING_PART_A_ACCEPT)) {
+  for (const row of Object.values(rows)) liveListeningVariants += row.accept.length;
 }
 
 // ── report ─────────────────────────────────────────────────────────────────
 console.log(
   `[gate:accept-lists] ${LISTENING.length} Listening Part A item(s), ${listeningGaps} gap(s); ` +
     `${READING.length} Reading Part A item(s), ${readingFree} free-text answer(s); ` +
+    `A4 required a list on ${a4Required}, skipped ${a4OneWordSkipped} one-word answer(s); ` +
     `${CASES.length} answer(s) checked, ${numericChecked} with a numeric counterpart; ` +
     `A11: ${a11.checked} Listening variant(s) against ${a11.sources} audio script(s); ` +
     `A12: ${a12.checked} Reading variant(s) against ${a12.sources} text set(s); ` +
@@ -1469,8 +1539,11 @@ for (const check of [
 }
 if (failures.length > 0) {
   console.error(`\n[gate:accept-lists] ${failures.length} failure(s):`);
-  for (const f of failures.slice(0, 60)) console.error(`  ${f}`);
-  if (failures.length > 60) console.error(`  …and ${failures.length - 60} more`);
+  // UNCAPPED, DELIBERATELY. A cap of 60 on this gate hid A11 and A12 entirely
+  // on 6 September — 391 failures, 60 printed, and the two checks a human still
+  // had to rule on were both past the cut. A report that hides the half you can
+  // act on costs a whole session.
+  for (const f of failures) console.error(`  ${f}`);
   process.exit(1);
 }
 console.log("[gate:accept-lists] all clear");
