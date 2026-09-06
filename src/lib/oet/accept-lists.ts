@@ -97,7 +97,7 @@
 
 /** title → gap label → additional accepted answers. */
 export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly string[]>> = {
-  "OET Form 1 · Listening Part A — Physiotherapy consultation (lower back pain)": {
+  "lis-a-f1-physiotherapy-consultation-lower-back-pain": {
     "Complaint has lasted for": ["three weeks", "about three weeks", "three weeks now"],
     "Activity when it started": ["moving boxes", "lifting boxes", "moving some boxes", "boxes", "moving boxes at work", "lifting deliveries"],
     "Felt a sharp ___ on the left": ["twinge", "sharp twinge"],
@@ -111,7 +111,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
     "No bladder or ___ problems": ["bowel"],
     "Wakes this many times a night": ["two or three times", "two or three", "two to three times", "two to three"],
   },
-  "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)": {
+  "lis-a-f1-dietitian-consultation-type-2-diabetes": {
     "Referred because this was high": ["HbA1c", "HbA1c level", "blood sugar", "average blood sugar", "blood sugar level"],
     "Breakfast: two slices of ___": ["white toast", "toast"],
     "Coffee taken with": ["two sugars"],
@@ -125,7 +125,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
     "Reduce this in coffee gradually": ["sugar"],
     "Replace fizzy drink with ___": ["water"],
   },
-  "OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)": {
+  "lis-a-f2-occupational-therapy-home-visit-post-stroke": {
     "Home visit after a": ["stroke"],
     "Washing and dressing takes nearly": ["an hour", "one hour"],
     "Hardest task: doing up": ["buttons", "doing up buttons"],
@@ -139,7 +139,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
     "Has lost his": ["confidence"],
     "Since a ___ last month": ["fall", "falling"],
   },
-  "OET Form 2 · Listening Part A — Practice-nurse asthma review": {
+  "lis-a-f2-practice-nurse-asthma-review": {
     "Annual review for this condition": ["asthma"],
     "Reliever should be used at most": ["three times a week", "three times a week or fewer", "three a week"],
     "Forgets the preventer when she feels": ["well", "fine", "she feels well"],
@@ -153,7 +153,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
     "Recommended: the": ["flu vaccine", "flu vaccination"],
     "Nurse to write an updated": ["action plan", "asthma action plan", "plan"],
   },
-  "OET Form 3 · Listening Part A — Physiotherapist and lower back pain": {
+  "lis-a-f3-physiotherapist-and-lower-back-pain": {
     "Back pain started about": ["three weeks ago", "three weeks"],
     "Injured while lifting a": ["box", "lifting a box"],
     "Initially felt a sharp": ["twinge", "sharp twinge"],
@@ -167,7 +167,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
     "Most cases settle within": ["six weeks", "within six weeks"],
     "Told to avoid heavy": ["lifting", "heavy lifting", "lift"],
   },
-  "OET Form 3 · Listening Part A — Midwife antenatal booking visit": {
+  "lis-a-f3-midwife-antenatal-booking-visit": {
     "Type of appointment today: the": ["booking", "booking appointment"],
     "Roughly how many weeks pregnant:": ["ten weeks", "ten", "around ten weeks"],
     "This is her first": ["baby"],
@@ -182,76 +182,76 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
     "First scan at around": ["twelve weeks", "twelve", "around twelve weeks"],
     "Warning sign with headaches: seeing": ["spots", "spots in her vision", "spots in vision"],
   },
-  "Part A — Ankle injury after a fall": {
+  "lis-a-ankle-injury-after-a-fall": {
     "Activity at time of injury": ["playing football", "football"],
     "Time since injury": ["three days ago", "three days", "Saturday", "Saturday afternoon"],
     "Current pain score (0–10)": ["seven out of ten", "seven", "7/10"],
     "Pain relief taken": ["ibuprofen"],
     "Site of worst swelling": ["outer ankle", "outside of the ankle", "outer side of the ankle"],
   },
-  "Part A — Antenatal visit": {
+  "lis-a-antenatal-visit": {
     "Gestation": ["twenty-eight weeks", "twenty-eight"],
     "Fetal movements": ["lots of movements", "lots", "many movements"],
     "Movement timing": ["in the evening", "evening", "evenings"],
     "Swelling site": ["fingers", "her fingers"],
     "Other symptom": ["headaches", "a few headaches"],
   },
-  "Part A — Asthma flare-up": {
+  "lis-a-asthma-flare-up": {
     "Main symptom": ["wheezing", "wheeze", "wheezy"],
     "Worse timing": ["at night", "night", "night-time"],
     "Reliever use": ["six times a day", "six a day"],
     "Trigger": ["cold weather", "the cold", "cold"],
     "Cough type": ["dry cough", "dry"],
   },
-  "Part A — Chest pain assessment": {
+  "lis-a-chest-pain-assessment": {
     "Character of pain": ["tight pressure", "tightness", "pressure", "tight"],
     "Location": ["centre", "center", "centre of the chest"],
     "Onset trigger": ["climbing the stairs", "climbing stairs", "stairs"],
     "Radiates to": ["left arm", "down the left arm", "left arm and jaw"],
     "Associated symptom": ["breathless", "breathlessness", "sweaty", "sweating"],
   },
-  "Part A — Child with fever": {
+  "lis-a-child-with-fever": {
     "Onset": ["yesterday evening", "yesterday", "evening"],
     "Temperature": ["thirty-nine degrees", "thirty-nine", "39 C", "thirty-nine degrees celsius"],
     "Feeding": ["refusing food", "refusing to eat", "not eating"],
     "Ear sign": ["pulling at her right ear", "pulling her right ear", "pulling at right ear", "pulling at her ear", "pulling ear", "right ear"],
     "Behaviour": ["irritable", "irritability", "very irritable"],
   },
-  "Part A — Diabetes annual check": {
+  "lis-a-diabetes-annual-check": {
     "Morning readings": ["high", "running high", "around twelve", "twelve"],
     "Foot symptom": ["numbness", "numb", "numbness in her toes", "numbness in toes"],
     "Weight change": ["lost about four kilos", "lost four kilos", "four kilos", "4 kg", "lost weight", "weight loss"],
     "Fluid symptom": ["thirsty", "thirst", "always thirsty"],
     "Night symptom": ["pass urine", "passing urine", "getting up to pass urine", "urinating"],
   },
-  "Part A — Knee pain consultation": {
+  "lis-a-knee-pain-consultation": {
     "Affected joint": ["right knee", "knee"],
     "Duration of symptoms": ["three weeks"],
     "Pain worsens when": ["climbing stairs", "climbing the stairs", "stairs"],
     "Current medication": ["paracetamol"],
   },
-  "Part A — Lower back pain": {
+  "lis-a-lower-back-pain": {
     "Mechanism": ["lifting a heavy box", "lifting a box", "lifting", "a heavy box"],
     "Duration": ["Four days ago", "four days"],
     "Radiation": ["back of my left leg", "back of the left leg", "down the left leg", "left leg"],
     "Sensory symptom": ["tingly", "tingling"],
     "Relieving factor": ["Lying flat", "lying down", "lying", "flat"],
   },
-  "Part A — Medication side-effect": {
+  "lis-a-medication-side-effect": {
     "Suspected cause": ["blood pressure medication", "blood pressure tablets", "blood pressure medicine", "the new tablets"],
     "Main side-effect": ["dry cough", "cough", "dry"],
     "Worse timing": ["at night", "night", "night-time"],
     "Other sign": ["puffy", "puffy ankles", "swelling"],
     "Duration on drug": ["three weeks"],
   },
-  "Part A — Mental-health check-in": {
+  "lis-a-mental-health-check-in": {
     "Mood": ["low", "quite low", "low mood"],
     "Loss of": ["interest", "interest in things", "enjoyment"],
     "Sleep pattern": ["wake very early", "waking early", "early waking", "wakes at four", "waking at four"],
     "Appetite": ["barely eating", "not eating"],
     "Concentration": ["can not focus", "cannot focus", "can not concentrate"],
   },
-  "Part A — Migraine review": {
+  "lis-a-migraine-review": {
     "Frequency": ["three times a week", "three a week"],
     "Location": ["behind my right eye", "behind the right eye", "behind right eye", "right eye"],
     "Quality": ["throbs", "throbbing"],
@@ -259,28 +259,28 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
     // 🔴 "flashing lights" is NOT here. The audio says LINES; see the header.
     "Warning sign": ["flashing lines", "lines"],
   },
-  "Part A — New skin rash": {
+  "lis-a-new-skin-rash": {
     "Site": ["forearms", "arms"],
     "Onset": ["three days ago", "three days"],
     "Appearance": ["Small red bumps", "red bumps", "bumps", "small bumps"],
     "Possible trigger": ["laundry detergent", "detergent", "new detergent"],
     "Spread": ["neck", "to the neck"],
   },
-  "Part A — Ongoing sleep problem": {
+  "lis-a-ongoing-sleep-problem": {
     "Time to fall asleep": ["at least an hour", "an hour", "over an hour"],
     "Duration": ["three months"],
     "Night worry": ["money", "worrying about money", "worries about money"],
     "Daytime effect": ["drowsy", "drowsiness", "naps in the afternoon"],
     "Evening habit": ["coffee", "coffee after dinner", "caffeine"],
   },
-  "Part A — Post-operative wound check": {
+  "lis-a-post-operative-wound-check": {
     "Wound colour": ["red", "redness", "red edges"],
     "Local sign": ["warm", "warmth", "feels warm"],
     "Discharge": ["yellow fluid", "yellow discharge", "yellow"],
     "Pain trend": ["worse", "getting worse", "worsening", "has got worse"],
     "Systemic sign": ["feverish", "fever", "a temperature", "temperature"],
   },
-  "Part A — Suspected urinary infection": {
+  "lis-a-suspected-urinary-infection": {
     // 🔴 "burning" is NOT here. The word was never said; see the header.
     "Pain on voiding": ["stings", "stinging"],
     "Onset": ["two days ago", "two days"],
@@ -292,52 +292,52 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, readonly str
 
 /** title → the question's own `answer` → additional accepted answers. */
 export const READING_PART_A_ACCEPT: Record<string, Record<string, readonly string[]>> = {
-  "Part A — Aseptic non-touch technique": {
+  "rea-a-aseptic-non-touch-technique": {
     "key parts": ["key parts", "the key parts"],
   },
-  "Part A — Discharge planning checklist": {
+  "rea-a-discharge-planning-checklist": {
     "date": ["date", "expected date", "expected date of discharge", "date of discharge"],
   },
-  "Part A — Falls risk assessment": {
+  "rea-a-falls-risk-assessment": {
     "six hours": ["six hours", "within six hours"],
   },
-  "Part A — Hand hygiene texts": {
+  "rea-a-hand-hygiene-texts": {
     "dry": ["dry", "dry hands"],
   },
-  "Part A — Informed consent essentials": {
+  "rea-a-informed-consent-essentials": {
     "capacity": ["capacity", "mental capacity"],
   },
-  "Part A — Insulin storage and handling": {
+  "rea-a-insulin-storage-and-handling": {
     "28": ["28", "28 days", "twenty-eight", "twenty-eight days"],
   },
-  "Part A — Malnutrition screening": {
+  "rea-a-malnutrition-screening": {
     "dietitian": ["dietitian", "dietician"],
   },
-  "Part A — Oxygen cylinder safety": {
+  "rea-a-oxygen-cylinder-safety": {
     "combustion": ["combustion", "supports combustion"],
   },
-  "Part A — Pain assessment methods": {
+  "rea-a-pain-assessment-methods": {
     "imaginable": ["imaginable", "worst pain imaginable", "the worst imaginable"],
   },
-  "Part A — Preventing pressure injuries in immobile patients": {
+  "rea-a-preventing-pressure-injuries-in-immobile-patients": {
     "30-degree": ["30-degree", "30-degree tilt", "thirty-degree", "thirty-degree tilt", "30 degrees"],
   },
-  "Part A — Repositioning for skin protection": {
+  "rea-a-repositioning-for-skin-protection": {
     "two": ["two", "two hours", "every two hours", "two-hourly"],
   },
-  "Part A — Safe patient transfers": {
+  "rea-a-safe-patient-transfers": {
     "body": ["body", "your body", "close to your body"],
   },
-  "Part A — Source isolation precautions": {
+  "rea-a-source-isolation-precautions": {
     "Gloves": ["gloves"],
   },
-  "Part A — Urinary catheter care": {
+  "rea-a-urinary-catheter-care": {
     "bladder": ["bladder", "the level of the bladder"],
   },
-  "Part A — Wound dressing selection": {
+  "rea-a-wound-dressing-selection": {
     "autolytic": ["autolytic", "autolytic debridement"],
   },
-  "OET Form 1 · Reading Part A — Preventing pressure injuries": {
+  "rea-a-f1-preventing-pressure-injuries": {
     "18": ["18", "eighteen", "18 or below"],
     "the Braden Scale": ["Braden Scale", "Braden", "the Braden scale"],
     "the 30-degree tilt": ["30-degree tilt", "30 degree tilt", "thirty-degree tilt", "30-degree", "30 degrees"],
@@ -352,7 +352,7 @@ export const READING_PART_A_ACCEPT: Record<string, Record<string, readonly strin
     "impairs": ["impairs", "impair", "impairs healing"],
     "dehydrated": ["dehydrated", "dehydration"],
   },
-  "OET Form 2 · Reading Part A — Preventing falls in older adults": {
+  "rea-a-f2-preventing-falls-in-older-adults": {
     "a previous fall": ["previous fall", "a history of a previous fall", "history of a previous fall", "a fall"],
     "postural": ["postural", "postural blood pressure", "a drop on standing"],
     "at least 50 hours": ["at least 50 hours", "50 hours", "fifty hours", "at least fifty hours"],
@@ -367,7 +367,7 @@ export const READING_PART_A_ACCEPT: Record<string, Record<string, readonly strin
     "bifocals": ["bifocals", "bifocal glasses", "bifocal lenses"],
     "blood": ["blood", "blood pressure"],
   },
-  "OET Form 3 · Reading Part A — Delirium in hospital": {
+  "rea-a-f3-delirium-in-hospital": {
     "hours or days": ["hours or days", "hours to days", "over hours or days"],
     "the 4AT": ["4AT", "the 4AT"],
     "night": ["night", "at night", "night-time"],
@@ -391,19 +391,19 @@ const EMPTY: readonly string[] = [];
  *  the label is not in the overlay — the gate is what makes sure that never
  *  happens quietly. */
 export function listeningAcceptFor(
-  title: string | undefined,
+  slug: string | undefined,
   label: string,
 ): readonly string[] {
-  if (!title) return EMPTY;
-  return LISTENING_PART_A_ACCEPT[title]?.[label] ?? EMPTY;
+  if (!slug) return EMPTY;
+  return LISTENING_PART_A_ACCEPT[slug]?.[label] ?? EMPTY;
 }
 
 /** Extra accepted answers for one Reading Part A free-text question, keyed by
  *  the question's own `answer`. */
 export function readingAcceptFor(
-  title: string | undefined,
+  slug: string | undefined,
   answer: string,
 ): readonly string[] {
-  if (!title) return EMPTY;
-  return READING_PART_A_ACCEPT[title]?.[answer] ?? EMPTY;
+  if (!slug) return EMPTY;
+  return READING_PART_A_ACCEPT[slug]?.[answer] ?? EMPTY;
 }

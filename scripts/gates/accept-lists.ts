@@ -63,6 +63,8 @@ type Gap = { id: string; label: string; answer: string; variants?: string[] };
 type ReadingQ = { id: string; kind: string; stem: string; answer: string; variants?: string[] };
 type Item = {
   taskType: string;
+  // The machine key. `title` is still read below, but only to PRINT.
+  slug: string;
   title: string;
   payload: { gaps?: Gap[]; questions?: ReadingQ[]; audioScript?: string };
 };
@@ -88,36 +90,58 @@ function accepts(answer: string, variants: readonly string[], given: string): bo
 if (LISTENING.length === 0) fail("A0", "no LISTENING_PART_A items in the seed source");
 if (READING.length === 0) fail("A0", "no READING_PART_A items in the seed source");
 
-const listeningByTitle = new Map(LISTENING.map((i) => [i.title, i]));
-const readingByTitle = new Map(READING.map((i) => [i.title, i]));
+const listeningBySlug = new Map(LISTENING.map((i) => [i.slug, i]));
+const readingBySlug = new Map(READING.map((i) => [i.slug, i]));
+/** slug -> title, for the MESSAGES. The overlay is keyed by slug so that a
+ *  rename cannot silently empty it; a human reading a red gate still needs the
+ *  name they know, so the words come from here and the key never does. */
+const titleOf = (slug: string): string =>
+  ITEMS.find((i) => i.slug === slug)?.title ?? `<no item with slug ${slug}>`;
+/** `taskType::title` -> slug, and the rows that did not resolve.
+ *
+ *  🔴 TWO INPUTS TO THIS GATE ARE STILL KEYED BY TITLE, ON PURPOSE, AND BOTH ARE
+ *  RECORDS RATHER THAN RULES: scripts/gates/reading_sets_single_form.ts is
+ *  GENERATED from the authors' own "qubool:" lines, and scripts/retire/*.json are
+ *  a historical log of what was switched off on a given day. Neither is
+ *  rewritten. They are resolved to slugs HERE, once, and a row that resolves to
+ *  nothing is NAMED rather than dropped -- a silent miss would quietly widen A4's
+ *  escape hatch or understate the dead half of the overlay. */
+const SLUG_BY_TITLE_KEY = new Map(ITEMS.map((i) => [`${i.taskType}::${i.title}`, i.slug]));
+const titleKeyedUnresolved: string[] = [];
+const slugForTitle = (taskType: string, title: string, where: string): string => {
+  const s = SLUG_BY_TITLE_KEY.get(`${taskType}::${title}`);
+  if (s) return s;
+  titleKeyedUnresolved.push(`${where}: ${taskType} :: ${JSON.stringify(title)}`);
+  return `UNRESOLVED::${taskType}::${title}`;
+};
 
-// ── A1 · every overlay title exists ─────────────────────────────────────────
-for (const title of Object.keys(LISTENING_PART_A_ACCEPT)) {
-  if (!listeningByTitle.has(title)) {
-    fail("A1", `Listening accept-list names an item that does not exist: "${title}"`);
+// ── A1 · every overlay slug exists ──────────────────────────────────────────
+for (const slug of Object.keys(LISTENING_PART_A_ACCEPT)) {
+  if (!listeningBySlug.has(slug)) {
+    fail("A1", `Listening accept-list names an item that does not exist: "${slug}"`);
   }
 }
-for (const title of Object.keys(READING_PART_A_ACCEPT)) {
-  if (!readingByTitle.has(title)) {
-    fail("A1", `Reading accept-list names an item that does not exist: "${title}"`);
+for (const slug of Object.keys(READING_PART_A_ACCEPT)) {
+  if (!readingBySlug.has(slug)) {
+    fail("A1", `Reading accept-list names an item that does not exist: "${slug}"`);
   }
 }
 
 // ── A2 · every Listening label exists on its item ───────────────────────────
-for (const [title, labels] of Object.entries(LISTENING_PART_A_ACCEPT)) {
-  const item = listeningByTitle.get(title);
+for (const [slug, labels] of Object.entries(LISTENING_PART_A_ACCEPT)) {
+  const item = listeningBySlug.get(slug);
   if (!item) continue; // already reported by A1
   const known = new Set((item.payload.gaps ?? []).map((g) => g.label));
   for (const label of Object.keys(labels)) {
     if (!known.has(label)) {
-      fail("A2", `"${title}" has no gap labelled "${label}"`);
+      fail("A2", `"${titleOf(slug)}" has no gap labelled "${label}"`);
     }
   }
 }
 
 // ── A3 · every Reading key matches exactly one question's answer ────────────
-for (const [title, keys] of Object.entries(READING_PART_A_ACCEPT)) {
-  const item = readingByTitle.get(title);
+for (const [slug, keys] of Object.entries(READING_PART_A_ACCEPT)) {
+  const item = readingBySlug.get(slug);
   if (!item) continue;
   const free = (item.payload.questions ?? []).filter((q) => q.kind !== "match");
   for (const key of Object.keys(keys)) {
@@ -125,7 +149,7 @@ for (const [title, keys] of Object.entries(READING_PART_A_ACCEPT)) {
     if (hits.length !== 1) {
       fail(
         "A3",
-        `"${title}" has ${hits.length} free-text questions whose answer is exactly "${key}" (need 1)`,
+        `"${titleOf(slug)}" has ${hits.length} free-text questions whose answer is exactly "${key}" (need 1)`,
       );
     }
   }
@@ -150,53 +174,53 @@ for (const [title, keys] of Object.entries(READING_PART_A_ACCEPT)) {
  */
 const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
   {
-    item: "Part A — Anaphylaxis",
+    item: "rea-a-anaphylaxis",
     answer: "glucagon",
     why: "author: 'sirf glucagon — is ka koi doosra lafz nahi' (a drug name has no synonym)",
   },
   {
-    item: "Part A — Hypoglycaemia",
+    item: "rea-a-hypoglycaemia",
     answer: "glucagon",
     why: "author: 'sirf glucagon — is ka koi doosra lafz nahi'",
   },
   {
-    item: "Part A — High-risk medicines",
+    item: "rea-a-high-risk-medicines",
     answer: "methotrexate",
     why: "author: 'sirf methotrexate — dawa ka naam hai' (it is a drug name)",
   },
   {
-    item: "Part A — Pressure ulcer prevention",
+    item: "rea-a-pressure-ulcer-prevention",
     answer: "shear",
     why: "author: 'sirf shear'",
   },
   {
-    item: "Part A — Sepsis",
+    item: "rea-a-sepsis",
     answer: "source control",
     why: "author: 'sirf yehi — text ka apna lafz hai' (only this; it is the text's own term)",
   },
   {
-    item: "Part A — Pressure ulcer prevention",
+    item: "rea-a-pressure-ulcer-prevention",
     answer: "drainage",
     why: "the author's only other entry was a REFUSAL: 'discharge NAHIN — wo lafz text mein nahi hai'",
   },
   {
-    item: "Part A — Preventing blood clots in hospital",
+    item: "rea-a-preventing-blood-clots-in-hospital",
     answer: "blood",
     why: "the author's accepted list is the answer alone: 'qubool: blood'",
   },
   {
-    item: "Part A — Wound infection and antibiotics",
+    item: "rea-a-wound-infection-and-antibiotics",
     answer: "effective",
     why: "the author's accepted list is the answer alone: 'qubool: effective'",
   },
   // ── added by the teacher's pass of 2026-09-02 ────────────────────────────
   {
-    item: "Part A — Sepsis",
+    item: "rea-a-sepsis",
     answer: "blood pressure",
     why: "Finding 1b replaced an inference question with a retrieval one over the same sentence and specified variants: [] — 'blood pressure' is printed in that sentence",
   },
   {
-    item: "Part A — Wound infection and antibiotics",
+    item: "rea-a-wound-infection-and-antibiotics",
     answer: "cleansed",
     why: "Finding 2 withdrew 'cleaned' and 'washed' as DIFFERENT words and specified variants: [] — cleansed is the only accepted form",
   },
@@ -208,122 +232,122 @@ const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
   // from the ported items and checked in as a literal — never computed at build
   // time, on the same terms as LEGACY_SHORT.
   {
-    item: "Part A — Acute kidney injury",
+    item: "rea-a-acute-kidney-injury",
     answer: "dehydration",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Acute kidney injury",
+    item: "rea-a-acute-kidney-injury",
     answer: "metformin",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Acute kidney injury",
+    item: "rea-a-acute-kidney-injury",
     answer: "potassium",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Acute kidney injury",
+    item: "rea-a-acute-kidney-injury",
     answer: "diuretics",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Acute kidney injury",
+    item: "rea-a-acute-kidney-injury",
     answer: "chronic kidney disease",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Blood transfusion safety",
+    item: "rea-a-blood-transfusion-safety",
     answer: "interrupted",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Blood transfusion safety",
+    item: "rea-a-blood-transfusion-safety",
     answer: "returned",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Blood transfusion safety",
+    item: "rea-a-blood-transfusion-safety",
     answer: "identification",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Blood transfusion safety",
+    item: "rea-a-blood-transfusion-safety",
     answer: "receive",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Chest pain and acute coronary syndrome",
+    item: "rea-a-chest-pain-and-acute-coronary-syndrome",
     answer: "blocked artery",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Chest pain and acute coronary syndrome",
+    item: "rea-a-chest-pain-and-acute-coronary-syndrome",
     answer: "antiplatelet",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Chest pain and acute coronary syndrome",
+    item: "rea-a-chest-pain-and-acute-coronary-syndrome",
     answer: "dangerous",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Chest pain and acute coronary syndrome",
+    item: "rea-a-chest-pain-and-acute-coronary-syndrome",
     answer: "effect",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — An asthma attack in adults",
+    item: "rea-a-an-asthma-attack-in-adults",
     answer: "oxygen",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — An asthma attack in adults",
+    item: "rea-a-an-asthma-attack-in-adults",
     answer: "prednisolone",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — An asthma attack in adults",
+    item: "rea-a-an-asthma-attack-in-adults",
     answer: "ipratropium",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — An asthma attack in adults",
+    item: "rea-a-an-asthma-attack-in-adults",
     answer: "tiring",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — An asthma attack in adults",
+    item: "rea-a-an-asthma-attack-in-adults",
     answer: "checked",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Venepuncture and handling the sample",
+    item: "rea-a-venepuncture-and-handling-the-sample",
     answer: "stay seated",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Sharps injury and exposure to blood",
+    item: "rea-a-sharps-injury-and-exposure-to-blood",
     answer: "immunoglobulin",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Sharps injury and exposure to blood",
+    item: "rea-a-sharps-injury-and-exposure-to-blood",
     answer: "infection",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Sharps injury and exposure to blood",
+    item: "rea-a-sharps-injury-and-exposure-to-blood",
     answer: "hepatitis B",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Sharps injury and exposure to blood",
+    item: "rea-a-sharps-injury-and-exposure-to-blood",
     answer: "missed",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
   {
-    item: "Part A — Sharps injury and exposure to blood",
+    item: "rea-a-sharps-injury-and-exposure-to-blood",
     answer: "treatment",
     why: "author closed the accepted list with 'sirf' — this wording only",
   },
@@ -332,7 +356,10 @@ const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
   // an entry only where the author's own "qubool:" line says there is nothing
   // else to accept, and it STOPS if a question has no "qubool:" line at all —
   // so an omission can never arrive here dressed as a decision.
-  ...READING_SETS_SINGLE_FORM,
+  ...READING_SETS_SINGLE_FORM.map((e) => ({
+    ...e,
+    item: slugForTitle("READING_PART_A", e.item, "reading_sets_single_form.ts"),
+  })),
 ];
 /**
  * 🔴 THE SAME LIST, FOR LISTENING GAPS — ADDED 3 SEPTEMBER 2026 BY OWNER'S RULING.
@@ -363,49 +390,49 @@ const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
  */
 const A4_SINGLE_FORM_LISTENING: { item: string; gap: string; answer: string; why: string }[] = [
   {
-    item: "Listening Part A · script 3 — Dietetics (unintentional weight loss)",
+    item: "lis-a-script-3-dietetics-unintentional-weight-loss",
     gap: "Food stopped altogether",
     answer: "bread",
     why: "owner: A common noun heard verbatim and having no second legitimate wording. \"Breads\" is reached by the depluralise rule, not by an accept-list.",
   },
   {
-    item: "Listening Part A · script 3 — Dietetics (unintentional weight loss)",
+    item: "lis-a-script-3-dietetics-unintentional-weight-loss",
     gap: "Food she would always accept",
     answer: "custard",
     why: "owner: As above: one word, heard verbatim, with no synonym a candidate could reasonably write instead.",
   },
   {
-    item: "Listening Part A · script 3 — Dietetics (unintentional weight loss)",
+    item: "lis-a-script-3-dietetics-unintentional-weight-loss",
     gap: "Medication that may reduce appetite",
     answer: "metformin",
     why: "owner: A drug name. A drug name has exactly one correct form, and any variant accepted here would be the name of a different medicine. Case and punctuation are already handled by the normaliser.",
   },
   {
-    item: "Listening Part A · script 6 — Optometry (difficulty driving at night)",
+    item: "lis-a-script-6-optometry-difficulty-driving-at-night",
     gap: "Family history: mother had",
     answer: "glaucoma",
     why: "owner: A named condition spoken verbatim. A lay paraphrase (\"pressure in the eye\") is a different answer to a different question and must not be accepted here.",
   },
   {
-    item: "Listening Part A · script 6 — Optometry (difficulty driving at night)",
+    item: "lis-a-script-6-optometry-difficulty-driving-at-night",
     gap: "Current medication",
     answer: "amlodipine",
     why: "owner: A drug name — see metformin above.",
   },
   {
-    item: "Listening Part A · script 7 — Pharmacy (a medicines review)",
+    item: "lis-a-script-7-pharmacy-a-medicines-review",
     gap: "Medicine bought without a prescription",
     answer: "ibuprofen",
     why: "owner: A drug name — see metformin above.",
   },
   {
-    item: "Listening Part A · script 8 — Nursing (a leg ulcer at a home visit)",
+    item: "lis-a-script-8-nursing-a-leg-ulcer-at-a-home-visit",
     gap: "Analgesia taken before the visit",
     answer: "paracetamol",
     why: "owner: A drug name — see metformin above.",
   },
   {
-    item: "Listening Part A · script 15 — Nursing (a pre-operative assessment)",
+    item: "lis-a-script-15-nursing-a-pre-operative-assessment",
     gap: "Medicine to stop before surgery",
     answer: "ibuprofen",
     why: "owner: A drug name — see metformin above.",
@@ -434,8 +461,8 @@ for (const item of LISTENING) {
     // when it is non-empty. A4 asks whether the answer HAS an accept-list, not
     // where it is kept.
     const hasList =
-      listeningAcceptFor(item.title, gap.label).length > 0 || (gap.variants ?? []).length > 0;
-    const singleKey = `${item.title}||${gap.answer}`;
+      listeningAcceptFor(item.slug, gap.label).length > 0 || (gap.variants ?? []).length > 0;
+    const singleKey = `${item.slug}||${gap.answer}`;
     if (A4_SINGLE_LISTENING_KEY.has(singleKey)) {
       a4SingleListeningSeen.add(singleKey);
       if (hasList) {
@@ -457,8 +484,8 @@ for (const item of READING) {
   for (const q of (item.payload.questions ?? []).filter((x) => x.kind !== "match")) {
     readingFree += 1;
     const hasList =
-      readingAcceptFor(item.title, q.answer).length > 0 || (q.variants ?? []).length > 0;
-    const singleKey = `${item.title}||${q.answer}`;
+      readingAcceptFor(item.slug, q.answer).length > 0 || (q.variants ?? []).length > 0;
+    const singleKey = `${item.slug}||${q.answer}`;
     if (A4_SINGLE_KEY.has(singleKey)) {
       a4SingleSeen.add(singleKey);
       if (hasList) {
@@ -532,7 +559,7 @@ for (const item of LISTENING) {
     CASES.push({
       where: `${item.title} → ${gap.label}`,
       answer: gap.answer,
-      variants: [...(gap.variants ?? []), ...listeningAcceptFor(item.title, gap.label)],
+      variants: [...(gap.variants ?? []), ...listeningAcceptFor(item.slug, gap.label)],
     });
   }
 }
@@ -541,7 +568,7 @@ for (const item of READING) {
     CASES.push({
       where: `${item.title} → "${q.answer}"`,
       answer: q.answer,
-      variants: [...(q.variants ?? []), ...readingAcceptFor(item.title, q.answer)],
+      variants: [...(q.variants ?? []), ...readingAcceptFor(item.slug, q.answer)],
     });
   }
 }
@@ -629,18 +656,18 @@ for (const r of REFUSALS) {
 }
 
 // ── A9 · the dose that must never be forgiven ──────────────────────────────
-const FOLIC_TITLE = "OET Form 3 · Listening Part A — Midwife antenatal booking visit";
+const FOLIC_SLUG = "lis-a-f3-midwife-antenatal-booking-visit";
 const FOLIC_LABEL = "Folic acid dose:";
-const folicItem = listeningByTitle.get(FOLIC_TITLE);
+const folicItem = listeningBySlug.get(FOLIC_SLUG);
 const folicGap = folicItem?.payload.gaps?.find((g) => g.label === FOLIC_LABEL);
 if (!folicGap) {
   // Population before the guard: if this gap is ever renamed, the check below
   // would silently test nothing.
-  fail("A9", `the folic-acid gap ("${FOLIC_TITLE}" → "${FOLIC_LABEL}") was not found`);
+  fail("A9", `the folic-acid gap ("${titleOf(FOLIC_SLUG)}" → "${FOLIC_LABEL}") was not found`);
 } else {
   const variants = [
     ...(folicGap.variants ?? []),
-    ...listeningAcceptFor(FOLIC_TITLE, FOLIC_LABEL),
+    ...listeningAcceptFor(FOLIC_SLUG, FOLIC_LABEL),
   ];
   for (const wrong of ["400 mg", "400mg", "400 milligrams", "400 mgs"]) {
     if (accepts(folicGap.answer, variants, wrong)) {
@@ -716,7 +743,7 @@ for (const item of LISTENING) {
     (item.payload.gaps ?? []).map((g) => ({
       id: g.id,
       label: g.label,
-      strings: [g.answer, ...(g.variants ?? []), ...listeningAcceptFor(item.title, g.label)],
+      strings: [g.answer, ...(g.variants ?? []), ...listeningAcceptFor(item.slug, g.label)],
     })),
   );
 }
@@ -728,7 +755,7 @@ for (const item of READING) {
       .map((q) => ({
         id: q.id,
         label: `answer "${q.answer}"`,
-        strings: [q.answer, ...(q.variants ?? []), ...readingAcceptFor(item.title, q.answer)],
+        strings: [q.answer, ...(q.variants ?? []), ...readingAcceptFor(item.slug, q.answer)],
       })),
   );
 }
@@ -893,63 +920,63 @@ type VariantExemption = {
 
 const A11_EXEMPT_VARIANT: VariantExemption[] = [
   {
-    item: "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)",
+    item: "lis-a-f1-dietitian-consultation-type-2-diabetes",
     gap: "Referred because this was high",
     variant: "HbA1c level",
     source: "ruling-2026-09-02",
     why: "'level' names nothing new — an HbA1c IS a level",
   },
   {
-    item: "OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)",
+    item: "lis-a-f1-dietitian-consultation-type-2-diabetes",
     gap: "Referred because this was high",
     variant: "blood sugar level",
     source: "ruling-2026-09-02",
     why: "same reason; 'blood sugar' is itself said in the script",
   },
   {
-    item: "OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)",
+    item: "lis-a-f2-occupational-therapy-home-visit-post-stroke",
     gap: "Rail is only on",
     variant: "left side",
     source: "ruling-2026-09-02",
     why: "'the left' IS a side — no new information",
   },
   {
-    item: "OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)",
+    item: "lis-a-f2-occupational-therapy-home-visit-post-stroke",
     gap: "Rail is only on",
     variant: "left-hand side",
     source: "ruling-2026-09-02",
     why: "same reason as 'left side'",
   },
   {
-    item: "Part A — Ankle injury after a fall",
+    item: "lis-a-ankle-injury-after-a-fall",
     gap: "Site of worst swelling",
     variant: "outside of the ankle",
     source: "ruling-2026-09-02",
     why: "another ordering of 'outer ankle' — the same place",
   },
   {
-    item: "Part A — Ankle injury after a fall",
+    item: "lis-a-ankle-injury-after-a-fall",
     gap: "Site of worst swelling",
     variant: "outer side of the ankle",
     source: "ruling-2026-09-02",
     why: "same reason as 'outside of the ankle'",
   },
   {
-    item: "Part A — Medication side-effect",
+    item: "lis-a-medication-side-effect",
     gap: "Suspected cause",
     variant: "blood pressure medicine",
     source: "ruling-2026-09-02",
     why: "'medication' and 'medicine' are one word's family",
   },
   {
-    item: "Part A — Asthma flare-up",
+    item: "lis-a-asthma-flare-up",
     gap: "Worse timing",
     variant: "night-time",
     source: "ruling-2026-09-02",
     why: "a compound of 'night' — nothing new said",
   },
   {
-    item: "Part A — Medication side-effect",
+    item: "lis-a-medication-side-effect",
     gap: "Worse timing",
     variant: "night-time",
     source: "ruling-2026-09-02",
@@ -957,14 +984,14 @@ const A11_EXEMPT_VARIANT: VariantExemption[] = [
   },
   // ── not the ruling's: a limit of the written morphology above ─────────────
   {
-    item: "Part A — Diabetes annual check",
+    item: "lis-a-diabetes-annual-check",
     gap: "Weight change",
     variant: "weight loss",
     source: "irregular-form",
     why: "the script says 'lost about four kilos'; loss/lost is one word, irregularly, and the ending list cannot derive it",
   },
   {
-    item: "Part A — Post-operative wound check",
+    item: "lis-a-post-operative-wound-check",
     gap: "Pain trend",
     variant: "getting worse",
     source: "irregular-form",
@@ -1030,14 +1057,14 @@ const A11_EXEMPT_VARIANT: VariantExemption[] = [
  */
 const A12_PENDING_DECISION: VariantExemption[] = [
   {
-    item: "OET Form 2 · Reading Part A — Preventing falls in older adults",
+    item: "rea-a-f2-preventing-falls-in-older-adults",
     gap: "an occupational therapist",
     variant: "occupational therapist",
     source: "pending-decision",
     why: "the text prints 'occupational-therapy', never 'therapist' — and this is the item's own answer, not just a variant",
   },
   {
-    item: "OET Form 3 · Reading Part A — Delirium in hospital",
+    item: "rea-a-f3-delirium-in-hospital",
     gap: "night",
     variant: "night-time",
     source: "pending-decision",
@@ -1047,77 +1074,77 @@ const A12_PENDING_DECISION: VariantExemption[] = [
 
 const A12_EXEMPT_VARIANT: VariantExemption[] = [
   {
-    item: "Part A — Malnutrition screening",
+    item: "rea-a-malnutrition-screening",
     gap: "dietitian",
     variant: "dietician",
     source: "reading-audit-2026-09-02",
     why: "both spellings are current English; failing a nurse on the spelling is not what this question measures",
   },
   {
-    item: "OET Form 1 · Reading Part A — Preventing pressure injuries",
+    item: "rea-a-f1-preventing-pressure-injuries",
     gap: "the dietitian",
     variant: "dietician",
     source: "reading-audit-2026-09-02",
     why: "same spelling split, in the other item that asks for it",
   },
   {
-    item: "Part A — Informed consent essentials",
+    item: "rea-a-informed-consent-essentials",
     gap: "capacity",
     variant: "mental capacity",
     source: "reading-audit-2026-09-02",
     why: "'mental' names nothing new — the text's capacity IS mental capacity",
   },
   {
-    item: "OET Form 1 · Reading Part A — Preventing pressure injuries",
+    item: "rea-a-f1-preventing-pressure-injuries",
     gap: "condition",
     variant: "clinical condition",
     source: "reading-audit-2026-09-02",
     why: "'clinical' names nothing new in a clinical text",
   },
   {
-    item: "OET Form 1 · Reading Part A — Preventing pressure injuries",
+    item: "rea-a-f1-preventing-pressure-injuries",
     gap: "non-blanching redness",
     variant: "redness that does not blanch",
     source: "reading-audit-2026-09-02",
     why: "the same fact written as a clause instead of a compound",
   },
   {
-    item: "OET Form 2 · Reading Part A — Preventing falls in older adults",
+    item: "rea-a-f2-preventing-falls-in-older-adults",
     gap: "an occupational therapist",
     variant: "OT",
     source: "reading-audit-2026-09-02",
     why: "the standard abbreviation of the words the text prints in full",
   },
   {
-    item: "OET Form 2 · Reading Part A — Preventing falls in older adults",
+    item: "rea-a-f2-preventing-falls-in-older-adults",
     gap: "bifocals",
     variant: "bifocal glasses",
     source: "reading-audit-2026-09-02",
     why: "'glasses' names nothing new — bifocals ARE glasses",
   },
   {
-    item: "OET Form 2 · Reading Part A — Preventing falls in older adults",
+    item: "rea-a-f2-preventing-falls-in-older-adults",
     gap: "bifocals",
     variant: "bifocal lenses",
     source: "reading-audit-2026-09-02",
     why: "same reason as 'bifocal glasses'",
   },
   {
-    item: "OET Form 3 · Reading Part A — Delirium in hospital",
+    item: "rea-a-f3-delirium-in-hospital",
     gap: "urinary",
     variant: "urinary tract",
     source: "reading-audit-2026-09-02",
     why: "'tract' names nothing new — the text's urinary source IS the urinary tract",
   },
   {
-    item: "OET Form 3 · Reading Part A — Delirium in hospital",
+    item: "rea-a-f3-delirium-in-hospital",
     gap: "urinary",
     variant: "urinary tract infection",
     source: "reading-audit-2026-09-02",
     why: "same reason, written out in full",
   },
   {
-    item: "OET Form 3 · Reading Part A — Delirium in hospital",
+    item: "rea-a-f3-delirium-in-hospital",
     gap: "urinary",
     variant: "UTI",
     source: "reading-audit-2026-09-02",
@@ -1128,7 +1155,9 @@ const A12_EXEMPT_VARIANT: VariantExemption[] = [
 const exemptKey = (item: string, gap: string, variant: string) => `${item}||${gap}||${variant}`;
 
 /** One variant of one answer, as the checks below see it. */
-type VariantCase = { itemTitle: string; gapLabel: string; variant: string };
+/** `itemSlug`, not a title: the exemption lists are keyed by slug so a rename
+ *  cannot silently empty them. Messages print titleOf(itemSlug). */
+type VariantCase = { itemSlug: string; gapLabel: string; variant: string };
 
 type SourceCheckResult = {
   checked: number;
@@ -1153,7 +1182,7 @@ function runSourceWordCheck(opts: {
   /** What the source is called in a failure message. */
   sourceName: string;
   /** The text every variant of this item must be built from. */
-  sourceFor: (itemTitle: string) => string;
+  sourceFor: (itemSlug: string) => string;
   /** Every (item, answer, variant) triple to check. */
   cases: VariantCase[];
   exemptions: VariantExemption[];
@@ -1180,21 +1209,21 @@ function runSourceWordCheck(opts: {
   // Tokenise each source once, not once per variant.
   const tokensFor = new Map<string, { words: Set<string>; joined: string }>();
   for (const c of cases) {
-    if (tokensFor.has(c.itemTitle)) continue;
-    const text = sourceFor(c.itemTitle);
+    if (tokensFor.has(c.itemSlug)) continue;
+    const text = sourceFor(c.itemSlug);
     if (!text.trim()) {
-      fail(check, `"${c.itemTitle}" has no ${sourceName} to check its variants against`);
+      fail(check, `"${titleOf(c.itemSlug)}" has no ${sourceName} to check its variants against`);
       continue;
     }
     const toks = normalizeTokens(text);
-    tokensFor.set(c.itemTitle, { words: new Set(toks), joined: toks.join("") });
+    tokensFor.set(c.itemSlug, { words: new Set(toks), joined: toks.join("") });
   }
 
   for (const c of cases) {
-    const src = tokensFor.get(c.itemTitle);
+    const src = tokensFor.get(c.itemSlug);
     if (!src) continue; // already reported as sourceless
     checked += 1;
-    const key = exemptKey(c.itemTitle, c.gapLabel, c.variant);
+    const key = exemptKey(c.itemSlug, c.gapLabel, c.variant);
     const exempt = byKey.get(key);
     if (exempt) seen.add(key);
     const isPending = pendingByKey.has(key);
@@ -1231,7 +1260,7 @@ function runSourceWordCheck(opts: {
     for (const word of missing) {
       fail(
         check,
-        `"${c.itemTitle}" / "${c.gapLabel}": variant "${c.variant}" uses "${word}", ` +
+        `"${titleOf(c.itemSlug)}" / "${c.gapLabel}": variant "${c.variant}" uses "${word}", ` +
           `which that item's ${sourceName} never says, and it is not on the ` +
           "written per-variant exemption list",
       );
@@ -1270,12 +1299,12 @@ function runSourceWordCheck(opts: {
 const A11_CASES: VariantCase[] = [];
 for (const item of LISTENING) {
   for (const gap of item.payload.gaps ?? []) {
-    for (const variant of listeningAcceptFor(item.title, gap.label)) {
-      A11_CASES.push({ itemTitle: item.title, gapLabel: gap.label, variant });
+    for (const variant of listeningAcceptFor(item.slug, gap.label)) {
+      A11_CASES.push({ itemSlug: item.slug, gapLabel: gap.label, variant });
     }
   }
 }
-const A11_AUDIO = new Map(LISTENING.map((i) => [i.title, i.payload.audioScript ?? ""]));
+const A11_AUDIO = new Map(LISTENING.map((i) => [i.slug, i.payload.audioScript ?? ""]));
 const a11 = runSourceWordCheck({
   check: "A11",
   sourceName: "audioScript",
@@ -1302,7 +1331,7 @@ const a11 = runSourceWordCheck({
 /** title → the item's whole printed text. */
 const READING_TEXT = new Map(
   READING.map((i) => [
-    i.title,
+    i.slug,
     ((i.payload as { texts?: { heading?: string; body?: string }[] }).texts ?? [])
       .map((t) => `${t.heading ?? ""} ${t.body ?? ""}`)
       .join(" "),
@@ -1312,8 +1341,8 @@ const READING_TEXT = new Map(
 const A12_CASES: VariantCase[] = [];
 for (const item of READING) {
   for (const q of (item.payload.questions ?? []).filter((x) => x.kind !== "match")) {
-    for (const variant of readingAcceptFor(item.title, q.answer)) {
-      A12_CASES.push({ itemTitle: item.title, gapLabel: q.answer, variant });
+    for (const variant of readingAcceptFor(item.slug, q.answer)) {
+      A12_CASES.push({ itemSlug: item.slug, gapLabel: q.answer, variant });
     }
   }
 }
@@ -1345,7 +1374,13 @@ const a12 = runSourceWordCheck({
 // is noise, and noise is how gates get switched off. The number may only shrink:
 // when it reaches 0 the Reading half of the overlay goes, and so does this block.
 const RETIRE_DIR = join(import.meta.dirname, "..", "retire");
-const retiredTitles = new Set<string>();
+// 🔴 The retire files are a HISTORICAL RECORD, keyed by the title as it stood on
+// the day of the retire, and they are not rewritten. They are resolved to slugs
+// HERE, against the seed source, so that the overlay -- which is keyed by slug --
+// can be asked the same question. A row that resolves to nothing is counted and
+// named rather than dropped: a retire row matching nothing would understate the
+// dead half of the overlay, which is the number this block exists to print.
+const retiredSlugs = new Set<string>();
 let retireListsRead = 0;
 for (const file of readdirSync(RETIRE_DIR).filter((f) => f.endsWith(".json"))) {
   const rows = JSON.parse(readFileSync(join(RETIRE_DIR, file), "utf8")) as {
@@ -1353,7 +1388,7 @@ for (const file of readdirSync(RETIRE_DIR).filter((f) => f.endsWith(".json"))) {
     title: string;
   }[];
   retireListsRead += 1;
-  for (const r of rows) retiredTitles.add(r.title);
+  for (const r of rows) retiredSlugs.add(slugForTitle(r.taskType, r.title, file));
 }
 // Population before the guard: with no list read every count below is 0, and the
 // line would report a clean overlay it never actually looked at.
@@ -1362,9 +1397,17 @@ if (retireListsRead === 0) {
 }
 const deadKeys: string[] = [];
 let deadVariants = 0;
-for (const [title, answers] of Object.entries(READING_PART_A_ACCEPT)) {
-  if (!retiredTitles.has(title)) continue;
-  deadKeys.push(title);
+if (titleKeyedUnresolved.length > 0) {
+  fail(
+    "A13",
+    `${titleKeyedUnresolved.length} title-keyed row(s) name an item the seed source does not have:` +
+      titleKeyedUnresolved.map((r) => `
+    ${r}`).join(""),
+  );
+}
+for (const [slug, answers] of Object.entries(READING_PART_A_ACCEPT)) {
+  if (!retiredSlugs.has(slug)) continue;
+  deadKeys.push(slug);
   for (const variants of Object.values(answers)) deadVariants += variants.length;
 }
 let liveListeningVariants = 0;
@@ -1395,7 +1438,7 @@ function reportExemptions(
     `  NOTE  ${idle.length} of ${exemptions.length} ${check} per-variant exemption(s) ` +
       "are not load-bearing today — kept deliberately, see the file:",
   );
-  for (const e of idle) console.log(`        "${e.variant}" — ${e.item} / ${e.gap}`);
+  for (const e of idle) console.log(`        "${e.variant}" — ${titleOf(e.item)} / ${e.gap}`);
 }
 if (A12_PENDING_DECISION.length > 0) {
   console.log(
@@ -1403,7 +1446,7 @@ if (A12_PENDING_DECISION.length > 0) {
       "the audit did not name. NOT decided here:",
   );
   for (const e of A12_PENDING_DECISION) {
-    console.log(`        "${e.variant}" — ${e.item} / ${e.gap}`);
+    console.log(`        "${e.variant}" — ${titleOf(e.item)} / ${e.gap}`);
     console.log(`           ${e.why}`);
   }
 }

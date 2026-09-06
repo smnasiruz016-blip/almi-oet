@@ -21,21 +21,21 @@
  */
 import "../load-env.mjs";
 import { PrismaClient } from "@prisma/client";
-import { formOf } from "../../src/lib/oet/session";
 import { LISTENING_PART_A_ACCEPT, READING_PART_A_ACCEPT } from "../../src/lib/oet/accept-lists";
 
 const prisma = new PrismaClient();
 try {
   const items = await prisma.oetItem.findMany({
     where: { taskType: { in: ["WRITING_LETTER", "SPEAKING_ROLEPLAY"] } },
-    select: { id: true, taskType: true, profession: true, title: true, active: true },
+    select: { id: true, taskType: true, profession: true, title: true, form: true, active: true },
   });
   console.log(`${items.length} legacy Writing/Speaking item(s)\n`);
 
   // 1 · mock forms
-  const inForm = items.filter((i) => formOf(i.title) !== null);
-  console.log(`1 · MOCK form ka hissa (title prefix "OET Form N · "): ${inForm.length}`);
-  for (const i of inForm) console.log(`     ${formOf(i.title)}  ${i.taskType}  ${i.title}`);
+  // The form is a COLUMN now, not a prefix parsed off the title.
+  const inForm = items.filter((i) => i.form !== null);
+  console.log(`1 · MOCK form ka hissa (OetItem.form set): ${inForm.length}`);
+  for (const i of inForm) console.log(`     ${i.form}  ${i.taskType}  ${i.title}`);
   if (inForm.length === 0) console.log(`     koi nahi — mock in items se nahi banta`);
 
   // 2 · learners' attempts

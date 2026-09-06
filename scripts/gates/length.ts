@@ -154,6 +154,9 @@ import { words } from "./words";
 
 type Item = {
   taskType: string;
+  // The machine key. `title` is still read below, but only to PRINT: a human
+  // reading a red gate needs the name they know. Nothing is KEYED on it.
+  slug: string;
   title: string;
   payload: {
     audioScript?: string;
@@ -228,83 +231,83 @@ const LAW: Record<string, [number, number]> = {
  */
 const LEGACY_SHORT: string[] = [
   // ── LISTENING_PART_A · 21 item(s), law 550-600 words ──
-  "LISTENING_PART_A::Part A — Ankle injury after a fall", // 114 words
-  "LISTENING_PART_A::Part A — Antenatal visit", // 65 words
-  "LISTENING_PART_A::Part A — Asthma flare-up", // 74 words
-  "LISTENING_PART_A::Part A — Chest pain assessment", // 78 words
-  "LISTENING_PART_A::Part A — Child with fever", // 61 words
-  "LISTENING_PART_A::Part A — Diabetes annual check", // 75 words
-  "LISTENING_PART_A::Part A — Knee pain consultation", // 49 words
-  "LISTENING_PART_A::Part A — Lower back pain", // 71 words
-  "LISTENING_PART_A::Part A — Medication side-effect", // 77 words
-  "LISTENING_PART_A::Part A — Mental-health check-in", // 72 words
-  "LISTENING_PART_A::Part A — Migraine review", // 78 words
-  "LISTENING_PART_A::Part A — New skin rash", // 56 words
-  "LISTENING_PART_A::Part A — Ongoing sleep problem", // 75 words
-  "LISTENING_PART_A::Part A — Post-operative wound check", // 60 words
-  "LISTENING_PART_A::Part A — Suspected urinary infection", // 69 words
-  "LISTENING_PART_A::OET Form 1 · Listening Part A — Physiotherapy consultation (lower back pain)", // 229 words
-  "LISTENING_PART_A::OET Form 1 · Listening Part A — Dietitian consultation (type 2 diabetes)", // 193 words
-  "LISTENING_PART_A::OET Form 2 · Listening Part A — Occupational therapy home visit (post-stroke)", // 190 words
-  "LISTENING_PART_A::OET Form 2 · Listening Part A — Practice-nurse asthma review", // 161 words
-  "LISTENING_PART_A::OET Form 3 · Listening Part A — Physiotherapist and lower back pain", // 210 words
-  "LISTENING_PART_A::OET Form 3 · Listening Part A — Midwife antenatal booking visit", // 197 words
+  "lis-a-ankle-injury-after-a-fall", // 114 words
+  "lis-a-antenatal-visit", // 65 words
+  "lis-a-asthma-flare-up", // 74 words
+  "lis-a-chest-pain-assessment", // 78 words
+  "lis-a-child-with-fever", // 61 words
+  "lis-a-diabetes-annual-check", // 75 words
+  "lis-a-knee-pain-consultation", // 49 words
+  "lis-a-lower-back-pain", // 71 words
+  "lis-a-medication-side-effect", // 77 words
+  "lis-a-mental-health-check-in", // 72 words
+  "lis-a-migraine-review", // 78 words
+  "lis-a-new-skin-rash", // 56 words
+  "lis-a-ongoing-sleep-problem", // 75 words
+  "lis-a-post-operative-wound-check", // 60 words
+  "lis-a-suspected-urinary-infection", // 69 words
+  "lis-a-f1-physiotherapy-consultation-lower-back-pain", // 229 words
+  "lis-a-f1-dietitian-consultation-type-2-diabetes", // 193 words
+  "lis-a-f2-occupational-therapy-home-visit-post-stroke", // 190 words
+  "lis-a-f2-practice-nurse-asthma-review", // 161 words
+  "lis-a-f3-physiotherapist-and-lower-back-pain", // 210 words
+  "lis-a-f3-midwife-antenatal-booking-visit", // 197 words
   // ── LISTENING_PART_B · 33 item(s), law 140-165 words ──
-  "LISTENING_PART_B::Part B — Alert about a norovirus outbreak", // 53 words
-  "LISTENING_PART_B::Part B — Arranging a complex discharge", // 51 words
-  "LISTENING_PART_B::Part B — Changes to the weekend roster", // 51 words
-  "LISTENING_PART_B::Part B — Feedback from a hand hygiene audit", // 49 words
-  "LISTENING_PART_B::Part B — Following up a patient complaint", // 51 words
-  "LISTENING_PART_B::Part B — Handover extract", // 37 words
-  "LISTENING_PART_B::Part B — Morning team brief on bed pressures", // 53 words
-  "LISTENING_PART_B::Part B — Note on mandatory manual handling training", // 47 words
-  "LISTENING_PART_B::Part B — Reminder about timing of antibiotics", // 57 words
-  "LISTENING_PART_B::Part B — Revised visiting hours policy", // 53 words
-  "LISTENING_PART_B::Part B — Safeguarding reminder for new admissions", // 52 words
-  "LISTENING_PART_B::Part B — Shortage of a wound dressing size", // 53 words
-  "LISTENING_PART_B::Part B — Switching to a new infusion pump model", // 56 words
-  "LISTENING_PART_B::Part B — Updated dressing trolley protocol", // 84 words
-  "LISTENING_PART_B::Part B — Verbal handover for a post-operative patient", // 53 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Discharge concern", // 46 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Hand-hygiene audit", // 28 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — X-ray result", // 33 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Home exercises", // 30 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Infusion pump training", // 33 words
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Handling results", // 33 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Low sodium", // 34 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Gloves and hand hygiene", // 35 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Nil by mouth", // 36 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Paracetamol order", // 39 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Escalating concern", // 41 words
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Chest pain at reception", // 38 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Sharps bins", // 43 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Transfusion check", // 48 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Timely notes", // 41 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Oxygen as a drug", // 42 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Interpreters", // 39 words
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Red wristband", // 44 words
+  "lis-b-alert-about-a-norovirus-outbreak", // 53 words
+  "lis-b-arranging-a-complex-discharge", // 51 words
+  "lis-b-changes-to-the-weekend-roster", // 51 words
+  "lis-b-feedback-from-a-hand-hygiene-audit", // 49 words
+  "lis-b-following-up-a-patient-complaint", // 51 words
+  "lis-b-handover-extract", // 37 words
+  "lis-b-morning-team-brief-on-bed-pressures", // 53 words
+  "lis-b-note-on-mandatory-manual-handling-training", // 47 words
+  "lis-b-reminder-about-timing-of-antibiotics", // 57 words
+  "lis-b-revised-visiting-hours-policy", // 53 words
+  "lis-b-safeguarding-reminder-for-new-admissions", // 52 words
+  "lis-b-shortage-of-a-wound-dressing-size", // 53 words
+  "lis-b-switching-to-a-new-infusion-pump-model", // 56 words
+  "lis-b-updated-dressing-trolley-protocol", // 84 words
+  "lis-b-verbal-handover-for-a-post-operative-patient", // 53 words
+  "lis-b-f1-discharge-concern", // 46 words
+  "lis-b-f1-hand-hygiene-audit", // 28 words
+  "lis-b-f1-x-ray-result", // 33 words
+  "lis-b-f1-home-exercises", // 30 words
+  "lis-b-f1-infusion-pump-training", // 33 words
+  "lis-b-f1-handling-results", // 33 words
+  "lis-b-f2-low-sodium", // 34 words
+  "lis-b-f2-gloves-and-hand-hygiene", // 35 words
+  "lis-b-f2-nil-by-mouth", // 36 words
+  "lis-b-f2-paracetamol-order", // 39 words
+  "lis-b-f2-escalating-concern", // 41 words
+  "lis-b-f2-chest-pain-at-reception", // 38 words
+  "lis-b-f3-sharps-bins", // 43 words
+  "lis-b-f3-transfusion-check", // 48 words
+  "lis-b-f3-timely-notes", // 41 words
+  "lis-b-f3-oxygen-as-a-drug", // 42 words
+  "lis-b-f3-interpreters", // 39 words
+  "lis-b-f3-red-wristband", // 44 words
   // ── LISTENING_PART_C · 21 item(s), law 780-880 words ──
-  "LISTENING_PART_C::Part C — A multimodal approach to chronic pain management", // 141 words
-  "LISTENING_PART_C::Part C — Antibiotic stewardship and the 48-hour review", // 132 words
-  "LISTENING_PART_C::Part C — Building a culture of patient safety on the ward", // 139 words
-  "LISTENING_PART_C::Part C — Honest conversations at the end of life", // 138 words
-  "LISTENING_PART_C::Part C — Improving health literacy through teach-back", // 138 words
-  "LISTENING_PART_C::Part C — Making telehealth consultations safe and effective", // 142 words
-  "LISTENING_PART_C::Part C — Preventing inpatient falls through hourly rounding", // 137 words
-  "LISTENING_PART_C::Part C — Recognising and preventing clinician burnout", // 133 words
-  "LISTENING_PART_C::Part C — Reducing medication errors with quiet zones", // 157 words
-  "LISTENING_PART_C::Part C — Responding to agitation in dementia care", // 134 words
-  "LISTENING_PART_C::Part C — Sustaining gains in quality improvement projects", // 138 words
-  "LISTENING_PART_C::Part C — Tackling malnutrition risk in hospital patients", // 141 words
-  "LISTENING_PART_C::Part C — Talk on hydration in older adults", // 59 words
-  "LISTENING_PART_C::Part C — The first hour in recognising sepsis", // 145 words
-  "LISTENING_PART_C::Part C — Understanding hesitancy to improve vaccination uptake", // 141 words
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing", // 305 words
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy", // 238 words
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Interview: de-escalation in mental health", // 217 words
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance", // 151 words
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain", // 254 words
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy", // 240 words
+  "lis-c-a-multimodal-approach-to-chronic-pain-management", // 141 words
+  "lis-c-antibiotic-stewardship-and-the-48-hour-review", // 132 words
+  "lis-c-building-a-culture-of-patient-safety-on-the-ward", // 139 words
+  "lis-c-honest-conversations-at-the-end-of-life", // 138 words
+  "lis-c-improving-health-literacy-through-teach-back", // 138 words
+  "lis-c-making-telehealth-consultations-safe-and-effective", // 142 words
+  "lis-c-preventing-inpatient-falls-through-hourly-rounding", // 137 words
+  "lis-c-recognising-and-preventing-clinician-burnout", // 133 words
+  "lis-c-reducing-medication-errors-with-quiet-zones", // 157 words
+  "lis-c-responding-to-agitation-in-dementia-care", // 134 words
+  "lis-c-sustaining-gains-in-quality-improvement-projects", // 138 words
+  "lis-c-tackling-malnutrition-risk-in-hospital-patients", // 141 words
+  "lis-c-talk-on-hydration-in-older-adults", // 59 words
+  "lis-c-the-first-hour-in-recognising-sepsis", // 145 words
+  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake", // 141 words
+  "lis-c-f1-interview-wound-care-nursing", // 305 words
+  "lis-c-f1-presentation-polypharmacy", // 238 words
+  "lis-c-f2-interview-de-escalation-in-mental-health", // 217 words
+  "lis-c-f2-presentation-antimicrobial-resistance", // 151 words
+  "lis-c-f3-interview-living-with-chronic-pain", // 254 words
+  "lis-c-f3-presentation-health-literacy", // 240 words
   // ── READING_PART_A · 18 item(s), law 885-1009 words ──
   // ── READING_PART_B · 33 item(s), law 136-155 words ──
   // ── READING_PART_C · 21 item(s), law 653-836 words ──
@@ -412,13 +415,35 @@ function breaches(item: Item): string[] {
  * the output is in the PR.
  */
 const RETIRE_DIR = join(process.cwd(), "scripts", "retire");
+const ITEMS = GEN_ITEMS as unknown as Item[];
+/** `taskType::title` -> slug, from the seed source: the one place the gates and
+ *  the database agree about which item is which. */
+const SLUG_BY_TITLE_KEY = new Map(ITEMS.map((i) => [`${i.taskType}::${i.title}`, i.slug]));
+/** slug -> taskType, for the aggregate breakdown. */
+const TASK_BY_SLUG = new Map(ITEMS.map((i) => [i.slug, i.taskType]));
+/** slug -> title, for the MESSAGES only. A gate that names a slug at a human is
+ *  a gate they have to go and look up; the key is the slug, the words are the
+ *  title, and neither pretends to be the other. */
+const titleOf = (slug: string): string =>
+  ITEMS.find((i) => i.slug === slug)?.title ?? `<no item with slug ${slug}>`;
+/** Retire rows naming a title the seed source no longer has. Failed on below. */
+const RETIRE_UNRESOLVED: string[] = [];
 const RETIRED: ReadonlySet<string> = new Set(
   readdirSync(RETIRE_DIR)
     .filter((f) => f.endsWith(".json"))
     .flatMap(
       (f) =>
         (JSON.parse(readFileSync(join(RETIRE_DIR, f), "utf8")) as { taskType: string; title: string }[]).map(
-          (r) => `${r.taskType}::${r.title}`,
+          // 🔴 scripts/retire/*.json are a HISTORICAL RECORD, keyed by the title as
+          // it stood on the day of the retire, and they are never rewritten. They are
+          // resolved to a slug HERE, against the seed source. A record that names an
+          // item the source no longer has would silently move that item back into the
+          // governed population, so it is collected and failed on instead.
+          (r) => {
+            const s = SLUG_BY_TITLE_KEY.get(`${r.taskType}::${r.title}`);
+            if (!s) RETIRE_UNRESOLVED.push(`${f}: ${r.taskType} :: ${JSON.stringify(r.title)}`);
+            return s ?? `UNRESOLVED::${r.taskType}::${r.title}`;
+          },
         ),
     ),
 );
@@ -428,7 +453,6 @@ if (RETIRED.size === 0) {
   throw new Error("scripts/retire/ named no items — refusing to run with an empty retire set");
 }
 
-const ITEMS = GEN_ITEMS as unknown as Item[];
 const governed = ITEMS.filter((i) => LAW[i.taskType]);
 const failures: string[] = [];
 const exempt = new Set(LEGACY_SHORT);
@@ -442,7 +466,7 @@ if (exempt.size !== LEGACY_SHORT.length) {
 
 const retiredShort = new Set<string>();
 for (const item of governed) {
-  const key = `${item.taskType}::${item.title}`;
+  const key = item.slug;
   const why = breaches(item);
   const listed = exempt.has(key);
 
@@ -464,9 +488,17 @@ for (const item of governed) {
   }
 }
 for (const key of exempt) {
-  if (!governed.some((i) => `${i.taskType}::${i.title}` === key)) {
+  if (!governed.some((i) => i.slug === key)) {
     failures.push(`${key} is in LEGACY_SHORT but not in the bank — delete it.`);
   }
+// A retire row that resolves to nothing would quietly return its item to the
+// governed population and change the two debt numbers with no trace.
+if (RETIRE_UNRESOLVED.length > 0) {
+  failures.push(
+    `${RETIRE_UNRESOLVED.length} retire record(s) name an item the seed source does not have:\n` +
+      RETIRE_UNRESOLVED.map((r) => `    ${r}`).join("\n"),
+  );
+}
 }
 
 
@@ -507,20 +539,20 @@ for (const key of exempt) {
  * row that has STOPPED failing fails the build, so a question that is fixed must
  * be deleted from here rather than left lying.
  */
-const FINDABILITY_PENDING: { title: string; qid: string; answer: string }[] = [
-  { title: "Part A — Wound infection and antibiotics", qid: "q15", answer: "cleansed" },
-  { title: "Part A — Hypoglycaemia", qid: "q14", answer: "insulin and sulfonylureas" },
-  { title: "Part A — High-risk medicines", qid: "q11", answer: "label it" },
+const FINDABILITY_PENDING: { slug: string; qid: string; answer: string }[] = [
+  { slug: "rea-a-wound-infection-and-antibiotics", qid: "q15", answer: "cleansed" },
+  { slug: "rea-a-hypoglycaemia", qid: "q14", answer: "insulin and sulfonylureas" },
+  { slug: "rea-a-high-risk-medicines", qid: "q11", answer: "label it" },
   {
-    title: "Part A — Wound infection and antibiotics",
+    slug: "rea-a-wound-infection-and-antibiotics",
     qid: "q9",
     answer: "when it is clinically infected",
   },
-  { title: "Part A — Wound infection and antibiotics", qid: "q14", answer: "keep it" },
+  { slug: "rea-a-wound-infection-and-antibiotics", qid: "q14", answer: "keep it" },
 ];
-const findabilityPendingKey = (t: string, q: string) => `${t}||${q}`;
+const findabilityPendingKey = (slug: string, q: string) => `${slug}||${q}`;
 const FINDABILITY_PENDING_KEYS = new Set(
-  FINDABILITY_PENDING.map((e) => findabilityPendingKey(e.title, e.qid)),
+  FINDABILITY_PENDING.map((e) => findabilityPendingKey(e.slug, e.qid)),
 );
 const findabilityPendingHit = new Set<string>();
 
@@ -568,8 +600,8 @@ for (const item of ITEMS) {
   //
   // It also shows the scope rule has to be applied EVERYWHERE the old one was —
   // exempt-means-skip was doing two jobs, and only one of them moved.
-  if (RETIRED.has(`${item.taskType}::${item.title}`)) continue;
-  if (exempt.has(`${item.taskType}::${item.title}`)) continue;
+  if (RETIRED.has(item.slug)) continue;
+  if (exempt.has(item.slug)) continue;
   findabilityItems += 1;
   const source = findNorm(
     (item.payload.texts ?? []).map((t) => `${t.heading ?? ""} ${t.body ?? ""}`).join(" "),
@@ -578,7 +610,7 @@ for (const item of ITEMS) {
     if (q.kind !== "gap" || !q.answer) continue;
     findabilityChecked += 1;
     if (!source.includes(findNorm(q.answer))) {
-      const key = findabilityPendingKey(item.title, q.id ?? "?");
+      const key = findabilityPendingKey(item.slug, q.id ?? "?");
       if (FINDABILITY_PENDING_KEYS.has(key)) {
         findabilityPendingHit.add(key);
         continue;
@@ -596,9 +628,9 @@ if (findabilityItems === 0) {
 }
 // A to-do that has stopped failing is a question that has been answered.
 for (const e of FINDABILITY_PENDING) {
-  if (!findabilityPendingHit.has(findabilityPendingKey(e.title, e.qid))) {
+  if (!findabilityPendingHit.has(findabilityPendingKey(e.slug, e.qid))) {
     failures.push(
-      `${e.title} / ${e.qid} is in FINDABILITY_PENDING but no longer fails — delete the row.`,
+      `${titleOf(e.slug)} / ${e.qid} is in FINDABILITY_PENDING but no longer fails — delete the row.`,
     );
   }
 }
@@ -618,7 +650,7 @@ if (FINDABILITY_PENDING.length > 0) {
       "their own texts. NOT decided here:",
   );
   for (const e of FINDABILITY_PENDING) {
-    console.log(`        ${e.title} / ${e.qid} — ${JSON.stringify(e.answer)}`);
+    console.log(`        ${titleOf(e.slug)} / ${e.qid} — ${JSON.stringify(e.answer)}`);
   }
 }
 // 🔴 TWO NUMBERS, ALWAYS BOTH. The debt did not fall by 72 — it moved to the
@@ -632,7 +664,10 @@ console.log(`RETIRED and short of the law:           ${retiredShort.size} item(s
 {
   const byType = new Map<string, number>();
   for (const k of retiredShort) {
-    const t = k.split("::")[0];
+    // The key is a slug now, so the task type comes from the item itself. The
+    // old `k.split("::")[0]` read it out of a `TASK::title` key and would have
+    // returned the whole slug -- 432 rows of 1, silently, instead of five totals.
+    const t = TASK_BY_SLUG.get(k) ?? "<unknown>";
     byType.set(t, (byType.get(t) ?? 0) + 1);
   }
   for (const t of [...byType.keys()].sort()) {

@@ -113,8 +113,8 @@ export function buildObjectiveReview(
   taskType: OetTaskType,
   payload: unknown,
   response: unknown,
-  /** The item's title. REQUIRED — see the header. */
-  title: string,
+  /** The item's SLUG. REQUIRED — the accept-list overlay is keyed by it. */
+  slug: string | null,
 ): Review | null {
   const p = (payload ?? {}) as Record<string, unknown>;
 
@@ -128,7 +128,7 @@ export function buildObjectiveReview(
         your: answerFor(response, g.id),
         correct: g.answer,
       })),
-      listeningPartAAnswerKey(typed, title),
+      listeningPartAAnswerKey(typed, slug ?? undefined),
       response,
     );
   }
@@ -160,7 +160,7 @@ export function buildObjectiveReview(
             }
           : { id: q.id, label: q.stem, your, correct: q.answer };
       }),
-      readingPartAAnswerKey(typed, title),
+      readingPartAAnswerKey(typed, slug ?? undefined),
       response,
     );
   }

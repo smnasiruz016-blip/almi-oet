@@ -236,8 +236,9 @@ export async function POST(req: Request): Promise<NextResponse> {
       // role-play card belong to the item, and a user may practise outside
       // their own target profession.
       profession: attempt.item.profession,
-      // Listening/Reading Part A look their authored accept-lists up by title.
-      title: attempt.item.title,
+      // Listening/Reading Part A look their authored accept-lists up by SLUG.
+      // Never by title: a rename would then silently mark a correct answer wrong.
+      slug: attempt.item.slug,
     });
   } catch (err) {
     console.error("[oet.submit] scoring failed:", err);
