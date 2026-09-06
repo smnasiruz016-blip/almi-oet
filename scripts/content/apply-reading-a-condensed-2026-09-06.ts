@@ -53,7 +53,16 @@ import { GEN_ITEMS } from "../seed/gen/index";
 
 const WRITE = process.argv.includes("--write");
 const VERIFY_ONLY = process.argv.includes("--verify-only");
-const FILE = "AlmiOET_ReadingPartA_condensed_2026-09-06.json";
+// 🔴 THE FILE IS AN ARGUMENT, AND THE DEFAULT IS THE LATEST AUTHORITY.
+// `AlmiOET_ReadingPartA_condensed_v3_2026-09-07.json` SUPERSEDES the 6 September
+// file: two bodies differ and only two, both of them restoring a word the
+// condensation had removed and something else was standing on -
+//   sharps injury  "because of side effects"    -> "because of the side effects"
+//   blood clots    "after the patient is home"  -> "after the patient has gone home"
+// Pass --file=NAME to run an older one; the default is what should be applied.
+const FILE =
+  process.argv.find((a) => a.startsWith("--file="))?.slice("--file=".length) ??
+  "AlmiOET_ReadingPartA_condensed_v3_2026-09-07.json";
 
 // A function DECLARATION, not a const arrow: TypeScript narrows on a `never`
 // return only for a declaration or an explicitly typed variable, and without
