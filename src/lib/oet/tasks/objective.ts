@@ -108,7 +108,22 @@ export function normalizeTokens(s: string): string[] {
 
   // (1) ALL punctuation, not only trailing. "Two sugars." = "two sugars".
   //     Kept: letters, digits, whitespace and "/" (7/10 is written that way).
-  t = t.replace(/[^a-z0-9\s/]/g, " ");
+  //
+  //     🔴 AND A DECIMAL POINT, SINCE 7 SEPTEMBER 2026. Deleting every full
+  //     stop meant `4.0` and `40` were THE SAME ANSWER to this function, and
+  //     the marker proved it: the key `4.0 mmol/L` ACCEPTED `40 mmol/L`, and
+  //     `4.5 hours` ACCEPTED `45 hours`. A tenfold blood-glucose reading and a
+  //     ten-times thrombolysis window, both marked correct. That is the same
+  //     family as the folic-acid rule the accept-list gate asserts — 400
+  //     micrograms is not 400 mg — and leniency has no business bridging it.
+  //
+  //     THE POINT IS KEPT ONLY BETWEEN TWO DIGITS. A stop that ends a sentence
+  //     or a word still goes, so "Gloves." is still "gloves" and "e.g." is
+  //     still two letters. Done in three steps rather than one class, because
+  //     a character class cannot say "only when a digit sits on both sides".
+  t = t.replace(/[^a-z0-9\s/.]/g, " ");
+  t = t.replace(/\.(?!\d)/g, " ");   // a stop with no digit after it
+  t = t.replace(/(?<!\d)\./g, " ");  // a stop with no digit before it
 
   let tokens = t.split(/\s+/).filter(Boolean);
 
