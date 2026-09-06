@@ -49,15 +49,17 @@ function adaptDifficulty(current: OetDifficulty, fraction: number): OetDifficult
 // not sufficient — the plan asks for 2 Part A items, and two legacy items are 8
 // questions, not 24.
 //
-// Forms are identified by a title prefix ("OET Form 1 · …"), so this needs no
-// schema change. Legacy items have no prefix and stay active on purpose: they are
-// good short practice, and retiring them would drop parts below the served floor.
-const FORM_PREFIX = /^(OET Form \d+) · /;
-
-export function formOf(title: string): string | null {
-  const m = FORM_PREFIX.exec(title);
-  return m ? m[1] : null;
-}
+// 🔴 A FORM IS A COLUMN, NOT A PREFIX ON A TITLE.
+//
+// This used to parse "OET Form 1 · " out of the title with a regex, and the pool
+// filter below used `title: { startsWith }`. That made a rename of any of the 57
+// form items a silent product change: forms would simply stop being recognised,
+// every mock would fall back to the mixed bank, and no gate would go red. The
+// title is for a human; `OetItem.form` is what the machine reads.
+//
+// Legacy items carry no form and stay active on purpose: they are good short
+// practice, and retiring them would drop parts below the served floor.
+const formOf = (item: { form: string | null }): string | null => item.form;
 
 /** The objective items one full mock consumes, per task type. */
 function mockObjectiveNeeds(): Map<OetTaskType, number> {
@@ -76,11 +78,11 @@ async function chooseCompleteForm(): Promise<string | null> {
   const need = mockObjectiveNeeds();
   const rows = await prisma.oetItem.findMany({
     where: { active: true, profession: null, taskType: { in: [...need.keys()] } },
-    select: { title: true, taskType: true },
+    select: { form: true, taskType: true },
   });
   const counts = new Map<string, Map<OetTaskType, number>>();
   for (const r of rows) {
-    const f = formOf(r.title);
+    const f = formOf(r);
     if (!f) continue;
     const m = counts.get(f) ?? new Map<OetTaskType, number>();
     m.set(r.taskType, (m.get(r.taskType) ?? 0) + 1);
@@ -95,14 +97,14 @@ async function chooseCompleteForm(): Promise<string | null> {
 
 /** Pick an item for a task type, honouring the profession axis: Writing/Speaking
  *  draw from the chosen profession's bank; Listening/Reading are common (null).
- *  When `formPrefix` is set the pick is CONFINED to that form — no fallback to the
+ *  When `form` is set the pick is CONFINED to that form — no fallback to the
  *  wider bank, because a silent fallback is exactly the dilution this prevents. */
 async function pickItemId(
   taskType: OetTaskType,
   difficulty: OetDifficulty,
   profession: OetProfession | null,
   excludeIds: string[] = [],
-  formPrefix?: string | null,
+  form?: string | null,
 ): Promise<string | null> {
   const subTest = OET_TASKS[taskType].subTest;
   // 🔴 THE POOL IS DEFINED ONCE, IN pool.ts, AND SHARED WITH THE UI.
@@ -116,8 +118,7 @@ async function pickItemId(
   const notIn = excludeIds.length ? { id: { notIn: excludeIds } } : {};
   // Form coherence applies to the objective sub-tests only; Writing and Speaking
   // are per-profession and belong to no form.
-  const formFilter =
-    formPrefix && !isPerProfession(subTest) ? { title: { startsWith: `${formPrefix} · ` } } : {};
+  const formFilter = form && !isPerProfession(subTest) ? { form } : {};
 
   // Prefer the difficulty pool, then any unused item, then anything at all — all
   // three within the form when one is set.
@@ -131,7 +132,7 @@ async function pickItemId(
       select: { id: true },
     });
   }
-  if (pool.length === 0 && !formPrefix) {
+  if (pool.length === 0 && !form) {
     pool = await prisma.oetItem.findMany({
       where: base,
       select: { id: true },
@@ -166,7 +167,7 @@ async function createStepAttempt(params: {
   difficulty: OetDifficulty;
   profession: OetProfession | null;
   excludeIds?: string[];
-  formPrefix?: string | null;
+  form?: string | null;
   /** A specific exercise the learner chose. Already validated against their pool
    *  by startSession; when absent the picker chooses at random as before. */
   itemId?: string | null;
@@ -178,7 +179,7 @@ async function createStepAttempt(params: {
       params.difficulty,
       params.profession,
       params.excludeIds ?? [],
-      params.formPrefix,
+      params.form,
     ));
   if (!itemId) return false;
   // 🔴 THE CLOCK STARTS ON THE SERVER, NOT IN THE BROWSER. Read from the item so
@@ -220,8 +221,8 @@ export async function startSession(input: {
     const profession = input.profession ?? null;
     // One form, end to end. If no form is complete we refuse to start rather than
     // assemble a mixed-bank mock and call it full-length.
-    const formPrefix = await chooseCompleteForm();
-    if (!formPrefix) return null;
+    const form = await chooseCompleteForm();
+    if (!form) return null;
     const session = await prisma.oetSession.create({
       data: {
         userId: input.userId,
@@ -239,7 +240,7 @@ export async function startSession(input: {
       taskType: MOCK_PLAN[0],
       difficulty: "CORE",
       profession,
-      formPrefix,
+      form,
     });
     if (!ok) {
       await prisma.oetSession.delete({ where: { id: session.id } });
@@ -327,7 +328,7 @@ export async function advanceSession(sessionId: string, userId: string): Promise
   // A mock stays on the form it started with. The form is derived from step 0's
   // item title rather than stored on the session — it is already recorded there,
   // and a second copy is a second thing that can disagree.
-  let formPrefix: string | null = null;
+  let form: string | null = null;
   if (session.mode === "MOCK") {
     const plan = (session.plan as OetTaskType[] | null) ?? MOCK_PLAN;
     nextTask = plan[nextStep];
@@ -336,9 +337,9 @@ export async function advanceSession(sessionId: string, userId: string): Promise
     if (first) {
       const item = await prisma.oetItem.findUnique({
         where: { id: first.itemId },
-        select: { title: true },
+        select: { form: true },
       });
-      formPrefix = item ? formOf(item.title) : null;
+      form = item ? formOf(item) : null;
     }
   } else {
     const t = session.subTest ? OET_TASKS[current.taskType].taskType : null;
@@ -355,7 +356,7 @@ export async function advanceSession(sessionId: string, userId: string): Promise
     difficulty: nextDifficulty,
     profession: session.profession,
     excludeIds: session.attempts.map((a) => a.itemId),
-    formPrefix,
+    form,
   });
   await prisma.oetSession.update({
     where: { id: session.id },

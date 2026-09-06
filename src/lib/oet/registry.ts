@@ -189,22 +189,22 @@ export type TaskHandler = {
      *  User.targetProfession: a user may practise outside their target, and the
      *  case notes belong to the item. */
     profession?: string | null;
-    /** The ITEM's title. Listening and Reading Part A use it to look up the
+    /** The ITEM's SLUG. Listening and Reading Part A use it to look up the
      *  authored accept-lists in src/lib/oet/accept-lists.ts — an overlay merged
      *  in when the AnswerKey is built, so the marking improves without an
      *  UPDATE against rows that `append.ts` (insert-only) would never revisit.
      *  Absent for every other task type, which have no overlay. */
-    title?: string | null;
+    slug?: string | null;
   }) => Promise<TaskRunResult>;
 };
 
 export const OET_HANDLERS: Partial<Record<OetTaskType, TaskHandler>> = {
   LISTENING_PART_A: {
     mode: "DETERMINISTIC",
-    run: async ({ payload, response, title }) => {
+    run: async ({ payload, response, slug }) => {
       const p = listeningPartAPayloadSchema.parse(payload);
       const r = objectiveResponseSchema.parse(response);
-      return scoreListeningPartA(p, r, title ?? undefined);
+      return scoreListeningPartA(p, r, slug ?? undefined);
     },
   },
   LISTENING_PART_B: {
@@ -225,10 +225,10 @@ export const OET_HANDLERS: Partial<Record<OetTaskType, TaskHandler>> = {
   },
   READING_PART_A: {
     mode: "DETERMINISTIC",
-    run: async ({ payload, response, title }) => {
+    run: async ({ payload, response, slug }) => {
       const p = readingPartAPayloadSchema.parse(payload);
       const r = objectiveResponseSchema.parse(response);
-      return scoreReadingPartA(p, r, title ?? undefined);
+      return scoreReadingPartA(p, r, slug ?? undefined);
     },
   },
   READING_PART_B: {

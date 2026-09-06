@@ -38,7 +38,7 @@ import {
 } from "../src/lib/oet/tasks/listening";
 import { readingMcqAnswerKey, readingPartAAnswerKey } from "../src/lib/oet/tasks/reading";
 
-type Item = { taskType: string; title: string; payload: Record<string, unknown> };
+type Item = { taskType: string; title: string; slug: string; payload: Record<string, unknown> };
 
 const OBJECTIVE = new Set([
   "LISTENING_PART_A",
@@ -56,12 +56,12 @@ function keyFor(item: Item): AnswerKey[] {
   const p = item.payload as never;
   switch (item.taskType) {
     case "LISTENING_PART_A":
-      return listeningPartAAnswerKey(p, item.title);
+      return listeningPartAAnswerKey(p, item.slug);
     case "LISTENING_PART_B":
     case "LISTENING_PART_C":
       return listeningMcqAnswerKey(p);
     case "READING_PART_A":
-      return readingPartAAnswerKey(p, item.title);
+      return readingPartAAnswerKey(p, item.slug);
     default:
       return readingMcqAnswerKey(p);
   }
@@ -84,7 +84,7 @@ function verdicts(item: Item, id: string, given: string) {
   // registry, which is not what this change is about.
   const detail = markObjective(key, response).detail as { id: string; correct: boolean }[];
   const scored = detail.find((d) => d.id === id)?.correct;
-  const review = buildObjectiveReview(item.taskType as never, item.payload, response, item.title);
+  const review = buildObjectiveReview(item.taskType as never, item.payload, response, item.slug);
   const index = key.findIndex((k) => k.id === id);
   return { scored, shown: review?.rows[index]?.ok, hasRow: Boolean(review?.rows[index]) };
 }
@@ -157,7 +157,7 @@ describe("the review screen never disagrees with the grader", () => {
       item.taskType as never,
       item.payload,
       { answers: {} },
-      item.title,
+      item.slug,
     )!;
     expect(review.rows).toHaveLength(key.length);
     expect(review.correct).toBe(0);
@@ -175,7 +175,7 @@ describe("the review screen never disagrees with the grader", () => {
       item.taskType as never,
       item.payload,
       { answers: { [k.id]: variant } },
-      item.title,
+      item.slug,
     )!;
     const row = review.rows[key.findIndex((x) => x.id === k.id)];
     expect(row.ok, `${item.title} / ${k.id}: variant ${JSON.stringify(variant)} not accepted`).toBe(

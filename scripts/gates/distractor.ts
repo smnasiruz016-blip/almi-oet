@@ -105,221 +105,221 @@ import { GEN_ITEMS } from "../seed/gen/index";
 
 type Option = { id: string; text: string };
 type Question = { id: string; answer: string; options?: Option[] };
-type Item = { taskType: string; title: string; payload?: { questions?: Question[] } };
+type Item = { taskType: string; slug: string; payload?: { questions?: Question[] } };
 
 const words = (s: string | undefined): number =>
   s && s.trim() ? s.trim().split(/\s+/).length : 0;
 
 /** D1 · the key is the uniquely longest option. 138 legacy questions. */
 const LEGACY_TELL: string[] = [
-  "LISTENING_PART_B::Part B — Arranging a complex discharge::q1",
-  "LISTENING_PART_B::Part B — Morning team brief on bed pressures::q1",
-  "LISTENING_PART_B::Part B — Reminder about timing of antibiotics::q1",
-  "LISTENING_PART_B::Part B — Shortage of a wound dressing size::q1",
-  "LISTENING_PART_B::Part B — Switching to a new infusion pump model::q1",
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Discharge concern::q1",
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Hand-hygiene audit::q1",
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — X-ray result::q1",
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Home exercises::q1",
-  "LISTENING_PART_B::OET Form 1 · Listening Part B — Handling results::q1",
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Low sodium::q1",
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Gloves and hand hygiene::q1",
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Nil by mouth::q1",
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Paracetamol order::q1",
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Escalating concern::q1",
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Sharps bins::q1",
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Transfusion check::q1",
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Timely notes::q1",
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Interpreters::q1",
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Red wristband::q1",
-  "LISTENING_PART_C::Part C — A multimodal approach to chronic pain management::q2",
-  "LISTENING_PART_C::Part C — Antibiotic stewardship and the 48-hour review::q1",
-  "LISTENING_PART_C::Part C — Antibiotic stewardship and the 48-hour review::q2",
-  "LISTENING_PART_C::Part C — Building a culture of patient safety on the ward::q1",
-  "LISTENING_PART_C::Part C — Building a culture of patient safety on the ward::q2",
-  "LISTENING_PART_C::Part C — Honest conversations at the end of life::q1",
-  "LISTENING_PART_C::Part C — Improving health literacy through teach-back::q1",
-  "LISTENING_PART_C::Part C — Improving health literacy through teach-back::q2",
-  "LISTENING_PART_C::Part C — Preventing inpatient falls through hourly rounding::q1",
-  "LISTENING_PART_C::Part C — Preventing inpatient falls through hourly rounding::q2",
-  "LISTENING_PART_C::Part C — Recognising and preventing clinician burnout::q2",
-  "LISTENING_PART_C::Part C — Responding to agitation in dementia care::q1",
-  "LISTENING_PART_C::Part C — Responding to agitation in dementia care::q2",
-  "LISTENING_PART_C::Part C — Sustaining gains in quality improvement projects::q1",
-  "LISTENING_PART_C::Part C — Sustaining gains in quality improvement projects::q2",
-  "LISTENING_PART_C::Part C — Tackling malnutrition risk in hospital patients::q1",
-  "LISTENING_PART_C::Part C — Tackling malnutrition risk in hospital patients::q2",
-  "LISTENING_PART_C::Part C — The first hour in recognising sepsis::q1",
-  "LISTENING_PART_C::Part C — The first hour in recognising sepsis::q2",
-  "LISTENING_PART_C::Part C — Understanding hesitancy to improve vaccination uptake::q1",
-  "LISTENING_PART_C::Part C — Understanding hesitancy to improve vaccination uptake::q2",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing::q2",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing::q3",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing::q4",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing::q5",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q1",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q2",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q3",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q4",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q5",
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q6",
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Interview: de-escalation in mental health::q3",
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Interview: de-escalation in mental health::q4",
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Interview: de-escalation in mental health::q6",
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance::q4",
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance::q5",
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance::q6",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain::q1",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain::q2",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain::q3",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain::q4",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain::q5",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain::q6",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy::q1",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy::q2",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy::q3",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy::q5",
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy::q6",
-  "READING_PART_B::Part B — Allergy alert documentation::q1",
-  "READING_PART_B::Part B — Complaints procedure acknowledgement::q1",
-  "READING_PART_B::Part B — Consent policy for capacity assessment::q1",
-  "READING_PART_B::Part B — Equipment recall action notice::q1",
-  "READING_PART_B::Part B — Incident reporting timeframe::q1",
-  "READING_PART_B::Part B — Infection control hand hygiene memo::q1",
-  "READING_PART_B::Part B — Sharps disposal at point of use::q1",
-  "READING_PART_B::Part B — Staff rostering swap email::q1",
-  "READING_PART_B::OET Form 1 · Reading Part B — Controlled-drugs policy::q1",
-  "READING_PART_B::OET Form 2 · Reading Part B — Consent::q1",
-  "READING_PART_B::OET Form 2 · Reading Part B — Terminology memo::q1",
-  "READING_PART_B::OET Form 2 · Reading Part B — Protected breaks::q1",
-  "READING_PART_B::OET Form 2 · Reading Part B — Specimen labelling::q1",
-  "READING_PART_B::OET Form 2 · Reading Part B — Safe discharge::q1",
-  "READING_PART_B::OET Form 3 · Reading Part B — Penicillin allergy label::q1",
-  "READING_PART_B::OET Form 3 · Reading Part B — Early warning scores::q1",
-  "READING_PART_B::OET Form 3 · Reading Part B — Bare below the elbows::q1",
-  "READING_PART_B::OET Form 3 · Reading Part B — Confidentiality in public areas::q1",
-  "READING_PART_B::OET Form 3 · Reading Part B — Verbal orders::q1",
-  "READING_PART_C::Part C — Article on shared decision-making::q1",
-  "READING_PART_C::Part C — Article on shared decision-making::q2",
-  "READING_PART_C::Part C — Evidence, experience and the bedside::q1",
-  "READING_PART_C::Part C — Knowing a patient over time::q1",
-  "READING_PART_C::Part C — Practising to protect ourselves::q1",
-  "READING_PART_C::Part C — Running on empty in the caring professions::q2",
-  "READING_PART_C::Part C — Sitting with not knowing::q1",
-  "READING_PART_C::Part C — The arithmetic patients actually hear::q1",
-  "READING_PART_C::Part C — The lost art of letting people finish::q1",
-  "READING_PART_C::Part C — The screen between us::q1",
-  "READING_PART_C::Part C — The screen between us::q2",
-  "READING_PART_C::Part C — What a good team really shares::q1",
-  "READING_PART_C::Part C — What we do with our mistakes::q1",
-  "READING_PART_C::Part C — What we do with our mistakes::q2",
-  "READING_PART_C::Part C — Whose decision is it anyway::q1",
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q2",
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q3",
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q4",
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q5",
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q6",
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q8",
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q1",
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q2",
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q3",
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q4",
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q5",
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q7",
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q8",
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q1",
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q2",
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q3",
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q5",
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q6",
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q8",
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q1",
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q2",
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q3",
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q5",
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q7",
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q8",
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q1",
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q2",
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q4",
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q6",
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q7",
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q8",
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q2",
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q3",
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q5",
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q6",
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q8",
+  "lis-b-arranging-a-complex-discharge::q1",
+  "lis-b-morning-team-brief-on-bed-pressures::q1",
+  "lis-b-reminder-about-timing-of-antibiotics::q1",
+  "lis-b-shortage-of-a-wound-dressing-size::q1",
+  "lis-b-switching-to-a-new-infusion-pump-model::q1",
+  "lis-b-f1-discharge-concern::q1",
+  "lis-b-f1-hand-hygiene-audit::q1",
+  "lis-b-f1-x-ray-result::q1",
+  "lis-b-f1-home-exercises::q1",
+  "lis-b-f1-handling-results::q1",
+  "lis-b-f2-low-sodium::q1",
+  "lis-b-f2-gloves-and-hand-hygiene::q1",
+  "lis-b-f2-nil-by-mouth::q1",
+  "lis-b-f2-paracetamol-order::q1",
+  "lis-b-f2-escalating-concern::q1",
+  "lis-b-f3-sharps-bins::q1",
+  "lis-b-f3-transfusion-check::q1",
+  "lis-b-f3-timely-notes::q1",
+  "lis-b-f3-interpreters::q1",
+  "lis-b-f3-red-wristband::q1",
+  "lis-c-a-multimodal-approach-to-chronic-pain-management::q2",
+  "lis-c-antibiotic-stewardship-and-the-48-hour-review::q1",
+  "lis-c-antibiotic-stewardship-and-the-48-hour-review::q2",
+  "lis-c-building-a-culture-of-patient-safety-on-the-ward::q1",
+  "lis-c-building-a-culture-of-patient-safety-on-the-ward::q2",
+  "lis-c-honest-conversations-at-the-end-of-life::q1",
+  "lis-c-improving-health-literacy-through-teach-back::q1",
+  "lis-c-improving-health-literacy-through-teach-back::q2",
+  "lis-c-preventing-inpatient-falls-through-hourly-rounding::q1",
+  "lis-c-preventing-inpatient-falls-through-hourly-rounding::q2",
+  "lis-c-recognising-and-preventing-clinician-burnout::q2",
+  "lis-c-responding-to-agitation-in-dementia-care::q1",
+  "lis-c-responding-to-agitation-in-dementia-care::q2",
+  "lis-c-sustaining-gains-in-quality-improvement-projects::q1",
+  "lis-c-sustaining-gains-in-quality-improvement-projects::q2",
+  "lis-c-tackling-malnutrition-risk-in-hospital-patients::q1",
+  "lis-c-tackling-malnutrition-risk-in-hospital-patients::q2",
+  "lis-c-the-first-hour-in-recognising-sepsis::q1",
+  "lis-c-the-first-hour-in-recognising-sepsis::q2",
+  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake::q1",
+  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake::q2",
+  "lis-c-f1-interview-wound-care-nursing::q2",
+  "lis-c-f1-interview-wound-care-nursing::q3",
+  "lis-c-f1-interview-wound-care-nursing::q4",
+  "lis-c-f1-interview-wound-care-nursing::q5",
+  "lis-c-f1-presentation-polypharmacy::q1",
+  "lis-c-f1-presentation-polypharmacy::q2",
+  "lis-c-f1-presentation-polypharmacy::q3",
+  "lis-c-f1-presentation-polypharmacy::q4",
+  "lis-c-f1-presentation-polypharmacy::q5",
+  "lis-c-f1-presentation-polypharmacy::q6",
+  "lis-c-f2-interview-de-escalation-in-mental-health::q3",
+  "lis-c-f2-interview-de-escalation-in-mental-health::q4",
+  "lis-c-f2-interview-de-escalation-in-mental-health::q6",
+  "lis-c-f2-presentation-antimicrobial-resistance::q4",
+  "lis-c-f2-presentation-antimicrobial-resistance::q5",
+  "lis-c-f2-presentation-antimicrobial-resistance::q6",
+  "lis-c-f3-interview-living-with-chronic-pain::q1",
+  "lis-c-f3-interview-living-with-chronic-pain::q2",
+  "lis-c-f3-interview-living-with-chronic-pain::q3",
+  "lis-c-f3-interview-living-with-chronic-pain::q4",
+  "lis-c-f3-interview-living-with-chronic-pain::q5",
+  "lis-c-f3-interview-living-with-chronic-pain::q6",
+  "lis-c-f3-presentation-health-literacy::q1",
+  "lis-c-f3-presentation-health-literacy::q2",
+  "lis-c-f3-presentation-health-literacy::q3",
+  "lis-c-f3-presentation-health-literacy::q5",
+  "lis-c-f3-presentation-health-literacy::q6",
+  "rea-b-allergy-alert-documentation::q1",
+  "rea-b-complaints-procedure-acknowledgement::q1",
+  "rea-b-consent-policy-for-capacity-assessment::q1",
+  "rea-b-equipment-recall-action-notice::q1",
+  "rea-b-incident-reporting-timeframe::q1",
+  "rea-b-infection-control-hand-hygiene-memo::q1",
+  "rea-b-sharps-disposal-at-point-of-use::q1",
+  "rea-b-staff-rostering-swap-email::q1",
+  "rea-b-f1-controlled-drugs-policy::q1",
+  "rea-b-f2-consent::q1",
+  "rea-b-f2-terminology-memo::q1",
+  "rea-b-f2-protected-breaks::q1",
+  "rea-b-f2-specimen-labelling::q1",
+  "rea-b-f2-safe-discharge::q1",
+  "rea-b-f3-penicillin-allergy-label::q1",
+  "rea-b-f3-early-warning-scores::q1",
+  "rea-b-f3-bare-below-the-elbows::q1",
+  "rea-b-f3-confidentiality-in-public-areas::q1",
+  "rea-b-f3-verbal-orders::q1",
+  "rea-c-article-on-shared-decision-making::q1",
+  "rea-c-article-on-shared-decision-making::q2",
+  "rea-c-evidence-experience-and-the-bedside::q1",
+  "rea-c-knowing-a-patient-over-time::q1",
+  "rea-c-practising-to-protect-ourselves::q1",
+  "rea-c-running-on-empty-in-the-caring-professions::q2",
+  "rea-c-sitting-with-not-knowing::q1",
+  "rea-c-the-arithmetic-patients-actually-hear::q1",
+  "rea-c-the-lost-art-of-letting-people-finish::q1",
+  "rea-c-the-screen-between-us::q1",
+  "rea-c-the-screen-between-us::q2",
+  "rea-c-what-a-good-team-really-shares::q1",
+  "rea-c-what-we-do-with-our-mistakes::q1",
+  "rea-c-what-we-do-with-our-mistakes::q2",
+  "rea-c-whose-decision-is-it-anyway::q1",
+  "rea-c-f1-the-quiet-skill-of-listening::q2",
+  "rea-c-f1-the-quiet-skill-of-listening::q3",
+  "rea-c-f1-the-quiet-skill-of-listening::q4",
+  "rea-c-f1-the-quiet-skill-of-listening::q5",
+  "rea-c-f1-the-quiet-skill-of-listening::q6",
+  "rea-c-f1-the-quiet-skill-of-listening::q8",
+  "rea-c-f1-rethinking-resilience::q1",
+  "rea-c-f1-rethinking-resilience::q2",
+  "rea-c-f1-rethinking-resilience::q3",
+  "rea-c-f1-rethinking-resilience::q4",
+  "rea-c-f1-rethinking-resilience::q5",
+  "rea-c-f1-rethinking-resilience::q7",
+  "rea-c-f1-rethinking-resilience::q8",
+  "rea-c-f2-the-trouble-with-just-in-case::q1",
+  "rea-c-f2-the-trouble-with-just-in-case::q2",
+  "rea-c-f2-the-trouble-with-just-in-case::q3",
+  "rea-c-f2-the-trouble-with-just-in-case::q5",
+  "rea-c-f2-the-trouble-with-just-in-case::q6",
+  "rea-c-f2-the-trouble-with-just-in-case::q8",
+  "rea-c-f2-what-checklists-can-and-can-t-do::q1",
+  "rea-c-f2-what-checklists-can-and-can-t-do::q2",
+  "rea-c-f2-what-checklists-can-and-can-t-do::q3",
+  "rea-c-f2-what-checklists-can-and-can-t-do::q5",
+  "rea-c-f2-what-checklists-can-and-can-t-do::q7",
+  "rea-c-f2-what-checklists-can-and-can-t-do::q8",
+  "rea-c-f3-the-fifteen-minute-appointment::q1",
+  "rea-c-f3-the-fifteen-minute-appointment::q2",
+  "rea-c-f3-the-fifteen-minute-appointment::q4",
+  "rea-c-f3-the-fifteen-minute-appointment::q6",
+  "rea-c-f3-the-fifteen-minute-appointment::q7",
+  "rea-c-f3-the-fifteen-minute-appointment::q8",
+  "rea-c-f3-resilience-is-not-the-answer::q2",
+  "rea-c-f3-resilience-is-not-the-answer::q3",
+  "rea-c-f3-resilience-is-not-the-answer::q5",
+  "rea-c-f3-resilience-is-not-the-answer::q6",
+  "rea-c-f3-resilience-is-not-the-answer::q8",
 ];
 
 /** D2 · an option more than 1.6x the mean of the others. 65 legacy
  *  questions, with the measured ratio beside each. */
 const LEGACY_OVERSIZE: string[] = [
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Low sodium::q1", // 1.71x
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Gloves and hand hygiene::q1", // 1.64x
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Nil by mouth::q1", // 2.29x
-  "LISTENING_PART_B::OET Form 2 · Listening Part B — Paracetamol order::q1", // 2.57x
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Sharps bins::q1", // 2.00x
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Transfusion check::q1", // 1.80x
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Timely notes::q1", // 1.80x
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Interpreters::q1", // 2.00x
-  "LISTENING_PART_B::OET Form 3 · Listening Part B — Red wristband::q1", // 1.67x
-  "LISTENING_PART_C::Part C — Improving health literacy through teach-back::q1", // 1.80x
-  "LISTENING_PART_C::Part C — Preventing inpatient falls through hourly rounding::q1", // 2.00x
-  "LISTENING_PART_C::Part C — Sustaining gains in quality improvement projects::q2", // 1.71x
-  "LISTENING_PART_C::Part C — Tackling malnutrition risk in hospital patients::q1", // 1.80x
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing::q4", // 2.00x
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Interview: wound-care nursing::q5", // 1.75x
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q1", // 1.69x
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q2", // 1.78x
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q3", // 2.40x
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q5", // 3.14x
-  "LISTENING_PART_C::OET Form 1 · Listening Part C — Presentation: polypharmacy::q6", // 1.80x
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Interview: de-escalation in mental health::q4", // 1.67x
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Interview: de-escalation in mental health::q6", // 1.80x
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance::q4", // 2.00x
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance::q5", // 2.00x
-  "LISTENING_PART_C::OET Form 2 · Listening Part C — Presentation: antimicrobial resistance::q6", // 2.00x
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain::q2", // 2.67x
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Interview: living with chronic pain::q3", // 3.20x
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy::q1", // 1.78x
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy::q5", // 2.00x
-  "LISTENING_PART_C::OET Form 3 · Listening Part C — Presentation: health literacy::q6", // 1.80x
-  "READING_PART_B::OET Form 2 · Reading Part B — Consent::q1", // 1.75x
-  "READING_PART_B::OET Form 2 · Reading Part B — Terminology memo::q1", // 2.29x
-  "READING_PART_B::OET Form 2 · Reading Part B — Safe discharge::q1", // 1.80x
-  "READING_PART_B::OET Form 3 · Reading Part B — Penicillin allergy label::q1", // 1.75x
-  "READING_PART_B::OET Form 3 · Reading Part B — Controlled drugs::q1", // 1.80x
-  "READING_PART_B::OET Form 3 · Reading Part B — Bare below the elbows::q1", // 2.00x
-  "READING_PART_C::Part C — Article on shared decision-making::q1", // 1.78x
-  "READING_PART_C::Part C — Article on shared decision-making::q2", // 2.00x
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q2", // 2.67x
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q3", // 1.67x
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q5", // 2.29x
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q8", // 2.29x
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q2", // 2.00x
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q4", // 2.40x
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q5", // 1.71x
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q8", // 1.80x
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q1", // 1.78x
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q2", // 3.50x
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q3", // 2.20x
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q5", // 2.25x
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q8", // 1.71x
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q2", // 1.75x
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q3", // 2.25x
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q5", // 1.78x
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q7", // 4.00x
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q1", // 1.80x
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q2", // 2.00x
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q4", // 3.14x
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q6", // 2.00x
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q7", // 1.71x
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q2", // 3.00x
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q3", // 2.00x
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q5", // 3.67x
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q6", // 3.00x
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q8", // 4.00x
+  "lis-b-f2-low-sodium::q1", // 1.71x
+  "lis-b-f2-gloves-and-hand-hygiene::q1", // 1.64x
+  "lis-b-f2-nil-by-mouth::q1", // 2.29x
+  "lis-b-f2-paracetamol-order::q1", // 2.57x
+  "lis-b-f3-sharps-bins::q1", // 2.00x
+  "lis-b-f3-transfusion-check::q1", // 1.80x
+  "lis-b-f3-timely-notes::q1", // 1.80x
+  "lis-b-f3-interpreters::q1", // 2.00x
+  "lis-b-f3-red-wristband::q1", // 1.67x
+  "lis-c-improving-health-literacy-through-teach-back::q1", // 1.80x
+  "lis-c-preventing-inpatient-falls-through-hourly-rounding::q1", // 2.00x
+  "lis-c-sustaining-gains-in-quality-improvement-projects::q2", // 1.71x
+  "lis-c-tackling-malnutrition-risk-in-hospital-patients::q1", // 1.80x
+  "lis-c-f1-interview-wound-care-nursing::q4", // 2.00x
+  "lis-c-f1-interview-wound-care-nursing::q5", // 1.75x
+  "lis-c-f1-presentation-polypharmacy::q1", // 1.69x
+  "lis-c-f1-presentation-polypharmacy::q2", // 1.78x
+  "lis-c-f1-presentation-polypharmacy::q3", // 2.40x
+  "lis-c-f1-presentation-polypharmacy::q5", // 3.14x
+  "lis-c-f1-presentation-polypharmacy::q6", // 1.80x
+  "lis-c-f2-interview-de-escalation-in-mental-health::q4", // 1.67x
+  "lis-c-f2-interview-de-escalation-in-mental-health::q6", // 1.80x
+  "lis-c-f2-presentation-antimicrobial-resistance::q4", // 2.00x
+  "lis-c-f2-presentation-antimicrobial-resistance::q5", // 2.00x
+  "lis-c-f2-presentation-antimicrobial-resistance::q6", // 2.00x
+  "lis-c-f3-interview-living-with-chronic-pain::q2", // 2.67x
+  "lis-c-f3-interview-living-with-chronic-pain::q3", // 3.20x
+  "lis-c-f3-presentation-health-literacy::q1", // 1.78x
+  "lis-c-f3-presentation-health-literacy::q5", // 2.00x
+  "lis-c-f3-presentation-health-literacy::q6", // 1.80x
+  "rea-b-f2-consent::q1", // 1.75x
+  "rea-b-f2-terminology-memo::q1", // 2.29x
+  "rea-b-f2-safe-discharge::q1", // 1.80x
+  "rea-b-f3-penicillin-allergy-label::q1", // 1.75x
+  "rea-b-f3-controlled-drugs::q1", // 1.80x
+  "rea-b-f3-bare-below-the-elbows::q1", // 2.00x
+  "rea-c-article-on-shared-decision-making::q1", // 1.78x
+  "rea-c-article-on-shared-decision-making::q2", // 2.00x
+  "rea-c-f1-the-quiet-skill-of-listening::q2", // 2.67x
+  "rea-c-f1-the-quiet-skill-of-listening::q3", // 1.67x
+  "rea-c-f1-the-quiet-skill-of-listening::q5", // 2.29x
+  "rea-c-f1-the-quiet-skill-of-listening::q8", // 2.29x
+  "rea-c-f1-rethinking-resilience::q2", // 2.00x
+  "rea-c-f1-rethinking-resilience::q4", // 2.40x
+  "rea-c-f1-rethinking-resilience::q5", // 1.71x
+  "rea-c-f1-rethinking-resilience::q8", // 1.80x
+  "rea-c-f2-the-trouble-with-just-in-case::q1", // 1.78x
+  "rea-c-f2-the-trouble-with-just-in-case::q2", // 3.50x
+  "rea-c-f2-the-trouble-with-just-in-case::q3", // 2.20x
+  "rea-c-f2-the-trouble-with-just-in-case::q5", // 2.25x
+  "rea-c-f2-the-trouble-with-just-in-case::q8", // 1.71x
+  "rea-c-f2-what-checklists-can-and-can-t-do::q2", // 1.75x
+  "rea-c-f2-what-checklists-can-and-can-t-do::q3", // 2.25x
+  "rea-c-f2-what-checklists-can-and-can-t-do::q5", // 1.78x
+  "rea-c-f2-what-checklists-can-and-can-t-do::q7", // 4.00x
+  "rea-c-f3-the-fifteen-minute-appointment::q1", // 1.80x
+  "rea-c-f3-the-fifteen-minute-appointment::q2", // 2.00x
+  "rea-c-f3-the-fifteen-minute-appointment::q4", // 3.14x
+  "rea-c-f3-the-fifteen-minute-appointment::q6", // 2.00x
+  "rea-c-f3-the-fifteen-minute-appointment::q7", // 1.71x
+  "rea-c-f3-resilience-is-not-the-answer::q2", // 3.00x
+  "rea-c-f3-resilience-is-not-the-answer::q3", // 2.00x
+  "rea-c-f3-resilience-is-not-the-answer::q5", // 3.67x
+  "rea-c-f3-resilience-is-not-the-answer::q6", // 3.00x
+  "rea-c-f3-resilience-is-not-the-answer::q8", // 4.00x
 ];
 
 /** D3 · a single option letter holding more than 45% of the keys, per taskType.
@@ -376,84 +376,84 @@ const OPTION_WORDS_MAX = 17;
  */
 const LEGACY_OPTION_COUNT: string[] = [
   // ── READING_PART_C · 78 question(s), law 4 options ──
-  "READING_PART_C::Part C — Article on shared decision-making::q1", // 3 options, law 4
-  "READING_PART_C::Part C — Article on shared decision-making::q2", // 3 options, law 4
-  "READING_PART_C::Part C — Evidence, experience and the bedside::q1", // 3 options, law 4
-  "READING_PART_C::Part C — Evidence, experience and the bedside::q2", // 3 options, law 4
-  "READING_PART_C::Part C — Knowing a patient over time::q1", // 3 options, law 4
-  "READING_PART_C::Part C — Knowing a patient over time::q2", // 3 options, law 4
-  "READING_PART_C::Part C — Practising to protect ourselves::q1", // 3 options, law 4
-  "READING_PART_C::Part C — Practising to protect ourselves::q2", // 3 options, law 4
-  "READING_PART_C::Part C — Rethinking the value of clinical handover::q1", // 3 options, law 4
-  "READING_PART_C::Part C — Rethinking the value of clinical handover::q2", // 3 options, law 4
-  "READING_PART_C::Part C — Running on empty in the caring professions::q1", // 3 options, law 4
-  "READING_PART_C::Part C — Running on empty in the caring professions::q2", // 3 options, law 4
-  "READING_PART_C::Part C — Sitting with not knowing::q1", // 3 options, law 4
-  "READING_PART_C::Part C — Sitting with not knowing::q2", // 3 options, law 4
-  "READING_PART_C::Part C — The arithmetic patients actually hear::q1", // 3 options, law 4
-  "READING_PART_C::Part C — The arithmetic patients actually hear::q2", // 3 options, law 4
-  "READING_PART_C::Part C — The lost art of letting people finish::q1", // 3 options, law 4
-  "READING_PART_C::Part C — The lost art of letting people finish::q2", // 3 options, law 4
-  "READING_PART_C::Part C — The quiet costs of finding more::q1", // 3 options, law 4
-  "READING_PART_C::Part C — The quiet costs of finding more::q2", // 3 options, law 4
-  "READING_PART_C::Part C — The screen between us::q1", // 3 options, law 4
-  "READING_PART_C::Part C — The screen between us::q2", // 3 options, law 4
-  "READING_PART_C::Part C — What a good team really shares::q1", // 3 options, law 4
-  "READING_PART_C::Part C — What a good team really shares::q2", // 3 options, law 4
-  "READING_PART_C::Part C — What we do with our mistakes::q1", // 3 options, law 4
-  "READING_PART_C::Part C — What we do with our mistakes::q2", // 3 options, law 4
-  "READING_PART_C::Part C — When empathy becomes a clinical skill::q1", // 3 options, law 4
-  "READING_PART_C::Part C — When empathy becomes a clinical skill::q2", // 3 options, law 4
-  "READING_PART_C::Part C — Whose decision is it anyway::q1", // 3 options, law 4
-  "READING_PART_C::Part C — Whose decision is it anyway::q2", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q1", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q2", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q3", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q4", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q5", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q6", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q7", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — The quiet skill of listening::q8", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q1", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q2", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q3", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q4", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q5", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q6", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q7", // 3 options, law 4
-  "READING_PART_C::OET Form 1 · Reading Part C — Rethinking resilience::q8", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q1", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q2", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q3", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q4", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q5", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q6", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q7", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — The trouble with 'just in case'::q8", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q1", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q2", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q3", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q4", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q5", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q6", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q7", // 3 options, law 4
-  "READING_PART_C::OET Form 2 · Reading Part C — What checklists can and can't do::q8", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q1", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q2", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q3", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q4", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q5", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q6", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q7", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — The fifteen-minute appointment::q8", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q1", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q2", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q3", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q4", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q5", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q6", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q7", // 3 options, law 4
-  "READING_PART_C::OET Form 3 · Reading Part C — Resilience is not the answer::q8", // 3 options, law 4
+  "rea-c-article-on-shared-decision-making::q1", // 3 options, law 4
+  "rea-c-article-on-shared-decision-making::q2", // 3 options, law 4
+  "rea-c-evidence-experience-and-the-bedside::q1", // 3 options, law 4
+  "rea-c-evidence-experience-and-the-bedside::q2", // 3 options, law 4
+  "rea-c-knowing-a-patient-over-time::q1", // 3 options, law 4
+  "rea-c-knowing-a-patient-over-time::q2", // 3 options, law 4
+  "rea-c-practising-to-protect-ourselves::q1", // 3 options, law 4
+  "rea-c-practising-to-protect-ourselves::q2", // 3 options, law 4
+  "rea-c-rethinking-the-value-of-clinical-handover::q1", // 3 options, law 4
+  "rea-c-rethinking-the-value-of-clinical-handover::q2", // 3 options, law 4
+  "rea-c-running-on-empty-in-the-caring-professions::q1", // 3 options, law 4
+  "rea-c-running-on-empty-in-the-caring-professions::q2", // 3 options, law 4
+  "rea-c-sitting-with-not-knowing::q1", // 3 options, law 4
+  "rea-c-sitting-with-not-knowing::q2", // 3 options, law 4
+  "rea-c-the-arithmetic-patients-actually-hear::q1", // 3 options, law 4
+  "rea-c-the-arithmetic-patients-actually-hear::q2", // 3 options, law 4
+  "rea-c-the-lost-art-of-letting-people-finish::q1", // 3 options, law 4
+  "rea-c-the-lost-art-of-letting-people-finish::q2", // 3 options, law 4
+  "rea-c-the-quiet-costs-of-finding-more::q1", // 3 options, law 4
+  "rea-c-the-quiet-costs-of-finding-more::q2", // 3 options, law 4
+  "rea-c-the-screen-between-us::q1", // 3 options, law 4
+  "rea-c-the-screen-between-us::q2", // 3 options, law 4
+  "rea-c-what-a-good-team-really-shares::q1", // 3 options, law 4
+  "rea-c-what-a-good-team-really-shares::q2", // 3 options, law 4
+  "rea-c-what-we-do-with-our-mistakes::q1", // 3 options, law 4
+  "rea-c-what-we-do-with-our-mistakes::q2", // 3 options, law 4
+  "rea-c-when-empathy-becomes-a-clinical-skill::q1", // 3 options, law 4
+  "rea-c-when-empathy-becomes-a-clinical-skill::q2", // 3 options, law 4
+  "rea-c-whose-decision-is-it-anyway::q1", // 3 options, law 4
+  "rea-c-whose-decision-is-it-anyway::q2", // 3 options, law 4
+  "rea-c-f1-the-quiet-skill-of-listening::q1", // 3 options, law 4
+  "rea-c-f1-the-quiet-skill-of-listening::q2", // 3 options, law 4
+  "rea-c-f1-the-quiet-skill-of-listening::q3", // 3 options, law 4
+  "rea-c-f1-the-quiet-skill-of-listening::q4", // 3 options, law 4
+  "rea-c-f1-the-quiet-skill-of-listening::q5", // 3 options, law 4
+  "rea-c-f1-the-quiet-skill-of-listening::q6", // 3 options, law 4
+  "rea-c-f1-the-quiet-skill-of-listening::q7", // 3 options, law 4
+  "rea-c-f1-the-quiet-skill-of-listening::q8", // 3 options, law 4
+  "rea-c-f1-rethinking-resilience::q1", // 3 options, law 4
+  "rea-c-f1-rethinking-resilience::q2", // 3 options, law 4
+  "rea-c-f1-rethinking-resilience::q3", // 3 options, law 4
+  "rea-c-f1-rethinking-resilience::q4", // 3 options, law 4
+  "rea-c-f1-rethinking-resilience::q5", // 3 options, law 4
+  "rea-c-f1-rethinking-resilience::q6", // 3 options, law 4
+  "rea-c-f1-rethinking-resilience::q7", // 3 options, law 4
+  "rea-c-f1-rethinking-resilience::q8", // 3 options, law 4
+  "rea-c-f2-the-trouble-with-just-in-case::q1", // 3 options, law 4
+  "rea-c-f2-the-trouble-with-just-in-case::q2", // 3 options, law 4
+  "rea-c-f2-the-trouble-with-just-in-case::q3", // 3 options, law 4
+  "rea-c-f2-the-trouble-with-just-in-case::q4", // 3 options, law 4
+  "rea-c-f2-the-trouble-with-just-in-case::q5", // 3 options, law 4
+  "rea-c-f2-the-trouble-with-just-in-case::q6", // 3 options, law 4
+  "rea-c-f2-the-trouble-with-just-in-case::q7", // 3 options, law 4
+  "rea-c-f2-the-trouble-with-just-in-case::q8", // 3 options, law 4
+  "rea-c-f2-what-checklists-can-and-can-t-do::q1", // 3 options, law 4
+  "rea-c-f2-what-checklists-can-and-can-t-do::q2", // 3 options, law 4
+  "rea-c-f2-what-checklists-can-and-can-t-do::q3", // 3 options, law 4
+  "rea-c-f2-what-checklists-can-and-can-t-do::q4", // 3 options, law 4
+  "rea-c-f2-what-checklists-can-and-can-t-do::q5", // 3 options, law 4
+  "rea-c-f2-what-checklists-can-and-can-t-do::q6", // 3 options, law 4
+  "rea-c-f2-what-checklists-can-and-can-t-do::q7", // 3 options, law 4
+  "rea-c-f2-what-checklists-can-and-can-t-do::q8", // 3 options, law 4
+  "rea-c-f3-the-fifteen-minute-appointment::q1", // 3 options, law 4
+  "rea-c-f3-the-fifteen-minute-appointment::q2", // 3 options, law 4
+  "rea-c-f3-the-fifteen-minute-appointment::q3", // 3 options, law 4
+  "rea-c-f3-the-fifteen-minute-appointment::q4", // 3 options, law 4
+  "rea-c-f3-the-fifteen-minute-appointment::q5", // 3 options, law 4
+  "rea-c-f3-the-fifteen-minute-appointment::q6", // 3 options, law 4
+  "rea-c-f3-the-fifteen-minute-appointment::q7", // 3 options, law 4
+  "rea-c-f3-the-fifteen-minute-appointment::q8", // 3 options, law 4
+  "rea-c-f3-resilience-is-not-the-answer::q1", // 3 options, law 4
+  "rea-c-f3-resilience-is-not-the-answer::q2", // 3 options, law 4
+  "rea-c-f3-resilience-is-not-the-answer::q3", // 3 options, law 4
+  "rea-c-f3-resilience-is-not-the-answer::q4", // 3 options, law 4
+  "rea-c-f3-resilience-is-not-the-answer::q5", // 3 options, law 4
+  "rea-c-f3-resilience-is-not-the-answer::q6", // 3 options, law 4
+  "rea-c-f3-resilience-is-not-the-answer::q7", // 3 options, law 4
+  "rea-c-f3-resilience-is-not-the-answer::q8", // 3 options, law 4
 ];
 
 const ITEMS = GEN_ITEMS as unknown as Item[];
@@ -480,7 +480,7 @@ for (const item of ITEMS) {
     const opts = q.options;
     if (!Array.isArray(opts) || opts.length < 2) continue;
     mcq += 1;
-    const key = `${item.taskType}::${item.title}::${q.id}`;
+    const key = `${item.slug}::${q.id}`;
     const lens = opts.map((o) => words(o.text));
     const max = Math.max(...lens);
     const uniqueMax = lens.filter((n) => n === max).length === 1;

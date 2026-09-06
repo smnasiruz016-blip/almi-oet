@@ -87,8 +87,8 @@ export type ReadingMcqPayload = z.infer<typeof readingMcqPayloadSchema>;
  */
 export function readingPartAAnswerKey(
   payload: ReadingPartAPayload,
-  /** The item's title, for the authored accept-lists. See listeningPartAAnswerKey. */
-  title?: string,
+  /** The item's SLUG, for the authored accept-lists. See listeningPartAAnswerKey. */
+  slug?: string,
 ): AnswerKey[] {
   // "match" answers are option/text ids (exact); "gap" answers are free text (lenient).
   return payload.questions.map((q) => ({
@@ -103,7 +103,7 @@ export function readingPartAAnswerKey(
     variants:
       q.kind === "match"
         ? q.variants
-        : [...(q.variants ?? []), ...readingAcceptFor(title, q.answer)],
+        : [...(q.variants ?? []), ...readingAcceptFor(slug, q.answer)],
   }));
 }
 
@@ -114,9 +114,9 @@ export function readingMcqAnswerKey(payload: ReadingMcqPayload): AnswerKey[] {
 export function scoreReadingPartA(
   payload: ReadingPartAPayload,
   response: z.infer<typeof objectiveResponseSchema>,
-  title?: string,
+  slug?: string,
 ): TaskRunResult {
-  return markObjective(readingPartAAnswerKey(payload, title), response);
+  return markObjective(readingPartAAnswerKey(payload, slug), response);
 }
 
 export function scoreReadingMcq(
