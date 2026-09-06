@@ -151,6 +151,7 @@ import { GEN_ITEMS } from "../seed/gen/index";
 // The tokeniser ruled on 3 September 2026, in its own file so anything that must
 // count the same way can import it WITHOUT running this gate. See words.ts.
 import { words } from "./words";
+import { textWords } from "./text-words";
 
 type Item = {
   taskType: string;
@@ -307,40 +308,8 @@ const LEGACY_SHORT: string[] = [
 ];
 
 
-function textWords(item: Item): number {
-  if (item.taskType.startsWith("LISTENING")) return words(item.payload.audioScript);
-  // 🔴 THE TWO AI TASKS, AND WHICH FIELD EACH LAW COUNTS. Added with the LAW rows
-  // on 4 September 2026 — and the gate itself found this missing: with the rows
-  // in but this branch absent, every one of the 360 measured "0 words, law
-  // 650-850". A bound with no reader is not a law, it is a refusal.
-  //
-  // WRITING_LETTER counts the CASE NOTES: the stimulus we author, not the
-  // recipient line or the task instruction, which are the wrapper around it. It
-  // is NOT the letter the candidate writes — that is governed by the item's own
-  // wordMin/wordMax, which is OET's 180-200 guide.
-  if (item.taskType === "WRITING_LETTER") return words(item.payload.caseNotes);
-  // SPEAKING_ROLEPLAY counts the whole of what the CANDIDATE is shown.
-  // `patientConcern` is excluded on purpose: the session page strips it before
-  // the payload reaches the client, because drawing it out is the task, so
-  // counting it would measure text the candidate never sees.
-  if (item.taskType === "SPEAKING_ROLEPLAY") {
-    return (
-      words(item.payload.setting) +
-      words(item.payload.candidateRole) +
-      words(item.payload.patientRole) +
-      words(item.payload.candidateCard)
-    );
-  }
-  if (item.taskType === "READING_PART_A") {
-    // Combined: the four texts AND the twenty question stems, because that is
-    // what OET's own 885-976-1009 was measured over. Option text is excluded on
-    // purpose — see the header.
-    const texts = (item.payload.texts ?? []).reduce((n, t) => n + words(t.body), 0);
-    const stems = (item.payload.questions ?? []).reduce((n, q) => n + words(q.stem), 0);
-    return texts + stems;
-  }
-  return (item.payload.passages ?? []).reduce((n, t) => n + words(t.body), 0);
-}
+// The length rule lives in ./text-words.ts so that anything else needing the
+// same number reads the same code -- see that file for why.
 
 /** Every way this item falls short of its law. Empty means it meets it. */
 function breaches(item: Item): string[] {

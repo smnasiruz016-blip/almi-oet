@@ -102,6 +102,7 @@
  * today instead of being inert until the legacy items are retired.
  */
 import { GEN_ITEMS } from "../seed/gen/index";
+import { lengthCue } from "../content/payload-shape";
 
 type Option = { id: string; text: string };
 type Question = { id: string; answer: string; options?: Option[] };
@@ -112,45 +113,11 @@ const words = (s: string | undefined): number =>
 
 /** D1 · the key is the uniquely longest option. 138 legacy questions. */
 const LEGACY_TELL: string[] = [
-  "lis-b-arranging-a-complex-discharge::q1",
-  "lis-b-morning-team-brief-on-bed-pressures::q1",
-  "lis-b-reminder-about-timing-of-antibiotics::q1",
-  "lis-b-shortage-of-a-wound-dressing-size::q1",
-  "lis-b-switching-to-a-new-infusion-pump-model::q1",
-  "lis-b-f1-discharge-concern::q1",
-  "lis-b-f1-hand-hygiene-audit::q1",
-  "lis-b-f1-home-exercises::q1",
-  "lis-b-f1-handling-results::q1",
-  "lis-b-f2-escalating-concern::q1",
-  "lis-b-f3-sharps-bins::q1",
-  "lis-c-antibiotic-stewardship-and-the-48-hour-review::q1",
-  "lis-c-building-a-culture-of-patient-safety-on-the-ward::q2",
-  "lis-c-preventing-inpatient-falls-through-hourly-rounding::q2",
-  "lis-c-recognising-and-preventing-clinician-burnout::q2",
-  "lis-c-responding-to-agitation-in-dementia-care::q1",
-  "lis-c-responding-to-agitation-in-dementia-care::q2",
-  "lis-c-sustaining-gains-in-quality-improvement-projects::q1",
-  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake::q1",
-  "lis-c-f3-interview-living-with-chronic-pain::q1",
-  "lis-c-f3-interview-living-with-chronic-pain::q5",
-  "lis-c-f3-presentation-health-literacy::q2",
-  "rea-b-allergy-alert-documentation::q1",
-  "rea-b-complaints-procedure-acknowledgement::q1",
-  "rea-b-consent-policy-for-capacity-assessment::q1",
-  "rea-b-incident-reporting-timeframe::q1",
-  "rea-b-infection-control-hand-hygiene-memo::q1",
-  "rea-b-sharps-disposal-at-point-of-use::q1",
-  "rea-b-staff-rostering-swap-email::q1",
-  "rea-b-f1-controlled-drugs-policy::q1",
-  "rea-b-f2-protected-breaks::q1",
-  "rea-b-f3-early-warning-scores::q1",
-  "rea-b-f3-verbal-orders::q1",
 ];
 
 /** D2 · an option more than 1.6x the mean of the others. 65 legacy
  *  questions, with the measured ratio beside each. */
 const LEGACY_OVERSIZE: string[] = [
-  "lis-b-f3-sharps-bins::q1", // 2.00x
   "rea-b-f3-controlled-drugs::q1", // 1.80x
 ];
 
@@ -240,15 +207,51 @@ for (const item of ITEMS) {
     const uniqueMax = lens.filter((n) => n === max).length === 1;
     const ki = opts.findIndex((o) => String(o.id) === String(q.answer));
 
-    // ── D1 ──
-    const keyIsLongest = uniqueMax && ki >= 0 && lens[ki] === max;
-    if (keyIsLongest) {
+    // ── D1 · A MARGIN A CANDIDATE COULD EXPLOIT, NOT "LONGEST BY ONE WORD" ────
+    //
+    // 🔴 CHANGED 6 SEPTEMBER 2026, ON A MEASUREMENT, NOT A PREFERENCE.
+    //
+    // D1 used to flag every question whose key was the uniquely longest option by
+    // word count, at any margin. Measured across the whole updated bank against
+    // the null model -- with no cue, the key sits on a uniformly random option and
+    // is the uniquely longest with probability 1/n -- the observed rate is AT OR
+    // BELOW chance in every task type:
+    //
+    //   task type                  questions  key longest      %   by chance
+    //   LISTENING_PART_B (3 opt)         123           17   13.8%     25.2%
+    //   LISTENING_PART_C (3 opt)         216           49   22.7%     22.2%
+    //   READING_PART_A   (4 opt)         336            0    0.0%      0.0%
+    //   READING_PART_B   (3 opt)          63           12   19.0%     23.3%
+    //   READING_PART_C   (4 opt)         336           50   14.9%     15.6%
+    //   total                           1074          128   11.9%     13.6%
+    //
+    // So the old test was not detecting a cue. It was reporting the ordinary
+    // variation in length that naturally written options have.
+    //
+    // AND DRIVING IT TO ZERO WOULD MANUFACTURE ONE. If the key were never the
+    // longest option, a test-wise candidate learns "do not pick the longest" and
+    // gains real information -- a reverse cue, worse than the thing being
+    // prevented. The owner met exactly that while shortening 37 Part C options.
+    //
+    // The test is now the MARGIN rule, shared with gate:bank-shape through
+    // scripts/content/payload-shape.ts so there is one definition of a length
+    // cue and not two: >= 8 characters longer than EVERY distractor AND >= 15%
+    // longer than the longest. Either condition alone fires on honest items.
+    //
+    // D2, D3 and D4 are unchanged.
+    const cue = lengthCue(q);
+    if (cue) {
       tellNow += 1;
       if (tellExempt.has(key)) tellSeen.add(key);
-      else fail(`D1 ${key} — the key is the uniquely longest option (${lens[ki]} words)`);
+      else {
+        fail(
+          `D1 ${key} — the key is ${cue.key} characters against a longest distractor of ` +
+            `${cue.longestDistractor}: a margin a candidate can use without reading`,
+        );
+      }
     } else if (tellExempt.has(key)) {
       tellSeen.add(key);
-      fail(`D1 ${key} is in LEGACY_TELL but the key is no longer the longest — delete it.`);
+      fail(`D1 ${key} is in LEGACY_TELL but the key no longer carries a length cue — delete it.`);
     }
 
     // ── D2 ──
@@ -336,7 +339,7 @@ for (const s of LEGACY_SKEW) if (!skewSeen.has(s.taskType)) fail(`D3 ${s.taskTyp
 if (mcq === 0) fail("no multiple-choice question was found — the gate is vacuous");
 
 console.log(`[gate:distractor] ${mcq} multiple-choice question(s) across ${perType.size} task type(s)`);
-console.log(`DISTRACTOR DEBT: ${tellNow} questions where the key is the longest option`);
+console.log(`DISTRACTOR DEBT: ${tellNow} question(s) where the key carries an exploitable length margin`);
 console.log(`OPTION COUNT DEBT: ${optionCountDebt} question(s) with the wrong number of options`);
 if (failures.length > 0) {
   console.error(`\n[gate:distractor] ${failures.length} failure(s):`);
