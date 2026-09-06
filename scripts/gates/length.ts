@@ -234,8 +234,6 @@ const LEGACY_SHORT: string[] = [
   "lis-a-ankle-injury-after-a-fall", // 114 words
   "lis-a-antenatal-visit", // 65 words
   "lis-a-asthma-flare-up", // 74 words
-  "lis-a-chest-pain-assessment", // 78 words
-  "lis-a-child-with-fever", // 61 words
   "lis-a-diabetes-annual-check", // 75 words
   "lis-a-knee-pain-consultation", // 49 words
   "lis-a-lower-back-pain", // 71 words
@@ -246,11 +244,8 @@ const LEGACY_SHORT: string[] = [
   "lis-a-ongoing-sleep-problem", // 75 words
   "lis-a-post-operative-wound-check", // 60 words
   "lis-a-suspected-urinary-infection", // 69 words
-  "lis-a-f1-physiotherapy-consultation-lower-back-pain", // 229 words
   "lis-a-f1-dietitian-consultation-type-2-diabetes", // 193 words
   "lis-a-f2-occupational-therapy-home-visit-post-stroke", // 190 words
-  "lis-a-f2-practice-nurse-asthma-review", // 161 words
-  "lis-a-f3-physiotherapist-and-lower-back-pain", // 210 words
   "lis-a-f3-midwife-antenatal-booking-visit", // 197 words
   // ── LISTENING_PART_B · 33 item(s), law 140-165 words ──
   "lis-b-alert-about-a-norovirus-outbreak", // 53 words
@@ -268,7 +263,6 @@ const LEGACY_SHORT: string[] = [
   "lis-b-switching-to-a-new-infusion-pump-model", // 56 words
   "lis-b-updated-dressing-trolley-protocol", // 84 words
   "lis-b-verbal-handover-for-a-post-operative-patient", // 53 words
-  "lis-b-f1-discharge-concern", // 46 words
   "lis-b-f1-hand-hygiene-audit", // 28 words
   "lis-b-f1-x-ray-result", // 33 words
   "lis-b-f1-home-exercises", // 30 words
@@ -287,7 +281,6 @@ const LEGACY_SHORT: string[] = [
   "lis-b-f3-interpreters", // 39 words
   "lis-b-f3-red-wristband", // 44 words
   // ── LISTENING_PART_C · 21 item(s), law 780-880 words ──
-  "lis-c-a-multimodal-approach-to-chronic-pain-management", // 141 words
   "lis-c-antibiotic-stewardship-and-the-48-hour-review", // 132 words
   "lis-c-building-a-culture-of-patient-safety-on-the-ward", // 139 words
   "lis-c-honest-conversations-at-the-end-of-life", // 138 words
@@ -676,8 +669,12 @@ console.log(`RETIRED and short of the law:           ${retiredShort.size} item(s
 }
 if (failures.length > 0) {
   console.error(`\n[gate:length] ${failures.length} failure(s):`);
-  for (const f of failures.slice(0, 40)) console.error(`  ${f}`);
-  if (failures.length > 40) console.error(`  …and ${failures.length - 40} more`);
+  // 🔴 EVERY FAILURE, NOT THE FIRST 40. A cap here is not a smaller gate, it is a
+  // gate whose report cannot be acted on: on 6 September 2026 a content batch
+  // produced 247 failures of which 40 printed, and the 78 rows that only needed
+  // DELETING sat past the cut, so the list looked unfixable when most of it was
+  // already resolved. The count was right and the report was useless.
+  for (const f of failures) console.error(`  ${f}`);
   process.exit(1);
 }
 console.log("[gate:length] all clear");

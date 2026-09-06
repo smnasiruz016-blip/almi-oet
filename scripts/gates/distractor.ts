@@ -119,207 +119,39 @@ const LEGACY_TELL: string[] = [
   "lis-b-switching-to-a-new-infusion-pump-model::q1",
   "lis-b-f1-discharge-concern::q1",
   "lis-b-f1-hand-hygiene-audit::q1",
-  "lis-b-f1-x-ray-result::q1",
   "lis-b-f1-home-exercises::q1",
   "lis-b-f1-handling-results::q1",
-  "lis-b-f2-low-sodium::q1",
-  "lis-b-f2-gloves-and-hand-hygiene::q1",
-  "lis-b-f2-nil-by-mouth::q1",
-  "lis-b-f2-paracetamol-order::q1",
   "lis-b-f2-escalating-concern::q1",
   "lis-b-f3-sharps-bins::q1",
-  "lis-b-f3-transfusion-check::q1",
-  "lis-b-f3-timely-notes::q1",
-  "lis-b-f3-interpreters::q1",
-  "lis-b-f3-red-wristband::q1",
-  "lis-c-a-multimodal-approach-to-chronic-pain-management::q2",
   "lis-c-antibiotic-stewardship-and-the-48-hour-review::q1",
-  "lis-c-antibiotic-stewardship-and-the-48-hour-review::q2",
-  "lis-c-building-a-culture-of-patient-safety-on-the-ward::q1",
   "lis-c-building-a-culture-of-patient-safety-on-the-ward::q2",
-  "lis-c-honest-conversations-at-the-end-of-life::q1",
-  "lis-c-improving-health-literacy-through-teach-back::q1",
-  "lis-c-improving-health-literacy-through-teach-back::q2",
-  "lis-c-preventing-inpatient-falls-through-hourly-rounding::q1",
   "lis-c-preventing-inpatient-falls-through-hourly-rounding::q2",
   "lis-c-recognising-and-preventing-clinician-burnout::q2",
   "lis-c-responding-to-agitation-in-dementia-care::q1",
   "lis-c-responding-to-agitation-in-dementia-care::q2",
   "lis-c-sustaining-gains-in-quality-improvement-projects::q1",
-  "lis-c-sustaining-gains-in-quality-improvement-projects::q2",
-  "lis-c-tackling-malnutrition-risk-in-hospital-patients::q1",
-  "lis-c-tackling-malnutrition-risk-in-hospital-patients::q2",
-  "lis-c-the-first-hour-in-recognising-sepsis::q1",
-  "lis-c-the-first-hour-in-recognising-sepsis::q2",
   "lis-c-understanding-hesitancy-to-improve-vaccination-uptake::q1",
-  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake::q2",
-  "lis-c-f1-interview-wound-care-nursing::q2",
-  "lis-c-f1-interview-wound-care-nursing::q3",
-  "lis-c-f1-interview-wound-care-nursing::q4",
-  "lis-c-f1-interview-wound-care-nursing::q5",
-  "lis-c-f1-presentation-polypharmacy::q1",
-  "lis-c-f1-presentation-polypharmacy::q2",
-  "lis-c-f1-presentation-polypharmacy::q3",
-  "lis-c-f1-presentation-polypharmacy::q4",
-  "lis-c-f1-presentation-polypharmacy::q5",
-  "lis-c-f1-presentation-polypharmacy::q6",
-  "lis-c-f2-interview-de-escalation-in-mental-health::q3",
-  "lis-c-f2-interview-de-escalation-in-mental-health::q4",
-  "lis-c-f2-interview-de-escalation-in-mental-health::q6",
-  "lis-c-f2-presentation-antimicrobial-resistance::q4",
-  "lis-c-f2-presentation-antimicrobial-resistance::q5",
-  "lis-c-f2-presentation-antimicrobial-resistance::q6",
   "lis-c-f3-interview-living-with-chronic-pain::q1",
-  "lis-c-f3-interview-living-with-chronic-pain::q2",
-  "lis-c-f3-interview-living-with-chronic-pain::q3",
-  "lis-c-f3-interview-living-with-chronic-pain::q4",
   "lis-c-f3-interview-living-with-chronic-pain::q5",
-  "lis-c-f3-interview-living-with-chronic-pain::q6",
-  "lis-c-f3-presentation-health-literacy::q1",
   "lis-c-f3-presentation-health-literacy::q2",
-  "lis-c-f3-presentation-health-literacy::q3",
-  "lis-c-f3-presentation-health-literacy::q5",
-  "lis-c-f3-presentation-health-literacy::q6",
   "rea-b-allergy-alert-documentation::q1",
   "rea-b-complaints-procedure-acknowledgement::q1",
   "rea-b-consent-policy-for-capacity-assessment::q1",
-  "rea-b-equipment-recall-action-notice::q1",
   "rea-b-incident-reporting-timeframe::q1",
   "rea-b-infection-control-hand-hygiene-memo::q1",
   "rea-b-sharps-disposal-at-point-of-use::q1",
   "rea-b-staff-rostering-swap-email::q1",
   "rea-b-f1-controlled-drugs-policy::q1",
-  "rea-b-f2-consent::q1",
-  "rea-b-f2-terminology-memo::q1",
   "rea-b-f2-protected-breaks::q1",
-  "rea-b-f2-specimen-labelling::q1",
-  "rea-b-f2-safe-discharge::q1",
-  "rea-b-f3-penicillin-allergy-label::q1",
   "rea-b-f3-early-warning-scores::q1",
-  "rea-b-f3-bare-below-the-elbows::q1",
-  "rea-b-f3-confidentiality-in-public-areas::q1",
   "rea-b-f3-verbal-orders::q1",
-  "rea-c-article-on-shared-decision-making::q1",
-  "rea-c-article-on-shared-decision-making::q2",
-  "rea-c-evidence-experience-and-the-bedside::q1",
-  "rea-c-knowing-a-patient-over-time::q1",
-  "rea-c-practising-to-protect-ourselves::q1",
-  "rea-c-running-on-empty-in-the-caring-professions::q2",
-  "rea-c-sitting-with-not-knowing::q1",
-  "rea-c-the-arithmetic-patients-actually-hear::q1",
-  "rea-c-the-lost-art-of-letting-people-finish::q1",
-  "rea-c-the-screen-between-us::q1",
-  "rea-c-the-screen-between-us::q2",
-  "rea-c-what-a-good-team-really-shares::q1",
-  "rea-c-what-we-do-with-our-mistakes::q1",
-  "rea-c-what-we-do-with-our-mistakes::q2",
-  "rea-c-whose-decision-is-it-anyway::q1",
-  "rea-c-f1-the-quiet-skill-of-listening::q2",
-  "rea-c-f1-the-quiet-skill-of-listening::q3",
-  "rea-c-f1-the-quiet-skill-of-listening::q4",
-  "rea-c-f1-the-quiet-skill-of-listening::q5",
-  "rea-c-f1-the-quiet-skill-of-listening::q6",
-  "rea-c-f1-the-quiet-skill-of-listening::q8",
-  "rea-c-f1-rethinking-resilience::q1",
-  "rea-c-f1-rethinking-resilience::q2",
-  "rea-c-f1-rethinking-resilience::q3",
-  "rea-c-f1-rethinking-resilience::q4",
-  "rea-c-f1-rethinking-resilience::q5",
-  "rea-c-f1-rethinking-resilience::q7",
-  "rea-c-f1-rethinking-resilience::q8",
-  "rea-c-f2-the-trouble-with-just-in-case::q1",
-  "rea-c-f2-the-trouble-with-just-in-case::q2",
-  "rea-c-f2-the-trouble-with-just-in-case::q3",
-  "rea-c-f2-the-trouble-with-just-in-case::q5",
-  "rea-c-f2-the-trouble-with-just-in-case::q6",
-  "rea-c-f2-the-trouble-with-just-in-case::q8",
-  "rea-c-f2-what-checklists-can-and-can-t-do::q1",
-  "rea-c-f2-what-checklists-can-and-can-t-do::q2",
-  "rea-c-f2-what-checklists-can-and-can-t-do::q3",
-  "rea-c-f2-what-checklists-can-and-can-t-do::q5",
-  "rea-c-f2-what-checklists-can-and-can-t-do::q7",
-  "rea-c-f2-what-checklists-can-and-can-t-do::q8",
-  "rea-c-f3-the-fifteen-minute-appointment::q1",
-  "rea-c-f3-the-fifteen-minute-appointment::q2",
-  "rea-c-f3-the-fifteen-minute-appointment::q4",
-  "rea-c-f3-the-fifteen-minute-appointment::q6",
-  "rea-c-f3-the-fifteen-minute-appointment::q7",
-  "rea-c-f3-the-fifteen-minute-appointment::q8",
-  "rea-c-f3-resilience-is-not-the-answer::q2",
-  "rea-c-f3-resilience-is-not-the-answer::q3",
-  "rea-c-f3-resilience-is-not-the-answer::q5",
-  "rea-c-f3-resilience-is-not-the-answer::q6",
-  "rea-c-f3-resilience-is-not-the-answer::q8",
 ];
 
 /** D2 · an option more than 1.6x the mean of the others. 65 legacy
  *  questions, with the measured ratio beside each. */
 const LEGACY_OVERSIZE: string[] = [
-  "lis-b-f2-low-sodium::q1", // 1.71x
-  "lis-b-f2-gloves-and-hand-hygiene::q1", // 1.64x
-  "lis-b-f2-nil-by-mouth::q1", // 2.29x
-  "lis-b-f2-paracetamol-order::q1", // 2.57x
   "lis-b-f3-sharps-bins::q1", // 2.00x
-  "lis-b-f3-transfusion-check::q1", // 1.80x
-  "lis-b-f3-timely-notes::q1", // 1.80x
-  "lis-b-f3-interpreters::q1", // 2.00x
-  "lis-b-f3-red-wristband::q1", // 1.67x
-  "lis-c-improving-health-literacy-through-teach-back::q1", // 1.80x
-  "lis-c-preventing-inpatient-falls-through-hourly-rounding::q1", // 2.00x
-  "lis-c-sustaining-gains-in-quality-improvement-projects::q2", // 1.71x
-  "lis-c-tackling-malnutrition-risk-in-hospital-patients::q1", // 1.80x
-  "lis-c-f1-interview-wound-care-nursing::q4", // 2.00x
-  "lis-c-f1-interview-wound-care-nursing::q5", // 1.75x
-  "lis-c-f1-presentation-polypharmacy::q1", // 1.69x
-  "lis-c-f1-presentation-polypharmacy::q2", // 1.78x
-  "lis-c-f1-presentation-polypharmacy::q3", // 2.40x
-  "lis-c-f1-presentation-polypharmacy::q5", // 3.14x
-  "lis-c-f1-presentation-polypharmacy::q6", // 1.80x
-  "lis-c-f2-interview-de-escalation-in-mental-health::q4", // 1.67x
-  "lis-c-f2-interview-de-escalation-in-mental-health::q6", // 1.80x
-  "lis-c-f2-presentation-antimicrobial-resistance::q4", // 2.00x
-  "lis-c-f2-presentation-antimicrobial-resistance::q5", // 2.00x
-  "lis-c-f2-presentation-antimicrobial-resistance::q6", // 2.00x
-  "lis-c-f3-interview-living-with-chronic-pain::q2", // 2.67x
-  "lis-c-f3-interview-living-with-chronic-pain::q3", // 3.20x
-  "lis-c-f3-presentation-health-literacy::q1", // 1.78x
-  "lis-c-f3-presentation-health-literacy::q5", // 2.00x
-  "lis-c-f3-presentation-health-literacy::q6", // 1.80x
-  "rea-b-f2-consent::q1", // 1.75x
-  "rea-b-f2-terminology-memo::q1", // 2.29x
-  "rea-b-f2-safe-discharge::q1", // 1.80x
-  "rea-b-f3-penicillin-allergy-label::q1", // 1.75x
   "rea-b-f3-controlled-drugs::q1", // 1.80x
-  "rea-b-f3-bare-below-the-elbows::q1", // 2.00x
-  "rea-c-article-on-shared-decision-making::q1", // 1.78x
-  "rea-c-article-on-shared-decision-making::q2", // 2.00x
-  "rea-c-f1-the-quiet-skill-of-listening::q2", // 2.67x
-  "rea-c-f1-the-quiet-skill-of-listening::q3", // 1.67x
-  "rea-c-f1-the-quiet-skill-of-listening::q5", // 2.29x
-  "rea-c-f1-the-quiet-skill-of-listening::q8", // 2.29x
-  "rea-c-f1-rethinking-resilience::q2", // 2.00x
-  "rea-c-f1-rethinking-resilience::q4", // 2.40x
-  "rea-c-f1-rethinking-resilience::q5", // 1.71x
-  "rea-c-f1-rethinking-resilience::q8", // 1.80x
-  "rea-c-f2-the-trouble-with-just-in-case::q1", // 1.78x
-  "rea-c-f2-the-trouble-with-just-in-case::q2", // 3.50x
-  "rea-c-f2-the-trouble-with-just-in-case::q3", // 2.20x
-  "rea-c-f2-the-trouble-with-just-in-case::q5", // 2.25x
-  "rea-c-f2-the-trouble-with-just-in-case::q8", // 1.71x
-  "rea-c-f2-what-checklists-can-and-can-t-do::q2", // 1.75x
-  "rea-c-f2-what-checklists-can-and-can-t-do::q3", // 2.25x
-  "rea-c-f2-what-checklists-can-and-can-t-do::q5", // 1.78x
-  "rea-c-f2-what-checklists-can-and-can-t-do::q7", // 4.00x
-  "rea-c-f3-the-fifteen-minute-appointment::q1", // 1.80x
-  "rea-c-f3-the-fifteen-minute-appointment::q2", // 2.00x
-  "rea-c-f3-the-fifteen-minute-appointment::q4", // 3.14x
-  "rea-c-f3-the-fifteen-minute-appointment::q6", // 2.00x
-  "rea-c-f3-the-fifteen-minute-appointment::q7", // 1.71x
-  "rea-c-f3-resilience-is-not-the-answer::q2", // 3.00x
-  "rea-c-f3-resilience-is-not-the-answer::q3", // 2.00x
-  "rea-c-f3-resilience-is-not-the-answer::q5", // 3.67x
-  "rea-c-f3-resilience-is-not-the-answer::q6", // 3.00x
-  "rea-c-f3-resilience-is-not-the-answer::q8", // 4.00x
 ];
 
 /** D3 · a single option letter holding more than 45% of the keys, per taskType.
@@ -376,84 +208,6 @@ const OPTION_WORDS_MAX = 17;
  */
 const LEGACY_OPTION_COUNT: string[] = [
   // ── READING_PART_C · 78 question(s), law 4 options ──
-  "rea-c-article-on-shared-decision-making::q1", // 3 options, law 4
-  "rea-c-article-on-shared-decision-making::q2", // 3 options, law 4
-  "rea-c-evidence-experience-and-the-bedside::q1", // 3 options, law 4
-  "rea-c-evidence-experience-and-the-bedside::q2", // 3 options, law 4
-  "rea-c-knowing-a-patient-over-time::q1", // 3 options, law 4
-  "rea-c-knowing-a-patient-over-time::q2", // 3 options, law 4
-  "rea-c-practising-to-protect-ourselves::q1", // 3 options, law 4
-  "rea-c-practising-to-protect-ourselves::q2", // 3 options, law 4
-  "rea-c-rethinking-the-value-of-clinical-handover::q1", // 3 options, law 4
-  "rea-c-rethinking-the-value-of-clinical-handover::q2", // 3 options, law 4
-  "rea-c-running-on-empty-in-the-caring-professions::q1", // 3 options, law 4
-  "rea-c-running-on-empty-in-the-caring-professions::q2", // 3 options, law 4
-  "rea-c-sitting-with-not-knowing::q1", // 3 options, law 4
-  "rea-c-sitting-with-not-knowing::q2", // 3 options, law 4
-  "rea-c-the-arithmetic-patients-actually-hear::q1", // 3 options, law 4
-  "rea-c-the-arithmetic-patients-actually-hear::q2", // 3 options, law 4
-  "rea-c-the-lost-art-of-letting-people-finish::q1", // 3 options, law 4
-  "rea-c-the-lost-art-of-letting-people-finish::q2", // 3 options, law 4
-  "rea-c-the-quiet-costs-of-finding-more::q1", // 3 options, law 4
-  "rea-c-the-quiet-costs-of-finding-more::q2", // 3 options, law 4
-  "rea-c-the-screen-between-us::q1", // 3 options, law 4
-  "rea-c-the-screen-between-us::q2", // 3 options, law 4
-  "rea-c-what-a-good-team-really-shares::q1", // 3 options, law 4
-  "rea-c-what-a-good-team-really-shares::q2", // 3 options, law 4
-  "rea-c-what-we-do-with-our-mistakes::q1", // 3 options, law 4
-  "rea-c-what-we-do-with-our-mistakes::q2", // 3 options, law 4
-  "rea-c-when-empathy-becomes-a-clinical-skill::q1", // 3 options, law 4
-  "rea-c-when-empathy-becomes-a-clinical-skill::q2", // 3 options, law 4
-  "rea-c-whose-decision-is-it-anyway::q1", // 3 options, law 4
-  "rea-c-whose-decision-is-it-anyway::q2", // 3 options, law 4
-  "rea-c-f1-the-quiet-skill-of-listening::q1", // 3 options, law 4
-  "rea-c-f1-the-quiet-skill-of-listening::q2", // 3 options, law 4
-  "rea-c-f1-the-quiet-skill-of-listening::q3", // 3 options, law 4
-  "rea-c-f1-the-quiet-skill-of-listening::q4", // 3 options, law 4
-  "rea-c-f1-the-quiet-skill-of-listening::q5", // 3 options, law 4
-  "rea-c-f1-the-quiet-skill-of-listening::q6", // 3 options, law 4
-  "rea-c-f1-the-quiet-skill-of-listening::q7", // 3 options, law 4
-  "rea-c-f1-the-quiet-skill-of-listening::q8", // 3 options, law 4
-  "rea-c-f1-rethinking-resilience::q1", // 3 options, law 4
-  "rea-c-f1-rethinking-resilience::q2", // 3 options, law 4
-  "rea-c-f1-rethinking-resilience::q3", // 3 options, law 4
-  "rea-c-f1-rethinking-resilience::q4", // 3 options, law 4
-  "rea-c-f1-rethinking-resilience::q5", // 3 options, law 4
-  "rea-c-f1-rethinking-resilience::q6", // 3 options, law 4
-  "rea-c-f1-rethinking-resilience::q7", // 3 options, law 4
-  "rea-c-f1-rethinking-resilience::q8", // 3 options, law 4
-  "rea-c-f2-the-trouble-with-just-in-case::q1", // 3 options, law 4
-  "rea-c-f2-the-trouble-with-just-in-case::q2", // 3 options, law 4
-  "rea-c-f2-the-trouble-with-just-in-case::q3", // 3 options, law 4
-  "rea-c-f2-the-trouble-with-just-in-case::q4", // 3 options, law 4
-  "rea-c-f2-the-trouble-with-just-in-case::q5", // 3 options, law 4
-  "rea-c-f2-the-trouble-with-just-in-case::q6", // 3 options, law 4
-  "rea-c-f2-the-trouble-with-just-in-case::q7", // 3 options, law 4
-  "rea-c-f2-the-trouble-with-just-in-case::q8", // 3 options, law 4
-  "rea-c-f2-what-checklists-can-and-can-t-do::q1", // 3 options, law 4
-  "rea-c-f2-what-checklists-can-and-can-t-do::q2", // 3 options, law 4
-  "rea-c-f2-what-checklists-can-and-can-t-do::q3", // 3 options, law 4
-  "rea-c-f2-what-checklists-can-and-can-t-do::q4", // 3 options, law 4
-  "rea-c-f2-what-checklists-can-and-can-t-do::q5", // 3 options, law 4
-  "rea-c-f2-what-checklists-can-and-can-t-do::q6", // 3 options, law 4
-  "rea-c-f2-what-checklists-can-and-can-t-do::q7", // 3 options, law 4
-  "rea-c-f2-what-checklists-can-and-can-t-do::q8", // 3 options, law 4
-  "rea-c-f3-the-fifteen-minute-appointment::q1", // 3 options, law 4
-  "rea-c-f3-the-fifteen-minute-appointment::q2", // 3 options, law 4
-  "rea-c-f3-the-fifteen-minute-appointment::q3", // 3 options, law 4
-  "rea-c-f3-the-fifteen-minute-appointment::q4", // 3 options, law 4
-  "rea-c-f3-the-fifteen-minute-appointment::q5", // 3 options, law 4
-  "rea-c-f3-the-fifteen-minute-appointment::q6", // 3 options, law 4
-  "rea-c-f3-the-fifteen-minute-appointment::q7", // 3 options, law 4
-  "rea-c-f3-the-fifteen-minute-appointment::q8", // 3 options, law 4
-  "rea-c-f3-resilience-is-not-the-answer::q1", // 3 options, law 4
-  "rea-c-f3-resilience-is-not-the-answer::q2", // 3 options, law 4
-  "rea-c-f3-resilience-is-not-the-answer::q3", // 3 options, law 4
-  "rea-c-f3-resilience-is-not-the-answer::q4", // 3 options, law 4
-  "rea-c-f3-resilience-is-not-the-answer::q5", // 3 options, law 4
-  "rea-c-f3-resilience-is-not-the-answer::q6", // 3 options, law 4
-  "rea-c-f3-resilience-is-not-the-answer::q7", // 3 options, law 4
-  "rea-c-f3-resilience-is-not-the-answer::q8", // 3 options, law 4
 ];
 
 const ITEMS = GEN_ITEMS as unknown as Item[];
@@ -586,8 +340,12 @@ console.log(`DISTRACTOR DEBT: ${tellNow} questions where the key is the longest 
 console.log(`OPTION COUNT DEBT: ${optionCountDebt} question(s) with the wrong number of options`);
 if (failures.length > 0) {
   console.error(`\n[gate:distractor] ${failures.length} failure(s):`);
-  for (const f of failures.slice(0, 40)) console.error(`  ${f}`);
-  if (failures.length > 40) console.error(`  …and ${failures.length - 40} more`);
+  // 🔴 EVERY FAILURE, NOT THE FIRST 40. A cap here is not a smaller gate, it is a
+  // gate whose report cannot be acted on: on 6 September 2026 a content batch
+  // produced 247 failures of which 40 printed, and the 78 rows that only needed
+  // DELETING sat past the cut, so the list looked unfixable when most of it was
+  // already resolved. The count was right and the report was useless.
+  for (const f of failures) console.error(`  ${f}`);
   process.exit(1);
 }
 console.log("[gate:distractor] all clear");
