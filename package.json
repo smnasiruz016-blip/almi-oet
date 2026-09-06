@@ -42,6 +42,7 @@
     "test": "vitest run",
     "test:e2e": "tsx scripts/e2e/run.mts",
     "check:prod-migrations": "tsx scripts/check-prod-migrations.mts",
+    "check:titles-match-prod": "tsx scripts/check-titles-match-prod.mts",
     "gate:no-tokens-for-nothing": "tsx scripts/measure/blank-submit.mts",
     "gate:slug-immutable": "tsx scripts/measure/slug-immutable.mts",
     "test:db": "tsx scripts/measure/blank-submit.mts",
