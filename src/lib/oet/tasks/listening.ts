@@ -67,7 +67,7 @@ export function listeningPartAAnswerKey(
     answer: g.answer,
     // The overlay is MERGED with whatever the payload already carried, never
     // substituted for it — a variant authored into the seed keeps working.
-    variants: [...(g.variants ?? []), ...listeningAcceptFor(slug, g.label)],
+    variants: [...(g.variants ?? []), ...listeningAcceptFor(slug, g.id)],
   }));
 }
 
