@@ -1802,8 +1802,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "What do a proportion of these patients retain?",
           "answer": "carbon dioxide",
           "variants": [
-            "CO2",
-            "CO₂"
+            "CO2"
           ]
         },
         {
@@ -2145,10 +2144,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "What is usually the first aim of treatment?",
           "answer": "rate control",
-          "variants": [
-            "controlling the rate",
-            "control of the rate"
-          ]
+          "variants": []
         },
         {
           "id": "q14",

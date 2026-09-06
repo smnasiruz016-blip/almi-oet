@@ -260,7 +260,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "q15",
           "kind": "gap",
           "stem": "The commonest breach seen in audit is ______ the field.",
-          "answer": "reaching across"
+          "answer": "reaching across",
+          "acceptExhaustive": true
         },
         {
           "id": "q16",
@@ -4809,8 +4810,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "postural",
           "variants": [
             "postural blood pressure",
-            "a drop on standing",
-            "postural hypotension"
+            "a drop on standing"
           ]
         },
         {
@@ -5418,7 +5418,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "anterolateral thigh",
           "variants": [
             "thigh",
-            "outer thigh",
             "the thigh"
           ]
         },
@@ -5439,8 +5438,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "Which blood test supports the diagnosis afterwards?",
           "answer": "mast cell tryptase",
           "variants": [
-            "tryptase",
-            "serum tryptase"
+            "tryptase"
           ]
         },
         {
@@ -5477,7 +5475,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "Which group is most often involved in fatal food anaphylaxis?",
           "answer": "adolescents",
           "variants": [
-            "teenagers",
             "adolescence"
           ]
         },
@@ -5488,8 +5485,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "one in five",
           "variants": [
             "20 per cent",
-            "20%",
-            "a fifth"
+            "20%"
           ]
         },
         {
@@ -5497,10 +5493,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "A faint can be told apart from anaphylaxis by the presence of ______________.",
           "answer": "bradycardia",
-          "variants": [
-            "a slow pulse",
-            "a slow heart rate"
-          ]
+          "variants": []
         },
         {
           "id": "q17",
@@ -5765,7 +5758,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "2 mmol/L",
           "variants": [
             "2 mmol/L or above",
-            "2 millimoles",
             "two"
           ]
         },
@@ -5805,10 +5797,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "Which step is described as most often delayed?",
           "answer": "source control",
-          "variants": [
-            "controlling the source",
-            "control of the source"
-          ]
+          "variants": []
         },
         {
           "id": "q14",
@@ -5862,8 +5851,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "In a child, a dry nappy carries the weight that ______________ carries in adults.",
           "answer": "blood pressure",
           "variants": [
-            "BP",
-            "the blood pressure"
+            "BP"
           ]
         },
         {
@@ -6125,8 +6113,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "How often is nutrition screened after admission?",
           "answer": "weekly",
           "variants": [
-            "every week",
-            "once a week"
+            "every week"
           ]
         },
         {
@@ -6144,7 +6131,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "How often is the skin under a device inspected?",
           "answer": "twice a day",
           "variants": [
-            "twice daily",
             "two times a day",
             "at least twice a day"
           ]
@@ -6439,8 +6425,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "between the gum and the cheek",
           "variants": [
             "gum and cheek",
-            "in the cheek",
-            "inside the cheek"
+            "in the cheek"
           ]
         },
         {
@@ -6487,7 +6472,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "intoxication",
           "variants": [
             "drunkenness",
-            "being drunk",
             "a stroke"
           ]
         },
@@ -6497,8 +6481,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "An unconscious patient must be given ______________ by mouth.",
           "answer": "nothing",
           "variants": [
-            "nothing at all",
-            "no food or drink"
+            "nothing at all"
           ]
         },
         {
@@ -6508,8 +6491,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "long-acting",
           "variants": [
             "long acting",
-            "slow-acting",
-            "slow release"
+            "slow-acting"
           ]
         },
         {
@@ -6518,8 +6500,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "Insulin should not be omitted afterwards without a ______________.",
           "answer": "medical review",
           "variants": [
-            "a review",
-            "doctor's review"
+            "a review"
           ]
         },
         {
@@ -6529,8 +6510,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "admission",
           "variants": [
             "admission and observation",
-            "observation",
-            "to be admitted"
+            "observation"
           ]
         },
         {
@@ -6540,8 +6520,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "night",
           "variants": [
             "the night",
-            "at night",
-            "overnight"
+            "at night"
           ]
         }
       ]
@@ -6768,9 +6747,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "variants": [
             "time of onset",
             "the time last known well",
-            "last known well",
-            "when the symptoms started",
-            "the time it started"
+            "last known well"
           ]
         },
         {
@@ -6779,10 +6756,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "Which condition copies a stroke and must be checked immediately?",
           "answer": "hypoglycaemia",
           "variants": [
-            "hypoglycemia",
-            "low blood glucose",
-            "low blood sugar",
-            "low glucose"
+            "hypoglycemia"
           ]
         },
         {
@@ -6792,9 +6766,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "a bleed",
           "variants": [
             "bleed",
-            "a bleeding",
-            "haemorrhage",
-            "hemorrhage"
+            "a bleeding"
           ]
         },
         {
@@ -6832,10 +6804,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "Aspirin must not be given because a bleed and a clot look ______________ at the bedside.",
           "answer": "identical",
-          "variants": [
-            "the same",
-            "alike"
-          ]
+          "variants": []
         },
         {
           "id": "q16",
@@ -6852,10 +6821,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "The onset of stroke symptoms is almost always ______________.",
           "answer": "painless",
-          "variants": [
-            "without pain",
-            "not painful"
-          ]
+          "variants": []
         },
         {
           "id": "q18",
@@ -6873,7 +6839,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "Rehabilitation should begin within ______________ rather than weeks.",
           "answer": "days",
           "variants": [
-            "a few days",
             "the first days"
           ]
         },
@@ -7122,8 +7087,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "variants": [
             "immobility",
             "not moving",
-            "being immobile",
-            "inability to move"
+            "being immobile"
           ]
         },
         {
@@ -7144,8 +7108,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "Which change in one calf suggests a clot?",
           "answer": "swelling",
           "variants": [
-            "swollen",
-            "one calf swollen"
+            "swollen"
           ]
         },
         {
@@ -7170,18 +7133,14 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "The risk must be assessed again if the patient's ______________ changes.",
           "answer": "condition",
-          "variants": [
-            "clinical condition"
-          ]
+          "variants": []
         },
         {
           "id": "q16",
           "kind": "gap",
           "stem": "Stockings are ______________ for each patient before they are fitted.",
           "answer": "measured",
-          "variants": [
-            "sized"
-          ]
+          "variants": []
         },
         {
           "id": "q17",
@@ -7189,8 +7148,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "Chest pain from a clot in the lung is worse on ______________.",
           "answer": "breathing in",
           "variants": [
-            "inspiration",
-            "inhaling",
             "breathing"
           ]
         },
@@ -7218,7 +7175,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "The signs to report should be given to the patient in ______________.",
           "answer": "writing",
           "variants": [
-            "written form",
             "written"
           ]
         }
@@ -7463,8 +7419,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "variants": [
             "labelled",
             "labeled",
-            "label the syringe",
-            "put a label on it"
+            "label the syringe"
           ]
         },
         {
@@ -7542,7 +7497,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "large",
           "variants": [
             "larger",
-            "big",
             "serious"
           ]
         },
@@ -7780,8 +7734,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "when it is clinically infected",
           "variants": [
             "clinically infected",
-            "only when infected",
-            "if infected"
+            "only when infected"
           ]
         },
         {
@@ -7864,11 +7817,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "A stable patient who is absorbing can be switched to ______________.",
           "answer": "tablets",
-          "variants": [
-            "oral",
-            "by mouth",
-            "oral tablets"
-          ]
+          "variants": []
         },
         {
           "id": "q18",
@@ -8195,7 +8144,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "Dark nail ______________ can produce a false reading.",
           "answer": "varnish",
           "variants": [
-            "polish",
             "nail varnish"
           ]
         },
@@ -8215,8 +8163,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "reducing",
           "variants": [
             "lowering",
-            "turning down",
-            "decreasing"
+            "turning down"
           ]
         },
         {
@@ -8543,10 +8490,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "A creatinine that has not returned to baseline by three months is ______________.",
           "answer": "chronic kidney disease",
-          "variants": [
-            "CKD",
-            "chronic kidney"
-          ]
+          "variants": []
         },
         {
           "id": "q20",
@@ -9153,11 +9097,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "A new left bundle branch block is treated as a ______________ until proved otherwise.",
           "answer": "blocked artery",
-          "variants": [
-            "a blocked artery",
-            "blocked coronary artery",
-            "occluded artery"
-          ]
+          "variants": []
         },
         {
           "id": "q16",
@@ -9781,11 +9721,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "What should a pale patient be asked to do?",
           "answer": "stay seated",
-          "variants": [
-            "to stay seated",
-            "remain seated",
-            "sit down"
-          ]
+          "variants": []
         },
         {
           "id": "q15",
@@ -10132,8 +10068,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "The injured person's own ______________ status is checked at the same time.",
           "answer": "hepatitis B",
           "variants": [
-            "hep B",
-            "hepatitis B status"
+            "hep B"
           ]
         },
         {
