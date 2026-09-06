@@ -69,7 +69,7 @@ async function main(): Promise<boolean> {
     if (r.status !== 0) throw new Error("[slug-immutable] migrate failed");
 
     r = spawnSync(
-      "npx vitest run --config vitest.db.config.mts tests/db/backfill-slug-immutable.test.ts",
+      "npx vitest run --config vitest.db.config.mts tests/db/backfill-slug-immutable.test.ts --reporter=verbose",
       { shell: true, stdio: "inherit", env },
     );
     return r.status === 0;

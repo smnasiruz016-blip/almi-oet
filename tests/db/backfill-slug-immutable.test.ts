@@ -99,6 +99,15 @@ describe("a slug is written once and is then immutable", () => {
 
     first = run("--confirm");
     second = run("--confirm");
+
+    // The script's own words, printed BESIDE the assertions that read them. A
+    // gate whose evidence lives somewhere else is a gate nobody can check by
+    // eye when it goes red.
+    console.log("\n──── run 1, with one row's slug already set by hand ────");
+    console.log(first.stdout.trim());
+    console.log("\n──── run 2, immediately after ────");
+    console.log(second.stdout.trim());
+    console.log("");
   }, 120_000);
 
   it("runs, and says out loud how many it skipped", () => {
