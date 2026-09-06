@@ -606,11 +606,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "It is used by nursing staff far more often than by doctors."
+              "text": "It is used by nursing staff far more often than it is by doctors."
             },
             {
               "id": "c",
-              "text": "It has no agreed meaning anywhere in the medical literature."
+              "text": "It has no agreed meaning anywhere in the medical literature at all."
             }
           ],
           "answer": "a"

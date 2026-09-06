@@ -53,7 +53,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "how long recovery may take?",
+          "stem": "In which text can you find information about how long recovery may take?",
           "answer": "D",
           "options": [
             {
@@ -77,7 +77,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be counted before anything else?",
+          "stem": "In which text can you find information about what should be counted before anything else?",
           "answer": "A",
           "options": [
             {
@@ -101,7 +101,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when blood cultures should be taken?",
+          "stem": "In which text can you find information about when blood cultures should be taken?",
           "answer": "B",
           "options": [
             {
@@ -125,7 +125,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "when to step from the drip to tablets?",
+          "stem": "In which text can you find information about when to step from the drip to tablets?",
           "answer": "C",
           "options": [
             {
@@ -149,7 +149,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "how an older person may present?",
+          "stem": "In which text can you find information about how an older person may present?",
           "answer": "A",
           "options": [
             {
@@ -173,7 +173,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "which patients should be asked about swallowing?",
+          "stem": "In which text can you find information about which patients should be asked about swallowing?",
           "answer": "D",
           "options": [
             {
@@ -197,7 +197,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why chest wall pain is treated?",
+          "stem": "In which text can you find information about why chest wall pain is treated?",
           "answer": "C",
           "options": [
             {
@@ -369,7 +369,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "which age group is screened on admission?",
+          "stem": "In which text can you find information about which age group is screened on admission?",
           "answer": "D",
           "options": [
             {
@@ -393,7 +393,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how to test a patient's attention?",
+          "stem": "In which text can you find information about how to test a patient's attention?",
           "answer": "A",
           "options": [
             {
@@ -417,7 +417,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when withdrawal usually begins?",
+          "stem": "In which text can you find information about when withdrawal usually begins?",
           "answer": "B",
           "options": [
             {
@@ -441,7 +441,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what should be brought in for the patient?",
+          "stem": "In which text can you find information about what should be brought in for the patient?",
           "answer": "C",
           "options": [
             {
@@ -465,7 +465,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "how long recovery may take?",
+          "stem": "In which text can you find information about how long recovery may take?",
           "answer": "D",
           "options": [
             {
@@ -489,7 +489,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "which form has the worse outcome?",
+          "stem": "In which text can you find information about which form has the worse outcome?",
           "answer": "A",
           "options": [
             {
@@ -513,7 +513,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "when urine should be sent?",
+          "stem": "In which text can you find information about when urine should be sent?",
           "answer": "B",
           "options": [
             {
@@ -681,7 +681,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "where a sample should be taken from?",
+          "stem": "In which text can you find information about where a sample should be taken from?",
           "answer": "C",
           "options": [
             {
@@ -705,7 +705,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be written on the day of insertion?",
+          "stem": "In which text can you find information about what should be written on the day of insertion?",
           "answer": "A",
           "options": [
             {
@@ -729,7 +729,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how the balloon should be deflated?",
+          "stem": "In which text can you find information about how the balloon should be deflated?",
           "answer": "D",
           "options": [
             {
@@ -753,7 +753,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "where the drainage bag must be kept?",
+          "stem": "In which text can you find information about where the drainage bag must be kept?",
           "answer": "B",
           "options": [
             {
@@ -777,7 +777,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "which alternatives should be considered?",
+          "stem": "In which text can you find information about which alternatives should be considered?",
           "answer": "A",
           "options": [
             {
@@ -801,7 +801,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what patients should be warned about?",
+          "stem": "In which text can you find information about what patients should be warned about?",
           "answer": "D",
           "options": [
             {
@@ -825,7 +825,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why cloudy urine is not treated?",
+          "stem": "In which text can you find information about why cloudy urine is not treated?",
           "answer": "C",
           "options": [
             {
@@ -991,7 +991,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "when a dose should be timed?",
+          "stem": "In which text can you find information about when a dose should be timed?",
           "answer": "D",
           "options": [
             {
@@ -1015,7 +1015,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "which observation is most often estimated?",
+          "stem": "In which text can you find information about which observation is most often estimated?",
           "answer": "C",
           "options": [
             {
@@ -1039,7 +1039,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how long to prescribe regularly for?",
+          "stem": "In which text can you find information about how long to prescribe regularly for?",
           "answer": "B",
           "options": [
             {
@@ -1063,7 +1063,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which signs to watch for in a patient with dementia?",
+          "stem": "In which text can you find information about which signs to watch for in a patient with dementia?",
           "answer": "A",
           "options": [
             {
@@ -1087,7 +1087,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what is prescribed alongside an opioid?",
+          "stem": "In which text can you find information about what is prescribed alongside an opioid?",
           "answer": "C",
           "options": [
             {
@@ -1111,7 +1111,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what lowers the pain threshold?",
+          "stem": "In which text can you find information about what lowers the pain threshold?",
           "answer": "D",
           "options": [
             {
@@ -1135,7 +1135,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "which layer is most often forgotten?",
+          "stem": "In which text can you find information about which layer is most often forgotten?",
           "answer": "B",
           "options": [
             {
@@ -1307,7 +1307,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "how quickly a starved patient should be fed?",
+          "stem": "In which text can you find information about how quickly a starved patient should be fed?",
           "answer": "D",
           "options": [
             {
@@ -1331,7 +1331,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how soon a patient must be screened?",
+          "stem": "In which text can you find information about how soon a patient must be screened?",
           "answer": "A",
           "options": [
             {
@@ -1355,7 +1355,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when supplements should be given?",
+          "stem": "In which text can you find information about when supplements should be given?",
           "answer": "C",
           "options": [
             {
@@ -1379,7 +1379,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what happens when a procedure is postponed?",
+          "stem": "In which text can you find information about what happens when a procedure is postponed?",
           "answer": "B",
           "options": [
             {
@@ -1403,7 +1403,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "how long to sit the patient up for?",
+          "stem": "In which text can you find information about how long to sit the patient up for?",
           "answer": "D",
           "options": [
             {
@@ -1427,7 +1427,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "why an estimate should not be used?",
+          "stem": "In which text can you find information about why an estimate should not be used?",
           "answer": "A",
           "options": [
             {
@@ -1451,7 +1451,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "who should be involved early?",
+          "stem": "In which text can you find information about who should be involved early?",
           "answer": "C",
           "options": [
             {
@@ -1613,7 +1613,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what should be watched before discharge?",
+          "stem": "In which text can you find information about what should be watched before discharge?",
           "answer": "D",
           "options": [
             {
@@ -1637,7 +1637,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "which finding points to a bacterial cause?",
+          "stem": "In which text can you find information about which finding points to a bacterial cause?",
           "answer": "A",
           "options": [
             {
@@ -1661,7 +1661,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "what a nebuliser should be driven with?",
+          "stem": "In which text can you find information about what a nebuliser should be driven with?",
           "answer": "C",
           "options": [
             {
@@ -1685,7 +1685,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what saturation does not tell you?",
+          "stem": "In which text can you find information about what saturation does not tell you?",
           "answer": "B",
           "options": [
             {
@@ -1709,7 +1709,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "which conditions imitate a flare-up?",
+          "stem": "In which text can you find information about which conditions imitate a flare-up?",
           "answer": "A",
           "options": [
             {
@@ -1733,7 +1733,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what improves the number of admissions?",
+          "stem": "In which text can you find information about what improves the number of admissions?",
           "answer": "D",
           "options": [
             {
@@ -1757,7 +1757,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "when antibiotics should be given?",
+          "stem": "In which text can you find information about when antibiotics should be given?",
           "answer": "C",
           "options": [
             {
@@ -1800,7 +1800,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "q10",
           "kind": "gap",
           "stem": "What do a proportion of these patients retain?",
-          "answer": "carbon dioxide"
+          "answer": "carbon dioxide",
+          "variants": [
+            "CO2",
+            "CO₂"
+          ]
         },
         {
           "id": "q11",
@@ -1926,7 +1930,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "which drug the patient may buy without thinking?",
+          "stem": "In which text can you find information about which drug the patient may buy without thinking?",
           "answer": "D",
           "options": [
             {
@@ -1950,7 +1954,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "which conditions provoke this rhythm?",
+          "stem": "In which text can you find information about which conditions provoke this rhythm?",
           "answer": "A",
           "options": [
             {
@@ -1974,7 +1978,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "why aspirin is not used?",
+          "stem": "In which text can you find information about why aspirin is not used?",
           "answer": "C",
           "options": [
             {
@@ -1998,7 +2002,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what carries the most weight in the score?",
+          "stem": "In which text can you find information about what carries the most weight in the score?",
           "answer": "B",
           "options": [
             {
@@ -2022,7 +2026,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "who should have their pulse felt?",
+          "stem": "In which text can you find information about who should have their pulse felt?",
           "answer": "A",
           "options": [
             {
@@ -2046,7 +2050,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what should be arranged before the patient leaves?",
+          "stem": "In which text can you find information about what should be arranged before the patient leaves?",
           "answer": "D",
           "options": [
             {
@@ -2070,7 +2074,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what rate control does not remove?",
+          "stem": "In which text can you find information about what rate control does not remove?",
           "answer": "C",
           "options": [
             {
@@ -2140,7 +2144,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "q13",
           "kind": "gap",
           "stem": "What is usually the first aim of treatment?",
-          "answer": "rate control"
+          "answer": "rate control",
+          "variants": [
+            "controlling the rate",
+            "control of the rate"
+          ]
         },
         {
           "id": "q14",
@@ -2241,7 +2249,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what should be recorded in a diary?",
+          "stem": "In which text can you find information about what should be recorded in a diary?",
           "answer": "D",
           "options": [
             {
@@ -2265,7 +2273,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be noted before doing anything?",
+          "stem": "In which text can you find information about what should be noted before doing anything?",
           "answer": "A",
           "options": [
             {
@@ -2289,7 +2297,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how many doses may be given in total?",
+          "stem": "In which text can you find information about how many doses may be given in total?",
           "answer": "B",
           "options": [
             {
@@ -2313,7 +2321,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which injuries are least often looked at?",
+          "stem": "In which text can you find information about which injuries are least often looked at?",
           "answer": "C",
           "options": [
             {
@@ -2337,7 +2345,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what should be checked in every patient?",
+          "stem": "In which text can you find information about what should be checked in every patient?",
           "answer": "A",
           "options": [
             {
@@ -2361,7 +2369,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what most harm at home comes from?",
+          "stem": "In which text can you find information about what most harm at home comes from?",
           "answer": "D",
           "options": [
             {
@@ -2385,7 +2393,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why the patient must not drive?",
+          "stem": "In which text can you find information about why the patient must not drive?",
           "answer": "C",
           "options": [
             {
@@ -2553,7 +2561,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what should be gone through before the patient leaves?",
+          "stem": "In which text can you find information about what should be gone through before the patient leaves?",
           "answer": "D",
           "options": [
             {
@@ -2577,7 +2585,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "why urine ketones are not used?",
+          "stem": "In which text can you find information about why urine ketones are not used?",
           "answer": "A",
           "options": [
             {
@@ -2601,7 +2609,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when potassium is added to the fluid?",
+          "stem": "In which text can you find information about when potassium is added to the fluid?",
           "answer": "B",
           "options": [
             {
@@ -2625,7 +2633,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which patients are affected by the rare emergency?",
+          "stem": "In which text can you find information about which patients are affected by the rare emergency?",
           "answer": "C",
           "options": [
             {
@@ -2649,7 +2657,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what commonly triggers an episode?",
+          "stem": "In which text can you find information about what commonly triggers an episode?",
           "answer": "A",
           "options": [
             {
@@ -2673,7 +2681,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "when the diabetes team should be involved?",
+          "stem": "In which text can you find information about when the diabetes team should be involved?",
           "answer": "D",
           "options": [
             {
@@ -2697,7 +2705,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why the glucose alone will mislead you?",
+          "stem": "In which text can you find information about why the glucose alone will mislead you?",
           "answer": "C",
           "options": [
             {
@@ -2856,7 +2864,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "when the conversation about the future should happen?",
+          "stem": "In which text can you find information about when the conversation about the future should happen?",
           "answer": "D",
           "options": [
             {
@@ -2880,7 +2888,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how the patient should be weighed?",
+          "stem": "In which text can you find information about how the patient should be weighed?",
           "answer": "A",
           "options": [
             {
@@ -2904,7 +2912,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when the diuretic should be taken?",
+          "stem": "In which text can you find information about when the diuretic should be taken?",
           "answer": "C",
           "options": [
             {
@@ -2928,7 +2936,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which drugs keep patients out of hospital?",
+          "stem": "In which text can you find information about which drugs keep patients out of hospital?",
           "answer": "B",
           "options": [
             {
@@ -2952,7 +2960,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "which symptom patients least often volunteer?",
+          "stem": "In which text can you find information about which symptom patients least often volunteer?",
           "answer": "A",
           "options": [
             {
@@ -2976,7 +2984,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "where most of the salt people eat comes from?",
+          "stem": "In which text can you find information about where most of the salt people eat comes from?",
           "answer": "C",
           "options": [
             {
@@ -3000,7 +3008,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what should be checked after a change in dose?",
+          "stem": "In which text can you find information about what should be checked after a change in dose?",
           "answer": "B",
           "options": [
             {
@@ -3162,7 +3170,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "when a speaking valve must not be used?",
+          "stem": "In which text can you find information about when a speaking valve must not be used?",
           "answer": "D",
           "options": [
             {
@@ -3186,7 +3194,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be kept within reach of the bed?",
+          "stem": "In which text can you find information about what should be kept within reach of the bed?",
           "answer": "A",
           "options": [
             {
@@ -3210,7 +3218,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how long each suction pass should last?",
+          "stem": "In which text can you find information about how long each suction pass should last?",
           "answer": "B",
           "options": [
             {
@@ -3234,7 +3242,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what should be removed first in an emergency?",
+          "stem": "In which text can you find information about what should be removed first in an emergency?",
           "answer": "C",
           "options": [
             {
@@ -3258,7 +3266,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "why humidification is needed?",
+          "stem": "In which text can you find information about why humidification is needed?",
           "answer": "A",
           "options": [
             {
@@ -3282,7 +3290,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what must be confirmed before a discharge date?",
+          "stem": "In which text can you find information about what must be confirmed before a discharge date?",
           "answer": "D",
           "options": [
             {
@@ -3306,7 +3314,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what should be said when calling for help?",
+          "stem": "In which text can you find information about what should be said when calling for help?",
           "answer": "C",
           "options": [
             {
@@ -3477,7 +3485,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what families should be told to expect?",
+          "stem": "In which text can you find information about what families should be told to expect?",
           "answer": "D",
           "options": [
             {
@@ -3501,7 +3509,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "who makes the judgement that a patient is dying?",
+          "stem": "In which text can you find information about who makes the judgement that a patient is dying?",
           "answer": "A",
           "options": [
             {
@@ -3525,7 +3533,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "which five symptoms are prescribed for in advance?",
+          "stem": "In which text can you find information about which five symptoms are prescribed for in advance?",
           "answer": "B",
           "options": [
             {
@@ -3549,7 +3557,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "how thirst should be relieved?",
+          "stem": "In which text can you find information about how thirst should be relieved?",
           "answer": "C",
           "options": [
             {
@@ -3573,7 +3581,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "which reversible causes are still worth looking for?",
+          "stem": "In which text can you find information about which reversible causes are still worth looking for?",
           "answer": "A",
           "options": [
             {
@@ -3597,7 +3605,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what is thought to persist?",
+          "stem": "In which text can you find information about what is thought to persist?",
           "answer": "D",
           "options": [
             {
@@ -3621,7 +3629,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "how often mouth care should be offered?",
+          "stem": "In which text can you find information about how often mouth care should be offered?",
           "answer": "C",
           "options": [
             {
@@ -3783,7 +3791,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "why a specimen should not be sent to prove cure?",
+          "stem": "In which text can you find information about why a specimen should not be sent to prove cure?",
           "answer": "D",
           "options": [
             {
@@ -3807,7 +3815,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be reviewed before assuming an infection?",
+          "stem": "In which text can you find information about what should be reviewed before assuming an infection?",
           "answer": "A",
           "options": [
             {
@@ -3831,7 +3839,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "why hands must be washed with soap and water?",
+          "stem": "In which text can you find information about why hands must be washed with soap and water?",
           "answer": "B",
           "options": [
             {
@@ -3855,7 +3863,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which signs mean the illness has become severe?",
+          "stem": "In which text can you find information about which signs mean the illness has become severe?",
           "answer": "C",
           "options": [
             {
@@ -3879,7 +3887,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what shape a specimen should take?",
+          "stem": "In which text can you find information about what shape a specimen should take?",
           "answer": "A",
           "options": [
             {
@@ -3903,7 +3911,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "which interval predicts the next outbreak?",
+          "stem": "In which text can you find information about which interval predicts the next outbreak?",
           "answer": "D",
           "options": [
             {
@@ -3927,7 +3935,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why the drug is given by mouth?",
+          "stem": "In which text can you find information about why the drug is given by mouth?",
           "answer": "C",
           "options": [
             {
@@ -4098,7 +4106,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "who may hold a formal legal authority?",
+          "stem": "In which text can you find information about who may hold a formal legal authority?",
           "answer": "D",
           "options": [
             {
@@ -4122,7 +4130,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what the family should be asked to fill in?",
+          "stem": "In which text can you find information about what the family should be asked to fill in?",
           "answer": "A",
           "options": [
             {
@@ -4146,7 +4154,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "which three items are most often lost?",
+          "stem": "In which text can you find information about which three items are most often lost?",
           "answer": "C",
           "options": [
             {
@@ -4170,7 +4178,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "how to ask questions that will be answered?",
+          "stem": "In which text can you find information about how to ask questions that will be answered?",
           "answer": "B",
           "options": [
             {
@@ -4194,7 +4202,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "why a hospital sees somebody at their worst?",
+          "stem": "In which text can you find information about why a hospital sees somebody at their worst?",
           "answer": "A",
           "options": [
             {
@@ -4218,7 +4226,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "which bed is the worst on the ward?",
+          "stem": "In which text can you find information about which bed is the worst on the ward?",
           "answer": "C",
           "options": [
             {
@@ -4242,7 +4250,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what behaviour usually means?",
+          "stem": "In which text can you find information about what behaviour usually means?",
           "answer": "B",
           "options": [
             {
@@ -4413,7 +4421,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what should be counted once a week?",
+          "stem": "In which text can you find information about what should be counted once a week?",
           "answer": "D",
           "options": [
             {
@@ -4437,7 +4445,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "which site should be preferred?",
+          "stem": "In which text can you find information about which site should be preferred?",
           "answer": "A",
           "options": [
             {
@@ -4461,7 +4469,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how often the site should be inspected?",
+          "stem": "In which text can you find information about how often the site should be inspected?",
           "answer": "B",
           "options": [
             {
@@ -4485,7 +4493,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what should be done in an extravasation?",
+          "stem": "In which text can you find information about what should be done in an extravasation?",
           "answer": "C",
           "options": [
             {
@@ -4509,7 +4517,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "why the skin must be allowed to dry?",
+          "stem": "In which text can you find information about why the skin must be allowed to dry?",
           "answer": "A",
           "options": [
             {
@@ -4533,7 +4541,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "who the numbers should be fed back to?",
+          "stem": "In which text can you find information about who the numbers should be fed back to?",
           "answer": "D",
           "options": [
             {
@@ -4557,7 +4565,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "where the new line should be sited?",
+          "stem": "In which text can you find information about where the new line should be sited?",
           "answer": "C",
           "options": [
             {

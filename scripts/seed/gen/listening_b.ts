@@ -381,11 +381,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "b",
-              "text": "Choosing the wrong antibiotic for sepsis"
+              "text": "Choosing the wrong antibiotic for a septic patient"
             },
             {
               "id": "c",
-              "text": "Giving the first dose too early"
+              "text": "Giving the first dose earlier than prescribed"
             },
             {
               "id": "a",
@@ -681,7 +681,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Nurse 1: Did you manage to speak to the family about Mr Hughes' discharge? Nurse 2: I did, but they're anxious about managing his medication at home. I've asked the pharmacist to do a teaching session before he leaves - I think that'll make all the difference.",
+      "audioScript": "Nurse 1: Did you manage to speak to the family about Mr Hughes' discharge? Nurse 2: I did, yes. They're keen to have him home, that isn't the problem. What's worrying them is managing his medication — he's on eleven things now and three of them changed while he was in. Nurse 1: That is a lot to take on. Nurse 2: His wife said she'd written it all down but she wasn't sure she'd got the morning and evening doses the right way round, and I could see she was quite upset about it. So I've asked the pharmacist to come up and do a teaching session with both of them before he leaves, with the actual boxes in front of them. Nurse 1: Rather than just the printed list. Nurse 2: Exactly. I think that'll make all the difference.",
       "questions": [
         {
           "id": "q1",
@@ -694,11 +694,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "the availability of the pharmacist"
+              "text": "the availability of the ward pharmacist"
             },
             {
               "id": "c",
-              "text": "the timing of the discharge"
+              "text": "the timing of the planned discharge"
             }
           ]
         }
@@ -724,7 +724,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Manager: From Monday the new hand-hygiene audit starts. It's not about catching anyone out - it's to give us baseline data before we roll out the new sanitiser stations.",
+      "audioScript": "Manager: One thing before you go. From Monday the new hand-hygiene audit starts, and you'll see people on the ward with tablets at odd times of day. I want to be clear about what it is and what it isn't. It is not about catching anyone out, and nobody's name goes on anything. What we're doing is gathering baseline data — how we're actually performing now, across all four moments, before we roll out the new sanitiser stations next quarter. Without a proper before, we'll have no way of knowing whether the stations made any difference at all, and we'll have spent the money on a guess. So carry on exactly as you normally would. If you have a bad shift, I'd rather see it in the numbers than not.",
       "questions": [
         {
           "id": "q1",
@@ -767,7 +767,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Doctor: I've reviewed the X-ray. There's no fracture, which is good news, but the swelling suggests significant soft-tissue damage, so I'd still like her to rest it and come back in a week.",
+      "audioScript": "Doctor: Right, I've had a look at the X-ray with the radiologist, and I can tell you there's no fracture. Nothing broken, nothing cracked, and the joint's in the right place — so that's the good news and I know it's what you were worried about. What I can see, though, is quite a lot of swelling around the outside of the ankle, more than I'd expect from a simple twist, and that suggests she's done significant damage to the soft tissue — the ligaments, essentially. That takes longer to settle than people expect and it doesn't show on the film. So I'd still like her to rest it properly, keep it elevated when she's sitting, and I want to see her again in a week.",
       "questions": [
         {
           "id": "q1",
@@ -776,11 +776,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "there is a small fracture"
+              "text": "there is a small undisplaced fracture"
             },
             {
               "id": "b",
-              "text": "no further review is needed"
+              "text": "no further review of the ankle is needed"
             },
             {
               "id": "c",
@@ -810,7 +810,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Physiotherapist: The exercises matter more than the appointments themselves. If you only do them when you're here, you won't progress. Ten minutes, twice a day, at home - that's the key.",
+      "audioScript": "Physiotherapist: Before you go, can I say something about the exercises? Because this is the part people tend to skip, and it's the part that actually works. The exercises matter more than the appointments themselves. What we do in this room is check your technique and move you on when you're ready — but the strength doesn't build in here, it builds in between. If you only do them when you're here, once a week, you won't progress, and in six weeks we'll both be sitting here wondering why. Ten minutes, twice a day, at home. That's the key. Put them somewhere you'll trip over them — after breakfast, before the television goes on. It doesn't matter when, as long as it's most days.",
       "questions": [
         {
           "id": "q1",
@@ -853,7 +853,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Nurse educator: The commonest error with the new infusion pumps isn't the programming - staff are good at that. It's forgetting to check the line for air before starting. That's what today's session covers.",
+      "audioScript": "Nurse educator: Right, everyone. Today's session is on the new infusion pumps, and I want to explain why we've focused it the way we have. When we looked at the incidents from the first three months, the commonest error wasn't the programming. Staff are good at that — the interface is clearer than the old one and the rate errors have actually fallen. What's come up again and again is people forgetting to check the line for air before starting, particularly on a busy shift when the pump's been primed by somebody else and you're taking over halfway through. That's the gap. So that's what today covers: priming, checking, and what to do when you didn't prime it yourself. We'll do the programming refresher at the end if there's time.",
       "questions": [
         {
           "id": "q1",
@@ -896,7 +896,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Receptionist: If a patient rings about results, don't read anything out - even if it looks normal. Book them a call with the nurse. It's not our place, and 'normal' still sometimes needs explaining.",
+      "audioScript": "Receptionist: The other thing to know, and this comes up most days, is what to do when a patient rings about results. Don't read anything out. Not the figure, not the comment, not even that it says normal — and I know that feels unhelpful when someone's clearly anxious on the phone. But it isn't our place, and normal still sometimes needs explaining. A result can sit inside the reference range and still mean something the doctor wants to talk about, and once you've said the word normal, that conversation is much harder to have. So what you do is book them a call with the nurse. Same day if there's a slot, next day if there isn't. If it's flagged urgent, put it through to the duty nurse straight away.",
       "questions": [
         {
           "id": "q1",
@@ -940,7 +940,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Doctor: Mrs Cole's sodium is low at 128. Before anything else, check whether she's on a diuretic or an SSRI - both can cause it. Don't restrict her fluids until we've reviewed the drug chart.",
+      "audioScript": "Doctor: Can I flag Mrs Cole before you start the round? Her sodium's come back low at 128, down from 134 last week. Now, before anything else — before we do anything about fluids — I want somebody to go through her drug chart properly and check whether she's on a diuretic or an SSRI, because both of those can do this, and she's been started on something new since her last bloods. Nine times out of ten on this ward it's the medication. And please don't restrict her fluids until we've reviewed the chart. If it turns out to be a drug cause, restricting her is the wrong treatment and she'll feel dreadful for no reason. Bring the chart to me once you've been through it and we'll decide together.",
       "questions": [
         {
           "id": "q1",
@@ -953,11 +953,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "restrict her fluids"
+              "text": "restrict her fluid intake now"
             },
             {
               "id": "c",
-              "text": "repeat the blood test"
+              "text": "repeat the blood test today"
             }
           ]
         }
@@ -983,7 +983,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Infection-control lead: Gloves are not a substitute for hand hygiene. Clean your hands before putting them on and again after - glove use has actually been shown to reduce hand-washing, the opposite of what we want.",
+      "audioScript": "Infection-control lead: The message I want you to take from this morning is a simple one. Gloves are not a substitute for hand hygiene. Clean your hands before you put them on, and clean them again after you take them off — every time, both times. And I know the second one feels unnecessary, because the whole point of the gloves was that your hands stayed clean. They didn't. Gloves fail, they tear where you can't see it, and your hands get contaminated as you pull them off. There's a further problem, which is the one that really worries me: glove use has actually been shown to reduce hand-washing rather than add to it. People wear them and then skip the rub. That's the opposite of what we want.",
       "questions": [
         {
           "id": "q1",
@@ -992,11 +992,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "they should be worn at all times"
+              "text": "they should be worn for all patient contact"
             },
             {
               "id": "b",
-              "text": "they replace hand hygiene"
+              "text": "they replace the need for hand hygiene"
             },
             {
               "id": "c",
@@ -1026,7 +1026,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Nurse: Bed 4 is nil by mouth for theatre this afternoon - make sure the sign is up and the water jug removed. We don't want the list cancelled because someone gave her a cup of tea.",
+      "audioScript": "Nurse: Quick one before you take over. Bed 4 — Mrs Doherty — is nil by mouth for theatre this afternoon. She's second on the list, so realistically about two o'clock, but they've been known to move things forward. Can you make sure the sign is up above the bed and that the water jug's been taken away, because it was still there at eight this morning and she'd been told she could have a drink by somebody. Her daughter's coming in at eleven as well, so it's worth mentioning it to her when she arrives. We don't want the list cancelled because somebody gave her a cup of tea out of kindness. It's happened twice on this ward this month.",
       "questions": [
         {
           "id": "q1",
@@ -1039,11 +1039,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "she dislikes tea"
+              "text": "she does not want anything to drink"
             },
             {
               "id": "c",
-              "text": "the jug needs cleaning"
+              "text": "the jug needs to be cleaned"
             }
           ]
         }
@@ -1069,7 +1069,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Pharmacist: We're changing the ward's paracetamol order from 'four times a day' to 'a maximum of four times a day'. A small wording change, but the standing 'four times' was giving frail patients doses too high for their weight.",
+      "audioScript": "Pharmacist: There's a change to the ward's paracetamol order that I want to explain, because on paper it looks like nothing at all. We're changing it from 'four times a day' to 'a maximum of four times a day'. That's it — one word. But the standing 'four times' was being read as an instruction rather than a ceiling, so it was going round with the drug trolley regardless, and for our frailer patients, the ones under fifty kilos, that adds up to a dose that's too high for their weight. Two of them had abnormal liver function last month and this is the likeliest explanation. So from today it's a maximum, and for anyone under fifty kilos please check the weight-adjusted dose on the chart.",
       "questions": [
         {
           "id": "q1",
@@ -1078,7 +1078,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "supply was short"
+              "text": "the ward's supply was running short"
             },
             {
               "id": "b",
@@ -1086,7 +1086,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "nurses wanted it simpler"
+              "text": "the nursing staff asked for simpler wording"
             }
           ]
         }
@@ -1112,7 +1112,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Nurse educator: When you escalate a deteriorating patient, don't just read the numbers. Say what you think is wrong and what you want: 'I'm worried about sepsis, I need a doctor now' gets a faster response than a list of figures.",
+      "audioScript": "Nurse educator: The last thing, and it's the one I'd most like you to remember. When you escalate a deteriorating patient, don't just read the numbers down the phone. I know that feels safest, because the numbers are objective and nobody can argue with them, and if you're junior it's tempting to let them speak for themselves. But a list of figures puts the whole job of interpretation onto somebody who can't see the patient. Say what you think is wrong and say what you want. 'I'm worried about sepsis, I need a doctor now' will get you a faster response than a set of observations read out in order. And if you're wrong about the sepsis, that is completely fine. Being wrong out loud is not the problem here.",
       "questions": [
         {
           "id": "q1",
@@ -1155,7 +1155,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Receptionist: If someone at the desk says they think they're having a heart attack, do not book them in and ask them to sit. Call the emergency buzzer straight away - chest pain is never put in a queue.",
+      "audioScript": "Receptionist: This is the one thing from today I really need you to remember, because it will happen and it usually happens when the desk is busiest. If someone comes up and says they think they're having a heart attack, or they've got a crushing pain in the chest, or they just look grey and can't finish a sentence — do not book them in and ask them to take a seat. Don't take their details, don't look for their record, don't ask whether they're registered here. Call the emergency buzzer straight away, and then stay with them until somebody clinical arrives. Chest pain is never put in a queue. Nobody has ever been criticised here for pressing that buzzer and being wrong.",
       "questions": [
         {
           "id": "q1",
@@ -1164,11 +1164,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "book them in and wait"
+              "text": "book them in and ask them to wait"
             },
             {
               "id": "b",
-              "text": "take their details first"
+              "text": "take their personal details first"
             },
             {
               "id": "c",
@@ -1199,7 +1199,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Ward manager: Never resheath a used needle, and never overfill the sharps bin - once it reaches the fill line, seal it and replace it. Most of the needlestick injuries on this ward have come from bins that were too full to close properly.",
+      "audioScript": "Ward manager: Two things about sharps, and then I'll let you go. Never resheath a used needle — not to make it safer to carry, not for any reason, and if the bin isn't within reach then take the bin to the patient rather than carrying the needle across the room. Second, never overfill the bin. Once it reaches the fill line, seal it and replace it, and don't push things down to make room, which is exactly what people do at four in the morning when the store cupboard is at the other end. I've looked back at the needlestick injuries on this ward over the past two years, and most of them have come from bins that were too full to close properly.",
       "questions": [
         {
           "id": "q1",
@@ -1242,7 +1242,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Charge nurse: The bedside check before a transfusion must be done by two staff, together, at the patient's side - not one person reading it out while the other signs later. It's the final barrier against giving the wrong blood, and it only works if you both actually look.",
+      "audioScript": "Charge nurse: I want to go over the bedside check before a transfusion, because I saw it done badly on Tuesday and I don't want to see it again. The check must be done by two staff, together, at the patient's side. Both of you there, both of you looking at the unit and at the wristband, at the same time. What I saw was one person reading it out in the bay and the second signing the form ten minutes later at the desk, and that is not a check — that's two people agreeing with each other. This is the final barrier between a mistake made anywhere upstream and the wrong blood going into a patient, and it only works if you both actually look.",
       "questions": [
         {
           "id": "q1",
@@ -1251,7 +1251,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "it can be signed afterwards"
+              "text": "it can be signed for afterwards at the desk"
             },
             {
               "id": "b",
@@ -1259,7 +1259,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "one senior nurse is enough"
+              "text": "one senior nurse doing it alone is enough"
             }
           ]
         }
@@ -1285,7 +1285,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Clinical educator: Write your notes as soon as you can after the event, not hours later at the end of the shift. Memory fades, and a record made at the time carries far more weight if a case is ever reviewed.",
+      "audioScript": "Clinical educator: One thing I'd add about documentation, and it's the habit that will serve you best over a career. Write your notes as soon as you can after the event, not hours later at the end of the shift when you're trying to get away. I know why it gets left — there's always something more urgent than writing, and the writing feels like the part that can wait. Two things happen when it waits. Memory fades, and it fades in a particular direction: you remember what you concluded and lose what you actually saw. And a record made at the time carries far more weight if a case is ever reviewed. Contemporaneous is the word that matters there, and it isn't only about protecting yourself.",
       "questions": [
         {
           "id": "q1",
@@ -1294,11 +1294,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "it is quicker overall"
+              "text": "it is quicker than writing them later"
             },
             {
               "id": "b",
-              "text": "to finish the shift on time"
+              "text": "so that the shift finishes on time"
             },
             {
               "id": "c",
@@ -1328,7 +1328,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Respiratory nurse: Oxygen is a drug and must be prescribed with a target saturation range, like anything else. In some patients with chronic lung disease, high-flow oxygen can actually be dangerous, so we don't just turn it up because someone looks unwell.",
+      "audioScript": "Respiratory nurse: The thing I want to leave you with is this. Oxygen is a drug. It has a dose, it has side effects, and it must be prescribed with a target saturation range on the chart, exactly like anything else you'd give. It isn't a comfort measure and it isn't something you adjust on your own judgement because a patient looks a bit unwell. In some patients with chronic lung disease, high-flow oxygen can actually be dangerous — you can push somebody into retaining carbon dioxide, and by the time you notice, they're drowsy and much harder to help. So find the target range on the chart before you touch the dial. If there isn't one written up, that's the thing to escalate.",
       "questions": [
         {
           "id": "q1",
@@ -1371,7 +1371,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Practice manager: When a patient doesn't speak much English, book a professional interpreter - don't rely on their child or a relative. Family members may soften bad news, miss detail, or the patient may not want them to know everything.",
+      "audioScript": "Practice manager: A reminder about interpreting, because we had a complaint about this last month. When a patient doesn't speak much English, book a professional interpreter. Don't rely on their child, and don't rely on an adult relative either, however willing they are and however much easier it makes the appointment. There are three problems with it. Family members soften bad news — they do it kindly and they do it without noticing. They miss detail, particularly around medication and doses. And the patient may simply not want that person to know everything about them, which they will never say in front of them. Booking takes two minutes on the system and there's a telephone service if nobody can attend.",
       "questions": [
         {
           "id": "q1",
@@ -1380,7 +1380,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "it takes longer"
+              "text": "it takes longer to arrange"
             },
             {
               "id": "b",
@@ -1388,7 +1388,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "it is against the law"
+              "text": "it is against the practice rules"
             }
           ]
         }
@@ -1414,7 +1414,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Nurse: If a patient has a known allergy, they wear a red wristband, and it should match what's documented. If you see a red band but nothing recorded, stop and check before giving anything - an unexplained band is a red flag, not a decoration.",
+      "audioScript": "Nurse: Just so you know how the wristbands work here, because it varies between trusts. If a patient has a known allergy, they wear a red band rather than a white one, and what's on that band should match what's documented in the allergy section of the chart. The two should always agree. Now — if you see a red band and there's nothing recorded, stop. Don't assume somebody put it on by mistake, and don't assume it's left over from a previous admission. Stop and check before giving anything at all, including the simple things people don't think of as drugs. An unexplained band is a red flag, not a decoration, and the commonest reason for one is that the documenting never got finished.",
       "questions": [
         {
           "id": "q1",
@@ -1423,11 +1423,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "ignore the band"
+              "text": "ignore the band and continue"
             },
             {
               "id": "b",
-              "text": "remove the band"
+              "text": "remove the band and carry on"
             },
             {
               "id": "c",

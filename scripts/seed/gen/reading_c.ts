@@ -26,7 +26,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Shared decision-making is often presented as simply offering patients options. In practice, the harder skill is eliciting what matters to the person in front of you — and resisting the pull to steer them toward the choice you would make. The evidence suggests clinicians consistently overestimate how well they already do this."
+          "body": "Shared decision-making is often presented as simply offering patients options, and described that way it sounds like a modest administrative change: list the alternatives, state the risks, let the person choose. Anyone who has tried to do it properly knows that this is the easy half, and that a consultation can contain a faultless recitation of options while remaining, in every respect that matters, a decision made by the clinician.\n\nIn practice, the harder skill is eliciting what matters to the person in front of you — and resisting the pull to steer them toward the choice you would make. The steering is rarely deliberate and almost never announced. It hides in the order the options are given, in which risk is mentioned first, in the word most, in a pause. A clinician who says we could operate, or we could wait and see how things go has already told the patient which of those two sentences carries confidence. None of that is dishonesty. It is the ordinary residue of having an opinion, and the point is not to have no opinion but to know that it is audible.\n\nThe evidence suggests clinicians consistently overestimate how well they already do this. Ask a department whether it practises shared decision-making and almost everyone will say yes; record the consultations and the picture changes considerably. The gap is not explained by carelessness. It is explained by the fact that we are assessing ourselves on our intentions, which we can see, while the patient is assessing us on our behaviour, which we cannot.\n\nThere is a further complication, which is that eliciting what matters is not the same as asking what matters to you. Put cold, that question tends to produce silence or a polite generality, because most people have not rehearsed an answer and are not sure what kind of thing is wanted. What works better is more specific and more concrete: asking what a normal week looks like, what the person is afraid of, what they would most like to be able to do again in six months. The priorities emerge sideways, in the details, and they are frequently not the ones the clinical framing would predict. A patient may care far more about being able to drive to a grandchild's school than about a difference in five-year survival that occupies most of the leaflet.\n\nI want to be careful about one misreading, because it is common and it does real harm. Respecting a patient's priorities is not the same as withholding a recommendation. Some clinicians, anxious not to influence, retreat into a neutrality that patients experience as abandonment — here are the four options, it's entirely up to you — at a moment when the person is frightened and has no basis on which to choose. That is not autonomy. Autonomy is served by saying plainly what you would suggest and why, and then making it genuinely easy to disagree. The second half of that sentence is the part that requires work, and it requires the patient to believe that disagreeing will not cost them the clinician's interest.\n\nNor is this only about the big decisions. The dramatic case — surgery or not, treatment or palliation — is where the literature concentrates, but the everyday version is more consequential in aggregate: whether to start a tablet that must be taken for twenty years, whether to have a scan, whether to accept a referral that means three months of appointments. Those decisions are made quickly, often without either party noticing that a decision was made at all.\n\nWhat would change if this were taken seriously? Less than people fear, and it would not require longer appointments in most cases, though it would require the time to be spent differently. It would mean less of the consultation given to explaining and more to listening, on the grounds that a patient who has been heard needs less explanation, not more. It would mean writing the patient's own words in the notes rather than a summary of them. And it would mean accepting, sometimes, a decision that we think is the wrong one — which is the real test, and the one on which most of our claims to be doing this quietly fail."
         }
       ],
       "questions": [
@@ -36,35 +36,181 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "b",
           "options": [
             {
-              "id": "b",
-              "text": "Drawing out and respecting the patient's own priorities"
+              "id": "a",
+              "text": "Setting out the evidence behind each of the options."
             },
             {
-              "id": "a",
-              "text": "Listing the available options"
+              "id": "b",
+              "text": "Drawing out and respecting the patient's own priorities."
             },
             {
               "id": "c",
-              "text": "Recommending the clinician's preferred choice"
+              "text": "Recommending the choice the clinician would make."
+            },
+            {
+              "id": "d",
+              "text": "Recording the discussion accurately in the notes."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "What does the writer imply about clinicians' self-assessment?",
-          "answer": "a",
+          "answer": "c",
           "options": [
             {
-              "id": "b",
-              "text": "They generally judge it accurately"
+              "id": "a",
+              "text": "They generally judge their own performance accurately."
             },
             {
-              "id": "a",
-              "text": "They tend to overrate their own skill at it"
+              "id": "b",
+              "text": "They tend to underrate their ability in this area."
             },
             {
               "id": "c",
-              "text": "They underrate their ability"
+              "text": "They tend to overrate how well they already do it."
+            },
+            {
+              "id": "d",
+              "text": "They avoid assessing their own skill at it at all."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "According to the second paragraph, how does steering usually occur?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Through explicit advice given late in the consultation."
+            },
+            {
+              "id": "b",
+              "text": "Through the omission of one of the available options."
+            },
+            {
+              "id": "c",
+              "text": "Through the clinician's stated preference for surgery."
+            },
+            {
+              "id": "d",
+              "text": "Through ordering, emphasis and small choices of wording."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "How does the writer explain the gap between intention and practice?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "We judge ourselves on intentions and patients judge behaviour."
+            },
+            {
+              "id": "b",
+              "text": "Clinicians are rarely given feedback on their consultations."
+            },
+            {
+              "id": "c",
+              "text": "The recordings used in the studies were not representative."
+            },
+            {
+              "id": "d",
+              "text": "Departments answer such surveys without much thought."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "Why does the writer say 'what matters to you' is a poor question?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "It sounds intrusive to many patients on first meeting."
+            },
+            {
+              "id": "b",
+              "text": "Most people have no rehearsed answer to give to it."
+            },
+            {
+              "id": "c",
+              "text": "It takes longer than the appointment usually allows."
+            },
+            {
+              "id": "d",
+              "text": "It invites answers about family rather than treatment."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What misreading does the writer particularly want to correct?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "That shared decisions always take longer to reach."
+            },
+            {
+              "id": "b",
+              "text": "That patients rarely wish to be involved at all."
+            },
+            {
+              "id": "c",
+              "text": "That respecting priorities rules out a recommendation."
+            },
+            {
+              "id": "d",
+              "text": "That the approach applies only to major decisions."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "Why does the writer mention decisions about a long-term tablet or a scan?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "They matter more in total than the dramatic cases do."
+            },
+            {
+              "id": "b",
+              "text": "They are the decisions patients most often regret later."
+            },
+            {
+              "id": "c",
+              "text": "They are where guidelines give the clearest direction."
+            },
+            {
+              "id": "d",
+              "text": "They are usually delegated to another member of staff."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What does the writer describe as the real test of this approach?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Whether the consultation can be kept to its allotted time."
+            },
+            {
+              "id": "b",
+              "text": "Whether the patient can repeat the options afterwards."
+            },
+            {
+              "id": "c",
+              "text": "Whether the notes record what the patient actually said."
+            },
+            {
+              "id": "d",
+              "text": "Whether we accept a decision we believe to be wrong."
             }
           ]
         }
@@ -87,45 +233,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "There is a tired argument in medicine that pits evidence against experience, as if a clinician must pledge loyalty to one camp. I find the framing unhelpful. A trial tells me what happened, on average, to a thousand people who are not my patient; my experience tells me how this particular person in front of me tends to respond. Neither claim is complete on its own. The danger I see most often is not too little evidence but too much certainty about how to apply it, with guidelines quoted as though they were commandments rather than carefully hedged averages. Yet I would not return to the era when senior opinion was unchallengeable, because experience untested by data is simply memory flattering itself. The honest position, uncomfortable as it is, sits in the friction between the two."
+          "body": "There is a tired argument in medicine that pits evidence against experience, as if a clinician must pledge loyalty to one camp and defend it at meetings. I find the framing unhelpful, and I think it survives mainly because it is easy to have. Both sides get to feel misunderstood, and nobody has to do the harder work of saying what they would actually do on Tuesday afternoon with the patient in front of them.\n\nA trial tells me what happened, on average, to a thousand people who are not my patient. That is an extraordinary thing to know and it is not nothing; before we had it we were guessing, and the history of medicine is largely a record of confident guesses that turned out to be harmful. But the sentence contains two words that are easy to skate over. Average conceals the fact that within any trial some people did much better than the headline figure and some did worse, and the summary result may describe almost nobody exactly. And not my patient matters because trials recruit people who are, by design, less complicated than the ones who arrive in clinic: fewer other conditions, fewer other drugs, younger, and considerably more likely to attend.\n\nMy experience, meanwhile, tells me how this particular person tends to respond, what they did the last two times, and what they will actually take rather than what they will agree to take. That is real information and there is nowhere else to get it. Neither claim is complete on its own, and the useful clinician is not the one who has chosen between them but the one who can say, out loud, which of the two is doing the work in a given decision.\n\nThe danger I see most often is not too little evidence but too much certainty about how to apply it, with guidelines quoted as though they were commandments rather than carefully hedged averages. Read the guideline itself and you will nearly always find the hedging intact — the authors are usually careful people who know exactly what they do not know. It is in transmission that the caveats fall away. By the time a recommendation has passed through a summary, a slide and a departmental email, should be considered has become must, and a clinician who deviates for a good reason finds themselves defending a decision that the guideline never actually forbade.\n\nYet I would not return to the era when senior opinion was unchallengeable, because experience untested by data is simply memory flattering itself. We remember our striking cases and forget the ordinary ones. We remember the patient who did well on the drug we favour and not the four who quietly did not come back. Every clinician of long standing carries a private case series with no denominator, no control group, and a selection bias so complete that it cannot be corrected by thinking harder. That is not a criticism of anybody's memory; it is how memory works.\n\nSo where does that leave the bedside? With a habit rather than a rule. When the evidence is strong and the patient is like the people in the trial, follow it, and be honest that this is what you are doing. When the patient sits outside the trial population — and a great many do — say so explicitly, to yourself and preferably in the notes, and then reason from the evidence rather than reciting it. And when you depart from a guideline, write down why. Not to protect yourself, though it does, but because a recorded reason can be examined later and an unrecorded instinct cannot.\n\nThe honest position, uncomfortable as it is, sits in the friction between the two. It is a less satisfying place to stand than either camp, and it offers nothing to say at a conference. It is also, as far as I can tell, the only position that survives contact with an actual list of patients.\n\nThere is one more thing I would add, about how this is taught. Trainees are given a great deal of instruction in reading a paper and almost none in the harder judgement that follows: deciding whether this patient resembles that population closely enough for the number to carry over. That judgement is the whole of clinical reasoning and it is treated as though it were obvious. The result is a generation that can criticise a study's methods fluently and then apply its conclusion to somebody it was never about. If I could change one thing in the curriculum, it would be to spend as long on the second question as on the first."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "Which statement best captures the writer's view of evidence and experience?",
-          "answer": "b",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "Clinical experience should override published evidence."
-            },
-            {
-              "id": "c",
-              "text": "Published guidelines should be followed without exception."
+              "text": "Clinical experience should generally override published evidence."
             },
             {
               "id": "b",
-              "text": "Both are necessary and neither is sufficient alone."
+              "text": "Published guidelines should be followed without any exception."
+            },
+            {
+              "id": "c",
+              "text": "Both are necessary and neither is sufficient on its own."
+            },
+            {
+              "id": "d",
+              "text": "Neither can be relied upon in an individual patient's case."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "By saying experience untested by data is 'memory flattering itself', the writer is",
-          "answer": "b",
+          "answer": "a",
           "options": [
             {
-              "id": "b",
+              "id": "a",
               "text": "warning that unexamined experience can be self-deceiving."
             },
             {
-              "id": "a",
+              "id": "b",
               "text": "praising the reliability of senior clinical opinion."
             },
             {
               "id": "c",
               "text": "arguing that data is irrelevant at the bedside."
+            },
+            {
+              "id": "d",
+              "text": "noting that clinicians recall their failures most vividly."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why does the writer say the old argument survives?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Because the evidence on the question remains genuinely unclear."
+            },
+            {
+              "id": "b",
+              "text": "Because trainees are taught it early in their careers."
+            },
+            {
+              "id": "c",
+              "text": "Because journals continue to publish articles about it."
+            },
+            {
+              "id": "d",
+              "text": "Because it is comfortable and avoids the harder question."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "What point does the writer make about the word 'average'?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "It is calculated differently in different kinds of trial."
+            },
+            {
+              "id": "b",
+              "text": "The summary figure may describe almost nobody exactly."
+            },
+            {
+              "id": "c",
+              "text": "It is usually reported without a measure of spread."
+            },
+            {
+              "id": "d",
+              "text": "It applies only where the sample was large enough."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What does the writer say about trial populations?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "They are deliberately less complicated than real patients."
+            },
+            {
+              "id": "b",
+              "text": "They are increasingly representative of ordinary clinics."
+            },
+            {
+              "id": "c",
+              "text": "They exclude anyone taking more than one medicine."
+            },
+            {
+              "id": "d",
+              "text": "They are chosen to match the local population closely."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "According to the writer, where do a guideline's caveats disappear?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "In the original document, which is written too firmly."
+            },
+            {
+              "id": "b",
+              "text": "In the committee stage, before publication is agreed."
+            },
+            {
+              "id": "c",
+              "text": "In transmission, through summaries, slides and emails."
+            },
+            {
+              "id": "d",
+              "text": "In the clinic, where there is no time to read them."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What does the writer say about a long-serving clinician's recollections?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "They improve with the number of patients seen."
+            },
+            {
+              "id": "b",
+              "text": "They are more reliable than a small published trial."
+            },
+            {
+              "id": "c",
+              "text": "They can be corrected by careful reflection afterwards."
+            },
+            {
+              "id": "d",
+              "text": "They form a case series with no denominator or control."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What does the writer recommend when departing from a guideline?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "Seeking a second opinion from a senior colleague first."
+            },
+            {
+              "id": "b",
+              "text": "Writing down the reason so it can be examined later."
+            },
+            {
+              "id": "c",
+              "text": "Explaining the departure to the patient in full detail."
+            },
+            {
+              "id": "d",
+              "text": "Reporting the case to those who wrote the guideline."
             }
           ]
         }
@@ -148,45 +440,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Modern services are built for access, and on its own terms the achievement is real: a patient can now be seen quickly by whoever is free. I would not trade that speed away lightly. But something is lost when nobody in particular knows you. The clinician meeting you for the first time reads your notes as a stranger reads a map, accurately enough, while missing the territory that only repeated visits reveal. A subtle change in how a familiar patient walks into the room can say more than a page of results, and that signal is invisible to someone seeing them once. I am not nostalgic for slower, less available care; demand has changed and so must we. Yet I worry that in optimising for the quick appointment we have quietly decided that knowing someone over years is a luxury rather than a form of safety."
+          "body": "Modern services are built for access, and on its own terms the achievement is real: a patient can now be seen quickly by whoever is free, often on the same day, sometimes without leaving the house. I would not trade that speed away lightly, and I am wary of colleagues who talk about the past as though every patient once had a doctor who knew them from birth. Most did not. What they had was a longer wait.\n\nBut something is lost when nobody in particular knows you, and it is worth being precise about what. The clinician meeting you for the first time reads your notes as a stranger reads a map: accurately enough, following the roads that are marked, while missing the territory that only repeated visits reveal. The notes will say that you have hypertension and a knee problem. They will not say that you minimise, that you always arrive with a list and always leave the important item until last, or that the last time you looked like this you were seriously unwell three weeks later.\n\nA subtle change in how a familiar patient walks into the room can say more than a page of results, and that signal is invisible to someone seeing them once. It is invisible not through inattention but through absence of comparison — there is nothing to compare it with. Continuity is not primarily a matter of warmth, though it is warmer. It is a matter of having a baseline, and a baseline is the single most useful diagnostic instrument in general practice.\n\nThe evidence for this has grown steadily and it is more striking than most clinicians realise. Where patients see the same clinician more often, hospital admissions fall, out-of-hours use falls, prescribing is more conservative, and — in several large studies — mortality is lower. Those are not soft findings about satisfaction. They are the same outcomes we use to justify expensive interventions, produced by an organisational arrangement that costs nothing to prefer and a great deal to give up.\n\nI am not nostalgic for slower, less available care; demand has changed and so must we. Nor do I think continuity should be absolute. There are patients for whom a fresh pair of eyes is exactly the right answer, and there is a kind of long relationship that ossifies, in which a clinician stops noticing a symptom because they have explained it to themselves for years. Every practice has a patient whose real diagnosis was made by the locum. Continuity is a strong default, not a rule, and the argument is not that it should never be broken.\n\nWhat worries me is not that we break it but that we have stopped counting it. Access is measured everywhere: waiting times, appointment availability, how many people got through on the telephone at eight o'clock. Continuity is measured almost nowhere, and in any system the thing that is measured is the thing that is protected. So when the two conflict — and they conflict most days, at the point where somebody decides which slot to offer — access wins by default, not because anybody decided it should.\n\nThere is also an equity argument that is rarely made. Continuity matters most to the patients with the most complicated lives: multiple conditions, several medicines, a housing problem, an appointment history that only makes sense to somebody who was there for it. Those are exactly the patients least able to navigate a system of unfamiliar faces, and they are the ones for whom a fragmented service costs the most to run. A model optimised for the straightforward single problem is, quietly, a model that works least well for the people who need it most.\n\nYet I worry that in optimising for the quick appointment we have quietly decided that knowing someone over years is a luxury rather than a form of safety. It was never a luxury. It was the thing that made the rest of it work, and we have removed it without ever putting the decision to anybody — least of all to the patients, who, when they are asked, say something quite different from what our systems assume.\n\nIf continuity is to survive it will have to be arranged deliberately rather than hoped for, and the arrangements are not complicated. Small teams within a practice, so that a patient belongs to three or four people rather than to twenty. A rule that anyone with a complex long-term condition is booked with their own clinician unless they ask otherwise. And a figure on the same report as the access data, so that when the two are traded against each other the trade is visible. None of that requires new money. It requires somebody to decide that the relationship is part of the treatment rather than a pleasant side effect of it."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What is the writer's central concern about modern services?",
-          "answer": "a",
+          "answer": "b",
           "options": [
             {
-              "id": "b",
-              "text": "That patients now wait too long to be seen."
+              "id": "a",
+              "text": "That patients are now waiting too long to be seen at all."
             },
             {
-              "id": "a",
-              "text": "That faster access has come at the cost of clinicians knowing patients over time."
+              "id": "b",
+              "text": "That faster access has cost clinicians knowledge of patients."
             },
             {
               "id": "c",
-              "text": "That clinical notes are too inaccurate to be trusted."
+              "text": "That clinical notes are too inaccurate to be relied upon."
+            },
+            {
+              "id": "d",
+              "text": "That continuity is valued but is too costly to organise."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "The writer regards long-term familiarity with a patient as",
-          "answer": "b",
+          "answer": "d",
           "options": [
             {
               "id": "a",
               "text": "an outdated luxury that services can no longer afford."
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "less informative than a thorough reading of the notes."
             },
             {
+              "id": "c",
+              "text": "a comfort to the clinician rather than to the patient."
+            },
+            {
+              "id": "d",
+              "text": "a genuine contributor to the safety of the care given."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "What does the map comparison in the second paragraph illustrate?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Notes are accurate but miss what repeated visits reveal."
+            },
+            {
               "id": "b",
-              "text": "a genuine contributor to safe care."
+              "text": "Notes are frequently inaccurate about the patient's history."
+            },
+            {
+              "id": "c",
+              "text": "New clinicians read notes too quickly to absorb them."
+            },
+            {
+              "id": "d",
+              "text": "Patients describe their own history better than notes do."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Why is a change in how a patient walks invisible to a new clinician?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "Because it is too subtle to be noticed in a short visit."
+            },
+            {
+              "id": "b",
+              "text": "Because such changes are rarely clinically significant."
+            },
+            {
+              "id": "c",
+              "text": "Because there is no earlier impression to compare it with."
+            },
+            {
+              "id": "d",
+              "text": "Because it is not the kind of thing that gets recorded."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "How does the writer describe the evidence on continuity?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "As encouraging but limited to patient satisfaction scores."
+            },
+            {
+              "id": "b",
+              "text": "As showing the outcomes used to justify costly treatments."
+            },
+            {
+              "id": "c",
+              "text": "As too inconsistent to support a change in practice."
+            },
+            {
+              "id": "d",
+              "text": "As drawn mainly from a single large national study."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What concession does the writer make about continuity?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "That patients often prefer to see somebody new."
+            },
+            {
+              "id": "b",
+              "text": "That its benefits appear only after several years."
+            },
+            {
+              "id": "c",
+              "text": "That it is impossible to arrange in a large practice."
+            },
+            {
+              "id": "d",
+              "text": "That a long relationship can stop a clinician noticing."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What does the writer say is the deeper problem?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Continuity is not measured, so it is not protected."
+            },
+            {
+              "id": "b",
+              "text": "Access targets were set at the wrong level nationally."
+            },
+            {
+              "id": "c",
+              "text": "Clinicians are not trained to value continuity enough."
+            },
+            {
+              "id": "d",
+              "text": "Patients do not ask for the same clinician often enough."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What is the writer's equity argument?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "Continuity is easier to provide in wealthier areas."
+            },
+            {
+              "id": "b",
+              "text": "Patients with simple problems benefit from it least."
+            },
+            {
+              "id": "c",
+              "text": "Those with the most complicated lives lose the most."
+            },
+            {
+              "id": "d",
+              "text": "Fragmented services are cheaper for well patients."
             }
           ]
         }
@@ -209,26 +647,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Every clinician I know orders the occasional test less for the patient than for the imagined courtroom. I will not pretend I am innocent of this; the fear of being blamed is real and the system does little to soothe it. But I have stopped calling defensive medicine a personal weakness. It is what reasonable people do when the consequences of missing something are career-ending and the consequences of over-investigating are invisible. The harm, though, is not invisible to the patient, who absorbs the extra scans, the incidental findings and the anxiety we have outsourced onto them to calm ourselves. I do not think we will fix this by lecturing doctors about courage. The behaviour will change only when the system stops punishing honest uncertainty more harshly than it punishes overreaction."
+          "body": "Every clinician I know orders the occasional test less for the patient than for the imagined courtroom. I will not pretend I am innocent of this. The fear of being blamed is real, it is not irrational, and the system does very little to soothe it. Anyone who has watched a colleague go through a complaint — the months of it, the way it colours everything else they do that year — will understand why a certain kind of caution takes hold and does not let go.\n\nBut I have stopped calling defensive medicine a personal weakness, and I think the label has done a good deal of damage. It is what reasonable people do when the consequences of missing something are career-ending and the consequences of over-investigating are invisible. Put a thoughtful, conscientious clinician into that arrangement of incentives and you will get defensive practice out of them within about two years. That is not a character flaw. It is a predictable response, and the fact that we keep describing it as a failure of nerve tells you that we would rather have a problem with individuals than a problem with the system.\n\nConsider the asymmetry properly, because it is the whole of the matter. If I miss a diagnosis, the harm is specific, attributable and traceable to a decision with my name on it. If I order a scan that was not needed, the harm is diffuse and lands elsewhere: on the patient who waits longer because the list is full, on the person whose incidental finding leads to a biopsy, on a budget nobody connects to me. No mechanism exists that will ever bring that second harm back to my door. In those conditions, over-investigation is not merely tempting; it is the rational strategy, and everybody in the building has worked it out.\n\nThe harm, though, is not invisible to the patient, who absorbs the extra scans, the incidental findings and the anxiety we have outsourced onto them to calm ourselves. I use the word outsourced deliberately. When I order a test I do not need, I am converting my discomfort into their risk, and doing it in a way that looks, from the outside, like thoroughness. The patient thanks me for it. That is the part I find hardest.\n\nI do not think we will fix this by lecturing doctors about courage. Exhortation has been tried at length and it produces guilt rather than change, because it asks individuals to absorb a risk that the system has arranged for them to avoid. The interventions that work are structural and unglamorous. They include giving clinicians something to offer instead of a test — a review slot within a week, a named person the patient can ring, a written explanation — because a great deal of defensive testing is simply the only available way of ending a difficult conversation safely. They include making the harms of over-investigation visible in the same reports that show the misses, so that both sides of the ledger appear. And they include what happens after an adverse event: whether the review asks what would a reasonable clinician have done with the information available at the time, or whether it works backwards from the answer, which is how almost all of them are read, however carefully they are written.\n\nThere is also something to be said about patients, though it must be said carefully, because they did not design this. Many arrive expecting a test, and a clinician who explains why one is not needed spends time and emotional effort that the alternative does not require. But the expectation is not fixed. Where services have invested in explaining — properly, with time, and with a route back if things change — the demand for investigation has fallen rather than risen, which suggests that what people wanted was never the scan.\n\nThe behaviour will change only when the system stops punishing honest uncertainty more harshly than it punishes overreaction. Until then we will go on describing this as a failure of individual courage, and we will go on being wrong about it, and the scans will go on being ordered by people who know perfectly well that they are not needed."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "How does the writer explain the existence of defensive medicine?",
-          "answer": "a",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "As a rational response to a system that punishes missing things."
-            },
-            {
-              "id": "b",
               "text": "As a simple failure of individual courage among doctors."
             },
             {
+              "id": "b",
+              "text": "As a practice that causes no real harm to any patient."
+            },
+            {
               "id": "c",
-              "text": "As a practice that causes no real harm to patients."
+              "text": "As the result of patients demanding more investigation."
+            },
+            {
+              "id": "d",
+              "text": "As a rational response to a system that punishes misses."
             }
           ]
         },
@@ -243,11 +685,153 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "the system stops penalising uncertainty more than overreaction."
+              "text": "the system stops penalising uncertainty more than excess."
             },
             {
               "id": "c",
               "text": "patients accept the burden of extra tests without complaint."
+            },
+            {
+              "id": "d",
+              "text": "the cost of unnecessary tests falls on the department."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why does the writer object to the label 'personal weakness'?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "Because most clinicians do not practise defensively at all."
+            },
+            {
+              "id": "b",
+              "text": "Because it discourages junior staff from asking for advice."
+            },
+            {
+              "id": "c",
+              "text": "Because it makes an individual problem of a system one."
+            },
+            {
+              "id": "d",
+              "text": "Because the phrase is rarely used about senior clinicians."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "What is the asymmetry the writer describes?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "A missed diagnosis is traceable; an unnecessary test is not."
+            },
+            {
+              "id": "b",
+              "text": "Scans are expensive while consultations are relatively cheap."
+            },
+            {
+              "id": "c",
+              "text": "Complaints are made about seniors more often than juniors."
+            },
+            {
+              "id": "d",
+              "text": "Patients notice delays but not the reasons behind them."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "Why does the writer use the word 'outsourced'?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "To argue that testing should be done by another department."
+            },
+            {
+              "id": "b",
+              "text": "To suggest that the decision belongs to the patient alone."
+            },
+            {
+              "id": "c",
+              "text": "To criticise the practice of referring patients elsewhere."
+            },
+            {
+              "id": "d",
+              "text": "To describe converting the clinician's discomfort into risk."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What does the writer say a great deal of defensive testing really is?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "An attempt to satisfy a guideline that is out of date."
+            },
+            {
+              "id": "b",
+              "text": "The only safe way of ending a difficult conversation."
+            },
+            {
+              "id": "c",
+              "text": "A method of transferring the decision to a specialist."
+            },
+            {
+              "id": "d",
+              "text": "A response to pressure from the patient's own family."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What does the writer say about how adverse events are reviewed?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "They are conducted too long after the event itself."
+            },
+            {
+              "id": "b",
+              "text": "They rarely involve anyone from the clinical team."
+            },
+            {
+              "id": "c",
+              "text": "They tend to be read backwards from the outcome."
+            },
+            {
+              "id": "d",
+              "text": "They focus on documentation rather than decisions."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What does the writer conclude about patient expectations?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Where explanation is invested in, demand for tests falls."
+            },
+            {
+              "id": "b",
+              "text": "They have hardened steadily over the past two decades."
+            },
+            {
+              "id": "c",
+              "text": "They are the principal cause of defensive practice."
+            },
+            {
+              "id": "d",
+              "text": "They cannot be changed within a single consultation."
             }
           ]
         }
@@ -270,45 +854,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "For many years, handover at the change of shift was treated as little more than an administrative ritual — a hurried recitation of names, bed numbers and pending tasks that the outgoing team was glad to be rid of. It is tempting to dismiss it as dead time, yet a growing body of practice suggests the opposite: the handful of minutes spent transferring responsibility is among the most safety-critical of the day. What changed was less the procedure than the way clinicians came to understand it. Rather than a simple data transfer, handover began to be seen as a moment of shared sense-making, in which two teams briefly hold the same picture of a patient before one of them lets go. Structured formats have helped, imposing a predictable order that reduces the chance of an important detail slipping through. But structure is not the whole story. The most effective handovers I have observed are not the most rigidly scripted; they are the ones in which the receiving clinician feels able to interrupt, to query an assumption, to say that something does not quite add up. A format that silences such questions in the name of efficiency may tidy the encounter while quietly defeating its purpose. The lesson, then, is not that we need more paperwork, but that we should protect the conditions under which genuine questions can still be asked."
+          "body": "For many years, handover at the change of shift was treated as little more than an administrative ritual — a hurried recitation of names, bed numbers and pending tasks that the outgoing team was glad to be rid of. It happened in a corridor, or in a room with people coming in and out of it, and its length was determined mainly by how late the previous shift had run. It is tempting to dismiss it as dead time, yet a growing body of practice suggests the opposite: the handful of minutes spent transferring responsibility is among the most safety-critical of the day.\n\nWhat changed was less the procedure than the way clinicians came to understand it. Rather than a simple data transfer, handover began to be seen as a moment of shared sense-making, in which two teams briefly hold the same picture of a patient before one of them lets go. That distinction sounds academic and it is not. If handover is a transfer of data, then the measure of a good one is completeness, and the natural response to a near miss is to add another field to the form. If it is sense-making, the measure is whether the receiving team can now say what they are worried about and what they will do if it happens — which is a different thing entirely, and is not improved by a longer list.\n\nStructured formats have helped, imposing a predictable order that reduces the chance of an important detail slipping through. The gain is real and it is largest where it is least glamorous: the patient who is stable, uninteresting and easily skipped, and who is precisely the one nobody remembers to mention. A structure protects that patient, because it does not permit the list to be shortened by enthusiasm for the sick ones.\n\nBut structure is not the whole story, and the most common error in implementation is to believe that it is. The most effective handovers I have observed are not the most rigidly scripted; they are the ones in which the receiving clinician feels able to interrupt, to query an assumption, to say that something does not quite add up. That sentence — something doesn't add up — is the single most valuable thing anybody says in the room, and it appears on no template.\n\nA format that silences such questions in the name of efficiency may tidy the encounter while quietly defeating its purpose. I have watched handovers of impeccable structure in which nothing was learned, because the reading was performed rather than discussed and the receiving team's role had been reduced to attendance. Efficiency is a seductive measure here precisely because it is easy to see: a handover that finishes in eleven minutes looks better on paper than one that takes nineteen, and no report will ever show what the extra eight minutes prevented.\n\nThere is also the question of who is in the room. Nursing and medical handovers commonly run in parallel, in different places, about the same patients, and each ends convinced it has the picture. The information that goes missing is rarely the clinical detail; it is the contextual one — that the family arrive at six and are angry, that the patient has not eaten for two days, that the trainee is on their own tonight. Some units have combined the two and report that the meeting is longer and the night is shorter, which is the trade I would make.\n\nThe lesson, then, is not that we need more paperwork, but that we should protect the conditions under which genuine questions can still be asked. That means a room rather than a corridor, a protected quarter of an hour that other tasks are not allowed to eat, an explicit invitation to challenge, and — most difficult of all — a senior clinician who visibly welcomes being interrupted. None of those appears in a template, and all of them decide whether the template does any good at all.\n\nI would add a note about the handover that goes badly wrong, since those are the ones we learn from and the ones we describe least accurately afterwards. In every case I have reviewed, the information that would have prevented the harm was in the room. Somebody knew. What failed was not knowledge but transmission, and more particularly the moment at which a junior member of staff decided that their unease was not worth the interruption. Reviews of these events almost always recommend a change to the form. Almost none of them recommends a change to who feels able to speak, because that is harder to write down and harder still to audit."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What change does the writer identify as central to handover becoming safer?",
-          "answer": "a",
+          "answer": "d",
           "options": [
             {
-              "id": "b",
+              "id": "a",
               "text": "The introduction of additional documentation requirements."
             },
             {
-              "id": "c",
-              "text": "A reduction in the number of minutes spent on each handover."
+              "id": "b",
+              "text": "A reduction in the minutes spent on each handover."
             },
             {
-              "id": "a",
-              "text": "A shift in how clinicians understood the purpose of handover."
+              "id": "c",
+              "text": "The move of handover away from the bedside itself."
+            },
+            {
+              "id": "d",
+              "text": "A shift in how clinicians understood its purpose."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "The writer's main reservation about highly scripted formats is that they",
-          "answer": "b",
+          "answer": "a",
           "options": [
             {
-              "id": "b",
+              "id": "a",
               "text": "can discourage the questions that make handover effective."
             },
             {
-              "id": "a",
-              "text": "take longer to complete than informal verbal handovers."
+              "id": "b",
+              "text": "take longer to complete than an informal verbal handover."
             },
             {
               "id": "c",
               "text": "are too difficult for receiving clinicians to memorise."
+            },
+            {
+              "id": "d",
+              "text": "vary too much between wards to be relied upon."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why does the writer say the data-versus-sense-making distinction matters?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "It determines which staff are required to attend."
+            },
+            {
+              "id": "b",
+              "text": "It changes what counts as a good handover entirely."
+            },
+            {
+              "id": "c",
+              "text": "It decides whether handover happens at the bedside."
+            },
+            {
+              "id": "d",
+              "text": "It affects how long the meeting is expected to take."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Which patient does the writer say a structured format most protects?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "The patient who has been admitted most recently."
+            },
+            {
+              "id": "b",
+              "text": "The patient whose condition is deteriorating fastest."
+            },
+            {
+              "id": "c",
+              "text": "The stable patient who is easily skipped over."
+            },
+            {
+              "id": "d",
+              "text": "The patient with the most complex medication."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What does the writer describe as the most valuable thing said in the room?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "That something about a patient does not add up."
+            },
+            {
+              "id": "b",
+              "text": "A clear statement of each patient's diagnosis."
+            },
+            {
+              "id": "c",
+              "text": "The plan agreed by the outgoing consultant."
+            },
+            {
+              "id": "d",
+              "text": "A summary of the tasks still outstanding."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Why does the writer call efficiency a seductive measure?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Because staff are rewarded for finishing shifts on time."
+            },
+            {
+              "id": "b",
+              "text": "Because shorter handovers are preferred by most teams."
+            },
+            {
+              "id": "c",
+              "text": "Because it is the only measure that managers understand."
+            },
+            {
+              "id": "d",
+              "text": "Because what the extra minutes prevented is never seen."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What is usually lost when nursing and medical handovers run separately?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "The clinical detail about each patient's treatment."
+            },
+            {
+              "id": "b",
+              "text": "The contextual information rather than the clinical."
+            },
+            {
+              "id": "c",
+              "text": "The record of which staff member is responsible."
+            },
+            {
+              "id": "d",
+              "text": "The chance to agree a plan for the following day."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What does the writer say is the most difficult condition to create?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "A protected quarter of an hour free of other tasks."
+            },
+            {
+              "id": "b",
+              "text": "A room in which the meeting can be held privately."
+            },
+            {
+              "id": "c",
+              "text": "A senior who visibly welcomes being interrupted."
+            },
+            {
+              "id": "d",
+              "text": "An agreed template that both professions will use."
             }
           ]
         }
@@ -331,14 +1061,14 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "When colleagues describe compassion fatigue, the language often suggests a personal failing, as though the worn-out nurse simply cared too much or managed her feelings too poorly. I resist that reading. The numbness so many of us recognise is rarely a defect of character; more often it is a predictable response to caring intensely within systems that give nothing back. Resilience training has its place, yet I have watched it become a convenient way to relocate an organisational problem onto the individual. Telling an exhausted team to breathe more mindfully, while the rota stays brutal, is not support but evasion. None of this means clinicians bear no responsibility for their own wellbeing, but the heaviest lever sits with those who design the work, not those who endure it."
+          "body": "When colleagues describe compassion fatigue, the language often suggests a personal failing, as though the worn-out nurse simply cared too much or managed her feelings too poorly. I resist that reading, and I resist it for practical reasons rather than sentimental ones: if the diagnosis is wrong, the treatment will be too.\n\nThe numbness so many of us recognise is rarely a defect of character; more often it is a predictable response to caring intensely within systems that give nothing back. It is worth describing what that numbness actually feels like, because the clinical literature makes it sound tidier than it is. It is not sadness. People who are sad about their patients are, in my experience, doing well. It is the moment you notice you have stopped feeling anything about a patient who ought to move you, and the private alarm that follows — the suspicion that something in you has been used up. That suspicion is what drives people out of the professions, and it usually arrives long before anybody has thought to ask.\n\nThere is a distinction worth holding on to here. Being moved by a patient's distress and being depleted by it are not the same thing, and the difference is not in the intensity of the feeling but in what happens next. Where a team has time to speak about a difficult death, and where somebody senior says out loud that it was difficult, the feeling is metabolised. Where it is not, it accumulates. The same shift, the same death, produces two entirely different outcomes depending on whether there was fifteen minutes afterwards and somebody willing to spend them.\n\nResilience training has its place, yet I have watched it become a convenient way to relocate an organisational problem onto the individual. I want to be fair about this: the courses are not badly meant and some of the content is sound. The trouble is what their existence implies. If the organisation's answer to exhaustion is a course, then the exhaustion has been defined as something the exhausted person lacks. Telling an exhausted team to breathe more mindfully, while the rota stays brutal, is not support but evasion.\n\nNor is it an evasion that goes unnoticed. Staff read the offer accurately, and a wellbeing programme introduced in the same month that a vacancy is left unfilled generates something closer to contempt than gratitude. That reaction is often reported upwards as poor engagement, which completes the circle: the workforce is now failing at wellbeing as well as at everything else.\n\nWhat actually helps is duller and harder to photograph. Adequate staffing, so that the work is possible. Rotas published far enough ahead that people can have lives around them. Breaks that are taken rather than theoretically available. A route by which a concern can be raised and answered, so that people are not carrying problems they have no way to put down. And, more than any of these, the ordinary experience of being thanked by somebody who noticed — which costs nothing, is impossible to mandate, and is the item most reliably absent from the units where people are leaving.\n\nNone of this means clinicians bear no responsibility for their own wellbeing. Sleep, boundaries, the willingness to say no to a fourth extra shift, a life that contains something other than the job — these are real, they are the individual's to manage, and no employer can do them on anybody's behalf. But the heaviest lever sits with those who design the work, not those who endure it. When the two are confused, the people best placed to fix the problem are relieved of the obligation, and the people least able to fix it are handed a course and a leaflet and told that the rest is up to them.\n\nOne further point, about who is worst affected. It is not, in my experience, the people who care least. It is the ones who came into the work with the strongest sense of what it was for, and who therefore feel most acutely the gap between what they intended to give and what the day actually permits. That gap has a name in the literature — moral injury — and it describes something quite different from being tired. A person can recover from a hard week. It is much harder to recover from a year of knowing that you gave worse care than you are capable of, for reasons that were never yours to fix."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What does the writer believe is the main cause of compassion fatigue?",
-          "answer": "b",
+          "answer": "c",
           "options": [
             {
               "id": "a",
@@ -346,11 +1076,15 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "The conditions of work in unsupportive systems."
+              "text": "A lack of mindfulness and breathing techniques at work."
             },
             {
               "id": "c",
-              "text": "A lack of mindfulness and breathing techniques."
+              "text": "The conditions of work in systems that give nothing back."
+            },
+            {
+              "id": "d",
+              "text": "Prolonged exposure to patients' distress in itself."
             }
           ]
         },
@@ -364,12 +1098,154 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "is the most effective remedy currently available."
             },
             {
+              "id": "b",
+              "text": "can wrongly shift blame from the system to the person."
+            },
+            {
               "id": "c",
-              "text": "has no value whatsoever in clinical settings."
+              "text": "has no value whatsoever in any clinical setting."
+            },
+            {
+              "id": "d",
+              "text": "should be offered only to staff who ask for it."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why does the writer resist the 'personal failing' reading?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Because it is unkind to staff who are already struggling."
             },
             {
               "id": "b",
-              "text": "can wrongly shift blame from the system to the individual."
+              "text": "Because the research on the subject does not support it."
+            },
+            {
+              "id": "c",
+              "text": "Because it discourages people from entering the professions."
+            },
+            {
+              "id": "d",
+              "text": "Because a wrong diagnosis will produce a wrong treatment."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "How does the writer describe the numbness that staff recognise?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Not sadness, but the absence of feeling where it belongs."
+            },
+            {
+              "id": "b",
+              "text": "A form of sadness that intensifies over several years."
+            },
+            {
+              "id": "c",
+              "text": "An early sign that a person is unsuited to the work."
+            },
+            {
+              "id": "d",
+              "text": "A response that most staff recover from within weeks."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What decides whether a difficult death depletes a clinician?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "How experienced the clinician was at the time."
+            },
+            {
+              "id": "b",
+              "text": "Whether there was time and someone to speak to."
+            },
+            {
+              "id": "c",
+              "text": "Whether the death had been expected by the team."
+            },
+            {
+              "id": "d",
+              "text": "How many similar deaths occurred in the same week."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What does the writer say the existence of a course implies?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "That the organisation has taken the problem seriously."
+            },
+            {
+              "id": "b",
+              "text": "That the content of the course has been well chosen."
+            },
+            {
+              "id": "c",
+              "text": "That the exhaustion is something the person lacks."
+            },
+            {
+              "id": "d",
+              "text": "That the funding was available for nothing better."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What happens when staff react badly to a wellbeing programme?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "The programme is usually withdrawn within the year."
+            },
+            {
+              "id": "b",
+              "text": "Managers commission an external review of the service."
+            },
+            {
+              "id": "c",
+              "text": "Attendance figures are quietly excluded from reports."
+            },
+            {
+              "id": "d",
+              "text": "It is reported upwards as poor engagement by staff."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "Which measure does the writer say matters more than the others?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Being thanked by somebody who actually noticed."
+            },
+            {
+              "id": "b",
+              "text": "Publishing the rota several weeks in advance."
+            },
+            {
+              "id": "c",
+              "text": "Ensuring that breaks are genuinely taken."
+            },
+            {
+              "id": "d",
+              "text": "Filling the vacancies that have been left open."
             }
           ]
         }
@@ -392,26 +1268,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Patients come to us hoping for certainty, and much of our training is an elaborate apparatus for supplying it. Yet the longer I practise, the more I distrust the confident voice, my own included. A great deal of medicine is the careful management of not knowing: a probable diagnosis, a likely response, an outcome we frame in ranges rather than promises. I used to think admitting uncertainty would frighten people or undermine their trust. Experience has taught me almost the opposite. When I say honestly that I am not yet sure but here is how we will find out, patients tend to relax, because they sense they are being told the truth. False confidence, by contrast, eventually collapses, and the trust it borrowed must be repaid with interest. Uncertainty, handled openly, is not a weakness in the relationship; it is often what holds it together."
+          "body": "Patients come to us hoping for certainty, and much of our training is an elaborate apparatus for supplying it. We learn to speak in the declarative, to close a consultation with a plan rather than a question, and to notice that the clinician who sounds sure is the one the patient thanks on the way out. None of that is taught explicitly. It is absorbed, which makes it harder to unlearn.\n\nYet the longer I practise, the more I distrust the confident voice, my own included. A great deal of medicine is the careful management of not knowing: a probable diagnosis, a likely response, an outcome we frame in ranges rather than promises. That is not a failure of the discipline; it is what the discipline actually is. The trouble is that we are trained inside the uncertainty and then asked to speak about it from outside, in a register that has no room for it.\n\nI used to think admitting uncertainty would frighten people or undermine their trust. Experience has taught me almost the opposite. When I say honestly that I am not yet sure but here is how we will find out, patients tend to relax, because they sense they are being told the truth. I did not expect that, and for some years I assumed I was fortunate in my patients. I now think it is more general than that. People are extremely good at detecting when they are being managed, and rather poor at working out what is being concealed — so a patient who senses evasion fills the gap with something worse than the actual answer. Saying I don't know removes a whole category of imagined possibilities.\n\nThere is a distinction here that took me too long to learn. Uncertainty is not the same as having no plan, and what alarms patients is the second rather than the first. I don't know what this is has a very different effect from I don't know what this is, and here is what we do next: this test, by Friday, and I will ring you myself with the result. The second sentence contains exactly as much ignorance as the first. It is heard as competence, because competence in a situation of uncertainty is not knowledge but method.\n\nFalse confidence, by contrast, eventually collapses, and the trust it borrowed must be repaid with interest. It rarely collapses in the room where it was offered. It collapses three weeks later, when the reassurance turns out to have been unwarranted, and what the patient remembers is not that the clinician was wrong — clinicians can be wrong — but that they were certain. That memory transfers. It attaches to the next clinician, and to the one after, and a patient who has been confidently reassured once and let down will interrogate every subsequent reassurance, including the ones that were true.\n\nI should be careful not to overstate the case. There are moments when a patient needs a clear statement more than an honest hedge, and delivering a page of caveats to somebody who has just been given a diagnosis is a kind of cruelty dressed as rigour. The skill is in knowing which moment you are in, and the answer usually comes from watching rather than from a rule. Someone asking for detail wants detail. Someone asking whether they will be all right is asking a different question, and answering it with confidence intervals is a way of not being present.\n\nUncertainty, handled openly, is not a weakness in the relationship; it is often what holds it together. The clinician who has said I'm not sure and been right about that has earned something that cannot be obtained any other way, which is that when they do sound sure, the patient believes them.\n\nThere is a version of this that applies within teams as well, and it may be the more important one. A junior who has never heard a senior say I'm not sure will conclude that certainty is the professional standard, and will start producing it whether or not they have it. That is how a department comes to make confident decisions on thin evidence — not through arrogance, but because nobody has modelled the alternative. The most useful thing I do on a ward round is occasionally to say, in front of everybody, that I do not know what is going on with a patient and to ask what people think. It costs very little and it changes what the trainees believe they are allowed to say."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What has experience taught the writer about admitting uncertainty to patients?",
-          "answer": "b",
+          "answer": "d",
           "options": [
-            {
-              "id": "b",
-              "text": "It tends to strengthen trust because patients sense honesty."
-            },
             {
               "id": "a",
               "text": "It usually frightens patients and damages their trust."
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "It should be hidden behind a confident manner."
+            },
+            {
+              "id": "c",
+              "text": "It is best done only once a diagnosis has been reached."
+            },
+            {
+              "id": "d",
+              "text": "It tends to strengthen trust because patients sense honesty."
             }
           ]
         },
@@ -426,11 +1306,153 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "ultimately costs more trust than it gains."
+              "text": "ultimately costs more trust than it ever gains."
             },
             {
               "id": "c",
               "text": "is necessary when a diagnosis is not yet clear."
+            },
+            {
+              "id": "d",
+              "text": "is expected of clinicians by most of their patients."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "What does the writer say about how the confident manner is learned?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "It is absorbed rather than taught, and so hard to unlearn."
+            },
+            {
+              "id": "b",
+              "text": "It is taught explicitly in the early years of training."
+            },
+            {
+              "id": "c",
+              "text": "It is adopted deliberately by clinicians under pressure."
+            },
+            {
+              "id": "d",
+              "text": "It is required by the way consultations are recorded."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Why does the writer think patients relax when told 'I don't know'?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "Because they were expecting worse news than they receive."
+            },
+            {
+              "id": "b",
+              "text": "Because they have usually suspected the diagnosis already."
+            },
+            {
+              "id": "c",
+              "text": "Because sensed evasion is filled with something worse."
+            },
+            {
+              "id": "d",
+              "text": "Because it shortens the consultation considerably."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What distinction does the writer say took too long to learn?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "Between a probable diagnosis and a confirmed one."
+            },
+            {
+              "id": "b",
+              "text": "Between uncertainty and having no plan at all."
+            },
+            {
+              "id": "c",
+              "text": "Between reassurance and genuine explanation."
+            },
+            {
+              "id": "d",
+              "text": "Between what patients ask and what they mean."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What does the writer say competence consists of under uncertainty?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Knowing which investigations to request first."
+            },
+            {
+              "id": "b",
+              "text": "Being able to give a diagnosis within one visit."
+            },
+            {
+              "id": "c",
+              "text": "Explaining the range of possible outcomes fully."
+            },
+            {
+              "id": "d",
+              "text": "Method rather than knowledge about the answer."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What is the writer's point about when false confidence collapses?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Not in the room, and the memory transfers to others."
+            },
+            {
+              "id": "b",
+              "text": "Immediately, which is why patients rarely accept it."
+            },
+            {
+              "id": "c",
+              "text": "Only where the original reassurance was careless."
+            },
+            {
+              "id": "d",
+              "text": "Once the patient has sought a second opinion."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What caution does the writer add about being open?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "That some patients will always prefer a confident manner."
+            },
+            {
+              "id": "b",
+              "text": "That it takes considerably longer than reassurance does."
+            },
+            {
+              "id": "c",
+              "text": "That caveats given at the wrong moment are a cruelty."
+            },
+            {
+              "id": "d",
+              "text": "That it must be recorded carefully in the patient's notes."
             }
           ]
         }
@@ -453,45 +1475,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Tell a patient that a drug halves their risk and they will reach for the prescription pad themselves. Tell them the same fact differently, that it lowers their chance from two in a hundred to one in a hundred, and the enthusiasm cools. Both statements are true, which is precisely the problem. I have come to think that the way we phrase risk is not a neutral wrapping around the numbers but part of the message itself, shaping a decision before the patient has consciously made one. This is not an accusation that colleagues deceive; most of us reach for the more dramatic figure without noticing. Yet good intentions do not undo the effect. If I genuinely want a patient to choose for themselves, I owe them the plainest, least theatrical version of the numbers, even when a more flattering framing would nudge them toward what I privately think is right."
+          "body": "Tell a patient that a drug halves their risk and they will reach for the prescription pad themselves. Tell them the same fact differently — that it lowers their chance from two in a hundred to one in a hundred — and the enthusiasm cools noticeably. Both statements are true, and they describe the identical trial result. That is precisely the problem, and it is not a problem about arithmetic.\n\nI have come to think that the way we phrase risk is not a neutral wrapping around the numbers but part of the message itself, shaping a decision before the patient has consciously made one. The effect is large, it is reproducible, and it has been demonstrated in clinicians as reliably as in patients — which is worth pausing on, because the usual assumption is that this is something numerate people are immune to. We are not. Present the same trial to two rooms of doctors in the two formats and the proportion who say they would prescribe differs substantially. Nobody in either room believes they were persuaded by the wording.\n\nThis is not an accusation that colleagues deceive; most of us reach for the more dramatic figure without noticing. And there is a reason we reach for it that has nothing to do with sales. Relative risk is what the paper reports, it is what the abstract says, and it is what the pharmaceutical representative wrote on the folder. Converting it into the form the patient can actually use requires knowing their baseline risk, which is often not to hand and sometimes not knowable, and doing a small calculation in the middle of a consultation that is already running late. The dramatic version is not chosen over the plain one. It is simply the one that arrives.\n\nYet good intentions do not undo the effect. The patient who starts a tablet believing their risk was halved, and who later learns it moved from two per cent to one, has not been lied to and will still feel that something was done to them. And they will be right, in the sense that matters: they consented to a proposition they had misunderstood, and the misunderstanding was one we introduced.\n\nSome further complications are worth stating plainly. Positive and negative framings of the same figure — ninety survive, ten die — produce different choices, and there is no neutral option to retreat to, since both are equally true and both are frames. Nor do people process a small probability well in the abstract; one in a hundred means very little until it is placed against something familiar. And a risk expressed over a year sounds entirely different from the same risk expressed over ten, which is why the time horizon has to be said out loud rather than assumed.\n\nNone of this means the enterprise is hopeless. The practical answers are known and unglamorous. Use natural frequencies rather than percentages — out of a hundred people like you, this many — because they are handled far more reliably by everybody, including us. Give both the benefit and the harm in the same units on the same scale, since a benefit in relative terms next to a harm in absolute terms is not a comparison at all. Give both framings when the decision is close. Show it as well as saying it, because a hundred faces on a page settle in a way that a sentence does not. And say the time period every time.\n\nIf I genuinely want a patient to choose for themselves, I owe them the plainest, least theatrical version of the numbers, even when a more flattering framing would nudge them toward what I privately think is right. That last clause is the difficult one. There are days when I am confident that the tablet is the better choice, and on those days the temptation is not to lie but simply to reach for the version that helps. Resisting it is the whole of the obligation, and it is only ever tested when I care about the answer.\n\nA final observation, which is about consent rather than about numbers. We ask patients to sign for procedures whose risks are given in percentages that nobody in the room has translated into anything usable, and we record their agreement as informed. If the framing shapes the decision, then a consent obtained under one framing is not the same as consent obtained under another, and the signature does not distinguish between them. I do not know what to do about that at scale. At the level of the individual conversation, though, the remedy is available and it takes about ninety seconds: give the number twice, in two forms, and ask the person to say back what they think it means."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What is the writer's main point about how risk is communicated?",
-          "answer": "a",
+          "answer": "c",
           "options": [
             {
-              "id": "b",
-              "text": "Patients should be given only the most encouraging version of the figures."
+              "id": "a",
+              "text": "Patients should be given only the most encouraging figures."
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "Statistics are too confusing to share with patients at all."
             },
             {
-              "id": "a",
-              "text": "The wording of a risk shapes the decision, even when the facts are identical."
+              "id": "c",
+              "text": "The wording shapes the decision even when facts are identical."
+            },
+            {
+              "id": "d",
+              "text": "Risk is best expressed as a single overall percentage."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "The writer believes that clinicians who use dramatic framing usually",
-          "answer": "b",
+          "answer": "a",
           "options": [
             {
-              "id": "b",
+              "id": "a",
               "text": "do so unintentionally, yet still influence the decision."
             },
             {
-              "id": "a",
-              "text": "do so deliberately to deceive their patients."
+              "id": "b",
+              "text": "do so deliberately in order to deceive their patients."
             },
             {
               "id": "c",
-              "text": "have no real effect on the patient's choice."
+              "text": "have no real effect on the patient's eventual choice."
+            },
+            {
+              "id": "d",
+              "text": "are following the wording used in the guidelines."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "What does the writer say about the framing effect in clinicians?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "It is weaker than in patients but still measurable."
+            },
+            {
+              "id": "b",
+              "text": "It is as reliable as in patients, and unnoticed by them."
+            },
+            {
+              "id": "c",
+              "text": "It disappears once the effect has been explained to them."
+            },
+            {
+              "id": "d",
+              "text": "It has been demonstrated only in trainees so far."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Why does the writer say the relative figure is the one that arrives?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Because it is easier for patients to remember afterwards."
+            },
+            {
+              "id": "b",
+              "text": "Because it is the figure that regulators require to be given."
+            },
+            {
+              "id": "c",
+              "text": "Because it makes the consultation shorter to conduct."
+            },
+            {
+              "id": "d",
+              "text": "Because it is what the paper and the folder report."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What does the writer concede about the patient who feels misled?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "They were not lied to, but they are right in what matters."
+            },
+            {
+              "id": "b",
+              "text": "They have usually misremembered what they were told."
+            },
+            {
+              "id": "c",
+              "text": "They would have made the same choice either way."
+            },
+            {
+              "id": "d",
+              "text": "They rarely raise the matter with the clinician again."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What does the writer say about positive and negative framings?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "The negative version is generally the more accurate."
+            },
+            {
+              "id": "b",
+              "text": "Patients prefer the positive version and should get it."
+            },
+            {
+              "id": "c",
+              "text": "Both are true, so there is no neutral option available."
+            },
+            {
+              "id": "d",
+              "text": "The difference between them is small in practice."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "Which practical measure does the writer recommend?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "Expressing every figure as a percentage of the whole."
+            },
+            {
+              "id": "b",
+              "text": "Natural frequencies — so many out of a hundred like you."
+            },
+            {
+              "id": "c",
+              "text": "Giving the benefit first and the harm at the end."
+            },
+            {
+              "id": "d",
+              "text": "Leaving the numbers out unless the patient asks."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "When does the writer say the obligation is actually tested?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "When the patient has already decided what they want."
+            },
+            {
+              "id": "b",
+              "text": "When the evidence for the treatment is weak or mixed."
+            },
+            {
+              "id": "c",
+              "text": "When there is no time to explain the figures properly."
+            },
+            {
+              "id": "d",
+              "text": "When the clinician cares which way the patient chooses."
             }
           ]
         }
@@ -514,7 +1682,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "I once timed how long I let patients speak before interrupting, and the result embarrassed me. It was a matter of seconds. We are trained to gather information efficiently, and interrupting feels like keeping the consultation on track. Yet the studies suggest that patients who are allowed to finish rarely ramble; most have a short, organised story to tell if we simply let them tell it. When I bit my tongue and waited, the consultation did not run over as I had feared, and the real reason for the visit often surfaced only in that uninterrupted final sentence. Listening, I have realised, is not the passive thing it sounds. It is an active discipline, and one I am still, after many years, learning to practise."
+          "body": "I once timed how long I let patients speak before interrupting, and the result embarrassed me. It was a matter of seconds. I had thought of myself as a good listener — most of us do, and the belief is remarkably resistant to evidence — and what the recording showed was a clinician who let a person begin a sentence and then took the consultation away from them.\n\nWe are trained to gather information efficiently, and interrupting feels like keeping the consultation on track. That is the honest account of it. The interruption is not rudeness and it does not feel like rudeness from the inside; it feels like helping. A patient begins to describe something diffusely, we recognise a pattern we have seen many times, and we ask the question that will confirm it. The intention is to get to the answer faster. What actually happens is that the consultation stops being the patient's account and becomes our hypothesis, tested with closed questions the patient can only answer yes or no to.\n\nYet the studies suggest that patients who are allowed to finish rarely ramble; most have a short, organised story to tell if we simply let them tell it. The figures are consistently reassuring — the great majority stop within a minute or two, and the ones who take longer are usually the ones with most to say. That is not what clinicians predict when asked, and I did not believe it either until I stopped interrupting and watched what happened.\n\nWhen I bit my tongue and waited, the consultation did not run over as I had feared, and the real reason for the visit often surfaced only in that uninterrupted final sentence. That last part is the finding that changed my practice. The order in which people say things is not the order of importance. The frightening item is very often held back, offered last, and prefaced with something like — and it's probably nothing, but. A clinician who has redirected the conversation four minutes earlier will never hear that sentence, and will conclude the appointment satisfied, having answered a question the patient did not come to ask.\n\nThere is a technique here that is worth naming, because it is not merely a matter of staying quiet. After the patient stops, ask whether there is anything else — and ask it again once more, because the second asking is where the difficult item usually appears. Then summarise briefly and check. The whole of it takes under a minute and it front-loads the agenda, which is the practical reason it does not lengthen the consultation: the alternative is discovering the real problem with a hand on the door, at which point there is no time and no good option.\n\nListening, I have realised, is not the passive thing it sounds. It is an active discipline, and one I am still, after many years, learning to practise. It requires tolerating silence, which is more uncomfortable than it sounds and is where most attempts fail — three seconds feels like thirty when you are the one waiting. It requires giving up the pleasure of recognising a pattern early. And it requires accepting that you will sometimes hear something that lengthens the consultation, which is not a failure of the method but the method working.\n\nI would add one thing for anybody minded to try it. Do not judge it by the first week. The habit of interrupting is deep and it reasserts itself under pressure, so the useful measure is not whether you managed it today but whether you notice, afterwards, when you did not.\n\nI should say something about the consultations where this is hardest, since it is easy to recommend from a quiet room. On a late-running afternoon, with a full waiting room and a patient who begins slowly, every instinct pushes towards the closed question, and I still take it more often than I would like. But the arithmetic does not change with the pressure. The minute saved at the start is spent, with interest, on the follow-up appointment for the thing that was never mentioned — and that appointment falls on somebody, even if it is not me. Pressure is the argument for the technique, not against it."
         }
       ],
       "questions": [
@@ -534,25 +1702,171 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "c",
               "text": "Consultations always run far over their allotted time."
+            },
+            {
+              "id": "d",
+              "text": "Patients prefer to be asked a series of direct questions."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "The writer describes listening as",
-          "answer": "b",
+          "answer": "d",
           "options": [
             {
               "id": "a",
               "text": "an effortless and naturally passive activity."
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "a habit that slows consultations down unnecessarily."
             },
             {
+              "id": "c",
+              "text": "a technique best learned early and then left alone."
+            },
+            {
+              "id": "d",
+              "text": "an active discipline that requires ongoing practice."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "What does the writer say interrupting feels like from the inside?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Helping, rather than anything resembling rudeness."
+            },
+            {
               "id": "b",
-              "text": "an active skill that requires ongoing practice."
+              "text": "A necessary discourtesy that the clinician regrets."
+            },
+            {
+              "id": "c",
+              "text": "A habit picked up from more senior colleagues."
+            },
+            {
+              "id": "d",
+              "text": "A response to pressure from the appointment system."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "What happens to the consultation once the clinician interrupts?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "The patient becomes reluctant to volunteer information."
+            },
+            {
+              "id": "b",
+              "text": "The diagnosis is reached more quickly but less accurately."
+            },
+            {
+              "id": "c",
+              "text": "It becomes the clinician's hypothesis tested by closed questions."
+            },
+            {
+              "id": "d",
+              "text": "The remaining time is spent on the least important item."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What does the writer say about how long patients actually speak?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "Rather longer than the studies had led them to expect."
+            },
+            {
+              "id": "b",
+              "text": "Most stop within a minute or two of beginning."
+            },
+            {
+              "id": "c",
+              "text": "It varies too widely for any figure to be useful."
+            },
+            {
+              "id": "d",
+              "text": "It depends chiefly on how the first question is put."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What does the writer identify as the most important finding?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "That patients dislike being redirected mid-sentence."
+            },
+            {
+              "id": "b",
+              "text": "That closed questions produce less accurate answers."
+            },
+            {
+              "id": "c",
+              "text": "That the technique saves time across a whole clinic."
+            },
+            {
+              "id": "d",
+              "text": "That the frightening item is usually held until last."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "Why does the writer say asking 'anything else?' twice matters?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "The difficult item usually appears at the second asking."
+            },
+            {
+              "id": "b",
+              "text": "Patients often forget what they meant to say the first time."
+            },
+            {
+              "id": "c",
+              "text": "It signals to the patient that the clinician is not rushed."
+            },
+            {
+              "id": "d",
+              "text": "It gives the clinician time to summarise what was said."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What advice does the writer give to someone trying this?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "Begin with the patients who are known to be talkative."
+            },
+            {
+              "id": "b",
+              "text": "Record a consultation and review it with a colleague."
+            },
+            {
+              "id": "c",
+              "text": "Judge it by whether you notice, not by the first week."
+            },
+            {
+              "id": "d",
+              "text": "Explain the approach to the patient before starting."
             }
           ]
         }
@@ -575,7 +1889,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Screening campaigns are sold on a simple, appealing logic: find disease early and you save lives. Some of the time this is true, and I would not wish to discourage a frightened patient from a test that genuinely helps. But the arithmetic is rarely as clean as the posters suggest. Better imaging detects abnormalities that would never have caused harm, and once a finding has a name it is very hard to leave it alone. The patient who arrived feeling well leaves feeling marked, and the follow-up itself carries its own small risks. I am not against early detection; I am against pretending that detection is free. What troubles me is how seldom we tell people that doing nothing, watchfully, is sometimes the most skilful thing a clinician can offer."
+          "body": "Screening campaigns are sold on a simple, appealing logic: find disease early and you save lives. Some of the time this is true, and I would not wish to discourage a frightened patient from a test that genuinely helps. Screening for some conditions has changed outcomes substantially, and the people who built those programmes did careful work over decades. My argument is not with screening. It is with the sentence that stands in for it.\n\nThe arithmetic is rarely as clean as the posters suggest. A test that finds disease early also finds things that are not disease, things that are disease but would never have troubled the person, and things nobody can classify. Better imaging detects abnormalities that would never have caused harm, and once a finding has a name it is very hard to leave it alone. That last point is the one that gets least attention. The naming is the decisive event. An unnamed shadow is a thing to be watched; a named lesion is a thing to be dealt with, and the pressure to deal with it comes from everywhere at once — the patient, the family, the referral pathway, and the clinician's own reasonable fear of being the person who left it.\n\nThe patient who arrived feeling well leaves feeling marked, and the follow-up itself carries its own small risks. Those risks are individually small and collectively substantial: the biopsy that bleeds, the repeated scan, the year of six-monthly appointments in which somebody is a patient rather than a person. And there is a harm that does not appear in any register, which is what it does to somebody to be told that they are being watched. Several of the people I have followed for years have told me that they never quite went back to feeling well, and that the appointment is a reminder rather than a reassurance.\n\nI am not against early detection; I am against pretending that detection is free. The honest account of any screening programme has three columns, not one: the people helped, the people harmed, and — much the largest group — the people for whom nothing changed but who went through the process anyway. Public material almost always gives the first column, sometimes gives the third, and very rarely gives the second in any form a person could use. That is not because those who write it are dishonest. It is because a leaflet that gives all three is harder to write, harder to approve, and produces lower uptake, and uptake is what the programme is measured on.\n\nThere is a further difficulty for the individual clinician, which is that the benefits of screening are statistical and the harms are personal. I will never know which of my patients was saved by a test; I will know exactly which one had the complication. That asymmetry acts on us in the opposite direction from the defensive one, and it can push a thoughtful clinician into a scepticism that is just as unexamined as the enthusiasm it replaced.\n\nWhat troubles me most is how seldom we tell people that doing nothing, watchfully, is sometimes the most skilful thing a clinician can offer. It is presented, when it is presented at all, as the absence of a decision — we'll leave it for now — rather than as a decision with its own reasoning and its own plan. Said properly, it is neither passive nor negligent: here is what we are watching, here is what would change my mind, and here is when we will look again. That is a considerably harder thing to offer than a referral, it takes longer to explain, and it is the option most likely to be second-guessed if things turn out badly. Which is precisely why it needs to be named as a choice rather than left to look like an omission.\n\nI would separate two things that are often run together, since a good deal of the argument gets lost in the confusion between them. Organised screening of a whole population is a carefully designed programme with an evidence base and a monitored balance of harms and benefits. Opportunistic testing of the well person in front of you — the scan added because they asked, the blood test broadened because the form was open — has none of that. It carries all the same downstream consequences with none of the design, and it is by far the commoner of the two. Most of the overdiagnosis I have seen did not come from a national programme. It came from a single reasonable-looking box being ticked."
         }
       ],
       "questions": [
@@ -585,35 +1899,181 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "b",
           "options": [
             {
-              "id": "b",
-              "text": "That the harms of finding harmless abnormalities are downplayed."
-            },
-            {
               "id": "a",
               "text": "That screening tests are always unnecessary and should stop."
             },
             {
+              "id": "b",
+              "text": "That the harms of finding harmless abnormalities are downplayed."
+            },
+            {
               "id": "c",
               "text": "That imaging technology is not yet sensitive enough."
+            },
+            {
+              "id": "d",
+              "text": "That too few patients are offered screening at all."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "The writer's view of choosing not to investigate is that it",
-          "answer": "a",
+          "answer": "d",
           "options": [
             {
-              "id": "b",
+              "id": "a",
               "text": "is always negligent and exposes patients to risk."
             },
             {
-              "id": "a",
-              "text": "can be a legitimate and skilful clinical choice."
+              "id": "b",
+              "text": "should be the default response to every finding."
             },
             {
               "id": "c",
-              "text": "should be the default response to every finding."
+              "text": "is acceptable only where the patient requests it."
+            },
+            {
+              "id": "d",
+              "text": "can be a legitimate and skilful clinical choice."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why does the writer say the naming of a finding is decisive?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "A named lesion becomes something that must be dealt with."
+            },
+            {
+              "id": "b",
+              "text": "A name allows the finding to be coded and audited."
+            },
+            {
+              "id": "c",
+              "text": "Patients remember the name long after the appointment."
+            },
+            {
+              "id": "d",
+              "text": "Naming determines which specialist takes it on."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "What harm does the writer say appears in no register?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "The cost of repeated scans to the department."
+            },
+            {
+              "id": "b",
+              "text": "The delay caused to other people on the list."
+            },
+            {
+              "id": "c",
+              "text": "What being watched does to a well person."
+            },
+            {
+              "id": "d",
+              "text": "The bleeding that occasionally follows a biopsy."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What are the three columns in the writer's honest account?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "The tests done, the diseases found, and the lives saved."
+            },
+            {
+              "id": "b",
+              "text": "Those helped, those harmed, and those unchanged."
+            },
+            {
+              "id": "c",
+              "text": "The cost, the benefit, and the uptake achieved."
+            },
+            {
+              "id": "d",
+              "text": "The eligible, the invited, and the attending."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Why does public material omit the harms, according to the writer?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Because the harms are still disputed among researchers."
+            },
+            {
+              "id": "b",
+              "text": "Because those who write it have not read the evidence."
+            },
+            {
+              "id": "c",
+              "text": "Because patients find the figures too difficult to follow."
+            },
+            {
+              "id": "d",
+              "text": "Because the programme is measured on its uptake."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What asymmetry does the writer describe for the clinician?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Benefits are statistical while harms are personally known."
+            },
+            {
+              "id": "b",
+              "text": "Harms occur early while benefits appear many years later."
+            },
+            {
+              "id": "c",
+              "text": "Screening is praised publicly and criticised privately."
+            },
+            {
+              "id": "d",
+              "text": "Referrals are counted while explanations are not."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "How does the writer say watchful waiting should be presented?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "As the safest option available to most patients."
+            },
+            {
+              "id": "b",
+              "text": "As a delay until further evidence becomes available."
+            },
+            {
+              "id": "c",
+              "text": "As a decision, with a plan and a trigger to act."
+            },
+            {
+              "id": "d",
+              "text": "As the choice the clinician would make themselves."
             }
           ]
         }
@@ -636,45 +2096,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "I am not one of those clinicians who pines for the age of paper. Electronic records have caught errors that would once have slipped through, and I would not give that safety back. Still, something has shifted in the consulting room that the efficiency figures do not capture. I spend a measurable part of every appointment looking at a monitor rather than a face, and patients have learned to wait politely while I type. The tool meant to free my attention has, in practice, divided it. None of this is an argument against the technology itself, which is largely sound; it is an argument about how thoughtlessly we have arranged it. A device that improves the record while degrading the encounter has solved one problem by creating another we are slower to measure."
+          "body": "I am not one of those clinicians who pines for the age of paper. I remember the age of paper. I remember the notes that could not be found, the letter that arrived after the patient died, the drug chart in handwriting that three of us could not agree on. Electronic records have caught errors that would once have slipped through, and I would not give that safety back for anything.\n\nStill, something has shifted in the consulting room that the efficiency figures do not capture. I spend a measurable part of every appointment looking at a monitor rather than a face, and patients have learned to wait politely while I type. That politeness is the detail I find most telling. Nobody complains. They have simply adjusted, the way people adjust to a queue, and adjusted expectations do not appear in a satisfaction survey.\n\nThe tool meant to free my attention has, in practice, divided it. And divided is the accurate word rather than reduced: I am not doing less, I am doing two things at once, and the evidence on that is not encouraging. When I am typing I am not watching, and a good deal of what a consultation yields is watched rather than heard. The hesitation before an answer. The glance at the person who came in with them. The hand that goes to the abdomen while the mouth says it's nothing much.\n\nNone of this is an argument against the technology itself, which is largely sound; it is an argument about how thoughtlessly we have arranged it. Consider how much of what I type exists for somebody other than the patient in front of me. Codes that permit an audit. Fields required for a payment. Boxes that must be completed before the screen will let me move on, several of which have no bearing on the person's problem. A record designed around the encounter would capture what happened; a record designed around everything else requires the encounter to stop while it is fed.\n\nThe arrangement of the room matters more than people expect, and it is the cheapest thing to change. A screen placed so that both of us can see it converts the machine from a barrier into a third party in the conversation — patients read their own results over my shoulder, correct my summary, and ask better questions. The same machine, turned ninety degrees, becomes something I disappear behind. I have watched the same clinician be experienced quite differently in two rooms, and the only variable was the desk.\n\nThe other change worth making is about sequence. I now try to type nothing for the first few minutes, whatever it costs me later, because the beginning is where the account arrives and the account is what I most need. I write while I examine, or after, or during the parts where the patient is thinking. It feels less efficient and the notes are no worse.\n\nThere is a further cost that falls on the notes themselves rather than on the encounter, and it is rarely discussed. A record assembled from templates and copied forward tends to grow while saying less. Anyone who has read a modern entry knows the feeling of scrolling through a great deal of structured text looking for the two sentences that describe what somebody actually thought. The paper note was shorter, and often clearer, because writing it by hand imposed a discipline that a copy-and-paste function removes.\n\nA device that improves the record while degrading the encounter has solved one problem by creating another we are slower to measure. That last phrase carries the weight of my argument. The first problem was countable — missing notes, illegible doses — so it was solved. The second is a matter of what a patient felt able to say and whether anybody noticed how they looked while saying it, and there is no field for that on any form I have ever completed.\n\nI have one suggestion that costs nothing and that I would offer to anybody who recognises this. At the end of the consultation, turn away from the screen entirely — not partly, not with a hand still on the mouse — and ask whether there is anything else. The gesture is small and it is read accurately by everybody in the room. What it says is that the record is finished and the person is not, and in my experience it is the point at which about a third of the useful information in a consultation arrives."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What is the writer's overall position on electronic records?",
-          "answer": "b",
+          "answer": "d",
           "options": [
             {
               "id": "a",
               "text": "They are a mistake and paper systems were better."
             },
             {
-              "id": "c",
+              "id": "b",
               "text": "They have entirely improved the quality of consultations."
             },
             {
-              "id": "b",
-              "text": "They bring real benefits but are poorly arranged around the patient."
+              "id": "c",
+              "text": "They matter less than the time allowed for each patient."
+            },
+            {
+              "id": "d",
+              "text": "They bring real benefits but are arranged poorly for patients."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "By saying the technology has 'solved one problem by creating another we are slower to measure', the writer suggests that",
-          "answer": "b",
+          "answer": "a",
           "options": [
             {
-              "id": "b",
+              "id": "a",
               "text": "the gain in record-keeping comes with a less visible cost."
             },
             {
-              "id": "a",
-              "text": "the harm to the encounter is easy to quantify."
+              "id": "b",
+              "text": "the harm to the encounter is easy enough to quantify."
             },
             {
               "id": "c",
               "text": "the technology has no measurable benefits at all."
+            },
+            {
+              "id": "d",
+              "text": "the original problem was never as serious as claimed."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why does the writer mention that patients wait politely?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "To show that most patients are content with the change."
+            },
+            {
+              "id": "b",
+              "text": "To criticise clinicians who type for too long at a time."
+            },
+            {
+              "id": "c",
+              "text": "Because adjusted expectations do not show in a survey."
+            },
+            {
+              "id": "d",
+              "text": "Because the delay lengthens the appointment noticeably."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Why does the writer prefer the word 'divided' to 'reduced'?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "Because less work is completed in the same appointment."
+            },
+            {
+              "id": "b",
+              "text": "Because two things are being done at the same time."
+            },
+            {
+              "id": "c",
+              "text": "Because the attention returns once typing has stopped."
+            },
+            {
+              "id": "d",
+              "text": "Because patients notice division but not reduction."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What point does the writer make about what is typed?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "It takes longer to enter than it did on paper."
+            },
+            {
+              "id": "b",
+              "text": "It is rarely read by the next clinician who sees the patient."
+            },
+            {
+              "id": "c",
+              "text": "It duplicates information already held elsewhere."
+            },
+            {
+              "id": "d",
+              "text": "Much of it exists for somebody other than the patient."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What does the writer say about the position of the screen?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "A shared screen turns the machine into a third party."
+            },
+            {
+              "id": "b",
+              "text": "It matters far less than the software being used."
+            },
+            {
+              "id": "c",
+              "text": "Patients prefer not to see their own record on it."
+            },
+            {
+              "id": "d",
+              "text": "Rooms cannot easily be rearranged in practice."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What change of sequence does the writer now try to make?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "Completing the required fields before the patient enters."
+            },
+            {
+              "id": "b",
+              "text": "Writing the summary while the patient is still speaking."
+            },
+            {
+              "id": "c",
+              "text": "Typing nothing during the first few minutes."
+            },
+            {
+              "id": "d",
+              "text": "Dictating the note rather than typing it afterwards."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What criticism does the writer make of the notes themselves?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "They are stored in a form that is hard to search."
+            },
+            {
+              "id": "b",
+              "text": "They grow longer while saying steadily less."
+            },
+            {
+              "id": "c",
+              "text": "They are written for auditors rather than clinicians."
+            },
+            {
+              "id": "d",
+              "text": "They omit the results that matter most to patients."
             }
           ]
         }
@@ -697,45 +2303,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Hospitals love to celebrate teamwork, usually with posters of smiling staff and slogans about pulling together. I have worked in teams that fit the poster and were nonetheless quietly dysfunctional. What distinguishes the genuinely good ones, in my experience, is not warmth but candour: the junior who feels able to say 'I think that dose is wrong' to the consultant without rehearsing the sentence for an hour first. Friendliness can even disguise the problem, because a team that prizes getting along may bury the disagreements that keep patients safe. I am not arguing that morale does not matter; a miserable team frays. But if I had to choose, I would take a slightly tense group where people speak up over a cheerful one where everyone defers. Safety lives in the awkward sentences nobody wants to say."
+          "body": "Hospitals love to celebrate teamwork, usually with posters of smiling staff and slogans about pulling together. I have worked in teams that fit the poster and were nonetheless quietly dysfunctional, and I have worked in one that would have photographed badly and was the safest place I have ever practised. The gap between those two things has occupied me for most of my career.\n\nWhat distinguishes the genuinely good ones, in my experience, is not warmth but candour: the junior who feels able to say I think that dose is wrong to the consultant without rehearsing the sentence for an hour first. That rehearsal is the thing to watch for. Almost everybody has done it — composing the wording, waiting for the right moment, deciding in the end that it was probably fine. The time spent rehearsing is time in which the drug is being drawn up, and the sentence that is never said would have taken four seconds.\n\nFriendliness can even disguise the problem, because a team that prizes getting along may bury the disagreements that keep patients safe. This is the part that surprises people. A close, affectionate team has more to lose from an awkward moment, not less. Where everybody likes each other, contradicting a colleague carries a social cost that contradicting a stranger does not, and the cost is paid in the currency the team values most. I have seen a friendly unit take a bad decision that three people privately doubted, precisely because doubting it out loud would have felt unkind.\n\nI am not arguing that morale does not matter; a miserable team frays, people leave, and the ones who remain stop offering anything beyond the minimum. Warmth is not the opposite of safety and I would not want to be read as saying so. The point is narrower: warmth is not evidence of safety, and it is routinely treated as though it were. When a department is described as having a lovely atmosphere, nothing whatever has been established about whether a trainee could stop a procedure in it.\n\nWhat produces candour, if it is not friendliness? Mostly the behaviour of the senior people, and specifically what they do in the seconds after being contradicted. Not what they say afterwards in a meeting about culture — what their face does at the time. A consultant who thanks the person, checks, and is visibly untroubled by having been wrong teaches an entire department in one exchange. A consultant who is polite but faintly cooler for the rest of the shift teaches it something else, just as efficiently, and would be genuinely surprised to be told so.\n\nIt also helps to make the awkward sentence smaller. Some units have adopted an agreed phrase — a form of words anybody can use that means I need us to stop and check — and the value of it is not the wording but the fact that using it requires no courage, because it is procedural rather than personal. You are not accusing anybody; you are saying a sentence the unit has agreed exists. That is a much lower bar than composing an objection from scratch while somebody senior is waiting.\n\nBut if I had to choose, I would take a slightly tense group where people speak up over a cheerful one where everyone defers. That is not a comfortable preference and I hold it with some reluctance, having spent time in both. Safety lives in the awkward sentences nobody wants to say — and a team's real character is not what it is like on a good day, but what happens the moment somebody more junior than you turns out to be right.\n\nOne last observation, about how these teams are assessed. Almost every measure we use captures warmth rather than candour, because warmth is what a questionnaire can reach: do you feel supported, do colleagues treat you with respect. Those are worth asking. But the question that would actually tell you something is harder and rarer — when did you last disagree with somebody more senior than you, and what happened? A department where most people cannot answer it has told you what it is, whatever its scores."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What does the writer consider the most important feature of a good team?",
-          "answer": "b",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "A warm and friendly atmosphere among staff."
+              "text": "A warm and friendly atmosphere among the staff."
             },
             {
               "id": "b",
-              "text": "The freedom to speak up and voice disagreement."
+              "text": "Strong loyalty that avoids any open conflict."
             },
             {
               "id": "c",
-              "text": "Strong loyalty that avoids open conflict."
+              "text": "The freedom to speak up and voice disagreement."
+            },
+            {
+              "id": "d",
+              "text": "A clear division of duties between its members."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "The writer suggests that an emphasis on friendliness can",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "guarantee that patients are always kept safe."
+            },
+            {
+              "id": "b",
+              "text": "be the only thing that genuinely matters here."
+            },
+            {
+              "id": "c",
+              "text": "make new members slower to join the group."
+            },
+            {
+              "id": "d",
+              "text": "conceal the disagreements that protect patients."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why does the writer say the rehearsed sentence is significant?",
           "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "guarantee that patients are kept safe."
-            },
-            {
-              "id": "c",
-              "text": "be the only thing that genuinely matters."
+              "text": "It shows the junior has thought the problem through."
             },
             {
               "id": "b",
-              "text": "conceal the disagreements that protect patients."
+              "text": "The rehearsal takes longer than the sentence would."
+            },
+            {
+              "id": "c",
+              "text": "It usually results in a better-worded objection."
+            },
+            {
+              "id": "d",
+              "text": "It indicates that the team lacks written procedures."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Why does a close team find contradiction harder?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "The social cost is paid in what the team values most."
+            },
+            {
+              "id": "b",
+              "text": "Members see each other outside work as well."
+            },
+            {
+              "id": "c",
+              "text": "Disagreement is discouraged by the senior staff."
+            },
+            {
+              "id": "d",
+              "text": "They meet less often to review their decisions."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What is the narrow point the writer wants to make about warmth?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "That it matters less than competence in a crisis."
+            },
+            {
+              "id": "b",
+              "text": "That it declines steadily as a team becomes busier."
+            },
+            {
+              "id": "c",
+              "text": "That it is not evidence of safety, though treated as such."
+            },
+            {
+              "id": "d",
+              "text": "That it can be produced by good leadership alone."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What does the writer say teaches a department most?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "The training given to new members when they arrive."
+            },
+            {
+              "id": "b",
+              "text": "What is said afterwards in a meeting about culture."
+            },
+            {
+              "id": "c",
+              "text": "The written policy on raising clinical concerns."
+            },
+            {
+              "id": "d",
+              "text": "What a senior's face does on being contradicted."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "Why is an agreed phrase useful, according to the writer?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Using it is procedural, so it requires no courage."
+            },
+            {
+              "id": "b",
+              "text": "It is clearer than the words a junior would choose."
+            },
+            {
+              "id": "c",
+              "text": "It creates a record of the concern being raised."
+            },
+            {
+              "id": "d",
+              "text": "It allows the objection to be made anonymously."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "How does the writer say a team's real character is revealed?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "By how it behaves during a serious incident."
+            },
+            {
+              "id": "b",
+              "text": "By what happens when a junior turns out to be right."
+            },
+            {
+              "id": "c",
+              "text": "By whether its members socialise outside work."
+            },
+            {
+              "id": "d",
+              "text": "By how quickly it responds to a new procedure."
             }
           ]
         }
@@ -758,45 +2510,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "We talk a great deal now about learning from error, and the phrase has acquired a reassuring, almost therapeutic tone. I welcome the shift away from naming and shaming, which only ever taught people to hide. But I have watched the new language curdle into its own kind of avoidance. A team can hold a flawless review, fill the form correctly, log the action points and feel absolved, while nothing about the work actually changes. Learning is not the meeting; it is the altered behaviour that should follow it, and that part is far harder and far less often achieved. I am not asking for a return to blame. I am asking that we stop mistaking the documentation of reflection for reflection itself, because a patient harmed twice by the same lapse will not be comforted to know the first incident was thoroughly discussed."
+          "body": "We talk a great deal now about learning from error, and the phrase has acquired a reassuring, almost therapeutic tone. I welcome the shift away from naming and shaming, which only ever taught people to hide — and it taught it thoroughly, because the lesson was learned in a single exposure and never needed repeating.\n\nBut I have watched the new language curdle into its own kind of avoidance. A team can hold a flawless review, fill the form correctly, log the action points and feel absolved, while nothing about the work actually changes. The meeting is genuine, the regret is genuine, and the following Tuesday is identical to the one before. What has happened is that an activity has been substituted for an outcome, and because the activity is visible and the outcome is not, the substitution passes unnoticed by everybody including the people doing it.\n\nLearning is not the meeting; it is the altered behaviour that should follow it, and that part is far harder and far less often achieved. It is worth looking at where the action points go. In my experience they fall into three groups. A small number are structural — something is moved, a default is changed, a form is redesigned — and those hold. A larger number are educational: staff will be reminded, a teaching session will be arranged. Those decay within about a term, because a reminder competes with everything else in a busy person's attention and loses. And a third group are not actions at all, though they are written in the action column: awareness will be raised, vigilance will be increased. Nobody can do those on a Tuesday, and nobody does.\n\nThere is a second failure that is less often named, which concerns who is in the room. The review typically involves the people at the sharp end and the people who write the report. It rarely involves whoever controls the thing that would have to change — the rota, the equipment budget, the staffing establishment — and so the review reliably generates recommendations of exactly the kind it has the power to implement, which is to say, the educational kind. That is not a conspiracy. It is what happens when a group is asked to solve a problem using only the tools it happens to be holding.\n\nI am not asking for a return to blame, and I want to be clear about that because the argument is often heard as nostalgia for it. Blame produces concealment, concealment produces repetition, and the repetition is invisible until somebody is harmed badly enough to make it public. Nothing in what I am describing is improved by finding a person to hold responsible. But there is a difference between not blaming and not changing, and the two have become entangled: a culture that has learned to say nobody is at fault sometimes stops one sentence short of saying and therefore something must be different.\n\nI am asking that we stop mistaking the documentation of reflection for reflection itself. The practical test I now apply is a simple one, and it is uncomfortable to use. Six months after a review, go and look. Not at the form, not at whether the action was signed off — at the actual work. Is the thing done differently? If the honest answer is no, the review did not fail to be thorough; it failed to be a review, whatever the paperwork says.\n\nBecause a patient harmed twice by the same lapse will not be comforted to know the first incident was thoroughly discussed. That sentence is the whole of my argument and I would put it on the wall of every meeting room where these discussions happen.\n\nI would add one thing about the people involved, since the argument so far has been about systems. The clinician at the centre of a serious incident is, in almost every case I have seen, the person most determined that it should not happen again, and the least in need of persuading. They are also the person least often asked what they think the fix is, because the review is being done to them rather than with them. That is a waste of the best information in the room, and it is one of the reasons the resulting actions so often address the wrong thing."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What is the writer's main criticism of current approaches to learning from error?",
-          "answer": "a",
+          "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "That reviews are completed but rarely lead to changed behaviour."
+              "text": "That blaming individuals still remains far too common."
             },
             {
               "id": "b",
-              "text": "That blaming individuals remains far too common."
+              "text": "That reviews are completed but rarely change behaviour."
             },
             {
               "id": "c",
               "text": "That teams hold too few formal reviews of incidents."
+            },
+            {
+              "id": "d",
+              "text": "That reviews are held too soon after the event itself."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "The writer's attitude towards the move away from 'naming and shaming' is that it",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "was a mistake that ought now to be reversed."
+            },
+            {
+              "id": "b",
+              "text": "has completely solved the problem of hidden errors."
+            },
+            {
+              "id": "c",
+              "text": "is welcome, but has produced a new form of avoidance."
+            },
+            {
+              "id": "d",
+              "text": "has made formal review procedures unnecessary."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "What does the writer say has been substituted for an outcome?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "An activity, which is visible where the outcome is not."
+            },
+            {
+              "id": "b",
+              "text": "A form, which is easier to complete than to act on."
+            },
+            {
+              "id": "c",
+              "text": "A discussion, which the team finds more comfortable."
+            },
+            {
+              "id": "d",
+              "text": "A deadline, which passes without anybody noticing."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Which group of action points does the writer say holds?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Those requiring staff to be reminded of a procedure."
+            },
+            {
+              "id": "b",
+              "text": "Those calling for increased vigilance on the ward."
+            },
+            {
+              "id": "c",
+              "text": "Those agreed by the whole team at the meeting."
+            },
+            {
+              "id": "d",
+              "text": "Those that are structural — a default or a form changed."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "Why does the writer say educational action points decay?",
           "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "was a mistake that should be reversed."
+              "text": "Because the teaching is usually delivered too late."
             },
             {
               "id": "b",
-              "text": "is welcome, but has produced a new form of avoidance."
+              "text": "Because a reminder competes for attention and loses."
             },
             {
               "id": "c",
-              "text": "has completely solved the problem of hidden errors."
+              "text": "Because staff who attended have often moved on."
+            },
+            {
+              "id": "d",
+              "text": "Because they are written in vague and general terms."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What is the second failure the writer identifies?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "That reviews are held without the patient's family."
+            },
+            {
+              "id": "b",
+              "text": "That the same staff attend every review meeting."
+            },
+            {
+              "id": "c",
+              "text": "That whoever controls the change is not in the room."
+            },
+            {
+              "id": "d",
+              "text": "That findings are not shared with other departments."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "What does the writer say has become entangled?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "Not blaming anybody and not changing anything."
+            },
+            {
+              "id": "b",
+              "text": "Learning from error and reporting it externally."
+            },
+            {
+              "id": "c",
+              "text": "Individual accountability and professional regulation."
+            },
+            {
+              "id": "d",
+              "text": "The review meeting and the written incident form."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What practical test does the writer now apply?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Asking whether the action was signed off on time."
+            },
+            {
+              "id": "b",
+              "text": "Counting how many reviews the department holds."
+            },
+            {
+              "id": "c",
+              "text": "Checking whether the same error recurs anywhere."
+            },
+            {
+              "id": "d",
+              "text": "Looking six months later at whether the work changed."
             }
           ]
         }
@@ -819,25 +2717,29 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "For years I treated empathy as a personality trait, something a clinician either possessed or did not. That assumption was comfortable, but it quietly excused those of us who struggled to connect, as though warmth were beyond our control. The evidence now points the other way. Empathy, it seems, behaves less like a fixed gift and more like a technique that can be rehearsed, observed and refined. I do not mean the performance of feeling, which patients detect instantly, but the disciplined habit of pausing before responding. Critics worry that teaching empathy reduces it to a checklist, and they are not entirely wrong, yet a clumsy attempt to understand still beats a polished silence. What I have come to believe is that the skill is not in feeling more, but in showing, reliably, that one is trying to understand at all."
+          "body": "For years I treated empathy as a personality trait, something a clinician either possessed or did not. That assumption was comfortable, and its comfort should have made me suspicious of it. It quietly excused those of us who struggled to connect, as though warmth were beyond our control — and an ability that is beyond your control is an ability you cannot be criticised for lacking.\n\nThe evidence now points the other way. Empathy, it seems, behaves less like a fixed gift and more like a technique that can be rehearsed, observed and refined. Studies of communication training show measurable, durable change in what clinicians actually do, and — more to the point — in what patients report having experienced. That second finding is the one that matters, since a clinician's own sense of having been empathic correlates poorly with the patient's.\n\nI do not mean the performance of feeling, which patients detect instantly and resent. There is a manner, common in people who have been on a course and taken the wrong lesson from it, of head-tilting and soft-voiced sympathy that convinces nobody. What I mean is duller and more reliable: the disciplined habit of pausing before responding. Noticing that somebody has said something significant and not moving straight past it. Naming what you think you have heard, and being willing to be corrected. Almost all of it is a matter of what you do in the two seconds after the patient stops speaking, and two seconds is a length of time anybody can be trained to use differently.\n\nCritics worry that teaching empathy reduces it to a checklist, and they are not entirely wrong. Something is lost when a way of being with people is broken into components and assessed, and the assessment can produce exactly the performance I have just described — trainees demonstrating the behaviours because they are being watched. I have sat on panels where a candidate produced every listed item and left the room having connected with nobody.\n\nYet a clumsy attempt to understand still beats a polished silence, and this is where I part company with the critics. Their objection describes a real risk and offers nothing in its place. The alternative to teaching it badly is not leaving it untaught; it is teaching it better. And the population we are arguing about is not the naturally warm clinician, who will manage regardless, but the one who has never been shown how and who currently gets no help at all. That person does not become worse by being taught a technique. They become someone whose patients feel attended to, which is the outcome we are supposedly protecting.\n\nThere is also a practical case that gets made too rarely, perhaps because it sounds mercenary. Patients who feel understood disclose more, and the disclosure is often the diagnosis. They adhere better to treatments they helped choose. They complain less, and when they do complain it is more often about being treated dismissively than about a clinical outcome. None of that is the reason to do it, but it does dispose of the idea that this is a soft addition to the real work rather than part of it.\n\nWhat I have come to believe is that the skill is not in feeling more, but in showing, reliably, that one is trying to understand at all. That formulation matters to me because it removes the excuse I used for years. I am not required to feel a great deal about every patient in a full clinic; nobody could, and pretending is worse than not. I am required to make it evident, in the small ways that are entirely learnable, that I am attempting to see the thing from where they are sitting.\n\nA final caution, about conditions rather than about individuals. Every behaviour I have described is harder in a ten-minute appointment than in a twenty-minute one, and harder still at the end of a long shift. It would be dishonest to present this as purely a matter of personal technique when the pressure under which people work does a good deal of the determining. Teaching the skill and then placing somebody in conditions where it cannot be exercised is a way of arranging for them to fail and then attributing the failure to their character — which is precisely the assumption I began by rejecting."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What is the writer's main point about empathy?",
-          "answer": "b",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "It is an innate trait that cannot be taught."
-            },
-            {
-              "id": "c",
-              "text": "It is best expressed through a fixed checklist."
+              "text": "It is an innate trait that cannot be taught at all."
             },
             {
               "id": "b",
+              "text": "It is best expressed by following a fixed checklist."
+            },
+            {
+              "id": "c",
+              "text": "It matters considerably less than technical competence."
+            },
+            {
+              "id": "d",
               "text": "It can be developed as a learnable, practised skill."
             }
           ]
@@ -845,19 +2747,161 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "stem": "The writer's attitude towards critics who fear empathy becomes a checklist is best described as",
-          "answer": "a",
+          "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "partly sympathetic but ultimately unconvinced by their objection."
+              "text": "completely dismissive of any concern they raise."
             },
             {
               "id": "b",
-              "text": "completely dismissive of any concern they raise."
+              "text": "partly sympathetic but unconvinced by their objection."
             },
             {
               "id": "c",
               "text": "in full agreement that teaching empathy is harmful."
+            },
+            {
+              "id": "d",
+              "text": "puzzled that the objection is raised at all."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "Why should the old assumption have made the writer suspicious?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "An uncontrollable ability cannot be criticised as lacking."
+            },
+            {
+              "id": "b",
+              "text": "It contradicted what the evidence already showed."
+            },
+            {
+              "id": "c",
+              "text": "It had been rejected by most of their colleagues."
+            },
+            {
+              "id": "d",
+              "text": "It applied only to clinicians early in their careers."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "Which research finding does the writer say matters most?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "That the training effect lasts for several years."
+            },
+            {
+              "id": "b",
+              "text": "That clinicians report feeling more empathic."
+            },
+            {
+              "id": "c",
+              "text": "That patients report a different experience."
+            },
+            {
+              "id": "d",
+              "text": "That the effect is largest among trainees."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What does the writer say most of the skill consists of?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "Choosing words carefully before beginning to speak."
+            },
+            {
+              "id": "b",
+              "text": "What is done in the two seconds after the patient stops."
+            },
+            {
+              "id": "c",
+              "text": "Maintaining eye contact throughout the consultation."
+            },
+            {
+              "id": "d",
+              "text": "Asking about the patient's circumstances at home."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "Why does the writer part company with the critics?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "Their objection has been disproved by recent studies."
+            },
+            {
+              "id": "b",
+              "text": "They have misunderstood how the training is delivered."
+            },
+            {
+              "id": "c",
+              "text": "They are describing a risk that rarely occurs."
+            },
+            {
+              "id": "d",
+              "text": "They name a real risk and offer nothing instead."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "Who does the writer say the argument is really about?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "The clinician who has never been shown how."
+            },
+            {
+              "id": "b",
+              "text": "The trainee being assessed by an examination panel."
+            },
+            {
+              "id": "c",
+              "text": "The naturally warm clinician under time pressure."
+            },
+            {
+              "id": "d",
+              "text": "The patient who has complained about their care."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "Why does the writer say their formulation matters personally?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "It makes the skill easier to assess in a trainee."
+            },
+            {
+              "id": "b",
+              "text": "It explains why some clinicians never improve."
+            },
+            {
+              "id": "c",
+              "text": "It removes the excuse they used for years."
+            },
+            {
+              "id": "d",
+              "text": "It shows that feeling and showing are the same."
             }
           ]
         }
@@ -880,45 +2924,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Respecting a patient's autonomy has become an unquestioned good, and rightly so after centuries of doctors deciding what was best for people without asking them. But I have begun to notice how the word can be used to avoid the harder parts of the job. Handing someone a list of options and stepping back is not autonomy; it can be abandonment dressed in respectful language. A frightened patient asking 'what would you do?' is not surrendering their independence, and refusing to answer in the name of neutrality strikes me as a quiet cruelty. Real respect, I think, means offering a recommendation while leaving the door genuinely open to refusal. Autonomy was never meant to be a reason for the expert in the room to fall silent."
+          "body": "Respecting a patient's autonomy has become an unquestioned good, and rightly so after centuries of doctors deciding what was best for people without asking them. The change is among the most important that has happened in medicine in my working life, and nothing that follows should be read as wishing it undone.\n\nBut I have begun to notice how the word can be used to avoid the harder parts of the job. Handing someone a list of options and stepping back is not autonomy; it can be abandonment dressed in respectful language. The giveaway is the phrase it's entirely up to you, delivered to a person who has had ten minutes to absorb a diagnosis and no way at all of weighing what they have just been told. Said to somebody informed and settled, that sentence hands over power. Said to somebody frightened, it hands over a burden.\n\nA frightened patient asking what would you do? is not surrendering their independence, and refusing to answer in the name of neutrality strikes me as a quiet cruelty. The question is not a request to be relieved of the decision. It is a request for the one piece of information the patient cannot get anywhere else — what somebody who has seen a hundred people in this position thinks. Withholding it does not leave them more free. It leaves them choosing with less.\n\nI understand where the reluctance comes from. We were taught, correctly, that our influence is considerable, and that a recommendation from the person in the coat is not weighed like a recommendation from anybody else. The conclusion drawn from that, though, has been the wrong one. The answer to having influence is not to pretend you have none; it is to be explicit about it. I would suggest this, and here is why, and I want to be clear that plenty of reasonable people choose otherwise — that sentence uses the influence honestly rather than hiding it behind an arrangement of options.\n\nThere is a further sleight of hand in the way choices are sometimes presented. An option list is never neutral: it has an order, a length, and a set of things left off it entirely, all decided by the clinician. A patient offered three treatments has already had every other possibility removed by somebody else, and describing what remains as their free choice overstates the freedom considerably. That is not an argument against offering options. It is an argument against the innocence with which we describe having done so.\n\nReal respect, I think, means offering a recommendation while leaving the door genuinely open to refusal — and the second half is where the work is. Leaving the door open is not a form of words. It is what happens when the patient walks through it. A clinician who recommends, is declined, and then continues with visible good will has demonstrated something no consent form can capture. One who becomes brisk, or who lets a note record that the patient declined advice in a tone that will be read for years, has closed a door while appearing to hold it open.\n\nThere is a version of this that arises with families, and it is harder still. Relatives frequently ask us not to tell somebody something, or press for a treatment the patient has not asked for, and the language of autonomy is used on both sides of that room. The patient's is the one that governs. But saying so is not the end of the difficulty, only the beginning of a conversation that takes time nobody has allocated.\n\nAutonomy was never meant to be a reason for the expert in the room to fall silent. It was meant to settle who decides. Those are different questions, and confusing them has allowed a good deal of avoidance to pass as principle.\n\nI would end with the practical form of words I have settled on, offered for what it is worth. Having set out the options, I say: if you would like to know what I would suggest, I am happy to tell you — and if you would rather decide without that, which some people do, that is entirely reasonable too. It takes eight seconds, it hands the choice about the recommendation back to the patient, and in fifteen years almost nobody has declined. What they wanted was not to be left alone with it. They wanted to be asked first."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "stem": "What is the writer's main criticism of how autonomy is sometimes applied?",
-          "answer": "a",
+          "answer": "b",
           "options": [
             {
-              "id": "b",
+              "id": "a",
               "text": "That patients are given too little freedom to choose."
             },
             {
-              "id": "a",
+              "id": "b",
               "text": "That clinicians use it as an excuse to withhold guidance."
             },
             {
               "id": "c",
-              "text": "That doctors still decide everything for patients."
+              "text": "That doctors still decide everything for their patients."
+            },
+            {
+              "id": "d",
+              "text": "That it is explained in language patients cannot follow."
             }
           ]
         },
         {
           "id": "q2",
           "stem": "The writer believes that genuine respect for autonomy involves",
-          "answer": "b",
+          "answer": "d",
           "options": [
             {
               "id": "a",
               "text": "withholding any personal recommendation to stay neutral."
             },
             {
+              "id": "b",
+              "text": "deciding the best course and persuading the patient to it."
+            },
+            {
               "id": "c",
-              "text": "deciding the best course and persuading the patient to accept it."
+              "text": "leaving the decision until the patient raises it again."
+            },
+            {
+              "id": "d",
+              "text": "recommending while honouring the right to refuse."
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "stem": "What does the writer say about the phrase 'it's entirely up to you'?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "It hands over power to some and a burden to others."
             },
             {
               "id": "b",
-              "text": "making a recommendation while honouring the patient's right to refuse."
+              "text": "It is the clearest way of expressing respect for a choice."
+            },
+            {
+              "id": "c",
+              "text": "It should be avoided in every clinical conversation."
+            },
+            {
+              "id": "d",
+              "text": "It is used mainly by clinicians who are short of time."
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "stem": "How does the writer interpret the question 'what would you do?'",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "As a sign that the patient has not understood the options."
+            },
+            {
+              "id": "b",
+              "text": "As a request to be relieved of making the decision."
+            },
+            {
+              "id": "c",
+              "text": "As a request for information available nowhere else."
+            },
+            {
+              "id": "d",
+              "text": "As an invitation to repeat the explanation more simply."
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "stem": "What does the writer say is the wrong conclusion about influence?",
+          "answer": "b",
+          "options": [
+            {
+              "id": "a",
+              "text": "That patients weigh a clinician's view too heavily."
+            },
+            {
+              "id": "b",
+              "text": "That having influence means pretending to have none."
+            },
+            {
+              "id": "c",
+              "text": "That influence should be disclosed on the consent form."
+            },
+            {
+              "id": "d",
+              "text": "That it can be removed by presenting options in order."
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "stem": "What point does the writer make about option lists?",
+          "answer": "d",
+          "options": [
+            {
+              "id": "a",
+              "text": "They are usually longer than a patient can consider."
+            },
+            {
+              "id": "b",
+              "text": "They should be prepared in advance of the appointment."
+            },
+            {
+              "id": "c",
+              "text": "They vary too much between individual clinicians."
+            },
+            {
+              "id": "d",
+              "text": "They are shaped by the clinician and so not neutral."
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "stem": "Where does the writer say the real work lies?",
+          "answer": "a",
+          "options": [
+            {
+              "id": "a",
+              "text": "In what happens when the patient actually refuses."
+            },
+            {
+              "id": "b",
+              "text": "In choosing the wording of the recommendation."
+            },
+            {
+              "id": "c",
+              "text": "In deciding which options to place on the list."
+            },
+            {
+              "id": "d",
+              "text": "In recording the discussion fully in the notes."
+            }
+          ]
+        },
+        {
+          "id": "q8",
+          "stem": "What does the writer say autonomy was meant to settle?",
+          "answer": "c",
+          "options": [
+            {
+              "id": "a",
+              "text": "How much information a patient should be given."
+            },
+            {
+              "id": "b",
+              "text": "Whether relatives may be told about a diagnosis."
+            },
+            {
+              "id": "c",
+              "text": "Who decides, rather than who should stay silent."
+            },
+            {
+              "id": "d",
+              "text": "When a clinician may overrule a patient's wish."
             }
           ]
         }
@@ -944,159 +3134,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Ask most patients what they remember about a good clinician, and they rarely mention a diagnosis or a procedure. They remember being listened to. It is a curious feature of modern healthcare that the skill patients value most is the one we train for least. Curricula devote years to pathology and pharmacology, and a handful of afternoons to what is dismissively called communication skills - as though listening were a soft add-on rather than the instrument through which almost everything else is delivered. Part of the problem is that listening looks like doing nothing. In a system that measures productivity by throughput, a clinician who sits quietly while a patient finds their words can appear to be wasting time. Yet the evidence points the other way. Studies of consultations show that when clinicians resist the urge to interrupt - and on average they interrupt within eleven seconds - patients disclose more, and disclose it sooner. The history, still the source of most diagnoses, improves. Paradoxically, the pause that seems to cost time saves it, because the alternative is the second appointment, the missed detail, the treatment aimed at the wrong target. There is also a defensive reflex at work. Listening fully means hearing distress you may not be able to fix, and there is a real temptation to retreat into tasks - to check a figure, to reach for the prescription pad - precisely when a patient becomes upset. The retreat is understandable, but patients read it accurately as avoidance. What they need in that moment is not a solution but acknowledgement: the sense that their fear has been registered by another human being. None of this is an argument against clinical knowledge. A warm clinician who is wrong is no comfort. The point is that knowledge and attention are not competitors for the same time; they are partners. The most efficient consultation is not the fastest but the one that gathers the right information - and the right information arrives most readily when the patient feels heard. If listening is a skill, it can be taught and practised. It begins with something almost embarrassingly simple: not speaking. It continues with the discipline of letting a silence sit long enough for the patient to fill it. And it ends, ideally, with a short summary handed back - so the thing that's really worrying you is - which checks that we have understood and tells the patient, unmistakably, that we were listening all along."
+          "body": "Ask most patients what they remember about a clinician who helped them, and they rarely begin with the diagnosis. They begin with the feeling of having been heard. It is one of the quieter ironies of modern healthcare that the capacity patients value above almost everything else is the one our training addresses least. A curriculum will devote years to pathology and pharmacology and perhaps a handful of afternoons to what is filed, a little dismissively, under communication skills — as though listening were an optional courtesy laid over the real work, rather than the instrument through which almost all of the real work is delivered.\n\nPart of the difficulty is that listening does not look like anything. It produces no image, no result, no line in the notes that an auditor can count. In a system that measures productivity by throughput, a clinician sitting quietly while a patient assembles a difficult sentence can appear, to anyone glancing through the door, to be doing nothing at all. The appearance is misleading, and the evidence has been saying so for a long time. Recordings of consultations show that clinicians redirect the patient's opening account remarkably early — within seconds rather than minutes — and that when they resist the urge, patients disclose more, and disclose it sooner. The history remains the source of most diagnoses; it improves when it is allowed to finish. The pause that appears to cost time is very often the thing that saves it, because the alternative is the second appointment, the detail that surfaced too late, and the treatment aimed at the wrong target.\n\nThere is a second reason, less comfortable to admit. Listening fully means hearing distress that you may not be able to relieve. When a patient's voice breaks, there is a strong and very human pull towards the tasks that lie within reach: to check a figure, to turn to the screen, to reach for the prescription pad. The movement is understandable and it is almost never conscious, but patients read it accurately, and what they read is withdrawal. In that particular moment they are seldom asking for a solution. They are asking for acknowledgement — for evidence that the fear has landed somewhere outside their own head.\n\nNone of this is an argument against clinical knowledge, and it would be a poor reading of the case to take it as one. A warm clinician who is wrong is no comfort to anybody. The argument is rather that knowledge and attention are not two claims on the same scarce hour, competing to be funded. They work on each other. The most efficient consultation is not the shortest one; it is the one that gathers the right information, and the right information arrives most readily from a patient who believes there is somewhere for it to go. Seen that way, attention is not what remains after the clinical work is done. It is a condition of the clinical work being done accurately.\n\nIf listening is a skill rather than a temperament, then it can be taught, practised and improved, which is a more hopeful proposition than the alternative. It begins with something almost embarrassingly plain: not speaking. It continues with the harder discipline of letting a silence stand long enough for the patient to fill it, which requires tolerating several seconds of a discomfort that belongs, in truth, to the clinician rather than to the patient. And it ends, at its best, with a short summary handed back across the desk — so the thing that's really worrying you is — which does two things at once. It tests whether we have understood, and it tells the patient, unmistakably and without any need to say so, that we were listening the whole time.\n\nWhat would change if we took this seriously? Not, probably, the length of the appointment, which is decided elsewhere and by other pressures. What would change is what happens inside it. Teams that have tried protecting the opening minute — no screen, no typing, no clarifying questions until the patient stops — report that the consultations do not run longer, and that they arrive somewhere more useful. That finding is easy to state and surprisingly hard to adopt, because it asks clinicians to give up the one thing a busy day makes them reluctant to surrender: the sense of being in control of where the conversation goes. The gain, when they do, is that they find out where it was going anyway."
         }
       ],
       "questions": [
         {
           "id": "q1",
-          "stem": "What do patients most remember about a good clinician?",
-          "answer": "a",
+          "stem": "What does the writer suggest about the way clinicians are trained?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "being listened to"
+              "text": "It gives too little attention to pathology and pharmacology."
             },
             {
               "id": "b",
-              "text": "an accurate diagnosis"
+              "text": "It treats listening as a temperament that cannot be improved."
             },
             {
               "id": "c",
-              "text": "a skilful procedure"
+              "text": "It spends least time on the skill patients value most highly."
+            },
+            {
+              "id": "d",
+              "text": "It has recently begun to place listening before clinical science."
             }
           ]
         },
         {
           "id": "q2",
-          "stem": "The writer finds it curious that:",
+          "stem": "According to the second paragraph, why can listening be mistaken for inactivity?",
           "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "curricula ignore pharmacology"
+              "text": "Patients in difficulty tend to say very little to the clinician."
             },
             {
               "id": "b",
-              "text": "the most valued skill is the least trained"
+              "text": "It produces nothing that a measure of throughput can count."
             },
             {
               "id": "c",
-              "text": "patients dislike procedures"
+              "text": "Clinicians who have not been trained in it do it badly."
+            },
+            {
+              "id": "d",
+              "text": "It happens before the consultation has formally begun."
             }
           ]
         },
         {
           "id": "q3",
-          "stem": "Listening can look like doing nothing because:",
-          "answer": "c",
+          "stem": "The writer uses the evidence from recordings of consultations in order to",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "patients rarely speak"
+              "text": "show that consultations are already running well over their time."
             },
             {
               "id": "b",
-              "text": "clinicians are untrained"
+              "text": "argue that patients need training in how to give a history."
             },
             {
               "id": "c",
-              "text": "it produces no measurable throughput"
+              "text": "suggest that the diagnostic value of the history has declined."
+            },
+            {
+              "id": "d",
+              "text": "show that not interrupting yields a fuller and earlier account."
             }
           ]
         },
         {
           "id": "q4",
-          "stem": "The detail that clinicians interrupt within eleven seconds suggests that:",
+          "stem": "In the third paragraph, what does the writer say about the pull towards tasks?",
           "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "interrupting is a strong, common habit"
+              "text": "It is rarely deliberate, yet patients recognise it as withdrawal."
             },
             {
               "id": "b",
-              "text": "consultations run too long"
+              "text": "It is a deliberate strategy for keeping a consultation to time."
             },
             {
               "id": "c",
-              "text": "patients speak too slowly"
+              "text": "It is noticed by colleagues rather than by the patient concerned."
+            },
+            {
+              "id": "d",
+              "text": "It is confined to clinicians in the earliest years of practice."
             }
           ]
         },
         {
           "id": "q5",
-          "stem": "By the retreat into tasks the writer means:",
+          "stem": "Why does the writer include the remark that a warm clinician who is wrong is no comfort?",
           "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "ending the appointment early"
+              "text": "To suggest that warmth is of little use in a clinical setting."
             },
             {
               "id": "b",
-              "text": "turning to activities to avoid a patient's distress"
+              "text": "To make clear that the case for attention is not a case against knowledge."
             },
             {
               "id": "c",
-              "text": "delegating to colleagues"
+              "text": "To criticise clinicians who rely on their manner to reassure patients."
+            },
+            {
+              "id": "d",
+              "text": "To argue that warmth is a quality that resists any kind of teaching."
             }
           ]
         },
         {
           "id": "q6",
-          "stem": "A warm clinician who is wrong is no comfort is included to:",
-          "answer": "c",
+          "stem": "What does the phrase 'two claims on the same scarce hour' refer to?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "criticise friendly clinicians"
+              "text": "The competing demands of individual patients on one clinic list."
             },
             {
               "id": "b",
-              "text": "show warmth is unnecessary"
+              "text": "The division of the appointment between talking and examination."
             },
             {
               "id": "c",
-              "text": "affirm that knowledge still matters"
+              "text": "The rival claims of hospital and community services on funding."
+            },
+            {
+              "id": "d",
+              "text": "The idea that knowledge and attention compete for the same time."
             }
           ]
         },
         {
           "id": "q7",
-          "stem": "In the writer's view, knowledge and attention are:",
-          "answer": "a",
+          "stem": "What does the writer say the discipline of silence actually requires?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "partners that work together"
+              "text": "That the patient be told in advance that a pause is coming."
             },
             {
               "id": "b",
-              "text": "competitors for limited time"
+              "text": "That the clinician summarise before the patient has finished."
             },
             {
               "id": "c",
-              "text": "equally overrated"
+              "text": "That the clinician tolerate a discomfort that is their own."
+            },
+            {
+              "id": "d",
+              "text": "That the appointment be lengthened to make room for it."
             }
           ]
         },
         {
           "id": "q8",
-          "stem": "The purpose of the short summary at the end is to:",
-          "answer": "b",
+          "stem": "In the final paragraph, what does the writer identify as the obstacle to protecting the opening minute?",
+          "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "create a written record"
+              "text": "Clinicians are reluctant to give up control of the conversation."
             },
             {
               "id": "b",
-              "text": "check understanding and show the patient was heard"
+              "text": "Consultations that begin this way are found to run much longer."
             },
             {
               "id": "c",
-              "text": "shorten the consultation"
+              "text": "Teams that have tried it report no benefit worth the effort."
+            },
+            {
+              "id": "d",
+              "text": "The length of the appointment is fixed by pressures from outside."
             }
           ]
         }
@@ -1119,159 +3341,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "For a decade, resilience has been healthcare's favourite prescription for its own exhaustion. Staff are sent on resilience workshops, taught breathing exercises and urged to practise self-care, in the hope of stemming a rising tide of burnout. The intention is kind. The logic, however, deserves scrutiny, because it quietly relocates the problem from the system to the individual. Burnout, as originally defined, is not a personal weakness but a response to chronic workplace stressors that have not been managed - excessive workload, lack of control, insufficient reward, and a sense of unfairness. When an organisation answers these conditions with mindfulness classes, it treats a structural injury with a personal remedy. Worse, it can imply that staff who still struggle simply did not try hard enough to be resilient. A nurse working short-staffed through a third consecutive weekend does not lack resilience; she is being asked to absorb a failure that is not hers to fix. This is not to dismiss individual coping, which has its place. A clinician who sleeps well and has support outside work is genuinely better protected. But protection is not prevention. Handing someone an umbrella is sensible; it is not a substitute for repairing the roof. The evidence increasingly suggests that the interventions which actually reduce burnout are organisational: adequate staffing, manageable rotas, a real voice in decisions, and leaders who remove obstacles rather than add initiatives. There is a subtler cost to the resilience narrative, too. It can make staff reluctant to speak up. If exhaustion is framed as a personal shortfall, admitting to it feels like confessing inadequacy - and the people most in need of help become the least likely to ask. A culture that prized honest reporting of strain, treating it as data about the system rather than a verdict on the person, would surface problems earlier, while they are still cheap to solve. None of this lets individuals off the hook entirely; we each carry some responsibility for our own wellbeing. But the balance has tilted too far. Before we ask staff to become more resilient, we might ask why we keep designing work that demands so much resilience simply to survive."
+          "body": "For the better part of a decade, resilience has been healthcare's preferred prescription for its own exhaustion. Staff are sent on half-day workshops, taught breathing exercises, issued with apps and encouraged to practise self-care, in the hope that this will hold back a rising tide of burnout. The intention behind all of it is kind, and it would be ungenerous to pretend otherwise. The logic, however, deserves more scrutiny than it usually receives, because it performs a quiet relocation: it moves the problem from the system that produced it to the individual standing inside that system.\n\nBurnout, as it was originally defined by the researchers who named it, is not a personal frailty. It is a predictable response to chronic workplace stressors that have gone unmanaged — excessive workload, insufficient control over one's own work, inadequate reward, the breakdown of community, and a persistent sense of unfairness. Those are properties of an organisation, not of a personality. When an organisation answers conditions of that kind with a mindfulness class, it is treating a structural injury with a personal remedy, and it should not be surprised when the injury persists. Worse, the offer carries an implication that few would say aloud but many staff hear clearly enough: that those who continue to struggle have simply not tried hard enough to be resilient. A nurse working short-staffed through a third consecutive weekend is not deficient in resilience. She is being asked to absorb, in her own body, a failure that was never hers to repair.\n\nNone of this is to dismiss individual coping, which has a real and defensible place. A clinician who sleeps properly, who has support outside work, who exercises and eats and sees people they love, is genuinely better protected than one who does not, and it would be foolish to pretend the difference is negligible. But protection is not prevention, and the distinction matters more than it sounds. Handing someone an umbrella is a sensible thing to do. It is not a substitute for repairing the roof, and nobody would accept it as one in any other setting.\n\nThe evidence has been accumulating in the same direction for some years. The interventions that measurably reduce burnout are, for the most part, organisational rather than individual: adequate staffing, rotas that a human being can actually live inside, a genuine voice in decisions that affect one's work, and leaders whose instinct is to remove obstacles rather than to add another initiative on top of them. Individual programmes are not useless — they produce small effects — but they are consistently outperformed by changes to the work itself. The literature is unusually consistent on this point, and unusually widely ignored.\n\nThere is a subtler cost to the resilience narrative as well, and it may be the more damaging of the two. It makes people reluctant to speak. If exhaustion is framed as a personal shortfall, then admitting to it becomes a confession of inadequacy rather than a report about the conditions, and the staff most in need of help become the least likely to ask for it. A culture that treated honest accounts of strain as information about the system — data, not a verdict on the person supplying it — would surface its problems far earlier, while they were still small enough to be cheap to solve. Instead, strain is often first detected at the point of resignation, which is the most expensive place in the whole system to find it. By then the cost is not one person's distress but a vacancy, a recruitment round, a period of agency cover and the slow erosion of a team that has to absorb the gap in the meantime. Everything that might have been said earlier, cheaply and in a corridor, is now said in an exit interview that nobody will act on, because the person saying it has already gone.\n\nNone of this lets individuals off the hook entirely. We each carry some responsibility for our own wellbeing, and there are choices about sleep, boundaries and support that no employer can make on our behalf. But the balance has tilted a long way, and it has tilted in a convenient direction. Before we ask staff to become more resilient, it is worth asking a harder question of ourselves: why do we keep designing work that requires so much resilience simply to be survived?"
         }
       ],
       "questions": [
         {
           "id": "q1",
-          "stem": "The writer's main concern about the focus on resilience is that it:",
-          "answer": "c",
+          "stem": "What is the writer's main objection to healthcare's focus on resilience?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "uses breathing exercises that do not work"
+              "text": "The techniques it teaches have been shown to have no effect at all."
             },
             {
               "id": "b",
-              "text": "is disliked by staff"
+              "text": "It is resented by the staff who are required to take part in it."
             },
             {
               "id": "c",
-              "text": "shifts responsibility from the system to the individual"
+              "text": "It costs considerably more than the alternatives available."
+            },
+            {
+              "id": "d",
+              "text": "It moves the problem from the organisation onto the individual."
             }
           ]
         },
         {
           "id": "q2",
-          "stem": "Burnout is originally defined as:",
-          "answer": "a",
+          "stem": "How does the writer describe burnout as it was originally defined?",
+          "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "a response to unmanaged workplace stressors"
+              "text": "As a form of tiredness that resolves with adequate rest."
             },
             {
               "id": "b",
-              "text": "a personal weakness"
+              "text": "As a foreseeable response to workplace conditions left unmanaged."
             },
             {
               "id": "c",
-              "text": "a passing tiredness"
+              "text": "As a recognised illness requiring individual clinical treatment."
+            },
+            {
+              "id": "d",
+              "text": "As a weakness found chiefly in those new to the profession."
             }
           ]
         },
         {
           "id": "q3",
-          "stem": "The umbrella and roof comparison argues that:",
-          "answer": "b",
+          "stem": "What point is the writer making with the example of the nurse working short-staffed?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "individual effort is pointless"
+              "text": "That weekend work is more demanding than work during the week."
             },
             {
               "id": "b",
-              "text": "protection is not the same as prevention"
+              "text": "That nursing staff are less resilient than other clinical groups."
             },
             {
               "id": "c",
-              "text": "coping can replace organisational change"
+              "text": "That she is absorbing a failure that was never hers to correct."
+            },
+            {
+              "id": "d",
+              "text": "That rotas should be arranged with longer gaps between shifts."
             }
           ]
         },
         {
           "id": "q4",
-          "stem": "The interventions the writer says actually reduce burnout are:",
-          "answer": "c",
+          "stem": "The comparison between an umbrella and a roof is used to argue that",
+          "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "mindfulness and self-care"
+              "text": "protecting people is not the same as removing what harms them."
             },
             {
               "id": "b",
-              "text": "resilience workshops"
+              "text": "individual efforts at coping achieve nothing worth measuring."
             },
             {
               "id": "c",
-              "text": "organisational changes such as adequate staffing"
+              "text": "buildings and working conditions both need proper maintenance."
+            },
+            {
+              "id": "d",
+              "text": "personal coping can stand in place of organisational reform."
             }
           ]
         },
         {
           "id": "q5",
-          "stem": "The subtler cost of the resilience narrative is that it:",
-          "answer": "a",
+          "stem": "What does the writer say about individual wellbeing programmes?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "makes staff reluctant to admit strain"
+              "text": "They have never been examined in any serious body of research."
             },
             {
               "id": "b",
-              "text": "is expensive to run"
+              "text": "They work as well as changes made to the work itself."
             },
             {
               "id": "c",
-              "text": "lowers clinical skill"
+              "text": "They should be withdrawn until the evidence is clearer."
+            },
+            {
+              "id": "d",
+              "text": "They have small effects but are outperformed by structural change."
             }
           ]
         },
         {
           "id": "q6",
-          "stem": "Honest reporting of strain should be treated as:",
-          "answer": "b",
+          "stem": "According to the fifth paragraph, why does the resilience narrative silence people?",
+          "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "grounds for discipline"
+              "text": "Admitting exhaustion becomes a confession of personal inadequacy."
             },
             {
               "id": "b",
-              "text": "data about the system"
+              "text": "Staff are formally discouraged from raising concerns of this kind."
             },
             {
               "id": "c",
-              "text": "a verdict on the person"
+              "text": "The reporting systems available to staff are difficult to use."
+            },
+            {
+              "id": "d",
+              "text": "Managers rarely have the time to hear reports about strain."
             }
           ]
         },
         {
           "id": "q7",
-          "stem": "None of this lets individuals off the hook entirely shows the writer:",
-          "answer": "c",
+          "stem": "What does the writer mean by saying strain is often first detected at the point of resignation?",
+          "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "blames individuals for burnout"
+              "text": "That staff who resign are the only ones willing to be honest."
             },
             {
               "id": "b",
-              "text": "rejects all personal coping"
+              "text": "That the problem surfaces when it has become costliest to fix."
             },
             {
               "id": "c",
-              "text": "accepts individuals have some responsibility"
+              "text": "That exit interviews are the most reliable source of evidence."
+            },
+            {
+              "id": "d",
+              "text": "That resignation is usually the result of a single bad shift."
             }
           ]
         },
         {
           "id": "q8",
-          "stem": "The closing question implies that:",
-          "answer": "a",
+          "stem": "What is the purpose of the question with which the article closes?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "work is often designed to demand too much resilience"
+              "text": "To propose that resilience training be made compulsory for staff."
             },
             {
               "id": "b",
-              "text": "staff should simply be more resilient"
+              "text": "To concede that individuals are chiefly to blame after all."
             },
             {
               "id": "c",
-              "text": "resilience cannot be taught"
+              "text": "To turn attention from the worker's capacity to the work's design."
+            },
+            {
+              "id": "d",
+              "text": "To suggest that the causes of burnout are still largely unknown."
             }
           ]
         }
@@ -1295,159 +3549,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Few phrases are as quietly costly in medicine as just in case. It sounds prudent - an extra test, a precautionary scan, a night's admission to be safe - and in any single instance the logic is hard to argue with. Who would refuse a test that might catch something serious? Yet multiplied across a system, this instinct produces a great deal of harm that never enters the mind of the person ordering the test. The harm is real but diffuse. Every test has a false-positive rate, and a positive result in a low-risk patient is more likely to be wrong than right. That wrong result triggers more tests, more anxiety, sometimes an invasive procedure with its own risks - a cascade set off by a finding that was never going to matter. The scan ordered just in case finds an incidental shadow; the shadow leads to a biopsy; the biopsy leads to a complication. The original symptom, meanwhile, was benign all along. Defensive practice is often blamed on fear of litigation, and that fear is not irrational. But studies suggest the bigger driver is discomfort with uncertainty - the sense that doing something feels safer than doing nothing, even when watchful waiting is wiser. Patients can share this instinct, and a clinician who explains why a test is unnecessary must spend more time and emotional effort than one who simply orders it. The path of least resistance runs towards over-investigation. None of this means caution is wrong. The point is that safe is not the same as more. A genuinely safe decision weighs the harm of missing something against the harm of finding things better left unfound. Framed that way, the courageous act is sometimes to explain, to reassure, and to wait - carrying the small, real risk of restraint rather than offloading it onto the patient as a cascade they never agreed to."
+          "body": "Few phrases in medicine are as quietly expensive as just in case. It sounds like prudence itself — an extra test, a precautionary scan, a night's admission to be on the safe side — and in any single instance the reasoning is almost impossible to argue with. Who, faced with one patient in front of them, would refuse an investigation that might catch something serious? The difficulty is that the decision is never really made once. It is made hundreds of times a day across a system, and the harm it produces is of a kind that never reaches the person who ordered the test.\n\nThat harm is real, but it is diffuse, and diffuseness is what allows it to go unnoticed. Every test has a false-positive rate, and the arithmetic of screening is unforgiving: in a patient whose prior probability of disease is low, a positive result is more likely to be wrong than right. A wrong result does not sit quietly in a file. It triggers a second test, then a specialist opinion, then sometimes an invasive procedure carrying risks of its own — a cascade set in motion by a finding that was never going to matter. The scan ordered just in case reveals an incidental shadow; the shadow leads to a biopsy; the biopsy leads to a complication that keeps the patient in hospital for a week. The original symptom, meanwhile, was benign from the beginning, and remains so.\n\nDefensive practice is usually blamed on the fear of litigation, and that fear is not irrational; anyone who has watched a colleague go through a complaint will understand it. But the research points somewhere less comfortable. The larger driver appears to be discomfort with uncertainty — the feeling that doing something is safer than doing nothing, even in the many situations where watchful waiting is the wiser course. The feeling is not confined to clinicians. Patients often share it, and a consultation in which a clinician explains carefully why a test is not needed costs considerably more time, and more emotional effort, than one in which the form is simply signed. The path of least resistance runs, reliably and in every department, towards over-investigation. It is worth noticing how little of this is decided consciously. Nobody stands at the end of a long clinic and resolves to practise defensively. The form is simply the shorter conversation, and at four o'clock on a Friday the shorter conversation wins. Systems that have reduced unnecessary testing have generally done so not by exhorting clinicians to be braver, but by making the safer conversation easier to have — a rapid review slot to offer instead of a scan, a written explanation to hand over, a named person the patient can ring if the symptom changes.\n\nIt is worth being clear about what this argument is not. It is not a case against caution, and it is certainly not a case for ignoring symptoms that deserve attention. The point is narrower and harder: that safe and more are not the same word. A genuinely safe decision weighs two harms against each other — the harm of missing something that mattered, and the harm of finding something that did not. Only one of those harms is easy to see afterwards, which is precisely why the balance tips. Nobody is ever asked to account for the biopsy that was never needed, because there is no way to know which one it was.\n\nThere is also a question of who carries the risk. When a clinician orders a test they privately expect to be normal, they are not eliminating risk; they are moving it. The small risk of restraint — the possibility, honestly faced, that waiting turns out to have been wrong — stays with the clinician who chooses to wait. The risk of the cascade is transferred to the patient, who did not ask for it, was not told it existed, and will experience it as a series of separate misfortunes rather than as the consequence of a single decision taken weeks earlier.\n\nSeen in that light, the courageous act is often the quiet one: to explain what is likely and what is not, to offer a clear route back if things change, and to wait. It takes longer than signing a form and it feels less like medicine. It is also, in a great many consultations, the better clinical decision — and the one that leaves the patient with fewer scars, less anxiety, and no cascade they never agreed to."
         }
       ],
       "questions": [
         {
           "id": "q1",
-          "stem": "Why does the writer call just in case costly?",
-          "answer": "b",
+          "stem": "What does the writer identify as the central difficulty with 'just in case' decisions?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "tests are expensive to run"
+              "text": "Patients are reluctant to accept the tests that are offered."
             },
             {
               "id": "b",
-              "text": "it produces diffuse harm the orderer doesn't see"
+              "text": "The reasoning behind each individual decision is clearly faulty."
             },
             {
               "id": "c",
-              "text": "patients dislike extra tests"
+              "text": "The harm is spread thinly and never returns to the person deciding."
+            },
+            {
+              "id": "d",
+              "text": "Departments cannot afford the volume of tests being requested."
             }
           ]
         },
         {
           "id": "q2",
-          "stem": "A positive test in a low-risk patient is:",
+          "stem": "What does the writer say about a positive test result in a low-risk patient?",
           "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "more likely to be wrong than right"
+              "text": "It is more likely to be mistaken than to be correct."
             },
             {
               "id": "b",
-              "text": "usually accurate"
+              "text": "It should always be confirmed by a second laboratory."
             },
             {
               "id": "c",
-              "text": "always repeated"
+              "text": "It rarely leads to any further investigation being ordered."
+            },
+            {
+              "id": "d",
+              "text": "It carries the same weight as one in a high-risk patient."
             }
           ]
         },
         {
           "id": "q3",
-          "stem": "The cascade the writer describes refers to:",
-          "answer": "a",
+          "stem": "In the second paragraph, what is meant by 'a cascade'?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "a series of tests and procedures set off by one finding"
+              "text": "A worsening of the illness the patient first presented with."
             },
             {
               "id": "b",
-              "text": "a worsening of the original disease"
+              "text": "A backlog of unreported scans building up in the department."
             },
             {
               "id": "c",
-              "text": "a spread of infection"
+              "text": "A pattern of repeated attendances by the same anxious patient."
+            },
+            {
+              "id": "d",
+              "text": "A chain of further tests set off by one incidental finding."
             }
           ]
         },
         {
           "id": "q4",
-          "stem": "What does the writer say is the bigger driver of defensive practice?",
-          "answer": "c",
+          "stem": "According to the writer, what does research suggest drives defensive practice most?",
+          "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "fear of litigation"
+              "text": "The fear of a complaint or of subsequent legal action."
             },
             {
               "id": "b",
-              "text": "patient demand"
+              "text": "The unease clinicians feel when a situation is uncertain."
             },
             {
               "id": "c",
-              "text": "discomfort with uncertainty"
+              "text": "Pressure from managers to make use of available capacity."
+            },
+            {
+              "id": "d",
+              "text": "Guidance that requires testing before a referral is made."
             }
           ]
         },
         {
           "id": "q5",
-          "stem": "Why does the path of least resistance lead to over-investigation?",
+          "stem": "Why does the writer say the path of least resistance leads to over-investigation?",
           "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "explaining why a test is unneeded takes more effort"
+              "text": "Explaining that a test is unnecessary costs more time and effort."
             },
             {
               "id": "b",
-              "text": "tests are quicker than examinations"
+              "text": "Junior clinicians are not permitted to cancel a colleague's request."
             },
             {
               "id": "c",
-              "text": "guidelines require it"
+              "text": "Investigations are quicker to arrange than a full examination."
+            },
+            {
+              "id": "d",
+              "text": "Most patients now expect to be tested at every appointment."
             }
           ]
         },
         {
           "id": "q6",
-          "stem": "The writer argues that safe is:",
-          "answer": "b",
+          "stem": "What does the writer mean by the remark that only one of the two harms is easy to see afterwards?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "the same as doing more"
+              "text": "Complications from procedures are recorded more accurately."
             },
             {
               "id": "b",
-              "text": "not the same as doing more"
+              "text": "Patients notice a missed diagnosis but not a delayed one."
             },
             {
               "id": "c",
-              "text": "impossible to achieve"
+              "text": "The cost of testing is measured while its benefit is not."
+            },
+            {
+              "id": "d",
+              "text": "A missed diagnosis is visible; an unnecessary test is not."
             }
           ]
         },
         {
           "id": "q7",
-          "stem": "What does the writer call the courageous act?",
-          "answer": "c",
+          "stem": "What is the writer's point about who carries the risk of an unnecessary test?",
+          "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "ordering every possible test"
+              "text": "The risk is shared equally between clinician and patient."
             },
             {
               "id": "b",
-              "text": "referring to a specialist"
+              "text": "It is not removed by testing but transferred to the patient."
             },
             {
               "id": "c",
-              "text": "explaining, reassuring and waiting"
+              "text": "It falls on the department that carries out the procedure."
+            },
+            {
+              "id": "d",
+              "text": "It disappears once the result has been formally reported."
             }
           ]
         },
         {
           "id": "q8",
-          "stem": "The phrase a cascade they never agreed to suggests the patient:",
-          "answer": "b",
+          "stem": "How does the writer characterise the decision to explain, reassure and wait?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "consented to the risks"
+              "text": "As a decision that most patients will refuse to accept."
             },
             {
               "id": "b",
-              "text": "bore risks they did not choose"
+              "text": "As a way of protecting the clinician from later criticism."
             },
             {
               "id": "c",
-              "text": "requested the investigations"
+              "text": "As more demanding for the clinician but better for the patient."
+            },
+            {
+              "id": "d",
+              "text": "As advisable only where the symptom has already settled."
             }
           ]
         }
@@ -1470,159 +3756,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "When a surgical checklist was shown to cut deaths and complications, the response in some quarters was almost giddy: here at last was a simple, cheap fix for the messiness of human error. Airlines used checklists; now medicine would too. The enthusiasm was understandable, and the checklist is genuinely a fine tool. But the story that grew around it - that a laminated list can engineer safety on its own - has done nearly as much harm as good. A checklist works because of what happens around it, not because of the ticks. Its real function is to flatten hierarchy for a moment: to make it acceptable for the most junior person in the room to say we haven't confirmed the patient's allergies. Where teams treat it as a genuine pause - everyone stops, everyone listens - outcomes improve. Where it is rushed through by one person reading aloud while others carry on working, it changes nothing, and may even give false comfort. The same piece of paper produces opposite results depending on the culture it lands in. This is the part that resists copying. You can distribute a checklist overnight; you cannot distribute the willingness to be interrupted, or a senior clinician's grace in being corrected by a trainee. Those are cultural achievements, built slowly, and a checklist imposed on a culture that lacks them will be completed dutifully and mean nothing. Organisations that saw no benefit often concluded the tool had failed, when what had failed was the assumption that a tool could replace the relationships that make it work. The lesson generalises. Every safety fix that looks purely technical turns out, on inspection, to depend on something human - on people feeling able to speak, and others willing to hear. The paper is the easy part. The hard part, as ever, is the room."
+          "body": "When a surgical safety checklist was first shown to reduce deaths and complications, the reaction in some quarters was close to giddy. Here, at last, was a simple and almost free remedy for the messiness of human error. Airlines had used checklists for decades; now medicine would catch up. The enthusiasm was understandable, and the checklist is a genuinely good tool. But the story that grew up around it — that a laminated card can manufacture safety by itself — has done nearly as much damage as the tool has done good.\n\nThe first thing to say is that a checklist does not work because of the ticks. It works because of what happens around it. Its real function, in an operating theatre or anywhere else, is to flatten the hierarchy of the room for a minute or two: to make it ordinary, expected and safe for the most junior person present to say we haven't confirmed this patient's allergies. Where teams treat the checklist as a genuine pause — everybody stops, everybody listens, the surgeon puts down the instrument — outcomes improve, and improve substantially. Where it is recited by one person while the rest of the team carries on preparing, it changes nothing at all, and may do something worse than nothing by supplying a feeling of safety that has not been earned. The same piece of paper, in other words, produces opposite results depending on the room it lands in.\n\nThis is the part that resists copying, and it is the part that most implementation programmes quietly skip. A checklist can be distributed overnight; it can be printed, laminated and hung on every wall in a hospital by the end of the week. What cannot be distributed is a senior clinician's willingness to be interrupted, or their grace when a trainee turns out to be right. Those are cultural achievements. They are built slowly, usually by example rather than instruction, and they can be dismantled far faster than they were assembled. A checklist introduced into a culture that lacks them will be completed with perfect compliance and mean nothing whatsoever.\n\nThat gap explains a puzzling pattern in the results. Some organisations adopted the checklist and saw the gains reported in the original studies; others adopted what looked like the same checklist and saw nothing. The second group frequently concluded that the tool had failed, or that their case mix was different, or that the original findings had been overstated. What had actually failed was an assumption — that a tool could stand in for the relationships that make the tool work. Compliance was measured, because compliance is easy to measure. The thing that mattered was not measured at all. Nor is this a criticism unique to checklists. Any intervention whose active ingredient is a change in behaviour will look, on paper, like the object that carried it, and the object is what gets copied. Auditors count the laminated cards because the cards can be counted. The pause in the room, and whether anybody actually spoke during it, leaves no trace that an audit form has a column for.\n\nThere is a wider lesson here, and it is not confined to surgery. Nearly every safety improvement that looks purely technical turns out, on inspection, to rest on something human. Alarm systems depend on somebody being willing to act on an alarm that is probably nothing. Incident reporting depends on staff believing that a report will be read rather than filed against them. Handover tools depend on the receiving clinician feeling able to ask a question that might sound naive. In each case the technology is the visible part and the culture is the load-bearing part, and organisations under pressure will nearly always invest in the visible part.\n\nNone of which is an argument for abandoning checklists. They remain among the most valuable things introduced into clinical practice in the past twenty years, and the evidence for them, used properly, is strong. It is an argument against a particular kind of hope: that safety can be purchased, installed and audited without anyone having to change how they speak to one another. The paper is the easy part. The hard part, as ever, is the room."
         }
       ],
       "questions": [
         {
           "id": "q1",
-          "stem": "What was the initial reaction to the surgical checklist?",
-          "answer": "b",
+          "stem": "How does the writer describe the initial reaction to the surgical checklist?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "scepticism about its cost"
+              "text": "Suspicion that the findings had been overstated by the researchers."
             },
             {
               "id": "b",
-              "text": "excitement that it was a simple fix"
+              "text": "Reluctance to add another form to an already crowded process."
             },
             {
               "id": "c",
-              "text": "concern that it copied airlines"
+              "text": "Concern that a method borrowed from aviation would not transfer."
+            },
+            {
+              "id": "d",
+              "text": "Near-euphoria at the promise of a cheap remedy for human error."
             }
           ]
         },
         {
           "id": "q2",
-          "stem": "According to the writer, a checklist works because of:",
+          "stem": "According to the writer, what makes a checklist effective?",
           "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "the number of items ticked"
+              "text": "The number of items it contains and the order they are read in."
             },
             {
               "id": "b",
-              "text": "what happens around it in the team"
+              "text": "The change it makes to who feels able to speak in the room."
             },
             {
               "id": "c",
-              "text": "its legal status"
+              "text": "The seniority of the person who introduces it to the team."
+            },
+            {
+              "id": "d",
+              "text": "The written record it leaves of the checks that were made."
             }
           ]
         },
         {
           "id": "q3",
-          "stem": "The checklist's real function is to:",
-          "answer": "c",
+          "stem": "What does the writer say happens when one person recites the checklist while others work?",
+          "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "create a written record"
+              "text": "It achieves nothing and may create an unearned sense of safety."
             },
             {
               "id": "b",
-              "text": "speed up the operation"
+              "text": "It still delivers most of the benefit seen in the original trials."
             },
             {
               "id": "c",
-              "text": "make it acceptable for anyone to raise a concern"
+              "text": "It slows the list down without improving communication at all."
+            },
+            {
+              "id": "d",
+              "text": "It is later corrected by the team during the closing checks."
             }
           ]
         },
         {
           "id": "q4",
-          "stem": "When does a checklist change nothing?",
-          "answer": "a",
+          "stem": "Why does the writer say the essential element 'resists copying'?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "when it is rushed through while others work"
+              "text": "Each specialty requires its own version of the printed items."
             },
             {
               "id": "b",
-              "text": "when it is too long"
+              "text": "The original document is protected and cannot be reproduced."
             },
             {
               "id": "c",
-              "text": "when it is read by a senior clinician"
+              "text": "Willingness to be corrected is built slowly and cannot be issued."
+            },
+            {
+              "id": "d",
+              "text": "Teams that adopt it late have already formed other habits."
             }
           ]
         },
         {
           "id": "q5",
-          "stem": "Why does the writer say the key part resists copying?",
-          "answer": "b",
+          "stem": "What conclusion did organisations that saw no benefit tend to draw?",
+          "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "the paper is hard to reproduce"
+              "text": "That the tool itself, or the evidence behind it, was at fault."
             },
             {
               "id": "b",
-              "text": "the culture behind it can't simply be distributed"
+              "text": "That their staff had not been given sufficient training in it."
             },
             {
               "id": "c",
-              "text": "checklists are patented"
+              "text": "That the results needed to be measured over a longer period."
+            },
+            {
+              "id": "d",
+              "text": "That the checklist contained too few items to make a difference."
             }
           ]
         },
         {
           "id": "q6",
-          "stem": "Organisations that saw no benefit often wrongly concluded that:",
-          "answer": "a",
+          "stem": "What does the writer suggest about compliance with the checklist?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "the tool itself had failed"
+              "text": "It is the single measure that best predicts a good outcome."
             },
             {
               "id": "b",
-              "text": "their staff were incompetent"
+              "text": "It is deliberately overstated by the teams reporting on it."
             },
             {
               "id": "c",
-              "text": "the checklist was too short"
+              "text": "It falls away steadily once the initial interest has passed."
+            },
+            {
+              "id": "d",
+              "text": "It is recorded because it is easy, not because it is what counts."
             }
           ]
         },
         {
           "id": "q7",
-          "stem": "The writer says every technical safety fix depends on:",
+          "stem": "The examples of alarm systems and incident reporting are included in order to",
           "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "sufficient funding"
+              "text": "argue that most safety technology in hospitals is unreliable."
             },
             {
               "id": "b",
-              "text": "something human - people speaking and being heard"
+              "text": "show that technical fixes elsewhere rest on the same human basis."
             },
             {
               "id": "c",
-              "text": "regular auditing"
+              "text": "recommend that these systems be redesigned alongside checklists."
+            },
+            {
+              "id": "d",
+              "text": "explain why staff are reluctant to report incidents to managers."
             }
           ]
         },
         {
           "id": "q8",
-          "stem": "By the hard part, as ever, is the room, the writer means:",
-          "answer": "b",
+          "stem": "What is the writer's final position on checklists?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "the physical operating theatre"
+              "text": "They should be withdrawn until the culture around them improves."
             },
             {
               "id": "b",
-              "text": "the human relationships and culture"
+              "text": "They matter far less than the seniority of the surgical team."
             },
             {
               "id": "c",
-              "text": "the equipment available"
+              "text": "They are valuable, but not a way of buying safety without change."
+            },
+            {
+              "id": "d",
+              "text": "They work best when treated as a purely administrative record."
             }
           ]
         }
@@ -1646,159 +3964,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "There is a quiet arithmetic that governs modern medicine, and its basic unit is roughly fifteen minutes. That is the length of the standard appointment in much of general practice, and almost everything about the way care is delivered has arranged itself around that figure. It was never chosen because fifteen minutes is the right amount of time to understand a human being's suffering; it was chosen because it allows a certain number of patients to be seen in a day. The number came first, and the medicine has been folded to fit it. Much of the time this works, or appears to. A sore throat, a repeat prescription, a blood-pressure check - these fit comfortably inside the quarter-hour, and a brisk, focused consultation is exactly what the patient wants. The trouble begins with everything that does not announce itself so tidily. The patient who mentions, hand already on the door, that they have been feeling low. The elderly man whose four separate complaints are really one, if only there were time to join them up. The worried parent whose real question arrives only after the small talk the clock does not permit. These are not edge cases; they are the substance of medicine, and they do not keep to time. What gets lost is not usually the diagnosis - a competent clinician can still spot the dangerous thing - but the space in which a patient feels heard enough to say what actually brought them. Rushed people disclose less, and disclosure is where much of the real work lives. The doctor senses this too, and carries the low-grade guilt of the unfinished conversation from room to room across a day. None of this is an argument that longer is always better; a slow consultation can wander and reassure no one. It is an argument that time is not a luxury bolted onto good care but part of its very structure - and that a system which treats minutes as the thing to be saved may be quietly discarding the thing it exists to provide."
+          "body": "There is a quiet arithmetic governing modern general practice, and its basic unit is roughly fifteen minutes. That is the length of the standard appointment across much of the developed world, and almost everything about the way care is delivered has arranged itself around the figure — the rota, the room booking, the software, the expectations of the person in the waiting room. It is worth remembering how the number arrived. It was not derived from any study of how long it takes to understand what is wrong with a human being. It was derived from how many people can be seen in a working day. The number came first. The medicine has been folded to fit it ever since.\n\nMuch of the time, the fold is invisible, because a great deal of general practice genuinely does fit. A sore throat, a repeat prescription, a blood-pressure check, a dressing that needs looking at — these belong comfortably inside a quarter of an hour, and a brisk, competent, focused consultation is exactly what the patient came for. Anyone who has waited three weeks for an appointment about a rash does not want a leisurely exploration of their childhood. The system is not wrong to be efficient about the things that can be done efficiently.\n\nThe trouble begins with everything that does not announce itself so tidily. The patient who mentions, hand already on the door handle, that they have been feeling low for months. The elderly man whose four separate complaints are, if anyone had the time to join them up, plainly one complaint. The worried parent whose real question surfaces only after four minutes of conversation that a strict reading of the clock would call small talk. These are not curiosities at the edge of practice. They are a large part of its substance, and none of them keeps to time.\n\nWhat gets lost in a rushed consultation is not usually the diagnosis. A competent clinician under pressure will still identify the dangerous thing; that is what the training is for, and the safety net mostly holds. What is lost is the space in which a patient feels heard sufficiently to say the thing they actually came to say. Rushed people disclose less. They edit, they defer, they decide the doctor looks busy and that it can wait until next time. And disclosure is where a great deal of the real work lives — not merely because it aids diagnosis, but because being able to name a fear aloud is itself part of what a consultation is for.\n\nThe cost is not borne only by patients. The clinician senses the unfinished conversation as clearly as the patient does, and carries a low-grade guilt from room to room across a day and from day to day across a career. That accumulation has a name in the literature, and it is one of the more reliable predictors of people leaving the profession. A system that saves minutes at the front desk can lose whole careers at the back. There is a further cost that appears nowhere in the arithmetic. A consultation that ends before the real question has been asked does not end the question; it defers it. The patient books again, or attends somewhere else, or arrives eventually in an emergency department with a problem that has had six months to grow. The minutes saved in one room are spent, with interest, in another — and because they are spent by a different service, on a different budget, nobody is required to notice that the same time has simply been moved.\n\nNone of this amounts to an argument that longer is always better. A slow consultation can wander, reassure nobody and finish no closer to a decision than it started; time badly used is not a kindness. Nor is the answer simply to demand more of a resource that nobody has. But it is an argument against a particular way of thinking — the habit of treating time as an overhead laid on top of good care, a cost to be trimmed, rather than as part of the structure that makes the care work at all. A service that regards minutes as the thing to be saved may find, over a long enough period, that it has been quietly discarding the very thing it exists to provide."
         }
       ],
       "questions": [
         {
           "id": "q1",
-          "stem": "What does the writer say determined the fifteen-minute length?",
-          "answer": "a",
+          "stem": "What does the writer say about the origin of the fifteen-minute appointment?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "how many patients could be seen in a day"
+              "text": "It reflects research into how long a good consultation takes."
             },
             {
               "id": "b",
-              "text": "research into what makes care good"
+              "text": "It was proposed by patients through consultation exercises."
             },
             {
               "id": "c",
-              "text": "what patients asked for"
+              "text": "It matches the average duration of visits already recorded."
+            },
+            {
+              "id": "d",
+              "text": "It follows from how many patients must be seen in a day."
             }
           ]
         },
         {
           "id": "q2",
-          "stem": "According to the writer, which came first?",
+          "stem": "What is the writer's point in saying 'the number came first'?",
           "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "the medicine, then the number"
+              "text": "That the figure has remained unchanged for several decades."
             },
             {
               "id": "b",
-              "text": "the number, then the medicine folded to fit it"
+              "text": "That clinical practice was shaped to fit an administrative figure."
             },
             {
               "id": "c",
-              "text": "neither, they arose together"
+              "text": "That appointment length was agreed before software was chosen."
+            },
+            {
+              "id": "d",
+              "text": "That patients set their expectations before doctors set the time."
             }
           ]
         },
         {
           "id": "q3",
-          "stem": "Which problem is said to fit the fifteen minutes comfortably?",
-          "answer": "c",
+          "stem": "Why does the writer mention the patient waiting three weeks about a rash?",
+          "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "a patient who feels low"
+              "text": "To concede that brisk consultations are sometimes what is wanted."
             },
             {
               "id": "b",
-              "text": "four complaints that are really one"
+              "text": "To illustrate how long patients are now made to wait for care."
             },
             {
               "id": "c",
-              "text": "a repeat prescription"
+              "text": "To argue that minor complaints occupy too much clinical time."
+            },
+            {
+              "id": "d",
+              "text": "To show that skin problems are difficult to assess quickly."
             }
           ]
         },
         {
           "id": "q4",
-          "stem": "The 'hand already on the door' examples are used to show:",
-          "answer": "a",
+          "stem": "What do the examples in the third paragraph have in common?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "the real substance of medicine, which does not keep to time"
+              "text": "They involve patients who are unusually hard to communicate with."
             },
             {
               "id": "b",
-              "text": "rare, unusual cases"
+              "text": "They are rare presentations that most clinicians seldom encounter."
             },
             {
               "id": "c",
-              "text": "patients who waste time"
+              "text": "They are central to practice yet do not fit the allotted time."
+            },
+            {
+              "id": "d",
+              "text": "They could all be resolved by better use of the booking system."
             }
           ]
         },
         {
           "id": "q5",
-          "stem": "What does the writer say is usually NOT lost?",
+          "stem": "According to the writer, what is usually NOT lost when a consultation is rushed?",
           "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "the patient's trust"
+              "text": "The patient's confidence in the clinician seeing them."
             },
             {
               "id": "b",
-              "text": "the diagnosis"
+              "text": "The identification of the clinically dangerous problem."
             },
             {
               "id": "c",
-              "text": "the doctor's patience"
+              "text": "The accuracy of the record made afterwards."
+            },
+            {
+              "id": "d",
+              "text": "The patient's willingness to return another time."
             }
           ]
         },
         {
           "id": "q6",
-          "stem": "Why does disclosure matter, according to the writer?",
-          "answer": "c",
+          "stem": "Why does the writer say disclosure matters?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "it saves time later"
+              "text": "It reduces the number of follow-up appointments required."
             },
             {
               "id": "b",
-              "text": "it protects the doctor legally"
+              "text": "It provides the record needed if a complaint is later made."
             },
             {
               "id": "c",
-              "text": "it is where much of the real work lives"
+              "text": "It allows the consultation to be completed within the time."
+            },
+            {
+              "id": "d",
+              "text": "It aids diagnosis and is part of what a consultation is for."
             }
           ]
         },
         {
           "id": "q7",
-          "stem": "What does the writer say the doctor carries between rooms?",
+          "stem": "What does the writer say about the effect on clinicians?",
           "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "the guilt of the unfinished conversation"
+              "text": "Unfinished conversations accumulate and drive people out of the job."
             },
             {
               "id": "b",
-              "text": "detailed written notes"
+              "text": "Clinicians adapt to the pace and stop noticing it within a year."
             },
             {
               "id": "c",
-              "text": "the next patient's file"
+              "text": "The strain is felt mainly by those in their first years of practice."
+            },
+            {
+              "id": "d",
+              "text": "Most clinicians would prefer shorter appointments and more of them."
             }
           ]
         },
         {
           "id": "q8",
-          "stem": "The writer's overall argument is that time is:",
-          "answer": "b",
+          "stem": "Which statement best summarises the writer's overall argument?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "a luxury added on to good care"
+              "text": "Appointments should be lengthened wherever this can be afforded."
             },
             {
               "id": "b",
-              "text": "part of the very structure of good care"
+              "text": "Each practice should be free to set its own appointment length."
             },
             {
               "id": "c",
-              "text": "always better in larger amounts"
+              "text": "Time is part of the structure of care, not an overhead upon it."
+            },
+            {
+              "id": "d",
+              "text": "Longer consultations produce better outcomes in almost all cases."
             }
           ]
         }
@@ -1821,159 +4171,191 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Whenever healthcare staff are surveyed and found to be exhausted, demoralised, and leaving in numbers, a familiar remedy is wheeled out: resilience. There are workshops on it, modules, mindfulness apps distributed by the very organisations whose rotas made the mindfulness necessary. The message, however kindly meant, is that the problem lies in the individual's capacity to cope, and the solution is to help them cope better. It is worth pausing on how strange this is. We would not respond to a ward with a broken ventilation system by teaching the staff to breathe more efficiently. Resilience, as a personal quality, is real and valuable. People who can steady themselves under pressure are a gift to any team. The sleight of hand is not in praising resilience but in prescribing it - in taking a systemic failure and relocating it inside the worker, so that burnout becomes a sign of insufficient character rather than of impossible conditions. Once framed that way, the exhausted nurse is subtly at fault, and the institution is off the hook. If only she had attended the wellbeing session. The evidence points elsewhere. Burnout tracks not with weak personalities but with things done to people: excessive workload, lack of control over one's day, unfair treatment, and values in conflict with the job. These are features of systems, not flaws in souls, and they respond to systemic things - safe staffing, workable rotas, a say in decisions, and the simple experience of being listened to when you raise a concern. The cruelty of the resilience narrative is that it asks the depleted to generate, from their own reserves, the strength the organisation has failed to provide. It privatises a public failing. None of this means individuals are powerless, or that supporting wellbeing is wrong. It means that wellbeing offered instead of change is not support; it is a way of looking after the appearance of care while leaving its causes untouched. The honest response to a broken system is to mend the system."
+          "body": "Read enough hospital wellbeing strategies and you begin to notice that they are written in a particular dialect. Staff are invited to build resilience, to develop coping strategies, to access support, to engage with a programme. The verbs all belong to the same person, and it is never the organisation. Nobody in these documents fixes a rota. The employer provides an opportunity; the member of staff, if they are sufficiently motivated, takes it up.\n\nThis is worth pausing over, because the language is doing a great deal of work. Consider how odd the equivalent would sound elsewhere. If a ward's ventilation system failed, we would not run a course teaching staff to breathe more efficiently, and if we did, we would expect somebody to say so. Yet the same manoeuvre passes almost unremarked when the failing system is a rota, a staffing level, or a rule that nobody can change. The problem is renamed as a capacity, and the capacity is located inside the worker, where it becomes their business to develop.\n\nNone of this is an argument against resilience as a human quality. People who can steady themselves under pressure are a genuine gift to any team, and most of us have been carried by one at some point. The sleight of hand lies not in praising the quality but in prescribing it — in taking a failure that belongs to the organisation and relocating it inside the individual, so that exhaustion begins to look like a shortage of character rather than evidence of impossible conditions. Once the frame is set, the exhausted nurse is subtly at fault. She might have attended the session. The institution, having offered one, has discharged its duty.\n\nThe way these programmes are measured completes the circle. What gets counted is attendance, satisfaction with the session, sometimes a score on a questionnaire administered on the day. What is almost never counted is whether anything about the work changed. A programme can therefore report success in the same year that turnover rises, because success has been defined as uptake rather than as effect. It is difficult to think of another area of clinical practice where an intervention would be permitted to define its own outcome so generously.\n\nWhat the evidence actually shows is less convenient. Burnout tracks not with weak personalities but with things done to people: sustained excessive workload, little control over one's own day, unfair treatment, reward that bears no relation to effort, and being asked to work in ways that conflict with one's own sense of what the job is for. These are properties of systems. They respond to systemic remedies — safe staffing, rotas built for humans, a real say in decisions, and the ordinary experience of raising a concern and finding that somebody acted on it.\n\nNor is the cost only to individuals. A workforce that has learned to describe its own exhaustion as a personal failing will stop reporting it, and an organisation that cannot see strain cannot manage it. The information that would have allowed an early, cheap correction is simply no longer collected, because the people holding it have concluded that supplying it says something unflattering about them. The effect compounds. Once a team has learned that raising a concern produces a leaflet rather than a change, the next concern is raised less quickly, and the one after that is not raised at all. What an outsider sees, some years later, is a department that appears content until the week several people resign together. The silence was never contentment; it was the accumulated evidence of a hundred small occasions on which speaking turned out not to be worth it.\n\nSo the objection is not that wellbeing support is worthless. Offered alongside change, it is worth having, and for some people it is worth a great deal. The objection is to wellbeing offered instead of change, which is not support at all but a way of maintaining the appearance of care while leaving its causes exactly where they were. The honest response to a system that is breaking people is to mend the system, and to say plainly that this is what is required — even, and especially, when mending it costs more than a workshop."
         }
       ],
       "questions": [
         {
           "id": "q1",
-          "stem": "What remedy does the writer say is offered to exhausted staff?",
-          "answer": "c",
+          "stem": "What does the writer notice about the language of wellbeing strategies?",
+          "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "higher pay"
+              "text": "It is too technical for most staff to understand easily."
             },
             {
               "id": "b",
-              "text": "longer holidays"
+              "text": "Its actions belong to the individual rather than the employer."
             },
             {
               "id": "c",
-              "text": "resilience training"
+              "text": "It repeats the wording used in national policy documents."
+            },
+            {
+              "id": "d",
+              "text": "It avoids naming the professions it is addressed to."
             }
           ]
         },
         {
           "id": "q2",
-          "stem": "The broken-ventilation analogy is used to show that:",
-          "answer": "a",
+          "stem": "Why does the writer describe the ventilation example as odd?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "it is strange to fix a system problem by changing the individual"
+              "text": "Because ventilation faults are rare in modern hospital buildings."
             },
             {
               "id": "b",
-              "text": "hospitals need better air quality"
+              "text": "Because breathing exercises have been shown to be ineffective."
             },
             {
               "id": "c",
-              "text": "staff breathe inefficiently"
+              "text": "Because staff would refuse to attend a course of that kind."
+            },
+            {
+              "id": "d",
+              "text": "Because nobody would accept training in place of a repair."
             }
           ]
         },
         {
           "id": "q3",
-          "stem": "What does the writer call the 'sleight of hand'?",
-          "answer": "b",
+          "stem": "What does the writer say the phrase 'sleight of hand' refers to?",
+          "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "praising resilience"
+              "text": "Prescribing a personal quality as the remedy for a system fault."
             },
             {
               "id": "b",
-              "text": "prescribing resilience for a systemic failure"
+              "text": "Praising staff for a resilience they do not actually possess."
             },
             {
               "id": "c",
-              "text": "denying that resilience exists"
+              "text": "Claiming that resilience is not a real human quality at all."
+            },
+            {
+              "id": "d",
+              "text": "Publishing a strategy that management has no plan to fund."
             }
           ]
         },
         {
           "id": "q4",
-          "stem": "When burnout is framed as weak character, who is 'off the hook'?",
+          "stem": "According to the writer, what follows once exhaustion is framed as a shortage of character?",
           "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "the individual worker"
+              "text": "Staff begin to seek help from outside their own organisation."
             },
             {
               "id": "b",
-              "text": "the patient"
+              "text": "Managers are held to account for the conditions they created."
             },
             {
               "id": "c",
-              "text": "the institution"
+              "text": "The worker is quietly at fault and the employer is not."
+            },
+            {
+              "id": "d",
+              "text": "Attendance at wellbeing sessions falls away within months."
             }
           ]
         },
         {
           "id": "q5",
-          "stem": "According to the evidence cited, burnout tracks with:",
-          "answer": "a",
+          "stem": "What is the writer's criticism of how these programmes are measured?",
+          "answer": "d",
           "options": [
             {
               "id": "a",
-              "text": "things done to people, such as workload and lack of control"
+              "text": "The questionnaires used are too short to be reliable."
             },
             {
               "id": "b",
-              "text": "weak personalities"
+              "text": "Results are collected but never published for staff to see."
             },
             {
               "id": "c",
-              "text": "a lack of training"
+              "text": "The same measures are applied across very different services."
+            },
+            {
+              "id": "d",
+              "text": "Uptake is counted as success while the work goes unexamined."
             }
           ]
         },
         {
           "id": "q6",
-          "stem": "What kind of solutions does the writer say the causes respond to?",
-          "answer": "b",
+          "stem": "What does the evidence cited by the writer associate burnout with?",
+          "answer": "a",
           "options": [
             {
               "id": "a",
-              "text": "individual mindfulness"
+              "text": "Workload, lack of control and treatment experienced as unfair."
             },
             {
               "id": "b",
-              "text": "systemic changes such as safe staffing"
+              "text": "Personality traits identifiable before entry to the profession."
             },
             {
               "id": "c",
-              "text": "resilience apps"
+              "text": "Insufficient clinical supervision in the first years of work."
+            },
+            {
+              "id": "d",
+              "text": "The number of years a clinician has spent in the same post."
             }
           ]
         },
         {
           "id": "q7",
-          "stem": "The writer says the resilience narrative 'privatises' a:",
-          "answer": "c",
+          "stem": "What further consequence does the writer identify in the sixth paragraph?",
+          "answer": "b",
           "options": [
             {
               "id": "a",
-              "text": "personal weakness"
+              "text": "Staff move to organisations offering better wellbeing provision."
             },
             {
               "id": "b",
-              "text": "hospital budget"
+              "text": "Strain stops being reported, so it can no longer be managed."
             },
             {
               "id": "c",
-              "text": "public failing"
+              "text": "Managers begin to distrust the reports that they do receive."
+            },
+            {
+              "id": "d",
+              "text": "Wellbeing budgets are diverted towards recruitment instead."
             }
           ]
         },
         {
           "id": "q8",
-          "stem": "What does the writer say wellbeing offered instead of change really is?",
-          "answer": "a",
+          "stem": "What is the writer's final position on wellbeing support?",
+          "answer": "c",
           "options": [
             {
               "id": "a",
-              "text": "a way of preserving the appearance of care while ignoring its causes"
+              "text": "It should be withdrawn and the money spent on staffing."
             },
             {
               "id": "b",
-              "text": "genuine support"
+              "text": "It should be offered only to staff who ask for it directly."
             },
             {
               "id": "c",
-              "text": "a waste of money"
+              "text": "It is worth having alongside change, but not in place of it."
+            },
+            {
+              "id": "d",
+              "text": "It is a reasonable first step towards the reforms that follow."
             }
           ]
         }

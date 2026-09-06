@@ -26,36 +26,32 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Aseptic non-touch technique protects key parts and key sites from contamination. The central rule is that key parts must not be touched directly.",
-          "heading": "Key principle"
+          "heading": "Key principle",
+          "body": "Aseptic non-touch technique protects key parts and key sites from contamination. The central rule is that key parts must not be touched directly. A key part is any component of the equipment that will come into contact with the liquid infusing into the patient or with the key site itself: the syringe tip, the needle hub, the exposed lumen of a connector. A key site is the point at which the patient is vulnerable, such as an insertion point or an open wound. Identifying both before the procedure begins is the step most often skipped, and once the procedure is under way there is no opportunity to correct it. The technique does not aim to sterilise the environment. It aims to keep a small number of surfaces uncontaminated for a short period, which is achievable in a ward side room and is not achieved by additional equipment. Where a key part cannot be protected by design, it must be protected by sequence: prepare it last and use it immediately."
         },
         {
           "id": "B",
-          "body": "Decontaminate hands with alcohol gel or soap and water before assembling equipment. Repeat hand hygiene immediately before contact with the key site.",
-          "heading": "Hand preparation"
+          "heading": "Hand preparation",
+          "body": "Decontaminate hands with alcohol gel or soap and water before assembling equipment. Repeat hand hygiene immediately before contact with the key site. Two separate moments are involved and the second is the one commonly omitted, because the hands are believed to be still clean from the first. Anything touched in between — a trolley handle, a curtain, a patient's bedding — returns them to the state they were in before. Hands must be dry before gloves are applied, since damp hands both tear gloves and encourage organisms to multiply inside them. Sleeves are rolled above the elbow, wristwatches and stoned rings are removed, and nails are kept short and unvarnished. Where an alcohol gel is used, enough product must be taken to keep the hands wet for the whole of the rub; a quantity that dries in ten seconds has not been effective. Hand hygiene is repeated after the procedure and after gloves are removed."
         },
         {
           "id": "C",
-          "body": "Use a clean or sterile field appropriate to the procedure. Keep the field within view and do not reach across it once it is prepared.",
-          "heading": "Field management"
+          "heading": "Field management",
+          "body": "Use a clean or sterile field appropriate to the procedure. A clean field is sufficient for most ward procedures; a sterile field is required where key parts will be exposed for a prolonged period or handled directly. Keep the field within view and do not reach across it once it is prepared. Reaching across is the commonest breach observed in audit, and it happens most often when an item has been forgotten and is fetched mid-procedure — which is why the whole of the equipment is assembled before anything is opened. Place the field on a surface that has been cleaned and allowed to dry, and never on a bed or on the floor. If the field is touched by clothing, by a sleeve, or by anything not part of the procedure, it is no longer a field and must be replaced. A field is not made safe by being covered; once its status is uncertain, it is contaminated."
         },
         {
           "id": "D",
-          "body": "Gloves complement but never replace hand hygiene. Apply non-sterile gloves for simple procedures and sterile gloves where direct handling of a key part is unavoidable.",
-          "heading": "Glove use"
+          "heading": "Glove use",
+          "body": "Gloves complement but never replace hand hygiene. Apply non-sterile gloves for simple procedures and sterile gloves where direct handling of a key part is unavoidable. The choice is determined by what will be touched rather than by how invasive the procedure feels: a short peripheral cannulation in which no key part is handled requires non-sterile gloves, while a longer procedure with exposed connectors requires sterile ones. Gloves are put on immediately before the procedure and removed immediately after, at the bedside, and never worn between patients or while writing in the notes. They fail more often than staff expect, with unnoticed perforations in a measurable proportion of pairs by the end of a procedure, which is why hands are cleaned again after removal. Gloves must be changed if they are torn, if they are contaminated with blood, or if the procedure moves from a dirty site to a clean one."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text states that gloves do not replace hand hygiene?",
+          "stem": "In which text can you find information about the fact that gloves do not replace hand hygiene?",
           "answer": "D",
           "options": [
-            {
-              "id": "D",
-              "text": "D"
-            },
             {
               "id": "A",
               "text": "A"
@@ -67,22 +63,26 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text gives the central rule of the technique?",
+          "stem": "In which text can you find information about the central rule of the technique?",
           "answer": "A",
           "options": [
             {
-              "id": "B",
-              "text": "B"
-            },
-            {
               "id": "A",
               "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
             },
             {
               "id": "C",
@@ -97,7 +97,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text advises against reaching across the prepared area?",
+          "stem": "In which text can you find information about not reaching across the prepared area?",
           "answer": "C",
           "options": [
             {
@@ -120,9 +120,177 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about the moment of hand hygiene that is most often omitted?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about what a key site is?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about when a sterile field rather than a clean one is needed?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about when gloves must be changed during a procedure?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
           "stem": "The central rule is that ______ must not be touched directly.",
           "answer": "key parts"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "A key site is a point at which the patient is ______.",
+          "answer": "vulnerable"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Where a key part cannot be protected by design, protect it by ______.",
+          "answer": "sequence"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Hands must be ______ before gloves are applied.",
+          "answer": "dry"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Damp hands both tear gloves and let organisms ______ inside them.",
+          "answer": "multiply"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Take enough gel to keep the hands ______ for the whole rub.",
+          "answer": "wet"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "A ______ field is sufficient for most ward procedures.",
+          "answer": "clean"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "The commonest breach seen in audit is ______ the field.",
+          "answer": "reaching across"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Never place the field on a bed or on the ______.",
+          "answer": "floor"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Gloves are removed immediately after the procedure, at the ______.",
+          "answer": "bedside"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Gloves are never worn between ______.",
+          "answer": "patients"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Change gloves if they are ______ or contaminated with blood.",
+          "answer": "torn"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Assemble all the equipment before anything is ______.",
+          "answer": "opened"
         }
       ]
     },
@@ -143,30 +311,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Begin discharge planning at the point of admission by setting an expected date of discharge. Review this date daily against the patient's progress.",
-          "heading": "Early planning"
+          "heading": "Early planning",
+          "body": "Begin discharge planning at the point of admission by setting an expected date of discharge. Review this date daily against the patient's progress, and record any change together with the reason for it. The date is a working assumption rather than a promise, and it is useful precisely because it can be wrong: a date that has slipped three times without explanation is a signal that something in the plan is not being addressed. Identify on the first day anything that will take longer than the admission itself to arrange — a package of care, a housing assessment, equipment that must be ordered — because these, rather than the clinical recovery, are what most often delay a discharge. Involve the patient and, with their agreement, whoever will be at home with them, from the beginning rather than on the final morning. A patient who has known the plan for a week arrives at discharge prepared; one told on the day arrives at it surprised."
         },
         {
           "id": "B",
-          "body": "Reconcile the discharge medicines against the admission list. Provide a written summary explaining any changes for the patient and the general practitioner.",
-          "heading": "Medicines reconciliation"
+          "heading": "Medicines reconciliation",
+          "body": "Reconcile the discharge medicines against the admission list. Provide a written summary explaining any changes for the patient and the general practitioner, stating for each change what was altered and why. A list that shows only the new regimen tells the receiving clinician nothing about what was stopped, and a drug omitted in error looks identical to a drug stopped deliberately. Note explicitly where a medicine has been suspended rather than discontinued, and give the date on which it should be reviewed. Check that the patient can physically manage the medicines they are being sent home with, including opening the containers, and arrange a monitored dosage system where they cannot. Ensure that any medicine requiring monitoring has a blood test booked before the next dose is due. Where a controlled drug is supplied, confirm that the quantity and the arrangements for further supply are recorded in the discharge letter."
         },
         {
           "id": "C",
-          "body": "Confirm that the home environment is safe and that any equipment, such as a commode or grab rail, is in place before the patient leaves.",
-          "heading": "Home readiness"
+          "heading": "Home readiness",
+          "body": "Confirm that the home environment is safe and that any equipment, such as a commode or grab rail, is in place before the patient leaves. Delivery being arranged is not the same as delivery having happened, and a discharge that depends on an item arriving that afternoon should not proceed until it has. Check that there is heating, that there is food in the house, and that somebody can let the patient in — three questions that sound trivial and account for a substantial share of readmissions within forty-eight hours. Where a home visit has identified hazards, confirm that they have been removed rather than reported. Consider the route the patient will take from the front door to the bed and to the bathroom, since it is the route rather than the room that determines whether they can manage. For a patient living alone, agree who will check on them in the first twenty-four hours."
         },
         {
           "id": "D",
-          "body": "Book any outpatient or community follow-up before discharge and give the patient written details of who to contact if symptoms worsen.",
-          "heading": "Follow-up arrangements"
+          "heading": "Follow-up arrangements",
+          "body": "Book any outpatient or community follow-up before discharge and give the patient written details of who to contact if symptoms worsen. Verbal instructions are forgotten within hours, and the patient's own account of what to look out for should be heard rather than assumed. Name the specific symptoms that should prompt contact, and give a route for each: some warrant a call to the ward, some to the general practice, and a small number warrant an ambulance. State the timescale as well as the symptom, since worse is a comparison the patient cannot make without knowing what to expect. Send the discharge summary on the day of discharge rather than within the permitted period, because the risk sits in the gap between the patient arriving home and the summary arriving at the practice. Where a district nurse or therapist is to visit, confirm that the referral has been accepted rather than merely sent."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text deals with checking equipment is in place at home?",
+          "stem": "In which text can you find information about checking that equipment is in place at home?",
           "answer": "C",
           "options": [
             {
@@ -178,28 +346,28 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "B"
             },
             {
-              "id": "D",
-              "text": "D"
-            },
-            {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text advises explaining medicine changes to the general practitioner?",
+          "stem": "In which text can you find information about explaining medicine changes to the general practitioner?",
           "answer": "B",
           "options": [
             {
-              "id": "B",
-              "text": "B"
-            },
-            {
               "id": "A",
               "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
             },
             {
               "id": "C",
@@ -214,16 +382,16 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text recommends setting a discharge date at admission?",
+          "stem": "In which text can you find information about setting a discharge date at admission?",
           "answer": "A",
           "options": [
             {
-              "id": "B",
-              "text": "B"
-            },
-            {
               "id": "A",
               "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
             },
             {
               "id": "C",
@@ -237,9 +405,177 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about naming the symptoms that should prompt contact?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about what most often delays a discharge?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about a patient who cannot open their own containers?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about the questions that account for early readmissions?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
           "stem": "Begin discharge planning by setting an expected ______ of discharge.",
           "answer": "date"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Review the expected date ______ against the patient's progress.",
+          "answer": "daily"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "A date that has slipped three times without explanation is a ______.",
+          "answer": "signal"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "For each medicine change, state what was altered and ______.",
+          "answer": "why"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Note where a medicine has been ______ rather than discontinued.",
+          "answer": "suspended"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Arrange a ______ dosage system where the patient cannot manage.",
+          "answer": "monitored"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Delivery being arranged is not the same as delivery having ______.",
+          "answer": "happened"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Confirm that identified hazards have been ______ rather than reported.",
+          "answer": "removed"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "It is the ______ rather than the room that determines whether they can manage.",
+          "answer": "route"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "______ instructions are forgotten within hours.",
+          "answer": "verbal"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "State the ______ as well as the symptom.",
+          "answer": "timescale"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Send the discharge summary on the ______ of discharge.",
+          "answer": "day"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Confirm that a community referral has been ______ rather than merely sent.",
+          "answer": "accepted"
         }
       ]
     },
@@ -260,30 +596,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Every patient should be screened for falls risk within six hours of admission. The screen records history of previous falls, mobility status and current medicines.",
-          "heading": "Screening on admission"
+          "heading": "Screening on admission",
+          "body": "Every patient should be screened for falls risk within six hours of admission. The screen records history of previous falls, mobility status and current medicines. A fall in the previous twelve months is the strongest single predictor of a further fall, and it must be asked about directly, since patients frequently do not volunteer it — many attribute a fall to carelessness, and some fear that reporting it will lead to a loss of independence. Ask how the fall happened and at what time of day, because falls clustering at one hour of the day usually have one cause. The screen is repeated whenever the patient's condition changes, after any transfer between wards, and after any fall. A screen completed once on admission describes the patient who arrived rather than the patient now in the bed, and a period of illness, a new medicine or a catheter can change the risk within a day."
         },
         {
           "id": "B",
-          "body": "Ensure the call bell is within reach, the bed is at its lowest setting and the floor is free of clutter. Adequate lighting at night reduces disorientation.",
-          "heading": "Environmental measures"
+          "heading": "Environmental measures",
+          "body": "Ensure the call bell is within reach, the bed is at its lowest setting and the floor is free of clutter. Adequate lighting at night reduces disorientation, and a low-level light left on is more useful than a bright one switched on suddenly, which dazzles a patient who is already unsteady. Check that the patient's footwear is well fitting and enclosed; slippers with no back are a frequent contributor and are worn by a large proportion of inpatients. Ensure that spectacles, hearing aids and a walking aid are within reach rather than in a locker, and that the walking aid is the one the patient actually uses at home. Wipe spills immediately rather than marking them, and keep the route between the bed and the bathroom clear at all times, since that route is where the majority of inpatient falls occur, most of them at night."
         },
         {
           "id": "C",
-          "body": "Sedatives, antihypertensives and diuretics all increase falls risk. A pharmacist review is advised for any patient taking four or more regular medicines.",
-          "heading": "Medication review"
+          "heading": "Medication review",
+          "body": "Sedatives, antihypertensives and diuretics all increase falls risk. A pharmacist review is advised for any patient taking four or more regular medicines. The risk rises with the number of medicines rather than with any single drug, and the combination is frequently more important than any item on the list. Night sedation deserves particular attention because its effects persist into the hours when patients get up to use the bathroom. Postural blood pressure should be measured lying and then standing, at one minute and again at three, since a delayed drop is missed by a single reading. Where a medicine is identified as a contributor, reduce it gradually with a review date rather than stopping it abruptly. Record the discussion with the patient: a person who understands why a tablet is being reduced is considerably more likely to remain off it than one who simply finds it missing from the packet."
         },
         {
           "id": "D",
-          "body": "After a fall, do not move the patient until neurological observations and a check for injury are complete. Document the event and notify the medical team.",
-          "heading": "Post-fall protocol"
+          "heading": "Post-fall protocol",
+          "body": "After a fall, do not move the patient until neurological observations and a check for injury are complete. Document the event and notify the medical team. Ask the patient what they were trying to do, and record the answer in their own words, because the answer is almost always actionable — I wanted the light on, I could not reach my water, I did not want to press the buzzer again. Check specifically for a head injury in anyone taking an anticoagulant, and record the time of the fall as well as the time of discovery, which are frequently not the same. Examine for hip and wrist injury even where the patient reports no pain, since pain may be masked. Repeat the falls screen, review the environment at that bed space, and inform the family the same day. A fall that is documented but not followed by a change is a fall that will be repeated."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text advises a pharmacist review for patients on multiple medicines?",
+          "stem": "In which text can you find information about a pharmacist review for patients on several medicines?",
           "answer": "C",
           "options": [
             {
@@ -307,9 +643,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text states when an initial falls screen should be completed?",
+          "stem": "In which text can you find information about when an initial falls screen should be completed?",
           "answer": "A",
           "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
             {
               "id": "B",
               "text": "B"
@@ -321,23 +661,15 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "D",
               "text": "D"
-            },
-            {
-              "id": "A",
-              "text": "A"
             }
           ]
         },
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text explains what to do immediately after a patient has fallen?",
+          "stem": "In which text can you find information about what to do immediately after a patient has fallen?",
           "answer": "D",
           "options": [
-            {
-              "id": "D",
-              "text": "D"
-            },
             {
               "id": "A",
               "text": "A"
@@ -349,14 +681,186 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about the type of footwear that contributes to falls?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about why patients may not report an earlier fall?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about where most inpatient falls happen?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about checking for injury where the patient reports no pain?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
           "stem": "Every patient should be screened for falls risk within ______ of admission.",
           "answer": "six hours"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "The strongest single predictor is a fall in the previous ______.",
+          "answer": "twelve months"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Falls clustering at one hour of the day usually have one ______.",
+          "answer": "cause"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "The bed should be at its ______ setting.",
+          "answer": "lowest"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "A ______ light left on is more useful than a bright one switched on suddenly.",
+          "answer": "low-level"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "______ spills immediately rather than marking them.",
+          "answer": "wipe"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Risk rises with the ______ of medicines rather than any single drug.",
+          "answer": "number"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Measure postural blood pressure lying and then ______.",
+          "answer": "standing"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "A contributing medicine should be reduced ______ with a review date.",
+          "answer": "gradually"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Record what the patient was trying to do in their own ______.",
+          "answer": "words"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Check specifically for head injury in anyone taking an ______.",
+          "answer": "anticoagulant"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Record the time of the fall as well as the time of ______.",
+          "answer": "discovery"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Inform the ______ on the same day.",
+          "answer": "family"
         }
       ]
     },
@@ -377,30 +881,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Clean hands before touching a patient and before a clean or aseptic procedure.",
-          "heading": "When to clean hands"
+          "heading": "When to clean hands",
+          "body": "Clean hands before touching a patient and before a clean or aseptic procedure. Clean them again after any exposure to body fluids, after touching a patient, and after touching the patient's immediate surroundings, even where the patient themselves was not touched. The bed rail, the table and the notes trolley at the bedside all count as the patient's surroundings, and the moment after touching them is the one most often missed in observational audit. The five moments apply to every member of staff who enters the bed space, including those who have touched nothing they consider clinical. Hand hygiene is performed at the point of care rather than on the way to it, because hands cleaned at the door and then used to move a curtain are no longer clean. Where a patient is in isolation, hands are cleaned on entering and again on leaving, and the second is not optional because gloves were worn."
         },
         {
           "id": "B",
-          "body": "Alcohol hand rub should be applied to dry hands and rubbed until fully evaporated, covering all surfaces.",
-          "heading": "Technique"
+          "heading": "Technique",
+          "body": "Alcohol hand rub should be applied to dry hands and rubbed until fully evaporated, covering all surfaces. The full procedure takes between twenty and thirty seconds, which is considerably longer than most staff spend, and the areas missed are consistent: the thumbs, the fingertips, and the skin between the fingers. Fingertips deserve particular attention because they make most of the contact with the patient. Take enough product to keep the hands wet for the whole of the rub; if the hands are dry after ten seconds, too little was used. Do not wave the hands or use a towel to speed up drying, since the rub works while it is in contact with the skin. When washing rather than rubbing, wet the hands before applying soap, wash for the same length of time, rinse thoroughly and dry completely with paper towels, since organisms transfer far more readily from damp skin."
         },
         {
           "id": "C",
-          "body": "Use soap and water rather than alcohol rub when hands are visibly soiled or after caring for a patient with diarrhoea.",
-          "heading": "When soap is required"
+          "heading": "When soap is required",
+          "body": "Use soap and water rather than alcohol rub when hands are visibly soiled or after caring for a patient with diarrhoea. Alcohol is not effective against spores, so in any patient with suspected or confirmed Clostridioides difficile, washing is required rather than preferred: the physical action of washing and drying removes what the rub cannot kill. The same applies after contact with a patient who has vomiting of uncertain cause. Rub also performs poorly on hands that are visibly soiled, since the product cannot reach the skin beneath; wash first, and rub afterwards if you wish. Soap and water are also used after using the toilet and before handling food, and at the start and end of a shift. In all other circumstances rub is preferred, as it is quicker, more accessible at the bedside and less damaging to the skin than repeated washing."
         },
         {
           "id": "D",
-          "body": "Apply emollient regularly to reduce the skin damage that repeated cleaning can cause.",
-          "heading": "Skin care"
+          "heading": "Skin care",
+          "body": "Apply emollient regularly to reduce the skin damage that repeated cleaning can cause. Damaged skin matters clinically rather than cosmetically: broken or eczematous skin carries a higher bacterial load, is harder to decontaminate, and is painful enough that staff begin to avoid cleaning their hands altogether, which is the outcome that concerns us most. Use the emollient supplied rather than a personal product, because some hand creams are incompatible with the rub and reduce its activity. Apply it at breaks and at the end of a shift rather than immediately before patient contact. Report skin problems early to occupational health rather than treating them alone; most respond quickly if they are seen before the skin has broken down. Staff with a diagnosed skin condition should not be discouraged from clinical work, but should have a documented plan agreed with occupational health. A dispenser that is empty is a barrier to hand hygiene rather than an inconvenience, so report empty wall units and empty emollient dispensers to housekeeping rather than walking past them."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text says when alcohol rub is not appropriate?",
+          "stem": "In which text can you find information about when alcohol rub is not appropriate?",
           "answer": "C",
           "options": [
             {
@@ -408,12 +912,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "A"
             },
             {
-              "id": "C",
-              "text": "C"
-            },
-            {
               "id": "B",
               "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
             },
             {
               "id": "D",
@@ -424,7 +928,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text describes correct rubbing technique?",
+          "stem": "In which text can you find information about the correct technique for rubbing the hands?",
           "answer": "B",
           "options": [
             {
@@ -432,12 +936,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "A"
             },
             {
-              "id": "C",
-              "text": "C"
-            },
-            {
               "id": "B",
               "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
             },
             {
               "id": "D",
@@ -447,9 +951,201 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": "match",
+          "stem": "In which text can you find information about cleaning hands after touching the patient's surroundings?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about why damaged skin matters clinically?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about which hand cream should be used?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about what counts as the patient's immediate surroundings?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about the length of time the full procedure takes?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
           "stem": "Alcohol rub should be applied to ______ hands.",
           "answer": "dry"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "The full rub takes between twenty and ______ seconds.",
+          "answer": "thirty"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "The areas most often missed are the thumbs, the fingertips and the skin between the ______.",
+          "answer": "fingers"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Hand hygiene is performed at the ______ of care.",
+          "answer": "point"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "In isolation, hands are cleaned on entering and again on ______.",
+          "answer": "leaving"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Alcohol is not effective against ______.",
+          "answer": "spores"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Where hands are visibly ______, wash first.",
+          "answer": "soiled"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Rub is preferred elsewhere because it is quicker and less ______ to the skin.",
+          "answer": "damaging"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Damaged skin carries a higher bacterial ______.",
+          "answer": "load"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Use the emollient ______ rather than a personal product.",
+          "answer": "supplied"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Some hand creams are ______ with the rub.",
+          "answer": "incompatible"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Report skin problems early to ______ health.",
+          "answer": "occupational"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Dry the hands completely with paper ______.",
+          "answer": "towels"
         }
       ]
     },
@@ -470,30 +1166,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Consent is valid only if the patient has the capacity to understand, retain and weigh the relevant information and can communicate a decision.",
-          "heading": "Capacity"
+          "heading": "Capacity",
+          "body": "Consent is valid only if the patient has the capacity to understand, retain and weigh the relevant information and can communicate a decision. Capacity is assumed in every adult unless the opposite is demonstrated, and it is assessed for the specific decision in front of the patient rather than in general. A person may have capacity to consent to a dressing change on the same afternoon that they lack it for a major operation, and a person whose capacity fluctuates should be assessed at the time they are best able to engage. An unwise decision is not evidence of incapacity, and this is the point most often misapplied: a patient who declines a treatment the team believes is clearly in their interest is exercising a right rather than demonstrating a deficit. Where capacity is in doubt, record the four elements separately and note what was done to support the person — an interpreter, a quieter room, a return visit. Where a person lacks capacity, a decision is made in their best interests, taking account of any advance decision, any lasting power of attorney, and the views of those close to them."
         },
         {
           "id": "B",
-          "body": "The decision must be made freely, without pressure from staff, family or any other party. Coerced agreement is not valid consent.",
-          "heading": "Voluntariness"
+          "heading": "Voluntariness",
+          "body": "The decision must be made freely, without pressure from staff, family or any other party. Coerced agreement is not valid consent, and coercion in a clinical setting is rarely overt. It appears as a relative answering on the patient's behalf, as a form presented on the morning of a procedure when everything else has been arranged, or as a clinician's evident disappointment at a refusal. The imbalance of authority is itself a pressure, so the absence of an explicit threat does not establish that the choice was free. Where a family member is present at every discussion and the patient has not been seen alone, arrange to see them alone at least once. Consent may be withdrawn at any time and for any reason, including after the form has been signed and the patient has arrived in the anaesthetic room, and staff should say so plainly rather than assume it is understood. Where an interpreter is needed, use a professional one rather than a relative, since a family member may soften what is said or answer on the patient's behalf without intending to."
         },
         {
           "id": "C",
-          "body": "Explain the proposed procedure, its benefits, the material risks and any reasonable alternatives, including the option of no treatment.",
-          "heading": "Information shared"
+          "heading": "Information shared",
+          "body": "Explain the proposed procedure, its benefits, the material risks and any reasonable alternatives, including the option of no treatment. A material risk is one to which this particular patient would attach significance, which is not the same as one the profession regards as important, and the only way to establish it is to ask what matters to them. Serious but rare risks are disclosed alongside common minor ones, and both are given in a form the person can use — natural frequencies rather than percentages, and over a stated period. Avoid the word routine, which patients hear as without risk. Check understanding by asking the patient to describe in their own words what will happen, and record any question they asked, since the questions show what they were actually weighing. Where a patient declines information, record that they were offered it and chose not to receive it, and offer again at a later point rather than treating the refusal as permanent."
         },
         {
           "id": "D",
-          "body": "Document the discussion, not just the signature. A signed form alone does not prove that valid consent was obtained.",
-          "heading": "Recording consent"
+          "heading": "Recording consent",
+          "body": "Document the discussion, not just the signature. A signed form alone does not prove that valid consent was obtained, and a form with no accompanying note is evidence only that a form was signed. The entry should state what was explained, which risks were named, what alternatives were offered, what the patient asked and what they decided. Where consent is taken by one clinician and the procedure performed by another, the second must satisfy themselves that the discussion took place and is still current. Consent obtained weeks earlier should be confirmed on the day, particularly where the patient's condition or the plan has changed since. For a procedure carrying significant risk, record that the patient was given time to consider rather than asked to decide immediately. Where consent is given verbally for a minor procedure, the entry in the notes is the record and should contain the same elements as a form would."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text states that a signed form alone is not enough?",
+          "stem": "In which text can you find information about the fact that a signed form alone is not enough?",
           "answer": "D",
           "options": [
             {
@@ -517,13 +1213,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text describes what information must be shared with the patient?",
+          "stem": "In which text can you find information about what information must be shared with the patient?",
           "answer": "C",
           "options": [
-            {
-              "id": "C",
-              "text": "C"
-            },
             {
               "id": "A",
               "text": "A"
@@ -531,6 +1223,10 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "B",
               "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
             },
             {
               "id": "D",
@@ -541,7 +1237,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text says the decision must be free of pressure?",
+          "stem": "In which text can you find information about the decision having to be free of pressure?",
           "answer": "B",
           "options": [
             {
@@ -564,9 +1260,177 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about a decision the team believes is unwise?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about a word that patients hear as meaning no risk?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about seeing a patient without a relative present?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about consent taken by one clinician for another to act on?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
-          "stem": "Consent is valid only if the patient has the ______ to understand and weigh the information.",
+          "stem": "Consent is valid only if the patient has the ______ to weigh the information.",
           "answer": "capacity"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Capacity is ______ in every adult unless the opposite is shown.",
+          "answer": "assumed"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "An ______ decision is not evidence of incapacity.",
+          "answer": "unwise"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "______ agreement is not valid consent.",
+          "answer": "coerced"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "The imbalance of ______ is itself a form of pressure.",
+          "answer": "authority"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Consent may be ______ at any time and for any reason.",
+          "answer": "withdrawn"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "A ______ risk is one this particular patient would attach significance to.",
+          "answer": "material"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Give risks as natural ______ rather than percentages.",
+          "answer": "frequencies"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Avoid the word ______, which patients hear as meaning without risk.",
+          "answer": "routine"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Document the ______, not just the signature.",
+          "answer": "discussion"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Consent obtained weeks earlier should be ______ on the day.",
+          "answer": "confirmed"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Record that the patient was given ______ to consider.",
+          "answer": "time"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Record any ______ the patient asked, as these show what was being weighed.",
+          "answer": "question"
         }
       ]
     },
@@ -587,30 +1451,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Store unopened insulin vials and pens in a refrigerator between 2 and 8 degrees Celsius. Do not allow the product to freeze, as freezing destroys its activity.",
-          "heading": "Unopened supplies"
+          "heading": "Unopened supplies",
+          "body": "Store unopened insulin vials and pens in a refrigerator between 2 and 8 degrees Celsius. Do not allow the product to freeze, as freezing destroys its activity, and a pen that has frozen must not be used even after it has thawed and appears normal. Keep stock away from the back wall and the cooling element of the fridge, where the temperature is lowest and freezing most often occurs unnoticed. Record the maximum and minimum temperature twice daily and reset the thermometer after each reading. Rotate stock so that the earliest expiry is used first, and do not store insulin in a fridge that also holds food or specimens. If the fridge has been out of range, quarantine the stock, label it clearly and seek advice rather than discarding or using it, since some products tolerate a brief excursion and others do not. Fridges holding insulin are checked for a working plug and a socket that cannot be switched off accidentally, since an unnoticed disconnection over a weekend wastes an entire stock."
         },
         {
           "id": "B",
-          "body": "An insulin pen in current use may be kept at room temperature for up to 28 days. Keep it away from direct heat and sunlight.",
-          "heading": "In-use product"
+          "heading": "In-use product",
+          "body": "An insulin pen in current use may be kept at room temperature for up to 28 days. Keep it away from direct heat and sunlight, from a radiator, a windowsill or a parked car, all of which reach temperatures far higher than people assume. Write the date of first use on the pen itself rather than relying on memory, since the count begins at first use and not at the date of dispensing. After 28 days the pen is discarded whatever remains in it. Do not return an in-use pen to the refrigerator, as repeated warming and cooling degrades the product and cold insulin is more painful to inject. Store the pen without a needle attached, because a needle left in place allows air to enter the cartridge and insulin to leak out, so that the dose delivered is no longer the dose dialled. Where a patient uses more than one insulin, store the pens so that they cannot be confused by touch alone, since many are similar in shape and the consequences of the wrong one are serious."
         },
         {
           "id": "C",
-          "body": "Check the appearance before each dose. Discard the product if it looks cloudy when it should be clear, or if particles are visible.",
-          "heading": "Inspection before use"
+          "heading": "Inspection before use",
+          "body": "Check the appearance before each dose. Discard the product if it looks cloudy when it should be clear, or if particles are visible, and do the same where a cloudy suspension will not mix evenly or has clumps adhering to the side of the cartridge. Cloudy insulins are resuspended by rolling the pen gently between the palms and inverting it several times rather than shaking it, which produces bubbles and an inaccurate dose. Prime the pen before every injection by dialling two units and expelling them with the needle pointing upward, and repeat until a drop appears at the tip. If no drop appears after several attempts, change the needle and try again. A pen that will not prime should be replaced rather than used, and the batch number recorded before it is discarded. Check the label and the strength at every dose, not only the appearance, because concentrated preparations exist and look identical to the standard strength in the pen."
         },
         {
           "id": "D",
-          "body": "Advise patients travelling to carry insulin in hand luggage, never in the aircraft hold, where temperatures may drop below freezing.",
-          "heading": "Transport advice"
+          "heading": "Transport advice",
+          "body": "Advise patients travelling to carry insulin in hand luggage, never in the aircraft hold, where temperatures may drop below freezing and where the baggage may not arrive with them. Advise them to take at least twice the quantity they expect to need, divided between two bags, and to carry a letter from the prescriber describing the condition and the equipment. Insulin does not require refrigeration for a journey of a few days provided it is kept below 25 degrees, but a cool bag without a freezer block is a sensible precaution in hot climates; a frozen block placed in direct contact with a pen will ruin it. Remind patients crossing time zones to seek advice before travelling, since the timing rather than the storage is what most often goes wrong on a long flight. Advise patients to keep insulin with them rather than in a hotel fridge, which is often colder than stated and has frozen more supplies than heat has ever spoiled."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text advises checking the product's appearance before each dose?",
+          "stem": "In which text can you find information about checking the product's appearance before each dose?",
           "answer": "C",
           "options": [
             {
@@ -634,7 +1498,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text gives advice for patients who are travelling?",
+          "stem": "In which text can you find information about advice for patients who are travelling?",
           "answer": "D",
           "options": [
             {
@@ -658,7 +1522,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text states the refrigerator temperature range for unopened supplies?",
+          "stem": "In which text can you find information about the refrigerator temperature range for unopened supplies?",
           "answer": "A",
           "options": [
             {
@@ -681,9 +1545,177 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about why a needle should not be left attached?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about what to do if the fridge temperature has gone out of range?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about how a cloudy insulin should be mixed?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about how much insulin a patient should take on a journey?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
-          "stem": "An insulin pen in current use may be kept at room temperature for up to ______ days.",
+          "stem": "An in-use pen may be kept at room temperature for up to ______ days.",
           "answer": "28"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Write the date of first ______ on the pen itself.",
+          "answer": "use"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Do not return an in-use pen to the ______.",
+          "answer": "refrigerator"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Store unopened insulin between 2 and ______ degrees Celsius.",
+          "answer": "8"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Freezing ______ the activity of the product.",
+          "answer": "destroys"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Rotate stock so that the earliest ______ is used first.",
+          "answer": "expiry"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Discard the product if particles are ______.",
+          "answer": "visible"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Resuspend a cloudy insulin by ______ the pen between the palms.",
+          "answer": "rolling"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "______ produces bubbles and an inaccurate dose.",
+          "answer": "shaking"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Prime the pen by dialling ______ units before each injection.",
+          "answer": "two"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Carry insulin in hand ______, never in the aircraft hold.",
+          "answer": "luggage"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Take at least ______ the quantity expected to be needed.",
+          "answer": "twice"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "For a short journey, keep insulin below ______ degrees.",
+          "answer": "25"
         }
       ]
     },
@@ -704,30 +1736,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Use a validated screening tool that combines body mass index, recent unplanned weight loss and the effect of acute illness on intake to give an overall risk score.",
-          "heading": "Screening tool"
+          "heading": "Screening tool",
+          "body": "Use a validated screening tool that combines body mass index, recent unplanned weight loss and the effect of acute illness on intake to give an overall risk score. Each component is scored separately and the three are added, so a patient with a normal body mass index may still score highly on the basis of recent loss alone — which is the situation most often missed, because the person does not look undernourished. Unplanned is the operative word: weight lost deliberately over the same period does not carry the same meaning and should be recorded as such. The acute-illness component applies where a patient has had, or is likely to have, no nutritional intake for more than five days. Do not adapt the tool locally or omit a component that is difficult to obtain, since the score is validated as a whole and a partial score has no established meaning. Where a component genuinely cannot be obtained, record why and score the remainder, stating clearly on the chart that the total is incomplete rather than leaving it to be read as a full score."
         },
         {
           "id": "B",
-          "body": "Screen on admission and weekly thereafter for inpatients. Rescreen sooner if the clinical condition changes or oral intake falls.",
-          "heading": "Timing"
+          "heading": "Timing",
+          "body": "Screen on admission and weekly thereafter for inpatients. Rescreen sooner if the clinical condition changes or oral intake falls, and after any procedure that interrupts eating for more than a day. A single score taken on admission describes the patient's life before hospital rather than what is happening now, and intake commonly falls during an admission for reasons unconnected with appetite: meals missed for investigations, packaging that cannot be opened, dentures left at home, a tray placed out of reach. Record the date of each screen and the score, not merely that screening was done. Where a patient is admitted overnight, the screen is completed within the first twenty-four hours rather than deferred to the next working day, and a patient transferred between wards is rescreened on arrival rather than assumed to carry their score with them. Weigh the patient on the same scales, at a similar time of day and in similar clothing, since between-scale differences are large enough to create a change that never happened."
         },
         {
           "id": "C",
-          "body": "A high-risk score should trigger referral to the dietitian and the start of a food and fluid chart to monitor actual intake.",
-          "heading": "Acting on results"
+          "heading": "Acting on results",
+          "body": "A high-risk score should trigger referral to the dietitian and the start of a food and fluid chart to monitor actual intake. The chart is only useful if somebody totals it and acts on the total, and an untotalled chart provides false reassurance rather than information. Set a nutritional goal and a review date at the point of referral. Mealtime assistance should be recorded as a nursing intervention in its own right rather than treated as something done if there is time, since what is not recorded is the first thing lost on a short-staffed shift. Consider protected mealtimes so that non-urgent tasks pause. Oral supplements are prescribed where food alone is insufficient, but they are an addition to meals rather than a replacement for them, and a supplement given instead of assistance costs more and achieves less. Ask the patient what they would actually eat, rather than what they should eat, because a plan built on food the person dislikes will produce a full chart and an empty plate."
         },
         {
           "id": "D",
-          "body": "If the patient cannot be weighed, estimate body mass index from a mid-upper-arm circumference measurement and record the method used.",
-          "heading": "When weighing is impossible"
+          "heading": "When weighing is impossible",
+          "body": "If the patient cannot be weighed, estimate body mass index from a mid-upper-arm circumference measurement and record the method used. The estimate is less precise than a weight and should be described as an estimate wherever it appears, so that a later reader does not compare it directly with a measured value. Take the measurement on the non-dominant arm, midway between the tip of the shoulder and the point of the elbow, with the arm hanging relaxed. Repeat measurements should be taken by the same method and, where possible, by the same person, since between-observer variation is greater than the change being looked for. Where even this is not possible, record clinical judgement — loose clothing, a ring that no longer fits, a report from a relative that the patient has become thinner — and state plainly what the assessment was based on. Record the arm measurement in centimetres to one decimal place and note which arm was used, so that the next reading is taken in the same place and can be compared."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text describes what to do when a patient cannot be weighed?",
+          "stem": "In which text can you find information about what to do when a patient cannot be weighed?",
           "answer": "D",
           "options": [
             {
@@ -735,25 +1767,29 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "A"
             },
             {
-              "id": "D",
-              "text": "D"
-            },
-            {
               "id": "B",
               "text": "B"
             },
             {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text lists the components combined into a risk score?",
+          "stem": "In which text can you find information about the components combined into a risk score?",
           "answer": "A",
           "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
             {
               "id": "B",
               "text": "B"
@@ -761,10 +1797,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "C",
               "text": "C"
-            },
-            {
-              "id": "A",
-              "text": "A"
             },
             {
               "id": "D",
@@ -775,12 +1807,16 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text states how often inpatients should be screened?",
+          "stem": "In which text can you find information about how often inpatients should be screened?",
           "answer": "B",
           "options": [
             {
               "id": "A",
               "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
             },
             {
               "id": "C",
@@ -789,18 +1825,182 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "D",
               "text": "D"
-            },
-            {
-              "id": "B",
-              "text": "B"
             }
           ]
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about the place of oral supplements alongside meals?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about a patient of normal weight who is still at risk?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about why intake falls during an admission?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about who should repeat an arm measurement?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
           "stem": "A high-risk score should trigger referral to the ______.",
           "answer": "dietitian"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Start a food and fluid ______ to monitor actual intake.",
+          "answer": "chart"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "An untotalled chart provides false ______.",
+          "answer": "reassurance"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "The tool combines body mass index, weight loss and acute ______.",
+          "answer": "illness"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "______ is the operative word in describing the weight loss.",
+          "answer": "unplanned"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Do not ______ the tool locally or omit a component.",
+          "answer": "adapt"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Screen on admission and ______ thereafter.",
+          "answer": "weekly"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Record the ______ of each screen as well as the score.",
+          "answer": "date"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "A patient transferred between wards is ______ on arrival.",
+          "answer": "rescreened"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Estimate body mass index from a mid-upper-arm ______ measurement.",
+          "answer": "circumference"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Take the measurement on the ______ arm.",
+          "answer": "non-dominant"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Between-______ variation is greater than the change looked for.",
+          "answer": "observer"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Mealtime ______ should be recorded as a nursing intervention.",
+          "answer": "assistance"
         }
       ]
     },
@@ -821,36 +2021,32 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Oxygen supports combustion, so keep cylinders away from naked flames and sources of ignition. No smoking is permitted near any oxygen source.",
-          "heading": "Fire precautions"
+          "heading": "Fire precautions",
+          "body": "Oxygen supports combustion, so keep cylinders away from naked flames and sources of ignition. No smoking is permitted near any oxygen source, and this includes electronic cigarettes, which contain a heating element. Enriched oxygen accumulates in bedding, clothing and hair, where it persists for some time after the supply has been turned off, so a fire started in an enriched atmosphere spreads far faster than staff expect. Do not use paraffin-based emollients on a patient receiving oxygen, since these are readily ignited; a water-based alternative should be prescribed instead. Keep cylinders out of corridors used as escape routes and away from electrical equipment. Where a patient is known to smoke, the risk is documented and discussed rather than assumed to have been resolved by a notice on the door, and the conversation is repeated rather than held once. Where oxygen is used at home, advise the patient to inform their household insurer and the fire service, both of which keep a record of the address."
         },
         {
           "id": "B",
-          "body": "Store cylinders upright and secured with a chain or stand to prevent them toppling. A falling cylinder can shear its valve and become a projectile.",
-          "heading": "Secure storage"
+          "heading": "Secure storage",
+          "body": "Store cylinders upright and secured with a chain or stand to prevent them toppling. A falling cylinder can shear its valve and become a projectile, and the energy released is sufficient to penetrate a wall. Do not store cylinders on the floor unsecured, in a stairwell, or leaning against a bed. Full and empty cylinders are stored separately and clearly signed, since a search for a full cylinder in an emergency is a poor use of the minute it takes. The store must be well ventilated, kept below 45 degrees, and free of combustible material. Never carry a cylinder by its valve or drag it across the floor; use the trolley provided. A cylinder that has been dropped is taken out of service and returned to the supplier for inspection even where no damage can be seen. Cylinders are moved one at a time, upright on a trolley with the strap fastened, and never left standing unsecured beside a bed even for a few minutes."
         },
         {
           "id": "C",
-          "body": "Never apply oil or grease to valves, regulators or fittings. Even a trace of oil in the presence of oxygen can ignite spontaneously.",
-          "heading": "Avoiding contamination"
+          "heading": "Avoiding contamination",
+          "body": "Never apply oil or grease to valves, regulators or fittings. Even a trace of oil in the presence of oxygen can ignite spontaneously, without any external source of ignition, and hand cream transferred from the fingers is enough. Handle fittings with clean, dry, ungloved hands and do not use petroleum jelly on a patient's lips while oxygen is running. Open the valve slowly rather than sharply, since a rapid opening compresses the gas in the regulator and produces a sudden rise in temperature. Do not attempt to repair a leaking valve or to modify a fitting so that it will connect; the connections are deliberately incompatible between gases. Report a damaged or contaminated fitting and take the cylinder out of use rather than returning it to the store where somebody else will select it. Check the sealing washer each time a regulator is fitted, and replace a perished one rather than tightening the fitting further to stop a leak."
         },
         {
           "id": "D",
-          "body": "Read the contents gauge before each use and label cylinders as full, in use or empty. Order a replacement before a cylinder is exhausted.",
-          "heading": "Checking contents"
+          "heading": "Checking contents",
+          "body": "Read the contents gauge before each use and label cylinders as full, in use or empty. Order a replacement before a cylinder is exhausted, and never allow a cylinder to run down to nothing on a patient, since the last portion of the contents is delivered at a falling pressure. Calculate the running time from the flow rate and the contents rather than estimating it, and record the figure where the next person will see it. For transfers, take a second cylinder as well as the calculated requirement, and check both before leaving the ward. A cylinder is checked at the start of every shift where one is held for emergency use, and the check is signed for. An empty cylinder left in a resuscitation trolley is a common and entirely preventable finding in audit. Record the cylinder serial number in the notes when oxygen is given during a transfer, so that a fault can be traced afterwards to the cylinder that was in use."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text warns against applying oil to fittings?",
+          "stem": "In which text can you find information about the warning against applying oil to fittings?",
           "answer": "C",
           "options": [
-            {
-              "id": "C",
-              "text": "C"
-            },
             {
               "id": "A",
               "text": "A"
@@ -858,6 +2054,10 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "B",
               "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
             },
             {
               "id": "D",
@@ -868,7 +2068,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text explains why cylinders must be secured upright?",
+          "stem": "In which text can you find information about why cylinders must be secured upright?",
           "answer": "B",
           "options": [
             {
@@ -892,7 +2092,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text describes labelling cylinders by their status?",
+          "stem": "In which text can you find information about labelling cylinders by their status?",
           "answer": "D",
           "options": [
             {
@@ -904,20 +2104,188 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "B"
             },
             {
-              "id": "D",
-              "text": "D"
-            },
-            {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about emollients that should not be used during oxygen therapy?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about what to do with a cylinder that has been dropped?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about how quickly the valve should be opened?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about what to take when transferring a patient?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
-          "stem": "Oxygen supports ______, so cylinders must be kept away from naked flames.",
+          "stem": "Oxygen supports ______, so keep cylinders away from naked flames.",
           "answer": "combustion"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Enriched oxygen accumulates in bedding, clothing and ______.",
+          "answer": "hair"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Do not use ______-based emollients on a patient receiving oxygen.",
+          "answer": "paraffin"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Store cylinders ______ and secured with a chain or stand.",
+          "answer": "upright"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "A falling cylinder can shear its valve and become a ______.",
+          "answer": "projectile"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "The store must be kept below ______ degrees.",
+          "answer": "45"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Even a ______ of oil in the presence of oxygen can ignite.",
+          "answer": "trace"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Handle fittings with clean, dry, ______ hands.",
+          "answer": "ungloved"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Open the valve ______ rather than sharply.",
+          "answer": "slowly"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Read the contents ______ before each use.",
+          "answer": "gauge"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Calculate the running time from the ______ rate and the contents.",
+          "answer": "flow"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "For a transfer, take a ______ cylinder as well as the calculated requirement.",
+          "answer": "second"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Connections are deliberately ______ between different gases.",
+          "answer": "incompatible"
         }
       ]
     },
@@ -938,30 +2306,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Ask the patient to rate pain from zero, meaning no pain, to ten, meaning the worst pain imaginable. Record the score with each set of observations.",
-          "heading": "Numerical rating scale"
+          "heading": "Numerical rating scale",
+          "body": "Ask the patient to rate pain from zero, meaning no pain, to ten, meaning the worst pain imaginable. Record the score with each set of observations, and record what the patient was doing at the time, since a score at rest and a score on movement are different measurements and the second is usually the one that matters for function. Ask for the score now rather than in general, because a patient asked how bad it has been will answer about the worst episode. The scale is most useful as a trend within one patient rather than as a comparison between patients: a five from one person is not a five from another, and the change from seven to four after a dose is the informative figure. Record the score before and after any intervention, and note the time of both. Where a patient cannot manage the numbers, a simple verbal scale of none, mild, moderate and severe is acceptable, and should be recorded as the scale that was used."
         },
         {
           "id": "B",
-          "body": "For children and those with limited language, a row of faces from smiling to crying lets the patient point to the image that matches their pain.",
-          "heading": "Faces scale"
+          "heading": "Faces scale",
+          "body": "For children and those with limited language, a row of faces from smiling to crying lets the patient point to the image that matches their pain. Explain that the faces show how much something hurts inside rather than how the person's face looks, since a child who is not crying may otherwise choose the smiling face while in considerable pain. Show the whole row at once and let the child point without prompting, and avoid naming the faces yourself. The scale is validated for children from about four years, and it is equally useful for adults with a learning disability, with limited English, or with a communication difficulty after a stroke. Record which version of the scale was used, as several exist with different numbers of faces, and use the same one at each assessment for that patient. Do not use the faces scale with a child who is distressed for another reason without noting it, since fear and pain produce similar answers on this scale."
         },
         {
           "id": "C",
-          "body": "When a patient cannot self-report, observe behaviour such as guarding, grimacing and restlessness. These cues suggest pain even when no score is given.",
-          "heading": "Behavioural observation"
+          "heading": "Behavioural observation",
+          "body": "When a patient cannot self-report, observe behaviour such as guarding, grimacing and restlessness. These cues suggest pain even when no score is given, and a validated observational tool should be used rather than an informal impression, so that different staff record the same behaviours in the same way. Look also for changes in breathing, for resistance during personal care, for calling out, and for withdrawal from touch. A change from the person's own usual behaviour is more informative than the behaviour itself, so an account from a relative or a regular carer forms part of the assessment. Where behaviour suggests pain, a trial of analgesia with a planned review is appropriate: an improvement supports the assessment, and this is often the only test available. Absence of behavioural signs does not exclude pain in a patient who is exhausted or sedated. Reassess after the trial at the interval appropriate to the drug given, and record the behaviour again rather than recording only that analgesia was administered."
         },
         {
           "id": "D",
-          "body": "Record not only the intensity but also the site, the character and any factors that make the pain better or worse, as these guide treatment.",
-          "heading": "Documenting character"
+          "heading": "Documenting character",
+          "body": "Record not only the intensity but also the site, the character and any factors that make the pain better or worse, as these guide treatment. A burning or shooting pain with numbness suggests a different mechanism from a dull ache, and responds to different drugs, so the words the patient uses are recorded rather than translated into a category. Note the timing: constant, intermittent, or worse at a particular hour. Record what the pain prevents the patient from doing, which is frequently more useful than the number and is what treatment is aiming at. Where pain has more than one site, each is described separately, since they may have different causes. Record the patient's own goal for treatment, as complete relief is not always achievable and an agreed target avoids a course of escalating doses towards an impossible aim. Record any pain that wakes the patient at night, as this changes the timing of doses rather than the total daily amount."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text is most useful for a patient who cannot self-report?",
+          "stem": "In which text can you find information about assessing a patient who cannot self-report?",
           "answer": "C",
           "options": [
             {
@@ -973,28 +2341,28 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "B"
             },
             {
-              "id": "D",
-              "text": "D"
-            },
-            {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text describes a scale designed for young children?",
+          "stem": "In which text can you find information about a scale designed for young children?",
           "answer": "B",
           "options": [
             {
-              "id": "B",
-              "text": "B"
-            },
-            {
               "id": "A",
               "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
             },
             {
               "id": "C",
@@ -1009,16 +2377,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text lists details to record beyond intensity?",
+          "stem": "In which text can you find information about details to record beyond the intensity of the pain?",
           "answer": "D",
           "options": [
             {
               "id": "A",
               "text": "A"
-            },
-            {
-              "id": "D",
-              "text": "D"
             },
             {
               "id": "B",
@@ -1027,14 +2391,186 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about the difference between a score at rest and on movement?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about using the same version of a scale at each assessment?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about agreeing a treatment goal with the patient?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about using a trial of analgesia as a test?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
-          "stem": "On the numerical rating scale, a score of ten means the worst pain ______.",
+          "stem": "On the numerical scale, ten means the worst pain ______.",
           "answer": "imaginable"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Ask for the score ______ rather than in general.",
+          "answer": "now"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "The scale is most useful as a ______ within one patient.",
+          "answer": "trend"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "The faces scale is validated for children from about ______ years.",
+          "answer": "four"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Explain that the faces show how much something ______ inside.",
+          "answer": "hurts"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Record which ______ of the scale was used.",
+          "answer": "version"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Observe behaviour such as guarding, ______ and restlessness.",
+          "answer": "grimacing"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "A change from the person's ______ behaviour is more informative.",
+          "answer": "usual"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Absence of behavioural signs does not ______ pain.",
+          "answer": "exclude"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Record the site, the ______ and any relieving factors.",
+          "answer": "character"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Record the ______ the patient uses rather than a category.",
+          "answer": "words"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Record what the pain ______ the patient from doing.",
+          "answer": "prevents"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Where pain has more than one site, describe each ______.",
+          "answer": "separately"
         }
       ]
     },
@@ -1055,30 +2591,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "All patients should be screened for pressure injury risk within six hours of admission using a validated assessment tool. Re-screening is repeated whenever the patient's condition changes and at least every 48 hours. Reduced mobility, poor nutrition, incontinence and impaired sensation each raise the overall risk score.",
-          "heading": "Risk screening"
+          "heading": "Risk screening",
+          "body": "All patients should be screened for pressure injury risk within six hours of admission using a validated assessment tool. Re-screening is repeated whenever the patient's condition changes and at least every 48 hours. Reduced mobility, poor nutrition, incontinence and impaired sensation each raise the overall risk score. Events that warrant an immediate re-screen include a return from theatre, a new episode of acute illness, and any transfer between wards. The tool supports judgement rather than replacing it: a patient whose total sits below the threshold may still be at risk where a single domain, such as sensation, is severely impaired, and the clinician's concern overrides the number. Record the score, the date and the plan it produced, so that the next person can see what was decided and why, and start an interim plan where the full assessment must wait. Where the assessment must wait because of an emergency, note the reason and the time, and begin repositioning in the meantime rather than deferring both."
         },
         {
           "id": "B",
-          "body": "Patients identified as at risk should be repositioned at regular intervals, with the timing recorded on the turning chart. A two-hourly schedule is the usual starting point, though the interval is shortened for those with very limited movement. The 30-degree tilt is preferred because it keeps pressure off the bony prominences.",
-          "heading": "Repositioning"
+          "heading": "Repositioning",
+          "body": "Patients identified as at risk should be repositioned at regular intervals, with the timing recorded on the turning chart. A two-hourly schedule is the usual starting point, though the interval is shortened for those with very limited movement. The 30-degree tilt is preferred because it keeps pressure off the bony prominences, and lying directly on the hip concentrates load on a small area. Patients able to move themselves should be prompted and encouraged rather than turned, since independent movement is preserved by using it. Seated patients need equal attention: sitting produces higher pressures over a smaller area than lying, so unbroken chair time is limited. Use slide sheets rather than dragging, because friction and shear injure tissue that pressure alone would not. Where a patient declines to be turned, record the discussion and the alternatives offered rather than only the refusal. Record the position the patient was placed in as well as the time, since a chart showing only a tick gives the next person nothing to work from."
         },
         {
           "id": "C",
-          "body": "The skin over the heels, sacrum and elbows is inspected at each shift change. Non-blanching redness that persists after pressure is removed is treated as an early-stage injury and reported without delay. Staff should avoid massaging reddened areas, as this can worsen tissue damage.",
-          "heading": "Skin inspection"
+          "heading": "Skin inspection",
+          "body": "The skin over the heels, sacrum and elbows is inspected at each shift change. Non-blanching redness that persists after pressure is removed is treated as an early-stage injury and reported without delay. Staff should avoid massaging reddened areas, as this can worsen tissue damage. Inspect also under and around every medical device, since tubing behind the ears, a catheter under a thigh and the rim of a mask all cause injury in places nobody routinely looks. On darker skin tones redness may not be visible at all, so warmth, firmness, a boggy texture and the patient's own report of pain in one spot become the more reliable signs. Document any suspicious area with its site, size and appearance, and photograph it only with consent and only into the record. Inspect at every dressing change as well as at each shift change, since a dressing conceals the area beneath it and is often the reason an injury is found late."
         },
         {
           "id": "D",
-          "body": "Where the risk score is high, a pressure-redistributing mattress is provided in addition to scheduled repositioning. Heel-offloading devices may be added for patients who cannot lift their own legs. Equipment alone does not remove the need for turning, and all surfaces are checked daily for faults.",
-          "heading": "Support surfaces"
+          "heading": "Support surfaces",
+          "body": "Where the risk score is high, a pressure-redistributing mattress is provided in addition to scheduled repositioning. Heel-offloading devices may be added for patients who cannot lift their own legs, and a pillow placed lengthways under the calves achieves the same end where a device is not available. Equipment alone does not remove the need for turning, and all surfaces are checked daily for faults. Check that a powered mattress is set to the patient's weight, since a setting left from a previous occupant is a common and invisible fault. Avoid layering additional sheets or incontinence pads on a redistributing surface, as each layer reduces its effect. A patient sitting out should have an appropriate cushion rather than being placed on the mattress in a chair, and the cushion is checked as often as the mattress is. Deflate a powered mattress before resuscitation, as compressions delivered on an inflated surface are considerably less effective."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text states that reddened skin should not be rubbed?",
+          "stem": "In which text can you find information about the warning against rubbing reddened skin?",
           "answer": "C",
           "options": [
             {
@@ -1102,9 +2638,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text explains how soon after admission a patient should be assessed?",
+          "stem": "In which text can you find information about how soon after admission a patient should be assessed?",
           "answer": "A",
           "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
             {
               "id": "B",
               "text": "B"
@@ -1116,23 +2656,15 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "D",
               "text": "D"
-            },
-            {
-              "id": "A",
-              "text": "A"
             }
           ]
         },
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text makes clear that special equipment does not replace turning?",
+          "stem": "In which text can you find information about the fact that special equipment does not replace turning?",
           "answer": "D",
           "options": [
-            {
-              "id": "D",
-              "text": "D"
-            },
             {
               "id": "A",
               "text": "A"
@@ -1144,14 +2676,186 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about attention to patients who are sitting in a chair?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about assessing skin where redness is not visible?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about a setting left from a previous occupant?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about a patient whose score is below the threshold?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
           "stem": "The preferred position for keeping pressure off the bony prominences is the ______ tilt.",
           "answer": "30-degree"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "A ______ schedule is the usual starting point for repositioning.",
+          "answer": "two-hourly"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Use ______ sheets rather than dragging the patient.",
+          "answer": "slide"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Screen for risk within ______ of admission.",
+          "answer": "six hours"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Re-screen at least every ______ hours.",
+          "answer": "48"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Record the score, the date and the ______ it produced.",
+          "answer": "plan"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "______ redness that persists is treated as an early-stage injury.",
+          "answer": "non-blanching"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Avoid ______ reddened areas, as this can worsen damage.",
+          "answer": "massaging"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "On darker skin, warmth, firmness and a ______ texture are more reliable.",
+          "answer": "boggy"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "A pressure-______ mattress is provided where the risk is high.",
+          "answer": "redistributing"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Check that a powered mattress is set to the patient's ______.",
+          "answer": "weight"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Each additional ______ on a redistributing surface reduces its effect.",
+          "answer": "layer"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "A patient sitting out should have an appropriate ______.",
+          "answer": "cushion"
         }
       ]
     },
@@ -1172,30 +2876,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Reposition at-risk patients at least every two hours, or more often if the skin shows early signs of damage. Agree and document a personal schedule.",
-          "heading": "Repositioning frequency"
+          "heading": "Repositioning frequency",
+          "body": "Reposition at-risk patients at least every two hours, or more often if the skin shows early signs of damage. Agree and document a personal schedule rather than applying the same interval to everyone, since the right frequency depends on how much the patient moves independently, the surface they are on, and how quickly redness appears and clears. Record the position used as well as the time, because a chart showing only a tick tells the next person nothing they can work from. Patients who can shift their own weight should be prompted and encouraged rather than turned, as independent movement is preserved by being used and lost quickly when it is not. Repositioning at night is not omitted for the sake of sleep; the interval may be extended where the surface allows it, but the decision is recorded rather than left to whoever is on duty. Where a patient declines to be turned, record the discussion and the alternatives offered rather than the refusal alone, and revisit it later in the day rather than treating one refusal as a standing answer."
         },
         {
           "id": "B",
-          "body": "Use a 30-degree side-lying tilt rather than turning the patient fully onto the hip. This spreads pressure away from the bony point of the hip.",
-          "heading": "The 30-degree tilt"
+          "heading": "The 30-degree tilt",
+          "body": "Use a 30-degree side-lying tilt rather than turning the patient fully onto the hip. This spreads pressure away from the bony point of the hip, which carries a small area and a high load when the patient lies directly on it. Support the tilt with pillows behind the back and between the knees so that the position holds without the patient sliding back, and check it after twenty minutes, since an unsupported tilt commonly collapses within that time. Avoid raising the head of the bed above 30 degrees where it can be avoided, as a steeper angle causes the patient to slide down and generates shear at the sacrum. Where the head must be raised for feeding or breathing, lower it again afterwards rather than leaving it up for convenience. Where the patient has an existing injury, avoid positioning them on it at all and record the positions that must be excluded on the turning chart."
         },
         {
           "id": "C",
-          "body": "Offload the heels completely by raising the lower legs on a pillow so that the heels float clear of the mattress surface.",
-          "heading": "Heel care"
+          "heading": "Heel care",
+          "body": "Offload the heels completely by raising the lower legs on a pillow so that the heels float clear of the mattress surface. Place the pillow lengthways under the calves rather than under the ankles, and leave the knees slightly bent, since a fully extended leg puts pressure on the popliteal vessels. Check that the heel is genuinely clear by passing a hand beneath it. Purpose-made offloading boots may be used for patients who cannot keep the position, but they are removed and the skin checked at least daily, as the boot itself can cause injury at the front of the ankle. Heels are the second commonest site of pressure injury after the sacrum and are the easiest to protect, which is why they are the site most often missed. Remove compression hosiery daily to inspect the heel beneath it, since the skin under a stocking is not visible during routine care."
         },
         {
           "id": "D",
-          "body": "Inspect the skin at each reposition, paying attention to areas over bone. Redness that does not blanch under light pressure is an early warning sign.",
-          "heading": "Skin inspection"
+          "heading": "Skin inspection",
+          "body": "Inspect the skin at each reposition, paying attention to areas over bone. Redness that does not blanch under light pressure is an early warning sign and is reported the same shift rather than watched for a day. Press gently with a finger for a few seconds and observe whether the colour returns; where it does not, the area is treated as an injury even though the skin is unbroken. On darker skin tones colour change may not be visible, so warmth, firmness, a boggy or spongy texture and the patient's own report of pain in one place are more reliable indicators. Document the site, the size and the appearance, and mark the area on a body map so that a later reader can tell whether it has grown. Photograph only with consent and only into the clinical record. Ask the patient where they feel sore before you look, as a report of pain in one area frequently precedes any visible change in the skin."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text explains how to keep the heels off the mattress?",
+          "stem": "In which text can you find information about keeping the heels off the mattress?",
           "answer": "C",
           "options": [
             {
@@ -1203,12 +2907,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "A"
             },
             {
-              "id": "C",
-              "text": "C"
-            },
-            {
               "id": "B",
               "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
             },
             {
               "id": "D",
@@ -1219,7 +2923,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text describes a sign found on inspecting the skin?",
+          "stem": "In which text can you find information about a sign found when inspecting the skin?",
           "answer": "D",
           "options": [
             {
@@ -1231,19 +2935,19 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "B"
             },
             {
-              "id": "D",
-              "text": "D"
-            },
-            {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text recommends a side-lying tilt instead of a full turn?",
+          "stem": "In which text can you find information about a side-lying tilt instead of a full turn?",
           "answer": "B",
           "options": [
             {
@@ -1251,24 +2955,192 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "A"
             },
             {
+              "id": "B",
+              "text": "B"
+            },
+            {
               "id": "C",
               "text": "C"
             },
             {
               "id": "D",
               "text": "D"
-            },
-            {
-              "id": "B",
-              "text": "B"
             }
           ]
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about recording the position as well as the time?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about how to assess skin where colour change is not visible?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about the angle at which the head of the bed causes sliding?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about repositioning during the night?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
           "stem": "Reposition at-risk patients at least every ______ hours.",
           "answer": "two"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Agree and document a ______ schedule for each patient.",
+          "answer": "personal"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Independent movement is preserved by being ______.",
+          "answer": "used"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Use a ______ side-lying tilt rather than a full turn.",
+          "answer": "30-degree"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Support the tilt with pillows behind the back and between the ______.",
+          "answer": "knees"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "A steeper head angle generates ______ at the sacrum.",
+          "answer": "shear"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Place the pillow lengthways under the ______.",
+          "answer": "calves"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Leave the knees slightly ______ when offloading the heels.",
+          "answer": "bent"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Heels are the second commonest site after the ______.",
+          "answer": "sacrum"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Redness that does not ______ under light pressure is an early sign.",
+          "answer": "blanch"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Mark the area on a body ______ so growth can be judged.",
+          "answer": "map"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "On darker skin, a boggy or ______ texture is a more reliable sign.",
+          "answer": "spongy"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "An offloading boot can itself injure the front of the ______.",
+          "answer": "ankle"
         }
       ]
     },
@@ -1289,36 +3161,32 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Carry out a moving and handling assessment before any transfer, identifying the patient's weight-bearing ability and the equipment required.",
-          "heading": "Assess first"
+          "heading": "Assess first",
+          "body": "Carry out a moving and handling assessment before any transfer, identifying the patient's weight-bearing ability and the equipment required. The assessment covers what the patient can do rather than what they could do yesterday, since ability varies through the day and after a period in bed. Record how many staff are needed and which equipment, and repeat the assessment after any change in condition, after a fall, and on transfer between wards. Ask the patient what usually works for them, as many have a method they have used for years and are the best source of that information. Where the assessment shows that a transfer cannot be done safely with the staff available, the transfer waits; proceeding with fewer people than the plan requires is the commonest circumstance in which both patient and staff are injured. Where a patient has fallen, do not attempt to lift them from the floor until an assessment for injury is complete and the appropriate equipment is present."
         },
         {
           "id": "B",
-          "body": "Use a hoist or slide sheet rather than lifting manually wherever possible. Manual lifting of a full patient load is no longer acceptable practice.",
-          "heading": "Use equipment"
+          "heading": "Use equipment",
+          "body": "Use a hoist or slide sheet rather than lifting manually wherever possible. Manual lifting of a full patient load is no longer acceptable practice, and the arguments that it is quicker or kinder do not survive examination: a drag lift under the arms is a recognised cause of shoulder injury in patients. Check that the sling is the correct size and type for the individual and that its loops are attached as the manufacturer specifies. Inspect equipment before use and take anything damaged out of service rather than leaving it for somebody else to notice. A hoist is not used by one person unless it is designed for single-handed use and the assessment says so. Battery charge is checked at the start of each shift, since a hoist that stops mid-transfer leaves a patient suspended. Slide sheets are removed after the transfer rather than left beneath the patient, since a sheet left in place lets the patient slide down the bed and generates shear."
         },
         {
           "id": "C",
-          "body": "Keep your back straight, bend at the knees and hold the load close to your body. Avoid twisting while supporting any weight.",
-          "heading": "Posture"
+          "heading": "Posture",
+          "body": "Keep your back straight, bend at the knees and hold the load close to your body. Avoid twisting while supporting any weight, and move your feet to turn instead, since twisting under load is the mechanism behind most handling injuries among staff. Stand with the feet apart to give a stable base, one foot slightly forward, and keep the movement smooth rather than sudden. Adjust the bed to a height that avoids stooping before you begin, and lower it again afterwards for the patient. Where two people are working, they should be of broadly similar height for the same task. Take your own physical condition into account: staff returning from a back injury should be working to a documented plan rather than deciding for themselves what they can manage. Wear footwear that is enclosed and provides grip, since a foot that slips during a transfer converts a controlled movement into an uncontrolled one."
         },
         {
           "id": "D",
-          "body": "Agree a clear command before moving so that everyone, including the patient, acts together. Nominate one person to lead each transfer.",
-          "heading": "Communication"
+          "heading": "Communication",
+          "body": "Agree a clear command before moving so that everyone, including the patient, acts together. Nominate one person to lead each transfer, and that person is normally the one at the patient's head. Use a form of words the team has agreed in advance and say it the same way each time — ready, steady, move — since ambiguity about whether the movement begins on steady or on move is a genuine and common cause of injury. Explain to the patient what will happen and what you need them to do, in short sentences and before the equipment is in place rather than while it is being applied. Check that everybody is ready and give anyone the ability to stop the transfer at any point, whatever their grade. Pause and reset rather than continuing a movement that has begun badly. Where the patient is confused, keep the explanation short and repeat it immediately before the movement rather than several minutes in advance."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text advises nominating one person to lead the transfer?",
+          "stem": "In which text can you find information about nominating one person to lead the transfer?",
           "answer": "D",
           "options": [
-            {
-              "id": "D",
-              "text": "D"
-            },
             {
               "id": "A",
               "text": "A"
@@ -1330,13 +3198,17 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text describes correct posture when handling a load?",
+          "stem": "In which text can you find information about correct posture when handling a load?",
           "answer": "C",
           "options": [
             {
@@ -1344,12 +3216,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "A"
             },
             {
-              "id": "C",
-              "text": "C"
-            },
-            {
               "id": "B",
               "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
             },
             {
               "id": "D",
@@ -1360,9 +3232,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text says an assessment must happen before any transfer?",
+          "stem": "In which text can you find information about an assessment before any transfer takes place?",
           "answer": "A",
           "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
             {
               "id": "B",
               "text": "B"
@@ -1372,8 +3248,28 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "C"
             },
             {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about checking that a sling is the right size?",
+          "answer": "B",
+          "options": [
+            {
               "id": "A",
               "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
             },
             {
               "id": "D",
@@ -1382,10 +3278,154 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         },
         {
-          "id": "q4",
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about asking the patient what usually works for them?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about the words used to begin a movement?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about staff returning to work after a back injury?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
           "stem": "Keep your back straight and hold the load close to your ______.",
           "answer": "body"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Move your ______ to turn rather than twisting.",
+          "answer": "feet"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Adjust the ______ to a height that avoids stooping.",
+          "answer": "bed"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "The assessment identifies the patient's ______ ability.",
+          "answer": "weight-bearing"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Repeat the assessment after any change in ______.",
+          "answer": "condition"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "If the transfer cannot be done safely, it ______.",
+          "answer": "waits"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Use a hoist or ______ sheet rather than lifting manually.",
+          "answer": "slide"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "A drag lift under the arms causes ______ injury in patients.",
+          "answer": "shoulder"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Check the sling's ______ are attached as the manufacturer specifies.",
+          "answer": "loops"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Check the ______ charge at the start of each shift.",
+          "answer": "battery"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Nominate one person to ______ each transfer.",
+          "answer": "lead"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "The leader is normally the person at the patient's ______.",
+          "answer": "head"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Anyone may ______ the transfer at any point, whatever their grade.",
+          "answer": "stop"
         }
       ]
     },
@@ -1406,30 +3446,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Place the patient in a single room with the door kept closed where possible. Display the appropriate isolation sign at the entrance.",
-          "heading": "Room allocation"
+          "heading": "Room allocation",
+          "body": "Place the patient in a single room with the door kept closed where possible. Display the appropriate isolation sign at the entrance, and make sure it states what is required rather than only naming the organism, since a sign that gives a name alone is read differently by every person who passes it. Where single rooms are limited, prioritise patients with diarrhoea, with a respiratory infection producing a cough, and those known to carry a resistant organism. Where cohorting is unavoidable, group patients with the same confirmed organism and never on the basis of a suspicion. Keep the room's equipment inside it and dedicate what can be dedicated — a thermometer, a blood-pressure cuff, a hoist sling. Record the reason for isolation and the plan for stepping it down, as isolation continued without review restricts the patient long after the need has gone. Explain to the patient and the family why isolation is needed and how long it is expected to last, as isolation without explanation is experienced as a punishment."
         },
         {
           "id": "B",
-          "body": "Put on an apron and gloves before entering. Add a fluid-resistant mask and eye protection when there is a risk of splashing.",
-          "heading": "Protective equipment"
+          "heading": "Protective equipment",
+          "body": "Put on an apron and gloves before entering. Add a fluid-resistant mask and eye protection when there is a risk of splashing, and note that a procedure generating aerosols requires a higher level of respiratory protection that must be fit-tested to the individual wearer. Equipment is put on outside the room and in the correct sequence, and hands are cleaned before the first item. Long sleeves are rolled above the elbow first, since an apron does not cover a cuff. Do not wear the same apron for two patients even where both are isolated for the same reason. Take into the room only what is needed, because anything carried in is treated as contaminated on the way out — including a pen, a phone and a set of notes. Where a visitor is to enter, show them what to put on and check it, rather than leaving a box of aprons by the door and assuming."
         },
         {
           "id": "C",
-          "body": "Remove protective equipment in the correct order before leaving, ending with hand hygiene. Gloves are removed first as they are the most contaminated item.",
-          "heading": "Order of removal"
+          "heading": "Order of removal",
+          "body": "Remove protective equipment in the correct order before leaving, ending with hand hygiene. Gloves are removed first as they are the most contaminated item, and they are removed by peeling one over the other without touching the outer surface with bare skin. The apron follows, broken at the neck and rolled inwards so the outer surface is contained. Eye protection and mask are removed last and by their straps rather than by the front, and the mask is not lowered to the neck and re-used. Dispose of each item inside the room, and clean hands immediately on the other side of the door as well. Practise the sequence rather than reading it, since the point at which contamination transfers is nearly always removal and nearly always in a hurry. Where a full-length gown has been worn, it is removed by unfastening at the neck and waist and rolling it away from the body without shaking."
         },
         {
           "id": "D",
-          "body": "Treat all waste from the room as clinical waste and place used linen in a water-soluble alginate bag before the outer laundry bag.",
-          "heading": "Waste and linen"
+          "heading": "Waste and linen",
+          "body": "Treat all waste from the room as clinical waste and place used linen in a water-soluble alginate bag before the outer laundry bag. The inner bag is sealed inside the room and is not opened again by anybody, which is what protects the laundry staff. Do not overfill bags; a bag filled beyond three-quarters cannot be closed safely and is the point at which contents escape. Handle linen gently and do not shake it, as shaking disperses organisms into the air of the room and beyond it. Bags leave the room once, tied and labelled, rather than being accumulated by the door. Crockery may be washed normally in a dishwasher and does not require disposable alternatives, which are frequently supplied out of caution and add nothing but waste. Clean the room daily with the agreed product and give particular attention to the surfaces that hands touch most often, which are the bed rails, the table and the door handle."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text explains the order for removing protective equipment?",
+          "stem": "In which text can you find information about the order for removing protective equipment?",
           "answer": "C",
           "options": [
             {
@@ -1441,25 +3481,21 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "B"
             },
             {
-              "id": "D",
-              "text": "D"
-            },
-            {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text covers the handling of used linen?",
+          "stem": "In which text can you find information about the handling of used linen?",
           "answer": "D",
           "options": [
-            {
-              "id": "D",
-              "text": "D"
-            },
             {
               "id": "A",
               "text": "A"
@@ -1471,22 +3507,26 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             {
               "id": "C",
               "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
             }
           ]
         },
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text describes where the patient should be placed?",
+          "stem": "In which text can you find information about where the patient should be placed?",
           "answer": "A",
           "options": [
             {
-              "id": "B",
-              "text": "B"
-            },
-            {
               "id": "A",
               "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
             },
             {
               "id": "C",
@@ -1500,9 +3540,177 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about protection needed for a procedure that generates aerosols?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about grouping patients together when single rooms run out?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about why bags should not be overfilled?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about what may be taken into the room?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
-          "stem": "When removing protective equipment, ______ are removed first as they are the most contaminated item.",
-          "answer": "Gloves"
+          "stem": "When removing protective equipment, ______ are removed first.",
+          "answer": "gloves"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "The apron is broken at the ______ and rolled inwards.",
+          "answer": "neck"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "A mask is removed by its ______ rather than by the front.",
+          "answer": "straps"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Display the appropriate isolation ______ at the entrance.",
+          "answer": "sign"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Record the reason for isolation and the plan for stepping it ______.",
+          "answer": "down"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Cohort patients only with the same ______ organism.",
+          "answer": "confirmed"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Put on an ______ and gloves before entering the room.",
+          "answer": "apron"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Respiratory protection for aerosol procedures must be ______ to the wearer.",
+          "answer": "fit-tested"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Roll long ______ above the elbow before putting on the apron.",
+          "answer": "sleeves"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Place used linen in a water-soluble ______ bag.",
+          "answer": "alginate"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "A bag filled beyond ______ cannot be closed safely.",
+          "answer": "three-quarters"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Do not ______ linen, as this disperses organisms into the air.",
+          "answer": "shake"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Crockery may be washed normally in a ______.",
+          "answer": "dishwasher"
         }
       ]
     },
@@ -1523,30 +3731,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Keep the drainage bag below the level of the bladder at all times to allow gravity drainage and prevent backflow of urine into the bladder.",
-          "heading": "Drainage position"
+          "heading": "Drainage position",
+          "body": "Keep the drainage bag below the level of the bladder at all times to allow gravity drainage and prevent backflow of urine into the bladder. Do not rest the bag on the floor, where the outlet becomes contaminated, and use the stand or hanger provided rather than the bed frame, which places the tap where it can be knocked. Keep the tubing free of kinks and loops and secure it so that it does not drag on the catheter, since traction at the meatus causes pain and tissue damage over time. During any transfer, lift the bag below the bladder rather than resting it on the patient's abdomen, and empty it before moving them. Empty the bag when it is around three-quarters full using a clean container for each patient, and clean the outlet before and after emptying. Position the bag on the side of the bed the patient does not use to get out, so that the tubing is not stretched or stood on when they move."
         },
         {
           "id": "B",
-          "body": "Maintain a closed drainage system. Break the connection only when clinically necessary, as each disconnection raises the risk of introducing infection.",
-          "heading": "Closed system"
+          "heading": "Closed system",
+          "body": "Maintain a closed drainage system. Break the connection only when clinically necessary, as each disconnection raises the risk of introducing infection, and a system disconnected once is no longer the system it was. Where a sample is needed, take it from the designated sampling port after cleaning it rather than from the drainage tap or by disconnecting the tubing. Do not perform routine bladder washouts, which are not recommended and which require breaking the system. Change the drainage bag according to the manufacturer's guidance or when it is soiled or damaged, and not to a fixed local routine that has no basis. Record every occasion on which the system is opened and the reason, so that a later infection can be considered against what actually happened rather than against what is assumed to have happened. Where the system must be opened, clean the connection before and after and use a new sterile bag rather than reconnecting the one that was removed."
         },
         {
           "id": "C",
-          "body": "Clean the meatal area daily with soap and water during routine washing. Antiseptic cleansing offers no added benefit and is not recommended.",
-          "heading": "Daily hygiene"
+          "heading": "Daily hygiene",
+          "body": "Clean the meatal area daily with soap and water during routine washing. Antiseptic cleansing offers no added benefit and is not recommended, and repeated use of antiseptics may irritate the skin without reducing infection. Clean from the meatus outwards, and in an uncircumcised male replace the foreskin afterwards, since leaving it retracted can cause swelling that becomes an emergency. Wash hands and wear gloves for the procedure and clean hands again afterwards. Encourage the patient to maintain a good fluid intake unless it is restricted for another reason. Do not apply creams or powders around the catheter, and inspect the area while cleaning for discharge, soreness or bleeding, any of which is reported rather than noted and left. In a female patient, clean the perineum from front to back, and use a separate section of the cloth for each stroke."
         },
         {
           "id": "D",
-          "body": "Review the ongoing need for the catheter each day. Early removal once the indication has passed is the most effective way to reduce infection.",
-          "heading": "Reviewing need"
+          "heading": "Reviewing need",
+          "body": "Review the ongoing need for the catheter each day. Early removal once the indication has passed is the most effective way to reduce infection, and no other measure comes close to it; the risk rises with every day the catheter remains. Record the indication and the intended removal date at the time of insertion, since a catheter with no recorded reason tends to stay. Ask at every ward round whether it is still needed rather than waiting to be told, and consider alternatives — a sheath, timed toileting, intermittent catheterisation — before continuing. Where a catheter is required long term, plan the changes and the community follow-up in advance. On discharge, state the indication, the change date and who is responsible, as a catheter that leaves hospital without a plan can remain in place for months. Where the catheter was inserted for retention, arrange a trial without catheter rather than allowing it to continue by default until an outpatient appointment."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text states that antiseptic cleansing gives no added benefit?",
+          "stem": "In which text can you find information about antiseptic cleansing giving no added benefit?",
           "answer": "C",
           "options": [
             {
@@ -1570,7 +3778,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text identifies early removal as the most effective infection control measure?",
+          "stem": "In which text can you find information about early removal as the most effective measure?",
           "answer": "D",
           "options": [
             {
@@ -1594,7 +3802,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text explains the correct position of the drainage bag?",
+          "stem": "In which text can you find information about the correct position of the drainage bag?",
           "answer": "A",
           "options": [
             {
@@ -1617,9 +3825,177 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about where a urine sample should be taken from?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about replacing the foreskin after cleaning?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about what should be recorded at the time of insertion?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about emptying the bag safely?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
-          "stem": "Keep the drainage bag below the level of the ______ to prevent backflow.",
+          "stem": "Keep the drainage bag below the level of the ______.",
           "answer": "bladder"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "Do not rest the bag on the ______.",
+          "answer": "floor"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "Empty the bag when it is around ______ full.",
+          "answer": "three-quarters"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Maintain a ______ drainage system.",
+          "answer": "closed"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "Take a sample from the designated sampling ______.",
+          "answer": "port"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Do not perform routine bladder ______.",
+          "answer": "washouts"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Clean the meatal area daily with ______ and water.",
+          "answer": "soap"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Clean from the meatus ______.",
+          "answer": "outwards"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "In an uncircumcised male, replace the ______ afterwards.",
+          "answer": "foreskin"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Review the ongoing ______ for the catheter each day.",
+          "answer": "need"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "Record the indication and the intended ______ date at insertion.",
+          "answer": "removal"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Consider alternatives such as a ______ or timed toileting.",
+          "answer": "sheath"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "Record every occasion on which the system is ______.",
+          "answer": "opened"
         }
       ]
     },
@@ -1640,30 +4016,30 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "texts": [
         {
           "id": "A",
-          "body": "Hydrocolloid dressings form a gel as they absorb exudate and suit lightly to moderately exuding wounds. They support autolytic debridement of sloughy tissue and can stay in place for up to seven days.",
-          "heading": "Hydrocolloid dressings"
+          "heading": "Hydrocolloid dressings",
+          "body": "Hydrocolloid dressings form a gel as they absorb exudate and suit lightly to moderately exuding wounds. They support autolytic debridement of sloughy tissue and can stay in place for up to seven days, which reduces disturbance of the wound bed and is the main reason for choosing them. Warn the patient and the staff that the gel produced has an odour and an appearance that is commonly mistaken for infection, since an unnecessary course of antibiotics frequently follows a first dressing change. They are not used on infected wounds, on wounds with heavy exudate, or where the surrounding skin is fragile, as the adhesive can strip it on removal. Press the dressing in place with the hand for a few seconds after application, because the adhesive is activated by warmth and a dressing applied cold lifts at the edges within a day. Warm the dressing briefly in the hand before applying it in a cold room, and avoid applying it immediately after cleansing while the surrounding skin is still damp."
         },
         {
           "id": "B",
-          "body": "Alginate dressings are derived from seaweed and handle heavy exudate well. They are not suitable for dry wounds, where they may adhere and cause trauma on removal.",
-          "heading": "Alginate dressings"
+          "heading": "Alginate dressings",
+          "body": "Alginate dressings are derived from seaweed and handle heavy exudate well, converting to a gel as they absorb. They are not suitable for dry wounds, where they may adhere and cause trauma on removal, and a dressing that has dried onto a wound is soaked off with saline rather than pulled. They also have a haemostatic effect and are useful in a wound that oozes after debridement. Cut or fold the dressing to the shape of the wound rather than overlapping the surrounding skin, which macerates it, and pack a cavity loosely rather than tightly, recording the number of pieces used so that none is left behind. A secondary dressing is required to hold an alginate in place, and the change frequency is determined by the exudate rather than by a fixed interval. Do not use an alginate on a wound with exposed bone or tendon without specialist advice, since the wound bed there needs a different approach."
         },
         {
           "id": "C",
-          "body": "Transparent film dressings are waterproof and allow the wound to be inspected without removal. They are intended for superficial wounds with minimal exudate only.",
-          "heading": "Film dressings"
+          "heading": "Film dressings",
+          "body": "Transparent film dressings are waterproof and allow the wound to be inspected without removal. They are intended for superficial wounds with minimal exudate only, and they have no absorbency of their own: fluid that collects beneath a film macerates the wound edge and lifts the dressing. They are useful as a secondary dressing over an absorbent primary layer, and as a protective cover over intact skin at risk of friction. Apply to dry skin without stretching the film, as tension causes blistering, and remove by stretching it parallel to the skin rather than lifting it upwards. They are not used on infected wounds, on fragile skin, or where the exudate level is unknown, and a film placed over a wound whose exudate has not yet been assessed is a common early error. Films are also used to secure a cannula, and the same rules apply: dry skin, no tension, and removal parallel to the surface."
         },
         {
           "id": "D",
-          "body": "Foam dressings provide cushioning over bony prominences and manage moderate to heavy exudate. The wound bed should be reassessed at each dressing change.",
-          "heading": "Foam dressings"
+          "heading": "Foam dressings",
+          "body": "Foam dressings provide cushioning over bony prominences and manage moderate to heavy exudate. The wound bed should be reassessed at each dressing change, and the dressing chosen again rather than repeated by habit, since the correct product for a wound changes as the wound does. Foams are available with and without an adhesive border; the non-adhesive version is preferred where the surrounding skin is fragile and is secured with a bandage or a retention sheet. They may be left for several days where exudate allows, and a foam changed daily is usually a sign that the wrong absorbency was chosen. Select a size that extends beyond the wound margin by a margin of two centimetres, and record the size used so that a change in the wound can be judged against it. Where a foam is used under compression, check that its thickness does not distort the bandage, as a bulky dressing creates a point of high pressure of its own."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "Which text describes a dressing that allows inspection without removal?",
+          "stem": "In which text can you find information about a dressing that allows inspection without removal?",
           "answer": "C",
           "options": [
             {
@@ -1671,12 +4047,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "A"
             },
             {
-              "id": "C",
-              "text": "C"
-            },
-            {
               "id": "B",
               "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
             },
             {
               "id": "D",
@@ -1687,7 +4063,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "Which text mentions a dressing made from seaweed?",
+          "stem": "In which text can you find information about a dressing made from seaweed?",
           "answer": "B",
           "options": [
             {
@@ -1695,12 +4071,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
               "text": "A"
             },
             {
-              "id": "C",
-              "text": "C"
-            },
-            {
               "id": "B",
               "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
             },
             {
               "id": "D",
@@ -1711,7 +4087,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "Which text describes a dressing that provides cushioning over bony prominences?",
+          "stem": "In which text can you find information about a dressing that cushions bony prominences?",
           "answer": "D",
           "options": [
             {
@@ -1734,9 +4110,177 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": "match",
+          "stem": "In which text can you find information about a gel whose smell is often mistaken for infection?",
+          "answer": "A",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "kind": "match",
+          "stem": "In which text can you find information about packing a cavity and counting the pieces used?",
+          "answer": "B",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "kind": "match",
+          "stem": "In which text can you find information about choosing between an adhesive and a non-adhesive version?",
+          "answer": "D",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "kind": "match",
+          "stem": "In which text can you find information about how a dressing should be removed from the skin?",
+          "answer": "C",
+          "options": [
+            {
+              "id": "A",
+              "text": "A"
+            },
+            {
+              "id": "B",
+              "text": "B"
+            },
+            {
+              "id": "C",
+              "text": "C"
+            },
+            {
+              "id": "D",
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "id": "q8",
           "kind": "gap",
           "stem": "A hydrocolloid dressing supports ______ debridement of sloughy tissue.",
           "answer": "autolytic"
+        },
+        {
+          "id": "q9",
+          "kind": "gap",
+          "stem": "A hydrocolloid may stay in place for up to ______ days.",
+          "answer": "seven"
+        },
+        {
+          "id": "q10",
+          "kind": "gap",
+          "stem": "The adhesive is activated by ______, so press the dressing in place.",
+          "answer": "warmth"
+        },
+        {
+          "id": "q11",
+          "kind": "gap",
+          "stem": "Alginate dressings are derived from ______.",
+          "answer": "seaweed"
+        },
+        {
+          "id": "q12",
+          "kind": "gap",
+          "stem": "An alginate dried onto a wound is ______ off with saline.",
+          "answer": "soaked"
+        },
+        {
+          "id": "q13",
+          "kind": "gap",
+          "stem": "Pack a cavity ______ rather than tightly.",
+          "answer": "loosely"
+        },
+        {
+          "id": "q14",
+          "kind": "gap",
+          "stem": "Film dressings have no ______ of their own.",
+          "answer": "absorbency"
+        },
+        {
+          "id": "q15",
+          "kind": "gap",
+          "stem": "Apply a film without ______ it, as tension causes blistering.",
+          "answer": "stretching"
+        },
+        {
+          "id": "q16",
+          "kind": "gap",
+          "stem": "Remove a film by stretching it ______ to the skin.",
+          "answer": "parallel"
+        },
+        {
+          "id": "q17",
+          "kind": "gap",
+          "stem": "Foam dressings provide ______ over bony prominences.",
+          "answer": "cushioning"
+        },
+        {
+          "id": "q18",
+          "kind": "gap",
+          "stem": "The ______ version is preferred where the surrounding skin is fragile.",
+          "answer": "non-adhesive"
+        },
+        {
+          "id": "q19",
+          "kind": "gap",
+          "stem": "Select a foam that extends beyond the wound margin by ______ centimetres.",
+          "answer": "two"
+        },
+        {
+          "id": "q20",
+          "kind": "gap",
+          "stem": "A ______ dressing is required to hold an alginate in place.",
+          "answer": "secondary"
         }
       ]
     },
@@ -1761,29 +4305,29 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "A",
           "heading": "Risk assessment",
-          "body": "Pressure injuries develop where soft tissue is compressed between bone and a surface. Structured risk assessment on admission is the foundation of prevention. The Braden Scale rates six areas - sensory perception, moisture, activity, mobility, nutrition and friction/shear - with lower total scores meaning higher risk. A score of 18 or below prompts a prevention plan. Risk should be reassessed whenever the patient's condition changes, not only on admission."
+          "body": "Pressure injuries develop where soft tissue is compressed between bone and a surface. Structured risk assessment on admission is the foundation of prevention. The Braden Scale rates six areas — sensory perception, moisture, activity, mobility, nutrition and friction/shear — with lower total scores meaning higher risk. A score of 18 or below prompts a prevention plan. Risk should be reassessed whenever the patient's condition changes, not only on admission. Events that warrant reassessment include a return from theatre, a new episode of illness, a change in continence, and any transfer between wards or departments. The tool is a prompt for judgement rather than a substitute for it: a patient whose total score sits above the threshold may still be at risk if a single area, such as sensory perception, is severely impaired. Record the score, the date and the plan it produced, so that the next clinician can see what was decided and why. Where a patient is admitted overnight or in an emergency, the assessment should still be completed within six hours of arrival, and an interim plan started in the meantime rather than deferred to the morning round."
         },
         {
           "id": "B",
           "heading": "Repositioning",
-          "body": "Repositioning redistributes pressure and is advised at least every four hours for at-risk patients on a pressure-redistributing mattress, and more often on a standard mattress. The 30-degree tilt is preferred over lying directly on the hip, which concentrates pressure on the bony prominence. Heels should be offloaded entirely, ideally floating on a pillow placed under the calves. A repositioning schedule should be documented and visible at the bedside."
+          "body": "Repositioning redistributes pressure and is advised at least every four hours for at-risk patients on a pressure-redistributing mattress, and more often on a standard mattress. The 30-degree tilt is preferred over lying directly on the hip, which concentrates pressure on the bony prominence. Heels should be offloaded entirely, ideally floating on a pillow placed under the calves. A repositioning schedule should be documented and visible at the bedside. Patients who can move themselves should be encouraged and reminded to do so rather than turned, and those seated in a chair need attention too — sitting produces higher pressures over a smaller area than lying, so unbroken chair time should be limited. Use slide sheets rather than dragging, since friction and shear damage tissue that pressure alone would not. Where a patient declines to be turned, record the discussion and the alternatives offered rather than simply the refusal."
         },
         {
           "id": "C",
           "heading": "Skin and moisture",
-          "body": "Skin should be inspected at each repositioning, with particular attention to the sacrum, heels and any medical-device sites. Non-blanching redness is an early warning sign. Excess moisture from perspiration or incontinence weakens the skin barrier; a barrier cream protects intact skin, but massage over bony prominences is contraindicated, as it can damage fragile tissue."
+          "body": "Skin should be inspected at each repositioning, with particular attention to the sacrum, heels and any medical-device sites. Non-blanching redness is an early warning sign. Excess moisture from perspiration or incontinence weakens the skin barrier; a barrier cream protects intact skin, but massage over bony prominences is contraindicated, as it can damage fragile tissue. Device-related injury is easily missed: oxygen tubing behind the ears, catheter tubing under a thigh, and the rims of masks all cause damage in places nobody routinely looks. Inspect under and around every device at least daily and move it slightly where the design allows. On darker skin tones redness may not be visible at all, so warmth, firmness, boggy texture and the patient's own report of pain in one spot become the more reliable signs. Any suspicious area should be documented with its site, size and appearance."
         },
         {
           "id": "D",
           "heading": "Nutrition",
-          "body": "Undernutrition impairs healing and raises risk. Patients should be screened with a validated tool such as MUST. Adequate protein and energy support tissue integrity; where oral intake is poor, referral to the dietitian is indicated. Hydration matters too - dehydrated skin is less resilient."
+          "body": "Undernutrition impairs healing and raises risk. Patients should be screened with a validated tool such as MUST. Adequate protein and energy support tissue integrity; where oral intake is poor, referral to the dietitian is indicated. Hydration matters too — dehydrated skin is less resilient. Screening should be repeated weekly for inpatients rather than performed once, because intake often falls during an admission for reasons that have nothing to do with appetite: missed meals around investigations, unopened packaging, dentures left at home, or a tray placed out of reach. Food charts are worth keeping only if somebody reads them. Small, frequent, energy-dense options are usually better tolerated than large plated meals, and mealtime assistance should be recorded as a nursing intervention in its own right. Supplements are useful where food alone is insufficient, but they are an addition to meals rather than a replacement for them."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "how often to reposition an at-risk patient",
+          "stem": "In which text can you find information about how often to reposition an at-risk patient?",
           "answer": "B",
           "options": [
             {
@@ -1807,7 +4351,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "a validated tool for nutritional screening",
+          "stem": "In which text can you find information about a validated tool for nutritional screening?",
           "answer": "D",
           "options": [
             {
@@ -1831,7 +4375,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "the earliest visible warning sign",
+          "stem": "In which text can you find information about the earliest visible warning sign?",
           "answer": "C",
           "options": [
             {
@@ -1855,7 +4399,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "the score that triggers a prevention plan",
+          "stem": "In which text can you find information about the score that triggers a prevention plan?",
           "answer": "A",
           "options": [
             {
@@ -1879,7 +4423,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "how to protect the heels",
+          "stem": "In which text can you find information about how to protect the heels?",
           "answer": "B",
           "options": [
             {
@@ -1903,7 +4447,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "when risk should be reassessed",
+          "stem": "In which text can you find information about when risk should be reassessed?",
           "answer": "A",
           "options": [
             {
@@ -1927,7 +4471,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "a practice that is contraindicated",
+          "stem": "In which text can you find information about a practice that is contraindicated?",
           "answer": "C",
           "options": [
             {
@@ -2061,29 +4605,29 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "A",
           "heading": "Risk factors",
-          "body": "Falls in older adults are rarely due to a single cause. Contributors include muscle weakness, poor balance, visual impairment, certain medicines (particularly sedatives and some blood-pressure drugs) and environmental hazards. A history of a previous fall is the strongest single predictor of a future one. A multifactorial assessment is recommended for anyone who has fallen or reports unsteadiness."
+          "body": "Falls in older adults are rarely due to a single cause. Contributors include muscle weakness, poor balance, visual impairment, certain medicines (particularly sedatives and some blood-pressure drugs) and environmental hazards. A history of a previous fall is the strongest single predictor of a future one. A multifactorial assessment is recommended for anyone who has fallen or reports unsteadiness. Asking the question matters, because many older people do not report falls unless asked directly — they may attribute a fall to carelessness, or fear that reporting it will lead to a loss of independence. The assessment should cover gait and balance, cognition, continence, feet and footwear, and any fear of falling, which is itself a risk factor because it leads to reduced activity and further weakness. Frequency and circumstances are worth recording: falls that occur at a particular time of day often have a particular cause. Where an assessment identifies several contributors, address them together rather than one at a time, since single-factor interventions have repeatedly been shown to achieve very little on their own."
         },
         {
           "id": "B",
           "heading": "Medication review",
-          "body": "Medicines are a modifiable risk. Sedatives, antipsychotics and drugs that lower blood pressure all increase risk, which rises with the number of medicines taken. A structured medication review - deprescribing where possible - is core to prevention. Postural blood pressure should be checked, as a drop on standing is a common, treatable contributor."
+          "body": "Medicines are a modifiable risk. Sedatives, antipsychotics and drugs that lower blood pressure all increase risk, which rises with the number of medicines taken. A structured medication review — deprescribing where possible — is core to prevention. Postural blood pressure should be checked, as a drop on standing is a common, treatable contributor. Measure lying and then standing, at one minute and again at three, since a delayed drop is easily missed by a single reading. Where a culprit medicine is identified, reduce it gradually and arrange a review date rather than stopping abruptly and hoping. Night sedation deserves particular attention, because its effects persist into the hours when people get up to use the bathroom. Involve the patient in the decision: a person who understands why a tablet is being reduced is far more likely to stay off it than one who simply finds it missing."
         },
         {
           "id": "C",
           "heading": "Strength and balance",
-          "body": "Exercise that challenges balance and builds lower-limb strength reduces falls in community-dwelling older people. To work it must be of sufficient dose - generally at least 50 hours over the programme - and progressive. Walking alone is not enough; the balance component makes the difference. Tai chi has good evidence."
+          "body": "Exercise that challenges balance and builds lower-limb strength reduces falls in community-dwelling older people. To work it must be of sufficient dose — generally at least 50 hours over the programme — and progressive. Walking alone is not enough; the balance component makes the difference. Tai chi has good evidence. Progression is the part most often lost in practice: an exercise that was challenging in week one is no longer challenging in week six, and a programme that never gets harder stops working. Programmes should be continued indefinitely, since the benefit fades within months of stopping, so the choice of activity has to be one the person will actually keep doing. Group classes suit some people and home programmes suit others; adherence, not format, predicts benefit. Those who are very frail should be assessed before starting rather than excluded, as they often have the most to gain."
         },
         {
           "id": "D",
           "heading": "Environment and footwear",
-          "body": "Home hazards such as loose rugs, poor lighting and absent grab rails contribute to falls; an occupational-therapy home assessment can identify and remove them. Footwear matters: well-fitting shoes with a low heel and firm sole are safer than slippers or bare feet. Vision should be checked, but be cautious with new bifocals, which can affect depth perception on stairs."
+          "body": "Home hazards such as loose rugs, poor lighting and absent grab rails contribute to falls; an occupational-therapy home assessment can identify and remove them. Footwear matters: well-fitting shoes with a low heel and firm sole are safer than slippers or bare feet. Vision should be checked, but be cautious with new bifocals, which can affect depth perception on stairs. Assessment carried out in the person's own home is considerably more useful than a checklist completed in a clinic, because the hazards that matter are the ones on the route actually taken — from bed to bathroom at night, or up a step nobody mentioned. Lighting on stairs and a working light within reach of the bed are worth more than most equipment. Recommendations are only effective if the changes are made, so agreeing who will do the work, and by when, is part of the assessment rather than an afterthought."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the strongest single predictor of a future fall",
+          "stem": "In which text can you find information about the strongest single predictor of a future fall?",
           "answer": "A",
           "options": [
             {
@@ -2107,7 +4651,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "why the balance component of exercise matters",
+          "stem": "In which text can you find information about why the balance component of exercise matters?",
           "answer": "C",
           "options": [
             {
@@ -2131,7 +4675,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "a caution about new glasses",
+          "stem": "In which text can you find information about a caution about new glasses?",
           "answer": "D",
           "options": [
             {
@@ -2155,7 +4699,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "how the number of medicines affects risk",
+          "stem": "In which text can you find information about how the number of medicines affects risk?",
           "answer": "B",
           "options": [
             {
@@ -2179,7 +4723,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "an exercise with good evidence",
+          "stem": "In which text can you find information about an exercise with good evidence?",
           "answer": "C",
           "options": [
             {
@@ -2203,7 +4747,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "safe footwear features",
+          "stem": "In which text can you find information about safe footwear features?",
           "answer": "D",
           "options": [
             {
@@ -2227,7 +4771,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "who a multifactorial assessment is recommended for",
+          "stem": "In which text can you find information about who a multifactorial assessment is recommended for?",
           "answer": "A",
           "options": [
             {
@@ -2366,29 +4910,29 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "A",
           "heading": "Recognising delirium",
-          "body": "Delirium is a sudden change in mental state - confusion, disorientation, altered awareness - that develops over hours or days, and it is often missed. Unlike dementia, which comes on slowly, delirium is acute and fluctuates through the day, sometimes worse at night. The quiet, withdrawn 'hypoactive' form is easily overlooked and carries the worst outcomes. A simple screening tool such as the 4AT can help detect it."
+          "body": "Delirium is a sudden change in mental state — confusion, disorientation, altered awareness — that develops over hours or days, and it is often missed. Unlike dementia, which comes on slowly, delirium is acute and fluctuates through the day, sometimes worse at night. The quiet, withdrawn 'hypoactive' form is easily overlooked and carries the worst outcomes. A simple screening tool such as the 4AT can help detect it. The fluctuation itself causes difficulty: a patient assessed during a lucid interval may appear entirely well, so an account from somebody who knows them is essential. Ask specifically whether this is a change from how the person usually is, rather than whether they seem confused now. Delirium and dementia frequently occur together, and the presence of one does not exclude the other; a person with dementia who becomes acutely worse should be treated as having delirium until proven otherwise. Screening on admission and again whenever a patient's behaviour changes is more reliable than screening only those who appear agitated, since the agitated ones were never the group being missed."
         },
         {
           "id": "B",
           "heading": "Common causes",
-          "body": "Delirium usually has a trigger, often more than one. Frequent causes include infection (especially urinary and chest), dehydration, constipation, pain, and medicines - particularly sedatives and strong painkillers. Because the causes are treatable, delirium should prompt a search for the underlying problem rather than simply sedation of the patient."
+          "body": "Delirium usually has a trigger, often more than one. Frequent causes include infection (especially urinary and chest), dehydration, constipation, pain, and medicines — particularly sedatives and strong painkillers. Because the causes are treatable, delirium should prompt a search for the underlying problem rather than simply sedation of the patient. Untreated pain is as capable of producing it as the drugs used to relieve pain, and in a person who cannot report discomfort this is easily overlooked. Urinary retention and a full rectum are both common and both easily checked. Withdrawal from alcohol or from a regular sedative should be considered in anyone admitted acutely, and a recent change to any prescription is worth examining even where the drug is not an obvious candidate. Several small contributors more often act together than one large one, so finding a cause is not a reason to stop looking."
         },
         {
           "id": "C",
           "heading": "Prevention",
-          "body": "Much delirium is preventable. Keeping patients hydrated, mobile and oriented - with clocks, daylight, and their own glasses and hearing aids - reduces risk. Uninterrupted sleep matters, so avoid waking patients for non-urgent observations at night. Familiar faces help, so involving family is protective, not a distraction."
+          "body": "Much delirium is preventable. Keeping patients hydrated, mobile and oriented — with clocks, daylight, and their own glasses and hearing aids — reduces risk. Uninterrupted sleep matters, so avoid waking patients for non-urgent observations at night. Familiar faces help, so involving family is protective, not a distraction. Multi-component programmes of this kind reduce incidence by around a third, and no single element accounts for the effect; it is the combination applied consistently that works. Ward moves are worth avoiding where they can be, since each one removes the orientation a patient has assembled. Small things carry weight: a named nurse across a shift, a jug within reach, a window seat, a hearing aid with a working battery. Where equipment has been left at home, asking a relative to bring it in is one of the more effective interventions available on a ward."
         },
         {
           "id": "D",
           "heading": "Management",
-          "body": "When delirium occurs, treat the cause and support the person. A calm, well-lit environment and consistent staff reduce distress. Medication to sedate should be a last resort, reserved for severe agitation that risks safety, and used at the lowest dose, as it can prolong the delirium it is meant to treat."
+          "body": "When delirium occurs, treat the cause and support the person. A calm, well-lit environment and consistent staff reduce distress. Medication to sedate should be a last resort, reserved for severe agitation that risks safety, and used at the lowest dose, as it can prolong the delirium it is meant to treat. Try non-drug approaches first and give them time: reassurance in short, simple sentences, one person speaking rather than several, and where possible allowing the person to walk with a companion rather than being asked repeatedly to sit down. Arguing with a mistaken belief tends to escalate distress without correcting it. Where medication is used, the reason, the dose and the intended review point should be documented and the need re-examined daily. Recovery is often slow and incomplete, and families should be told this at the outset rather than at discharge."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "how delirium differs from dementia",
+          "stem": "In which text can you find information about how delirium differs from dementia?",
           "answer": "A",
           "options": [
             {
@@ -2412,7 +4956,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "which form of delirium has the worst outcomes",
+          "stem": "In which text can you find information about which form of delirium has the worst outcomes?",
           "answer": "A",
           "options": [
             {
@@ -2436,7 +4980,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "why sedating medication should be a last resort",
+          "stem": "In which text can you find information about why sedating medication should be a last resort?",
           "answer": "D",
           "options": [
             {
@@ -2460,7 +5004,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "the protective role of family",
+          "stem": "In which text can you find information about the protective role of family?",
           "answer": "C",
           "options": [
             {
@@ -2484,7 +5028,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "common infective triggers",
+          "stem": "In which text can you find information about common infective triggers?",
           "answer": "B",
           "options": [
             {
@@ -2508,7 +5052,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "a named screening tool",
+          "stem": "In which text can you find information about a named screening tool?",
           "answer": "A",
           "options": [
             {
@@ -2532,7 +5076,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "advice about night-time observations",
+          "stem": "In which text can you find information about advice about night-time observations?",
           "answer": "C",
           "options": [
             {
@@ -2702,7 +5246,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the dose of adrenaline for a child of eight?",
+          "stem": "In which text can you find information about the dose of adrenaline for a child of eight?",
           "answer": "B",
           "options": [
             {
@@ -2726,7 +5270,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how long a patient should be watched after treatment?",
+          "stem": "In which text can you find information about how long a patient should be watched after treatment?",
           "answer": "C",
           "options": [
             {
@@ -2750,7 +5294,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "the conditions that may be mistaken for anaphylaxis?",
+          "stem": "In which text can you find information about the conditions that may be mistaken for anaphylaxis?",
           "answer": "A",
           "options": [
             {
@@ -2774,7 +5318,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "things that make a reaction more likely on a particular day?",
+          "stem": "In which text can you find information about things that make a reaction more likely on a particular day?",
           "answer": "D",
           "options": [
             {
@@ -2798,7 +5342,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "the position in which the patient should be placed?",
+          "stem": "In which text can you find information about the position in which the patient should be placed?",
           "answer": "B",
           "options": [
             {
@@ -2822,7 +5366,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "the three features that together indicate anaphylaxis?",
+          "stem": "In which text can you find information about the three features that together indicate anaphylaxis?",
           "answer": "A",
           "options": [
             {
@@ -2846,7 +5390,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "the classes of drug most often responsible?",
+          "stem": "In which text can you find information about the classes of drug most often responsible?",
           "answer": "D",
           "options": [
             {
@@ -3038,7 +5582,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the six actions that must be completed within an hour?",
+          "stem": "In which text can you find information about the six actions that must be completed within an hour?",
           "answer": "B",
           "options": [
             {
@@ -3062,7 +5606,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "the score that triggers a senior review?",
+          "stem": "In which text can you find information about the score that triggers a senior review?",
           "answer": "A",
           "options": [
             {
@@ -3086,7 +5630,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how sepsis presents in a child?",
+          "stem": "In which text can you find information about how sepsis presents in a child?",
           "answer": "C",
           "options": [
             {
@@ -3110,7 +5654,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "reviewing the antibiotic after two or three days?",
+          "stem": "In which text can you find information about reviewing the antibiotic after two or three days?",
           "answer": "D",
           "options": [
             {
@@ -3134,7 +5678,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "the oxygen saturation to aim for?",
+          "stem": "In which text can you find information about the oxygen saturation to aim for?",
           "answer": "B",
           "options": [
             {
@@ -3158,7 +5702,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "effects that survivors may still have months later?",
+          "stem": "In which text can you find information about effects that survivors may still have months later?",
           "answer": "D",
           "options": [
             {
@@ -3182,7 +5726,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why the usual thresholds are less reliable in pregnancy?",
+          "stem": "In which text can you find information about why the usual thresholds are less reliable in pregnancy?",
           "answer": "C",
           "options": [
             {
@@ -3261,7 +5805,10 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "Which step is described as most often delayed?",
           "answer": "source control",
-          "variants": []
+          "variants": [
+            "controlling the source",
+            "control of the source"
+          ]
         },
         {
           "id": "q14",
@@ -3314,7 +5861,10 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "In a child, a dry nappy carries the weight that ______________ carries in adults.",
           "answer": "blood pressure",
-          "variants": []
+          "variants": [
+            "BP",
+            "the blood pressure"
+          ]
         },
         {
           "id": "q20",
@@ -3367,7 +5917,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "how often a patient on a foam mattress is turned?",
+          "stem": "In which text can you find information about how often a patient on a foam mattress is turned?",
           "answer": "C",
           "options": [
             {
@@ -3391,7 +5941,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what is seen in category 4 damage?",
+          "stem": "In which text can you find information about what is seen in category 4 damage?",
           "answer": "B",
           "options": [
             {
@@ -3415,7 +5965,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how to tell moisture damage from pressure damage?",
+          "stem": "In which text can you find information about how to tell moisture damage from pressure damage?",
           "answer": "D",
           "options": [
             {
@@ -3439,7 +5989,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what to look for when the skin is dark?",
+          "stem": "In which text can you find information about what to look for when the skin is dark?",
           "answer": "A",
           "options": [
             {
@@ -3463,7 +6013,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "why the heel should float clear of the bed?",
+          "stem": "In which text can you find information about why the heel should float clear of the bed?",
           "answer": "C",
           "options": [
             {
@@ -3487,7 +6037,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "when the skin should be inspected?",
+          "stem": "In which text can you find information about when the skin should be inspected?",
           "answer": "A",
           "options": [
             {
@@ -3511,7 +6061,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "whether eschar on a heel should be removed?",
+          "stem": "In which text can you find information about whether eschar on a heel should be removed?",
           "answer": "B",
           "options": [
             {
@@ -3694,7 +6244,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the treatment for a patient who cannot swallow?",
+          "stem": "In which text can you find information about the treatment for a patient who cannot swallow?",
           "answer": "B",
           "options": [
             {
@@ -3718,7 +6268,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "the reason an episode may return hours later?",
+          "stem": "In which text can you find information about the reason an episode may return hours later?",
           "answer": "D",
           "options": [
             {
@@ -3742,7 +6292,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "the symptoms that appear before the brain is affected?",
+          "stem": "In which text can you find information about the symptoms that appear before the brain is affected?",
           "answer": "A",
           "options": [
             {
@@ -3766,7 +6316,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what must be eaten once the glucose is above four?",
+          "stem": "In which text can you find information about what must be eaten once the glucose is above four?",
           "answer": "B",
           "options": [
             {
@@ -3790,7 +6340,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what should be reviewed to find the cause?",
+          "stem": "In which text can you find information about what should be reviewed to find the cause?",
           "answer": "C",
           "options": [
             {
@@ -3814,7 +6364,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "the drug that does not cause low glucose on its own?",
+          "stem": "In which text can you find information about the drug that does not cause low glucose on its own?",
           "answer": "D",
           "options": [
             {
@@ -3838,7 +6388,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "the condition in which the warning symptoms are absent?",
+          "stem": "In which text can you find information about the condition in which the warning symptoms are absent?",
           "answer": "A",
           "options": [
             {
@@ -4036,7 +6586,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the reason blood pressure is left alone at first?",
+          "stem": "In which text can you find information about the reason blood pressure is left alone at first?",
           "answer": "D",
           "options": [
             {
@@ -4060,7 +6610,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "the condition that most often imitates a stroke?",
+          "stem": "In which text can you find information about the condition that most often imitates a stroke?",
           "answer": "B",
           "options": [
             {
@@ -4084,7 +6634,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "the presentations that do not fit the usual three?",
+          "stem": "In which text can you find information about the presentations that do not fit the usual three?",
           "answer": "A",
           "options": [
             {
@@ -4108,7 +6658,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "how long after onset a clot may be removed mechanically?",
+          "stem": "In which text can you find information about how long after onset a clot may be removed mechanically?",
           "answer": "C",
           "options": [
             {
@@ -4132,7 +6682,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what to record if the person woke with symptoms?",
+          "stem": "In which text can you find information about what to record if the person woke with symptoms?",
           "answer": "B",
           "options": [
             {
@@ -4156,7 +6706,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "the heart rhythm that sends clots to the brain?",
+          "stem": "In which text can you find information about the heart rhythm that sends clots to the brain?",
           "answer": "D",
           "options": [
             {
@@ -4180,7 +6730,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why nothing that thins the blood is given first?",
+          "stem": "In which text can you find information about why nothing that thins the blood is given first?",
           "answer": "C",
           "options": [
             {
@@ -4378,7 +6928,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the sleeves used when stockings cannot be worn?",
+          "stem": "In which text can you find information about the sleeves used when stockings cannot be worn?",
           "answer": "B",
           "options": [
             {
@@ -4402,7 +6952,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how long the raised risk lasts once the patient is home?",
+          "stem": "In which text can you find information about how long the raised risk lasts once the patient is home?",
           "answer": "D",
           "options": [
             {
@@ -4426,7 +6976,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "the length of operation that adds to the risk?",
+          "stem": "In which text can you find information about the length of operation that adds to the risk?",
           "answer": "A",
           "options": [
             {
@@ -4450,7 +7000,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "the difference between the two legs?",
+          "stem": "In which text can you find information about the difference between the two legs?",
           "answer": "C",
           "options": [
             {
@@ -4474,7 +7024,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what to tell a patient about a missed dose?",
+          "stem": "In which text can you find information about what to tell a patient about a missed dose?",
           "answer": "D",
           "options": [
             {
@@ -4498,7 +7048,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "the conditions that change what can safely be given?",
+          "stem": "In which text can you find information about the conditions that change what can safely be given?",
           "answer": "A",
           "options": [
             {
@@ -4522,7 +7072,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "the damage the treatment itself can cause?",
+          "stem": "In which text can you find information about the damage the treatment itself can cause?",
           "answer": "C",
           "options": [
             {
@@ -4714,7 +7264,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "why a notice asking for more care is not enough?",
+          "stem": "In which text can you find information about why a notice asking for more care is not enough?",
           "answer": "C",
           "options": [
             {
@@ -4738,7 +7288,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what independence means in a second check?",
+          "stem": "In which text can you find information about what independence means in a second check?",
           "answer": "B",
           "options": [
             {
@@ -4762,7 +7312,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "the value of reporting errors that harmed nobody?",
+          "stem": "In which text can you find information about the value of reporting errors that harmed nobody?",
           "answer": "D",
           "options": [
             {
@@ -4786,7 +7336,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what these medicines have in common?",
+          "stem": "In which text can you find information about what these medicines have in common?",
           "answer": "A",
           "options": [
             {
@@ -4810,7 +7360,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "the effect of giving a concentrated solution quickly?",
+          "stem": "In which text can you find information about the effect of giving a concentrated solution quickly?",
           "answer": "C",
           "options": [
             {
@@ -4834,7 +7384,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "the conditions that produce errors rather than carelessness?",
+          "stem": "In which text can you find information about the conditions that produce errors rather than carelessness?",
           "answer": "A",
           "options": [
             {
@@ -4858,7 +7408,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what a patient should be able to say about a weekly medicine?",
+          "stem": "In which text can you find information about what a patient should be able to say about a weekly medicine?",
           "answer": "B",
           "options": [
             {
@@ -5047,7 +7597,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the reason a laboratory needs to know about treatment already given?",
+          "stem": "In which text can you find information about the reason a laboratory needs to know about treatment already given?",
           "answer": "B",
           "options": [
             {
@@ -5071,7 +7621,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what \"continue\" must be rather than be allowed to happen?",
+          "stem": "In which text can you find information about what \"continue\" must be rather than be allowed to happen?",
           "answer": "C",
           "options": [
             {
@@ -5095,7 +7645,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "the finding that carries more weight than any local sign?",
+          "stem": "In which text can you find information about the finding that carries more weight than any local sign?",
           "answer": "A",
           "options": [
             {
@@ -5119,7 +7669,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what happens to the bacteria a patient carries?",
+          "stem": "In which text can you find information about what happens to the bacteria a patient carries?",
           "answer": "D",
           "options": [
             {
@@ -5143,7 +7693,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "why a routine swab causes a problem?",
+          "stem": "In which text can you find information about why a routine swab causes a problem?",
           "answer": "B",
           "options": [
             {
@@ -5167,7 +7717,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "the risk created by a cannula nobody revisited?",
+          "stem": "In which text can you find information about the risk created by a cannula nobody revisited?",
           "answer": "C",
           "options": [
             {
@@ -5191,7 +7741,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why the changes must be compared with yesterday?",
+          "stem": "In which text can you find information about why the changes must be compared with yesterday?",
           "answer": "A",
           "options": [
             {
@@ -5388,7 +7938,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the device chosen for its predictability?",
+          "stem": "In which text can you find information about the device chosen for its predictability?",
           "answer": "B",
           "options": [
             {
@@ -5412,7 +7962,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "the readings that are wrong rather than absent?",
+          "stem": "In which text can you find information about the readings that are wrong rather than absent?",
           "answer": "C",
           "options": [
             {
@@ -5436,7 +7986,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when the target range is written down?",
+          "stem": "In which text can you find information about when the target range is written down?",
           "answer": "A",
           "options": [
             {
@@ -5460,7 +8010,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what a saturation means without the oxygen recorded beside it?",
+          "stem": "In which text can you find information about what a saturation means without the oxygen recorded beside it?",
           "answer": "C",
           "options": [
             {
@@ -5484,7 +8034,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "why equipment is not left in place \"just in case\"?",
+          "stem": "In which text can you find information about why equipment is not left in place \"just in case\"?",
           "answer": "D",
           "options": [
             {
@@ -5508,7 +8058,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what happens above the target range?",
+          "stem": "In which text can you find information about what happens above the target range?",
           "answer": "A",
           "options": [
             {
@@ -5532,7 +8082,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what a patient rebreathes from inside a mask?",
+          "stem": "In which text can you find information about what a patient rebreathes from inside a mask?",
           "answer": "B",
           "options": [
             {
@@ -5730,7 +8280,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the drugs that should be held immediately?",
+          "stem": "In which text can you find information about the drugs that should be held immediately?",
           "answer": "B",
           "options": [
             {
@@ -5754,7 +8304,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "the numbers that define the condition?",
+          "stem": "In which text can you find information about the numbers that define the condition?",
           "answer": "A",
           "options": [
             {
@@ -5778,7 +8328,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how often the patient should be weighed?",
+          "stem": "In which text can you find information about how often the patient should be weighed?",
           "answer": "C",
           "options": [
             {
@@ -5802,7 +8352,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what should be written in the discharge letter?",
+          "stem": "In which text can you find information about what should be written in the discharge letter?",
           "answer": "D",
           "options": [
             {
@@ -5826,7 +8376,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "the commonest cause seen on a general ward?",
+          "stem": "In which text can you find information about the commonest cause seen on a general ward?",
           "answer": "A",
           "options": [
             {
@@ -5850,7 +8400,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "the scan that rules out a blocked bladder?",
+          "stem": "In which text can you find information about the scan that rules out a blocked bladder?",
           "answer": "B",
           "options": [
             {
@@ -5874,7 +8424,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "the potassium level that is an emergency?",
+          "stem": "In which text can you find information about the potassium level that is an emergency?",
           "answer": "C",
           "options": [
             {
@@ -5993,7 +8543,10 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "A creatinine that has not returned to baseline by three months is ______________.",
           "answer": "chronic kidney disease",
-          "variants": []
+          "variants": [
+            "CKD",
+            "chronic kidney"
+          ]
         },
         {
           "id": "q20",
@@ -6046,7 +8599,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what to do when a label does not match?",
+          "stem": "In which text can you find information about what to do when a label does not match?",
           "answer": "B",
           "options": [
             {
@@ -6070,7 +8623,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how many samples are needed before a first transfusion?",
+          "stem": "In which text can you find information about how many samples are needed before a first transfusion?",
           "answer": "A",
           "options": [
             {
@@ -6094,7 +8647,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when the observations must be repeated?",
+          "stem": "In which text can you find information about when the observations must be repeated?",
           "answer": "C",
           "options": [
             {
@@ -6118,7 +8671,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "who must be told first when a reaction occurs?",
+          "stem": "In which text can you find information about who must be told first when a reaction occurs?",
           "answer": "D",
           "options": [
             {
@@ -6142,7 +8695,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "where the grouping sample must be labelled?",
+          "stem": "In which text can you find information about where the grouping sample must be labelled?",
           "answer": "A",
           "options": [
             {
@@ -6166,7 +8719,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what to look for on the bag itself?",
+          "stem": "In which text can you find information about what to look for on the bag itself?",
           "answer": "B",
           "options": [
             {
@@ -6190,7 +8743,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "the time limit for completing one unit?",
+          "stem": "In which text can you find information about the time limit for completing one unit?",
           "answer": "C",
           "options": [
             {
@@ -6365,7 +8918,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "the time limit for recording the tracing?",
+          "stem": "In which text can you find information about the time limit for recording the tracing?",
           "answer": "A",
           "options": [
             {
@@ -6389,7 +8942,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "the drug that must not follow a treatment for erectile dysfunction?",
+          "stem": "In which text can you find information about the drug that must not follow a treatment for erectile dysfunction?",
           "answer": "C",
           "options": [
             {
@@ -6413,7 +8966,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "what makes a second blood sample necessary?",
+          "stem": "In which text can you find information about what makes a second blood sample necessary?",
           "answer": "B",
           "options": [
             {
@@ -6437,7 +8990,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what is most often missing from the discharge letter?",
+          "stem": "In which text can you find information about what is most often missing from the discharge letter?",
           "answer": "D",
           "options": [
             {
@@ -6461,7 +9014,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "how the first tablet should be taken?",
+          "stem": "In which text can you find information about how the first tablet should be taken?",
           "answer": "A",
           "options": [
             {
@@ -6485,7 +9038,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "why an old tracing is useful?",
+          "stem": "In which text can you find information about why an old tracing is useful?",
           "answer": "B",
           "options": [
             {
@@ -6509,7 +9062,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why injections into muscle are avoided?",
+          "stem": "In which text can you find information about why injections into muscle are avoided?",
           "answer": "C",
           "options": [
             {
@@ -6600,7 +9153,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "A new left bundle branch block is treated as a ______________ until proved otherwise.",
           "answer": "blocked artery",
-          "variants": []
+          "variants": [
+            "a blocked artery",
+            "blocked coronary artery",
+            "occluded artery"
+          ]
         },
         {
           "id": "q16",
@@ -6683,7 +9240,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "which steroid is swallowed and which is not?",
+          "stem": "In which text can you find information about which steroid is swallowed and which is not?",
           "answer": "B",
           "options": [
             {
@@ -6707,7 +9264,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "the features that make an attack life-threatening?",
+          "stem": "In which text can you find information about the features that make an attack life-threatening?",
           "answer": "A",
           "options": [
             {
@@ -6731,7 +9288,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how soon the peak flow is repeated?",
+          "stem": "In which text can you find information about how soon the peak flow is repeated?",
           "answer": "C",
           "options": [
             {
@@ -6755,7 +9312,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "how soon the family doctor should see the patient?",
+          "stem": "In which text can you find information about how soon the family doctor should see the patient?",
           "answer": "D",
           "options": [
             {
@@ -6779,7 +9336,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "the strongest predictor of a further attack?",
+          "stem": "In which text can you find information about the strongest predictor of a further attack?",
           "answer": "A",
           "options": [
             {
@@ -6803,7 +9360,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "when magnesium is considered?",
+          "stem": "In which text can you find information about when magnesium is considered?",
           "answer": "B",
           "options": [
             {
@@ -6827,7 +9384,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "the blood result that falls with repeated treatment?",
+          "stem": "In which text can you find information about the blood result that falls with repeated treatment?",
           "answer": "C",
           "options": [
             {
@@ -6999,7 +9556,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what must be written on the tube?",
+          "stem": "In which text can you find information about what must be written on the tube?",
           "answer": "C",
           "options": [
             {
@@ -7023,7 +9580,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how long the tourniquet may stay on?",
+          "stem": "In which text can you find information about how long the tourniquet may stay on?",
           "answer": "B",
           "options": [
             {
@@ -7047,7 +9604,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "which arms should be avoided?",
+          "stem": "In which text can you find information about which arms should be avoided?",
           "answer": "A",
           "options": [
             {
@@ -7071,7 +9628,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "how the needle should be disposed of?",
+          "stem": "In which text can you find information about how the needle should be disposed of?",
           "answer": "D",
           "options": [
             {
@@ -7095,7 +9652,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what to ask a patient who has fainted before?",
+          "stem": "In which text can you find information about what to ask a patient who has fainted before?",
           "answer": "A",
           "options": [
             {
@@ -7119,7 +9676,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "why the tubes are filled in a set order?",
+          "stem": "In which text can you find information about why the tubes are filled in a set order?",
           "answer": "B",
           "options": [
             {
@@ -7143,7 +9700,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "which sample must not be refrigerated?",
+          "stem": "In which text can you find information about which sample must not be refrigerated?",
           "answer": "C",
           "options": [
             {
@@ -7224,7 +9781,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "What should a pale patient be asked to do?",
           "answer": "stay seated",
-          "variants": []
+          "variants": [
+            "to stay seated",
+            "remain seated",
+            "sit down"
+          ]
         },
         {
           "id": "q15",
@@ -7322,7 +9883,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "how a container should be filled?",
+          "stem": "In which text can you find information about how a container should be filled?",
           "answer": "D",
           "options": [
             {
@@ -7346,7 +9907,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what to do with contact lenses?",
+          "stem": "In which text can you find information about what to do with contact lenses?",
           "answer": "A",
           "options": [
             {
@@ -7370,7 +9931,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "which fluids carry no risk unless bloodstained?",
+          "stem": "In which text can you find information about which fluids carry no risk unless bloodstained?",
           "answer": "B",
           "options": [
             {
@@ -7394,7 +9955,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "how long the course of tablets lasts?",
+          "stem": "In which text can you find information about how long the course of tablets lasts?",
           "answer": "C",
           "options": [
             {
@@ -7418,7 +9979,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "who decides whether the source is low risk?",
+          "stem": "In which text can you find information about who decides whether the source is low risk?",
           "answer": "A",
           "options": [
             {
@@ -7442,7 +10003,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "who asks the source patient for consent?",
+          "stem": "In which text can you find information about who asks the source patient for consent?",
           "answer": "B",
           "options": [
             {
@@ -7466,7 +10027,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "which infection has no vaccine?",
+          "stem": "In which text can you find information about which infection has no vaccine?",
           "answer": "C",
           "options": [
             {
@@ -7570,7 +10131,10 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "kind": "gap",
           "stem": "The injured person's own ______________ status is checked at the same time.",
           "answer": "hepatitis B",
-          "variants": []
+          "variants": [
+            "hep B",
+            "hepatitis B status"
+          ]
         },
         {
           "id": "q18",
