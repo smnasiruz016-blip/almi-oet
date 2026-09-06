@@ -205,9 +205,24 @@ const fail = (gate: string, msg: string) => failures.push(`${gate}  ${msg}`);
 // loading in an automated browser, so an unattended re-check is not possible.
 // Re-verify by hand before treating these bounds as current.
 //
-// WHY 120 AND NOT 180. OET publishes a RANGE. 120 is inside it and is a condition
-// a learner may actually face; 180 would train only for the easiest case. 60 was
-// wrong because it sat OUTSIDE the range entirely.
+// 🔴 WHY THE VALUE IS 180, AND WHY THAT IS CLOSED. This comment used to argue
+// "why 120 and not 180 — 180 would train only for the easiest case". That
+// rationale is dead and it is left here only so nobody reinstates it.
+//
+// After the 31 August note the OWNER researched the published range again and set
+// 180 himself, on every one of the 360 Speaking items. On 6 SEPTEMBER 2026 he
+// ruled on it, verbatim: "31 k baad aap hi nain dobara research kia or aap hi
+// nain 180 kia so let it be and move on."
+//
+// SO 180 STANDS. Both numbers are inside OET's published 2-3 minutes; 60 was
+// wrong because it sat OUTSIDE the range entirely. The bounds below already
+// accept 180 and were not changed for this — nothing about the gate moved, only
+// the reason written beside it. A CLOSED QUESTION RE-RAISED IS NOISE, and noise
+// costs the owner the thing that is scarcest.
+//
+// ⚠️ The exact value is asserted elsewhere and more tightly:
+// gate:exam-numbers requires every Speaking item to equal
+// TIMING.speakingPrepSecondsMin, which is 180. This range is the outer bound.
 //
 // THE BOUNDS BELOW ARE HAND-TYPED LITERALS. They are never derived from the items
 // this gate checks. A verifier that reads its expectation from its subject proves
