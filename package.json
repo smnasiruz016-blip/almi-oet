@@ -43,6 +43,7 @@
     "test:e2e": "tsx scripts/e2e/run.mts",
     "check:prod-migrations": "tsx scripts/check-prod-migrations.mts",
     "gate:no-tokens-for-nothing": "tsx scripts/measure/blank-submit.mts",
+    "gate:slug-immutable": "tsx scripts/measure/slug-immutable.mts",
     "test:db": "tsx scripts/measure/blank-submit.mts",
     "report:shape": "tsx scripts/report-shape.ts",
     "start": "next start",
