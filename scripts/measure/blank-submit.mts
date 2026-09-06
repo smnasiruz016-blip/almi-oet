@@ -25,7 +25,24 @@
 import { spawnSync } from "node:child_process";
 import { assertDisposable, startDisposablePostgres, type DisposableDb } from "../e2e/disposable-db.mjs";
 
-async function main() {
+/**
+ * 🔴 THIS GATE COULD NOT FAIL. FOUND AND MEASURED 6 SEPTEMBER 2026.
+ *
+ * It set `process.exitCode = 1` when vitest failed. A deliberately failing test
+ * was planted in tests/db/ and `npm run gate:no-tokens-for-nothing` exited **0**
+ * — in CI (.github/workflows/ci.yml, its own step) that is a green tick over a
+ * red suite, on the gate that exists because empty submissions reached a paid
+ * model.
+ *
+ * The cause is the one recorded at the foot of scripts/e2e/run.mts: the
+ * embedded-postgres teardown calls `process.exit()` explicitly, and an explicit
+ * exit overrides `process.exitCode`. run.mts was fixed for the path that THROWS;
+ * this file's failing path returns normally, so it never reached that fix.
+ *
+ * The failure is now carried out of `main()` as a value and turned into a real
+ * `process.exit(1)` after the database is down, where nothing can overrule it.
+ */
+async function main(): Promise<boolean> {
   let db: DisposableDb | null = null;
   try {
     const provided = process.env.E2E_DATABASE_URL;
@@ -52,7 +69,7 @@ async function main() {
       stdio: "inherit",
       env,
     });
-    if (r.status !== 0) process.exitCode = 1;
+    return r.status === 0;
   } finally {
     if (db) {
       console.log("[measure] stopping the throwaway database…");
@@ -61,7 +78,14 @@ async function main() {
   }
 }
 
-main().catch((e) => {
-  console.error(e instanceof Error ? e.message : e);
-  process.exitCode = 1;
-});
+main()
+  .then((ok) => {
+    if (!ok) {
+      console.error("\n[measure] 🔴 tests/db FAILED — see the assertions above.");
+      process.exit(1);
+    }
+  })
+  .catch((e) => {
+    console.error(e instanceof Error ? e.message : e);
+    process.exit(1);
+  });
