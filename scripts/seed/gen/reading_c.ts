@@ -1583,26 +1583,27 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
-          "stem": "What does the writer say about the framing effect in clinicians?",
-          "answer": "b",
+          "kind": ["reference"],
+          "stem": "What does the writer mean by 'natural frequencies'?",
           "options": [
             {
               "id": "a",
-              "text": "It is weaker than in patients but still measurable."
+              "text": "Out of a hundred people like you, this many."
             },
             {
               "id": "b",
-              "text": "It is as reliable as in patients, and unnoticed by them."
+              "text": "The percentage change in risk over a year."
             },
             {
               "id": "c",
-              "text": "It disappears once the effect has been explained to them."
+              "text": "How often a condition occurs in the population."
             },
             {
               "id": "d",
-              "text": "It has been demonstrated only in trainees so far."
+              "text": "The difference between two per cent and one per cent."
             }
-          ]
+          ],
+          "answer": "a"
         },
         {
           "id": "q4",
@@ -2051,6 +2052,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["reference","paragraph"],
           "stem": "What are the three columns in the writer's honest account?",
           "answer": "b",
           "options": [
@@ -2473,26 +2475,27 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
-          "stem": "What is the narrow point the writer wants to make about warmth?",
-          "answer": "c",
+          "kind": ["reference"],
+          "stem": "What does the writer mean by a team that 'fit the poster'?",
           "options": [
             {
               "id": "a",
-              "text": "That it matters less than competence in a crisis."
+              "text": "It looked like the official image of teamwork."
             },
             {
               "id": "b",
-              "text": "That it declines steadily as a team becomes busier."
+              "text": "It was photographed for a hospital campaign."
             },
             {
               "id": "c",
-              "text": "That it is not evidence of safety, though treated as such."
+              "text": "It followed the department's written protocols."
             },
             {
               "id": "d",
-              "text": "That it can be produced by good leadership alone."
+              "text": "It met the standards its own managers had set."
             }
-          ]
+          ],
+          "answer": "a"
         },
         {
           "id": "q6",
@@ -2634,26 +2637,27 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
-          "stem": "What does the writer say has been substituted for an outcome?",
-          "answer": "a",
+          "kind": ["reference"],
+          "stem": "What does the writer mean by saying nobody can do those 'on a Tuesday'?",
           "options": [
             {
               "id": "a",
-              "text": "An activity, which is visible where the outcome is not."
+              "text": "They name no act anyone could carry out."
             },
             {
               "id": "b",
-              "text": "A form, which is easier to complete than to act on."
+              "text": "They are scheduled for a day already full."
             },
             {
               "id": "c",
-              "text": "A discussion, which the team finds more comfortable."
+              "text": "They are reviewed too long after the event."
             },
             {
               "id": "d",
-              "text": "A deadline, which passes without anybody noticing."
+              "text": "They fall to staff who missed the meeting."
             }
-          ]
+          ],
+          "answer": "a"
         },
         {
           "id": "q4",
@@ -2887,26 +2891,27 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
-          "stem": "What does the writer say most of the skill consists of?",
-          "answer": "b",
+          "kind": ["reference"],
+          "stem": "What does the writer mean by 'the performance of feeling'?",
           "options": [
             {
               "id": "a",
-              "text": "Choosing words carefully before beginning to speak."
+              "text": "A display of sympathy that convinces nobody."
             },
             {
               "id": "b",
-              "text": "What is done in the two seconds after the patient stops."
+              "text": "A genuine emotion the clinician cannot hide."
             },
             {
               "id": "c",
-              "text": "Maintaining eye contact throughout the consultation."
+              "text": "The moment a patient describes their distress."
             },
             {
               "id": "d",
-              "text": "Asking about the patient's circumstances at home."
+              "text": "An assessment of how warm a trainee appears."
             }
-          ]
+          ],
+          "answer": "a"
         },
         {
           "id": "q6",

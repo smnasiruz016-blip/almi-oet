@@ -1204,7 +1204,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "stem": "What is given as the main cause of needlestick injuries on the ward?",
-          "answer": "a",
           "options": [
             {
               "id": "a",
@@ -1212,13 +1211,14 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "faulty needles"
+              "text": "needles being resheathed after use"
             },
             {
               "id": "c",
-              "text": "staff working too quickly"
+              "text": "staff carrying needles across the room"
             }
-          ]
+          ],
+          "answer": "a"
         }
       ]
     }
