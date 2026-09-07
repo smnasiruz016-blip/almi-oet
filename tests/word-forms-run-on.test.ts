@@ -15,7 +15,7 @@
  * Both halves of this file were seen RED before either rule existed.
  */
 import { describe, expect, it } from "vitest";
-import { isAllFunctionWords, runOnMatch } from "@/../scripts/gates/word-forms";
+import { isAllFunctionWords, runOnMatch, wordFoundInSource } from "@/../scripts/gates/word-forms";
 import { normalize, normalizeTokens } from "@/lib/oet/tasks/objective";
 
 /** the two inputs the gate builds for a source */
@@ -53,6 +53,38 @@ describe("the run-on rule must align on a source token boundary", () => {
   it("still accepts a number the source spells out", () => {
     // normalize folds "twenty nineteen" and "2019" to the same string.
     expect(matches("The implant went in in twenty nineteen.", "2019")).toBe(true);
+  });
+});
+
+describe("a word the source spells across two tokens is still a word the source says", () => {
+  // The script says "twenty nineteen"; the answer reads 2019. normalize() folds
+  // both to the same string, so the MARKER accepts it — and a checker that asks
+  // token by token must not disagree with the marker about that.
+  const spans = (text: string, word: string) => {
+    const tokens = normalizeTokens(text);
+    return wordFoundInSource(word, new Set(tokens), tokens.join(""), tokens);
+  };
+
+  it("finds a number the source speaks as two words", () => {
+    expect(spans("The implant went in in twenty nineteen.", "2019")).toBe(true);
+  });
+
+  it("still finds a word the source says outright", () => {
+    expect(spans("Both pulses are palpable today.", "palpable")).toBe(true);
+  });
+
+  it("does NOT find a word that only sits inside a longer one", () => {
+    // `lab` inside `labrador` is a clipping, and a clipping is a decision for a
+    // written exemption row, not something a checker may grant itself.
+    expect(spans("And he is a labrador, isn't he?", "lab")).toBe(false);
+  });
+
+  it("does NOT find a word spelled only by two words abutting", () => {
+    expect(spans("Always check dose against the chart.", "ckd")).toBe(false);
+  });
+
+  it("does NOT find a word the source never says", () => {
+    expect(spans("Both pulses are strong and easy.", "palpable")).toBe(false);
   });
 });
 

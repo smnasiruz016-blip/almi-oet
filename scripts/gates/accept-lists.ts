@@ -65,7 +65,7 @@ import {
   FUNCTION_WORDS,
   isAllFunctionWords,
   runOnMatch,
-  wordInSource,
+  wordFoundInSource,
 } from "./word-forms";
 
 type Gap = { id: string; label: string; answer: string; variants?: string[]; acceptExhaustive?: boolean };
@@ -1017,6 +1017,20 @@ type VariantExemption = {
 
 const A11_EXEMPT_VARIANT: VariantExemption[] = [
   {
+    item: "lis-a-script-9-veterinary-science-a-stiff-older-dog",
+    gap: "Breed",
+    variant: "lab",
+    source: "ruling-2026-09-07",
+    why:
+      "ABBR: lab is the standard clipping of labrador, and the script says " +
+      "\"he's a labrador\" and \"a labrador, yes\". It is the same shape as BP, " +
+      "hep B, C. diff and CO2, all of which I kept. Refusing it would apply my " +
+      "own rule four times and break it on the fifth. The ambiguity I raised — " +
+      "lab also meaning laboratory — does not apply: marking compares an answer " +
+      "against THAT question's key only, never across the bank, and the gap " +
+      "label is \"Breed\".",
+  },
+  {
     item: "lis-a-medication-side-effect",
     gap: "Suspected cause",
     variant: "BP medication",
@@ -1571,7 +1585,9 @@ function runSourceWordCheck(opts: {
         functionWords += 1;
         continue;
       }
-      if (wordInSource(word, src.words)) continue;
+      // The source says this word, either as a token of its own or spelled
+      // across two — "twenty nineteen" carries 2019. See wordFoundInSource.
+      if (wordFoundInSource(word, src.words, src.joined, src.tokens)) continue;
       missing.push(word);
     }
     if (missing.length === 0) continue;
