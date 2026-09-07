@@ -478,7 +478,49 @@ const A4_SINGLE_FORM_LISTENING: { item: string; gap: string; answer: string; why
   },
 ];
 
-const A4_SINGLE_KEY = new Set(A4_SINGLE_FORM.map((e) => `${e.item}||${e.answer}`));
+/**
+ * 🔴 FOUR ANSWERS THE OWNER HAS OVERRULED, 7 SEPTEMBER 2026. HIS WORDS, KEPT.
+ *
+ * Two of his own written decisions were in conflict, and this is the record of
+ * which one won — without deleting either, so the next reader sees both.
+ *
+ * The decision that lost: "single form, nothing else to accept", written against
+ * each of these four answers. Two of those rows are hand-written in
+ * A4_SINGLE_FORM above; the other two come from
+ * scripts/gates/reading_sets_single_form.ts, which is GENERATED from the
+ * authors' own "qubool:" lines and must not be hand-edited — delete a row there
+ * and the next build brings it back. So nothing is deleted anywhere. The rows
+ * stay as the true record of what the author wrote, and this list records that
+ * the owner later ruled otherwise.
+ *
+ * THE RULING, VERBATIM:
+ *
+ *     BP ← blood pressure · hep B ← hepatitis B · CO2 ← carbon dioxide ·
+ *     liters ← litres. KEEP ALL FOUR. Nasir's decision, 7 September, in chat.
+ *
+ *     His earlier note "single form, nothing else to accept" is read as aimed
+ *     at PARAPHRASES — teenagers for adolescents, being drunk for intoxication
+ *     — not at whether a standard clinical abbreviation of the same word is
+ *     acceptable. A student who writes CO2 has not written a different word;
+ *     they have written the same word short. That is the rule already applied
+ *     to C. diff, 40 km, 300 milligrams and EKG, and this makes it consistent
+ *     rather than broken on the fifth case.
+ *
+ * ⚠️ CLOSED BOTH WAYS, like every other list here. A row whose answer has NO
+ * accept-list is an override for nothing and FAILS THE BUILD, so this cannot rot
+ * into a standing excuse the day the content changes underneath it.
+ */
+const A4_SINGLE_FORM_OVERRULED: { item: string; answer: string; variant: string }[] = [
+  { item: "rea-a-sepsis", answer: "blood pressure", variant: "BP" },
+  { item: "rea-a-sharps-injury-and-exposure-to-blood", answer: "hepatitis B", variant: "hep B" },
+  { item: "rea-a-a-flare-up-of-chronic-obstructive-lung-disease", answer: "carbon dioxide", variant: "CO2" },
+  { item: "rea-a-diabetic-ketoacidosis", answer: "litres", variant: "liters" },
+];
+const A4_OVERRULED_KEY = new Set(A4_SINGLE_FORM_OVERRULED.map((e) => `${e.item}||${e.answer}`));
+const A4_SINGLE_KEY = new Set(
+  A4_SINGLE_FORM.map((e) => `${e.item}||${e.answer}`).filter((k) => !A4_OVERRULED_KEY.has(k)),
+);
+
 const A4_SINGLE_LISTENING_KEY = new Set(
   A4_SINGLE_FORM_LISTENING.map((e) => `${e.item}||${e.answer}`),
 );
@@ -635,7 +677,11 @@ for (const item of READING) {
   }
 }
 
+// A row the owner has OVERRULED is not expected to be reached: A4_SINGLE_KEY no
+// longer holds it, so it can never be "seen". It is not rot, and its own rot
+// check is the A4_SINGLE_FORM_OVERRULED loop below.
 for (const e of A4_SINGLE_FORM) {
+  if (A4_OVERRULED_KEY.has(`${e.item}||${e.answer}`)) continue;
   if (!a4SingleSeen.has(`${e.item}||${e.answer}`)) {
     fail("A4", `single-form row points at an answer that is not in the bank — delete it: "${e.item}" / "${e.answer}"`);
   }
@@ -648,6 +694,44 @@ for (const e of A4_SINGLE_FORM_LISTENING) {
     );
   }
 }
+// 🔴 THE OVERRIDE IS CLOSED BOTH WAYS. Each overruled row exists because the
+// owner ruled that the answer DOES have something to accept. If it stops having
+// one, the override is an excuse for nothing and the row must go with it.
+for (const e of A4_SINGLE_FORM_OVERRULED) {
+  const it = ITEMS.find((i) => i.slug === e.item);
+  if (!it) {
+    fail("A4", `an overruled row names an item that is not in the bank — delete it: "${e.item}"`);
+    continue;
+  }
+  const unit =
+    it.taskType === "LISTENING_PART_A"
+      ? (it.payload.gaps ?? []).find((g) => g.answer === e.answer)
+      : (it.payload.questions ?? []).find((q) => q.kind !== "match" && q.answer === e.answer);
+  if (!unit) {
+    fail("A4", `an overruled row names an answer that is not in the bank — delete it: "${e.item}" / "${e.answer}"`);
+    continue;
+  }
+  const accepted = [
+    ...(unit.variants ?? []),
+    ...(it.taskType === "LISTENING_PART_A"
+      ? listeningAcceptFor(it.slug, unit.id)
+      : readingAcceptFor(it.slug, unit.id)),
+  ];
+  if (accepted.length === 0) {
+    fail(
+      "A4",
+      `"${e.item}" / "${e.answer}" is overruled as NOT single-form, but it has no ` +
+        "accept-list at all — the override is an excuse for nothing, delete the row",
+    );
+  } else if (!accepted.includes(e.variant)) {
+    fail(
+      "A4",
+      `"${e.item}" / "${e.answer}" is overruled on the strength of ${JSON.stringify(e.variant)}, ` +
+        `which is no longer accepted — the ruling and the content have parted company`,
+    );
+  }
+}
+
 // Population AFTER the narrowing. If every answer in the bank ever became one
 // word, A4 would pass by looking at nothing at all.
 if (a4Required === 0) {
