@@ -63,6 +63,8 @@ import {
   AUDIO_EXEMPT,
   AUDIO_EXEMPT_TOKENS,
   FUNCTION_WORDS,
+  isAllFunctionWords,
+  runOnMatch,
   wordInSource,
 } from "./word-forms";
 
@@ -971,11 +973,19 @@ for (const item of READING) {
  * longer exists in the overlay also FAILS, so it cannot rot into a list of
  * excuses for content that has been deleted.
  *
- * ⚠️ An entry that is not currently load-bearing is REPORTED, not failed. The
- * ruling required both `night-time` rows, and one of them passes today only
- * because its own script happens to say "six times a day" — "times" reduces to
- * "time". That is a coincidence of wording, not a decision, and the day it
- * changes the row is the thing that keeps the gate green.
+ * ⚠️ An entry that is not currently load-bearing is REPORTED, not failed, and
+ * that is not a formality — the count moves under you.
+ *
+ * 🔴 `OT` ON "Preventing falls in older adults" IS THE CASE TO REMEMBER. It sat
+ * in this list reported as NOT load-bearing, which reads like a row that could
+ * be deleted. It could not: the variant was passing the run-on rule instead,
+ * because `joined` had no spaces in it and two unrelated words abutted to spell
+ * "ot". When that rule was narrowed to align on token boundaries on 7 September
+ * 2026, the coincidence went and the row became load-bearing again — the only
+ * thing standing between a correct answer and a red gate.
+ *
+ * So: NOT LOAD-BEARING MEANS SOMETHING ELSE IS CARRYING IT, NOT THAT NOTHING IS.
+ * Find out what before deleting the row.
  */
 /**
  * 🔴 `ruling-2026-09-07` — THE OWNER RULED ON ALL 156 OPEN ROWS IN ONE PASS.
@@ -1508,7 +1518,7 @@ function runSourceWordCheck(opts: {
   let functionWords = 0;
 
   // Tokenise each source once, not once per variant.
-  const tokensFor = new Map<string, { words: Set<string>; joined: string }>();
+  const tokensFor = new Map<string, { words: Set<string>; joined: string; tokens: string[] }>();
   for (const c of cases) {
     if (tokensFor.has(c.itemSlug)) continue;
     const text = sourceFor(c.itemSlug);
@@ -1517,7 +1527,7 @@ function runSourceWordCheck(opts: {
       continue;
     }
     const toks = normalizeTokens(text);
-    tokensFor.set(c.itemSlug, { words: new Set(toks), joined: toks.join("") });
+    tokensFor.set(c.itemSlug, { words: new Set(toks), joined: toks.join(""), tokens: toks });
   }
 
   for (const c of cases) {
@@ -1532,17 +1542,32 @@ function runSourceWordCheck(opts: {
 
     // A run-on spelling of words the source writes separately ("buttonhook" for
     // "button hook", "taichi" for "tai chi") is still the source's own wording.
-    if (src.joined.includes(normalize(c.variant))) continue;
+    //
+    // 🔴 IT MUST ALIGN ON A TOKEN BOUNDARY — see runOnMatch in ./word-forms.ts.
+    // `joined` has no spaces in it, so without alignment every short string was a
+    // substring of something: `ot` passed because two unrelated words abutted and
+    // `ckd` because a script said "check dose". A row that stops taking this
+    // route is NOT failed here; it falls through to the word check below, which
+    // is where nine of the thirteen affected rows are then answered anyway.
+    if (runOnMatch(src.joined, src.tokens, normalize(c.variant))) continue;
 
     // Collect EVERY missing word first, so an exempt row can be told apart from
     // one that never needed exempting.
+    // 🔴 A VARIANT WITH NO CONTENT WORD IS NOT A VARIANT THAT WAS HEARD.
+    // Skipping function words one at a time is right; skipping ALL of them is a
+    // check that never runs. `no` stood in for the answer `never` on two
+    // Listening items for months on exactly that hole. Such a variant has to be
+    // found outright — by the run-on rule above, by a written exemption, or not
+    // at all — so every one of its words is reported.
+    const variantWords = normalizeTokens(c.variant);
+    const noContentWord = isAllFunctionWords(variantWords);
     const missing: string[] = [];
-    for (const word of normalizeTokens(c.variant)) {
+    for (const word of variantWords) {
       if (AUDIO_EXEMPT_TOKENS.has(word)) {
         abbreviations += 1;
         continue;
       }
-      if (FUNCTION_WORDS.has(word)) {
+      if (FUNCTION_WORDS.has(word) && !noContentWord) {
         functionWords += 1;
         continue;
       }
