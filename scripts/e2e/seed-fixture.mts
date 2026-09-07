@@ -703,6 +703,60 @@ export async function seedFixture(url: string): Promise<Fixture> {
       }
     }
 
+    /**
+     * 🔴 THE LISTENING PART A WALK NEEDS A GAP WITH AN AUTHORED VARIANT, AND
+     * TAKES THE FIRST ITEM THAT HAS ONE.
+     *
+     * This was `listeningAFull[0]` until 7 September 2026 — whichever lawful
+     * consultation sorted first. When the pool went 13 -> 18 the first place
+     * changed hands and the walk died on
+     *
+     *     no gap carried an authored variant to walk
+     *
+     * The walk answers one of the twelve gaps with a VARIANT rather than the
+     * primary answer, so that a pass proves the accept list reaches the grader
+     * instead of merely sitting in the payload. An item with no variant makes
+     * that assertion impossible, and listening.spec.ts is right to refuse.
+     *
+     * Measured over the eighteen: SIXTEEN carry at least one authored variant
+     * (1 to 12 gaps each). The two that carry none are
+     *
+     *     lis-a-chest-pain-assessment      595 words
+     *     lis-a-child-with-fever           584 words
+     *
+     * and they are two of the five items that only just entered the 550-600 law,
+     * which is why they now sort first. ⚠️ THEY ARE LIVE ITEMS, NOT RETIRED ONES.
+     * Whether a lawful Listening Part A consultation should carry accept-list
+     * variants at all is a content question and is NOT decided here — the two are
+     * named on stdout on every run so the question stays visible.
+     *
+     * Chosen by RUNNING listeningAWalk, not by a second reading of what it needs.
+     */
+    let listeningA: ListeningAWalk | undefined;
+    const listeningANoVariant: string[] = [];
+    for (const candidate of listeningAFull) {
+      const walk = listeningAWalk(candidate);
+      if (walk.variantGapId !== null) {
+        listeningA = walk;
+        break;
+      }
+      listeningANoVariant.push(candidate.title);
+    }
+    if (listeningANoVariant.length > 0) {
+      console.log(
+        `[e2e] ⚠️ ${listeningANoVariant.length} full-length Listening Part A item(s) carry no ` +
+          `authored variant, passed over:\n  ${listeningANoVariant.join("\n  ")}`,
+      );
+    }
+    if (!listeningA) {
+      throw new Error(
+        `[e2e] not one of the ${listeningAFull.length} full-length Listening Part A items carries ` +
+          "a gap with an authored variant, so the walk cannot prove the accept list reaches the " +
+          "grader:\n  " +
+          listeningANoVariant.join("\n  "),
+      );
+    }
+
     const seeded = await prisma.oetItem.findMany({
       where: { taskType: WALK_TASK, active: true, profession: null },
       orderBy: { title: "asc" },
@@ -725,7 +779,7 @@ export async function seedFixture(url: string): Promise<Fixture> {
       partBSecond: partBWalk(partBFull[1]),
       partBFullLengthTitles: partBFull.map((i) => i.title),
       partBLegacyTitles: partBLegacy.map((i) => i.title),
-      listeningA: listeningAWalk(listeningAFull[0]),
+      listeningA,
       // Part B carries ONE question, so the key and a known-wrong option cannot
       // be walked on the same item: the second item takes the wrong option.
       listeningB: listeningMcqWalk(listeningBFull[0], "listening-part-b", false),
