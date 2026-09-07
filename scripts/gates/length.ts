@@ -152,6 +152,11 @@ import { GEN_ITEMS } from "../seed/gen/index";
 // count the same way can import it WITHOUT running this gate. See words.ts.
 import { words } from "./words";
 import { textWords } from "./text-words";
+// The marker's own tokeniser, for the Listening findability check below: a
+// script says "twenty nineteen" where the answer reads "2019".
+import { normalize, normalizeTokens } from "../../src/lib/oet/tasks/objective";
+// The gate's own function-word list, shared rather than copied.
+import { FUNCTION_WORDS } from "./word-forms";
 
 type Item = {
   taskType: string;
@@ -161,7 +166,7 @@ type Item = {
   title: string;
   payload: {
     audioScript?: string;
-    gaps?: unknown[];
+    gaps?: { id?: string; label?: string; answer?: string }[];
     caseNotes?: string;
     setting?: string;
     candidateRole?: string;
@@ -584,6 +589,124 @@ for (const item of ITEMS) {
     }
   }
 }
+// ── FINDABILITY, LISTENING PART A · every word of the answer must be HEARD ──
+//
+// 🔴 THIS DID NOT EXIST UNTIL 7 SEPTEMBER 2026, AND ONE ITEM PROVES WHY.
+// `lis-a-script-4-podiatry…` gap g9 answered "both palpable" while its audio said
+// "both" and "strong" and NEVER said "palpable". A candidate listening to it
+// could not write the answer, and no gate could see that:
+//
+//   · A2 asks whether the overlay's gap id exists and its label still matches.
+//   · A3 asks the same of a Reading question id and its answer.
+//   · A11 and A12 read VARIANTS against the source, never the answer itself.
+//   · the findability check above reads ANSWERS against the source — and it is
+//     READING ONLY.
+//
+// A2 and A3 sitting at zero said nothing whatever about whether a key could be
+// heard. This closes that.
+//
+// 🔴 IT IS NOT THE READING TEST TRANSPLANTED, AND THE FIRST VERSION WAS.
+// Reading asks for the answer as a CONTIGUOUS phrase, which is right there: the
+// candidate copies a word or short phrase off the page. Listening Part A is NOTE
+// COMPLETION — the candidate condenses speech into a note, so the words of the
+// answer are heard but rarely adjacent. Measured over the whole bank on 7
+// September, the contiguous test reported 11 items and the word test reported 4;
+// all seven of the difference were ordinary note-taking:
+//
+//     "both palpable"  <- "Both pulses in this foot are palpable"
+//     "his wife"       <- the patient says "my wife"
+//     "moving boxes"   · "two sugars" · "her son" · "her knees" · "her neighbour"
+//
+// Nine reported defects, seven of them the checker's own shape. So the rule is:
+// EVERY CONTENT WORD of the answer must be heard, EXACTLY. Function words are
+// skipped, because "of" and "the" are how a note is joined up and not what was
+// heard. And exactly — no stem rule: sameWordAnotherForm exists to be generous to
+// a candidate's VARIANT, and being generous about whether OUR OWN KEY was spoken
+// is how `out` came to stand in for `outer` for months.
+/**
+ * 🔴 FINDABILITY EXEMPTIONS, LISTENING. Per ANSWER, never a rule.
+ *
+ * Closed both ways like every other list in this repo: a row whose answer no
+ * longer fails is a row that has to go, so it cannot rot into an excuse for
+ * content that changed underneath it.
+ *
+ * ⚠️ ONE ROW DOES NOT EARN A RULE. The owner refused a general "a slash
+ * between two numbers reads as the word over" rule for this, and he was right:
+ * it would quietly forgive every future notation nobody had thought about.
+ */
+const LISTENING_FINDABILITY_EXEMPT: { slug: string; gap: string; answer: string; why: string }[] = [
+  {
+    slug: "lis-a-script-6-optometry-difficulty-driving-at-night",
+    gap: "g10",
+    answer: "6/12",
+    why:
+      "Visual acuity notation. The recording says 'six over twelve'; 6/12 is the " +
+      "standard written form of those words and the marker accepts both spoken " +
+      "forms as variants. Exempt from findability, not from marking.",
+  },
+];
+const listeningExemptKey = (slug: string, gap: string) => `${slug}||${gap}`;
+const listeningExemptSeen = new Set<string>();
+
+let listeningFindabilityChecked = 0;
+let listeningFindabilityItems = 0;
+for (const item of ITEMS) {
+  if (item.taskType !== "LISTENING_PART_A") continue;
+  if (RETIRED.has(item.slug)) continue;
+  if (exempt.has(item.slug)) continue;
+  const heardTokens = normalizeTokens(item.payload.audioScript ?? "");
+  const heard = new Set(heardTokens);
+  const heardJoined = heardTokens.join("");
+  if (heard.size === 0) continue;
+  listeningFindabilityItems += 1;
+  for (const gap of item.payload.gaps ?? []) {
+    const answer = gap.answer;
+    if (!answer) continue;
+    listeningFindabilityChecked += 1;
+    const unheard = normalizeTokens(answer).filter((w) => !FUNCTION_WORDS.has(w) && !heard.has(w));
+    if (unheard.length === 0) continue;
+    // 🔴 THE MARKER GETS THE LAST WORD ON WHETHER AN ANSWER IS PRESENT.
+    //
+    // normalize() joins tokens with no separator, so a script that says "twenty
+    // nineteen" carries the answer "2019" — 20 and 19 become 2019 on both sides,
+    // and the MARKER accepts it. Asking token by token cannot see that, and two
+    // components disagreeing about whether an answer is present is the defect
+    // this file exists to catch, not one to introduce.
+    //
+    // ⚠️ MEASURED BEFORE IT WAS ADDED, because a fallback is a hole until it is
+    // counted: over the whole bank it rescues exactly ONE row, radiography g7
+    // "2019", and nothing else. If it ever rescues something that is not a
+    // number or a notation, it has become too generous and the red is worth more.
+    if (heardJoined.includes(normalize(answer))) continue;
+    {
+      const exemptRow = LISTENING_FINDABILITY_EXEMPT.find(
+        (e) => e.slug === item.slug && e.gap === (gap.id ?? "") && e.answer === answer,
+      );
+      if (exemptRow) {
+        listeningExemptSeen.add(listeningExemptKey(item.slug, gap.id ?? ""));
+        continue;
+      }
+      failures.push(
+        `${item.title} / ${gap.id ?? "?"} — the answer ${JSON.stringify(answer)} uses ` +
+          `${unheard.map((w) => JSON.stringify(w)).join(", ")}, which that item's own audio ` +
+          "script never says, and the candidate is told to write what they hear",
+      );
+    }
+  }
+}
+if (listeningFindabilityItems === 0) {
+  failures.push("no non-legacy LISTENING_PART_A item exists — the listening findability check is vacuous");
+}
+// A row that has stopped failing is an excuse for content that no longer needs
+// one, and it must go rather than sit here being true of nothing.
+for (const e of LISTENING_FINDABILITY_EXEMPT) {
+  if (!listeningExemptSeen.has(listeningExemptKey(e.slug, e.gap))) {
+    failures.push(
+      `${e.slug} / ${e.gap} is in LISTENING_FINDABILITY_EXEMPT but no longer fails findability — delete the row.`,
+    );
+  }
+}
+
 // Population before the guard: if no item is governed the check proves nothing.
 if (findabilityItems === 0) {
   failures.push("no non-legacy READING_PART_A item exists — the findability check is vacuous");
