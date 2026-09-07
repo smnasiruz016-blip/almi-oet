@@ -43,8 +43,22 @@
 import { PrismaClient, Prisma } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { randomBytes } from "node:crypto";
+import { join } from "node:path";
 import { assertDisposable } from "./disposable-db.mjs";
 import { GEN_ITEMS } from "../seed/gen/index";
+import {
+  splitByRetireList,
+  readRetireList,
+  isFullLengthPartA,
+  isFullLengthPartB,
+  isFullLengthPartC,
+  PART_A_MIN,
+  PART_A_MAX,
+  PART_B_MIN,
+  PART_B_MAX,
+  PART_C_MIN,
+  PART_C_MAX,
+} from "./bank-split";
 
 export type Fixture = {
   email: string;
@@ -67,9 +81,12 @@ export type Fixture = {
   /** Reading Part B, on the same terms: the fifteen written to the measured
    *  136-155 law, and the 33 legacy extracts on their way out. */
   partB: PartBWalk;
-  /** Reading Part C, on the same terms: the twenty-one written to the measured
-   *  653-836 law with FOUR options, and the twenty-one legacy articles on their
-   *  way out (51-405 words, two or eight questions, three options). */
+  /** Reading Part C, on the same terms with ONE difference that matters: the two
+   *  halves are not told apart by shape. All 42 articles meet the 653-836 law
+   *  with eight questions of four options — the outgoing twenty-one were rewritten
+   *  by the verified bank of 6 September 2026 — so the twenty-one on their way out
+   *  are the twenty-one scripts/retire/reading-part-c-legacy.json names, and the
+   *  other twenty-one are what the learner is left with. See ./bank-split.ts. */
   partC: PartCWalk;
   partCFullLengthTitles: string[];
   partCLegacyTitles: string[];
@@ -207,28 +224,28 @@ const PART_B = "READING_PART_B";
 const PART_C = "READING_PART_C";
 
 /**
- * 🔴 THE FIFTEEN, IDENTIFIED BY THE LAW AND NOT BY A LIST OF TITLES.
+ * 🔴 THE THREE READING LENGTH LAWS, AND THE THREE RETIRE LISTS, LIVE IN
+ * ./bank-split.ts.
  *
- * The seed source holds 33 Reading Part A items: eighteen legacy ones that are
- * short of the measured law, and the fifteen full-length ones. `slice(0, 15)`
- * would take the eighteen's first fifteen — the harness would then have proved
- * the product renders the items that are on their way out.
- *
- * ⚠️ THE STRUCTURAL HALF OF THE LAW IS NOT ENOUGH, AND THIS WAS MEASURED THE
- * HARD WAY. The first version of this filter asked only for FOUR texts and
- * TWENTY questions. Three legacy items carry exactly that shape and are still
- * 355-385 words combined, and one of them sorts FIRST — so the walk opened
- * `OET Form 1 · Reading Part A — Preventing pressure injuries`, rendered 266
- * words, and failed on its own word-count assertion. That failure is the reason
- * the assertion is there.
- *
- * So the filter is the WHOLE law: four texts, twenty questions, AND the
- * combined length gate:length measures — every text body plus every question
- * stem — inside 885-1009. No title is typed here, so an item joins the walk by
- * becoming full length and leaves it by ceasing to be.
+ * They moved there on 7 September 2026 when the fixture died naming a Part C
+ * article it could no longer classify. That file carries the measurement, the
+ * reasoning, and the guards the old shape rule could not make;
+ * tests/reading-retire-split.test.ts fails in Unknown command: "test"
+
+
+Did you mean this?
+  npm test # Test a package
+To see a list of supported npm commands, run:
+  npm help rather than waiting
+ * for a browser. Nothing about the laws themselves changed.
  */
-const PART_A_MIN = 885;
-const PART_A_MAX = 1009;
+const RETIRE_DIR = join(import.meta.dirname, "..", "retire");
+const RETIRE_LIST: Record<string, string> = {
+  [PART_A]: join(RETIRE_DIR, "reading-part-a-legacy.json"),
+  [PART_B]: join(RETIRE_DIR, "reading-part-b-legacy.json"),
+  [PART_C]: join(RETIRE_DIR, "reading-part-c-legacy.json"),
+};
+
 /**
  * 🔴 THE SAME TOKENISER gate:length USES, and for the same reason: a token is
  * a word only if it carries a letter or a digit (ruled 3 September 2026).
@@ -242,61 +259,6 @@ const PART_A_MAX = 1009;
 const words = (s: string | undefined): number =>
   s ? (s.match(/[^\s]+/g) ?? []).filter((t) => /[A-Za-z0-9]/.test(t)).length : 0;
 
-function isFullLengthPartA(item: Prisma.OetItemCreateManyInput): boolean {
-  const p = item.payload as {
-    texts?: { body?: string }[];
-    questions?: { stem?: string }[];
-  } | null;
-  const texts = p?.texts ?? [];
-  const questions = p?.questions ?? [];
-  if (texts.length !== 4 || questions.length !== 20) return false;
-  const combined =
-    texts.reduce((n, t) => n + words(t.body), 0) +
-    questions.reduce((n, q) => n + words(q.stem), 0);
-  return combined >= PART_A_MIN && combined <= PART_A_MAX;
-}
-
-/**
- *  + RED +  THE FIFTEEN PART B ITEMS, IDENTIFIED BY THE LAW.
- *
- * Same reasoning as isFullLengthPartA: the seed holds 48 Reading Part B items,
- * 33 legacy extracts of 28-100 words and the fifteen written to the measured
- * 136-155. `slice(0, 15)` takes the legacy ones, because they sort first.
- */
-const PART_B_MIN = 136;
-const PART_B_MAX = 155;
-
-function isFullLengthPartB(item: Prisma.OetItemCreateManyInput): boolean {
-  const p = item.payload as { passages?: { body?: string }[] } | null;
-  const n = (p?.passages ?? []).reduce((a, x) => a + words(x.body), 0);
-  return n >= PART_B_MIN && n <= PART_B_MAX;
-}
-
-/**
- * 🔴 THE TWENTY-ONE FULL-LENGTH PART C ITEMS, IDENTIFIED BY THE LAW.
- *
- * The seed holds 42: twenty-one legacy articles of 51-405 words carrying two or
- * eight questions with THREE options, and the twenty-one written to OET's own
- * measure. Length alone separates them, and the option count confirms it —
- * gate:distractor's D4 gives Part C four options and records the old 78 as debt.
- */
-const PART_C_MIN = 653;
-const PART_C_MAX = 836;
-
-function isFullLengthPartC(item: Prisma.OetItemCreateManyInput): boolean {
-  const p = item.payload as {
-    passages?: { body?: string }[];
-    questions?: { options?: unknown[] }[];
-  } | null;
-  const n = (p?.passages ?? []).reduce((a, x) => a + words(x.body), 0);
-  const qs = p?.questions ?? [];
-  return (
-    n >= PART_C_MIN &&
-    n <= PART_C_MAX &&
-    qs.length === 8 &&
-    qs.every((q) => (q.options?.length ?? 0) === 4)
-  );
-}
 
 /**
  * 🔴 THE FULL-LENGTH LISTENING ITEMS, IDENTIFIED BY THE LAW — NEVER BY slice().
@@ -591,48 +553,102 @@ export async function seedFixture(url: string): Promise<Fixture> {
     });
 
     const partAAll = items.filter((i) => i.taskType === PART_A);
-    const partAFull = partAAll.filter(isFullLengthPartA);
-    const partALegacy = partAAll.filter((i) => !isFullLengthPartA(i));
-    if (partAFull.length < FLOOR) {
-      throw new Error(
-        `[e2e] only ${partAFull.length} FULL-LENGTH Reading Part A item(s) in the seed ` +
-          `source; the walk needs ${FLOOR}. A short item must never be walked as if it ` +
-          `were one of the corrected ones.`,
-      );
-    }
+    const { full: partAFull, legacy: partALegacy } = splitByRetireList(
+      PART_A,
+      partAAll,
+      readRetireList(RETIRE_LIST[PART_A]),
+      isFullLengthPartA,
+      `${PART_A_MIN}-${PART_A_MAX} words over four texts and twenty questions`,
+    );
     // The retire leaves exactly the full-length ones standing, and the server's
     // own floor is FLOOR. If that ever stopped being true the walk would prove
     // the retire safe on a bank the product would refuse to boot with.
-    if (partAFull.length < FLOOR) throw new Error("[e2e] the retire would breach the floor");
-    if (partALegacy.length === 0) {
-      throw new Error("[e2e] no legacy Reading Part A item is left to walk the retire against");
-    }
-    const partAItem = partAFull[0];
-
-    const partBAll = items.filter((i) => i.taskType === PART_B);
-    const partBFull = partBAll.filter(isFullLengthPartB);
-    const partBLegacy = partBAll.filter((i) => !isFullLengthPartB(i));
-    if (partBFull.length < FLOOR) {
+    if (partAFull.length < FLOOR) {
       throw new Error(
-        `[e2e] only ${partBFull.length} full-length Reading Part B item(s) in the seed ` +
-          `source; the walk needs ${FLOOR}.`,
+        `[e2e] the Reading Part A retire would leave ${partAFull.length} item(s) standing; ` +
+          `the server's own floor needs ${FLOOR}.`,
       );
     }
-    if (partBLegacy.length === 0) {
-      throw new Error("[e2e] no legacy Reading Part B item is left to walk its retire against");
+    /**
+     * 🔴 THE WALK TAKES THE FIRST ITEM IT CAN ACTUALLY WALK, AND partAWalk ITSELF
+     * DECIDES WHICH THOSE ARE.
+     *
+     * This was `partAFull[0]` until 7 September 2026, which is to say it was
+     * whichever item the shape rule called full length and that happened to sort
+     * first. On that day the fixture died on
+     *
+     *     Part A — Informed consent essentials: no short-answer question
+     *
+     * ⚠️ THAT WAS THE STALE SPLIT AGAIN AND NOT A CONTENT DEFECT, AND THE FIRST
+     * VERSION OF THIS COMMENT SAID OTHERWISE. Measured: FIFTEEN Reading Part A
+     * items carry no short-answer question — every free-text question a gap-fill
+     * — and all fifteen are named in scripts/retire/reading-part-a-legacy.json.
+     * Not one item the learner is left with is missing one. Three of the fifteen
+     * also meet the 885-1009 law, which is why the shape rule handed them to the
+     * walk as keepers; the retire list does not, and the retire list is right.
+     *
+     * The loop stays because `[0]` is not a choice, it is an accident of sort
+     * order, and the accident is what broke. Anything passed over is NAMED on
+     * stdout rather than skipped quietly.
+     *
+     * The candidate is chosen by RUNNING partAWalk, not by a second copy of its
+     * requirements. A predicate written here could agree with partAWalk today and
+     * drift from it tomorrow, and then the walk would be choosing its item by a
+     * rule nobody maintains.
+     */
+    let partAItem: Prisma.OetItemCreateManyInput | undefined;
+    let partA: PartAWalk | undefined;
+    const partAUnwalkable: string[] = [];
+    for (const candidate of partAFull) {
+      try {
+        partA = partAWalk(candidate);
+        partAItem = candidate;
+        break;
+      } catch (e) {
+        partAUnwalkable.push(`${candidate.title} — ${(e as Error).message}`);
+      }
+    }
+    if (partAUnwalkable.length > 0) {
+      console.log(
+        `[e2e] ⚠️ ${partAUnwalkable.length} full-length Reading Part A item(s) the walk cannot ` +
+          `answer, passed over:\n  ${partAUnwalkable.join("\n  ")}`,
+      );
+    }
+    if (!partA || !partAItem) {
+      throw new Error(
+        `[e2e] not one of the ${partAFull.length} full-length Reading Part A items carries the ` +
+          `four question shapes the walk answers:\n  ${partAUnwalkable.join("\n  ")}`,
+      );
+    }
+
+    const partBAll = items.filter((i) => i.taskType === PART_B);
+    const { full: partBFull, legacy: partBLegacy } = splitByRetireList(
+      PART_B,
+      partBAll,
+      readRetireList(RETIRE_LIST[PART_B]),
+      isFullLengthPartB,
+      `${PART_B_MIN}-${PART_B_MAX} words`,
+    );
+    if (partBFull.length < FLOOR) {
+      throw new Error(
+        `[e2e] the Reading Part B retire would leave ${partBFull.length} item(s) standing; ` +
+          `the server's own floor needs ${FLOOR}.`,
+      );
     }
 
     const partCAll = items.filter((i) => i.taskType === PART_C);
-    const partCFull = partCAll.filter(isFullLengthPartC);
-    const partCLegacy = partCAll.filter((i) => !isFullLengthPartC(i));
+    const { full: partCFull, legacy: partCLegacy } = splitByRetireList(
+      PART_C,
+      partCAll,
+      readRetireList(RETIRE_LIST[PART_C]),
+      isFullLengthPartC,
+      `${PART_C_MIN}-${PART_C_MAX} words with eight questions of four options`,
+    );
     if (partCFull.length < FLOOR) {
       throw new Error(
-        `[e2e] only ${partCFull.length} full-length Reading Part C item(s) in the seed ` +
-          `source; the walk needs ${FLOOR}.`,
+        `[e2e] the Reading Part C retire would leave ${partCFull.length} article(s) standing; ` +
+          `the server's own floor needs ${FLOOR}.`,
       );
-    }
-    if (partCLegacy.length === 0) {
-      throw new Error("[e2e] no legacy Reading Part C item is left to walk its retire against");
     }
 
     // ── the three Listening pools, chosen by the law ─────────────────────────
@@ -645,10 +661,39 @@ export async function seedFixture(url: string): Promise<Fixture> {
     const listeningCFull = items
       .filter((i) => i.taskType === "LISTENING_PART_C")
       .filter((i) => isFullLengthListeningMcq(i, LISTENING_C_MIN, LISTENING_C_MAX, 6));
+    // 🔴 A CENSUS, NOT A BAR. `want` counts how many items MEET their law; the
+    // law itself is above and is not touched here. It is exact rather than a
+    // floor so that a bank which quietly loses a full-length item goes red, and
+    // moving one of these numbers is meant to cost somebody a measurement.
+    //
+    // LISTENING_PART_A moved 13 -> 18 on 7 September 2026. FIVE items were
+    // brought up to the 550-600 law by the verified bank of 6 September, and
+    // gate:length's own ratchet then required their removal from LEGACY_SHORT
+    // ("now meets the law — delete it from LEGACY_SHORT"). Measured, with the
+    // word count each one now carries:
+    //
+    //     lis-a-f1-physiotherapy-consultation-lower-back-pain   560
+    //     lis-a-f2-practice-nurse-asthma-review                 564
+    //     lis-a-child-with-fever                                584
+    //     lis-a-f3-physiotherapist-and-lower-back-pain          586
+    //     lis-a-chest-pain-assessment                           595
+    //
+    // LEGACY_SHORT's LISTENING_PART_A section went 21 -> 16 across the same
+    // commits, which is the same five and nothing else. The walk therefore has
+    // MORE lawful consultations to choose from than it had, not fewer.
+    //
+    // Parts B and C moved by one each, on the same evidence and in the same
+    // direction — one item apiece left LEGACY_SHORT by meeting its law:
+    //
+    //     LISTENING_PART_B  90 -> 91   lis-b-f1-discharge-concern            140 words (140-165)
+    //     LISTENING_PART_C  15 -> 16   lis-c-a-multimodal-approach-to-...    784 words (780-880)
+    //
+    // LEGACY_SHORT: lis-b 33 -> 32, lis-c 21 -> 20. Same five-plus-two items,
+    // no other movement, and no bound anywhere was touched to get here.
     for (const [part, pool, want] of [
-      ["LISTENING_PART_A", listeningAFull, 13],
-      ["LISTENING_PART_B", listeningBFull, 90],
-      ["LISTENING_PART_C", listeningCFull, 15],
+      ["LISTENING_PART_A", listeningAFull, 18],
+      ["LISTENING_PART_B", listeningBFull, 91],
+      ["LISTENING_PART_C", listeningCFull, 16],
     ] as const) {
       if (pool.length !== want) {
         throw new Error(
@@ -670,7 +715,7 @@ export async function seedFixture(url: string): Promise<Fixture> {
       professionSlug: "nursing",
       taskSlug: "reading-part-b",
       seededTitles: seeded.map((s) => s.title),
-      partA: partAWalk(partAItem),
+      partA,
       partAFullLengthTitles: partAFull.map((i) => i.title),
       partALegacyTitles: partALegacy.map((i) => i.title),
       partB: partBWalk(partBFull[0]),

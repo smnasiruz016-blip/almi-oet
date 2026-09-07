@@ -463,6 +463,19 @@ test.describe("retiring the thirty-three legacy Reading Part B items", () => {
 
 // Keep the runner honest: this file writes nothing outside the throwaway server,
 // and the retire lists it uses are the checked-in ones, not ones it invented.
+// 🔴 THE LISTS ARE NO LONGER COMPARED WITH THE FIXTURE'S OWN TITLES.
+//
+// Until 7 September 2026 the fixture worked out which items were on their way
+// out from their SHAPE, so comparing its answer with these files was a genuine
+// second opinion. It is not any more: three of Part A's eighteen now meet the
+// 885-1009 law and the shape rule produced FIFTEEN, so the fixture reads these
+// same files. A comparison would be comparing a file with itself, and a check
+// that cannot fail is worse than no check — it reads like cover.
+//
+// What is still independent is the RENDERED LIBRARY, and the walks above assert
+// against it on both sides of the retire: every title named here disappears, and
+// every title not named here survives. This test keeps the half that is still a
+// fact about the files themselves.
 test("the retire list this walk used is the file production will be pointed at", () => {
   const list = JSON.parse(readFileSync(RETIRE_LIST, "utf8")) as {
     taskType: string;
@@ -470,8 +483,7 @@ test("the retire list this walk used is the file production will be pointed at",
   }[];
   expect(list).toHaveLength(18);
   for (const r of list) expect(r.taskType).toBe("READING_PART_A");
-  const titles = list.map((r) => r.title).sort();
-  expect(titles).toEqual([...fixture.partALegacyTitles].sort());
+  expect(new Set(list.map((r) => r.title)).size, "a duplicated row").toBe(18);
 
   const listB = JSON.parse(readFileSync(RETIRE_LIST_B, "utf8")) as {
     taskType: string;
@@ -479,5 +491,5 @@ test("the retire list this walk used is the file production will be pointed at",
   }[];
   expect(listB).toHaveLength(33);
   for (const r of listB) expect(r.taskType).toBe("READING_PART_B");
-  expect(listB.map((r) => r.title).sort()).toEqual([...fixture.partBLegacyTitles].sort());
+  expect(new Set(listB.map((r) => r.title)).size, "a duplicated row").toBe(33);
 });
