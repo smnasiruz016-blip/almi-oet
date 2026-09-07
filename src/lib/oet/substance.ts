@@ -56,6 +56,7 @@
  * existing 0.6 penalty. Nothing that anybody tried at is refused.
  */
 import type { OetTaskType } from "@prisma/client";
+import { words } from "@/lib/oet/words";
 
 // ── PROPOSED FLOORS — for Nasir to approve, change or reject ────────────────
 
@@ -100,9 +101,7 @@ const OK: SubstanceVerdict = { ok: true };
 
 /** Words, counted the way the grader counts them. */
 export function wordsIn(s: unknown): number {
-  if (typeof s !== "string") return 0;
-  const t = s.trim();
-  return t ? t.split(/\s+/).length : 0;
+  return words(typeof s === "string" ? s : undefined);
 }
 
 /**
