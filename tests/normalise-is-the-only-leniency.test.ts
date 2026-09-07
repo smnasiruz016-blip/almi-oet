@@ -99,6 +99,47 @@ describe("the accept-list overlay is keyed by ID, not by wording", () => {
   });
 });
 
+/**
+ * 🔴 THE DECIMAL POINT. Measured through the real marker on 7 September 2026,
+ * BEFORE it was fixed:
+ *
+ *     key "4.0 mmol/L"  given "40 mmol/L"  -> ACCEPTED
+ *     key "4.5 hours"   given "45 hours"   -> ACCEPTED
+ *
+ * normalize() deleted every full stop, so `4.0` and `40` were the same answer.
+ * A tenfold blood-glucose reading and a ten-times thrombolysis window, both
+ * marked correct. Eight strings in the bank carry a decimal, in Hypoglycaemia
+ * q8 and Acute stroke q12.
+ *
+ * These four cases FAILED before the fix. The last two are the mirror: a stop
+ * that ends a word or a sentence must still be stripped, or the fix would have
+ * traded one wrong verdict for another.
+ */
+describe("a decimal point is meaning, not punctuation", () => {
+  it("refuses the answer with the point removed", () => {
+    expect(isAnswerCorrect({ id: "q", answer: "4.0 mmol/L", variants: ["4.0"] }, "40 mmol/L")).toBe(false);
+    expect(isAnswerCorrect({ id: "q", answer: "4.5 hours", variants: ["4.5"] }, "45 hours")).toBe(false);
+  });
+
+  it("still accepts the answer as written", () => {
+    expect(isAnswerCorrect({ id: "q", answer: "4.0 mmol/L", variants: ["4.0"] }, "4.0 mmol/L")).toBe(true);
+    expect(isAnswerCorrect({ id: "q", answer: "4.0 mmol/L", variants: ["4.0"] }, "4.0")).toBe(true);
+    expect(isAnswerCorrect({ id: "q", answer: "4.5 hours", variants: ["4.5"] }, "  4.5 Hours. ")).toBe(true);
+  });
+
+  it("still strips a stop that ends a word or a sentence", () => {
+    expect(normalize("Gloves.")).toBe(normalize("gloves"));
+    expect(normalize("Two sugars.")).toBe(normalize("two sugars"));
+    expect(normalize("e.g.")).toBe("eg");
+  });
+
+  it("keeps the point only between two digits", () => {
+    expect(normalize("38.5")).toBe("38.5");
+    expect(normalize("38.5.")).toBe("38.5");
+    expect(normalize(".5")).toBe("5");
+  });
+});
+
 describe("the marker is the one place a verdict is decided", () => {
   it("accepts a declared variant on the same terms as the answer", () => {
     const key = { id: "q", answer: "flashing lines", variants: ["lines"] };
