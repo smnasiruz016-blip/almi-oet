@@ -10,6 +10,7 @@
 // Objective answers post as { answers: { [questionId]: value } }.
 
 import { useEffect, useRef, useState } from "react";
+import { words as countWords } from "@/lib/oet/words";
 import { useRouter } from "next/navigation";
 import type { OetTaskType } from "@prisma/client";
 import { TIMING } from "@/lib/oet/exam-shape";
@@ -622,7 +623,10 @@ function WritingComposer({ attemptId, prompt, payload }: { attemptId: string; pr
   const { submit, submitting, error } = useSubmit(attemptId);
   const [text, setText] = useState("");
   const p = payload as { caseNotes?: string; recipient?: string; taskInstruction?: string; wordMin?: number; wordMax?: number };
-  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  // 🔴 THE NUMBER THE LEARNER WATCHES WHILE THEY WRITE. It must be the same
+  // number the grader uses, or the counter on screen argues with the mark. It
+  // used to split on whitespace and count a bare dash as a word.
+  const words = countWords(text);
 
   const [phase, setPhase] = useState<"reading" | "writing">("reading");
   const readingLeft = useCountdown(TIMING.writingReadingSeconds, phase === "reading");
