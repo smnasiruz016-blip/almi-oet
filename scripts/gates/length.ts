@@ -286,11 +286,10 @@ const LEGACY_SHORT: string[] = [
   "lis-b-f3-oxygen-as-a-drug", // 42 words
   "lis-b-f3-interpreters", // 39 words
   "lis-b-f3-red-wristband", // 44 words
-  // ── LISTENING_PART_C · 21 item(s), law 780-880 words ──
+  // ── LISTENING_PART_C · 20 item(s), law 780-880 words ──
   "lis-c-antibiotic-stewardship-and-the-48-hour-review", // 132 words
   "lis-c-building-a-culture-of-patient-safety-on-the-ward", // 139 words
   "lis-c-honest-conversations-at-the-end-of-life", // 138 words
-  "lis-c-improving-health-literacy-through-teach-back", // 138 words
   "lis-c-making-telehealth-consultations-safe-and-effective", // 142 words
   "lis-c-preventing-inpatient-falls-through-hourly-rounding", // 137 words
   "lis-c-recognising-and-preventing-clinician-burnout", // 133 words
