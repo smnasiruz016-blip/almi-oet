@@ -1537,6 +1537,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["writer","paragraph"],
           "stem": "What is the writer's main point about how risk is communicated?",
           "answer": "c",
           "options": [
@@ -1560,6 +1561,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["paragraph"],
           "stem": "The writer believes that clinicians who use dramatic framing usually",
           "answer": "a",
           "options": [
@@ -1607,6 +1609,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "Why does the writer say the relative figure is the one that arrives?",
           "answer": "d",
           "options": [
@@ -1630,6 +1633,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["writer","paragraph"],
           "stem": "What does the writer concede about the patient who feels misled?",
           "answer": "a",
           "options": [
@@ -1653,6 +1657,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "What does the writer say about positive and negative framings?",
           "answer": "c",
           "options": [
@@ -1676,6 +1681,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "Which practical measure does the writer recommend?",
           "answer": "b",
           "options": [
@@ -1699,6 +1705,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph"],
           "stem": "When does the writer say the obligation is actually tested?",
           "answer": "d",
           "options": [
@@ -1960,6 +1967,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["writer","paragraph"],
           "stem": "What is the writer's central concern about screening?",
           "answer": "b",
           "options": [
@@ -1983,6 +1991,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["writer","paragraph"],
           "stem": "The writer's view of choosing not to investigate is that it",
           "answer": "d",
           "options": [
@@ -2006,6 +2015,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "Why does the writer say the naming of a finding is decisive?",
           "answer": "a",
           "options": [
@@ -2029,6 +2039,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "What harm does the writer say appears in no register?",
           "answer": "c",
           "options": [
@@ -2076,6 +2087,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "Why does public material omit the harms, according to the writer?",
           "answer": "d",
           "options": [
@@ -2099,6 +2111,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "What asymmetry does the writer describe for the clinician?",
           "answer": "a",
           "options": [
@@ -2122,6 +2135,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph"],
           "stem": "How does the writer say watchful waiting should be presented?",
           "answer": "c",
           "options": [
@@ -2383,6 +2397,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["paragraph"],
           "stem": "What does the writer consider the most important feature of a good team?",
           "answer": "c",
           "options": [
@@ -2406,6 +2421,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["writer","paragraph"],
           "stem": "The writer suggests that an emphasis on friendliness can",
           "answer": "d",
           "options": [
@@ -2429,6 +2445,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "Why does the writer say the rehearsed sentence is significant?",
           "answer": "b",
           "options": [
@@ -2452,6 +2469,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "Why does a close team find contradiction harder?",
           "answer": "a",
           "options": [
@@ -2499,6 +2517,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "What does the writer say teaches a department most?",
           "answer": "d",
           "options": [
@@ -2522,6 +2541,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "Why is an agreed phrase useful, according to the writer?",
           "answer": "a",
           "options": [
@@ -2545,6 +2565,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph"],
           "stem": "How does the writer say a team's real character is revealed?",
           "answer": "b",
           "options": [
@@ -2591,6 +2612,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["writer","paragraph"],
           "stem": "What is the writer's main criticism of current approaches to learning from error?",
           "answer": "b",
           "options": [
@@ -2614,6 +2636,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["writer","paragraph"],
           "stem": "The writer's attitude towards the move away from 'naming and shaming' is that it",
           "answer": "c",
           "options": [
@@ -2661,6 +2684,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "Which group of action points does the writer say holds?",
           "answer": "d",
           "options": [
@@ -2684,6 +2708,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q5",
+          "kind": ["paragraph"],
           "stem": "Why does the writer say educational action points decay?",
           "answer": "b",
           "options": [
@@ -2707,6 +2732,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "What is the second failure the writer identifies?",
           "answer": "c",
           "options": [
@@ -2730,6 +2756,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "What does the writer say has become entangled?",
           "answer": "a",
           "options": [
@@ -2753,6 +2780,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph"],
           "stem": "What practical test does the writer now apply?",
           "answer": "d",
           "options": [
@@ -2799,6 +2827,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "questions": [
         {
           "id": "q1",
+          "kind": ["writer","paragraph"],
           "stem": "What is the writer's main point about empathy?",
           "answer": "d",
           "options": [
@@ -2822,6 +2851,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q2",
+          "kind": ["writer","paragraph"],
           "stem": "The writer's attitude towards critics who fear empathy becomes a checklist is best described as",
           "answer": "b",
           "options": [
@@ -2845,6 +2875,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q3",
+          "kind": ["paragraph"],
           "stem": "Why should the old assumption have made the writer suspicious?",
           "answer": "a",
           "options": [
@@ -2868,6 +2899,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q4",
+          "kind": ["paragraph"],
           "stem": "Which research finding does the writer say matters most?",
           "answer": "c",
           "options": [
@@ -2915,6 +2947,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q6",
+          "kind": ["paragraph"],
           "stem": "Why does the writer part company with the critics?",
           "answer": "d",
           "options": [
@@ -2938,6 +2971,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q7",
+          "kind": ["paragraph"],
           "stem": "Who does the writer say the argument is really about?",
           "answer": "a",
           "options": [
@@ -2961,6 +2995,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "id": "q8",
+          "kind": ["paragraph"],
           "stem": "Why does the writer say their formulation matters personally?",
           "answer": "c",
           "options": [
