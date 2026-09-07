@@ -38,6 +38,22 @@ export const listeningPartAPayloadSchema = z.object({
       answer: z.string(),
       // Additional accepted wordings of the same heard phrase — see markObjective.
       variants: z.array(z.string()).optional(),
+      // 🔴 THE AUTHOR SAYING THERE IS NOTHING ELSE TO ACCEPT.
+      //
+      // Declared, not inferred. gate:accept-lists A4 asks that every
+      // multi-word free-text answer HAS an accept list, and 28 answers in the
+      // bank have none because none exists — "frozen peas", "laundry
+      // detergent", "130 over 80". Before this field the only ways to satisfy
+      // A4 were to invent a variant or to add a hand-written exemption row in
+      // the gate, and inventing is what produced hours→hors and
+      // biscuits→biscuitbing on 6 September. This says it in the content, where
+      // the person who knows sits.
+      //
+      // ⚠️ IT MUST BE DECLARED IN THIS SCHEMA OR IT DOES NOT EXIST AT RUNTIME:
+      // zod strips an undeclared key at parse time, which is exactly how the
+      // Reading Part C `kind` markers were in the database and invisible to the
+      // grader for a week.
+      acceptExhaustive: z.literal(true).optional(),
     }),
   ),
 });

@@ -63,8 +63,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "half",
           "variants": [
             "about half",
-            "half of it",
-            "fifty per cent"
+            "half of it"
           ]
         },
         {
@@ -77,7 +76,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Change in taste: everything tastes",
           "answer": "metallic",
           "variants": [
-            "like metal",
             "like a coin",
             "metallic taste"
           ]
@@ -87,8 +85,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Problem with dentures since losing weight: they have become",
           "answer": "loose",
           "variants": [
-            "they are loose",
-            "loose dentures"
+            "they are loose"
           ]
         },
         {
@@ -135,8 +132,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "food diary",
           "variants": [
             "diary",
-            "a food diary",
-            "food record"
+            "a food diary"
           ]
         }
       ],
@@ -203,8 +199,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "none",
           "variants": [
             "no pain",
-            "nothing",
-            "not painful"
+            "nothing"
           ]
         },
         {
@@ -248,7 +243,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Foot pulses",
           "answer": "both palpable",
           "variants": [
-            "both present",
             "strong",
             "both felt",
             "palpable"
@@ -259,7 +253,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Nature of the lesion: ______ with a break underneath",
           "answer": "hard skin",
           "variants": [
-            "callus",
             "thick skin"
           ]
         },
@@ -279,8 +272,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "one week",
           "variants": [
             "a week",
-            "1 week",
-            "seven days"
+            "1 week"
           ]
         }
       ],
@@ -363,10 +355,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "g6",
           "label": "Made worse during the day by",
           "answer": "chewing",
-          "variants": [
-            "eating",
-            "chewing hard food"
-          ]
+          "variants": []
         },
         {
           "id": "g7",
@@ -393,8 +382,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "six",
           "variants": [
             "6",
-            "six coffees",
-            "six cups"
+            "six coffees"
           ]
         },
         {
@@ -470,8 +458,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "about a year",
           "variants": [
             "a year",
-            "one year",
-            "12 months"
+            "one year"
           ]
         },
         {
@@ -479,9 +466,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Change noticed by day: he needs",
           "answer": "more light",
           "variants": [
-            "extra light",
-            "a lamp",
-            "better lighting"
+            "a lamp"
           ]
         },
         {
@@ -489,10 +474,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Appearance of colours",
           "answer": "washed out",
           "variants": [
-            "faded",
-            "grey",
-            "dull",
-            "less bright"
+            "grey"
           ]
         },
         {
@@ -515,7 +497,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "General health condition",
           "answer": "high blood pressure",
           "variants": [
-            "hypertension",
             "blood pressure"
           ]
         },
@@ -556,9 +537,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Plan: refer for",
           "answer": "cataract surgery",
           "variants": [
-            "surgery",
-            "cataract operation",
-            "an operation"
+            "surgery"
           ]
         }
       ],
@@ -612,7 +591,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "dizziness",
           "variants": [
             "dizzy",
-            "light-headed",
             "the room goes"
           ]
         },
@@ -620,10 +598,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "g4",
           "label": "Time of day symptom is worst",
           "answer": "after breakfast",
-          "variants": [
-            "following breakfast",
-            "post-breakfast"
-          ]
+          "variants": []
         },
         {
           "id": "g5",
@@ -640,19 +615,14 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Medicine she stopped herself",
           "answer": "the water tablet",
           "variants": [
-            "water tablet",
-            "diuretic"
+            "water tablet"
           ]
         },
         {
           "id": "g7",
           "label": "Reason she stopped it",
           "answer": "the toilet",
-          "variants": [
-            "trips to the toilet",
-            "needing the toilet",
-            "passing water"
-          ]
+          "variants": []
         },
         {
           "id": "g8",
@@ -668,9 +638,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Difficulty with the packaging",
           "answer": "blister packs",
           "variants": [
-            "blisters",
-            "the packaging",
-            "blister packaging"
+            "blisters"
           ]
         },
         {
@@ -683,8 +651,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Reason she takes it",
           "answer": "her knees",
           "variants": [
-            "knees",
-            "knee pain"
+            "knees"
           ]
         },
         {
@@ -766,8 +733,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Amount of exudate",
           "answer": "moderate",
           "variants": [
-            "a moderate amount",
-            "medium"
+            "a moderate amount"
           ]
         },
         {
@@ -786,8 +752,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "in the evening",
           "variants": [
             "evenings",
-            "at night",
-            "later in the day"
+            "at night"
           ]
         },
         {
@@ -796,8 +761,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "in the chair",
           "variants": [
             "the chair",
-            "a chair",
-            "downstairs in the chair"
+            "a chair"
           ]
         },
         {
@@ -805,9 +769,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Compression cannot start until the ______ are done",
           "answer": "ankle readings",
           "variants": [
-            "the readings",
-            "pressure readings",
-            "ankle pressures"
+            "the readings"
           ]
         },
         {
@@ -887,7 +849,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "first thing",
           "variants": [
             "in the morning",
-            "on waking",
             "first thing in the morning"
           ]
         },
@@ -905,9 +866,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Activity stopped altogether",
           "answer": "the stairs",
           "variants": [
-            "stairs",
-            "going upstairs",
-            "climbing the stairs"
+            "stairs"
           ]
         },
         {
@@ -943,8 +902,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Owner's main concern",
           "answer": "the pain",
           "variants": [
-            "pain",
-            "whether he is in pain"
+            "pain"
           ]
         },
         {
@@ -963,7 +921,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "x-rays",
           "variants": [
             "xrays",
-            "radiographs",
             "x-ray"
           ]
         },
@@ -971,11 +928,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "g12",
           "label": "Starting today: a two-week trial of",
           "answer": "pain relief",
-          "variants": [
-            "painkillers",
-            "analgesia",
-            "pain medication"
-          ]
+          "variants": []
         }
       ],
       "audioScript": "Vet: Let's have him on the floor rather than the table, he'll be happier. Now — how old is Bruno? Owner: Nine. He was nine in March. Vet: And he's a labrador, isn't he? A big one. Owner: A labrador, yes. Chocolate. He's always been a big lad. Vet: Right. Tell me what you're seeing, in your own words, not what you think I want to hear. Owner: He's stiff. It's worst first thing — he comes out of his bed like an old man and then he loosens off after ten minutes or so and you'd hardly know. Vet: Worst first thing and better with movement. That's a very typical pattern. How long? Owner: Six months. Maybe a bit more. I kept telling myself it was just the cold. Vet: Everybody does, and the cold is never the whole answer. Is he eating normally? Owner: He'd eat the table. That's never been a problem with him. Vet: Good — appetite is one of the first things to go when a dog is really unwell, so that's reassuring. Is there anything he's stopped doing altogether? Owner: The stairs. He used to sleep on the landing and now he sleeps at the bottom. He won't attempt them. Vet: That's important — dogs don't give things up for no reason. Anything else? Owner: The car. He used to fly into the back of it. Now he stands there and looks at me until I lift him, and he's not a light dog. Vet: No, he isn't, and that brings me to the next question. Has his weight changed? Owner: He's put on about four kilos since last year. He's not doing the walks he used to, so that's my fault really. Vet: It's the same circle in every one of these: sore joint, less exercise, more weight, sorer joint. We can break it. Are you giving him anything at the moment? Owner: A supplement. The green tub from the pet shop. I've been giving it since the summer. Vet: Those are safe and some dogs seem better on them. Nothing in it is going to touch pain, though, and I'd rather you knew that. What worries you most? Owner: The pain. I can't tell if he's in pain. He doesn't cry, he doesn't limp much, he just... goes and lies down. Vet: Then let me tell you something that will help you for the rest of his life. Dogs almost never tell you about long, slow pain. They stop doing things instead. The stairs and the car are the crying. Owner: Oh. Vet: Now, let me feel these back legs. Extend this one... and this one. Both hips have less movement than I'd want, and he's tensing before I reach the end of the range on both sides. Nothing sudden, nothing hot, no swelling anywhere. Owner: I feel terrible. I've been telling people he's just getting old. Vet: He is getting old, and old is not a diagnosis and it is not a reason to leave him sore. You brought him in. That is the part that counts. Owner: So what happens now? Vet: Two things. I'd like x-rays, sedated, so I can see what those hips actually look like rather than guess. And starting today, a two-week trial of proper pain relief — a licensed one, with his kidneys checked first. Owner: And if it makes no difference? Vet: Then I've learned something. But I'll be honest with you: in a dog who has given up the stairs, it usually makes a very large difference, and it's the owner who tells me, not the dog."
@@ -1038,8 +991,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "New symptom this week",
           "answer": "pins and needles",
           "variants": [
-            "tingling",
-            "numbness",
             "pins and needles in the leg"
           ]
         },
@@ -1085,7 +1036,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Previous eye injury",
           "answer": "never",
           "variants": [
-            "none",
             "no",
             "no injury"
           ]
@@ -1096,8 +1046,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "claustrophobia",
           "variants": [
             "claustrophobic",
-            "small spaces",
-            "enclosed spaces"
+            "small spaces"
           ]
         },
         {
@@ -1152,8 +1101,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Occupation",
           "answer": "a teacher",
           "variants": [
-            "teacher",
-            "primary teacher"
+            "teacher"
           ]
         },
         {
@@ -1182,7 +1130,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "four months",
           "variants": [
             "4 months",
-            "since September",
             "start of the school year"
           ]
         },
@@ -1221,8 +1168,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Habit to be addressed first",
           "answer": "throat clearing",
           "variants": [
-            "clearing her throat",
-            "coughing to clear"
+            "clearing her throat"
           ]
         },
         {
@@ -1231,7 +1177,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "sports hall",
           "variants": [
             "the sports hall",
-            "gym",
             "the hall"
           ]
         },
@@ -1241,8 +1186,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "heartburn",
           "variants": [
             "reflux",
-            "acid",
-            "indigestion"
+            "acid"
           ]
         },
         {
@@ -1250,7 +1194,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Finding at the ENT clinic",
           "answer": "nodules",
           "variants": [
-            "vocal nodules",
             "nodules both sides"
           ]
         },
@@ -1297,8 +1240,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "a wrist fracture",
           "variants": [
             "wrist fracture",
-            "broken wrist",
-            "a broken wrist",
             "fractured wrist"
           ]
         },
@@ -1344,7 +1285,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "about half",
           "variants": [
             "half",
-            "fifty per cent",
             "half of the left"
           ]
         },
@@ -1389,7 +1329,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "reduced hours",
           "variants": [
             "half days",
-            "shorter hours",
             "part time"
           ]
         },
@@ -1434,9 +1373,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Main symptom",
           "answer": "breathlessness",
           "variants": [
-            "breathless",
-            "shortness of breath",
-            "short of breath"
+            "breathless"
           ]
         },
         {
@@ -1444,8 +1381,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Duration",
           "answer": "two months",
           "variants": [
-            "2 months",
-            "since Christmas"
+            "2 months"
           ]
         },
         {
@@ -1482,8 +1418,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "by the evening",
           "variants": [
             "in the evening",
-            "evenings",
-            "at the end of the day"
+            "evenings"
           ]
         },
         {
@@ -1518,8 +1453,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Examination: the pulse is",
           "answer": "irregular",
           "variants": [
-            "not steady",
-            "uneven"
+            "not steady"
           ]
         },
         {
@@ -1528,8 +1462,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "chest x-ray",
           "variants": [
             "x-ray",
-            "chest xray",
-            "chest radiograph"
+            "chest xray"
           ]
         },
         {
@@ -1594,8 +1527,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Site of pain: the ______ of the knee",
           "answer": "front",
           "variants": [
-            "the front",
-            "anterior"
+            "the front"
           ]
         },
         {
@@ -1632,8 +1564,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "none",
           "variants": [
             "no swelling",
-            "nothing",
-            "not swollen"
+            "nothing"
           ]
         },
         {
@@ -1672,8 +1603,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Exercise focus",
           "answer": "hip strength",
           "variants": [
-            "strengthening the hips",
-            "hip strengthening",
             "hip exercises"
           ]
         },
@@ -1753,9 +1682,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Allergy",
           "answer": "plasters",
           "variants": [
-            "plaster",
-            "sticking plasters",
-            "adhesive plasters"
+            "plaster"
           ]
         },
         {
@@ -1763,10 +1690,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Previous problem with anaesthetic",
           "answer": "sick",
           "variants": [
-            "sickness",
-            "vomiting",
-            "nausea",
-            "being sick"
+            "sickness"
           ]
         },
         {
@@ -1801,8 +1725,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Clear fluids allowed until ______ in the morning",
           "answer": "six",
           "variants": [
-            "6",
-            "six o'clock"
+            "6"
           ]
         },
         {

@@ -63,12 +63,14 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g6",
           "label": "Also applying, 20 minutes at a time",
-          "answer": "frozen peas"
+          "answer": "frozen peas",
+          "acceptExhaustive": true
         },
         {
           "id": "g7",
           "label": "Support borrowed from brother",
-          "answer": "tubular bandage"
+          "answer": "tubular bandage",
+          "acceptExhaustive": true
         },
         {
           "id": "g8",
@@ -93,7 +95,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g12",
           "label": "Occupation",
-          "answer": "warehouse picker"
+          "answer": "warehouse picker",
+          "acceptExhaustive": true
         }
       ]
     },
@@ -131,7 +134,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g2",
           "label": "Baby is most active",
-          "answer": "in the evening"
+          "answer": "in the evening",
+          "acceptExhaustive": true
         },
         {
           "id": "g3",
@@ -181,7 +185,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g12",
           "label": "Plans to work until",
-          "answer": "thirty-four weeks"
+          "answer": "thirty-four weeks",
+          "acceptExhaustive": true
         }
       ]
     },
@@ -234,12 +239,14 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g5",
           "label": "Usual reliever use",
-          "answer": "twice a week"
+          "answer": "twice a week",
+          "acceptExhaustive": true
         },
         {
           "id": "g6",
           "label": "Suspected trigger",
-          "answer": "cold weather"
+          "answer": "cold weather",
+          "acceptExhaustive": true
         },
         {
           "id": "g7",
@@ -269,7 +276,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g12",
           "label": "Document to be reprinted",
-          "answer": "action plan"
+          "answer": "action plan",
+          "acceptExhaustive": true
         }
       ]
     },
@@ -312,7 +320,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g3",
           "label": "Onset while",
-          "answer": "climbing the stairs"
+          "answer": "climbing the stairs",
+          "acceptExhaustive": true
         },
         {
           "id": "g4",
@@ -322,7 +331,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g5",
           "label": "Radiates down the",
-          "answer": "left arm"
+          "answer": "left arm",
+          "acceptExhaustive": true
         },
         {
           "id": "g6",
@@ -390,7 +400,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g1",
           "label": "Fever started",
-          "answer": "yesterday evening"
+          "answer": "yesterday evening",
+          "acceptExhaustive": true
         },
         {
           "id": "g2",
@@ -445,7 +456,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g12",
           "label": "Immunisations",
-          "answer": "up to date"
+          "answer": "up to date",
+          "acceptExhaustive": true
         }
       ]
     },
@@ -528,7 +540,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g11",
           "label": "Bloods today: HbA1c and",
-          "answer": "kidney function"
+          "answer": "kidney function",
+          "acceptExhaustive": true
         },
         {
           "id": "g12",
@@ -664,7 +677,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g3",
           "label": "Pain radiates down the back of the",
-          "answer": "left leg"
+          "answer": "left leg",
+          "acceptExhaustive": true
         },
         {
           "id": "g4",
@@ -679,7 +693,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g6",
           "label": "Tingling on the foot's",
-          "answer": "outer side"
+          "answer": "outer side",
+          "acceptExhaustive": true
         },
         {
           "id": "g7",
@@ -704,7 +719,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g11",
           "label": "Occupation",
-          "answer": "delivery driver"
+          "answer": "delivery driver",
+          "acceptExhaustive": true
         },
         {
           "id": "g12",
@@ -782,12 +798,14 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g9",
           "label": "Other regular medicines: a statin and a",
-          "answer": "water tablet"
+          "answer": "water tablet",
+          "acceptExhaustive": true
         },
         {
           "id": "g10",
           "label": "Home blood pressure reading",
-          "answer": "130 over 80"
+          "answer": "130 over 80",
+          "acceptExhaustive": true
         },
         {
           "id": "g11",
@@ -885,7 +903,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g12",
           "label": "Plan: referral for",
-          "answer": "talking therapy"
+          "answer": "talking therapy",
+          "acceptExhaustive": true
         }
       ]
     },
@@ -928,7 +947,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g3",
           "label": "Frequency at last review",
-          "answer": "once a fortnight"
+          "answer": "once a fortnight",
+          "acceptExhaustive": true
         },
         {
           "id": "g4",
@@ -943,7 +963,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g6",
           "label": "Pain felt behind the",
-          "answer": "right eye"
+          "answer": "right eye",
+          "acceptExhaustive": true
         },
         {
           "id": "g7",
@@ -958,7 +979,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g9",
           "label": "Warning sign before attack",
-          "answer": "flashing lines"
+          "answer": "flashing lines",
+          "acceptExhaustive": true
         },
         {
           "id": "g10",
@@ -1031,7 +1053,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g6",
           "label": "Possible trigger started last week",
-          "answer": "laundry detergent"
+          "answer": "laundry detergent",
+          "acceptExhaustive": true
         },
         {
           "id": "g7",
@@ -1051,17 +1074,20 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g10",
           "label": "Bought from the chemist",
-          "answer": "antihistamine tablets"
+          "answer": "antihistamine tablets",
+          "acceptExhaustive": true
         },
         {
           "id": "g11",
           "label": "To be prescribed for worst areas",
-          "answer": "steroid cream"
+          "answer": "steroid cream",
+          "acceptExhaustive": true
         },
         {
           "id": "g12",
           "label": "If it persists, may need",
-          "answer": "patch testing"
+          "answer": "patch testing",
+          "acceptExhaustive": true
         }
       ]
     },
@@ -1182,7 +1208,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g1",
           "label": "Operation performed",
-          "answer": "hernia repair"
+          "answer": "hernia repair",
+          "acceptExhaustive": true
         },
         {
           "id": "g2",
