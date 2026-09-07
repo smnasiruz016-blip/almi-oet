@@ -429,7 +429,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> 
     g3: { label: "Site of the wound", accept: ["front of the left leg", "left leg", "the left shin"] },
     g4: { label: "Dressing is currently changed every", accept: ["3 days", "every three days"] },
     g5: { label: "Amount of exudate", accept: ["a moderate amount"] },
-    g6: { label: "Odour", accept: ["no odour", "no smell", "nothing"] },
+    g6: { label: "Odour", accept: ["no smell"] },
     g7: { label: "Ankle swelling is worse", accept: ["at night", "evenings"] },
     g8: { label: "Where the patient is sleeping", accept: ["a chair", "the chair"] },
     g9: { label: "Compression cannot start until the ______ are done", accept: ["the readings"] },

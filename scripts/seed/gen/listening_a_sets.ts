@@ -740,11 +740,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "g6",
           "label": "Odour",
-          "answer": "none",
+          "answer": "no odour",
           "variants": [
-            "no odour",
-            "no smell",
-            "nothing"
+            "no smell"
           ]
         },
         {
