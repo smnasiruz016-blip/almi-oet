@@ -152,6 +152,11 @@ import { GEN_ITEMS } from "../seed/gen/index";
 // count the same way can import it WITHOUT running this gate. See words.ts.
 import { words } from "./words";
 import { textWords } from "./text-words";
+// The marker's own tokeniser, for the Listening findability check below: a
+// script says "twenty nineteen" where the answer reads "2019".
+import { normalizeTokens } from "../../src/lib/oet/tasks/objective";
+// The gate's own function-word list, shared rather than copied.
+import { FUNCTION_WORDS } from "./word-forms";
 
 type Item = {
   taskType: string;
@@ -161,7 +166,7 @@ type Item = {
   title: string;
   payload: {
     audioScript?: string;
-    gaps?: unknown[];
+    gaps?: { id?: string; label?: string; answer?: string }[];
     caseNotes?: string;
     setting?: string;
     candidateRole?: string;
@@ -584,6 +589,67 @@ for (const item of ITEMS) {
     }
   }
 }
+// ── FINDABILITY, LISTENING PART A · every word of the answer must be HEARD ──
+//
+// 🔴 THIS DID NOT EXIST UNTIL 7 SEPTEMBER 2026, AND ONE ITEM PROVES WHY.
+// `lis-a-script-4-podiatry…` gap g9 answered "both palpable" while its audio said
+// "both" and "strong" and NEVER said "palpable". A candidate listening to it
+// could not write the answer, and no gate could see that:
+//
+//   · A2 asks whether the overlay's gap id exists and its label still matches.
+//   · A3 asks the same of a Reading question id and its answer.
+//   · A11 and A12 read VARIANTS against the source, never the answer itself.
+//   · the findability check above reads ANSWERS against the source — and it is
+//     READING ONLY.
+//
+// A2 and A3 sitting at zero said nothing whatever about whether a key could be
+// heard. This closes that.
+//
+// 🔴 IT IS NOT THE READING TEST TRANSPLANTED, AND THE FIRST VERSION WAS.
+// Reading asks for the answer as a CONTIGUOUS phrase, which is right there: the
+// candidate copies a word or short phrase off the page. Listening Part A is NOTE
+// COMPLETION — the candidate condenses speech into a note, so the words of the
+// answer are heard but rarely adjacent. Measured over the whole bank on 7
+// September, the contiguous test reported 11 items and the word test reported 4;
+// all seven of the difference were ordinary note-taking:
+//
+//     "both palpable"  <- "Both pulses in this foot are palpable"
+//     "his wife"       <- the patient says "my wife"
+//     "moving boxes"   · "two sugars" · "her son" · "her knees" · "her neighbour"
+//
+// Nine reported defects, seven of them the checker's own shape. So the rule is:
+// EVERY CONTENT WORD of the answer must be heard, EXACTLY. Function words are
+// skipped, because "of" and "the" are how a note is joined up and not what was
+// heard. And exactly — no stem rule: sameWordAnotherForm exists to be generous to
+// a candidate's VARIANT, and being generous about whether OUR OWN KEY was spoken
+// is how `out` came to stand in for `outer` for months.
+let listeningFindabilityChecked = 0;
+let listeningFindabilityItems = 0;
+for (const item of ITEMS) {
+  if (item.taskType !== "LISTENING_PART_A") continue;
+  if (RETIRED.has(item.slug)) continue;
+  if (exempt.has(item.slug)) continue;
+  const heard = new Set(normalizeTokens(item.payload.audioScript ?? ""));
+  if (heard.size === 0) continue;
+  listeningFindabilityItems += 1;
+  for (const gap of item.payload.gaps ?? []) {
+    const answer = gap.answer;
+    if (!answer) continue;
+    listeningFindabilityChecked += 1;
+    const unheard = normalizeTokens(answer).filter((w) => !FUNCTION_WORDS.has(w) && !heard.has(w));
+    if (unheard.length > 0) {
+      failures.push(
+        `${item.title} / ${gap.id ?? "?"} — the answer ${JSON.stringify(answer)} uses ` +
+          `${unheard.map((w) => JSON.stringify(w)).join(", ")}, which that item's own audio ` +
+          "script never says, and the candidate is told to write what they hear",
+      );
+    }
+  }
+}
+if (listeningFindabilityItems === 0) {
+  failures.push("no non-legacy LISTENING_PART_A item exists — the listening findability check is vacuous");
+}
+
 // Population before the guard: if no item is governed the check proves nothing.
 if (findabilityItems === 0) {
   failures.push("no non-legacy READING_PART_A item exists — the findability check is vacuous");

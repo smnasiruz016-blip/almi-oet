@@ -375,7 +375,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> 
     g6: { label: "Walks approximately ______ each day", accept: ["2 miles", "about two miles"] },
     g7: { label: "Last eye check", accept: ["a month ago", "one month ago"] },
     g8: { label: "Monofilament testing: sensation absent at ______ sites", accept: ["6", "all six", "six sites"] },
-    g9: { label: "Foot pulses", accept: ["both felt", "palpable", "strong"] },
+    g9: { label: "Foot pulses", accept: ["palpable", "both pulses palpable", "strong"] },
     g10: { label: "Nature of the lesion: ______ with a break underneath", accept: ["thick skin"] },
     g11: { label: "Dressing applied", accept: ["a foam dressing", "foam", "foam dressing"] },
     g12: { label: "Review appointment in", accept: ["1 week", "a week"] },

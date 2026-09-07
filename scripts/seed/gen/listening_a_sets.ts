@@ -243,9 +243,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Foot pulses",
           "answer": "both palpable",
           "variants": [
-            "strong",
-            "both felt",
-            "palpable"
+            "palpable",
+            "both pulses palpable",
+            "strong"
           ]
         },
         {
@@ -276,7 +276,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Podiatrist: Mr Bhatti, come through. Sock and shoe off for me, both if you don't mind, and tell me what brought you. Patient: There's a mark on the bottom of my foot. I wouldn't have come, only my wife made me. Podiatrist: When did it turn up? Patient: Three weeks ago, thereabouts. It might have been there longer, I couldn't say. Podiatrist: And you said your wife made you come — was it her who spotted it? Patient: She did. She cuts my nails for me because I can't reach round, and she saw it and started on at me straight away. Podiatrist: She was right to. Let me have a proper look. It's underneath, on the ball of the foot, right under the big toe joint. Does that hurt when I press? Patient: No. Nothing at all. Podiatrist: No pain at all. I want to come back to that, because people think no pain means no problem and here it means the opposite. What do you wear round the house? Patient: Slippers. All day, mostly. I'm retired now. Podiatrist: How long have you had the diabetes? Patient: Since my fifties. Tablets to begin with, and there's an injection as well now. Podiatrist: And how far are you walking on an ordinary day? Patient: Two miles. I go down to the shop and back and then round the park. Podiatrist: That's good for you and it's a lot of weight going through this spot. When was your last eye check? Patient: Last month. They said it was fine this time. Podiatrist: Good — I ask because the eyes and the feet tell the same story. Now, this is the monofilament. It's a little plastic hair. Close your eyes and say yes each time you feel it. Patient: ... Was that it? I didn't feel anything. Podiatrist: That was six of them. You felt none, and that's the important finding today. The nerve that warns you has stopped warning you, so a stone in your slipper could sit there all afternoon. Most people expect some kind of warning before a foot goes wrong. Pain is that warning, and yours has been quietly switched off. Patient: I thought that was just old age. Podiatrist: It's the diabetes, and it can be helped but not undone. Now the blood supply. I can feel both pulses in this foot, strong and easy, and that is genuinely good news — it means you have the circulation to heal this. Patient: So what's the mark? Podiatrist: It's hard skin, built up over months, and there's a small break underneath it. I'm going to take that hard skin down today, dress it with a foam pad to take the pressure off, and I want to see you again in one week. Patient: A week? For that? Podiatrist: For that. And two things about socks while you're here: nothing with a tight band at the top, nothing with a thick seam across the toes, and a light colour if you can find them, because you will see something on a pale sock long before you feel it. Patient: It's a lot to remember. Podiatrist: It's two things, and the rest is my job. Look inside the shoe, and look at the foot. Nothing on the floor without something on your feet, indoors included. Hand inside both shoes every morning before you put them on. Patient: Can I still walk down to the shop? Podiatrist: You can, in proper shoes, and I'd rather you did. Ring me before next week if the sock marks at all."
+      "audioScript": "Podiatrist: Mr Bhatti, come through. Sock and shoe off for me, both if you don't mind, and tell me what brought you. Patient: There's a mark on the bottom of my foot. I wouldn't have come, only my wife made me. Podiatrist: When did it turn up? Patient: Three weeks ago, thereabouts. It might have been there longer, I couldn't say. Podiatrist: And you said your wife made you come — was it her who spotted it? Patient: She did. She cuts my nails for me because I can't reach round, and she saw it and started on at me straight away. Podiatrist: She was right to. Let me have a proper look. It's underneath, on the ball of the foot, right under the big toe joint. Does that hurt when I press? Patient: No. Nothing at all. Podiatrist: No pain at all. I want to come back to that, because people think no pain means no problem and here it means the opposite. What do you wear round the house? Patient: Slippers. All day, mostly. I'm retired now. Podiatrist: How long have you had the diabetes? Patient: Since my fifties. Tablets to begin with, and there's an injection as well now. Podiatrist: And how far are you walking on an ordinary day? Patient: Two miles. I go down to the shop and back and then round the park. Podiatrist: That's good for you and it's a lot of weight going through this spot. When was your last eye check? Patient: Last month. They said it was fine this time. Podiatrist: Good — I ask because the eyes and the feet tell the same story. Now, this is the monofilament. It's a little plastic hair. Close your eyes and say yes each time you feel it. Patient: ... Was that it? I didn't feel anything. Podiatrist: That was six of them. You felt none, and that's the important finding today. The nerve that warns you has stopped warning you, so a stone in your slipper could sit there all afternoon. Most people expect some kind of warning before a foot goes wrong. Pain is that warning, and yours has been quietly switched off. Patient: I thought that was just old age. Podiatrist: It's the diabetes, and it can be helped but not undone. Now the blood supply. Both pulses in this foot are palpable — strong and easy — and that is genuinely good news, because it means you have the circulation to heal this. Patient: So what's the mark? Podiatrist: It's hard skin, built up over months, and there's a small break underneath it. I'm going to take that hard skin down today, dress it with a foam pad to take the pressure off, and I want to see you again in one week. Patient: A week? For that? Podiatrist: For that. And two things about socks while you're here: nothing with a tight band at the top, nothing with a thick seam across the toes, and a light colour if you can find them, because you will see something on a pale sock long before you feel it. Patient: It's a lot to remember. Podiatrist: It's two things, and the rest is my job. Look inside the shoe, and look at the foot. Nothing on the floor without something on your feet, indoors included. Hand inside both shoes every morning before you put them on. Patient: Can I still walk down to the shop? Podiatrist: You can, in proper shoes, and I'd rather you did. Ring me before next week if the sock marks at all."
     }
   },
   {
@@ -598,6 +598,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "g4",
           "label": "Time of day symptom is worst",
           "answer": "after breakfast",
+          "acceptExhaustive": true,
           "variants": []
         },
         {
@@ -928,6 +929,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "g12",
           "label": "Starting today: a two-week trial of",
           "answer": "pain relief",
+          "acceptExhaustive": true,
           "variants": []
         }
       ],
