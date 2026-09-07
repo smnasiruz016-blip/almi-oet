@@ -179,11 +179,31 @@ test.describe.configure({ mode: "serial" });
 
 test.describe("Listening, full length, at 430px", () => {
   test("the three pools are the new items, not the fragments", async () => {
-    expect(fixture.listeningAFullLengthTitles, "13 full-length Part A").toHaveLength(13);
-    expect(fixture.listeningBFullLengthTitles, "90 full-length Part B").toHaveLength(90);
-    expect(fixture.listeningCFullLengthTitles, "15 full-length Part C").toHaveLength(15);
+    // 🔴 THE EXACT CENSUS IS NOT RESTATED HERE, AND THAT IS THE POINT.
+    //
+    // These three numbers were written as 13 / 90 / 15 in TWO files: here, and
+    // in scripts/e2e/seed-fixture.mts. On 7 September 2026 seven Listening items
+    // were brought up to their laws and gate:length's ratchet removed them from
+    // LEGACY_SHORT, so the true census became 18 / 91 / 16 — and the two copies
+    // drifted apart, because a number written twice is a number maintained once.
+    //
+    // The fixture still pins all three EXACTLY, with `!==` and with the seven
+    // items named beside it. It throws before a single spec in this suite runs,
+    // so nothing is weakened by not repeating it: a bank that quietly loses a
+    // full-length item still takes the whole e2e job down. What is asserted here
+    // is what this spec is actually for — that the pools the BROWSER walks are
+    // above the product's own boot floor and carry the new items' shape.
+    const FLOOR = 15;
+    expect(fixture.listeningAFullLengthTitles.length, "Part A pool").toBeGreaterThanOrEqual(FLOOR);
+    expect(fixture.listeningBFullLengthTitles.length, "Part B pool").toBeGreaterThanOrEqual(FLOOR);
+    expect(fixture.listeningCFullLengthTitles.length, "Part C pool").toBeGreaterThanOrEqual(FLOOR);
     expect(fixture.listeningA.gapCount, "Part A carries twelve gaps").toBe(12);
     expect(fixture.listeningC.questionCount, "Part C carries six questions").toBe(6);
+    console.log(
+      `[e2e] Listening pools: A ${fixture.listeningAFullLengthTitles.length}, ` +
+        `B ${fixture.listeningBFullLengthTitles.length}, ` +
+        `C ${fixture.listeningCFullLengthTitles.length} (exact counts pinned in seed-fixture.mts)`,
+    );
   });
 
   test("Part A — it plays, twelve gaps are filled, and the score matches the review", async ({ page }) => {
