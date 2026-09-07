@@ -1036,7 +1036,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Previous eye injury",
           "answer": "never",
           "variants": [
-            "no",
             "no injury"
           ]
         },
@@ -1572,7 +1571,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Giving way",
           "answer": "never",
           "variants": [
-            "no",
             "it has not",
             "not given way"
           ]

@@ -7457,7 +7457,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "stem": "The letter U beside a number is read as a ______________ by somebody who did not write it.",
           "answer": "nought",
           "variants": [
-            "zero",
             "naught",
             "a nought"
           ]
