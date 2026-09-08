@@ -50,7 +50,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "We've confirmed two cases of norovirus on the bay, so we're closing it to new admissions from now. The key thing to remember with norovirus is that alcohol gel isn't enough; you must wash your hands with soap and water after every contact in that bay. Please brief any agency staff arriving today."
+      "audioScript": "We've confirmed two cases of norovirus on the bay, so we're closing it to new admissions from now. The key thing to remember with norovirus is that alcohol gel isn't enough; you must wash your hands with soap and water after every contact in that bay. Please brief any agency staff arriving today. The reason is worth knowing rather than just obeying: this virus has no outer coat for the alcohol to break, so gel runs over it and leaves it where it was. Soap and running water lift it off physically, and thirty seconds of that does what a litre of gel will not. And it applies on the way in as much as on the way out. People remember to wash when they leave and forget when they arrive, and that is how it travels from this bay to the rest of the ward on the next pair of hands."
     },
     "guidanceNote": "Outbreak-specific rules often override usual practice; 'alcohol gel isn't enough' points to soap and water as the required method."
   },
@@ -93,7 +93,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Mrs Patel is medically fit to leave, but her discharge is being held up. It's not the transport or her medication, both of which are sorted; we're waiting on the care agency to confirm her first home visit. Until that package is in place, it isn't safe to send her home."
+      "audioScript": "Mrs Patel is medically fit to leave, but her discharge is being held up. It's not the transport or her medication, both of which are sorted; we're waiting on the care agency to confirm her first home visit. Until that package is in place, it isn't safe to send her home. I've chased them twice this morning. The assessment is done, but the first visit can't be booked until their coordinator is back after two, so the honest position is that she is unlikely to move today — and I would rather say that now than let the bed be counted as free on the board. Two things I'd ask. Don't give her family a time until I have one in writing, because they were told Tuesday and it didn't happen. And keep her sitting out and walking to the bathroom rather than back in bed. Three days of waiting is enough to undo what she came in with."
     },
     "guidanceNote": "When several factors are listed, note which are 'sorted'; transport and medication are done, so the care agency is the hold-up."
   },
@@ -136,7 +136,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "I've had to adjust the weekend rota because two people are off sick. The long days are all still covered, but I'm now short one person on the Sunday night shift. If anyone can pick that up, please let me know by Friday lunchtime so I can confirm before the weekend."
+      "audioScript": "I've had to adjust the weekend rota because two people are off sick. The long days are all still covered, but I'm now short one person on the Sunday night shift. If anyone can pick that up, please let me know by Friday lunchtime so I can confirm before the weekend. To be clear about what is and isn't covered: Saturday is full, the Sunday day shift is full, and Friday night is covered by an agency booking that's already confirmed. It is the Sunday night, and only that one, that has a gap. If you take it you'd be the second nurse with Priya, who knows the bay, so it isn't a shift where you would be carrying it on your own. And if nobody can, tell me anyway. I would rather book agency on Friday afternoon at the normal rate than at eight on Sunday evening at the panic rate, and that difference comes out of our own budget."
     },
     "guidanceNote": "Don't be misled by a time mentioned for a deadline; Friday lunchtime is when to reply, not a gap in the rota."
   },
@@ -179,7 +179,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "I've got the results of last week's hand hygiene audit. Our overall score was good at ninety per cent, which is up from last time. The one moment we consistently missed, though, was cleaning our hands before touching a patient, so that's the step to focus on this month."
+      "audioScript": "I've got the results of last week's hand hygiene audit. Our overall score was good at ninety per cent, which is up from last time. The one moment we consistently missed, though, was cleaning our hands before touching a patient, so that's the step to focus on this month. The other two moments were both above ninety per cent, which is a change from last year and worth saying out loud. It is the first one, before you touch anybody, where we fall down. Watching the observations back, the pattern is identical: somebody gels at the bay entrance, then straightens a pillow, then moves a locker, and then touches the patient. The gel was real, but it was three actions too early. So the thing to change isn't how often you clean your hands. It is when. The last thing you touch before the patient should be the gel. We re-audit at the end of the month."
     },
     "guidanceNote": "A high overall score can distract from the specific weakness; listen for 'the one moment we consistently missed' to find the answer."
   },
@@ -222,7 +222,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "We've had a complaint from a relative who felt they weren't kept informed after their mother's fall. Having looked into it, the care itself was appropriate and well documented, so this isn't a clinical concern. What we do need to improve is how consistently we update families when something unexpected happens."
+      "audioScript": "We've had a complaint from a relative who felt they weren't kept informed after their mother's fall. Having looked into it, the care itself was appropriate and well documented, so this isn't a clinical concern. What we do need to improve is how consistently we update families when something unexpected happens. What happened is that she was found on the floor at ten past four, examined, X-rayed, and nothing was broken — and the family were told at nine the next morning, by somebody who assumed the night staff had already rung. Nobody did anything wrong in isolation. The gap is between people, which is the hardest kind to find and the easiest kind to repeat. So from today, when a patient falls, the person who finds them owns the phone call; and if the hour is unreasonable, they write down that it will be made at eight and who is making it. Say it at handover too. An unmade call is invisible until somebody complains."
     },
     "guidanceNote": "The speaker rules out two areas ('appropriate', 'well documented') to leave the genuine issue, which is keeping families informed."
   },
@@ -265,7 +265,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Nurse A: Before you take over, bed four is nil by mouth from midnight for theatre tomorrow. The consent form is signed but the pre-op bloods are still pending. Can you chase them on the next round?"
+      "audioScript": "Nurse A: Before you take over, bed four is nil by mouth from midnight for theatre tomorrow. The consent form is signed but the pre-op bloods are still pending. Can you chase them on the next round? The bloods are the one thing that could stop it — group and save and a clotting screen, requested at four and not back, and theatre won't send for her without them. Ring the lab rather than waiting for the result to appear, because the sample may not have gone at all; that has happened twice this month and both times the form was still sitting in the tray. Consent is done and signed, so that isn't a job. The nil by mouth is already up on the board and her family know. It really is just the bloods. If they're not back by ten, tell the night coordinator, so theatre can be warned early rather than at seven in the morning."
     },
     "guidanceNote": "Listen for the action being requested, not just the facts mentioned."
   },
@@ -308,7 +308,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Good morning, everyone. Before we start the shift, I want to flag that we're running at full capacity again today, with two patients waiting in the corridor for beds. Please prioritise reviewing anyone who might be fit for discharge before the post-take round, so we can free up space as early as possible."
+      "audioScript": "Good morning, everyone. Before we start the shift, I want to flag that we're running at full capacity again today, with two patients waiting in the corridor for beds. Please prioritise reviewing anyone who might be fit for discharge before the post-take round, so we can free up space as early as possible. I'm not asking anyone to send a patient home who isn't ready, and I want that said plainly, because pressure like this is exactly how that happens. What I am asking is that we know by nine which patients are close, so the round can confirm rather than start from nothing. Look for the ones waiting on a single thing — a set of bloods, a piece of equipment, a phone call to a daughter — because those are the ones where an hour of attention this morning is a bed this afternoon. Bring me the name and the one thing. And the post-take round starts on time; it is not being moved."
     },
     "guidanceNote": "Listen for the action verb tied to a reason; 'prioritise reviewing anyone who might be fit for discharge' signals the requested first task."
   },
@@ -351,7 +351,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Quick reminder that your annual manual handling update is due this month. It's moved online this year, so you can complete it from any computer rather than booking a classroom slot. You'll still need to do the practical hoist assessment in person, though, and that hasn't changed."
+      "audioScript": "Quick reminder that your annual manual handling update is due this month. It's moved online this year, so you can complete it from any computer rather than booking a classroom slot. You'll still need to do the practical hoist assessment in person, though, and that hasn't changed. The online part takes about forty minutes and it saves as you go, so you can do it in two halves. The practical is the bit people put off and it is the bit that actually expires — if it lapses you come off the manual handling rota, which affects the rest of the team more than it affects you. Hoist slots are on the intranet and there are fewer than usual this month, because the training room is being used for the pump rollout. Book it now rather than in the last week. And if your record says you are up to date and you don't think you are, check it anyway."
     },
     "guidanceNote": "Identify what 'hasn't changed' to eliminate distractors; the practical hoist assessment is unchanged, so the online theory is the new element."
   },
@@ -394,7 +394,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "A reminder for the team about the IV antibiotics this week. Pharmacy has asked us to give the first dose strictly within an hour of it being prescribed for our sepsis patients, and to document the exact time given. It's the documentation of timing, not the choice of drug, that we keep getting flagged on at audit."
+      "audioScript": "A reminder for the team about the IV antibiotics this week. Pharmacy has asked us to give the first dose strictly within an hour of it being prescribed for our sepsis patients, and to document the exact time given. It's the documentation of timing, not the choice of drug, that we keep getting flagged on at audit. The drug choice was right in every case they looked at, and nobody has given anything early — neither of those is the finding. What the audit cannot see is the time, because 'evening' and 'given' are not times, and a blank is read as never. So write the clock time on the chart as you hang it, not afterwards from memory. It matters beyond the audit: the next person needs to know when the clock started, and in sepsis the whole thing is a clock. If the first dose is late, write down why. A stated reason is not a failure. A blank is."
     },
     "guidanceNote": "When a speaker uses 'not X, but Y', the audit problem is Y; here it is the documentation of timing rather than drug choice."
   },
@@ -437,7 +437,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Just a quick note on the updated visiting policy that starts this week. We're extending afternoon visiting by an hour, so it now runs until five, but we're keeping the limit of two visitors per bed. If families ask, the easiest thing is to point them to the new poster by the entrance."
+      "audioScript": "Just a quick note on the updated visiting policy that starts this week. We're extending afternoon visiting by an hour, so it now runs until five, but we're keeping the limit of two visitors per bed. If families ask, the easiest thing is to point them to the new poster by the entrance. To be exact, it was two until four and it is now two until five. Nothing else has moved. It is still two at the bed, and still the same two rather than a rotation through the afternoon, which is the part that causes most of the argument at the door. The poster by the entrance carries the new times, and a second one goes up by the lift this afternoon, so nobody has to take our word for it. If a family needs longer because they have travelled, ask me rather than saying no. We can nearly always arrange something, and it is easier to grant than to un-refuse."
     },
     "guidanceNote": "Separate what changed from what stayed the same; the two-visitor limit is explicitly being 'kept', so it is not the change."
   },
@@ -480,7 +480,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "A safeguarding point for everyone clerking admissions today. If a patient discloses something that worries you, your job isn't to investigate it yourself or decide whether it's true. What you must do is record exactly what was said in their own words and escalate it to the safeguarding lead the same shift."
+      "audioScript": "A safeguarding point for everyone clerking admissions today. If a patient discloses something that worries you, your job isn't to investigate it yourself or decide whether it's true. What you must do is record exactly what was said in their own words and escalate it to the safeguarding lead the same shift. Their own words matter more than you might think. If you write that a patient seemed frightened of her son, that is your interpretation and it can be argued with later. If you write what she actually said, in the words she used, in quotation marks, that stands. Write it at the time rather than at the end of the shift, and write it even if you are not sure it means anything — you are not the person who has to decide. Escalate the same shift, and if the safeguarding lead has gone home there is an on-call number on the back of your badge."
     },
     "guidanceNote": "The two things ruled out ('isn't to investigate', 'decide whether it's true') are distractors; the instruction is to record and escalate."
   },
@@ -523,7 +523,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Just to flag a supply problem on the unit. We've run out of the large foam dressings, and the next delivery isn't until Thursday. The small and medium sizes are well stocked, so for now please use two mediums where you'd normally reach for a large, rather than ordering extra from another ward."
+      "audioScript": "Just to flag a supply problem on the unit. We've run out of the large foam dressings, and the next delivery isn't until Thursday. The small and medium sizes are well stocked, so for now please use two mediums where you'd normally reach for a large, rather than ordering extra from another ward. Two mediums with a good overlap will do the same job on most of what we are dressing this week, and if you aren't sure it will, come and look at it with me rather than leaving it. Nobody delays a dressing over this — a wound that needs doing gets done today, with what we have. And please don't ring round the other wards. They are short too, we would be moving the problem rather than solving it, and it makes the real figure invisible to procurement. I have reported this morning's actual usage and Thursday's order has been increased to match it."
     },
     "guidanceNote": "Listen past the problem to the instruction; 'rather than ordering extra from another ward' rejects one distractor and points to the medium-dressing workaround."
   },
@@ -566,7 +566,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "From next Monday we're replacing all the old volumetric pumps with the new touchscreen model. The clinical difference you'll notice most is that the new pumps lock the rate once you confirm it, so you'll have to press the unlock key before any adjustment. Please don't try to force the dial as there isn't one anymore."
+      "audioScript": "From next Monday we're replacing all the old volumetric pumps with the new touchscreen model. The clinical difference you'll notice most is that the new pumps lock the rate once you confirm it, so you'll have to press the unlock key before any adjustment. Please don't try to force the dial as there isn't one anymore. It records everything the old one did and rather more — the rate, every change to it, and who was logged in when it happened, all retrievable for forty-eight hours. So the lock isn't there to slow you down. It is there because the commonest error on the old pumps was a rate nudged by a sleeve or a bedrail with nobody knowing. The unlock key is the one at the bottom right, held for two seconds, and it times out again after thirty. Practise it before you need it at three in the morning with a family watching."
     },
     "guidanceNote": "Focus on the speaker's emphasised 'difference you'll notice most'; the locking behaviour is the key change, not the removed dial."
   },
@@ -609,7 +609,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Before you start your shift, a quick reminder about the new dressing trolley protocol. From this week, all trolleys must be wiped down with the chlorine-based solution both before and after each procedure, not just at the end of the day. The alcohol wipes we used previously are now only for the patient's skin, not for the trolley surfaces. If you can't find the chlorine wipes, they're being stored in the locked cupboard by the sluice room, and the code is on the whiteboard."
+      "audioScript": "Before you start your shift, a quick reminder about the new dressing trolley protocol. From this week, all trolleys must be wiped down with the chlorine-based solution both before and after each procedure, not just at the end of the day. The alcohol wipes we used previously are now only for the patient's skin, not for the trolley surfaces. If you can't find the chlorine wipes, they're being stored in the locked cupboard by the sluice room, and the code is on the whiteboard. Before as well as after is the part people forget, and it is the one that matters most: what is on that trolley now is not what you left on it. Chlorine needs contact time as well, so wipe it and let it dry rather than wiping and loading straight away. It is about a minute. If the cupboard is empty, tell me the same shift rather than falling back on the alcohol wipes."
     },
     "guidanceNote": "Watch for the contrast signalled by 'not just' — the speaker contradicts the old routine, so don't pick the option that matches the previous practice."
   },
@@ -652,7 +652,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Mr Okafor came back from theatre at two o'clock after a hip replacement. His observations have been stable, but he's reported his pain creeping up to seven out of ten in the last hour, so he's due for his next analgesia now rather than later. Everything else, including his wound site, looks fine."
+      "audioScript": "Mr Okafor came back from theatre at two o'clock after a hip replacement. His observations have been stable, but he's reported his pain creeping up to seven out of ten in the last hour, so he's due for his next analgesia now rather than later. Everything else, including his wound site, looks fine. It is the direction that concerns me rather than the number. It was three at three o'clock, five at four and seven now, on the same regime, and a score climbing like that after a hip is worth a proper look rather than only the next dose. His observations have been rock steady throughout and I have no concerns there, and the wound is dry with nothing through the dressing. Give the analgesia now, and if he isn't down to a four within the hour, that is the point to ask somebody to see him rather than waiting for the next round."
     },
     "guidanceNote": "Contrast words like 'but' often introduce the real issue; here the stable observations are set against pain 'creeping up'."
   },

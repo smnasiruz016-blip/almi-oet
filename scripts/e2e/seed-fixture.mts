@@ -724,9 +724,16 @@ export async function seedFixture(url: string): Promise<Fixture> {
     // and the "before" reproduces the 91 already written here, which is what makes
     // the "after" trustworthy. LEGACY_SHORT's LISTENING_PART_B section went 32 -> 15
     // across the same commit and the debt fell 67 -> 50.
+    //
+    // LISTENING_PART_B moved 108 -> 123 on 8 September 2026, and this completes it.
+    // The fifteen remaining legacy stubs - 37 to 84 words against a 140-165 law -
+    // were written up into the law, so they entered the pool; none left it. Measured
+    // with this file's own predicate, and the "before" reproduces the 108 already
+    // written here. LISTENING_PART_B now has NO rows in LEGACY_SHORT at all and its
+    // section header is gone: 123 live items, 123 meeting their law, none short.
     for (const [part, pool, want] of [
       ["LISTENING_PART_A", listeningAFull, 18],
-      ["LISTENING_PART_B", listeningBFull, 108],
+      ["LISTENING_PART_B", listeningBFull, 123],
       ["LISTENING_PART_C", listeningCFull, 17],
     ] as const) {
       if (pool.length !== want) {
@@ -816,6 +823,33 @@ export async function seedFixture(url: string): Promise<Fixture> {
       listeningA,
       // Part B carries ONE question, so the key and a known-wrong option cannot
       // be walked on the same item: the second item takes the wrong option.
+     /**
+      * 🔴 listeningBFull[0] MOVED ON 8 SEPTEMBER 2026, AND IT IS SAFE HERE FOR A
+      * REASON THAT DOES NOT HOLD FOR PART A ABOVE.
+      *
+      * It was lis-b-f1-discharge-concern and is now
+      * lis-b-alert-about-a-norovirus-outbreak. The fifteen legacy stubs live in
+      * listening_b.ts and sort ahead of the f1 items. At 37-84 words they failed
+      * the pool predicate, so index 0 fell through to the first item that passed.
+      * Writing them into the law put all fifteen into the pool AT THE FRONT, and
+      * the old target now sits at index 15.
+      *
+      * WHY THIS IS NOT THE PART A BUG. That walk needs a property the pool does
+      * not guarantee — a gap carrying an authored variant — so a new first place
+      * could be unwalkable, and on 7 September it was. listeningMcqWalk with
+      * withWrong:false throws on exactly two things: no questions at all, and a
+      * question with no key. Membership in listeningBFull already requires
+      * exactly one question with three options, and all 123 Part B items carry a
+      * key — measured on 8 September, 0 with no question and 0 keyless. Every
+      * member of this pool is walkable, so index 0 cannot land on an item the
+      * walk refuses.
+      *
+      * PINNING A SLUG WAS CONSIDERED AND REJECTED. The Part A note above is
+      * explicit that its target is "chosen by RUNNING listeningAWalk, not by a
+      * second reading of what it needs"; a hardcoded slug is that second reading,
+      * and it goes stale the day the item is retired. The index stays. What
+      * changes is that the move is written down instead of silent.
+      */
       listeningB: listeningMcqWalk(listeningBFull[0], "listening-part-b", false),
       listeningC: listeningMcqWalk(listeningCFull[0], "listening-part-c", true),
       writing: aiWalk(items, "WRITING_LETTER", "writing-letter"),
