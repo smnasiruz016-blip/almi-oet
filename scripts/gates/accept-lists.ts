@@ -1330,16 +1330,27 @@ const A11_EXEMPT_VARIANT: VariantExemption[] = [
  * is `night-time` acceptable where the text only ever says "at night"? — is
  * recorded here because A12 can no longer see it, and the row would fail the
  * build if it were left in.
+ *
+ * 🔴 THE SECOND ROW WAS DELETED ON 8 SEPTEMBER 2026, AND THIS ONE WAS ANSWERED.
+ * `occupational therapist` on "OET Form 2 · Reading Part A — Preventing falls in
+ * older adults" stopped failing because the OWNER RULED on it, which is the
+ * opposite of how the night-time row above stopped failing.
+ *
+ * The ruling: give the TEXT the word; do not change the answer, because "Who can
+ * assess the home for hazards?" cannot be answered by "occupational-therapy".
+ * Text D of that item gained a sentence naming an occupational therapist, so the
+ * seeded answer is now findable in the source the learner reads.
+ *
+ * The existing sentence was NOT touched: q18 quotes it verbatim ("An
+ * occupational-therapy home assessment can identify and ___ hazards"), and
+ * fixing one gate by breaking another is not a fix. Both spellings now appear,
+ * each answering its own question.
+ *
+ * The list is now empty. That is the state this list is supposed to reach — it
+ * is a TO-DO, not an allowance — and it stays declared so the next open question
+ * has somewhere to go.
  */
-const A12_PENDING_DECISION: VariantExemption[] = [
-  {
-    item: "rea-a-f2-preventing-falls-in-older-adults",
-    gap: "an occupational therapist",
-    variant: "occupational therapist",
-    source: "pending-decision",
-    why: "the text prints 'occupational-therapy', never 'therapist' — and this is the item's own answer, not just a variant",
-  },
-];
+const A12_PENDING_DECISION: VariantExemption[] = [];
 
 const A12_EXEMPT_VARIANT: VariantExemption[] = [
   {

@@ -113,9 +113,24 @@ async function hardNewlines(page: Page): Promise<{ inParagraph: number; atBullet
 
 test.describe.configure({ mode: "serial" });
 
+/**
+ * 🔴 THE PART C HALVES MOVED ON 8 SEPTEMBER 2026, IN OPPOSITE DIRECTIONS.
+ *
+ * GAP-041 removed the six form-tagged Reading Part C items from
+ * scripts/retire/reading-part-c-legacy.json, because retiring them left every
+ * OET form short of its Part C and stopped a full mock from starting at all.
+ * The bank is unchanged at 42; what moved is which half each item is in:
+ *
+ *     legacy       21 -> 15   (-6)
+ *     full length  21 -> 27   (+6)
+ *
+ * A blanket 21 -> 15 across this spec and retire-part-c.spec.ts would be WRONG:
+ * the two halves do not move together, and 15 + 27 = 42 is the arithmetic that
+ * proves nothing else changed.
+ */
 test.describe("Reading Part C, full length, in a real browser", () => {
   test("the article renders in full at 1360px, with four options on the page", async ({ page }) => {
-    expect(fixture.partCFullLengthTitles, "the twenty-one must be seeded").toHaveLength(21);
+    expect(fixture.partCFullLengthTitles, "the twenty-seven must be seeded").toHaveLength(27);
     await signIn(page);
     await openByTitle(page, C.title);
 

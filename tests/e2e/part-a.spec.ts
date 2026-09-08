@@ -55,6 +55,8 @@ type Fixture = {
   partA: PartAWalk;
   partAFullLengthTitles: string[];
   partALegacyTitles: string[];
+  /** Bullet lines in the walked item's own source — see seed-fixture.mts. */
+  partABulletLines: number;
 };
 
 const fixture: Fixture = JSON.parse(readFileSync(process.env.E2E_FIXTURE_FILE!, "utf8"));
@@ -196,7 +198,11 @@ test.describe("Reading Part A, full length, in a real browser", () => {
           .filter((l) => l.startsWith("- ")),
       )
     ) as string[];
-    expect(bullets.length, "the two bullet lists must still be bullet lists").toBeGreaterThan(2);
+    // The expectation comes from the item the walk actually opened, not from a
+    // number pinned to whichever item sorted first — see partABulletLines.
+    expect(bullets.length, "every bullet line in the source must render as a bullet").toBe(
+      fixture.partABulletLines,
+    );
     for (const b of bullets) {
       expect(b.slice(2), `a bullet list ran together onto one line: ${b.slice(0, 80)}`).not.toMatch(
         / - /,

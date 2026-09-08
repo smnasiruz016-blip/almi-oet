@@ -33,6 +33,28 @@ type SeedItem = { taskType: string; title: string; payload: unknown };
 const ALL = GEN_ITEMS as unknown as SeedItem[];
 const RETIRE_DIR = join(process.cwd(), "scripts", "retire");
 
+/**
+ * 🔴 THE THREE `going` NUMBERS MOVED 18/33/21 -> 15/15/15 ON 8 SEPTEMBER 2026,
+ * AND THE ARITHMETIC IS THE PROOF THAT NOTHING ELSE CAME OUT.
+ *
+ * GAP-041 removed the 27 form-tagged READING items from the three retire lists,
+ * because retiring them is what left every OET form short of its Reading half
+ * and stopped a full mock from starting at all: chooseCompleteForm() counts
+ * only active rows and found 0/1 Part A, 0/6 Part B, 0/2 Part C on all three
+ * forms.
+ *
+ * Each list dropped by EXACTLY its per-form count, and all three landed on the
+ * same 15:
+ *
+ *     Part A  18 -> 15   (-3,  one per form)
+ *     Part B  33 -> 15   (-18, six per form)
+ *     Part C  21 -> 15   (-6,  two per form)
+ *     total removed 27
+ *
+ * A form needs A x1, B x6, C x2. Three forms give 3 + 18 + 6 = 27. If any of
+ * the three lists is not 15, something other than the form items was removed
+ * and this test should go red rather than be re-pinned.
+ */
 const PARTS = [
   {
     taskType: "READING_PART_A",
@@ -40,7 +62,7 @@ const PARTS = [
     meetsLaw: isFullLengthPartA,
     law: "885-1009 words over four texts and twenty questions",
     seeded: 48,
-    going: 18,
+    going: 15,
   },
   {
     taskType: "READING_PART_B",
@@ -48,7 +70,7 @@ const PARTS = [
     meetsLaw: isFullLengthPartB,
     law: "136-155 words",
     seeded: 63,
-    going: 33,
+    going: 15,
   },
   {
     taskType: "READING_PART_C",
@@ -56,7 +78,7 @@ const PARTS = [
     meetsLaw: isFullLengthPartC,
     law: "653-836 words with eight questions of four options",
     seeded: 42,
-    going: 21,
+    going: 15,
   },
 ] as const;
 
