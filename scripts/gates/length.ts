@@ -271,7 +271,7 @@ const LEGACY_SHORT: string[] = [
   "lis-a-f1-dietitian-consultation-type-2-diabetes", // 623 words
   "lis-a-f2-occupational-therapy-home-visit-post-stroke", // 614 words
   "lis-a-f3-midwife-antenatal-booking-visit", // 625 words
-  // ── LISTENING_PART_B · 32 item(s), law 140-165 words — 32 short of the floor ──
+  // ── LISTENING_PART_B · 15 item(s), law 140-165 words — 15 short of the floor ──
   "lis-b-alert-about-a-norovirus-outbreak", // 53 words
   "lis-b-arranging-a-complex-discharge", // 51 words
   "lis-b-changes-to-the-weekend-roster", // 51 words
@@ -287,23 +287,6 @@ const LEGACY_SHORT: string[] = [
   "lis-b-switching-to-a-new-infusion-pump-model", // 56 words
   "lis-b-updated-dressing-trolley-protocol", // 84 words
   "lis-b-verbal-handover-for-a-post-operative-patient", // 53 words
-  "lis-b-f1-hand-hygiene-audit", // 129 words
-  "lis-b-f1-x-ray-result", // 124 words
-  "lis-b-f1-home-exercises", // 122 words
-  "lis-b-f1-infusion-pump-training", // 129 words
-  "lis-b-f1-handling-results", // 130 words
-  "lis-b-f2-low-sodium", // 129 words
-  "lis-b-f2-gloves-and-hand-hygiene", // 128 words
-  "lis-b-f2-nil-by-mouth", // 119 words
-  "lis-b-f2-paracetamol-order", // 125 words
-  "lis-b-f2-escalating-concern", // 130 words
-  "lis-b-f2-chest-pain-at-reception", // 122 words
-  "lis-b-f3-sharps-bins", // 124 words
-  "lis-b-f3-transfusion-check", // 129 words
-  "lis-b-f3-timely-notes", // 126 words
-  "lis-b-f3-oxygen-as-a-drug", // 123 words
-  "lis-b-f3-interpreters", // 119 words
-  "lis-b-f3-red-wristband", // 124 words
   // ── LISTENING_PART_C · 19 item(s), law 780-880 words — 19 short of the floor ──
   "lis-c-antibiotic-stewardship-and-the-48-hour-review", // 702 words
   "lis-c-building-a-culture-of-patient-safety-on-the-ward", // 704 words

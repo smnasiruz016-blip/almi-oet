@@ -716,9 +716,17 @@ export async function seedFixture(url: string): Promise<Fixture> {
     //
     // LEGACY_SHORT's LISTENING_PART_C section went 21 -> 20 across the same
     // commit, and no bound anywhere was touched to get here.
+    //
+    // LISTENING_PART_B moved 91 -> 108 on 8 September 2026. Seventeen items that
+    // were 119-130 words against a 140-165 law were topped up into the law and
+    // therefore entered the pool; none left it. Measured with this file's own
+    // predicate - 140 <= words <= 165, exactly one question, three options each -
+    // and the "before" reproduces the 91 already written here, which is what makes
+    // the "after" trustworthy. LEGACY_SHORT's LISTENING_PART_B section went 32 -> 15
+    // across the same commit and the debt fell 67 -> 50.
     for (const [part, pool, want] of [
       ["LISTENING_PART_A", listeningAFull, 18],
-      ["LISTENING_PART_B", listeningBFull, 91],
+      ["LISTENING_PART_B", listeningBFull, 108],
       ["LISTENING_PART_C", listeningCFull, 17],
     ] as const) {
       if (pool.length !== want) {
