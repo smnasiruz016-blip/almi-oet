@@ -87,10 +87,21 @@ const kept = { scoredUrl: "", inProgressUrl: "", scoredTitle: "", inProgressTitl
 
 test.describe.configure({ mode: "serial" });
 
-test.describe("retiring the twenty-one legacy Reading Part C articles", () => {
-  test("a learner has work against two of the twenty-one", async ({ page }) => {
-    expect(fixture.partCLegacyTitles.length).toBe(21);
-    expect(fixture.partCFullLengthTitles.length).toBe(21);
+/**
+ * 🔴 THE PART C HALVES MOVED ON 8 SEPTEMBER 2026, IN OPPOSITE DIRECTIONS.
+ *
+ * GAP-041 removed the six form-tagged Part C items from the retire list:
+ *
+ *     legacy       21 -> 15   (-6)   <- what the retire hides
+ *     full length  21 -> 27   (+6)   <- what the learner is left with
+ *
+ * 15 + 27 = 42, the bank unchanged. The dry run's "42 active now -> 27 after"
+ * is the DATABASE's own count and moves with the list, not a restatement of it.
+ */
+test.describe("retiring the fifteen legacy Reading Part C articles", () => {
+  test("a learner has work against two of the fifteen", async ({ page }) => {
+    expect(fixture.partCLegacyTitles.length).toBe(15);
+    expect(fixture.partCFullLengthTitles.length).toBe(27);
     await signIn(page);
 
     const titles = await listTitles(page);
@@ -112,7 +123,7 @@ test.describe("retiring the twenty-one legacy Reading Part C articles", () => {
     const going = (JSON.parse(readFileSync(RETIRE_LIST, "utf8")) as { title: string }[]).map(
       (r) => r.title,
     );
-    expect(going, "the checked-in Part C retire list").toHaveLength(21);
+    expect(going, "the checked-in Part C retire list").toHaveLength(15);
     for (const t of going) {
       expect(titles, `${t} is named for retirement but the library does not offer it`).toContain(t);
     }
@@ -138,14 +149,14 @@ test.describe("retiring the twenty-one legacy Reading Part C articles", () => {
     );
   });
 
-  test("the real retire script hides exactly the twenty-one", async () => {
+  test("the real retire script hides exactly the fifteen", async () => {
     const url = process.env.E2E_DATABASE_URL;
     expect(url, "the runner must hand this spec the throwaway database URL").toBeTruthy();
     const list = JSON.parse(readFileSync(RETIRE_LIST, "utf8")) as {
       taskType: string;
       title: string;
     }[];
-    expect(list, "the retire list must be the checked-in one").toHaveLength(21);
+    expect(list, "the retire list must be the checked-in one").toHaveLength(15);
     for (const r of list) expect(r.taskType).toBe("READING_PART_C");
     // The list is no longer compared with fixture.partCLegacyTitles — the fixture
     // now derives those FROM this file, so the comparison could not fail. What
@@ -161,7 +172,7 @@ test.describe("retiring the twenty-one legacy Reading Part C articles", () => {
     });
     expect(dry.status, `dry run failed: ${dry.stderr}`).toBe(0);
     expect(dry.stdout).toContain("DRY RUN");
-    expect(dry.stdout).toMatch(/READING_PART_C: 42 active now -> 21 after/);
+    expect(dry.stdout).toMatch(/READING_PART_C: 42 active now -> 27 after/);
 
     const confirmed = spawnSync(`npx tsx scripts/retire-fragments.mts ${RETIRE_LIST} --confirm`, {
       shell: true,
@@ -169,19 +180,19 @@ test.describe("retiring the twenty-one legacy Reading Part C articles", () => {
       env: { ...process.env, DATABASE_URL: url, DATABASE_URL_UNPOOLED: url },
     });
     expect(confirmed.status, `retire failed: ${confirmed.stderr}`).toBe(0);
-    expect(confirmed.stdout).toMatch(/RETIRE complete — 21 row\(s\) updated, 0 deleted/);
+    expect(confirmed.stdout).toMatch(/RETIRE complete — 15 row\(s\) updated, 0 deleted/);
     console.log(
       "[e2e] Part C retire: " +
         (confirmed.stdout.match(/\[retire\] READING_PART_C:.*/) ?? ["(no line)"])[0].trim(),
     );
   });
 
-  test("the library offers only the twenty-one full-length articles, ABOVE the floor", async ({
+  test("the library offers only the twenty-seven full-length articles, ABOVE the floor", async ({
     page,
   }) => {
     await signIn(page);
     const titles = await listTitles(page);
-    expect(titles).toHaveLength(21);
+    expect(titles).toHaveLength(27);
     for (const t of fixture.partCLegacyTitles) {
       expect(titles, `${t} is still being offered`).not.toContain(t);
     }
@@ -230,7 +241,7 @@ test.describe("retiring the twenty-one legacy Reading Part C articles", () => {
     await shot(page, "44-part-c-in-progress-finished-after-retire.png");
   });
 
-  test("--restore puts all twenty-one back", async ({ page }) => {
+  test("--restore puts all fifteen back", async ({ page }) => {
     const url = process.env.E2E_DATABASE_URL!;
     const back = spawnSync(
       `npx tsx scripts/retire-fragments.mts ${RETIRE_LIST} --restore --confirm`,
@@ -241,7 +252,7 @@ test.describe("retiring the twenty-one legacy Reading Part C articles", () => {
       },
     );
     expect(back.status, `restore failed: ${back.stderr}`).toBe(0);
-    expect(back.stdout).toMatch(/RESTORE complete — 21 row\(s\) updated, 0 deleted/);
+    expect(back.stdout).toMatch(/RESTORE complete — 15 row\(s\) updated, 0 deleted/);
 
     await signIn(page);
     expect(await listTitles(page)).toHaveLength(42);

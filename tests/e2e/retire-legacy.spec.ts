@@ -112,8 +112,22 @@ const retired = { scoredUrl: "", inProgressUrl: "", scoredTitle: "", inProgressT
 
 test.describe.configure({ mode: "serial" });
 
-test.describe("retiring the eighteen legacy Reading Part A items", () => {
-  test("a learner has real work against two of the eighteen — one scored, one in progress", async ({
+/**
+ * 🔴 THE TWO RETIRE LISTS SHRANK ON 8 SEPTEMBER 2026.
+ *
+ * GAP-041 removed the form-tagged READING items from the retire lists —
+ * Part A -3, Part B -18 — because retiring them stopped a full mock from
+ * starting: chooseCompleteForm() counts only active rows and found 0/1 Part A
+ * and 0/6 Part B on all three forms.
+ *
+ *     reading-part-a-legacy.json  18 -> 15   (-3,  one per form)
+ *     reading-part-b-legacy.json  33 -> 15   (-18, six per form)
+ *
+ * The retire and restore row counts follow the lists, because the script
+ * reports what it actually touched.
+ */
+test.describe("retiring the fifteen legacy Reading Part A items", () => {
+  test("a learner has real work against two of the fifteen — one scored, one in progress", async ({
     page,
   }) => {
     expect(
@@ -151,12 +165,12 @@ test.describe("retiring the eighteen legacy Reading Part A items", () => {
     await shot(page, "20-before-retire-in-progress.png");
   });
 
-  test("the real retire script hides exactly the eighteen, and refuses nothing else", async () => {
+  test("the real retire script hides exactly the fifteen, and refuses nothing else", async () => {
     const url = process.env.E2E_DATABASE_URL;
     expect(url, "the runner must hand this spec the throwaway database URL").toBeTruthy();
 
     const list = JSON.parse(readFileSync(RETIRE_LIST, "utf8")) as { title: string }[];
-    expect(list, "the retire list must be the checked-in one").toHaveLength(18);
+    expect(list, "the retire list must be the checked-in one").toHaveLength(15);
 
     // DRY RUN FIRST, and it must write nothing.
     const dry = spawnSync(`npx tsx scripts/retire-fragments.mts ${RETIRE_LIST}`, {
@@ -189,14 +203,14 @@ test.describe("retiring the eighteen legacy Reading Part A items", () => {
       env: { ...process.env, DATABASE_URL: url, DATABASE_URL_UNPOOLED: url },
     });
     expect(confirmed.status, `retire failed: ${confirmed.stderr}`).toBe(0);
-    expect(confirmed.stdout).toMatch(/RETIRE complete — 18 row\(s\) updated, 0 deleted/);
+    expect(confirmed.stdout).toMatch(/RETIRE complete — 15 row\(s\) updated, 0 deleted/);
     console.log(
       "[e2e] retire: " +
         (confirmed.stdout.match(/\[retire\] READING_PART_A:.*/) ?? ["(no line)"])[0].trim(),
     );
   });
 
-  test("the library now offers only the full-length items, and none of the eighteen", async ({ page }) => {
+  test("the library now offers only the full-length items, and none of the fifteen", async ({ page }) => {
     await signIn(page);
     const titles = await listTitles(page);
     expect(titles).toHaveLength(fixture.partAFullLengthTitles.length);
@@ -274,7 +288,7 @@ test.describe("retiring the eighteen legacy Reading Part A items", () => {
     console.log(`[e2e] after the retire the chain offers: ${next}`);
   });
 
-  test("--restore puts all eighteen back, so the retire is reversible", async ({ page }) => {
+  test("--restore puts all fifteen back, so the retire is reversible", async ({ page }) => {
     const url = process.env.E2E_DATABASE_URL!;
     const back = spawnSync(
       `npx tsx scripts/retire-fragments.mts ${RETIRE_LIST} --restore --confirm`,
@@ -285,7 +299,7 @@ test.describe("retiring the eighteen legacy Reading Part A items", () => {
       },
     );
     expect(back.status, `restore failed: ${back.stderr}`).toBe(0);
-    expect(back.stdout).toMatch(/RESTORE complete — 18 row\(s\) updated, 0 deleted/);
+    expect(back.stdout).toMatch(/RESTORE complete — 15 row\(s\) updated, 0 deleted/);
 
     await signIn(page);
     const titles = await listTitles(page);
@@ -300,12 +314,12 @@ test.describe("retiring the eighteen legacy Reading Part A items", () => {
 
 const retiredB = { scoredUrl: "", inProgressUrl: "", scoredTitle: "", inProgressTitle: "" };
 
-test.describe("retiring the thirty-three legacy Reading Part B items", () => {
-  test("a learner has real work against two of the thirty-three", async ({ page }) => {
+test.describe("retiring the fifteen legacy Reading Part B items", () => {
+  test("a learner has real work against two of the fifteen", async ({ page }) => {
     // The legacy 33 are a CLOSED set — that number is a fact about the old bank
     // and may not drift. The full-length count is not: it grew 15 -> 30 on
     // 4 September and will grow again, so it is checked against the floor.
-    expect(fixture.partBLegacyTitles.length).toBe(33);
+    expect(fixture.partBLegacyTitles.length).toBe(15);
     expect(fixture.partBFullLengthTitles.length).toBeGreaterThanOrEqual(BOOT_FLOOR);
     await signIn(page);
 
@@ -336,11 +350,11 @@ test.describe("retiring the thirty-three legacy Reading Part B items", () => {
     );
   });
 
-  test("the real retire script hides exactly the thirty-three", async () => {
+  test("the real retire script hides exactly the fifteen", async () => {
     const url = process.env.E2E_DATABASE_URL;
     expect(url, "the runner must hand this spec the throwaway database URL").toBeTruthy();
     const list = JSON.parse(readFileSync(RETIRE_LIST_B, "utf8")) as { title: string }[];
-    expect(list, "the retire list must be the checked-in one").toHaveLength(33);
+    expect(list, "the retire list must be the checked-in one").toHaveLength(15);
 
     const dry = spawnSync(`npx tsx scripts/retire-fragments.mts ${RETIRE_LIST_B}`, {
       shell: true,
@@ -371,7 +385,7 @@ test.describe("retiring the thirty-three legacy Reading Part B items", () => {
       env: { ...process.env, DATABASE_URL: url, DATABASE_URL_UNPOOLED: url },
     });
     expect(confirmed.status, `retire failed: ${confirmed.stderr}`).toBe(0);
-    expect(confirmed.stdout).toMatch(/RETIRE complete — 33 row\(s\) updated, 0 deleted/);
+    expect(confirmed.stdout).toMatch(/RETIRE complete — 15 row\(s\) updated, 0 deleted/);
     console.log(
       "[e2e] Part B retire: " +
         (confirmed.stdout.match(/\[retire\] READING_PART_B:.*/) ?? ["(no line)"])[0].trim(),
@@ -439,7 +453,7 @@ test.describe("retiring the thirty-three legacy Reading Part B items", () => {
     await shot(page, "26-part-b-in-progress-finished-after-retire.png");
   });
 
-  test("--restore puts all thirty-three back", async ({ page }) => {
+  test("--restore puts all fifteen back", async ({ page }) => {
     const url = process.env.E2E_DATABASE_URL!;
     const back = spawnSync(
       `npx tsx scripts/retire-fragments.mts ${RETIRE_LIST_B} --restore --confirm`,
@@ -450,7 +464,7 @@ test.describe("retiring the thirty-three legacy Reading Part B items", () => {
       },
     );
     expect(back.status, `restore failed: ${back.stderr}`).toBe(0);
-    expect(back.stdout).toMatch(/RESTORE complete — 33 row\(s\) updated, 0 deleted/);
+    expect(back.stdout).toMatch(/RESTORE complete — 15 row\(s\) updated, 0 deleted/);
 
     await signIn(page);
     const titles = await listTitles(page, LIBRARY_B);
@@ -481,15 +495,15 @@ test("the retire list this walk used is the file production will be pointed at",
     taskType: string;
     title: string;
   }[];
-  expect(list).toHaveLength(18);
+  expect(list).toHaveLength(15);
   for (const r of list) expect(r.taskType).toBe("READING_PART_A");
-  expect(new Set(list.map((r) => r.title)).size, "a duplicated row").toBe(18);
+  expect(new Set(list.map((r) => r.title)).size, "a duplicated row").toBe(15);
 
   const listB = JSON.parse(readFileSync(RETIRE_LIST_B, "utf8")) as {
     taskType: string;
     title: string;
   }[];
-  expect(listB).toHaveLength(33);
+  expect(listB).toHaveLength(15);
   for (const r of listB) expect(r.taskType).toBe("READING_PART_B");
-  expect(new Set(listB.map((r) => r.title)).size, "a duplicated row").toBe(33);
+  expect(new Set(listB.map((r) => r.title)).size, "a duplicated row").toBe(15);
 });

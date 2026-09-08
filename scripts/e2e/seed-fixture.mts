@@ -77,6 +77,23 @@ export type Fixture = {
    *  walked here before it is run there. Titles only; the walk reads the
    *  rendered list for everything it asserts. */
   partAFullLengthTitles: string[];
+  /** 🔴 HOW MANY BULLET LINES THE WALKED PART A ITEM ACTUALLY CARRIES, counted
+   *  from its own source bodies.
+   *
+   *  part-a.spec.ts asserts that a bullet list still renders as a bullet list —
+   *  the regression PR #36 repaired, where a list flattened onto one line. That
+   *  assertion used to read `toBeGreaterThan(2)`, which was true of whichever
+   *  item sorted first on the day it was written and of nothing else. On
+   *  8 September 2026 GAP-041 returned the three form-tagged Part A items to the
+   *  pool, the walk moved to "OET Form 1 · Reading Part A — Preventing pressure
+   *  injuries", which carries no bullet lists at all, and the spec went red
+   *  against a number that was never about the law.
+   *
+   *  The count is taken from the item the walk actually opens, so it follows the
+   *  walk instead of going stale behind it. A zero is reported rather than
+   *  hidden: it means the ran-together check has nothing to bite on for this
+   *  item, which is a coverage fact somebody should see. */
+  partABulletLines: number;
   partALegacyTitles: string[];
   /** Reading Part B, on the same terms: the fifteen written to the measured
    *  136-155 law, and the 33 legacy extracts on their way out. */
@@ -827,6 +844,11 @@ export async function seedFixture(url: string): Promise<Fixture> {
       taskSlug: "reading-part-b",
       seededTitles: seeded.map((s) => s.title),
       partA,
+      // Counted from the chosen item's OWN bodies — see the field's comment.
+      partABulletLines: ((partAItem.payload as { texts?: { body?: string }[] }).texts ?? [])
+        .flatMap((t) => (t.body ?? "").split("\n"))
+        .map((l) => l.trim())
+        .filter((l) => l.startsWith("- ")).length,
       partAFullLengthTitles: partAFull.map((i) => i.title),
       partALegacyTitles: partALegacy.map((i) => i.title),
       partB: partBWalk(partBFull[0]),

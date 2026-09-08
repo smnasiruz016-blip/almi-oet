@@ -659,7 +659,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "When administering a controlled drug, two registered staff must independently check the drug, the dose and the patient, and both must sign the register at the time of administration — not before preparing it and not afterwards when the round is finished. The second checker is not a witness to a signature; they are performing the check themselves, and signing to say so. Any discrepancy in the running balance must be reported to pharmacy immediately, however small, and the register must not be altered to make the figures agree. Where a dose is prepared but not given, the waste must be witnessed and recorded at the time. Cupboard keys remain with the nurse in charge and are handed over person to person at the end of each shift."
+          "body": "When administering a controlled drug, two registered staff must independently check the drug, the dose and the patient, and both must sign the register at the time of administration — not before preparing it and not afterwards when the round is finished. The second checker is not a witness to a signature; they are performing the check themselves, and signing to say so. Any discrepancy in the running balance must be reported to pharmacy immediately, however small, and the register must not be altered to make the figures agree. Where a dose is prepared but not given, the waste must be witnessed and recorded at the time. Cupboard keys remain with the nurse in charge and are handed over person to person at the end of each shift. At shift change two staff count the stock against the register and record the balance, whether or not anything was given."
         }
       ],
       "questions": [
@@ -701,7 +701,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Following two needlestick incidents this quarter, sharps bins must now be replaced when three-quarters full, not when completely full. Both incidents happened while staff were pushing an item into a bin that had no room left in it. Assemble bins correctly, sign and date the label when the bin is opened, and close the temporary closure between uses. Needles must never be resheathed, and a sharps bin must never be carried by its lid. Take the bin to the point of use rather than carrying an exposed sharp across the room. Report any injury the same day, whether or not the source is known, and attend occupational health before the end of your shift. The reporting form is on the intranet under Incidents."
+          "body": "Following two needlestick incidents this quarter, sharps bins must now be replaced when three-quarters full, not when completely full. Both incidents happened while staff were pushing an item into a bin that had no room left in it. Assemble bins correctly, sign and date the label when the bin is opened, and close the temporary closure between uses. Needles must never be resheathed, and a sharps bin must never be carried by its lid. Take the bin to the point of use rather than carrying an exposed sharp across the room. Report any injury the same day, whether or not the source is known, and attend occupational health before the end of your shift. The reporting form is on the intranet under Incidents. A bin at the line is closed and locked at once, not left for the next person to judge, and replaced before the round starts."
         }
       ],
       "questions": [
@@ -743,7 +743,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Alcohol hand rub is suitable for most clinical situations and is quicker and kinder to the skin than washing, but it is not effective against spores. Where a patient has diarrhoea that may be due to C. difficile, soap and water must be used, because the physical action of washing and drying removes spores that rub cannot kill. This applies on entering and leaving the room, and after removing gloves — gloves are not a substitute for either method. Rub also performs poorly on hands that are visibly soiled; wash first, then rub if you wish. Dry thoroughly with paper towels, since organisms transfer far more readily from damp hands. Wall dispensers are checked daily, and empty ones should be reported to housekeeping rather than left."
+          "body": "Alcohol hand rub is suitable for most clinical situations and is quicker and kinder to the skin than washing, but it is not effective against spores. Where a patient has diarrhoea that may be due to C. difficile, soap and water must be used, because the physical action of washing and drying removes spores that rub cannot kill. This applies on entering and leaving the room, and after removing gloves — gloves are not a substitute for either method. Rub also performs poorly on hands that are visibly soiled; wash first, then rub if you wish. Dry thoroughly with paper towels, since organisms transfer far more readily from damp hands. Wall dispensers are checked daily, and empty ones should be reported to housekeeping rather than left. Rings and wrist jewellery keep hands from being cleaned properly by either method, so remove them before you start rather than working around them."
         }
       ],
       "questions": [
@@ -785,7 +785,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Store below 25 degrees C in the original carton, away from direct sunlight. Once opened, use within 28 days and discard any remaining contents, even if the carton's printed expiry date has not passed. Write the date of opening on the carton at the time you open it. Do not freeze; a product that has frozen must not be used even after thawing, and should be returned to pharmacy rather than placed in the ward fridge. Keep out of the sight and reach of children. If the solution has changed colour or contains visible particles, do not use it. Return unused or expired stock to pharmacy for disposal; medicines must not be placed in general waste or in the sharps bin."
+          "body": "Store below 25 degrees C in the original carton, away from direct sunlight. Once opened, use within 28 days and discard any remaining contents, even if the carton's printed expiry date has not passed. Write the date of opening on the carton at the time you open it. Do not freeze; a product that has frozen must not be used even after thawing, and should be returned to pharmacy rather than placed in the ward fridge. Keep out of the sight and reach of children. If the solution has changed colour or contains visible particles, do not use it. Return unused or expired stock to pharmacy for disposal; medicines must not be placed in general waste or in the sharps bin. If the date of opening cannot be established from the carton, treat the container as expired and return it, rather than estimating it from the ward's own records."
         }
       ],
       "questions": [
@@ -827,7 +827,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "To protect patients with weakened immune systems, visitors who have had sickness or diarrhoea should not visit until they have been free of symptoms for 48 hours. This applies even if the visitor feels perfectly well the following morning; the period is counted from the last episode, not from the last time you felt unwell. Please clean your hands on entering and leaving the ward, and again on leaving the bed space. Fresh flowers are not permitted on this ward, as the water is a reservoir for organisms. Visiting is limited to two people at a bedside at any one time, so that staff can reach the patient quickly. If you are unsure whether you should visit, please speak to the nurse in charge before entering."
+          "body": "To protect patients with weakened immune systems, visitors who have had sickness or diarrhoea should not visit until they have been free of symptoms for 48 hours. This applies even if the visitor feels perfectly well the following morning; the period is counted from the last episode, not from the last time you felt unwell. Please clean your hands on entering and leaving the ward, and again on leaving the bed space. Fresh flowers are not permitted on this ward, as the water is a reservoir for organisms. Visiting is limited to two people at a bedside at any one time, so that staff can reach the patient quickly. If you are unsure whether you should visit, please speak to the nurse in charge before entering. Children under twelve may visit only with an adult who stays with them, and the same 48-hour rule applies to them."
         }
       ],
       "questions": [
@@ -869,7 +869,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Mr Lee is now apyrexial and his CRP is falling, so the team plans to switch his antibiotics from IV to oral today — provided he tolerates breakfast. He was nauseated overnight and had one small vomit at about two o'clock, which is why the switch was not made on the morning round. His cannula is to be removed once the switch is confirmed; please do not remove it before then. Observations remain four-hourly today and can drop to six-hourly tomorrow if he stays stable. Physiotherapy have seen him and are happy for him to mobilise with one person. His daughter has asked to speak to a doctor before discharge and her number is on the front of the notes."
+          "body": "Mr Lee is now apyrexial and his CRP is falling, so the team plans to switch his antibiotics from IV to oral today — provided he tolerates breakfast. He was nauseated overnight and had one small vomit at about two o'clock, which is why the switch was not made on the morning round. His cannula is to be removed once the switch is confirmed; please do not remove it before then. Observations remain four-hourly today and can drop to six-hourly tomorrow if he stays stable. Physiotherapy have seen him and are happy for him to mobilise with one person. His daughter has asked to speak to a doctor before discharge and her number is on the front of the notes. He has eaten nothing since yesterday evening, so a light breakfast is ordered for eight rather than the usual trolley, and somebody should sit with him while he tries it."
         }
       ],
       "questions": [
@@ -912,7 +912,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "A signature on a consent form is not consent in itself; it records that a conversation happened. Valid consent requires capacity, relevant information including the material risks and the reasonable alternatives, and voluntariness. If any of the three is missing, the signature is worthless, and the form will not protect anyone. Capacity is decision-specific: a patient may be able to consent to a dressing change and not to an operation on the same afternoon. Material risk means what this patient would want to know, not what a clinician assumes is important. Consent is also a process rather than a moment, and it can be withdrawn at any point, including after the form has been signed and the patient has been brought to theatre."
+          "body": "A signature on a consent form is not consent in itself; it records that a conversation happened. Valid consent requires capacity, relevant information including the material risks and the reasonable alternatives, and voluntariness. If any of the three is missing, the signature is worthless, and the form will not protect anyone. Capacity is decision-specific: a patient may be able to consent to a dressing change and not to an operation on the same afternoon. Material risk means what this patient would want to know, not what a clinician assumes is important. Consent is also a process rather than a moment, and it can be withdrawn at any point, including after the form has been signed and the patient has been brought to theatre. Where a patient cannot read the form, the discussion is recorded in the notes by the clinician who had it, in the words that were actually used."
         }
       ],
       "questions": [
@@ -954,7 +954,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Vaccines must be stored between 2 and 8 degrees C, and the maximum and minimum temperatures must be read and recorded twice daily, then the thermometer reset. If the fridge has been out of range, do not use or discard the stock — quarantine it, label it clearly 'do not use', and contact the immunisation lead. Some vaccines survive a brief excursion; others do not, and only the manufacturer's advice can settle it. Record how long the excursion lasted and how far outside the range it went, because both are needed for that advice. Do not store food, specimens or anything else in a vaccine fridge, and do not overfill it: air must circulate. The fridge must be plugged into a socket that cannot be switched off accidentally."
+          "body": "Vaccines must be stored between 2 and 8 degrees C, and the maximum and minimum temperatures must be read and recorded twice daily, then the thermometer reset. If the fridge has been out of range, do not use or discard the stock — quarantine it, label it clearly 'do not use', and contact the immunisation lead. Some vaccines survive a brief excursion; others do not, and only the manufacturer's advice can settle it. Record how long the excursion lasted and how far outside the range it went, because both are needed for that advice. Do not store food, specimens or anything else in a vaccine fridge, and do not overfill it: air must circulate. The fridge must be plugged into a socket that cannot be switched off accidentally. A vaccine out of range looks exactly like one that has not been, which is why appearance is never part of the decision."
         }
       ],
       "questions": [
@@ -996,7 +996,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Please stop using the word 'bedsore' in notes and in conversation with patients. Use 'pressure injury' and record the stage, the site and the date it was first observed. 'Bedsore' implies that only bed-bound people are affected, when prolonged sitting is an equally common cause, and patients in chairs are regularly missed as a result. The word also suggests, wrongly, that the injury is a consequence of being in bed rather than of pressure that was not relieved. Where an injury is present on admission, say so explicitly in the first entry; an injury that appears in the notes on day three with no earlier mention will be assumed to have developed here. Photographs require the patient's consent and go in the record, not on a personal phone."
+          "body": "Please stop using the word 'bedsore' in notes and in conversation with patients. Use 'pressure injury' and record the stage, the site and the date it was first observed. 'Bedsore' implies that only bed-bound people are affected, when prolonged sitting is an equally common cause, and patients in chairs are regularly missed as a result. The word also suggests, wrongly, that the injury is a consequence of being in bed rather than of pressure that was not relieved. Where an injury is present on admission, say so explicitly in the first entry; an injury that appears in the notes on day three with no earlier mention will be assumed to have developed here. Photographs require the patient's consent and go in the record, not on a personal phone. The same applies in referrals and discharge letters, where the wrong word travels on to every clinician who reads them afterwards."
         }
       ],
       "questions": [
@@ -1038,7 +1038,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "From next month the long-day shift includes a protected 30-minute break away from the ward. This is not optional, and it is not something to be given up when the ward is busy — it is on the busiest days that it matters most. Fatigue-related error is a patient-safety issue; breaks are part of safe practice, not a perk. The nurse in charge will allocate break times at the start of the shift and will hand over the relevant patients to a named colleague, so nobody has to find their own cover. If a break is genuinely missed, record it on the shift sheet with the reason. We are collecting that information because a pattern of missed breaks tells us the establishment is wrong, not that the staff are."
+          "body": "From next month the long-day shift includes a protected 30-minute break away from the ward. This is not optional, and it is not something to be given up when the ward is busy — it is on the busiest days that it matters most. Fatigue-related error is a patient-safety issue; breaks are part of safe practice, not a perk. The nurse in charge will allocate break times at the start of the shift and will hand over the relevant patients to a named colleague, so nobody has to find their own cover. If a break is genuinely missed, record it on the shift sheet with the reason. We are collecting that information because a pattern of missed breaks tells us the establishment is wrong, not that the staff are. Breaks are taken off the ward: a break at the desk with a bleep in front of you restores very little."
         }
       ],
       "questions": [
@@ -1080,7 +1080,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Label the sample at the bedside, in front of the patient, immediately after taking it — never in advance, never at the desk on the way back. A pre-labelled tube is the commonest cause of wrong-patient results, and the error is usually invisible: the sample reaches the laboratory looking entirely correct. Check the identity with the patient themselves wherever they are able to tell you, and against the wristband where they are not. Handwritten labels must include the full name, date of birth, hospital number, and the date and time of collection. Do not label a tube from a request form that is lying on the trolley. If you are interrupted between taking and labelling a sample, discard it and take another."
+          "body": "Label the sample at the bedside, in front of the patient, immediately after taking it — never in advance, never at the desk on the way back. A pre-labelled tube is the commonest cause of wrong-patient results, and the error is usually invisible: the sample reaches the laboratory looking entirely correct. Check the identity with the patient themselves wherever they are able to tell you, and against the wristband where they are not. Handwritten labels must include the full name, date of birth, hospital number, and the date and time of collection. Do not label a tube from a request form that is lying on the trolley. If you are interrupted between taking and labelling a sample, discard it and take another. Printed labels are no safer than handwritten ones if they were carried to the bedside for a different patient, so check the name on every label against the wristband."
         }
       ],
       "questions": [
@@ -1122,7 +1122,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Do not discharge Mr Ahmed until pharmacy has delivered his blister pack and the district-nurse referral is confirmed as accepted, not merely sent. He lives alone and manages his insulin with support; a gap in that support is not safe, and a weekend gap is the least safe of all. His usual pack was changed during the admission, so the discharge letter must state clearly what has altered and why. Transport has been booked for the afternoon and will need at least two hours' notice if the time moves. His daughter has a key and has agreed to be at the flat when he arrives. If either the pack or the referral is outstanding at four o'clock, the discharge waits until tomorrow."
+          "body": "Do not discharge Mr Ahmed until pharmacy has delivered his blister pack and the district-nurse referral is confirmed as accepted, not merely sent. He lives alone and manages his insulin with support; a gap in that support is not safe, and a weekend gap is the least safe of all. His usual pack was changed during the admission, so the discharge letter must state clearly what has altered and why. Transport has been booked for the afternoon and will need at least two hours' notice if the time moves. His daughter has a key and has agreed to be at the flat when he arrives. If either the pack or the referral is outstanding at four o'clock, the discharge waits until tomorrow. Ring the district-nurse office for the acceptance rather than waiting for it to appear in the system, and write down the name of whoever confirmed it."
         }
       ],
       "questions": [
@@ -1165,7 +1165,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Many 'penicillin allergies' on our records are not true allergies but old side effects such as nausea, or a childhood rash that nobody can now verify. An inaccurate label matters: it pushes prescribers towards second-choice antibiotics that are often less effective, broader-spectrum, and more likely to select for resistant organisms. Patients carrying the label spend longer in hospital and have higher rates of C. difficile. Where the history is doubtful, refer for proper allergy assessment rather than carrying the label for life. When recording any reaction, write what actually happened, when it happened, and how it was treated — 'allergy' on its own tells the next prescriber nothing useful. A label that has been formally excluded must be removed from the record, not simply left unmentioned."
+          "body": "Many 'penicillin allergies' on our records are not true allergies but old side effects such as nausea, or a childhood rash that nobody can now verify. An inaccurate label matters: it pushes prescribers towards second-choice antibiotics that are often less effective, broader-spectrum, and more likely to select for resistant organisms. Patients carrying the label spend longer in hospital and have higher rates of C. difficile. Where the history is doubtful, refer for proper allergy assessment rather than carrying the label for life. When recording any reaction, write what actually happened, when it happened, and how it was treated — 'allergy' on its own tells the next prescriber nothing useful. A label that has been formally excluded must be removed from the record, not simply left unmentioned. Ask the patient directly what happened; a great many can describe it clearly, and nobody has asked them since the label was first written."
         }
       ],
       "questions": [
@@ -1207,7 +1207,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Controlled drugs must be checked and signed by two registered staff at the point of administration, with the stock balance confirmed against the register before the dose is removed. If the count does not match, do not proceed — report it immediately to the nurse in charge and to pharmacy. A discrepancy is never something to sort out later, and the register must not be amended to make the columns agree. Both signatures are required at the time; a colleague cannot sign for a check they did not witness, however trustworthy the person asking. Any part-dose not administered must be disposed of in the presence of the second checker and recorded. The register is a legal document and entries are made in ink and never erased."
+          "body": "Controlled drugs must be checked and signed by two registered staff at the point of administration, with the stock balance confirmed against the register before the dose is removed. If the count does not match, do not proceed — report it immediately to the nurse in charge and to pharmacy. A discrepancy is never something to sort out later, and the register must not be amended to make the columns agree. Both signatures are required at the time; a colleague cannot sign for a check they did not witness, however trustworthy the person asking. Any part-dose not administered must be disposed of in the presence of the second checker and recorded. The register is a legal document and entries are made in ink and never erased. Write down the time you found the discrepancy and the balance you counted, before anybody else counts it again."
         }
       ],
       "questions": [
@@ -1249,7 +1249,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "The early warning score is only useful if a high score triggers action. A rising score with no documented response is worse than no score at all, because it shows the warning was seen and ignored, and it will be read that way afterwards by anyone reviewing the chart. Escalate according to the chart — do not wait to see whether the patient improves on their own, and do not lower the observation frequency because the ward is busy. Record who you called, at what time, and what was decided; a call that produced no plan still needs an entry. Where you remain concerned despite a reassuring score, escalate anyway. The score supports clinical judgement and does not replace it, and it performs least well in the very young and the frail."
+          "body": "The early warning score is only useful if a high score triggers action. A rising score with no documented response is worse than no score at all, because it shows the warning was seen and ignored, and it will be read that way afterwards by anyone reviewing the chart. Escalate according to the chart — do not wait to see whether the patient improves on their own, and do not lower the observation frequency because the ward is busy. Record who you called, at what time, and what was decided; a call that produced no plan still needs an entry. Where you remain concerned despite a reassuring score, escalate anyway. The score supports clinical judgement and does not replace it, and it performs least well in the very young and the frail. Record the score in the notes as well as on the chart, so that a call always has a reason attached to it."
         }
       ],
       "questions": [
@@ -1291,7 +1291,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "From Monday, all clinical staff must be bare below the elbows — no long sleeves, wristwatches, or rings other than a plain band. This is not about appearance: cuffs and jewellery harbour organisms and get in the way of properly washing the wrists and forearms, which is where contamination is most often missed. Stoned rings and watch straps are particularly difficult to decontaminate and cannot be cleaned adequately between patients. Long sleeves also touch the patient and the bed before the hands do. Nails should be short and free of polish or extensions. Where uniform sleeves are long, they must be rolled above the elbow before clinical contact. Staff who wear a wrist covering for religious reasons should speak to the infection-control team, who will agree a workable alternative."
+          "body": "From Monday, all clinical staff must be bare below the elbows — no long sleeves, wristwatches, or rings other than a plain band. This is not about appearance: cuffs and jewellery harbour organisms and get in the way of properly washing the wrists and forearms, which is where contamination is most often missed. Stoned rings and watch straps are particularly difficult to decontaminate and cannot be cleaned adequately between patients. Long sleeves also touch the patient and the bed before the hands do. Nails should be short and free of polish or extensions. Where uniform sleeves are long, they must be rolled above the elbow before clinical contact. Staff who wear a wrist covering for religious reasons should speak to the infection-control team, who will agree a workable alternative. Lanyards count too: they swing forward over the patient and are almost never cleaned. Use a clip instead."
         }
       ],
       "questions": [
@@ -1333,7 +1333,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "A reminder: do not discuss patients in lifts, corridors, stairwells or the canteen. It is easy to forget who is standing beside you — a patient's relative, or a colleague of the person you are describing, or the patient themselves. Confidentiality does not switch off when you leave the ward. The same applies to telephone calls taken in public areas and to screens left visible at a nursing station facing the corridor. Do not use patient details in messages sent through personal accounts, and do not take photographs on a personal device. Handovers belong in the office with the door shut, not in the doorway. If you need to discuss a case urgently and there is nowhere private, use initials and the bed number rather than the name."
+          "body": "A reminder: do not discuss patients in lifts, corridors, stairwells or the canteen. It is easy to forget who is standing beside you — a patient's relative, or a colleague of the person you are describing, or the patient themselves. Confidentiality does not switch off when you leave the ward. The same applies to telephone calls taken in public areas and to screens left visible at a nursing station facing the corridor. Do not use patient details in messages sent through personal accounts, and do not take photographs on a personal device. Handovers belong in the office with the door shut, not in the doorway. If you need to discuss a case urgently and there is nowhere private, use initials and the bed number rather than the name. Speaking more quietly is not a solution, because it is the fact of the conversation, not its volume, that carries the information."
         }
       ],
       "questions": [
@@ -1375,7 +1375,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "passages": [
         {
           "id": "p1",
-          "body": "Telephone and verbal medication orders are error-prone and should be avoided wherever possible, because the two commonest failures — a misheard drug name and a misheard dose — leave no trace until the patient is harmed. Where an order is unavoidable, write it down and read it back to the prescriber, including the drug, the dose, the route and the frequency, and spell the drug name if it sounds like another. Record who gave the order and at what time, and have it countersigned within 24 hours. 'I thought you said' is not a defence, and a prescriber who is unwilling to have the order read back should be asked to attend. Verbal orders are not accepted at all for controlled drugs or for chemotherapy."
+          "body": "Telephone and verbal medication orders are error-prone and should be avoided wherever possible, because the two commonest failures — a misheard drug name and a misheard dose — leave no trace until the patient is harmed. Where an order is unavoidable, write it down and read it back to the prescriber, including the drug, the dose, the route and the frequency, and spell the drug name if it sounds like another. Record who gave the order and at what time, and have it countersigned within 24 hours. 'I thought you said' is not a defence, and a prescriber who is unwilling to have the order read back should be asked to attend. Verbal orders are not accepted at all for controlled drugs or for chemotherapy. Read the numbers back digit by digit: fifteen and fifty sound alike on a poor line, and so do a point and a comma."
         }
       ],
       "questions": [
