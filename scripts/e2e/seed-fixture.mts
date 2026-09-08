@@ -731,10 +731,26 @@ export async function seedFixture(url: string): Promise<Fixture> {
     // with this file's own predicate, and the "before" reproduces the 108 already
     // written here. LISTENING_PART_B now has NO rows in LEGACY_SHORT at all and its
     // section header is gone: 123 live items, 123 meeting their law, none short.
+    //
+    // LISTENING_PART_C moved 17 -> 36 on 8 September 2026, and this completes it.
+    // The nineteen live Part C items that were 669-753 words against a 780-880 law
+    // were written up into the law (+2,210 words), so they entered the pool; none
+    // left it. Measured with this file's own predicate - 780 <= words <= 880, six
+    // questions, three options each - and the "before" reproduces the 17 already
+    // written here, which is what makes the "after" trustworthy.
+    //
+    // The walk target did NOT move: listeningCFull[0] is still
+    // lis-c-item-1-presentation-the-four-hours-before-an-arrest, before and after.
+    // The nineteen live in listening_c.ts, which GEN_ITEMS spreads AFTER
+    // LISTENING_C_SETS, so they joined the tail rather than the front - the
+    // opposite of what the Part B stubs did above.
+    //
+    // LEGACY_SHORT lost its whole LISTENING_PART_C section in the same commit,
+    // header included, and the debt fell 35 -> 16.
     for (const [part, pool, want] of [
       ["LISTENING_PART_A", listeningAFull, 18],
       ["LISTENING_PART_B", listeningBFull, 123],
-      ["LISTENING_PART_C", listeningCFull, 17],
+      ["LISTENING_PART_C", listeningCFull, 36],
     ] as const) {
       if (pool.length !== want) {
         throw new Error(
