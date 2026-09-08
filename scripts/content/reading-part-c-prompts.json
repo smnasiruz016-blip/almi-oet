@@ -1,0 +1,41 @@
+{
+  "what": "GAP-046 — the Reading Part C prompt, for the SIX form-tagged items only.",
+  "why": "Their production rows say '(A, B or C)' while the items offer four options, so a learner would be told there are three. The row's own prompt renders — see src/app/(app)/practice/session/[sessionId]/page.tsx:231 — and registry.ts carries none.",
+  "rule": "A PROMPT AND ITS PAYLOAD MOVE TOGETHER. Either both land or neither does. A prompt that describes a shape the row does not yet have is a defect for as long as the gap is open.",
+  "whyNotAllTwentyOne": "Fifteen other Reading Part C rows also lack this prompt, and they are deliberately NOT here. In gen/ every Part C item is eight questions of four options, but in the DATABASE those fifteen are still two questions of three options, because they are retired and no payload write has reached them. Their '(a, b or c)' is TRUE of the row as it stands. Writing this prompt onto them would promise eight questions and four options on an item that has two and three — the same defect as GAP-046, pointed the other way, on fifteen rows instead of six. They get this prompt at the same moment their payload is written, never before.",
+  "generated": "2026-09-08",
+  "count": 6,
+  "prompt": "Read the text and answer questions 1–8. Choose the answer (a, b, c or d) which best fits the writer's meaning.",
+  "items": [
+    {
+      "slug": "rea-c-f1-rethinking-resilience",
+      "form": "form-1",
+      "prompt": "Read the text and answer questions 1–8. Choose the answer (a, b, c or d) which best fits the writer's meaning."
+    },
+    {
+      "slug": "rea-c-f1-the-quiet-skill-of-listening",
+      "form": "form-1",
+      "prompt": "Read the text and answer questions 1–8. Choose the answer (a, b, c or d) which best fits the writer's meaning."
+    },
+    {
+      "slug": "rea-c-f2-the-trouble-with-just-in-case",
+      "form": "form-2",
+      "prompt": "Read the text and answer questions 1–8. Choose the answer (a, b, c or d) which best fits the writer's meaning."
+    },
+    {
+      "slug": "rea-c-f2-what-checklists-can-and-can-t-do",
+      "form": "form-2",
+      "prompt": "Read the text and answer questions 1–8. Choose the answer (a, b, c or d) which best fits the writer's meaning."
+    },
+    {
+      "slug": "rea-c-f3-resilience-is-not-the-answer",
+      "form": "form-3",
+      "prompt": "Read the text and answer questions 1–8. Choose the answer (a, b, c or d) which best fits the writer's meaning."
+    },
+    {
+      "slug": "rea-c-f3-the-fifteen-minute-appointment",
+      "form": "form-3",
+      "prompt": "Read the text and answer questions 1–8. Choose the answer (a, b, c or d) which best fits the writer's meaning."
+    }
+  ]
+}

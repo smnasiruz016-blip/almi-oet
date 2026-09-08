@@ -17,6 +17,10 @@
 import { describe, expect, it } from "vitest";
 import { isWrapBreak } from "@/../scripts/wrap-rule";
 import { lengthCue } from "@/../scripts/content/payload-shape";
+import {
+  optionCountBreach,
+  questionCountBreach,
+} from "@/../scripts/prompt-shape-rule";
 
 /** D2, transcribed from gate:distractor: no option may be more than 1.6x the
  *  mean WORD length of the others. */
@@ -125,5 +129,75 @@ describe("gate:partc-kind can fail", () => {
 
   it("goes RED on an injected item that is all writer", () => {
     expect(partCBreaks(clean.map(() => ["writer"]))).toContain("writer 8");
+  });
+});
+
+/**
+ * 🔴 gate:prompt-shape, ADDED 8 SEPTEMBER 2026 AND PROVEN ABLE TO FAIL THE SAME DAY.
+ *
+ * The defect it exists for (GAP-046): six Reading Part C rows said "(A, B or C)"
+ * while offering four options, so a learner would have been told there were three
+ * answers and then shown four. The row's own prompt renders, registry.ts carries
+ * none, and nothing compared the two numbers a prompt promises against the item.
+ *
+ * Both directions are driven here, because the same defect points both ways and
+ * the instruction that nearly shipped it pointed the second way: giving the
+ * eight-question four-option prompt to an item with two questions of three
+ * options is the identical lie.
+ *
+ * The clean controls sit alongside, so a rule that answered "breach" to
+ * everything could not pass either.
+ */
+describe("gate:prompt-shape — a prompt promises numbers, the item must keep them", () => {
+  const STANDARD =
+    "Read the text and answer questions 1\u20138. Choose the answer (a, b, c or d) which best fits the writer's meaning.";
+  const fourOptions = { options: [{}, {}, {}, {}] };
+  const threeOptions = { options: [{}, {}, {}] };
+  const eightOfFour = { questions: Array.from({ length: 8 }, () => fourOptions) };
+  const twoOfThree = { questions: Array.from({ length: 2 }, () => threeOptions) };
+
+  it("is GREEN on the standard prompt over an eight-by-four item", () => {
+    expect(questionCountBreach(STANDARD, eightOfFour)).toBeNull();
+    expect(optionCountBreach(STANDARD, eightOfFour)).toBeNull();
+  });
+
+  it("P2 goes RED on the real GAP-046 shape — says three, offers four", () => {
+    const wrong = "Read the text and answer questions 1-8. Choose the answer (A, B or C) which fits best.";
+    expect(optionCountBreach(wrong, eightOfFour)).toEqual({ said: 3, offered: [4] });
+  });
+
+  it("P1 and P2 go RED the OTHER way — the standard prompt on a two-by-three item", () => {
+    // the fifteen rows the first instruction would have broken
+    expect(questionCountBreach(STANDARD, twoOfThree)).toEqual({ said: [1, 2, 3, 4, 5, 6, 7, 8], have: 2 });
+    expect(optionCountBreach(STANDARD, twoOfThree)).toEqual({ said: 4, offered: [3] });
+  });
+
+  it("is GREEN where a prompt legitimately names TWO ranges", () => {
+    // Reading Part A: 1-7 by text letter, 8-20 by short answer, twenty in all.
+    const partA =
+      "Read the four texts and answer the twenty questions. Answer questions 1\u20137 by choosing the text (A\u2013D). Answer questions 8\u201320 with a word or short phrase taken from the texts.";
+    const twenty = { questions: Array.from({ length: 20 }, () => ({})) };
+    expect(questionCountBreach(partA, twenty)).toBeNull();
+    // "(A-D)" names the TEXTS, not options, and must not be read as a promise
+    expect(optionCountBreach(partA, twenty)).toBeNull();
+  });
+
+  it("is GREEN on a gap-fill item, where the answers are gaps and not questions", () => {
+    const partA = "You will hear a physiotherapist speaking to a patient. For questions 1-12, complete the notes with a word or short phrase.";
+    expect(questionCountBreach(partA, { gaps: Array.from({ length: 12 }, () => ({})) })).toBeNull();
+    // and RED when the gaps do not match what it promised
+    expect(questionCountBreach(partA, { gaps: Array.from({ length: 10 }, () => ({})) })).not.toBeNull();
+  });
+
+  it("does not invent a promise where the prompt makes none", () => {
+    const silent = "You will hear part of a presentation. Answer as you listen.";
+    expect(questionCountBreach(silent, eightOfFour)).toBeNull();
+    expect(optionCountBreach(silent, eightOfFour)).toBeNull();
+  });
+
+  it("counts letters, not the word joining them", () => {
+    // "A, B or C" contains an o and an r; counting every letter said five
+    expect(optionCountBreach("Choose (A, B or C).", { questions: [threeOptions] })).toBeNull();
+    expect(optionCountBreach("Choose (a, b, c or d).", { questions: [fourOptions] })).toBeNull();
   });
 });
