@@ -6,6 +6,10 @@ in GEN_ITEMS but NOT in the DB  : 1
 in the DB but NOT in GEN_ITEMS  : 0
 
 payload identical, no action    : 347
+payload DIFFERS, all rows       : 719
+payload DIFFERS, active rows    : 299
+payload DIFFERS, retired rows   : 420
+--active-only                   : no — every differing row would be written
 payload DIFFERS, would update   : 719
 
   LISTENING_PART_A  (34)

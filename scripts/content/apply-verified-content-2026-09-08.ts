@@ -2,7 +2,30 @@
  * SYNC PRODUCTION PAYLOADS TO THE VERIFIED SOURCE — UPDATE ONLY, `payload` ONLY.
  *
  *   npx tsx scripts/content/apply-verified-content-2026-09-08.ts --dry-run
- *   ALLOW_PROD_WRITE=1 npx tsx scripts/content/apply-verified-content-2026-09-08.ts --confirm --max-rows N
+ *   npx tsx scripts/content/apply-verified-content-2026-09-08.ts --dry-run --active-only
+ *   ALLOW_PROD_WRITE=1 npx tsx scripts/content/apply-verified-content-2026-09-08.ts --confirm --active-only --max-rows N
+ *
+ * ── --active-only · RULED 8 SEPTEMBER 2026, AND IT IS NOT THE DEFAULT ───────
+ *
+ * With the flag, only rows where `active = true` are matched and written. It
+ * narrows 719 differing rows to roughly 299 — the same benefit to every learner
+ * with 58% less blast radius. The 420 retired rows hold superseded legacy
+ * content: writing fresh payloads onto rows nobody is served is churn, not
+ * correctness. Source/database parity on retired rows, if it is ever wanted, is
+ * its own run on its own day and must not be folded in here.
+ *
+ * 🔴 IT IS EXPLICIT. It is not the default, and it is NOT implied by --dry-run.
+ * A flag that changes what gets written has to be typed, so that the dry run an
+ * operator reads and the write they then run are the same shape. Every run
+ * prints the count BOTH ways — all differing rows and active-only — so the
+ * difference is visible rather than assumed.
+ *
+ * 🔴 AND THERE IS NO EXCLUSION LIST, DELIBERATELY. Ruled the same day, on
+ * lis-c-improving-health-literacy-through-teach-back: its payload has drifted
+ * since before d0ac931 and nothing in this work touched it, so the applier plans
+ * to sync it and step three retires it immediately afterwards. Payload is not
+ * visibility. A one-slug carve-out would outlive its reason, and an exclusion
+ * list is a place where future exceptions accumulate quietly.
  *
  * ── WHAT IT IS FOR ──────────────────────────────────────────────────────────
  *
@@ -74,6 +97,12 @@ import { requireProdWrite } from "../prod-write-guard";
 
 const SCRIPT = "scripts/content/apply-verified-content-2026-09-08.ts";
 const DRY = process.argv.includes("--dry-run");
+/** 🔴 EXPLICIT, NEVER DEFAULTED, AND NEVER IMPLIED BY --dry-run. A flag that
+ *  changes WHAT IS WRITTEN has to be typed. Ruled 8 September 2026: the first
+ *  write is --active-only, because writing fresh payloads onto rows nobody is
+ *  served is churn, not correctness. Source/database parity on retired rows,
+ *  if it is ever wanted, is its own run on its own day. */
+const ACTIVE_ONLY = process.argv.includes("--active-only");
 
 /** 🔴 THE ONE COLUMN. Stop condition 5 asserts against this list rather than
  *  trusting the `data` literal below to stay honest as the file is edited. */
@@ -154,7 +183,7 @@ async function main(): Promise<void> {
   }
 
   const rows = await prisma.oetItem.findMany({
-    select: { id: true, slug: true, subTest: true, taskType: true, profession: true, payload: true },
+    select: { id: true, slug: true, subTest: true, taskType: true, profession: true, active: true, payload: true },
   });
 
   // ── stop 1 · a slug matching more than one row ────────────────────────────
@@ -217,7 +246,13 @@ async function main(): Promise<void> {
   }
 
   // ── the plan ─────────────────────────────────────────────────────────────
-  const plan: { slug: string; taskType: string; keys: string[]; payload: Payload }[] = [];
+  //
+  // 🔴 EVERY DIFFERING ROW IS COUNTED, THEN --active-only NARROWS WHAT IS
+  // WRITTEN. Both totals are printed every run, so the difference between them
+  // is visible rather than assumed, and so a reader can never mistake a narrowed
+  // run for the whole picture.
+  type Planned = { slug: string; taskType: string; keys: string[]; payload: Payload; active: boolean };
+  const differing: Planned[] = [];
   let identical = 0;
   for (const slug of matched) {
     const s = srcBySlug.get(slug)!;
@@ -226,10 +261,24 @@ async function main(): Promise<void> {
       identical += 1;
       continue;
     }
-    plan.push({ slug, taskType: String(s.taskType), keys: differingKeys(r.payload, s.payload), payload: s.payload! });
+    differing.push({
+      slug,
+      taskType: String(s.taskType),
+      keys: differingKeys(r.payload, s.payload),
+      payload: s.payload!,
+      active: r.active,
+    });
   }
+  const activeDiffering = differing.filter((p) => p.active);
+  const plan = ACTIVE_ONLY ? activeDiffering : differing;
 
   console.log(`\npayload identical, no action    : ${identical}`);
+  console.log(`payload DIFFERS, all rows       : ${differing.length}`);
+  console.log(`payload DIFFERS, active rows    : ${activeDiffering.length}`);
+  console.log(`payload DIFFERS, retired rows   : ${differing.length - activeDiffering.length}`);
+  console.log(
+    `--active-only                   : ${ACTIVE_ONLY ? "YES — retired rows are NOT written" : "no — every differing row would be written"}`,
+  );
   console.log(`payload DIFFERS, would update   : ${plan.length}`);
   const byTask = new Map<string, typeof plan>();
   for (const p of plan) byTask.set(p.taskType, [...(byTask.get(p.taskType) ?? []), p]);
