@@ -42,6 +42,7 @@ import "./load-env.mjs";
 import { readFileSync } from "node:fs";
 import { PrismaClient } from "@prisma/client";
 import { requireProdWrite } from "./prod-write-guard";
+import { isDisposableUrl } from "./disposable-url";
 
 type Row = { taskType: string; title: string };
 
@@ -71,6 +72,64 @@ for (const r of rows) {
   }
 }
 
+/**
+ * 🔴 THE DIRECTORY DECIDES THE DIRECTION. ADDED 8 SEPTEMBER 2026.
+ *
+ * `listPath` is any path the caller passes, and `--restore` flips every row it
+ * names to active. Nothing stopped those two facts meeting: run --restore
+ * against a file in scripts/retire/ and it reactivates precisely the items that
+ * file exists to hide. That is not hypothetical — a dry run on 8 September
+ * showed reading-part-a-legacy.json would put all fifteen legacy Part A items
+ * back in front of learners, and the only thing between that and production was
+ * remembering not to type it.
+ *
+ * So the two directories now mean opposite things, and the script refuses to
+ * cross them:
+ *
+ *   scripts/retire/   lists of what is HIDDEN. A retire may read these. A
+ *                     restore may not, because restoring a retire list undoes
+ *                     the very decision the list records.
+ *   anywhere else     lists of what is BROUGHT BACK. A restore may read these.
+ *                     A retire may not, because retiring from a list that is not
+ *                     the checked-in record of a retirement leaves no record.
+ *
+ * A dry run is exempt: it writes nothing, and refusing to let somebody LOOK is
+ * how people stop looking. The refusal binds the write.
+ */
+const inRetireDir = /(^|[\\/])scripts[\\/]retire[\\/]/.test(listPath.replace(/\\/g, "/"));
+/**
+ * 🔴 THE DIRECTION RULE IS ABOUT PRODUCTION, NOT ABOUT WRITING — the same
+ * distinction requireProdWrite() already draws, and for the same reason.
+ *
+ * The e2e walk retires from a checked-in list against a THROWAWAY database and
+ * then restores the SAME list to undo itself, on purpose, so the walk exercises
+ * the script that runs in anger. The first version of this guard refused that
+ * and turned two retire walks red. Making the walk work around it would have
+ * taught exactly the habit the guard exists to prevent, so the guard learned the
+ * distinction instead.
+ *
+ * It fails CLOSED: isDisposableUrl() calls anything it cannot parse production,
+ * so "I do not recognise this URL" never means "go ahead".
+ */
+const disposable = isDisposableUrl(process.env.E2E_DATABASE_URL ?? process.env.DATABASE_URL);
+if (confirm && !disposable && restore && inRetireDir) {
+  console.error(
+    `\n[retire] REFUSING — --restore against a list in scripts/retire/: ${listPath}\n` +
+      `\n  That directory is the record of what is HIDDEN. Restoring from it would` +
+      `\n  reactivate the items the list exists to retire.` +
+      `\n  A restore list belongs outside scripts/retire/ — see scripts/restore/.\n`,
+  );
+  process.exit(2);
+}
+if (confirm && !disposable && !restore && !inRetireDir) {
+  console.error(
+    `\n[retire] REFUSING — a retire from a list outside scripts/retire/: ${listPath}\n` +
+      `\n  A retire must be recorded where the gates read it. gate:length and` +
+      `\n  gate:accept-lists both scan scripts/retire/ and would not see this file,` +
+      `\n  so the database would hide items the source still thinks are live.\n`,
+  );
+  process.exit(2);
+}
 const verb = restore ? "RESTORE" : "RETIRE";
 const nextActive = restore;
 
@@ -144,7 +203,13 @@ async function main() {
   console.log(`\n[retire] ${verb} complete — ${result.count} row(s) updated, 0 deleted.`);
   console.log(
     `[retire] to undo: npx tsx scripts/retire-fragments.mts ${listPath} ` +
-      `${restore ? "" : "--restore "}--confirm`,
+      // 🔴 A RETIRE'S UNDO IS NO LONGER "--restore THIS LIST" IN PRODUCTION.
+    // The direction rule above refuses that, deliberately: bringing items back
+    // is its own decision and belongs in its own reviewed list. Printing the
+    // old hint would hand somebody a command their next run refuses.
+    restore || disposable
+      ? `${restore ? "" : "--restore "}--confirm`
+      : `--restore --confirm  (from a list OUTSIDE scripts/retire/ — see scripts/restore/)`,
   );
 }
 

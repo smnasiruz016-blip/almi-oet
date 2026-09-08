@@ -4,6 +4,8 @@
  *   npx tsx scripts/content/apply-verified-content-2026-09-08.ts --dry-run
  *   npx tsx scripts/content/apply-verified-content-2026-09-08.ts --dry-run --active-only
  *   ALLOW_PROD_WRITE=1 npx tsx scripts/content/apply-verified-content-2026-09-08.ts --confirm --active-only --max-rows N
+ *   npx tsx scripts/content/apply-verified-content-2026-09-08.ts --dry-run --slugs-file <path>
+ *   ALLOW_PROD_WRITE=1 npx tsx scripts/content/apply-verified-content-2026-09-08.ts --confirm --slugs-file <path> --max-rows N
  *
  * ── --active-only · RULED 8 SEPTEMBER 2026, AND IT IS NOT THE DEFAULT ───────
  *
@@ -76,6 +78,8 @@
  *   3  a matched row differing in subTest, taskType or profession
  *   4  a payload failing structuralProblems() for its taskType
  *   5  any attempt to write a column other than payload
+ *   6  a slug in --slugs-file that matched no row (a typo must stop the write,
+ *      not quietly shrink it)
  *
  * There is no repair flag, deliberately — see the 6 September script's header
  * for the ruling. An applier that mends its input hides the next defect.
@@ -90,6 +94,7 @@
  * touched, so nothing changes visibility in either direction.
  */
 import "../load-env.mjs";
+import { readFileSync } from "node:fs";
 import { PrismaClient, Prisma } from "@prisma/client";
 import { GEN_ITEMS } from "../seed/gen/index";
 import { structuralProblems, type Payload } from "./payload-shape";
@@ -103,6 +108,23 @@ const DRY = process.argv.includes("--dry-run");
  *  served is churn, not correctness. Source/database parity on retired rows,
  *  if it is ever wanted, is its own run on its own day. */
 const ACTIVE_ONLY = process.argv.includes("--active-only");
+/**
+ * 🔴 --slugs-file <path> · NARROW THE PLAN TO A CHECKED-IN LIST OF SLUGS.
+ *
+ * Added 8 September 2026 for GAP-041 step three, and the reason is worth
+ * keeping: the 27 form-tagged Reading rows are active:false, so --active-only
+ * cannot reach them — measured, it now selects zero rows — while a bare run
+ * would write all 420 differing rows to reach the 27 that are wanted. Neither
+ * is acceptable, so the set is NAMED instead.
+ *
+ * It composes with --max-rows rather than replacing it: the file says WHICH
+ * rows, --max-rows says HOW MANY the operator expects, and a write still needs
+ * both. It does not imply --active-only and is not implied by it.
+ *
+ * A list in a file is reviewable in a diff; a slug on a command line is not.
+ */
+const slugsFileIdx = process.argv.indexOf("--slugs-file");
+const SLUGS_FILE = slugsFileIdx >= 0 ? process.argv[slugsFileIdx + 1] : null;
 
 /** 🔴 THE ONE COLUMN. Stop condition 5 asserts against this list rather than
  *  trusting the `data` literal below to stay honest as the file is edited. */
@@ -138,6 +160,25 @@ function maxRows(): number | null {
   const n = Number(process.argv[i + 1]);
   if (!Number.isInteger(n) || n < 0) die(`--max-rows needs a non-negative integer, got ${process.argv[i + 1]}`);
   return n;
+}
+
+/** The slugs named by --slugs-file. Accepts a bare array or `{ slugs: [...] }`,
+ *  so a list can carry its own explanation without a second format. */
+function readSlugsFile(path: string): string[] {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(readFileSync(path, "utf8"));
+  } catch (e) {
+    die(`--slugs-file ${path}: could not be read or parsed — ${(e as Error).message}`);
+  }
+  const arr = Array.isArray(parsed) ? parsed : (parsed as { slugs?: unknown } | null)?.slugs;
+  if (!Array.isArray(arr) || arr.length === 0) {
+    die(`--slugs-file ${path}: neither a non-empty array nor an object with a non-empty "slugs" array`);
+  }
+  const out = (arr as unknown[]).map((x) => String(x));
+  const dupes = out.filter((v, i) => out.indexOf(v) !== i);
+  if (dupes.length > 0) die(`--slugs-file ${path}: duplicate slug(s) ${[...new Set(dupes)].join(", ")}`);
+  return out;
 }
 
 /** Key order must not decide equality: a reordered object is the same payload.
@@ -270,7 +311,36 @@ async function main(): Promise<void> {
     });
   }
   const activeDiffering = differing.filter((p) => p.active);
-  const plan = ACTIVE_ONLY ? activeDiffering : differing;
+  let plan = ACTIVE_ONLY ? activeDiffering : differing;
+
+  // ── stop 6 · a named slug that matched no row ─────────────────────────────
+  //
+  // 🔴 A TYPO MUST STOP THE WRITE, NOT QUIETLY SHRINK IT. A slugs file naming a
+  // slug the database does not have is either a misspelling or a row somebody
+  // expected to be there and is not; both are questions, and neither is answered
+  // by writing the rest and saying nothing. This is checked against the MATCHED
+  // rows, not against the plan, so a slug whose payload already agrees is a
+  // no-op rather than a failure.
+  let namedSlugs: string[] | null = null;
+  if (SLUGS_FILE) {
+    namedSlugs = readSlugsFile(SLUGS_FILE);
+    const known = new Set(matched);
+    const unmatched = namedSlugs.filter((sl) => !known.has(sl));
+    if (unmatched.length > 0) {
+      for (const sl of unmatched.slice(0, 30)) console.error(`    ${sl}`);
+      die(
+        `stop 6 · ${unmatched.length} slug(s) in ${SLUGS_FILE} matched no row in the database.\n` +
+          `  A typo must stop the write rather than quietly shrink it.`,
+      );
+    }
+    const named = new Set(namedSlugs);
+    const identicalNamed = namedSlugs.filter((sl) => !differing.some((p) => p.slug === sl));
+    plan = plan.filter((p) => named.has(p.slug));
+    console.log(`\n--slugs-file                    : ${SLUGS_FILE}`);
+    console.log(`  slugs named                   : ${namedSlugs.length}`);
+    console.log(`  of those, payload already agrees: ${identicalNamed.length}`);
+    console.log(`  of those, would be written    : ${plan.length}`);
+  }
 
   console.log(`\npayload identical, no action    : ${identical}`);
   console.log(`payload DIFFERS, all rows       : ${differing.length}`);
@@ -278,6 +348,9 @@ async function main(): Promise<void> {
   console.log(`payload DIFFERS, retired rows   : ${differing.length - activeDiffering.length}`);
   console.log(
     `--active-only                   : ${ACTIVE_ONLY ? "YES — retired rows are NOT written" : "no — every differing row would be written"}`,
+  );
+  console.log(
+    `--slugs-file                    : ${SLUGS_FILE ?? "no — every differing row in scope"}`,
   );
   console.log(`payload DIFFERS, would update   : ${plan.length}`);
   const byTask = new Map<string, typeof plan>();
