@@ -271,26 +271,6 @@ const LEGACY_SHORT: string[] = [
   "lis-a-f1-dietitian-consultation-type-2-diabetes", // 623 words
   "lis-a-f2-occupational-therapy-home-visit-post-stroke", // 614 words
   "lis-a-f3-midwife-antenatal-booking-visit", // 625 words
-  // ── LISTENING_PART_C · 19 item(s), law 780-880 words — 19 short of the floor ──
-  "lis-c-antibiotic-stewardship-and-the-48-hour-review", // 702 words
-  "lis-c-building-a-culture-of-patient-safety-on-the-ward", // 704 words
-  "lis-c-honest-conversations-at-the-end-of-life", // 694 words
-  "lis-c-making-telehealth-consultations-safe-and-effective", // 753 words
-  "lis-c-preventing-inpatient-falls-through-hourly-rounding", // 713 words
-  "lis-c-recognising-and-preventing-clinician-burnout", // 671 words
-  "lis-c-reducing-medication-errors-with-quiet-zones", // 672 words
-  "lis-c-responding-to-agitation-in-dementia-care", // 705 words
-  "lis-c-sustaining-gains-in-quality-improvement-projects", // 749 words
-  "lis-c-tackling-malnutrition-risk-in-hospital-patients", // 693 words
-  "lis-c-talk-on-hydration-in-older-adults", // 687 words
-  "lis-c-the-first-hour-in-recognising-sepsis", // 719 words
-  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake", // 682 words
-  "lis-c-f1-interview-wound-care-nursing", // 735 words
-  "lis-c-f1-presentation-polypharmacy", // 669 words
-  "lis-c-f2-interview-de-escalation-in-mental-health", // 684 words
-  "lis-c-f2-presentation-antimicrobial-resistance", // 734 words
-  "lis-c-f3-interview-living-with-chronic-pain", // 682 words
-  "lis-c-f3-presentation-health-literacy", // 721 words
 ];
 
 
