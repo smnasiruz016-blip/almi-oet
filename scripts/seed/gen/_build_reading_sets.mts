@@ -458,6 +458,22 @@ writeFileSync(
 //
 // Closed both ways by A4: an unlisted answer with no accept-list fails, and a
 // listed answer that GAINS one fails too, so this cannot rot.
+//
+// 🔴 TWO ROWS IN THIS FILE WERE OVERRULED BY THE OWNER ON 7 SEPTEMBER 2026.
+//
+//     "Part A — A flare-up of chronic obstructive lung disease" / carbon dioxide
+//     "Part A — Diabetic ketoacidosis" / litres
+//
+// They are NOT deleted, because this file is a record of what the author wrote
+// and deleting a row here would be re-writing that record — and the next build
+// would restore it anyway. The override lives in scripts/gates/accept-lists.ts as
+// A4_SINGLE_FORM_OVERRULED, with his ruling quoted in full. In short: "single
+// form, nothing else to accept" was aimed at PARAPHRASES, not at whether a
+// standard clinical abbreviation of the same word is acceptable. A student who
+// writes CO2 has not written a different word; they have written the same word
+// short.
+//
+// If you are reading this file to learn what is accepted, READ THAT LIST TOO.
 export const READING_SETS_SINGLE_FORM: { item: string; answer: string; why: string }[] =
 ${JSON.stringify(singleForm, null, 2)};
 `,

@@ -16,6 +16,7 @@
 // keep the request plain and enforce shape in code).
 
 import { z } from "zod";
+import { words } from "@/lib/oet/words";
 import { getAnthropicClient, recordCost } from "@/lib/ai/anthropic-client";
 import { MODELS } from "@/lib/ai/models";
 import { professionGrading, professionHeading } from "@/lib/oet/profession-grading";
@@ -128,8 +129,15 @@ function extractJson(text: string): unknown {
   return JSON.parse(text.slice(start, end + 1));
 }
 
+/** The letter's length, counted the one way this project counts words.
+ *
+ *  🔴 It used to split on whitespace and count everything, so a bare dash was a
+ *  word. This number reaches the learner twice — it sets the length multiplier
+ *  and it is the figure the AI grader is TOLD the candidate wrote — so
+ *  over-counting invented a penalty against OET's 180-200 guide. Ruled by the
+ *  owner on 7 September 2026; see src/lib/oet/words.ts. */
 export function wordCount(s: string): number {
-  return s.trim() ? s.trim().split(/\s+/).length : 0;
+  return words(s);
 }
 
 /** Multiplier applied to the trait fraction for length.

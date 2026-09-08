@@ -47,12 +47,22 @@
  * definition. The definition was tightened. A threshold moved to admit the
  * content authored after it is not a threshold.
  *
- * ── THE LEGACY 78 ───────────────────────────────────────────────────────────
+ * ── 🔴 THE LEGACY 78 ARE GONE, AND THIS PARAGRAPH USED TO SAY THE OPPOSITE ─
  *
- * The 21 older items carry THREE options where the law gives four — the standing
- * OPTION COUNT DEBT in gate:distractor. They have no markers and are exempt here.
- * Marking them would quietly imply they had been reviewed, and they have not
- * been. This is the same treatment gate:length already gives its LEGACY DEBT.
+ * It read: "The 21 older items carry THREE options where the law gives four —
+ * the standing OPTION COUNT DEBT in gate:distractor. They have no markers and
+ * are exempt here." That was true when it was written and it is FALSE now.
+ *
+ * The owner's rebuild of 6 September 2026 gave those 21 items FOUR options each.
+ * The legacy three-option count is 0, the exemption catches nothing, and the 21
+ * moved from exempt to GOVERNED in one afternoon — which is the whole reason this
+ * gate went from 0 failures to 210 without a line of its own code changing.
+ * Anyone reading the old paragraph would have gone looking for a bug in the gate.
+ *
+ * ⚠️ A COMMENT THAT EXPLAINS THE OPPOSITE OF WHAT HAPPENED IS WORSE THAN NO
+ * COMMENT. The exemption branch below stays, because a marker on a three-option
+ * question would still mean somebody marked content nobody reviewed — but it now
+ * guards a population of zero, and the printed count says so on every run.
  */
 import { GEN_ITEMS } from "../seed/gen/index";
 

@@ -13,6 +13,21 @@
 //
 // To change an item, change the source JSON and re-run the builder. Editing
 // this file by hand breaks the only proof that it matches what was measured.
+//
+// 🔴 ONE ITEM WAS ADDED BY HAND ON 7 SEPTEMBER 2026, AND THE HEADER ABOVE
+// STILL DESCRIBES THE BUILDER'S OUTPUT, NOT THIS FILE. The counts and the
+// source hash are the record of the 15 items the builder wrote from
+// AlmiOET_Listening_PartC_15_items.json; they are deliberately NOT rewritten,
+// because that hash is the proof for those fifteen and nothing else.
+//
+//   lis-c-item-16-presentation-the-week-after-discharge  (GAP-018)
+//
+// It replaces lis-c-improving-health-literacy-through-teach-back, which is
+// retired in scripts/retire/listening-part-c-legacy.json. It was written to
+// the same law as the other fifteen — 780-880 words, six three-option
+// questions — and gate:length governs it exactly like them, which is what
+// actually proves it, not this comment. Re-running the builder would DELETE
+// it: add it to the source JSON first if this file is ever regenerated.
 import { Prisma } from "@prisma/client";
 
 export const ITEMS: Prisma.OetItemCreateManyInput[] = [
@@ -606,11 +621,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "It is used by nursing staff far more often than by doctors."
+              "text": "It is used by nursing staff far more often than it is by doctors."
             },
             {
               "id": "c",
-              "text": "It has no agreed meaning anywhere in the medical literature."
+              "text": "It has no agreed meaning anywhere in the medical literature at all."
             }
           ],
           "answer": "a"
@@ -2112,6 +2127,144 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         }
       ],
       "audioScript": "Presenter: I am going to make an argument about money, and I want to say at the start why a clinician should care about it. Not because budgets are interesting, but because in this particular field the cheapest care and the best care are the same care, and we are currently delivering neither. Here is the shape of the problem. Most of what a service spends on a chronic wound is not spent on the dressing. It is spent on visits — a nurse's time, a car, a journey — and the number of visits is determined mostly by how often the dressing is changed, which is determined mostly by habit. When we audited our own practice, the commonest reason a wound was being dressed three times a week was that it had been dressed three times a week the previous week. Nobody had decided it. It was inherited. Now, the counter-intuitive part, which is well supported and still widely disbelieved: for most wounds, changing the dressing less often heals them faster. Every change cools the wound, disturbs the surface, and removes the environment that healing needs. So the service that visits twice a week rather than four times is not cutting corners. In most cases it is providing better care and spending half as much doing it, and those two facts are the same fact. Where the money actually should go is the part we underfund. Assessment. A leg ulcer that has not been assessed for its blood supply cannot be safely compressed, and compression is the treatment that heals it. So the entire pathway waits on one measurement, and in most services that measurement is rationed because it takes forty minutes and a trained person. We were routinely spending eight months of visits on wounds that were waiting for a forty-minute test. When we moved the test to within a week of referral, healing rates improved, and the visit numbers fell so far that the test paid for itself several times over within the year. I want to add something about what we call non-concordance, because this is where services waste both money and goodwill. When somebody does not tolerate compression, we tend to write that they declined it. In my experience, when you sit down and ask, one of three things is true. It hurt, and nobody told them it would hurt for the first few nights and then settle. They could not get a shoe on, and could not get out of the house, and chose their life over their leg, which is not irrational. Or nobody could take it off and put it back on, so the first practical difficulty ended it. All three are solvable, and none of them is a patient who does not care about their own leg. I should deal with the objection I always get at this point, which is that patients like being visited, and that reducing visits takes something away from people who are often isolated. I take that seriously and I do not think it is an argument against what I have described. It is an argument for being honest about which visit is which. If a person is lonely, a nurse changing a dressing that did not need changing is an expensive and undignified way to provide company, and it is company that arrives only for as long as the wound does. The wound heals, the visits stop, and the loneliness was never addressed by anybody. Name the two needs separately and you can meet both. Blend them and you will meet neither, while telling yourself a comfortable story about holistic care. Two last points. First, the photograph. A wound photographed at each review, to a standard, with a measure in the frame, settles arguments that otherwise consume entire team meetings — is it better than last month, and by how much. Memory is not evidence, and a wound that is slowly deteriorating looks identical each week to the person who sees it each week. One more practical thing while I have you: the dressing cupboard. Most services stock far more products than any clinician can hold in their head, which sounds generous and behaves as a hazard, because choice without a rule produces variation rather than judgement. A short formulary — a handful of products with a written indication for each — improves outcomes not because those products are better but because everybody uses the same ones and can therefore learn from what happens. Second, and this is the argument I would leave you with: a chronic wound is not a nursing task, it is a chronic disease with an acute-looking surface. We manage it as though the surface were the disease, and we organise our services around visiting the surface. The people who do best are the ones whose service treats the underlying problem, measures whether the wound is closing, and stops doing the things that only look like care."
+    }
+  },
+  {
+    "taskType": "LISTENING_PART_C",
+    "subTest": "LISTENING",
+    "profession": null,
+    "slug": "lis-c-item-16-presentation-the-week-after-discharge",
+    "title": "Listening Part C · item 16 — PRESENTATION: the week after discharge",
+    "prompt": "You will hear part of a presentation on hospital discharge. For questions 1–6, choose the answer (A, B or C) which fits best according to what you hear.",
+    "difficulty": "STRETCH",
+    "topicTag": "discharge",
+    "timeLimitSeconds": 0,
+    "active": true,
+    "guidanceNote": "Q1: \"the doors close, we stop measuring\" — the point is WHERE the organisation stops looking, not the size of the harm. · Q2: \"It is a record. And a record is a document written for the person who wrote it.\" — (C) is a detail the talk gives, not the criticism it makes. · Q3: \"would they know what to do on Monday? Not what happened. What to do.\" · Q4: \"nobody wrote an end date ... assumes the hospital meant it\" — (A) is ruled out by \"each was a reasonable decision inside the building\"; (C) is a motive never mentioned. · Q5: \"they take the old ones as well\". · Q6: \"The failure is not that we lack fields. It is that we are writing the wrong kind of document\" — neither (B) nor (C) is said. · OPTION LENGTH: in all six questions the key is SHORTER than the longest distractor (margins -1 to -4 characters), so there is no length cue for a candidate to exploit.",
+    "payload": {
+      "speakers": [
+        {
+          "role": "Presenter",
+          "voice": "echo"
+        }
+      ],
+      "questions": [
+        {
+          "id": "q1",
+          "stem": "What does the speaker say about the harm that follows discharge?",
+          "options": [
+            {
+              "id": "a",
+              "text": "It is recorded carefully but acted on too slowly."
+            },
+            {
+              "id": "b",
+              "text": "It happens in the period we have stopped measuring."
+            },
+            {
+              "id": "c",
+              "text": "It is smaller than most staff have been led to believe."
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "id": "q2",
+          "stem": "What is the speaker's main criticism of the discharge summary?",
+          "options": [
+            {
+              "id": "a",
+              "text": "It is written as a record rather than an instruction."
+            },
+            {
+              "id": "b",
+              "text": "It is too brief to be of any real clinical use."
+            },
+            {
+              "id": "c",
+              "text": "It is written by staff who were not on the ward round."
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "id": "q3",
+          "stem": "What test does the speaker suggest applying to a summary you have written?",
+          "options": [
+            {
+              "id": "a",
+              "text": "Whether every investigation and result is included."
+            },
+            {
+              "id": "b",
+              "text": "Whether the patient could follow it without help."
+            },
+            {
+              "id": "c",
+              "text": "Whether a reader would know what to do on Monday."
+            }
+          ],
+          "answer": "c"
+        },
+        {
+          "id": "q4",
+          "stem": "Why, according to the speaker, do admission medicines become permanent?",
+          "options": [
+            {
+              "id": "a",
+              "text": "They were the wrong choice for the patient to begin with."
+            },
+            {
+              "id": "b",
+              "text": "No end date is written, so it is assumed to be meant."
+            },
+            {
+              "id": "c",
+              "text": "General practitioners are reluctant to stop it."
+            }
+          ],
+          "answer": "b"
+        },
+        {
+          "id": "q5",
+          "stem": "What does the speaker say patients do when they are unsure what changed?",
+          "options": [
+            {
+              "id": "a",
+              "text": "They telephone the ward and have it explained to them."
+            },
+            {
+              "id": "b",
+              "text": "They stop everything until somebody comes to see them."
+            },
+            {
+              "id": "c",
+              "text": "They take the old medicines as well as the new ones."
+            }
+          ],
+          "answer": "c"
+        },
+        {
+          "id": "q6",
+          "stem": "Why does the speaker reject the idea of a new form?",
+          "options": [
+            {
+              "id": "a",
+              "text": "The document is the wrong kind, not short of fields."
+            },
+            {
+              "id": "b",
+              "text": "Staff would not have time to complete another one."
+            },
+            {
+              "id": "c",
+              "text": "Earlier templates here were withdrawn after complaints."
+            }
+          ],
+          "answer": "a"
+        }
+      ],
+      "audioScript": "Presenter: I want to talk about a week that almost nothing in this organisation is designed to see: the seven days after a patient leaves the building. We measure the admission in enormous detail. We measure length of stay to the hour. Then the doors close, we stop measuring, and a substantial share of the harm we cause happens in the fortnight after that, to people who are no longer our problem in any administrative sense.\n\nLet me be specific about where it concentrates, because \"discharge is risky\" is the kind of sentence that changes nothing. It concentrates in medicines. A patient comes in on eight drugs and goes home on eleven. Three were started here. Two were stopped. One dose was changed. That is six changes, and in the summaries I read, the number of those six that carry a stated reason is usually one, and it is usually the antibiotic.\n\nNow think about who reads that document. It is not a colleague who was on the ward round. It is a general practitioner, four days later, holding a list of eleven drugs and a previous list of eight, being asked by the patient whether she should still be taking the water tablet. Nothing in front of her answers that, because the reason lived in a conversation on a Tuesday and was never written down.\n\nI want to say something harder about why. I think we write the discharge summary to protect ourselves. It reads like a defence: a chronological account of what we did, in the order we did it, with the investigations listed and the results appended. It is a record. And a record is a document written for the person who wrote it. What is needed is an instruction — short, ordered and unambiguous — to the next clinician and to the patient, about what happens now and what to do if it does not. Those are two different documents, and we keep writing the first one and calling it the second.\n\nYou can test this yourself with one question, and I would encourage you to. Take your last summary and ask: if somebody read only this, would they know what to do on Monday? Not what happened. What to do. Most of them fail that question, and they fail it while being entirely accurate.\n\nThe second place harm concentrates is the drug that was started for the admission and never stopped. The stomach protection started because somebody was worried about the steroids. The sedative given for one bad night. Each was a reasonable decision inside the building, and each becomes a permanent prescription outside it, because nobody wrote an end date and the general practitioner quite reasonably assumes the hospital meant it. We are, collectively, one of the larger sources of long-term prescribing in this country, and we generate it by accident.\n\nThird — and this one is not about paperwork at all — there is the patient's own version. Ask somebody on day three at home what changed. In my experience they can usually name the drugs. They very rarely know what was stopped, and almost never know why. What they do with that uncertainty is entirely predictable: they take the old ones as well, because those came from their own doctor and these came from strangers. And there is one more sentence I would like us to stop saying, which is that somebody will write to them. That is not an arrangement. An arrangement has a date on it.\n\nSo what would I ask you to do differently? Three things, and none of them costs anything.\n\nWrite the reason beside every change, on the same line. Not in the narrative above it. Beside it. Six changes, six reasons, and the document becomes usable by somebody who was never here.\n\nSecond, put an end date on anything you started for this admission, or write the review date and name who is doing it. A drug with no stop date is a drug that never stops.\n\nThird, tell the patient what was stopped and why, out loud, and write that same sentence into the summary so the two versions match. Where the patient's account and the document disagree, the general practitioner has to work out which is right, and that appointment is now about detective work rather than about the patient.\n\nI am not proposing a new form, and I want to be clear about that, because the reflex in this room when somebody describes a problem is to design a template for it. We have templates. The failure is not that we lack fields. It is that we are writing the wrong kind of document, for the wrong reader, at the end of a long day, and the person who pays for it is somebody we will never see again."
     }
   }
 ];

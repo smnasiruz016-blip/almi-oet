@@ -151,6 +151,12 @@ import { GEN_ITEMS } from "../seed/gen/index";
 // The tokeniser ruled on 3 September 2026, in its own file so anything that must
 // count the same way can import it WITHOUT running this gate. See words.ts.
 import { words } from "./words";
+import { textWords } from "./text-words";
+// The marker's own tokeniser, for the Listening findability check below: a
+// script says "twenty nineteen" where the answer reads "2019".
+import { normalize, normalizeTokens } from "../../src/lib/oet/tasks/objective";
+// The gate's own function-word list, shared rather than copied.
+import { FUNCTION_WORDS } from "./word-forms";
 
 type Item = {
   taskType: string;
@@ -160,7 +166,7 @@ type Item = {
   title: string;
   payload: {
     audioScript?: string;
-    gaps?: unknown[];
+    gaps?: { id?: string; label?: string; answer?: string }[];
     caseNotes?: string;
     setting?: string;
     candidateRole?: string;
@@ -215,139 +221,81 @@ const LAW: Record<string, [number, number]> = {
 
 /**
  * 🔴 HAND-CHECKED-IN, MEASURED, MAY ONLY SHRINK. Each line carries the word
- * count measured on 3 September 2026 UNDER THE CORRECTED LAW AND THE RULED
- * TOKENISER, so a reader can see how far short an item is without re-running
- * anything.
+ * count RE-MEASURED ON 8 SEPTEMBER 2026 against the merged bank, under the same
+ * law and the same tokeniser, so a reader can see how far outside the law an
+ * item is without re-running anything.
  *
- * Every count here was RE-MEASURED from the run that made the tokeniser change;
- * none was carried over. 60 of the 147 fell, because those items carry
- * standalone punctuation the old whitespace split counted as words.
+ * ⚠️ THE COUNTS BEFORE THIS DATE WERE STALE, AND BADLY. They were measured on
+ * 3 September, before the 6-September rebuild lengthened most of these items,
+ * and were never re-taken. 52 of the 67 rows were wrong, by a median of 536
+ * words and by as much as 628 (`lis-c-talk-on-hydration-in-older-adults` said
+ * 59; it is 687). The gate's VERDICTS were never affected — every row still
+ * breaches, none had quietly started meeting the law — but the evidence a human
+ * reads was false, and it made the remaining debt look about six times larger
+ * than it is. Measured: 2,999 words to add and 539 to cut from the sixteen rows
+ * that are over the ceiling — 3,538 in all, against the 22,007 the old counts implied.
  *
- * MEMBERSHIP IS IDENTICAL, and that was established before the change rather
- * than discovered after it: all 177 governed items were measured under BOTH
- * tokenisers, and not one crosses a bound either way. So the may-only-shrink
- * rule is not being bent by a rebuild here. The Reading Part A counts are texts
- * + question stems combined.
+ * ⚠️ THE NAME SAYS "SHORT". SIXTEEN OF THESE ROWS ARE NOT SHORT — THEY ARE OVER
+ * THE CEILING. Every LISTENING_PART_A row sits above 600, by 7 to 69 words; the
+ * 6-September rebuild overshot and the exemption hid it, because an exemption
+ * does not care which side of the band an item misses. The name is kept because
+ * it appears in this gate's failure messages and in comments across five files,
+ * and a rename would bury this note in a refactor. Each section header below now
+ * states the direction, so the list cannot mislead again.
+ *
+ * ⚠️ AND ON WHETHER THE PART A ROWS SHOULD BE TRIMMED: they should not, on the
+ * evidence. OET's own Listening audio script was measured on 8 September 2026
+ * from the owner's answer-key PDFs (counts only; no OET text copied). Their two
+ * Part A extracts measure 348 and 743 words against our 550-600. Every one of
+ * the 16 rows here (607-669) is SHORTER than their longer extract. Part C's law
+ * is separately vindicated: their two recordings measure 835 and 770 against
+ * 780-880. Part A's 550-600 comes from ZABTA alone and one paper cannot settle
+ * it — their own two extracts differ by 395 words, more than twice the width of
+ * our band. Do not trim to satisfy it; measure more papers first.
  */
 const LEGACY_SHORT: string[] = [
-  // ── LISTENING_PART_A · 21 item(s), law 550-600 words ──
-  "lis-a-ankle-injury-after-a-fall", // 114 words
-  "lis-a-antenatal-visit", // 65 words
-  "lis-a-asthma-flare-up", // 74 words
-  "lis-a-chest-pain-assessment", // 78 words
-  "lis-a-child-with-fever", // 61 words
-  "lis-a-diabetes-annual-check", // 75 words
-  "lis-a-knee-pain-consultation", // 49 words
-  "lis-a-lower-back-pain", // 71 words
-  "lis-a-medication-side-effect", // 77 words
-  "lis-a-mental-health-check-in", // 72 words
-  "lis-a-migraine-review", // 78 words
-  "lis-a-new-skin-rash", // 56 words
-  "lis-a-ongoing-sleep-problem", // 75 words
-  "lis-a-post-operative-wound-check", // 60 words
-  "lis-a-suspected-urinary-infection", // 69 words
-  "lis-a-f1-physiotherapy-consultation-lower-back-pain", // 229 words
-  "lis-a-f1-dietitian-consultation-type-2-diabetes", // 193 words
-  "lis-a-f2-occupational-therapy-home-visit-post-stroke", // 190 words
-  "lis-a-f2-practice-nurse-asthma-review", // 161 words
-  "lis-a-f3-physiotherapist-and-lower-back-pain", // 210 words
-  "lis-a-f3-midwife-antenatal-booking-visit", // 197 words
-  // ── LISTENING_PART_B · 33 item(s), law 140-165 words ──
-  "lis-b-alert-about-a-norovirus-outbreak", // 53 words
-  "lis-b-arranging-a-complex-discharge", // 51 words
-  "lis-b-changes-to-the-weekend-roster", // 51 words
-  "lis-b-feedback-from-a-hand-hygiene-audit", // 49 words
-  "lis-b-following-up-a-patient-complaint", // 51 words
-  "lis-b-handover-extract", // 37 words
-  "lis-b-morning-team-brief-on-bed-pressures", // 53 words
-  "lis-b-note-on-mandatory-manual-handling-training", // 47 words
-  "lis-b-reminder-about-timing-of-antibiotics", // 57 words
-  "lis-b-revised-visiting-hours-policy", // 53 words
-  "lis-b-safeguarding-reminder-for-new-admissions", // 52 words
-  "lis-b-shortage-of-a-wound-dressing-size", // 53 words
-  "lis-b-switching-to-a-new-infusion-pump-model", // 56 words
-  "lis-b-updated-dressing-trolley-protocol", // 84 words
-  "lis-b-verbal-handover-for-a-post-operative-patient", // 53 words
-  "lis-b-f1-discharge-concern", // 46 words
-  "lis-b-f1-hand-hygiene-audit", // 28 words
-  "lis-b-f1-x-ray-result", // 33 words
-  "lis-b-f1-home-exercises", // 30 words
-  "lis-b-f1-infusion-pump-training", // 33 words
-  "lis-b-f1-handling-results", // 33 words
-  "lis-b-f2-low-sodium", // 34 words
-  "lis-b-f2-gloves-and-hand-hygiene", // 35 words
-  "lis-b-f2-nil-by-mouth", // 36 words
-  "lis-b-f2-paracetamol-order", // 39 words
-  "lis-b-f2-escalating-concern", // 41 words
-  "lis-b-f2-chest-pain-at-reception", // 38 words
-  "lis-b-f3-sharps-bins", // 43 words
-  "lis-b-f3-transfusion-check", // 48 words
-  "lis-b-f3-timely-notes", // 41 words
-  "lis-b-f3-oxygen-as-a-drug", // 42 words
-  "lis-b-f3-interpreters", // 39 words
-  "lis-b-f3-red-wristband", // 44 words
-  // ── LISTENING_PART_C · 21 item(s), law 780-880 words ──
-  "lis-c-a-multimodal-approach-to-chronic-pain-management", // 141 words
-  "lis-c-antibiotic-stewardship-and-the-48-hour-review", // 132 words
-  "lis-c-building-a-culture-of-patient-safety-on-the-ward", // 139 words
-  "lis-c-honest-conversations-at-the-end-of-life", // 138 words
-  "lis-c-improving-health-literacy-through-teach-back", // 138 words
-  "lis-c-making-telehealth-consultations-safe-and-effective", // 142 words
-  "lis-c-preventing-inpatient-falls-through-hourly-rounding", // 137 words
-  "lis-c-recognising-and-preventing-clinician-burnout", // 133 words
-  "lis-c-reducing-medication-errors-with-quiet-zones", // 157 words
-  "lis-c-responding-to-agitation-in-dementia-care", // 134 words
-  "lis-c-sustaining-gains-in-quality-improvement-projects", // 138 words
-  "lis-c-tackling-malnutrition-risk-in-hospital-patients", // 141 words
-  "lis-c-talk-on-hydration-in-older-adults", // 59 words
-  "lis-c-the-first-hour-in-recognising-sepsis", // 145 words
-  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake", // 141 words
-  "lis-c-f1-interview-wound-care-nursing", // 305 words
-  "lis-c-f1-presentation-polypharmacy", // 238 words
-  "lis-c-f2-interview-de-escalation-in-mental-health", // 217 words
-  "lis-c-f2-presentation-antimicrobial-resistance", // 151 words
-  "lis-c-f3-interview-living-with-chronic-pain", // 254 words
-  "lis-c-f3-presentation-health-literacy", // 240 words
-  // ── READING_PART_A · 18 item(s), law 885-1009 words ──
-  // ── READING_PART_B · 33 item(s), law 136-155 words ──
-  // ── READING_PART_C · 21 item(s), law 653-836 words ──
+  // ── LISTENING_PART_A · 16 item(s), law 550-600 words — 16 OVER the ceiling ──
+  "lis-a-ankle-injury-after-a-fall", // 656 words
+  "lis-a-antenatal-visit", // 632 words
+  "lis-a-asthma-flare-up", // 610 words
+  "lis-a-diabetes-annual-check", // 646 words
+  "lis-a-knee-pain-consultation", // 634 words
+  "lis-a-lower-back-pain", // 614 words
+  "lis-a-medication-side-effect", // 663 words
+  "lis-a-mental-health-check-in", // 619 words
+  "lis-a-migraine-review", // 668 words
+  "lis-a-new-skin-rash", // 642 words
+  "lis-a-ongoing-sleep-problem", // 669 words
+  "lis-a-post-operative-wound-check", // 617 words
+  "lis-a-suspected-urinary-infection", // 607 words
+  "lis-a-f1-dietitian-consultation-type-2-diabetes", // 623 words
+  "lis-a-f2-occupational-therapy-home-visit-post-stroke", // 614 words
+  "lis-a-f3-midwife-antenatal-booking-visit", // 625 words
+  // ── LISTENING_PART_C · 19 item(s), law 780-880 words — 19 short of the floor ──
+  "lis-c-antibiotic-stewardship-and-the-48-hour-review", // 702 words
+  "lis-c-building-a-culture-of-patient-safety-on-the-ward", // 704 words
+  "lis-c-honest-conversations-at-the-end-of-life", // 694 words
+  "lis-c-making-telehealth-consultations-safe-and-effective", // 753 words
+  "lis-c-preventing-inpatient-falls-through-hourly-rounding", // 713 words
+  "lis-c-recognising-and-preventing-clinician-burnout", // 671 words
+  "lis-c-reducing-medication-errors-with-quiet-zones", // 672 words
+  "lis-c-responding-to-agitation-in-dementia-care", // 705 words
+  "lis-c-sustaining-gains-in-quality-improvement-projects", // 749 words
+  "lis-c-tackling-malnutrition-risk-in-hospital-patients", // 693 words
+  "lis-c-talk-on-hydration-in-older-adults", // 687 words
+  "lis-c-the-first-hour-in-recognising-sepsis", // 719 words
+  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake", // 682 words
+  "lis-c-f1-interview-wound-care-nursing", // 735 words
+  "lis-c-f1-presentation-polypharmacy", // 669 words
+  "lis-c-f2-interview-de-escalation-in-mental-health", // 684 words
+  "lis-c-f2-presentation-antimicrobial-resistance", // 734 words
+  "lis-c-f3-interview-living-with-chronic-pain", // 682 words
+  "lis-c-f3-presentation-health-literacy", // 721 words
 ];
 
 
-function textWords(item: Item): number {
-  if (item.taskType.startsWith("LISTENING")) return words(item.payload.audioScript);
-  // 🔴 THE TWO AI TASKS, AND WHICH FIELD EACH LAW COUNTS. Added with the LAW rows
-  // on 4 September 2026 — and the gate itself found this missing: with the rows
-  // in but this branch absent, every one of the 360 measured "0 words, law
-  // 650-850". A bound with no reader is not a law, it is a refusal.
-  //
-  // WRITING_LETTER counts the CASE NOTES: the stimulus we author, not the
-  // recipient line or the task instruction, which are the wrapper around it. It
-  // is NOT the letter the candidate writes — that is governed by the item's own
-  // wordMin/wordMax, which is OET's 180-200 guide.
-  if (item.taskType === "WRITING_LETTER") return words(item.payload.caseNotes);
-  // SPEAKING_ROLEPLAY counts the whole of what the CANDIDATE is shown.
-  // `patientConcern` is excluded on purpose: the session page strips it before
-  // the payload reaches the client, because drawing it out is the task, so
-  // counting it would measure text the candidate never sees.
-  if (item.taskType === "SPEAKING_ROLEPLAY") {
-    return (
-      words(item.payload.setting) +
-      words(item.payload.candidateRole) +
-      words(item.payload.patientRole) +
-      words(item.payload.candidateCard)
-    );
-  }
-  if (item.taskType === "READING_PART_A") {
-    // Combined: the four texts AND the twenty question stems, because that is
-    // what OET's own 885-976-1009 was measured over. Option text is excluded on
-    // purpose — see the header.
-    const texts = (item.payload.texts ?? []).reduce((n, t) => n + words(t.body), 0);
-    const stems = (item.payload.questions ?? []).reduce((n, q) => n + words(q.stem), 0);
-    return texts + stems;
-  }
-  return (item.payload.passages ?? []).reduce((n, t) => n + words(t.body), 0);
-}
+// The length rule lives in ./text-words.ts so that anything else needing the
+// same number reads the same code -- see that file for why.
 
 /** Every way this item falls short of its law. Empty means it meets it. */
 function breaches(item: Item): string[] {
@@ -622,6 +570,124 @@ for (const item of ITEMS) {
     }
   }
 }
+// ── FINDABILITY, LISTENING PART A · every word of the answer must be HEARD ──
+//
+// 🔴 THIS DID NOT EXIST UNTIL 7 SEPTEMBER 2026, AND ONE ITEM PROVES WHY.
+// `lis-a-script-4-podiatry…` gap g9 answered "both palpable" while its audio said
+// "both" and "strong" and NEVER said "palpable". A candidate listening to it
+// could not write the answer, and no gate could see that:
+//
+//   · A2 asks whether the overlay's gap id exists and its label still matches.
+//   · A3 asks the same of a Reading question id and its answer.
+//   · A11 and A12 read VARIANTS against the source, never the answer itself.
+//   · the findability check above reads ANSWERS against the source — and it is
+//     READING ONLY.
+//
+// A2 and A3 sitting at zero said nothing whatever about whether a key could be
+// heard. This closes that.
+//
+// 🔴 IT IS NOT THE READING TEST TRANSPLANTED, AND THE FIRST VERSION WAS.
+// Reading asks for the answer as a CONTIGUOUS phrase, which is right there: the
+// candidate copies a word or short phrase off the page. Listening Part A is NOTE
+// COMPLETION — the candidate condenses speech into a note, so the words of the
+// answer are heard but rarely adjacent. Measured over the whole bank on 7
+// September, the contiguous test reported 11 items and the word test reported 4;
+// all seven of the difference were ordinary note-taking:
+//
+//     "both palpable"  <- "Both pulses in this foot are palpable"
+//     "his wife"       <- the patient says "my wife"
+//     "moving boxes"   · "two sugars" · "her son" · "her knees" · "her neighbour"
+//
+// Nine reported defects, seven of them the checker's own shape. So the rule is:
+// EVERY CONTENT WORD of the answer must be heard, EXACTLY. Function words are
+// skipped, because "of" and "the" are how a note is joined up and not what was
+// heard. And exactly — no stem rule: sameWordAnotherForm exists to be generous to
+// a candidate's VARIANT, and being generous about whether OUR OWN KEY was spoken
+// is how `out` came to stand in for `outer` for months.
+/**
+ * 🔴 FINDABILITY EXEMPTIONS, LISTENING. Per ANSWER, never a rule.
+ *
+ * Closed both ways like every other list in this repo: a row whose answer no
+ * longer fails is a row that has to go, so it cannot rot into an excuse for
+ * content that changed underneath it.
+ *
+ * ⚠️ ONE ROW DOES NOT EARN A RULE. The owner refused a general "a slash
+ * between two numbers reads as the word over" rule for this, and he was right:
+ * it would quietly forgive every future notation nobody had thought about.
+ */
+const LISTENING_FINDABILITY_EXEMPT: { slug: string; gap: string; answer: string; why: string }[] = [
+  {
+    slug: "lis-a-script-6-optometry-difficulty-driving-at-night",
+    gap: "g10",
+    answer: "6/12",
+    why:
+      "Visual acuity notation. The recording says 'six over twelve'; 6/12 is the " +
+      "standard written form of those words and the marker accepts both spoken " +
+      "forms as variants. Exempt from findability, not from marking.",
+  },
+];
+const listeningExemptKey = (slug: string, gap: string) => `${slug}||${gap}`;
+const listeningExemptSeen = new Set<string>();
+
+let listeningFindabilityChecked = 0;
+let listeningFindabilityItems = 0;
+for (const item of ITEMS) {
+  if (item.taskType !== "LISTENING_PART_A") continue;
+  if (RETIRED.has(item.slug)) continue;
+  if (exempt.has(item.slug)) continue;
+  const heardTokens = normalizeTokens(item.payload.audioScript ?? "");
+  const heard = new Set(heardTokens);
+  const heardJoined = heardTokens.join("");
+  if (heard.size === 0) continue;
+  listeningFindabilityItems += 1;
+  for (const gap of item.payload.gaps ?? []) {
+    const answer = gap.answer;
+    if (!answer) continue;
+    listeningFindabilityChecked += 1;
+    const unheard = normalizeTokens(answer).filter((w) => !FUNCTION_WORDS.has(w) && !heard.has(w));
+    if (unheard.length === 0) continue;
+    // 🔴 THE MARKER GETS THE LAST WORD ON WHETHER AN ANSWER IS PRESENT.
+    //
+    // normalize() joins tokens with no separator, so a script that says "twenty
+    // nineteen" carries the answer "2019" — 20 and 19 become 2019 on both sides,
+    // and the MARKER accepts it. Asking token by token cannot see that, and two
+    // components disagreeing about whether an answer is present is the defect
+    // this file exists to catch, not one to introduce.
+    //
+    // ⚠️ MEASURED BEFORE IT WAS ADDED, because a fallback is a hole until it is
+    // counted: over the whole bank it rescues exactly ONE row, radiography g7
+    // "2019", and nothing else. If it ever rescues something that is not a
+    // number or a notation, it has become too generous and the red is worth more.
+    if (heardJoined.includes(normalize(answer))) continue;
+    {
+      const exemptRow = LISTENING_FINDABILITY_EXEMPT.find(
+        (e) => e.slug === item.slug && e.gap === (gap.id ?? "") && e.answer === answer,
+      );
+      if (exemptRow) {
+        listeningExemptSeen.add(listeningExemptKey(item.slug, gap.id ?? ""));
+        continue;
+      }
+      failures.push(
+        `${item.title} / ${gap.id ?? "?"} — the answer ${JSON.stringify(answer)} uses ` +
+          `${unheard.map((w) => JSON.stringify(w)).join(", ")}, which that item's own audio ` +
+          "script never says, and the candidate is told to write what they hear",
+      );
+    }
+  }
+}
+if (listeningFindabilityItems === 0) {
+  failures.push("no non-legacy LISTENING_PART_A item exists — the listening findability check is vacuous");
+}
+// A row that has stopped failing is an excuse for content that no longer needs
+// one, and it must go rather than sit here being true of nothing.
+for (const e of LISTENING_FINDABILITY_EXEMPT) {
+  if (!listeningExemptSeen.has(listeningExemptKey(e.slug, e.gap))) {
+    failures.push(
+      `${e.slug} / ${e.gap} is in LISTENING_FINDABILITY_EXEMPT but no longer fails findability — delete the row.`,
+    );
+  }
+}
+
 // Population before the guard: if no item is governed the check proves nothing.
 if (findabilityItems === 0) {
   failures.push("no non-legacy READING_PART_A item exists — the findability check is vacuous");
@@ -676,8 +742,12 @@ console.log(`RETIRED and short of the law:           ${retiredShort.size} item(s
 }
 if (failures.length > 0) {
   console.error(`\n[gate:length] ${failures.length} failure(s):`);
-  for (const f of failures.slice(0, 40)) console.error(`  ${f}`);
-  if (failures.length > 40) console.error(`  …and ${failures.length - 40} more`);
+  // 🔴 EVERY FAILURE, NOT THE FIRST 40. A cap here is not a smaller gate, it is a
+  // gate whose report cannot be acted on: on 6 September 2026 a content batch
+  // produced 247 failures of which 40 printed, and the 78 rows that only needed
+  // DELETING sat past the cut, so the list looked unfixable when most of it was
+  // already resolved. The count was right and the report was useless.
+  for (const f of failures) console.error(`  ${f}`);
   process.exit(1);
 }
 console.log("[gate:length] all clear");

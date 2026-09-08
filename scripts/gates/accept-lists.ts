@@ -18,7 +18,8 @@
  *   A1 every overlay title exists in the seed source
  *   A2 every Listening gap label exists on that item
  *   A3 every Reading key matches EXACTLY ONE question's `answer` on that item
- *   A4 coverage: every free-text answer in the bank HAS an accept-list
+ *   A4 coverage: every MULTI-WORD free-text answer in the bank HAS an
+ *      accept-list; one-word answers are the normaliser's job (see A4 below)
  *   A5 the original answer is accepted
  *   A6 every authored variant is accepted
  *   A7 "the " + the answer is accepted, and so is the digit/word counterpart
@@ -58,9 +59,17 @@ import {
   normalize,
   normalizeTokens,
 } from "../../src/lib/oet/tasks/objective";
+import {
+  AUDIO_EXEMPT,
+  AUDIO_EXEMPT_TOKENS,
+  FUNCTION_WORDS,
+  isAllFunctionWords,
+  runOnMatch,
+  wordFoundInSource,
+} from "./word-forms";
 
-type Gap = { id: string; label: string; answer: string; variants?: string[] };
-type ReadingQ = { id: string; kind: string; stem: string; answer: string; variants?: string[] };
+type Gap = { id: string; label: string; answer: string; variants?: string[]; acceptExhaustive?: boolean };
+type ReadingQ = { id: string; kind: string; stem: string; answer: string; variants?: string[]; acceptExhaustive?: boolean };
 type Item = {
   taskType: string;
   // The machine key. `title` is still read below, but only to PRINT.
@@ -127,29 +136,59 @@ for (const slug of Object.keys(READING_PART_A_ACCEPT)) {
   }
 }
 
-// ── A2 · every Listening label exists on its item ───────────────────────────
-for (const [slug, labels] of Object.entries(LISTENING_PART_A_ACCEPT)) {
+// ── A2 · every Listening key is a gap ID, and its label is still that gap's ──
+//
+// 🔴 THE OVERLAY IS KEYED BY GAP ID, NOT BY LABEL, SINCE 7 SEPTEMBER 2026.
+// The 6 September bank rewrote fifteen Listening items from five gaps to twelve
+// and reworded every label; 45 label-keyed rows went silent in one afternoon.
+// An id survives a rewording. The row still CARRIES the label, and A2 asserts
+// it: a row whose label has drifted off its gap is a row a human can no longer
+// read correctly, and this is the check that says so out loud.
+for (const [slug, rows] of Object.entries(LISTENING_PART_A_ACCEPT)) {
   const item = listeningBySlug.get(slug);
   if (!item) continue; // already reported by A1
-  const known = new Set((item.payload.gaps ?? []).map((g) => g.label));
-  for (const label of Object.keys(labels)) {
-    if (!known.has(label)) {
-      fail("A2", `"${titleOf(slug)}" has no gap labelled "${label}"`);
+  const gaps = item.payload.gaps ?? [];
+  for (const [gapId, row] of Object.entries(rows)) {
+    const hits = gaps.filter((g) => g.id === gapId);
+    if (hits.length !== 1) {
+      fail("A2", `"${titleOf(slug)}" has ${hits.length} gaps with id "${gapId}" (need 1)`);
+      continue;
+    }
+    if (hits[0].label !== row.label) {
+      fail(
+        "A2",
+        `"${titleOf(slug)}" ${gapId}: the row says it belongs to "${row.label}", but that gap ` +
+          `is now labelled "${hits[0].label}" — read the row, then update or delete it`,
+      );
     }
   }
 }
 
-// ── A3 · every Reading key matches exactly one question's answer ────────────
-for (const [slug, keys] of Object.entries(READING_PART_A_ACCEPT)) {
+// ── A3 · every Reading key is a free-text question ID, with its answer ─────
+//
+// Same re-key as A2. The Reading row's `label` is the QUESTION'S OWN ANSWER,
+// which is what the key used to be — so nothing was given up by moving to ids:
+// the row is still checked against the answer it was written for, and it is now
+// also nailed to one question rather than to whichever one happens to share
+// that answer text.
+for (const [slug, rows] of Object.entries(READING_PART_A_ACCEPT)) {
   const item = readingBySlug.get(slug);
   if (!item) continue;
   const free = (item.payload.questions ?? []).filter((q) => q.kind !== "match");
-  for (const key of Object.keys(keys)) {
-    const hits = free.filter((q) => q.answer === key);
+  for (const [qid, row] of Object.entries(rows)) {
+    const hits = free.filter((q) => q.id === qid);
     if (hits.length !== 1) {
       fail(
         "A3",
-        `"${titleOf(slug)}" has ${hits.length} free-text questions whose answer is exactly "${key}" (need 1)`,
+        `"${titleOf(slug)}" has ${hits.length} free-text questions with id "${qid}" (need 1)`,
+      );
+      continue;
+    }
+    if (hits[0].answer !== row.label) {
+      fail(
+        "A3",
+        `"${titleOf(slug)}" ${qid}: the row was written for the answer "${row.label}", but that ` +
+          `question now answers "${hits[0].answer}" — read the row, then update or delete it`,
       );
     }
   }
@@ -439,18 +478,113 @@ const A4_SINGLE_FORM_LISTENING: { item: string; gap: string; answer: string; why
   },
 ];
 
-const A4_SINGLE_KEY = new Set(A4_SINGLE_FORM.map((e) => `${e.item}||${e.answer}`));
+/**
+ * 🔴 FOUR ANSWERS THE OWNER HAS OVERRULED, 7 SEPTEMBER 2026. HIS WORDS, KEPT.
+ *
+ * Two of his own written decisions were in conflict, and this is the record of
+ * which one won — without deleting either, so the next reader sees both.
+ *
+ * The decision that lost: "single form, nothing else to accept", written against
+ * each of these four answers. Two of those rows are hand-written in
+ * A4_SINGLE_FORM above; the other two come from
+ * scripts/gates/reading_sets_single_form.ts, which is GENERATED from the
+ * authors' own "qubool:" lines and must not be hand-edited — delete a row there
+ * and the next build brings it back. So nothing is deleted anywhere. The rows
+ * stay as the true record of what the author wrote, and this list records that
+ * the owner later ruled otherwise.
+ *
+ * THE RULING, VERBATIM:
+ *
+ *     BP ← blood pressure · hep B ← hepatitis B · CO2 ← carbon dioxide ·
+ *     liters ← litres. KEEP ALL FOUR. Nasir's decision, 7 September, in chat.
+ *
+ *     His earlier note "single form, nothing else to accept" is read as aimed
+ *     at PARAPHRASES — teenagers for adolescents, being drunk for intoxication
+ *     — not at whether a standard clinical abbreviation of the same word is
+ *     acceptable. A student who writes CO2 has not written a different word;
+ *     they have written the same word short. That is the rule already applied
+ *     to C. diff, 40 km, 300 milligrams and EKG, and this makes it consistent
+ *     rather than broken on the fifth case.
+ *
+ * ⚠️ CLOSED BOTH WAYS, like every other list here. A row whose answer has NO
+ * accept-list is an override for nothing and FAILS THE BUILD, so this cannot rot
+ * into a standing excuse the day the content changes underneath it.
+ */
+const A4_SINGLE_FORM_OVERRULED: { item: string; answer: string; variant: string }[] = [
+  { item: "rea-a-sepsis", answer: "blood pressure", variant: "BP" },
+  { item: "rea-a-sharps-injury-and-exposure-to-blood", answer: "hepatitis B", variant: "hep B" },
+  { item: "rea-a-a-flare-up-of-chronic-obstructive-lung-disease", answer: "carbon dioxide", variant: "CO2" },
+  { item: "rea-a-diabetic-ketoacidosis", answer: "litres", variant: "liters" },
+];
+const A4_OVERRULED_KEY = new Set(A4_SINGLE_FORM_OVERRULED.map((e) => `${e.item}||${e.answer}`));
+const A4_SINGLE_KEY = new Set(
+  A4_SINGLE_FORM.map((e) => `${e.item}||${e.answer}`).filter((k) => !A4_OVERRULED_KEY.has(k)),
+);
+
 const A4_SINGLE_LISTENING_KEY = new Set(
   A4_SINGLE_FORM_LISTENING.map((e) => `${e.item}||${e.answer}`),
 );
 const a4SingleSeen = new Set<string>();
 const a4SingleListeningSeen = new Set<string>();
 
-// ── A4 · coverage — no free-text answer without an accept-list ──────────────
+// ── A4 · coverage — no MULTI-WORD answer without an accept-list ──────────────
 //
 // The handoff states the bank is fully covered: 146 Listening gaps and 54
 // Reading free-text answers, 200 in all. Asserting it means a NEW item cannot
 // ship without its accept-list — which is the discipline, not an accident.
+//
+// 🔴 NARROWED ON 7 SEPTEMBER 2026, DELIBERATELY, AND HERE IS THE REASON.
+// That rule was written when the bank held 200 free-text answers. It now holds
+// 1032, and 658 of them are ONE WORD. A one-word answer has nothing an
+// accept-list can usefully add: case, surrounding punctuation, a trailing full
+// stop, a leading article, a leading hedge, hyphen-versus-space, a trailing
+// plural and a number written as a word are ALL already folded by normalize()
+// in src/lib/oet/tasks/objective.ts — the same function that marks the
+// candidate. What is left over is a DIFFERENT WORD, and a different word is
+// exactly what this file refuses to accept.
+//
+// 🔴 AND THE COST OF NOT NARROWING IT WAS MEASURED. Demanding a row per
+// answer is what produced a mechanically generated accept-list on 6 September
+// containing hours→hors, four→for, biscuits→biscuitbing and
+// headaches→headacheing — rules that mark WRONG ANSWERS CORRECT. A gate that
+// can only be satisfied by inventing content will be satisfied by invented
+// content.
+//
+// "One word" is decided by the MARKER'S OWN tokeniser, not by counting spaces,
+// so it means one word AFTER normalisation: "a triptan" is one word (the
+// article is stripped), "twenty-eight weeks" is two (the number folds to 28,
+// the unit stays). The class skipped is precisely the class normalize()
+// already covers.
+//
+// ⚠️ WHAT THIS GIVES UP, SAID OUT LOUD: a one-word answer with a legitimate
+// one-word alternative the normaliser cannot reach (throbs / throbbing) no
+// longer has to be recorded here. That is authoring, and it is now caught by
+// reading the content rather than by a build failure. The skipped count is
+// PRINTED on every run so the size of the hole is never a surprise, and A4
+// fails as vacuous if the narrowing ever swallows the whole population.
+// One word AFTER the marker's own normalisation. Hyphens are GLUED rather than
+// split, because for the marker a hyphen is neither a letter nor a boundary:
+// "three-quarters", "three quarters" and "threequarters" are already one and
+// the same answer, so demanding an accept-list row for them would be asking
+// for a variant that cannot exist.
+// 🔴 AND THE AUTHOR MAY SAY IT OUTRIGHT, SINCE 7 SEPTEMBER 2026.
+//
+// A4 left 28 multi-word answers red that had no accept list because none
+// exists — "frozen peas", "laundry detergent", "130 over 80". The two ways to
+// clear them were to invent a variant or to write another exemption row in
+// this file, and inventing is what produced hours→hors and
+// biscuits→biscuitbing on 6 September. Neither belongs to a gate.
+//
+// `acceptExhaustive: true` on the gap or question is the author saying, in the
+// content, that the list is complete. A4 counts it as satisfied. It is CLOSED
+// BOTH WAYS like every other list here: a unit that declares it and then GAINS
+// an accept list fails the build, so the declaration cannot rot into a
+// blanket excuse, and the count is printed on every run.
+const oneWordAnswer = (answer: string) =>
+  normalizeTokens(answer.replace(/[-‐-―]/g, "")).length <= 1;
+let a4Required = 0;
+let a4OneWordSkipped = 0;
+let a4Exhaustive = 0;
 let listeningGaps = 0;
 for (const item of LISTENING) {
   for (const gap of item.payload.gaps ?? []) {
@@ -461,7 +595,7 @@ for (const item of LISTENING) {
     // when it is non-empty. A4 asks whether the answer HAS an accept-list, not
     // where it is kept.
     const hasList =
-      listeningAcceptFor(item.slug, gap.label).length > 0 || (gap.variants ?? []).length > 0;
+      listeningAcceptFor(item.slug, gap.id).length > 0 || (gap.variants ?? []).length > 0;
     const singleKey = `${item.slug}||${gap.answer}`;
     if (A4_SINGLE_LISTENING_KEY.has(singleKey)) {
       a4SingleListeningSeen.add(singleKey);
@@ -474,8 +608,28 @@ for (const item of LISTENING) {
       }
       continue;
     }
+    if (gap.acceptExhaustive) {
+      a4Exhaustive += 1;
+      if (hasList) {
+        fail(
+          "A4",
+          `"${item.title}" → "${gap.label}" declares acceptExhaustive but HAS an ` +
+            "accept-list — one of the two is wrong",
+        );
+      }
+      continue;
+    }
+    if (!hasList && oneWordAnswer(gap.answer)) {
+      a4OneWordSkipped += 1;
+      continue;
+    }
+    a4Required += 1;
     if (!hasList) {
-      fail("A4", `no accept-list for "${item.title}" → "${gap.label}"`);
+      fail(
+        "A4",
+        `no accept-list for "${item.title}" → "${gap.label}" (answer "${gap.answer}") — ` +
+          "more than one word, so the normaliser cannot stand in for one",
+      );
     }
   }
 }
@@ -484,7 +638,7 @@ for (const item of READING) {
   for (const q of (item.payload.questions ?? []).filter((x) => x.kind !== "match")) {
     readingFree += 1;
     const hasList =
-      readingAcceptFor(item.slug, q.answer).length > 0 || (q.variants ?? []).length > 0;
+      readingAcceptFor(item.slug, q.id).length > 0 || (q.variants ?? []).length > 0;
     const singleKey = `${item.slug}||${q.answer}`;
     if (A4_SINGLE_KEY.has(singleKey)) {
       a4SingleSeen.add(singleKey);
@@ -497,13 +651,37 @@ for (const item of READING) {
       }
       continue;
     }
+    if (q.acceptExhaustive) {
+      a4Exhaustive += 1;
+      if (hasList) {
+        fail(
+          "A4",
+          `"${item.title}" → answer "${q.answer}" declares acceptExhaustive but HAS ` +
+            "an accept-list — one of the two is wrong",
+        );
+      }
+      continue;
+    }
+    if (!hasList && oneWordAnswer(q.answer)) {
+      a4OneWordSkipped += 1;
+      continue;
+    }
+    a4Required += 1;
     if (!hasList) {
-      fail("A4", `no accept-list for "${item.title}" → answer "${q.answer}"`);
+      fail(
+        "A4",
+        `no accept-list for "${item.title}" → answer "${q.answer}" — more than one ` +
+          "word, so the normaliser cannot stand in for one",
+      );
     }
   }
 }
 
+// A row the owner has OVERRULED is not expected to be reached: A4_SINGLE_KEY no
+// longer holds it, so it can never be "seen". It is not rot, and its own rot
+// check is the A4_SINGLE_FORM_OVERRULED loop below.
 for (const e of A4_SINGLE_FORM) {
+  if (A4_OVERRULED_KEY.has(`${e.item}||${e.answer}`)) continue;
   if (!a4SingleSeen.has(`${e.item}||${e.answer}`)) {
     fail("A4", `single-form row points at an answer that is not in the bank — delete it: "${e.item}" / "${e.answer}"`);
   }
@@ -515,6 +693,49 @@ for (const e of A4_SINGLE_FORM_LISTENING) {
       `single-form row points at a gap that is not in the bank — delete it: "${e.item}" / "${e.answer}"`,
     );
   }
+}
+// 🔴 THE OVERRIDE IS CLOSED BOTH WAYS. Each overruled row exists because the
+// owner ruled that the answer DOES have something to accept. If it stops having
+// one, the override is an excuse for nothing and the row must go with it.
+for (const e of A4_SINGLE_FORM_OVERRULED) {
+  const it = ITEMS.find((i) => i.slug === e.item);
+  if (!it) {
+    fail("A4", `an overruled row names an item that is not in the bank — delete it: "${e.item}"`);
+    continue;
+  }
+  const unit =
+    it.taskType === "LISTENING_PART_A"
+      ? (it.payload.gaps ?? []).find((g) => g.answer === e.answer)
+      : (it.payload.questions ?? []).find((q) => q.kind !== "match" && q.answer === e.answer);
+  if (!unit) {
+    fail("A4", `an overruled row names an answer that is not in the bank — delete it: "${e.item}" / "${e.answer}"`);
+    continue;
+  }
+  const accepted = [
+    ...(unit.variants ?? []),
+    ...(it.taskType === "LISTENING_PART_A"
+      ? listeningAcceptFor(it.slug, unit.id)
+      : readingAcceptFor(it.slug, unit.id)),
+  ];
+  if (accepted.length === 0) {
+    fail(
+      "A4",
+      `"${e.item}" / "${e.answer}" is overruled as NOT single-form, but it has no ` +
+        "accept-list at all — the override is an excuse for nothing, delete the row",
+    );
+  } else if (!accepted.includes(e.variant)) {
+    fail(
+      "A4",
+      `"${e.item}" / "${e.answer}" is overruled on the strength of ${JSON.stringify(e.variant)}, ` +
+        `which is no longer accepted — the ruling and the content have parted company`,
+    );
+  }
+}
+
+// Population AFTER the narrowing. If every answer in the bank ever became one
+// word, A4 would pass by looking at nothing at all.
+if (a4Required === 0) {
+  fail("A4", "the one-word skip swallowed every answer — A4 asserted nothing");
 }
 
 /**
@@ -559,7 +780,7 @@ for (const item of LISTENING) {
     CASES.push({
       where: `${item.title} → ${gap.label}`,
       answer: gap.answer,
-      variants: [...(gap.variants ?? []), ...listeningAcceptFor(item.slug, gap.label)],
+      variants: [...(gap.variants ?? []), ...listeningAcceptFor(item.slug, gap.id)],
     });
   }
 }
@@ -568,7 +789,7 @@ for (const item of READING) {
     CASES.push({
       where: `${item.title} → "${q.answer}"`,
       answer: q.answer,
-      variants: [...(q.variants ?? []), ...readingAcceptFor(item.slug, q.answer)],
+      variants: [...(q.variants ?? []), ...readingAcceptFor(item.slug, q.id)],
     });
   }
 }
@@ -667,7 +888,7 @@ if (!folicGap) {
 } else {
   const variants = [
     ...(folicGap.variants ?? []),
-    ...listeningAcceptFor(FOLIC_SLUG, FOLIC_LABEL),
+    ...listeningAcceptFor(FOLIC_SLUG, folicGap.id),
   ];
   for (const wrong of ["400 mg", "400mg", "400 milligrams", "400 mgs"]) {
     if (accepts(folicGap.answer, variants, wrong)) {
@@ -743,7 +964,7 @@ for (const item of LISTENING) {
     (item.payload.gaps ?? []).map((g) => ({
       id: g.id,
       label: g.label,
-      strings: [g.answer, ...(g.variants ?? []), ...listeningAcceptFor(item.slug, g.label)],
+      strings: [g.answer, ...(g.variants ?? []), ...listeningAcceptFor(item.slug, g.id)],
     })),
   );
 }
@@ -755,7 +976,7 @@ for (const item of READING) {
       .map((q) => ({
         id: q.id,
         label: `answer "${q.answer}"`,
-        strings: [q.answer, ...(q.variants ?? []), ...readingAcceptFor(item.slug, q.answer)],
+        strings: [q.answer, ...(q.variants ?? []), ...readingAcceptFor(item.slug, q.id)],
       })),
   );
 }
@@ -794,76 +1015,12 @@ for (const item of READING) {
 //     withdrawn on 2 September differed by a CONTENT word — pudding, saucepan,
 //     backbone, finances — so this list could not have let a single one through.
 
-/** 🔴 THE WRITTEN EXEMPTION LIST. Short on purpose. Every entry is an
- *  abbreviation or a spelling of something the audio DOES say — never a
- *  different word. Adding to it is a decision, which is why each carries its
- *  reason here in the file rather than in a commit message. */
-const AUDIO_EXEMPT: Record<string, string> = {
-  mcg: "abbreviation of micrograms",
-  ug: "ASCII spelling of the µg abbreviation for micrograms",
-  kg: "abbreviation of kilos",
-  c: "abbreviation of celsius",
-  celsius: "the unit the script says as 'degrees'; same unit, written out",
-  center: "US spelling of centre",
-  "7/10": "the figures for 'seven out of ten'",
-};
-
-/** Keyed by the NORMALISED token, because that is what the check compares.
- *  Written out above in the form a person recognises; folded here once —
- *  "celsius" normalises to "celsiu", and an exemption that never matched would
- *  be an exemption that silently did nothing. */
-const AUDIO_EXEMPT_TOKENS = new Map<string, string>(
-  Object.entries(AUDIO_EXEMPT).flatMap(([k, why]) =>
-    normalizeTokens(k).map((t) => [t, why] as [string, string]),
-  ),
-);
-
-/** Words that carry no answer. Not checked against the audio, because A11 is
- *  about what was HEARD, not about how a candidate joined the words up. */
-const FUNCTION_WORDS = new Set([
-  "a", "an", "the", "and", "or", "of", "to", "in", "on", "at", "for", "with",
-  "is", "was", "are", "were", "be", "been", "it", "its", "that", "this",
-  "my", "your", "his", "her", "their", "she", "he", "they", "i", "we",
-  "not", "no", "out", "up", "down", "over", "under", "from", "as", "so",
-  // "can't" tokenises to "can" + "t"; "cannot" is the same words spelled shut.
-  "can", "cannot", "cant", "t",
-]);
-
-/** Inflectional endings — the difference between two forms of ONE word. The
- *  optional doubled consonant covers sit→sitting, and the list is written out
- *  rather than inferred so that adding to it is a visible decision. */
-//
-// ⚠️ `ised` and `age` were added on 2 September 2026 because the Reading audit
-// names `mobile → mobilised` and `dose → dosage` as forms that MUST survive —
-// "ek hi lafz ka khandan", one word's family. Without them A12 flagged two
-// variants their own author had already ruled on, which would have been the
-// checker disagreeing with the rule it exists to enforce.
-//
-// `age` is the looser of the two: with a three-letter shared stem it also makes
-// "man"/"manage" and "pack"/"package" read as one word. That is a real cost and
-// it is accepted knowingly — it can only ever let a variant PASS the audio/text
-// check, never change how a candidate is marked.
-const INFLECTION =
-  /^(|e|d|s|es|ed|y|ie|ies|th|le|ly|er|est|al|age|ion|ised|less|ness|iness|ity|ility|ment|ement|ation|ating|ying|tion|sion|[bcdfglmnprstz]?(ing|ed|er|est))$/;
-
-function sharedPrefix(a: string, b: string): number {
-  let i = 0;
-  while (i < a.length && i < b.length && a[i] === b[i]) i += 1;
-  return i;
-}
-
-/** Are these two the same word in different forms? */
-function sameWordAnotherForm(a: string, b: string): boolean {
-  const n = sharedPrefix(a, b);
-  if (n < 3) return false;
-  return INFLECTION.test(a.slice(n)) && INFLECTION.test(b.slice(n));
-}
-
-function wordInAudio(word: string, audioWords: Set<string>): boolean {
-  if (audioWords.has(word)) return true;
-  for (const a of audioWords) if (sameWordAnotherForm(word, a)) return true;
-  return false;
-}
+/* 🔴 THE EXEMPTION LIST, THE FUNCTION WORDS AND THE SAME-WORD RULE MOVED OUT
+ * ON 7 SEPTEMBER 2026, to scripts/gates/word-forms.ts. Nothing about them
+ * changed; they left because this file is a SCRIPT and importing it runs the
+ * whole gate, so nothing could measure how many rows pass only because
+ * sameWordAnotherForm() fired. `out` had been standing in for `outer` on one
+ * live row for months. Read them there. */
 
 /**
  * 🔴 THE WRITTEN, PER-VARIANT EXEMPTION LIST — Nasir's ruling of 2 September 2026.
@@ -900,11 +1057,34 @@ function wordInAudio(word: string, audioWords: Set<string>): boolean {
  * longer exists in the overlay also FAILS, so it cannot rot into a list of
  * excuses for content that has been deleted.
  *
- * ⚠️ An entry that is not currently load-bearing is REPORTED, not failed. The
- * ruling required both `night-time` rows, and one of them passes today only
- * because its own script happens to say "six times a day" — "times" reduces to
- * "time". That is a coincidence of wording, not a decision, and the day it
- * changes the row is the thing that keeps the gate green.
+ * ⚠️ An entry that is not currently load-bearing is REPORTED, not failed, and
+ * that is not a formality — the count moves under you.
+ *
+ * 🔴 `OT` ON "Preventing falls in older adults" IS THE CASE TO REMEMBER. It sat
+ * in this list reported as NOT load-bearing, which reads like a row that could
+ * be deleted. It could not: the variant was passing the run-on rule instead,
+ * because `joined` had no spaces in it and two unrelated words abutted to spell
+ * "ot". When that rule was narrowed to align on token boundaries on 7 September
+ * 2026, the coincidence went and the row became load-bearing again — the only
+ * thing standing between a correct answer and a red gate.
+ *
+ * So: NOT LOAD-BEARING MEANS SOMETHING ELSE IS CARRYING IT, NOT THAT NOTHING IS.
+ * Find out what before deleting the row.
+ */
+/**
+ * 🔴 `ruling-2026-09-07` — THE OWNER RULED ON ALL 156 OPEN ROWS IN ONE PASS.
+ * 34 KEEP, 120 REFUSE, 2 he would not rule on. The 120 are DELETED from the
+ * content, not exempted here; the 34 below are the ones he kept, each carrying
+ * his own category and reason from
+ * `AlmiOET_accept_list_DECISIONS_2026-09-07.json`, transcribed, not summarised.
+ * His rule, verbatim: "An accept list may cover only other ways of writing the
+ * SAME word — a spelling variant, a standard abbreviation or unit expansion, or
+ * another grammatical form. It may never cover a different word that means the
+ * same thing. A synonym accepted is a wrong answer marked right."
+ *
+ * ABBR 20 · SPELL 9 · INFLECT 5. Every one is still closed both ways: the day a
+ * row stops failing it must be deleted, so none of them can rot into a blanket
+ * excuse for content that changed underneath it.
  */
 type VariantExemption = {
   item: string;
@@ -914,11 +1094,124 @@ type VariantExemption = {
     | "ruling-2026-09-02"
     | "irregular-form"
     | "reading-audit-2026-09-02"
+    | "ruling-2026-09-07"
     | "pending-decision";
   why: string;
 };
 
 const A11_EXEMPT_VARIANT: VariantExemption[] = [
+  {
+    item: "lis-a-script-9-veterinary-science-a-stiff-older-dog",
+    gap: "Breed",
+    variant: "lab",
+    source: "ruling-2026-09-07",
+    why:
+      "ABBR: lab is the standard clipping of labrador, and the script says " +
+      "\"he's a labrador\" and \"a labrador, yes\". It is the same shape as BP, " +
+      "hep B, C. diff and CO2, all of which I kept. Refusing it would apply my " +
+      "own rule four times and break it on the fifth. The ambiguity I raised — " +
+      "lab also meaning laboratory — does not apply: marking compares an answer " +
+      "against THAT question's key only, never across the bank, and the gap " +
+      "label is \"Breed\".",
+  },
+  {
+    item: "lis-a-medication-side-effect",
+    gap: "Suspected cause",
+    variant: "BP medication",
+    source: "ruling-2026-09-07",
+    why: "ABBR: BP is the standard abbreviation of blood pressure",
+  },
+  {
+    item: "lis-a-ongoing-sleep-problem",
+    gap: "Referral to be made for",
+    variant: "CBT",
+    source: "ruling-2026-09-07",
+    why: "ABBR: CBT is the standard initialism of cognitive behavioural therapy",
+  },
+  {
+    item: "lis-a-ongoing-sleep-problem",
+    gap: "Referral to be made for",
+    variant: "cognitive behavioral therapy",
+    source: "ruling-2026-09-07",
+    why: "SPELL: US spelling of behavioural",
+  },
+  {
+    item: "lis-a-script-3-dietetics-unintentional-weight-loss",
+    gap: "Shopping is done by",
+    variant: "her neighbor",
+    source: "ruling-2026-09-07",
+    why: "SPELL: US spelling of neighbour",
+  },
+  {
+    item: "lis-a-script-6-optometry-difficulty-driving-at-night",
+    gap: "General health condition",
+    variant: "high BP",
+    source: "ruling-2026-09-07",
+    why: "ABBR: BP",
+  },
+  {
+    item: "lis-a-script-7-pharmacy-a-medicines-review",
+    gap: "First action: check her ______ sitting and standing",
+    variant: "BP",
+    source: "ruling-2026-09-07",
+    why: "ABBR: BP",
+  },
+  {
+    item: "lis-a-script-10-radiography-safety-checks-before-an-mri-scan",
+    gap: "Difficulty reported",
+    variant: "claustrophobic",
+    source: "ruling-2026-09-07",
+    why: "INFLECT: claustrophobic — adjective form of claustrophobia",
+  },
+  {
+    item: "lis-a-script-13-medicine-breathlessness-with-an-irregular-pulse",
+    gap: "Distance he can walk now",
+    variant: "fifty meters",
+    source: "ruling-2026-09-07",
+    why: "SPELL: US spelling of metres",
+  },
+  {
+    item: "lis-a-script-13-medicine-breathlessness-with-an-irregular-pulse",
+    gap: "Before leaving the building: an",
+    variant: "EKG",
+    source: "ruling-2026-09-07",
+    why: "SPELL: EKG is the US form of ECG",
+  },
+  {
+    item: "lis-a-script-14-physiotherapy-knee-pain-in-a-runner",
+    gap: "Weekly distance",
+    variant: "40 km",
+    source: "ruling-2026-09-07",
+    why: "ABBR: km is the symbol for kilometres",
+  },
+  {
+    item: "lis-a-script-14-physiotherapy-knee-pain-in-a-runner",
+    gap: "Weekly distance",
+    variant: "forty km",
+    source: "ruling-2026-09-07",
+    why: "ABBR: km",
+  },
+  {
+    item: "lis-a-script-15-nursing-a-pre-operative-assessment",
+    gap: "Date of surgery",
+    variant: "12th",
+    source: "ruling-2026-09-07",
+    why: "ABBR: 12th is the numeral form of twelfth",
+  },
+  {
+    item: "lis-a-script-15-nursing-a-pre-operative-assessment",
+    gap: "Date of surgery",
+    variant: "the 12th",
+    source: "ruling-2026-09-07",
+    why: "ABBR: 12th",
+  },
+  {
+    item: "lis-a-script-15-nursing-a-pre-operative-assessment",
+    gap: "No food after",
+    variant: "12 midnight",
+    source: "ruling-2026-09-07",
+    why: "ABBR: 12 midnight — numeral form, meaning unchanged",
+  },
   {
     item: "lis-a-f1-dietitian-consultation-type-2-diabetes",
     gap: "Referred because this was high",
@@ -968,35 +1261,7 @@ const A11_EXEMPT_VARIANT: VariantExemption[] = [
     source: "ruling-2026-09-02",
     why: "'medication' and 'medicine' are one word's family",
   },
-  {
-    item: "lis-a-asthma-flare-up",
-    gap: "Worse timing",
-    variant: "night-time",
-    source: "ruling-2026-09-02",
-    why: "a compound of 'night' — nothing new said",
-  },
-  {
-    item: "lis-a-medication-side-effect",
-    gap: "Worse timing",
-    variant: "night-time",
-    source: "ruling-2026-09-02",
-    why: "same reason as the Asthma flare-up row; the two are NOT interchangeable",
-  },
   // ── not the ruling's: a limit of the written morphology above ─────────────
-  {
-    item: "lis-a-diabetes-annual-check",
-    gap: "Weight change",
-    variant: "weight loss",
-    source: "irregular-form",
-    why: "the script says 'lost about four kilos'; loss/lost is one word, irregularly, and the ending list cannot derive it",
-  },
-  {
-    item: "lis-a-post-operative-wound-check",
-    gap: "Pain trend",
-    variant: "getting worse",
-    source: "irregular-form",
-    why: "the script says 'has actually got worse'; getting/got is one word, irregularly",
-  },
 ];
 
 /**
@@ -1054,6 +1319,17 @@ const A11_EXEMPT_VARIANT: VariantExemption[] = [
  * ⚠️ THIS LIST IS A TO-DO, NOT AN ALLOWANCE, so it is stricter than the
  * exemption lists: a row that has STOPPED failing fails the build, because a
  * resolved question should be deleted rather than left lying here.
+ *
+ * 🔴 ONE ROW WAS DELETED ON 7 SEPTEMBER 2026 AND THE QUESTION IS STILL OPEN.
+ * `night-time` on "Reading Part A — Delirium in hospital" (answer `night`)
+ * stopped failing, so this list's own rule required its removal. It did NOT
+ * stop failing because anyone answered it: A12 splits `night-time` into
+ * `night` + `time`, and the item's rewritten text now happens to contain the
+ * word "time" in an unrelated sentence ("…fluctuates through the day…").
+ * A COINCIDENCE OF WORDING IS NOT A RULING. The question Nasir was handed —
+ * is `night-time` acceptable where the text only ever says "at night"? — is
+ * recorded here because A12 can no longer see it, and the row would fail the
+ * build if it were left in.
  */
 const A12_PENDING_DECISION: VariantExemption[] = [
   {
@@ -1063,16 +1339,149 @@ const A12_PENDING_DECISION: VariantExemption[] = [
     source: "pending-decision",
     why: "the text prints 'occupational-therapy', never 'therapist' — and this is the item's own answer, not just a variant",
   },
-  {
-    item: "rea-a-f3-delirium-in-hospital",
-    gap: "night",
-    variant: "night-time",
-    source: "pending-decision",
-    why: "the text says 'at night', never 'time'; the same variant is an exemption on two Listening items, but this one was not named",
-  },
 ];
 
 const A12_EXEMPT_VARIANT: VariantExemption[] = [
+  {
+    item: "rea-a-sepsis",
+    gap: "blood pressure",
+    variant: "BP",
+    source: "ruling-2026-09-07",
+    why: "ABBR: BP",
+  },
+  {
+    item: "rea-a-hypoglycaemia",
+    gap: "15–20 g",
+    variant: "15 to 20 grams",
+    source: "ruling-2026-09-07",
+    why: "ABBR: g written out as grams, unit complete",
+  },
+  {
+    item: "rea-a-hypoglycaemia",
+    gap: "15–20 g",
+    variant: "15-20 grams",
+    source: "ruling-2026-09-07",
+    why: "ABBR: g written out as grams, unit complete",
+  },
+  {
+    item: "rea-a-hypoglycaemia",
+    gap: "15–20 g",
+    variant: "15g to 20g",
+    source: "ruling-2026-09-07",
+    why: "ABBR: g written out per figure, unit complete",
+  },
+  {
+    item: "rea-a-acute-stroke",
+    gap: "hypoglycaemia",
+    variant: "hypoglycemia",
+    source: "ruling-2026-09-07",
+    why: "SPELL: US spelling of hypoglycaemia",
+  },
+  {
+    item: "rea-a-preventing-blood-clots-in-hospital",
+    gap: "swelling",
+    variant: "swollen",
+    source: "ruling-2026-09-07",
+    why: "INFLECT: swollen — adjective form of swelling",
+  },
+  {
+    item: "rea-a-preventing-blood-clots-in-hospital",
+    gap: "arterial",
+    variant: "artery",
+    source: "ruling-2026-09-07",
+    why: "INFLECT: artery — noun form of arterial",
+  },
+  {
+    item: "rea-a-preventing-blood-clots-in-hospital",
+    gap: "writing",
+    variant: "written",
+    source: "ruling-2026-09-07",
+    why: "INFLECT: written — participle form of writing",
+  },
+  {
+    item: "rea-a-high-risk-medicines",
+    gap: "nought",
+    variant: "naught",
+    source: "ruling-2026-09-07",
+    why: "SPELL: naught is a variant spelling of nought",
+  },
+  {
+    item: "rea-a-high-risk-medicines",
+    gap: "large",
+    variant: "larger",
+    source: "ruling-2026-09-07",
+    why: "INFLECT: larger — comparative form of large",
+  },
+  {
+    item: "rea-a-wound-infection-and-antibiotics",
+    gap: "Clostridioides difficile",
+    variant: "C. diff",
+    source: "ruling-2026-09-07",
+    why: "ABBR: C. diff is the standard clinical abbreviation",
+  },
+  {
+    item: "rea-a-oxygen-therapy",
+    gap: "carbon dioxide",
+    variant: "CO2",
+    source: "ruling-2026-09-07",
+    why: "ABBR: CO2 is the symbol for carbon dioxide",
+  },
+  {
+    item: "rea-a-acute-kidney-injury",
+    gap: "26 micromol/L",
+    variant: "26 micromol per litre",
+    source: "ruling-2026-09-07",
+    why: "ABBR: micromol/L written out in full, unit complete",
+  },
+  {
+    item: "rea-a-acute-kidney-injury",
+    gap: "a litre",
+    variant: "a liter",
+    source: "ruling-2026-09-07",
+    why: "SPELL: US spelling of litre",
+  },
+  {
+    item: "rea-a-chest-pain-and-acute-coronary-syndrome",
+    gap: "300 mg",
+    variant: "300 milligrams",
+    source: "ruling-2026-09-07",
+    why: "ABBR: mg written out as milligrams, unit complete",
+  },
+  {
+    item: "rea-a-sharps-injury-and-exposure-to-blood",
+    gap: "hepatitis B",
+    variant: "hep B",
+    source: "ruling-2026-09-07",
+    why: "ABBR: hep B is the standard clinical abbreviation",
+  },
+  {
+    item: "rea-a-a-flare-up-of-chronic-obstructive-lung-disease",
+    gap: "the colour",
+    variant: "the color",
+    source: "ruling-2026-09-07",
+    why: "SPELL: US spelling of colour",
+  },
+  {
+    item: "rea-a-a-flare-up-of-chronic-obstructive-lung-disease",
+    gap: "carbon dioxide",
+    variant: "CO2",
+    source: "ruling-2026-09-07",
+    why: "ABBR: CO2",
+  },
+  {
+    item: "rea-a-diabetic-ketoacidosis",
+    gap: "the electrocardiogram",
+    variant: "the ECG",
+    source: "ruling-2026-09-07",
+    why: "ABBR: ECG is the standard abbreviation of electrocardiogram",
+  },
+  {
+    item: "rea-a-diabetic-ketoacidosis",
+    gap: "litres",
+    variant: "liters",
+    source: "ruling-2026-09-07",
+    why: "SPELL: US spelling of litres",
+  },
   {
     item: "rea-a-malnutrition-screening",
     gap: "dietitian",
@@ -1207,7 +1616,7 @@ function runSourceWordCheck(opts: {
   let functionWords = 0;
 
   // Tokenise each source once, not once per variant.
-  const tokensFor = new Map<string, { words: Set<string>; joined: string }>();
+  const tokensFor = new Map<string, { words: Set<string>; joined: string; tokens: string[] }>();
   for (const c of cases) {
     if (tokensFor.has(c.itemSlug)) continue;
     const text = sourceFor(c.itemSlug);
@@ -1216,7 +1625,7 @@ function runSourceWordCheck(opts: {
       continue;
     }
     const toks = normalizeTokens(text);
-    tokensFor.set(c.itemSlug, { words: new Set(toks), joined: toks.join("") });
+    tokensFor.set(c.itemSlug, { words: new Set(toks), joined: toks.join(""), tokens: toks });
   }
 
   for (const c of cases) {
@@ -1231,21 +1640,38 @@ function runSourceWordCheck(opts: {
 
     // A run-on spelling of words the source writes separately ("buttonhook" for
     // "button hook", "taichi" for "tai chi") is still the source's own wording.
-    if (src.joined.includes(normalize(c.variant))) continue;
+    //
+    // 🔴 IT MUST ALIGN ON A TOKEN BOUNDARY — see runOnMatch in ./word-forms.ts.
+    // `joined` has no spaces in it, so without alignment every short string was a
+    // substring of something: `ot` passed because two unrelated words abutted and
+    // `ckd` because a script said "check dose". A row that stops taking this
+    // route is NOT failed here; it falls through to the word check below, which
+    // is where nine of the thirteen affected rows are then answered anyway.
+    if (runOnMatch(src.joined, src.tokens, normalize(c.variant))) continue;
 
     // Collect EVERY missing word first, so an exempt row can be told apart from
     // one that never needed exempting.
+    // 🔴 A VARIANT WITH NO CONTENT WORD IS NOT A VARIANT THAT WAS HEARD.
+    // Skipping function words one at a time is right; skipping ALL of them is a
+    // check that never runs. `no` stood in for the answer `never` on two
+    // Listening items for months on exactly that hole. Such a variant has to be
+    // found outright — by the run-on rule above, by a written exemption, or not
+    // at all — so every one of its words is reported.
+    const variantWords = normalizeTokens(c.variant);
+    const noContentWord = isAllFunctionWords(variantWords);
     const missing: string[] = [];
-    for (const word of normalizeTokens(c.variant)) {
+    for (const word of variantWords) {
       if (AUDIO_EXEMPT_TOKENS.has(word)) {
         abbreviations += 1;
         continue;
       }
-      if (FUNCTION_WORDS.has(word)) {
+      if (FUNCTION_WORDS.has(word) && !noContentWord) {
         functionWords += 1;
         continue;
       }
-      if (wordInAudio(word, src.words)) continue;
+      // The source says this word, either as a token of its own or spelled
+      // across two — "twenty nineteen" carries 2019. See wordFoundInSource.
+      if (wordFoundInSource(word, src.words, src.joined, src.tokens)) continue;
       missing.push(word);
     }
     if (missing.length === 0) continue;
@@ -1299,7 +1725,7 @@ function runSourceWordCheck(opts: {
 const A11_CASES: VariantCase[] = [];
 for (const item of LISTENING) {
   for (const gap of item.payload.gaps ?? []) {
-    for (const variant of listeningAcceptFor(item.slug, gap.label)) {
+    for (const variant of listeningAcceptFor(item.slug, gap.id)) {
       A11_CASES.push({ itemSlug: item.slug, gapLabel: gap.label, variant });
     }
   }
@@ -1341,7 +1767,7 @@ const READING_TEXT = new Map(
 const A12_CASES: VariantCase[] = [];
 for (const item of READING) {
   for (const q of (item.payload.questions ?? []).filter((x) => x.kind !== "match")) {
-    for (const variant of readingAcceptFor(item.slug, q.answer)) {
+    for (const variant of readingAcceptFor(item.slug, q.id)) {
       A12_CASES.push({ itemSlug: item.slug, gapLabel: q.answer, variant });
     }
   }
@@ -1408,17 +1834,19 @@ if (titleKeyedUnresolved.length > 0) {
 for (const [slug, answers] of Object.entries(READING_PART_A_ACCEPT)) {
   if (!retiredSlugs.has(slug)) continue;
   deadKeys.push(slug);
-  for (const variants of Object.values(answers)) deadVariants += variants.length;
+  for (const row of Object.values(answers)) deadVariants += row.accept.length;
 }
 let liveListeningVariants = 0;
-for (const answers of Object.values(LISTENING_PART_A_ACCEPT)) {
-  for (const variants of Object.values(answers)) liveListeningVariants += variants.length;
+for (const rows of Object.values(LISTENING_PART_A_ACCEPT)) {
+  for (const row of Object.values(rows)) liveListeningVariants += row.accept.length;
 }
 
 // ── report ─────────────────────────────────────────────────────────────────
 console.log(
   `[gate:accept-lists] ${LISTENING.length} Listening Part A item(s), ${listeningGaps} gap(s); ` +
     `${READING.length} Reading Part A item(s), ${readingFree} free-text answer(s); ` +
+    `A4 required a list on ${a4Required}, skipped ${a4OneWordSkipped} one-word answer(s), ` +
+    `${a4Exhaustive} declared exhaustive; ` +
     `${CASES.length} answer(s) checked, ${numericChecked} with a numeric counterpart; ` +
     `A11: ${a11.checked} Listening variant(s) against ${a11.sources} audio script(s); ` +
     `A12: ${a12.checked} Reading variant(s) against ${a12.sources} text set(s); ` +
@@ -1469,8 +1897,11 @@ for (const check of [
 }
 if (failures.length > 0) {
   console.error(`\n[gate:accept-lists] ${failures.length} failure(s):`);
-  for (const f of failures.slice(0, 60)) console.error(`  ${f}`);
-  if (failures.length > 60) console.error(`  …and ${failures.length - 60} more`);
+  // UNCAPPED, DELIBERATELY. A cap of 60 on this gate hid A11 and A12 entirely
+  // on 6 September — 391 failures, 60 printed, and the two checks a human still
+  // had to rule on were both past the cut. A report that hides the half you can
+  // act on costs a whole session.
+  for (const f of failures) console.error(`  ${f}`);
   process.exit(1);
 }
 console.log("[gate:accept-lists] all clear");

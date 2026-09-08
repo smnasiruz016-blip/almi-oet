@@ -63,8 +63,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "half",
           "variants": [
             "about half",
-            "half of it",
-            "fifty per cent"
+            "half of it"
           ]
         },
         {
@@ -77,7 +76,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Change in taste: everything tastes",
           "answer": "metallic",
           "variants": [
-            "like metal",
             "like a coin",
             "metallic taste"
           ]
@@ -87,8 +85,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Problem with dentures since losing weight: they have become",
           "answer": "loose",
           "variants": [
-            "they are loose",
-            "loose dentures"
+            "they are loose"
           ]
         },
         {
@@ -135,12 +132,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "food diary",
           "variants": [
             "diary",
-            "a food diary",
-            "food record"
+            "a food diary"
           ]
         }
       ],
-      "audioScript": "Dietitian: Come in and sit down, Mrs Odell. I'm Tomas, one of the dietitians. Your doctor has sent you across because of your weight, so I'd like to hear it from you rather than from the letter. Patient: Well, it's gone down. I know that. My skirts are hanging off me. Dietitian: Has anybody else said anything about it? Patient: The girl in the post office asked if I'd been poorly. That's when I rang the surgery. Dietitian: Do you have a number in mind? Patient: I weighed myself at my daughter's at Christmas and I was ten stone something. I was on her scales again on Sunday and it said eight stone. So two stone, near enough. Dietitian: And Christmas to now — how long is that in months for you? Patient: It started before Christmas, really. The summer, I'd say. Eight months. Dietitian: Thank you. That's the number that matters, not the weight itself. Now, an ordinary day. What happens at dinner time? Patient: I still cook it. I put it on the plate the same as always and I get about half of it down, and then I've had enough. It's not that it's horrible. I'm just full. Dietitian: Half the plate. Is there anything you've stopped having altogether? Patient: Bread. I can't be doing with bread now. It sits. Dietitian: Anything else changed about how food is? Patient: Everything tastes metallic. Tea, chicken, the lot. Like I've got a coin in my mouth. Dietitian: That's useful — it's a common reason people stop eating and nobody asks about it. What about chewing? Patient: My teeth. Well, they're not mine, are they. They've gone loose since I lost the weight, so I take them out for anything hard. Dietitian: So the food you can manage has got softer and smaller at the same time. Who does your shopping? Patient: My neighbour brings it. She's very good, she goes on a Friday. Dietitian: And the cooking itself — any difficulty with that? Patient: Standing. I can't stand at that cooker for twenty minutes any more. I have to sit down halfway through and then it's gone cold. Dietitian: Is there anything you'd always say yes to? Something that goes down easily. Patient: Custard. I'd have custard any time. My mother's answer to everything. Dietitian: Then we'll use it. Now, your tablets. Are you still on the metformin? Patient: Twice a day. Dietitian: That can take the edge off an appetite in some people, and I'll mention it to your doctor — I won't be changing it. How are your bowels? Patient: Constipated. I've been like that a while. Dietitian: That'll be doing you no favours either, and it'll settle as the eating settles. Here's what I'd like first, before I change a single meal. A food diary — everything that goes in, for seven days, written at the time and not at bedtime. Patient: It'll look very dull. Dietitian: Dull is what I want. And I'm not going to sit here and tell you to eat more, because nobody in the history of this clinic has ever eaten more because a dietitian told them to. What I want is the reason your body stopped asking, and then to take that reason away. Dietitian: So bring me the dull one. Then I'll know whether we're solving a taste problem, a teeth problem or a standing-up problem, and they need three different answers. Bring it back to me next Thursday. Patient: Drinks as well? Dietitian: Everything that goes past your lips. That is where half the answer usually hides."
+      "audioScript": "Dietitian: Come in and sit down, Mrs Odell. I'm Tomas, one of the dietitians. Your doctor has sent you across because of your weight, so I'd like to hear it from you rather than from the letter. Patient: Well, it's gone down. I know that. My skirts are hanging off me. Dietitian: Has anybody else said anything about it? Patient: The girl in the post office asked if I'd been poorly. That's when I rang the surgery. Dietitian: Do you have a number in mind? Patient: I weighed myself at my daughter's at Christmas and I was ten stone something. I was on her scales again on Sunday and it said eight stone. So two stone, near enough. Dietitian: And Christmas to now — how long is that in months for you? Patient: It started before Christmas, really. The summer, I'd say. Eight months. Dietitian: Thank you. That's the number that matters, not the weight itself. Now, an ordinary day. What happens at dinner time? Patient: I still cook it. I put it on the plate the same as always and I get about half of it down, and then I've had enough. It's not that it's horrible. I'm just full. Dietitian: Half the plate. Is there anything you've stopped having altogether? Patient: Bread. I can't be doing with bread now. It sits. Dietitian: Anything else changed about how food is? Patient: Everything tastes metallic. Tea, chicken, the lot. Like I've got a coin in my mouth. Dietitian: That's useful — it's a common reason people stop eating and nobody asks about it. What about chewing? Patient: My teeth. Well, they're not mine, are they. They've gone loose since I lost the weight, so I take them out for anything hard. Dietitian: So the food you can manage has got softer and smaller at the same time. Who does your shopping? Patient: My neighbour brings it. She's very good, she goes on a Friday. Dietitian: And the cooking itself — any difficulty with that? Patient: Standing. I can't stand at that cooker for twenty minutes any more. I have to sit down halfway through and then it's gone cold. Dietitian: Is there anything you'd always say yes to? Something that goes down easily. Patient: Custard. I'd have custard any time. My mother's answer to everything. Dietitian: Then we'll use it. Now, your tablets. Are you still on the metformin? Patient: Twice a day. Dietitian: That can take the edge off an appetite in some people, and I'll mention it to your doctor — I won't be changing it. How are your bowels? Patient: Constipated. I've been like that a while. Dietitian: That'll be doing you no favours either, and it'll settle as the eating settles. Here's what I'd like first, before I change a single meal. A food diary — everything that goes in, for seven days, written at the time and not at bedtime. Patient: It'll look very dull. Dietitian: Dull is what I want. And I'm not going to sit here and tell you to eat more, because nobody in the history of this clinic has ever eaten more because a dietitian told them to. What I want is the reason your body stopped asking, and then to take that reason away. So bring me the dull one. Then I'll know whether we're solving a taste problem, a teeth problem or a standing-up problem, and they need three different answers. Bring it back to me next Thursday. Patient: Drinks as well? Dietitian: Everything that goes past your lips. That is where half the answer usually hides."
     }
   },
   {
@@ -203,8 +199,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "none",
           "variants": [
             "no pain",
-            "nothing",
-            "not painful"
+            "nothing"
           ]
         },
         {
@@ -248,10 +243,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Foot pulses",
           "answer": "both palpable",
           "variants": [
-            "both present",
-            "strong",
-            "both felt",
-            "palpable"
+            "palpable",
+            "both pulses palpable",
+            "strong"
           ]
         },
         {
@@ -259,7 +253,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Nature of the lesion: ______ with a break underneath",
           "answer": "hard skin",
           "variants": [
-            "callus",
             "thick skin"
           ]
         },
@@ -279,12 +272,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "one week",
           "variants": [
             "a week",
-            "1 week",
-            "seven days"
+            "1 week"
           ]
         }
       ],
-      "audioScript": "Podiatrist: Mr Bhatti, come through. Sock and shoe off for me, both if you don't mind, and tell me what brought you. Patient: There's a mark on the bottom of my foot. I wouldn't have come, only my wife made me. Podiatrist: When did it turn up? Patient: Three weeks ago, thereabouts. It might have been there longer, I couldn't say. Podiatrist: And you said your wife made you come — was it her who spotted it? Patient: She did. She cuts my nails for me because I can't reach round, and she saw it and started on at me straight away. Podiatrist: She was right to. Let me have a proper look. It's underneath, on the ball of the foot, right under the big toe joint. Does that hurt when I press? Patient: No. Nothing at all. Podiatrist: No pain at all. I want to come back to that, because people think no pain means no problem and here it means the opposite. What do you wear round the house? Patient: Slippers. All day, mostly. I'm retired now. Podiatrist: How long have you had the diabetes? Patient: Since my fifties. Tablets to begin with, and there's an injection as well now. Podiatrist: And how far are you walking on an ordinary day? Patient: Two miles. I go down to the shop and back and then round the park. Podiatrist: That's good for you and it's a lot of weight going through this spot. When was your last eye check? Patient: Last month. They said it was fine this time. Podiatrist: Good — I ask because the eyes and the feet tell the same story. Now, this is the monofilament. It's a little plastic hair. Close your eyes and say yes each time you feel it. Patient: ... Was that it? I didn't feel anything. Podiatrist: That was six of them. You felt none, and that's the important finding today. The nerve that warns you has stopped warning you, so a stone in your slipper could sit there all afternoon. Most people expect some kind of warning before a foot goes wrong. Pain is that warning, and yours has been quietly switched off. Patient: I thought that was just old age. Podiatrist: It's the diabetes, and it can be helped but not undone. Now the blood supply. I can feel both pulses in this foot, strong and easy, and that is genuinely good news — it means you have the circulation to heal this. Patient: So what's the mark? Podiatrist: It's hard skin, built up over months, and there's a small break underneath it. I'm going to take that hard skin down today, dress it with a foam pad to take the pressure off, and I want to see you again in one week. Patient: A week? For that? Podiatrist: For that. And two things about socks while you're here: nothing with a tight band at the top, nothing with a thick seam across the toes, and a light colour if you can find them, because you will see something on a pale sock long before you feel it. Patient: It's a lot to remember. Podiatrist: It's two things, and the rest is my job. Look inside the shoe, and look at the foot. Nothing on the floor without something on your feet, indoors included. Hand inside both shoes every morning before you put them on. Patient: Can I still walk down to the shop? Podiatrist: You can, in proper shoes, and I'd rather you did. Ring me before next week if the sock marks at all."
+      "audioScript": "Podiatrist: Mr Bhatti, come through. Sock and shoe off for me, both if you don't mind, and tell me what brought you. Patient: There's a mark on the bottom of my foot. I wouldn't have come, only my wife made me. Podiatrist: When did it turn up? Patient: Three weeks ago, thereabouts. It might have been there longer, I couldn't say. Podiatrist: And you said your wife made you come — was it her who spotted it? Patient: She did. She cuts my nails for me because I can't reach round, and she saw it and started on at me straight away. Podiatrist: She was right to. Let me have a proper look. It's underneath, on the ball of the foot, right under the big toe joint. Does that hurt when I press? Patient: No. Nothing at all. Podiatrist: No pain at all. I want to come back to that, because people think no pain means no problem and here it means the opposite. What do you wear round the house? Patient: Slippers. All day, mostly. I'm retired now. Podiatrist: How long have you had the diabetes? Patient: Since my fifties. Tablets to begin with, and there's an injection as well now. Podiatrist: And how far are you walking on an ordinary day? Patient: Two miles. I go down to the shop and back and then round the park. Podiatrist: That's good for you and it's a lot of weight going through this spot. When was your last eye check? Patient: Last month. They said it was fine this time. Podiatrist: Good — I ask because the eyes and the feet tell the same story. Now, this is the monofilament. It's a little plastic hair. Close your eyes and say yes each time you feel it. Patient: ... Was that it? I didn't feel anything. Podiatrist: That was six of them. You felt none, and that's the important finding today. The nerve that warns you has stopped warning you, so a stone in your slipper could sit there all afternoon. Most people expect some kind of warning before a foot goes wrong. Pain is that warning, and yours has been quietly switched off. Patient: I thought that was just old age. Podiatrist: It's the diabetes, and it can be helped but not undone. Now the blood supply. Both pulses in this foot are palpable — strong and easy — and that is genuinely good news, because it means you have the circulation to heal this. Patient: So what's the mark? Podiatrist: It's hard skin, built up over months, and there's a small break underneath it. I'm going to take that hard skin down today, dress it with a foam pad to take the pressure off, and I want to see you again in one week. Patient: A week? For that? Podiatrist: For that. And two things about socks while you're here: nothing with a tight band at the top, nothing with a thick seam across the toes, and a light colour if you can find them, because you will see something on a pale sock long before you feel it. Patient: It's a lot to remember. Podiatrist: It's two things, and the rest is my job. Look inside the shoe, and look at the foot. Nothing on the floor without something on your feet, indoors included. Hand inside both shoes every morning before you put them on. Patient: Can I still walk down to the shop? Podiatrist: You can, in proper shoes, and I'd rather you did. Ring me before next week if the sock marks at all."
     }
   },
   {
@@ -363,10 +355,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "g6",
           "label": "Made worse during the day by",
           "answer": "chewing",
-          "variants": [
-            "eating",
-            "chewing hard food"
-          ]
+          "variants": []
         },
         {
           "id": "g7",
@@ -393,8 +382,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "six",
           "variants": [
             "6",
-            "six coffees",
-            "six cups"
+            "six coffees"
           ]
         },
         {
@@ -470,8 +458,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "about a year",
           "variants": [
             "a year",
-            "one year",
-            "12 months"
+            "one year"
           ]
         },
         {
@@ -479,9 +466,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Change noticed by day: he needs",
           "answer": "more light",
           "variants": [
-            "extra light",
-            "a lamp",
-            "better lighting"
+            "a lamp"
           ]
         },
         {
@@ -489,10 +474,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Appearance of colours",
           "answer": "washed out",
           "variants": [
-            "faded",
-            "grey",
-            "dull",
-            "less bright"
+            "grey"
           ]
         },
         {
@@ -515,7 +497,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "General health condition",
           "answer": "high blood pressure",
           "variants": [
-            "hypertension",
             "blood pressure"
           ]
         },
@@ -556,9 +537,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Plan: refer for",
           "answer": "cataract surgery",
           "variants": [
-            "surgery",
-            "cataract operation",
-            "an operation"
+            "surgery"
           ]
         }
       ],
@@ -612,7 +591,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "dizziness",
           "variants": [
             "dizzy",
-            "light-headed",
             "the room goes"
           ]
         },
@@ -620,10 +598,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "g4",
           "label": "Time of day symptom is worst",
           "answer": "after breakfast",
-          "variants": [
-            "following breakfast",
-            "post-breakfast"
-          ]
+          "acceptExhaustive": true,
+          "variants": []
         },
         {
           "id": "g5",
@@ -640,19 +616,14 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Medicine she stopped herself",
           "answer": "the water tablet",
           "variants": [
-            "water tablet",
-            "diuretic"
+            "water tablet"
           ]
         },
         {
           "id": "g7",
           "label": "Reason she stopped it",
           "answer": "the toilet",
-          "variants": [
-            "trips to the toilet",
-            "needing the toilet",
-            "passing water"
-          ]
+          "variants": []
         },
         {
           "id": "g8",
@@ -668,9 +639,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Difficulty with the packaging",
           "answer": "blister packs",
           "variants": [
-            "blisters",
-            "the packaging",
-            "blister packaging"
+            "blisters"
           ]
         },
         {
@@ -683,8 +652,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Reason she takes it",
           "answer": "her knees",
           "variants": [
-            "knees",
-            "knee pain"
+            "knees"
           ]
         },
         {
@@ -766,18 +734,15 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Amount of exudate",
           "answer": "moderate",
           "variants": [
-            "a moderate amount",
-            "medium"
+            "a moderate amount"
           ]
         },
         {
           "id": "g6",
           "label": "Odour",
-          "answer": "none",
+          "answer": "no odour",
           "variants": [
-            "no odour",
-            "no smell",
-            "nothing"
+            "no smell"
           ]
         },
         {
@@ -786,8 +751,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "in the evening",
           "variants": [
             "evenings",
-            "at night",
-            "later in the day"
+            "at night"
           ]
         },
         {
@@ -796,8 +760,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "in the chair",
           "variants": [
             "the chair",
-            "a chair",
-            "downstairs in the chair"
+            "a chair"
           ]
         },
         {
@@ -805,9 +768,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Compression cannot start until the ______ are done",
           "answer": "ankle readings",
           "variants": [
-            "the readings",
-            "pressure readings",
-            "ankle pressures"
+            "the readings"
           ]
         },
         {
@@ -887,7 +848,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "first thing",
           "variants": [
             "in the morning",
-            "on waking",
             "first thing in the morning"
           ]
         },
@@ -905,9 +865,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Activity stopped altogether",
           "answer": "the stairs",
           "variants": [
-            "stairs",
-            "going upstairs",
-            "climbing the stairs"
+            "stairs"
           ]
         },
         {
@@ -943,8 +901,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Owner's main concern",
           "answer": "the pain",
           "variants": [
-            "pain",
-            "whether he is in pain"
+            "pain"
           ]
         },
         {
@@ -963,7 +920,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "x-rays",
           "variants": [
             "xrays",
-            "radiographs",
             "x-ray"
           ]
         },
@@ -971,11 +927,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "g12",
           "label": "Starting today: a two-week trial of",
           "answer": "pain relief",
-          "variants": [
-            "painkillers",
-            "analgesia",
-            "pain medication"
-          ]
+          "acceptExhaustive": true,
+          "variants": []
         }
       ],
       "audioScript": "Vet: Let's have him on the floor rather than the table, he'll be happier. Now — how old is Bruno? Owner: Nine. He was nine in March. Vet: And he's a labrador, isn't he? A big one. Owner: A labrador, yes. Chocolate. He's always been a big lad. Vet: Right. Tell me what you're seeing, in your own words, not what you think I want to hear. Owner: He's stiff. It's worst first thing — he comes out of his bed like an old man and then he loosens off after ten minutes or so and you'd hardly know. Vet: Worst first thing and better with movement. That's a very typical pattern. How long? Owner: Six months. Maybe a bit more. I kept telling myself it was just the cold. Vet: Everybody does, and the cold is never the whole answer. Is he eating normally? Owner: He'd eat the table. That's never been a problem with him. Vet: Good — appetite is one of the first things to go when a dog is really unwell, so that's reassuring. Is there anything he's stopped doing altogether? Owner: The stairs. He used to sleep on the landing and now he sleeps at the bottom. He won't attempt them. Vet: That's important — dogs don't give things up for no reason. Anything else? Owner: The car. He used to fly into the back of it. Now he stands there and looks at me until I lift him, and he's not a light dog. Vet: No, he isn't, and that brings me to the next question. Has his weight changed? Owner: He's put on about four kilos since last year. He's not doing the walks he used to, so that's my fault really. Vet: It's the same circle in every one of these: sore joint, less exercise, more weight, sorer joint. We can break it. Are you giving him anything at the moment? Owner: A supplement. The green tub from the pet shop. I've been giving it since the summer. Vet: Those are safe and some dogs seem better on them. Nothing in it is going to touch pain, though, and I'd rather you knew that. What worries you most? Owner: The pain. I can't tell if he's in pain. He doesn't cry, he doesn't limp much, he just... goes and lies down. Vet: Then let me tell you something that will help you for the rest of his life. Dogs almost never tell you about long, slow pain. They stop doing things instead. The stairs and the car are the crying. Owner: Oh. Vet: Now, let me feel these back legs. Extend this one... and this one. Both hips have less movement than I'd want, and he's tensing before I reach the end of the range on both sides. Nothing sudden, nothing hot, no swelling anywhere. Owner: I feel terrible. I've been telling people he's just getting old. Vet: He is getting old, and old is not a diagnosis and it is not a reason to leave him sore. You brought him in. That is the part that counts. Owner: So what happens now? Vet: Two things. I'd like x-rays, sedated, so I can see what those hips actually look like rather than guess. And starting today, a two-week trial of proper pain relief — a licensed one, with his kidneys checked first. Owner: And if it makes no difference? Vet: Then I've learned something. But I'll be honest with you: in a dog who has given up the stairs, it usually makes a very large difference, and it's the owner who tells me, not the dog."
@@ -1038,8 +991,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "New symptom this week",
           "answer": "pins and needles",
           "variants": [
-            "tingling",
-            "numbness",
             "pins and needles in the leg"
           ]
         },
@@ -1085,8 +1036,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Previous eye injury",
           "answer": "never",
           "variants": [
-            "none",
-            "no",
             "no injury"
           ]
         },
@@ -1096,8 +1045,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "claustrophobia",
           "variants": [
             "claustrophobic",
-            "small spaces",
-            "enclosed spaces"
+            "small spaces"
           ]
         },
         {
@@ -1120,7 +1068,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Radiographer: Mr Vasquez, come and sit down. Before you go anywhere near that room I have a safety checklist, and some of it is going to sound odd. Bear with me — it matters. Patient: Fire away. I've had scans before, mind you. Radiographer: Then some of this will be familiar, and I'm going to ask it all again anyway, because the answers change and because the person asking is responsible for what happens next. Radiographer: You're down for an MRI today. Do you know why you've been sent? Patient: My back. The lower back, and it's been going on a while. Radiographer: How long is a while? Patient: Three months. It started after I moved a wardrobe and it hasn't settled. Radiographer: And has anything changed recently — anything new this week? Patient: Pins and needles. Down the back of my left leg, since about Monday. That's new. Radiographer: Thank you for telling me. I'll make sure that's on the front of the request, because it changes what the doctor is looking for. Now the safety part. Have you had any operations? Patient: A hernia repair. Years back. Radiographer: Anything metal put in and left in? A pin, a plate, a joint? Patient: A knee replacement. The right one. Radiographer: That's exactly what I need to know. What year was that? Patient: Twenty nineteen. Same year I retired. Radiographer: Good — anything from that era we can check properly against the manufacturer's information, and modern joints are almost all fine. Now, this one surprises people. What did you do for a living? Patient: I was a welder. Thirty-one years. Radiographer: Then here's why I ask. A welder can carry a fragment of metal in the eye from decades ago and never know — some of them are the size of a grain of sand. The magnet in that room would move it, and that is one of the few things we cannot undo. Patient: Nobody's ever asked me that. Not once, and I've been in and out of hospitals. Radiographer: Somebody should have. It gets missed because it sounds like a strange question and because most people never worked with the stuff. Have you ever had an injury to the eye at work — anything that took you to a hospital or a doctor? Patient: Never. I wore the mask, always. My father lost an eye and that was enough for me. Radiographer: Then I'm satisfied, and I'll write down that I asked and what you told me. One more — how are you in small spaces? Lifts, tunnels? Patient: Not good. I get claustrophobia. I don't mind admitting it. Radiographer: Most of my job is that sentence. It's open at both ends, your head is towards the opening for this one, and I can see you the whole time. I'll give you the buzzer, and I'll offer you music through the headphones — pick something you know rather than something calming, it works better. Patient: Does it hurt at all? Radiographer: Not in the slightest. It is noisy — a knocking, like somebody working on the road outside — and it is completely painless. How long am I in there, you were going to ask. Patient: How long am I in there? Radiographer: About twenty minutes. I'll talk to you between each set so you always know how much is left, and if you press that buzzer I stop. Not \"I finish this bit\" — I stop. Patient: Can my wife come in with me? Radiographer: She can sit where you can see her, once I've checked her for metal as well."
+      "audioScript": "Radiographer: Mr Vasquez, come and sit down. Before you go anywhere near that room I have a safety checklist, and some of it is going to sound odd. Bear with me — it matters. Patient: Fire away. I've had scans before, mind you. Radiographer: Then some of this will be familiar, and I'm going to ask it all again anyway, because the answers change and because the person asking is responsible for what happens next. You're down for an MRI today. Do you know why you've been sent? Patient: My back. The lower back, and it's been going on a while. Radiographer: How long is a while? Patient: Three months. It started after I moved a wardrobe and it hasn't settled. Radiographer: And has anything changed recently — anything new this week? Patient: Pins and needles. Down the back of my left leg, since about Monday. That's new. Radiographer: Thank you for telling me. I'll make sure that's on the front of the request, because it changes what the doctor is looking for. Now the safety part. Have you had any operations? Patient: A hernia repair. Years back. Radiographer: Anything metal put in and left in? A pin, a plate, a joint? Patient: A knee replacement. The right one. Radiographer: That's exactly what I need to know. What year was that? Patient: Twenty nineteen. Same year I retired. Radiographer: Good — anything from that era we can check properly against the manufacturer's information, and modern joints are almost all fine. Now, this one surprises people. What did you do for a living? Patient: I was a welder. Thirty-one years. Radiographer: Then here's why I ask. A welder can carry a fragment of metal in the eye from decades ago and never know — some of them are the size of a grain of sand. The magnet in that room would move it, and that is one of the few things we cannot undo. Patient: Nobody's ever asked me that. Not once, and I've been in and out of hospitals. Radiographer: Somebody should have. It gets missed because it sounds like a strange question and because most people never worked with the stuff. Have you ever had an injury to the eye at work — anything that took you to a hospital or a doctor? Patient: Never. I wore the mask, always. My father lost an eye and that was enough for me. Radiographer: Then I'm satisfied, and I'll write down that I asked and what you told me. One more — how are you in small spaces? Lifts, tunnels? Patient: Not good. I get claustrophobia. I don't mind admitting it. Radiographer: Most of my job is that sentence. It's open at both ends, your head is towards the opening for this one, and I can see you the whole time. I'll give you the buzzer, and I'll offer you music through the headphones — pick something you know rather than something calming, it works better. Patient: Does it hurt at all? Radiographer: Not in the slightest. It is noisy — a knocking, like somebody working on the road outside — and it is completely painless. How long am I in there, you were going to ask. Patient: How long am I in there? Radiographer: About twenty minutes. I'll talk to you between each set so you always know how much is left, and if you press that buzzer I stop. Not \"I finish this bit\" — I stop. Patient: Can my wife come in with me? Radiographer: She can sit where you can see her, once I've checked her for metal as well."
     }
   },
   {
@@ -1152,8 +1100,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Occupation",
           "answer": "a teacher",
           "variants": [
-            "teacher",
-            "primary teacher"
+            "teacher"
           ]
         },
         {
@@ -1182,7 +1129,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "four months",
           "variants": [
             "4 months",
-            "since September",
             "start of the school year"
           ]
         },
@@ -1221,8 +1167,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Habit to be addressed first",
           "answer": "throat clearing",
           "variants": [
-            "clearing her throat",
-            "coughing to clear"
+            "clearing her throat"
           ]
         },
         {
@@ -1231,7 +1176,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "sports hall",
           "variants": [
             "the sports hall",
-            "gym",
             "the hall"
           ]
         },
@@ -1241,8 +1185,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "heartburn",
           "variants": [
             "reflux",
-            "acid",
-            "indigestion"
+            "acid"
           ]
         },
         {
@@ -1250,7 +1193,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Finding at the ENT clinic",
           "answer": "nodules",
           "variants": [
-            "vocal nodules",
             "nodules both sides"
           ]
         },
@@ -1297,8 +1239,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "a wrist fracture",
           "variants": [
             "wrist fracture",
-            "broken wrist",
-            "a broken wrist",
             "fractured wrist"
           ]
         },
@@ -1344,7 +1284,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "about half",
           "variants": [
             "half",
-            "fifty per cent",
             "half of the left"
           ]
         },
@@ -1389,7 +1328,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "reduced hours",
           "variants": [
             "half days",
-            "shorter hours",
             "part time"
           ]
         },
@@ -1434,9 +1372,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Main symptom",
           "answer": "breathlessness",
           "variants": [
-            "breathless",
-            "shortness of breath",
-            "short of breath"
+            "breathless"
           ]
         },
         {
@@ -1444,8 +1380,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Duration",
           "answer": "two months",
           "variants": [
-            "2 months",
-            "since Christmas"
+            "2 months"
           ]
         },
         {
@@ -1482,8 +1417,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "by the evening",
           "variants": [
             "in the evening",
-            "evenings",
-            "at the end of the day"
+            "evenings"
           ]
         },
         {
@@ -1518,8 +1452,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Examination: the pulse is",
           "answer": "irregular",
           "variants": [
-            "not steady",
-            "uneven"
+            "not steady"
           ]
         },
         {
@@ -1528,8 +1461,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "chest x-ray",
           "variants": [
             "x-ray",
-            "chest xray",
-            "chest radiograph"
+            "chest xray"
           ]
         },
         {
@@ -1594,8 +1526,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Site of pain: the ______ of the knee",
           "answer": "front",
           "variants": [
-            "the front",
-            "anterior"
+            "the front"
           ]
         },
         {
@@ -1632,8 +1563,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "answer": "none",
           "variants": [
             "no swelling",
-            "nothing",
-            "not swollen"
+            "nothing"
           ]
         },
         {
@@ -1641,7 +1571,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Giving way",
           "answer": "never",
           "variants": [
-            "no",
             "it has not",
             "not given way"
           ]
@@ -1672,8 +1601,6 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Exercise focus",
           "answer": "hip strength",
           "variants": [
-            "strengthening the hips",
-            "hip strengthening",
             "hip exercises"
           ]
         },
@@ -1753,9 +1680,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Allergy",
           "answer": "plasters",
           "variants": [
-            "plaster",
-            "sticking plasters",
-            "adhesive plasters"
+            "plaster"
           ]
         },
         {
@@ -1763,10 +1688,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Previous problem with anaesthetic",
           "answer": "sick",
           "variants": [
-            "sickness",
-            "vomiting",
-            "nausea",
-            "being sick"
+            "sickness"
           ]
         },
         {
@@ -1801,8 +1723,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "label": "Clear fluids allowed until ______ in the morning",
           "answer": "six",
           "variants": [
-            "6",
-            "six o'clock"
+            "6"
           ]
         },
         {
@@ -1824,7 +1745,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           ]
         }
       ],
-      "audioScript": "Nurse: Take a seat, Mrs Whitcombe. I'm Deborah, one of the pre-assessment nurses. This appointment is so that nothing about the day itself comes as a surprise. Which operation are you booked for? Patient: A hip replacement. The left one. Nurse: And the date they've given you? Patient: The twelfth. A Tuesday. Nurse: Good, and thank you for bringing the letter with you — half of what I do in this room is make sure the paper and the person are describing the same thing. Now your medicines — have you brought the list? Thank you. Most of these carry on exactly as they are, but the ibuprofen stops. Two weeks before, and not a day less. Patient: I take that for my knees. Nurse: I know, and I'm sorry, but it thins the blood more than people realise and it changes how much you bleed on the table. We'll sort something else out for the knees. Now, any allergies? Patient: Plasters. My skin comes up red and blisters underneath them, and it has done since I was a girl, so it is not something new that anybody could argue about. Nurse: That goes on the front of the notes and on your wristband, and theatre will use a different dressing. Have you had an anaesthetic before? Patient: Twice. Both times I was terribly sick afterwards — the whole day, I couldn't keep water down. Nurse: Then the anaesthetist will plan for that before you go to sleep rather than treat it after you wake up. Anything about your teeth I should know? Crowns, caps, anything loose? Patient: I've got a crown at the front, on the top. Nurse: Noted — that protects it when they manage your airway. Let's get your weight... ninety kilos, thank you. Now the fasting, and this is the part people get wrong. No food after midnight. Patient: Not even a cup of tea? Nurse: We'll come to drinks in a moment, and the answer is better than people expect. Clear fluids — water, black tea, no milk — until six in the morning, and I'd like you to actually drink them. Arriving thirsty makes everything harder. Who's bringing you and collecting you? Patient: My son. He's taking the day off. Nurse: One more thing about that morning. Take off any rings you can, and no nail varnish on your hands or your feet — the monitor clips onto a fingertip and it has to read straight through the nail. Patient: My wedding ring hasn't come off in forty years. Nurse: Then we tape over it, which is perfectly usual and nobody will make a fuss. Expect to arrive early and wait a while afterwards — that is not a delay, that is simply how the list runs, and the waiting is far easier when somebody has warned you about it. Nurse: And at home afterwards — is there anybody with you? Patient: No, I live alone. I have done since my husband died. Nurse: Then I'll ask the therapists to see you before you leave the ward rather than after, and they will have you standing on it the same day, which surprises almost everybody. A new hip is not something you protect by keeping still. And on the day, bring your inhaler — in your hand, not in the bag that goes to the locker. Patient: How long will I be in? Nurse: Two nights if it goes as it usually does, and you will be sent home when you can manage stairs safely, not when a date says so."
+      "audioScript": "Nurse: Take a seat, Mrs Whitcombe. I'm Deborah, one of the pre-assessment nurses. This appointment is so that nothing about the day itself comes as a surprise. Which operation are you booked for? Patient: A hip replacement. The left one. Nurse: And the date they've given you? Patient: The twelfth. A Tuesday. Nurse: Good, and thank you for bringing the letter with you — half of what I do in this room is make sure the paper and the person are describing the same thing. Now your medicines — have you brought the list? Thank you. Most of these carry on exactly as they are, but the ibuprofen stops. Two weeks before, and not a day less. Patient: I take that for my knees. Nurse: I know, and I'm sorry, but it thins the blood more than people realise and it changes how much you bleed on the table. We'll sort something else out for the knees. Now, any allergies? Patient: Plasters. My skin comes up red and blisters underneath them, and it has done since I was a girl, so it is not something new that anybody could argue about. Nurse: That goes on the front of the notes and on your wristband, and theatre will use a different dressing. Have you had an anaesthetic before? Patient: Twice. Both times I was terribly sick afterwards — the whole day, I couldn't keep water down. Nurse: Then the anaesthetist will plan for that before you go to sleep rather than treat it after you wake up. Anything about your teeth I should know? Crowns, caps, anything loose? Patient: I've got a crown at the front, on the top. Nurse: Noted — that protects it when they manage your airway. Let's get your weight... ninety kilos, thank you. Now the fasting, and this is the part people get wrong. No food after midnight. Patient: Not even a cup of tea? Nurse: We'll come to drinks in a moment, and the answer is better than people expect. Clear fluids — water, black tea, no milk — until six in the morning, and I'd like you to actually drink them. Arriving thirsty makes everything harder. Who's bringing you and collecting you? Patient: My son. He's taking the day off. Nurse: One more thing about that morning. Take off any rings you can, and no nail varnish on your hands or your feet — the monitor clips onto a fingertip and it has to read straight through the nail. Patient: My wedding ring hasn't come off in forty years. Nurse: Then we tape over it, which is perfectly usual and nobody will make a fuss. Expect to arrive early and wait a while afterwards — that is not a delay, that is simply how the list runs, and the waiting is far easier when somebody has warned you about it. And at home afterwards — is there anybody with you? Patient: No, I live alone. I have done since my husband died. Nurse: Then I'll ask the therapists to see you before you leave the ward rather than after, and they will have you standing on it the same day, which surprises almost everybody. A new hip is not something you protect by keeping still. And on the day, bring your inhaler — in your hand, not in the bag that goes to the locker. Patient: How long will I be in? Nurse: Two nights if it goes as it usually does, and you will be sent home when you can manage stairs safely, not when a date says so."
     }
   }
 ];

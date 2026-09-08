@@ -31,17 +31,17 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "A",
           "heading": "The assessment",
-          "body": "Count the respiratory rate for a full minute before anything else. It is the earliest of all the observations to change and the one most often written down without being counted.\n\nTake the temperature, the pulse, the blood pressure, the saturation and the level of consciousness, and record what oxygen the patient was breathing when the saturation was taken. A saturation with no accompanying figure for the oxygen means very little.\n\nExamine both sides of the chest and listen at the back as well as the front. A patient sitting propped against pillows is easy to examine badly.\n\nAsk how long this has been building and what has changed today. Somebody who has been unwell for a week and suddenly cannot finish a sentence is a different patient from the same person yesterday.\n\nAn older person may have none of the usual features. Confusion, a fall, or simply not being themselves is often the whole presentation, and the temperature may be normal or low.\n\nAsk about travel, about birds and animals, about contact with anybody else who is ill, and about whether the patient chokes on drinks."
+          "body": "Count the respiratory rate for a full minute before anything else. It is the earliest of all the observations to change and the one most often written down without being counted.\n\nTake the temperature, the pulse, the blood pressure, the saturation and the level of consciousness, and record what oxygen the patient was breathing when the saturation was taken. A saturation with no accompanying figure for the oxygen means very little.\n\nExamine both sides of the chest and listen at the back as well as the front. A patient sitting propped against pillows is easy to examine badly.\n\nAsk how long this has been building and what has changed today. Somebody who has been unwell for a week and suddenly cannot finish a sentence is a different patient from the same person yesterday.\n\nAn older person may have none of the usual features. Confusion, a fall, or simply not being themselves is often the whole presentation, and the temperature may be normal or low.\n\nAsk about travel, birds and animals, contact with anybody else who is ill, and whether the patient chokes on drinks."
         },
         {
           "id": "B",
           "heading": "Tests and severity",
-          "body": "A chest radiograph confirms the diagnosis, and it is requested early rather than after the treatment has been decided.\n\nSeverity is judged with a score that combines the confusion, the breathing rate, the blood pressure and the age. The score decides where the patient is treated as much as what they are given.\n\nA score is not a substitute for looking at the patient. Somebody young and previously well may score low and still be very unwell, and clinical judgement always outranks the number.\n\nSend blood cultures before the first dose of an antibiotic, and take them from two separate sites. A culture drawn after the antibiotic has run through will often grow nothing at all.\n\nCheck the kidney function, the inflammatory markers, and a blood gas where the saturation is low or the patient looks tired.\n\nRepeat the observations at the interval the score sets rather than at the interval the ward round happens to fall on."
+          "body": "A chest radiograph confirms the diagnosis, and is requested early rather than after the treatment has been decided.\n\nSeverity is judged with a score that combines the confusion, the breathing rate, the blood pressure and the age. The score decides where the patient is treated as much as what they are given.\n\nA score is not a substitute for looking at the patient. Somebody young and previously well may score low and still be very unwell, and clinical judgement always outranks the number.\n\nSend blood cultures before the first dose of an antibiotic, and take them from two separate sites. A culture drawn after the antibiotic has run through will often grow nothing.\n\nCheck the kidney function, the inflammatory markers, and a blood gas where the saturation is low or the patient looks tired.\n\nRepeat the observations at the interval the score sets rather than the interval the ward round happens to fall on."
         },
         {
           "id": "C",
           "heading": "Treatment",
-          "body": "Give the first dose of the antibiotic within the hour where the patient is severely unwell, and record the time it was actually given rather than the time it was prescribed.\n\nFollow the local policy rather than a remembered regimen. What works here depends on what the organisms here are resistant to, and that changes.\n\nGive oxygen to a target range written on the chart. In a patient known to retain carbon dioxide, that range is lower, and the mask is one that delivers a controlled percentage.\n\nFluid is given where the patient is dry, and the response is measured rather than assumed. An older patient with a weak heart needs the volume judged rather than the bag simply hung.\n\nReview at forty-eight hours and step from the drip to tablets as soon as the patient is improving and can swallow. Continuing intravenously out of habit adds days, lines and infections.\n\nTreat the pain of the chest wall, because somebody who cannot take a deep breath cannot clear their chest, and a chest that is not cleared does not recover."
+          "body": "Give the first dose of the antibiotic within the hour where the patient is severely unwell, and record the time it was actually given rather than when it was prescribed.\n\nFollow the local policy rather than a remembered regimen. What works here depends on what the organisms here are resistant to, and that changes.\n\nGive oxygen to a target range written on the chart. In a patient known to retain carbon dioxide, that range is lower, and the mask is one that delivers a controlled percentage.\n\nFluid is given where the patient is dry, and the response is measured rather than assumed. An older patient with a weak heart needs the volume judged rather than the bag simply hung.\n\nReview at forty-eight hours and step from the drip to tablets as soon as the patient is improving and can swallow. Continuing intravenously out of habit adds days, lines and infections.\n\nTreat the pain of the chest wall, because somebody who cannot take a deep breath cannot clear their chest, and a chest that is not cleared does not recover."
         },
         {
           "id": "D",
@@ -53,7 +53,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "how long recovery may take?",
+          "stem": "In which text can you find information about how long recovery may take?",
           "answer": "D",
           "options": [
             {
@@ -77,7 +77,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be counted before anything else?",
+          "stem": "In which text can you find information about what should be counted before anything else?",
           "answer": "A",
           "options": [
             {
@@ -101,7 +101,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when blood cultures should be taken?",
+          "stem": "In which text can you find information about when blood cultures should be taken?",
           "answer": "B",
           "options": [
             {
@@ -125,7 +125,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "when to step from the drip to tablets?",
+          "stem": "In which text can you find information about when to step from the drip to tablets?",
           "answer": "C",
           "options": [
             {
@@ -149,7 +149,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "how an older person may present?",
+          "stem": "In which text can you find information about how an older person may present?",
           "answer": "A",
           "options": [
             {
@@ -173,7 +173,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "which patients should be asked about swallowing?",
+          "stem": "In which text can you find information about which patients should be asked about swallowing?",
           "answer": "D",
           "options": [
             {
@@ -197,7 +197,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why chest wall pain is treated?",
+          "stem": "In which text can you find information about why chest wall pain is treated?",
           "answer": "C",
           "options": [
             {
@@ -369,7 +369,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "which age group is screened on admission?",
+          "stem": "In which text can you find information about which age group is screened on admission?",
           "answer": "D",
           "options": [
             {
@@ -393,7 +393,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how to test a patient's attention?",
+          "stem": "In which text can you find information about how to test a patient's attention?",
           "answer": "A",
           "options": [
             {
@@ -417,7 +417,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when withdrawal usually begins?",
+          "stem": "In which text can you find information about when withdrawal usually begins?",
           "answer": "B",
           "options": [
             {
@@ -441,7 +441,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what should be brought in for the patient?",
+          "stem": "In which text can you find information about what should be brought in for the patient?",
           "answer": "C",
           "options": [
             {
@@ -465,7 +465,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "how long recovery may take?",
+          "stem": "In which text can you find information about how long recovery may take?",
           "answer": "D",
           "options": [
             {
@@ -489,7 +489,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "which form has the worse outcome?",
+          "stem": "In which text can you find information about which form has the worse outcome?",
           "answer": "A",
           "options": [
             {
@@ -513,7 +513,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "when urine should be sent?",
+          "stem": "In which text can you find information about when urine should be sent?",
           "answer": "B",
           "options": [
             {
@@ -681,7 +681,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "where a sample should be taken from?",
+          "stem": "In which text can you find information about where a sample should be taken from?",
           "answer": "C",
           "options": [
             {
@@ -705,7 +705,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be written on the day of insertion?",
+          "stem": "In which text can you find information about what should be written on the day of insertion?",
           "answer": "A",
           "options": [
             {
@@ -729,7 +729,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how the balloon should be deflated?",
+          "stem": "In which text can you find information about how the balloon should be deflated?",
           "answer": "D",
           "options": [
             {
@@ -753,7 +753,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "where the drainage bag must be kept?",
+          "stem": "In which text can you find information about where the drainage bag must be kept?",
           "answer": "B",
           "options": [
             {
@@ -777,7 +777,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "which alternatives should be considered?",
+          "stem": "In which text can you find information about which alternatives should be considered?",
           "answer": "A",
           "options": [
             {
@@ -801,7 +801,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what patients should be warned about?",
+          "stem": "In which text can you find information about what patients should be warned about?",
           "answer": "D",
           "options": [
             {
@@ -825,7 +825,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why cloudy urine is not treated?",
+          "stem": "In which text can you find information about why cloudy urine is not treated?",
           "answer": "C",
           "options": [
             {
@@ -886,7 +886,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q12",
           "kind": "gap",
-          "stem": "What grows organisms in every long-term catheter?",
+          "stem": "What is it called when a long-term catheter grows organisms?",
           "answer": "colonisation"
         },
         {
@@ -991,7 +991,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "when a dose should be timed?",
+          "stem": "In which text can you find information about when a dose should be timed?",
           "answer": "D",
           "options": [
             {
@@ -1015,7 +1015,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "which observation is most often estimated?",
+          "stem": "In which text can you find information about which observation is most often estimated?",
           "answer": "C",
           "options": [
             {
@@ -1039,7 +1039,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how long to prescribe regularly for?",
+          "stem": "In which text can you find information about how long to prescribe regularly for?",
           "answer": "B",
           "options": [
             {
@@ -1063,7 +1063,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which signs to watch for in a patient with dementia?",
+          "stem": "In which text can you find information about which signs to watch for in a patient with dementia?",
           "answer": "A",
           "options": [
             {
@@ -1087,7 +1087,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what is prescribed alongside an opioid?",
+          "stem": "In which text can you find information about what is prescribed alongside an opioid?",
           "answer": "C",
           "options": [
             {
@@ -1111,7 +1111,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what lowers the pain threshold?",
+          "stem": "In which text can you find information about what lowers the pain threshold?",
           "answer": "D",
           "options": [
             {
@@ -1135,7 +1135,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "which layer is most often forgotten?",
+          "stem": "In which text can you find information about which layer is most often forgotten?",
           "answer": "B",
           "options": [
             {
@@ -1285,29 +1285,29 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "A",
           "heading": "Screening on admission",
-          "body": "Every patient is screened within twenty-four hours of admission, and screened again weekly for as long as they stay. A single screen on the day of arrival describes the patient who came in, not the one on the ward a fortnight later.\n\nThree things are asked. What does the patient weigh against their height, how much weight have they lost without trying, and are they likely to eat nothing for the next five days.\n\nWeigh the patient rather than estimating. An estimate made by eye is wrong by several kilograms more often than not, and it is the figure the whole plan will rest on.\n\nWhere the patient cannot stand, use the equipment the ward has for that purpose, and record which method was used. Two weights taken by two different methods cannot be compared, and the comparison is the point.\n\nUnplanned weight loss matters more than any single reading. Somebody who is still a large person but who has lost a tenth of their weight since spring is at risk, and a screening tool that only looks at the number today will call them well nourished."
+          "body": "Every patient is screened within twenty-four hours of admission, and again weekly for as long as they stay. A single screen on the day of arrival describes the patient who came in, not the one on the ward a fortnight later.\n\nThree things are asked. What does the patient weigh against their height, how much weight have they lost without trying, and are they likely to eat nothing for the next five days.\n\nWeigh the patient rather than estimating. An estimate made by eye is wrong by several kilograms more often than not, and is the figure the whole plan will rest on.\n\nWhere the patient cannot stand, use the equipment the ward has for it, and record which method was used. Two weights taken by two different methods cannot be compared, and the comparison is the point.\n\nUnplanned weight loss matters more than any single reading. Somebody still a large person but who has lost a tenth of their weight since spring is at risk, and a screening tool that looks only at today's number will call them well nourished."
         },
         {
           "id": "B",
           "heading": "Why it goes wrong on the ward",
-          "body": "Most of the food a hospital serves is not eaten by the patients who need it most, and almost none of that is about the cooking.\n\nMeals arrive while the patient is away at a scan, or while a dressing is being done, and the tray is taken away untouched at the end of the round. Nobody records that it happened.\n\nThe patient cannot reach the tray, cannot open the packaging, cannot cut what is on the plate, or has no teeth in because they are in a pot in the locker.\n\nFasting is ordered for a procedure that is then postponed, and the order is never cancelled. A patient may be starved for three consecutive days by three separate decisions, none of them wrong on its own.\n\nProtect the mealtime. Stop the round, stop the drug trolley and stop the non-urgent tests, and put somebody in the bay whose task for that half hour is helping people eat.\n\nRecord what was actually eaten rather than what was offered. A chart marked with a tick for a tray that went back full is worse than no chart, because it will be believed."
+          "body": "Most of the food a hospital serves is not eaten by the patients who need it most, and almost none of that is about the cooking.\n\nMeals arrive while the patient is away at a scan, or while a dressing is being done, and the tray goes away untouched at the end of the round. Nobody records that it happened.\n\nThe patient cannot reach the tray, open the packaging, or cut what is on the plate, or has no teeth in because they are in a pot in the locker.\n\nFasting is ordered for a procedure that is then postponed, and the order is never cancelled. A patient may be starved for three consecutive days by three separate decisions, none of them wrong on its own.\n\nProtect the mealtime. Stop the round, stop the drug trolley and stop the non-urgent tests, and put somebody in the bay whose task for that half hour is helping people eat.\n\nRecord what was actually eaten rather than what was offered. A chart ticked for a tray that went back full is worse than no chart, because it will be believed."
         },
         {
           "id": "C",
           "heading": "Building the intake up",
-          "body": "Food comes first. Fortifying what the patient already accepts, offering small portions often, and adding milk, butter or cream to ordinary dishes will meet most needs without a single supplement.\n\nSupplements are prescribed on the chart like any other treatment, with a time, and they are given between meals rather than instead of them. A drink taken with the lunch tray replaces the lunch.\n\nAsk what this person actually likes and when they normally eat. A patient who has eaten a hot meal in the evening for fifty years will not manage one at half past twelve.\n\nWhere swallowing is unsafe, refer for assessment before anything else is offered by mouth, including the tablets. Coughing on a drink is a reason to stop and ask, not a reason to try a thicker one.\n\nInvolve the dietitian early rather than as a last step. The referral that arrives on the day of discharge has changed nothing that happened during the admission."
+          "body": "Food comes first. Fortifying what the patient already accepts, offering small portions often, and adding milk, butter or cream to ordinary dishes will meet most needs without a single supplement.\n\nSupplements are prescribed on the chart like any other treatment, with a time, and are given between meals rather than instead of them. A drink taken with the lunch tray replaces the lunch.\n\nAsk what this person actually likes and when they normally eat. A patient who has eaten a hot meal in the evening for fifty years will not manage one at half past twelve.\n\nWhere swallowing is unsafe, refer for assessment before anything else is offered by mouth, including the tablets. Coughing on a drink is a reason to stop and ask, not a reason to try a thicker one.\n\nInvolve the dietitian early rather than as a last step. A referral arriving on the day of discharge has changed nothing that happened during the admission."
         },
         {
           "id": "D",
           "heading": "Feeding by tube",
-          "body": "A tube is considered where the gut works and the mouth does not. Where the gut does not work either, the decision is a different one and is not made on the ward round alone.\n\nConfirm the position before anything is passed down a new tube, including water, and record the pH that was obtained. This is the check that has to be right first, because everything after it is unforgiving.\n\nFeed a patient who has eaten almost nothing for days slowly and with the bloods watched. Starting at a full rate can drop the phosphate, the potassium and the magnesium far enough to stop the heart.\n\nSit the patient up while the feed runs and for half an hour afterwards. Feeding somebody flat is how a feed ends up in the lung.\n\nFlush before and after every feed and every medicine, and give medicines one at a time. A blocked tube is almost always a tube that was not flushed, and replacing one is neither quick nor pleasant.\n\nReview the need for the tube as often as the need for anything else. A tube that is no longer discussed is a tube that will still be there next month.\n\nKeep offering by mouth alongside the feed wherever swallowing allows it. A patient fed entirely by tube loses the habit of eating within days, and getting it back takes far longer than losing it did.\n\nExplain to the family what the tube is for and what it is not for. Many arrive believing it is the reason their relative is being kept alive, and a short honest conversation early prevents a much harder one later."
+          "body": "A tube is considered where the gut works and the mouth does not. Where the gut does not work either, the decision is different and is not made on the ward round alone.\n\nConfirm the position before anything is passed down a new tube, including water, and record the pH obtained. This is the check that has to be right first: everything after it is unforgiving.\n\nFeed a patient who has eaten almost nothing for days slowly and with the bloods watched. Starting at a full rate can drop the phosphate, the potassium and the magnesium far enough to stop the heart.\n\nSit the patient up while the feed runs and for half an hour afterwards. Feeding somebody flat is how a feed ends up in the lung.\n\nFlush before and after every feed and every medicine, and give medicines one at a time. A blocked tube is almost always one that was not flushed, and replacing it is neither quick nor pleasant.\n\nReview the need for the tube as often as the need for anything else. A tube that is no longer discussed is a tube that will still be there next month.\n\nKeep offering by mouth alongside the feed wherever swallowing allows. A patient fed entirely by tube loses the habit of eating within days, and getting it back takes far longer than losing it did.\n\nExplain to the family what the tube is for and what it is not for. Many arrive believing it is why their relative is being kept alive, and a short honest conversation early prevents a much harder one later."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "how quickly a starved patient should be fed?",
+          "stem": "In which text can you find information about how quickly a starved patient should be fed?",
           "answer": "D",
           "options": [
             {
@@ -1331,7 +1331,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how soon a patient must be screened?",
+          "stem": "In which text can you find information about how soon a patient must be screened?",
           "answer": "A",
           "options": [
             {
@@ -1355,7 +1355,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when supplements should be given?",
+          "stem": "In which text can you find information about when supplements should be given?",
           "answer": "C",
           "options": [
             {
@@ -1379,7 +1379,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what happens when a procedure is postponed?",
+          "stem": "In which text can you find information about what happens when a procedure is postponed?",
           "answer": "B",
           "options": [
             {
@@ -1403,7 +1403,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "how long to sit the patient up for?",
+          "stem": "In which text can you find information about how long to sit the patient up for?",
           "answer": "D",
           "options": [
             {
@@ -1427,7 +1427,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "why an estimate should not be used?",
+          "stem": "In which text can you find information about why an estimate should not be used?",
           "answer": "A",
           "options": [
             {
@@ -1451,7 +1451,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "who should be involved early?",
+          "stem": "In which text can you find information about who should be involved early?",
           "answer": "C",
           "options": [
             {
@@ -1613,7 +1613,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what should be watched before discharge?",
+          "stem": "In which text can you find information about what should be watched before discharge?",
           "answer": "D",
           "options": [
             {
@@ -1637,7 +1637,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "which finding points to a bacterial cause?",
+          "stem": "In which text can you find information about which finding points to a bacterial cause?",
           "answer": "A",
           "options": [
             {
@@ -1661,7 +1661,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "what a nebuliser should be driven with?",
+          "stem": "In which text can you find information about what a nebuliser should be driven with?",
           "answer": "C",
           "options": [
             {
@@ -1685,7 +1685,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what saturation does not tell you?",
+          "stem": "In which text can you find information about what saturation does not tell you?",
           "answer": "B",
           "options": [
             {
@@ -1709,7 +1709,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "which conditions imitate a flare-up?",
+          "stem": "In which text can you find information about which conditions imitate a flare-up?",
           "answer": "A",
           "options": [
             {
@@ -1733,7 +1733,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what improves the number of admissions?",
+          "stem": "In which text can you find information about what improves the number of admissions?",
           "answer": "D",
           "options": [
             {
@@ -1757,7 +1757,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "when antibiotics should be given?",
+          "stem": "In which text can you find information about when antibiotics should be given?",
           "answer": "C",
           "options": [
             {
@@ -1800,7 +1800,10 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "q10",
           "kind": "gap",
           "stem": "What do a proportion of these patients retain?",
-          "answer": "carbon dioxide"
+          "answer": "carbon dioxide",
+          "variants": [
+            "CO2"
+          ]
         },
         {
           "id": "q11",
@@ -1926,7 +1929,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "which drug the patient may buy without thinking?",
+          "stem": "In which text can you find information about which drug the patient may buy without thinking?",
           "answer": "D",
           "options": [
             {
@@ -1950,7 +1953,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "which conditions provoke this rhythm?",
+          "stem": "In which text can you find information about which conditions provoke this rhythm?",
           "answer": "A",
           "options": [
             {
@@ -1974,7 +1977,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "why aspirin is not used?",
+          "stem": "In which text can you find information about why aspirin is not used?",
           "answer": "C",
           "options": [
             {
@@ -1998,7 +2001,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what carries the most weight in the score?",
+          "stem": "In which text can you find information about what carries the most weight in the score?",
           "answer": "B",
           "options": [
             {
@@ -2022,7 +2025,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "who should have their pulse felt?",
+          "stem": "In which text can you find information about who should have their pulse felt?",
           "answer": "A",
           "options": [
             {
@@ -2046,7 +2049,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what should be arranged before the patient leaves?",
+          "stem": "In which text can you find information about what should be arranged before the patient leaves?",
           "answer": "D",
           "options": [
             {
@@ -2070,7 +2073,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what rate control does not remove?",
+          "stem": "In which text can you find information about what rate control does not remove?",
           "answer": "C",
           "options": [
             {
@@ -2140,7 +2143,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "id": "q13",
           "kind": "gap",
           "stem": "What is usually the first aim of treatment?",
-          "answer": "rate control"
+          "answer": "rate control",
+          "variants": []
         },
         {
           "id": "q14",
@@ -2241,7 +2245,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what should be recorded in a diary?",
+          "stem": "In which text can you find information about what should be recorded in a diary?",
           "answer": "D",
           "options": [
             {
@@ -2265,7 +2269,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be noted before doing anything?",
+          "stem": "In which text can you find information about what should be noted before doing anything?",
           "answer": "A",
           "options": [
             {
@@ -2289,7 +2293,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how many doses may be given in total?",
+          "stem": "In which text can you find information about how many doses may be given in total?",
           "answer": "B",
           "options": [
             {
@@ -2313,7 +2317,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which injuries are least often looked at?",
+          "stem": "In which text can you find information about which injuries are least often looked at?",
           "answer": "C",
           "options": [
             {
@@ -2337,7 +2341,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what should be checked in every patient?",
+          "stem": "In which text can you find information about what should be checked in every patient?",
           "answer": "A",
           "options": [
             {
@@ -2361,7 +2365,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what most harm at home comes from?",
+          "stem": "In which text can you find information about what most harm at home comes from?",
           "answer": "D",
           "options": [
             {
@@ -2385,7 +2389,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why the patient must not drive?",
+          "stem": "In which text can you find information about why the patient must not drive?",
           "answer": "C",
           "options": [
             {
@@ -2531,29 +2535,29 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "A",
           "heading": "Recognising it",
-          "body": "Three things together make the diagnosis: ketones in the blood, an acid blood gas, and a raised glucose.\nTwo out of three is a reason to look again, not a reason to start treatment.\n\nThe glucose is not always high. A patient taking certain newer tablets can arrive in full ketoacidosis with a glucose that looks almost ordinary, and that presentation is missed regularly.\n\nMeasure ketones in the blood rather than in the urine. Urine ketones lag behind, and they stay positive long after the patient has begun to recover.\n\nThe picture is thirst, passing large volumes of urine, weight lost over days, vomiting, abdominal pain and deep sighing breathing. The abdominal pain is often severe enough to be mistaken for a surgical problem.\n\nAsk what triggered it rather than treating the numbers alone. Infection, a missed dose of insulin, a first presentation of diabetes, a heart attack and a pump that has failed are the usual answers.\n\nAsk directly about doses that were skipped, without reproach. Many patients reduce or stop insulin when they are vomiting and cannot eat, which is exactly the opposite of what is needed."
+          "body": "Three things together make the diagnosis: ketones in the blood, an acid blood gas, and a raised glucose.\nTwo out of three is a reason to look again, not a reason to start treatment.\n\nThe glucose is not always high. A patient taking certain newer tablets can arrive in full ketoacidosis with a glucose that looks almost ordinary, and that presentation is missed regularly.\n\nMeasure ketones in the blood rather than in the urine. Urine ketones lag behind, and stay positive long after the patient has begun to recover.\n\nThe picture is thirst, passing large volumes of urine, weight lost over days, vomiting, abdominal pain and deep sighing breathing. The abdominal pain is often severe enough to be mistaken for a surgical problem.\n\nAsk what triggered it rather than treating the numbers alone. Infection, a missed dose of insulin, a first presentation of diabetes, a heart attack and a failed pump are the usual answers.\n\nAsk directly about doses that were skipped, without reproach. Many patients reduce or stop insulin when vomiting and unable to eat, which is exactly the opposite of what is needed."
         },
         {
           "id": "B",
           "heading": "The first hours",
-          "body": "Fluid comes first. The deficit is measured in litres, and much of the improvement in the first hour belongs to the fluid rather than to anything else.\n\nInsulin is given as a fixed-rate infusion, and it is not stopped when the glucose falls. Stopping it leaves the ketones untreated, which is the actual illness.\n\nOnce the glucose reaches the agreed level, glucose is added to the fluids so that the insulin can continue.\nThe infusion runs until the ketones have cleared and the blood is no longer acid.\n\nPotassium falls as the treatment works, sometimes steeply. It is added to the fluid from the second bag onwards unless the level is already high, and it is monitored hourly at first.\n\nContinue the patient's own long-acting insulin alongside the infusion. Stopping it is a common error and it produces a rebound the moment the infusion comes down.\n\nLook for the trigger while all of this runs. Treating the ketoacidosis without finding the infection underneath it produces a patient who recovers and then relapses."
+          "body": "Fluid comes first. The deficit is measured in litres, and much of the first hour's improvement belongs to the fluid rather than anything else.\n\nInsulin is given as a fixed-rate infusion, and it is not stopped when the glucose falls. Stopping it leaves the ketones untreated, which is the actual illness.\n\nOnce the glucose reaches the agreed level, glucose is added to the fluids so the insulin can continue.\nThe fixed rate is calculated on the patient's weight, at 0.1 units per kilogram per hour, and an estimated weight is a common reason the ketones fall too slowly.\n\nPotassium falls as the treatment works, sometimes steeply. It is added to the fluid from the second bag onwards unless the level is already high, and is monitored hourly at first.\n\nContinue the patient's own long-acting insulin alongside the infusion. Stopping it is a common error and produces a rebound the moment the infusion comes down.\n\nLook for the trigger while all of this runs. Treating the ketoacidosis without finding the infection underneath produces a patient who recovers and then relapses."
         },
         {
           "id": "C",
           "heading": "Watching for trouble",
-          "body": "Monitor the ketones and the bicarbonate to judge progress. The glucose alone will mislead you, because it falls long before the illness is over.\n\nA patient who is not improving on adequate fluid and adequate insulin has something else going on, and the first question is whether the insulin is actually being delivered.\n\nWatch the potassium closely. Both a level that falls too far and one that is corrected too enthusiastically are dangerous, and the electrocardiogram is useful between blood results.\n\nHeadache, a slowing pulse or a falling level of consciousness during treatment is an emergency and is escalated at once. This is uncommon, it affects the young most often, and it does not wait.\n\nWeigh the risk of fluid in an older patient or one with a weak heart. The deficit still has to be replaced, but the speed is a judgement rather than a protocol.\n\nKeep the patient on the ward that can monitor them hourly. The commonest failure after a good start is a move to a bay where nobody is free to take the next set of bloods."
+          "body": "Monitor the ketones and the bicarbonate to judge progress. The glucose alone will mislead you: it falls long before the illness is over.\n\nA patient not improving on adequate fluid and insulin has something else going on, and the first question is whether the insulin is actually being delivered.\n\nWatch the potassium closely. Both a level that falls too far and one corrected too enthusiastically are dangerous, and the electrocardiogram is useful between blood results.\n\nHeadache, a slowing pulse or a falling level of consciousness during treatment is an emergency and is escalated at once. This is uncommon, it affects the young most often, and it does not wait.\n\nWeigh the risk of fluid in an older patient or one with a weak heart. The deficit still has to be replaced, but the speed is a judgement rather than a protocol.\n\nKeep the patient on the ward that can monitor them hourly. The commonest failure after a good start is a move to a bay where nobody is free to take the next bloods."
         },
         {
           "id": "D",
           "heading": "Coming off the treatment",
-          "body": "The infusion stops when the ketones have cleared, the blood is no longer acid, and the patient is eating and drinking. All three, not the glucose alone.\n\nGive the subcutaneous insulin before the infusion is switched off, and overlap the two. Stopping the infusion first is how a patient returns to ketoacidosis on the same admission.\n\nInvolve the diabetes team on the day of admission rather than at discharge. The review of what went wrong is the part that prevents the next episode.\n\nGo through sick-day rules with the patient before they leave, in writing. Never stop the insulin, check the glucose more often, check ketones, keep drinking, and know who to telephone.\n\nAsk what actually happened this time. Cost, a broken supply, fear of hypoglycaemia, depression and simply not understanding the rules are all common and all answerable.\n\nArrange the follow-up before discharge. A repeat admission within weeks is usually a failure of that conversation rather than of the medicine.\n\nCheck that the patient leaves with what they need in their hand. Insulin, a working meter, strips for both the glucose and the ketones, and a spare pen are the things most often assumed to be at home when they are not.\n\nWhere a pump or a newer tablet was involved, say so plainly in the letter and name what should happen to it next. A device or a drug that nobody has ruled on is one the patient will restart on their own in a fortnight.\n\nAsk the patient to repeat the sick-day rules back before they go. Handing over a leaflet is not the same as knowing that somebody frightened, tired and recently unwell has actually understood it."
+          "body": "The infusion stops when the ketones have cleared, the blood is no longer acid, and the patient is eating and drinking. All three, not the glucose alone.\n\nGive the subcutaneous insulin before the infusion is switched off, and overlap the two. Stopping the infusion first is how a patient returns to ketoacidosis on the same admission.\n\nInvolve the diabetes team on the day of admission rather than at discharge. The review of what went wrong is what prevents the next episode.\n\nGo through sick-day rules with the patient before they leave, in writing. Never stop the insulin, check the glucose more often, check ketones, keep drinking, and know who to telephone.\n\nAsk what actually happened this time. Cost, a broken supply, fear of hypoglycaemia, depression and simply not understanding the rules are all common and answerable.\n\nArrange the follow-up before discharge. A repeat admission within weeks is usually a failure of that conversation rather than the medicine.\n\nCheck the patient leaves with what they need in their hand. Insulin, a working meter, strips for both glucose and ketones, and a spare pen are most often assumed to be at home when they are not.\n\nWhere a pump or newer tablet was involved, say so plainly in the letter and name what should happen to it next. A device or drug nobody has ruled on is one the patient will restart on their own in a fortnight.\n\nAsk the patient to repeat the sick-day rules back before they go. Handing over a leaflet is not the same as knowing somebody frightened, tired and recently unwell has actually understood it."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what should be gone through before the patient leaves?",
+          "stem": "In which text can you find information about what should be gone through before the patient leaves?",
           "answer": "D",
           "options": [
             {
@@ -2577,7 +2581,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "why urine ketones are not used?",
+          "stem": "In which text can you find information about why urine ketones are not used?",
           "answer": "A",
           "options": [
             {
@@ -2601,7 +2605,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when potassium is added to the fluid?",
+          "stem": "In which text can you find information about when potassium is added to the fluid?",
           "answer": "B",
           "options": [
             {
@@ -2625,7 +2629,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which patients are affected by the rare emergency?",
+          "stem": "In which text can you find information about which patients are affected by the rare emergency?",
           "answer": "C",
           "options": [
             {
@@ -2649,7 +2653,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what commonly triggers an episode?",
+          "stem": "In which text can you find information about what commonly triggers an episode?",
           "answer": "A",
           "options": [
             {
@@ -2673,7 +2677,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "when the diabetes team should be involved?",
+          "stem": "In which text can you find information about when the diabetes team should be involved?",
           "answer": "D",
           "options": [
             {
@@ -2697,7 +2701,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why the glucose alone will mislead you?",
+          "stem": "In which text can you find information about why the glucose alone will mislead you?",
           "answer": "C",
           "options": [
             {
@@ -2856,7 +2860,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "when the conversation about the future should happen?",
+          "stem": "In which text can you find information about when the conversation about the future should happen?",
           "answer": "D",
           "options": [
             {
@@ -2880,7 +2884,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "how the patient should be weighed?",
+          "stem": "In which text can you find information about how the patient should be weighed?",
           "answer": "A",
           "options": [
             {
@@ -2904,7 +2908,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "when the diuretic should be taken?",
+          "stem": "In which text can you find information about when the diuretic should be taken?",
           "answer": "C",
           "options": [
             {
@@ -2928,7 +2932,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which drugs keep patients out of hospital?",
+          "stem": "In which text can you find information about which drugs keep patients out of hospital?",
           "answer": "B",
           "options": [
             {
@@ -2952,7 +2956,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "which symptom patients least often volunteer?",
+          "stem": "In which text can you find information about which symptom patients least often volunteer?",
           "answer": "A",
           "options": [
             {
@@ -2976,7 +2980,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "where most of the salt people eat comes from?",
+          "stem": "In which text can you find information about where most of the salt people eat comes from?",
           "answer": "C",
           "options": [
             {
@@ -3000,7 +3004,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what should be checked after a change in dose?",
+          "stem": "In which text can you find information about what should be checked after a change in dose?",
           "answer": "B",
           "options": [
             {
@@ -3140,29 +3144,29 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "A",
           "heading": "At the bedside",
-          "body": "Two questions decide everything in an emergency: is there still a passage through the mouth, and what exactly is in the neck. Both answers belong at the head of the bed, in writing, where anybody can read them without opening a folder.\n\nA patient whose larynx has been removed cannot be given oxygen or a breath through the mouth at all. That distinction is the difference between help and a wasted five minutes.\n\nKeep a spare tube of the same size and a second one a size smaller within reach of the bed, together with a tracheal dilator and a suction unit that is already switched on and tested.\n\nTest the suction at the start of every shift rather than at the moment it is needed. A unit that has not been checked since yesterday is a unit nobody should be relying on tonight.\n\nHumidification is not optional. Air that has not passed through the nose arrives dry, and dry secretions are the single commonest reason a tube blocks.\n\nRecord the size, the type and whether the cuff is inflated on the chart each shift, so that the answer is never being worked out during an emergency."
+          "body": "Two questions decide everything in an emergency: is there still a passage through the mouth, and what exactly is in the neck. Both answers belong at the head of the bed, in writing, where anybody can read them without opening a folder.\n\nA patient whose larynx has been removed cannot be given oxygen or a breath through the mouth at all. That distinction is the difference between help and a wasted five minutes.\n\nKeep a spare tube of the same size and a second one a size smaller within reach of the bed, together with a tracheal dilator and a suction unit that is already switched on and tested.\n\nTest the suction at the start of every shift rather than at the moment it is needed. A unit not checked since yesterday is a unit nobody should be relying on tonight.\n\nHumidification is not optional. Air that has not passed through the nose arrives dry, and dry secretions are the commonest reason a tube blocks.\n\nRecord the size, the type and whether the cuff is inflated on the chart each shift, so the answer is never being worked out during an emergency."
         },
         {
           "id": "B",
           "heading": "Suction and daily care",
-          "body": "Suction because the patient needs it, not because the hour has come. Noisy breathing, a falling saturation, visible secretions and a patient who asks are the reasons.\n\nChoose a catheter no more than half the internal diameter of the tube, and pass it without applying suction. Suction is applied only on the way out.\n\nKeep each pass under ten seconds and give the patient time to recover in between. Prolonged suctioning drops the oxygen and provokes the cough that then exhausts them.\n\nDo not instil saline down the tube to loosen secretions. It has been shown not to help, and it pushes organisms from the tube into the lung.\n\nClean the inner tube as often as the secretions demand, and at least as often as the local policy states. A blocked inner tube is removed and replaced, and that is the fastest thing anyone can do at that bedside.\n\nInspect the skin under the flange and change the dressing when it is soiled. Pressure damage here is common, easy to miss under the tapes, and slow to heal."
+          "body": "Suction because the patient needs it, not because the hour has come. Noisy breathing, a falling saturation, visible secretions and a patient who asks are the reasons.\n\nChoose a catheter no more than half the internal diameter of the tube, and pass it without applying suction. Suction is applied only on the way out.\n\nKeep each pass under ten seconds and give the patient time to recover in between. Prolonged suctioning drops the oxygen and provokes the cough that exhausts them.\n\nDo not instil saline down the tube to loosen secretions. It has been shown not to help, and it pushes organisms from the tube into the lung.\n\nClean the inner tube as often as the secretions demand, and at least as often as the local policy states. A blocked inner tube is removed and replaced, the fastest thing anyone can do at that bedside.\n\nInspect the skin under the flange and change the dressing when it is soiled. Pressure damage here is common, easy to miss under the tapes, and slow to heal."
         },
         {
           "id": "C",
           "heading": "When something goes wrong",
-          "body": "A patient who cannot breathe has a tube that is blocked, a tube that has moved, or an airway problem below it. Work through those three in order.\n\nRemove the inner tube first. It costs seconds, it needs no equipment, and it solves a large share of these episodes on the spot.\n\nIf that does not work, pass a suction catheter. A catheter that passes freely tells you the tube is at least open; one that will not pass tells you a great deal in a moment.\n\nCall for help early, and say the word tracheostomy when you call. The team that arrives needs to know before it gets there what it is coming to.\n\nWhere the tube has come out, do not force a new one back in blindly. Give oxygen both to the face and to the stoma unless the larynx has been removed, in which case the face is useless.\n\nSurgical emphysema, a rising resistance to ventilation, or bleeding around the tube are all reasons to stop and escalate rather than to continue and hope."
+          "body": "A patient who cannot breathe has a tube that is blocked, a tube that has moved, or an airway problem below it. Work through those three in order.\n\nRemove the inner tube first. It costs seconds, needs no equipment, and solves a large share of these episodes on the spot.\n\nIf that does not work, pass a suction catheter. A catheter that passes freely tells you the tube is at least open; one that will not pass tells you a great deal in a moment.\n\nCall for help early, and say the word tracheostomy when you call. The team that arrives needs to know before it gets there what it is coming to.\n\nWhere the tube has come out, do not force a new one back in blindly. Give oxygen both to the face and to the stoma unless the larynx has been removed, in which case the face is useless.\n\nSurgical emphysema, a rising resistance to ventilation, or bleeding around the tube are all reasons to stop and escalate rather than to continue and hope."
         },
         {
           "id": "D",
           "heading": "Speaking, eating and going home",
-          "body": "Speech is possible for most patients with the right valve or with the cuff down, and arranging it is not a luxury. A patient who cannot make themselves understood cannot report pain, fear or a blocked tube.\n\nNever use a speaking valve while the cuff is inflated. The air goes in and cannot come out, and this error has killed people.\n\nSwallowing is assessed before anything is given by mouth. The presence of a tracheostomy changes the mechanics, and a patient who swallowed safely last month may not now.\n\nTeach the patient and the family the whole routine before discharge, including the emergency steps, and watch them do it rather than asking whether they feel confident.\n\nSend them home with the equipment they will actually need, and confirm that the suction unit and the spare tubes have arrived at the house before the discharge date is agreed.\n\nName the person to telephone at any hour. Families managing a tracheostomy at home need one number, not a list of departments with opening times.\n\nTell the ambulance service and the family doctor that this patient has a tracheostomy, and say whether the mouth is still a usable route. A crew arriving at the house at night should not be discovering that on the doorstep.\n\nArrange who will change the tube and how often, and write the date of the last change where the family can see it. A routine that depends on somebody remembering is a routine that lapses within a month of discharge."
+          "body": "Speech is possible for most patients with the right valve or with the cuff down, and arranging it is not a luxury. A patient who cannot make themselves understood cannot report pain, fear or a blocked tube.\n\nNever use a speaking valve while the cuff is inflated. The air goes in and cannot come out, and this error has killed people.\n\nSwallowing is assessed before anything is given by mouth. A tracheostomy changes the mechanics, and a patient who swallowed safely last month may not now.\n\nTeach the patient and the family the whole routine before discharge, including the emergency steps, and watch them do it rather than asking whether they feel confident.\n\nSend them home with the equipment they will actually need, and confirm the suction unit and spare tubes have arrived at the house before the discharge date is agreed.\n\nName the person to telephone at any hour. Families managing a tracheostomy at home need one number, not a list of departments with opening times.\n\nTell the ambulance service and the family doctor that this patient has a tracheostomy, and say whether the mouth is still a usable route. A crew arriving at night should not be discovering that on the doorstep.\n\nArrange who will change the tube and how often, and write the date of the last change where the family can see it. A routine that depends on somebody remembering lapses within a month of discharge."
         }
       ],
       "questions": [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "when a speaking valve must not be used?",
+          "stem": "In which text can you find information about when a speaking valve must not be used?",
           "answer": "D",
           "options": [
             {
@@ -3186,7 +3190,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be kept within reach of the bed?",
+          "stem": "In which text can you find information about what should be kept within reach of the bed?",
           "answer": "A",
           "options": [
             {
@@ -3210,7 +3214,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how long each suction pass should last?",
+          "stem": "In which text can you find information about how long each suction pass should last?",
           "answer": "B",
           "options": [
             {
@@ -3234,7 +3238,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what should be removed first in an emergency?",
+          "stem": "In which text can you find information about what should be removed first in an emergency?",
           "answer": "C",
           "options": [
             {
@@ -3258,7 +3262,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "why humidification is needed?",
+          "stem": "In which text can you find information about why humidification is needed?",
           "answer": "A",
           "options": [
             {
@@ -3282,7 +3286,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what must be confirmed before a discharge date?",
+          "stem": "In which text can you find information about what must be confirmed before a discharge date?",
           "answer": "D",
           "options": [
             {
@@ -3306,7 +3310,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what should be said when calling for help?",
+          "stem": "In which text can you find information about what should be said when calling for help?",
           "answer": "C",
           "options": [
             {
@@ -3477,7 +3481,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what families should be told to expect?",
+          "stem": "In which text can you find information about what families should be told to expect?",
           "answer": "D",
           "options": [
             {
@@ -3501,7 +3505,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "who makes the judgement that a patient is dying?",
+          "stem": "In which text can you find information about who makes the judgement that a patient is dying?",
           "answer": "A",
           "options": [
             {
@@ -3525,7 +3529,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "which five symptoms are prescribed for in advance?",
+          "stem": "In which text can you find information about which five symptoms are prescribed for in advance?",
           "answer": "B",
           "options": [
             {
@@ -3549,7 +3553,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "how thirst should be relieved?",
+          "stem": "In which text can you find information about how thirst should be relieved?",
           "answer": "C",
           "options": [
             {
@@ -3573,7 +3577,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "which reversible causes are still worth looking for?",
+          "stem": "In which text can you find information about which reversible causes are still worth looking for?",
           "answer": "A",
           "options": [
             {
@@ -3597,7 +3601,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "what is thought to persist?",
+          "stem": "In which text can you find information about what is thought to persist?",
           "answer": "D",
           "options": [
             {
@@ -3621,7 +3625,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "how often mouth care should be offered?",
+          "stem": "In which text can you find information about how often mouth care should be offered?",
           "answer": "C",
           "options": [
             {
@@ -3783,7 +3787,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "why a specimen should not be sent to prove cure?",
+          "stem": "In which text can you find information about why a specimen should not be sent to prove cure?",
           "answer": "D",
           "options": [
             {
@@ -3807,7 +3811,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what should be reviewed before assuming an infection?",
+          "stem": "In which text can you find information about what should be reviewed before assuming an infection?",
           "answer": "A",
           "options": [
             {
@@ -3831,7 +3835,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "why hands must be washed with soap and water?",
+          "stem": "In which text can you find information about why hands must be washed with soap and water?",
           "answer": "B",
           "options": [
             {
@@ -3855,7 +3859,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "which signs mean the illness has become severe?",
+          "stem": "In which text can you find information about which signs mean the illness has become severe?",
           "answer": "C",
           "options": [
             {
@@ -3879,7 +3883,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "what shape a specimen should take?",
+          "stem": "In which text can you find information about what shape a specimen should take?",
           "answer": "A",
           "options": [
             {
@@ -3903,7 +3907,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "which interval predicts the next outbreak?",
+          "stem": "In which text can you find information about which interval predicts the next outbreak?",
           "answer": "D",
           "options": [
             {
@@ -3927,7 +3931,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "why the drug is given by mouth?",
+          "stem": "In which text can you find information about why the drug is given by mouth?",
           "answer": "C",
           "options": [
             {
@@ -4098,7 +4102,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "who may hold a formal legal authority?",
+          "stem": "In which text can you find information about who may hold a formal legal authority?",
           "answer": "D",
           "options": [
             {
@@ -4122,7 +4126,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "what the family should be asked to fill in?",
+          "stem": "In which text can you find information about what the family should be asked to fill in?",
           "answer": "A",
           "options": [
             {
@@ -4146,7 +4150,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "which three items are most often lost?",
+          "stem": "In which text can you find information about which three items are most often lost?",
           "answer": "C",
           "options": [
             {
@@ -4170,7 +4174,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "how to ask questions that will be answered?",
+          "stem": "In which text can you find information about how to ask questions that will be answered?",
           "answer": "B",
           "options": [
             {
@@ -4194,7 +4198,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "why a hospital sees somebody at their worst?",
+          "stem": "In which text can you find information about why a hospital sees somebody at their worst?",
           "answer": "A",
           "options": [
             {
@@ -4218,7 +4222,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "which bed is the worst on the ward?",
+          "stem": "In which text can you find information about which bed is the worst on the ward?",
           "answer": "C",
           "options": [
             {
@@ -4242,7 +4246,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "what behaviour usually means?",
+          "stem": "In which text can you find information about what behaviour usually means?",
           "answer": "B",
           "options": [
             {
@@ -4413,7 +4417,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q1",
           "kind": "match",
-          "stem": "what should be counted once a week?",
+          "stem": "In which text can you find information about what should be counted once a week?",
           "answer": "D",
           "options": [
             {
@@ -4437,7 +4441,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q2",
           "kind": "match",
-          "stem": "which site should be preferred?",
+          "stem": "In which text can you find information about which site should be preferred?",
           "answer": "A",
           "options": [
             {
@@ -4461,7 +4465,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q3",
           "kind": "match",
-          "stem": "how often the site should be inspected?",
+          "stem": "In which text can you find information about how often the site should be inspected?",
           "answer": "B",
           "options": [
             {
@@ -4485,7 +4489,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q4",
           "kind": "match",
-          "stem": "what should be done in an extravasation?",
+          "stem": "In which text can you find information about what should be done in an extravasation?",
           "answer": "C",
           "options": [
             {
@@ -4509,7 +4513,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q5",
           "kind": "match",
-          "stem": "why the skin must be allowed to dry?",
+          "stem": "In which text can you find information about why the skin must be allowed to dry?",
           "answer": "A",
           "options": [
             {
@@ -4533,7 +4537,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q6",
           "kind": "match",
-          "stem": "who the numbers should be fed back to?",
+          "stem": "In which text can you find information about who the numbers should be fed back to?",
           "answer": "D",
           "options": [
             {
@@ -4557,7 +4561,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q7",
           "kind": "match",
-          "stem": "where the new line should be sited?",
+          "stem": "In which text can you find information about where the new line should be sited?",
           "answer": "C",
           "options": [
             {

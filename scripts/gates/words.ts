@@ -23,5 +23,12 @@
  * printed the same three numbers: 316 governed, 169 meeting the law, LEGACY DEBT
  * 147.
  */
-export const words = (s: string | undefined): number =>
-  s ? (s.match(/[^\s]+/g) ?? []).filter((t) => /[A-Za-z0-9]/.test(t)).length : 0;
+// 🔴 MOVED TO src/lib/oet/words.ts ON 7 SEPTEMBER 2026, AND RE-EXPORTED HERE.
+//
+// The definition was right and the LOCATION was wrong: shipped code cannot
+// import from a gate, so `wordCount()` — which marks the learner's letter —
+// carried its own copy and counted a bare dash as a word. The gates measured
+// the bank one way and the student was measured another. One definition now,
+// in src/, where both sides can reach it. Every import of this file still
+// works and no verdict moved.
+export { words } from "../../src/lib/oet/words";

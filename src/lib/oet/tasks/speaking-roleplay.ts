@@ -20,6 +20,7 @@
 // structured-output endpoint rejects min/max/items).
 
 import { z } from "zod";
+import { words } from "@/lib/oet/words";
 import { getAnthropicClient, recordCost } from "@/lib/ai/anthropic-client";
 import { MODELS } from "@/lib/ai/models";
 import { professionGrading, professionHeading } from "@/lib/oet/profession-grading";
@@ -133,7 +134,7 @@ Judge the CLINICAL COMMUNICATION band and appropriateness of language against TH
 }
 
 function wordCount(s: string): number {
-  return s.trim() ? s.trim().split(/\s+/).length : 0;
+  return words(s); // one definition — src/lib/oet/words.ts
 }
 
 /** Evaluate a role-play transcript against the OET speaking criteria (two bands,

@@ -32,6 +32,44 @@
  * left entirely alone — giving them markers would quietly imply they had been
  * reviewed.
  *
+ * ── 🔴 SECOND BATCH, 7 SEPTEMBER 2026, AND THREE THINGS CHANGED ────────────
+ *
+ * 1. THE FILE IS AN ARGUMENT. `--file=NAME`, defaulting to the v2 file. The
+ *    6-September file `AlmiOET_PartC_kind_markers_2026-09-06.json` is WITHDRAWN
+ *    by its author: 19 of its 21 items carry ZERO `reference` markers and it
+ *    would fail the gate. It must never be applied.
+ *
+ * 2. IT KEYS BY SLUG. The v2 file does, and nothing has been keyed on a human
+ *    title since PR #75.
+ *
+ * 3. ⚠️ THE COMPLETENESS GUARD IS NOW PER ITEM, NOT PER BANK. It used to
+ *    demand that EVERY four-option question in the bank be marked, because when
+ *    it was written every governed item was in the file. The bank has since
+ *    doubled to 42 items, and FIVE of them cannot be marked yet: they have no
+ *    reference QUESTION, and the owner is authoring those. Marking them anyway
+ *    would be a lie the gate would then certify.
+ *
+ *    So the guard asks that every four-option question OF THE ITEMS THIS FILE
+ *    NAMES is marked — still no partly-filled item. THE COMPLETENESS OF THE BANK
+ *    IS gate:partc-kind'S JOB, AND IT STAYS RED ON THE FIVE. No threshold was
+ *    lowered to let content through; the reporting of the gap lives where it
+ *    belongs.
+ *
+ * ── 🔴 --replace, 7 SEPTEMBER 2026: A FILE THAT IS THE COMPLETE SET ──────
+ *
+ * The final five items were marked in two passes, and that is the only reason
+ * this mode exists. PR #86 gave each of them its ONE reference marker, on the
+ * question the owner had just authored or just recognised. The file that follows
+ * carries all EIGHT of that item's questions, including that one.
+ *
+ * Appending would produce a REPEATED MARKER, which this script already fails on
+ * — correctly. Silently de-duplicating would hide which of the two routes wrote
+ * the marker, and the owner asked to be told rather than tidied around. So
+ * --replace sets the marker set wholesale, and it REFUSES TO RUN if a question
+ * that is already marked disagrees with the file by so much as an order. On this
+ * run all five agreed exactly, so the replacement was a no-op for them and only
+ * the 35 unmarked questions changed.
+ *
  * Run:  npx tsx scripts/seed/gen/_apply_partc_kind.mts
  */
 import { readFileSync, writeFileSync } from "node:fs";
@@ -39,12 +77,17 @@ import { join } from "node:path";
 import { ITEMS } from "./reading_c";
 
 const SRC = process.env.READING_SOURCE_DIR ?? "C:\\Projects\\_handoffs";
-const DATA = join(SRC, "AlmiOET_PartC_kind_markers.json");
+const DATA = join(
+  SRC,
+  process.argv.find((a) => a.startsWith("--file="))?.slice("--file=".length) ??
+    "AlmiOET_PartC_kind_markers_v2_2026-09-07.json",
+);
 const OUT = "scripts/seed/gen/reading_c.ts";
+const REPLACE = process.argv.includes("--replace");
 const KINDS = ["paragraph", "reference", "writer"] as const;
 
 type Q = { id: string; stem: string; answer: string; options?: unknown[]; kind?: string[] };
-type Item = { taskType: string; title: string; payload?: { questions?: Q[] } };
+type Item = { taskType: string; slug: string; title: string; payload?: { questions?: Q[] } };
 
 const die = (msg: string): never => {
   throw new Error(`[apply-partc-kind] ${msg}`);
@@ -53,7 +96,7 @@ const die = (msg: string): never => {
 const markers = JSON.parse(readFileSync(DATA, "utf8")) as Record<string, Record<string, string[]>>;
 const items = ITEMS as unknown as Item[];
 const partC = items.filter((i) => i.taskType === "READING_PART_C");
-const byTitle = new Map(partC.map((i) => [i.title, i]));
+const bySlug = new Map(partC.map((i) => [i.slug, i]));
 
 // ── the population, stated before anything is marked ────────────────────────
 const fourOption = new Set<string>();
@@ -61,8 +104,8 @@ const threeOption = new Set<string>();
 for (const it of partC) {
   for (const q of it.payload?.questions ?? []) {
     const n = (q.options ?? []).length;
-    if (n === 4) fourOption.add(`${it.title}::${q.id}`);
-    else if (n === 3) threeOption.add(`${it.title}::${q.id}`);
+    if (n === 4) fourOption.add(`${it.slug}::${q.id}`);
+    else if (n === 3) threeOption.add(`${it.slug}::${q.id}`);
     else die(`"${it.title}" ${q.id} has ${n} options — neither the 4-option law nor the legacy 3`);
   }
 }
@@ -76,31 +119,43 @@ let marked = 0;
 let markerCount = 0;
 const perKind: Record<string, number> = { paragraph: 0, reference: 0, writer: 0 };
 
-for (const [title, qs] of Object.entries(markers)) {
-  const item = byTitle.get(title);
-  if (!item) die(`the marker file names an item that is not in the seed source: "${title}"`);
+for (const [slug, qs] of Object.entries(markers)) {
+  const item = bySlug.get(slug);
+  if (!item) die(`the marker file names an item that is not in the seed source: "${slug}"`);
   const known = new Map((item!.payload?.questions ?? []).map((q) => [q.id, q]));
   for (const [qid, kinds] of Object.entries(qs)) {
     const q = known.get(qid);
-    if (!q) die(`"${title}" has no question ${qid}`);
-    if (!fourOption.has(`${title}::${qid}`)) {
-      die(`"${title}" ${qid} is not a four-option question — the legacy 78 are not marked`);
+    if (!q) die(`"${slug}" has no question ${qid}`);
+    if (q!.kind !== undefined) {
+      if (!REPLACE) die(`"${slug}" ${qid} is ALREADY marked — this file would double it`);
+      if (JSON.stringify(q!.kind) !== JSON.stringify(kinds)) {
+        die(
+          `"${slug}" ${qid} is already marked ${JSON.stringify(q!.kind)} and this file says ` +
+            `${JSON.stringify(kinds)}. Two routes wrote the same question and they disagree — ` +
+            "which one is right is a content decision, not a de-duplication.",
+        );
+      }
     }
-    if (!Array.isArray(kinds) || kinds.length === 0) die(`"${title}" ${qid} has no marker`);
+    if (!fourOption.has(`${slug}::${qid}`)) {
+      die(`"${slug}" ${qid} is not a four-option question — the legacy three-option ones are not marked`);
+    }
+    if (!Array.isArray(kinds) || kinds.length === 0) die(`"${slug}" ${qid} has no marker`);
     for (const k of kinds) {
-      if (!(KINDS as readonly string[]).includes(k)) die(`"${title}" ${qid} has unknown marker "${k}"`);
+      if (!(KINDS as readonly string[]).includes(k)) die(`"${slug}" ${qid} has unknown marker "${k}"`);
       perKind[k] += 1;
       markerCount += 1;
     }
-    if (new Set(kinds).size !== kinds.length) die(`"${title}" ${qid} repeats a marker`);
+    if (new Set(kinds).size !== kinds.length) die(`"${slug}" ${qid} repeats a marker`);
     marked += 1;
   }
 }
 
 // ── every four-option question must have been reached ───────────────────────
+const named = new Set(Object.keys(markers));
 const missed = [...fourOption].filter((k) => {
-  const [title, qid] = k.split("::");
-  return !(markers[title] && markers[title][qid]);
+  const [slug, qid] = k.split("::");
+  if (!named.has(slug)) return false; // an item this file does not claim
+  return !markers[slug][qid];
 });
 if (missed.length > 0) {
   die(
@@ -111,8 +166,8 @@ if (missed.length > 0) {
 // ── and no legacy question may have been touched ────────────────────────────
 for (const it of partC) {
   for (const q of it.payload?.questions ?? []) {
-    if (threeOption.has(`${it.title}::${q.id}`) && q.kind !== undefined) {
-      die(`legacy three-option question "${it.title}" ${q.id} was marked — it must not be`);
+    if (threeOption.has(`${it.slug}::${q.id}`) && q.kind !== undefined) {
+      die(`legacy three-option question "${it.slug}" ${q.id} was marked — it must not be`);
     }
   }
 }
@@ -138,43 +193,59 @@ const text = readFileSync(OUT, "utf8");
 const lines = text.split("\n");
 
 // Item boundaries, so a question id is resolved within its own item.
-const bounds: { title: string; from: number }[] = [];
+// Located by SLUG, not by title: PR #75 moved every key off human titles, and
+// one Part C title carries escaped quotes that a raw capture reads wrongly.
+const B = String.fromCharCode(92); // a backslash, spelled out
+const SLUG_LINE = new RegExp("^" + B + 's*"slug": "([^"]+)",' + B + "s*(" + B + "r)?$");
+const bounds: { slug: string; from: number }[] = [];
 for (let i = 0; i < lines.length; i++) {
   // The whole quoted literal, then JSON.parse it — one Part C title contains
   // escaped quotes ("What \"nil by mouth\" costs") and a raw capture reads them
   // as backslash-quote, which matches no title in the marker file.
-  const m = lines[i].match(/^\s*"title": ("(?:[^"\\]|\\.)*"),\s*\r?$/);
-  if (m) bounds.push({ title: JSON.parse(m[1]) as string, from: i });
+  const m = lines[i].match(SLUG_LINE);
+  if (m) bounds.push({ slug: m[1], from: i });
 }
 
-const inserts = new Map<number, string>(); // line index of the "id" line -> text to insert after it
-for (const [title, qs] of Object.entries(markers)) {
-  const bi = bounds.findIndex((b) => b.title === title);
-  if (bi === -1) die(`could not locate "${title}" in ${OUT}`);
+const inserts = new Map<number, string>();   // after this "id" line, add a kind line
+const rewrites = new Map<number, string>();  // this line IS a kind line: replace it
+for (const [slug, qs] of Object.entries(markers)) {
+  const bi = bounds.findIndex((b) => b.slug === slug);
+  if (bi === -1) die(`could not locate "${slug}" in ${OUT}`);
   const from = bounds[bi].from;
   const to = bi + 1 < bounds.length ? bounds[bi + 1].from : lines.length;
 
   for (const [qid, kinds] of Object.entries(qs)) {
-    // A question's id line is followed by its stem. An OPTION's id line is not,
-    // which is what keeps this off the a/b/c/d objects.
+    // A question's id line is followed by its stem, or — once it has been marked
+    // — by its kind. An OPTION's id line is followed by neither, which is what
+    // keeps this off the a/b/c/d objects.
     const hits: number[] = [];
     for (let i = from; i < to; i++) {
-      if (new RegExp(`^(\\s*)"id": "${qid}",\\s*\\r?$`).test(lines[i]) && /^\s*"stem":/.test(lines[i + 1] ?? "")) {
+      const ID_LINE = new RegExp("^(" + B + 's*)"id": "' + qid + '",' + B + "s*(" + B + "r)?$");
+      if (ID_LINE.test(lines[i]) && new RegExp("^" + B + 's*"(stem|kind)":').test(lines[i + 1] ?? "")) {
         hits.push(i);
       }
     }
-    if (hits.length !== 1) die(`"${title}" ${qid}: found ${hits.length} question id lines (need exactly 1)`);
-    const indent = lines[hits[0]].match(/^(\s*)/)![1];
-    // Copy this line's OWN ending, so a CRLF region stays CRLF and an LF region LF.
-    const cr = lines[hits[0]].endsWith("\r") ? "\r" : "";
-    inserts.set(hits[0], `${indent}"kind": ${JSON.stringify(kinds)},${cr}`);
+    if (hits.length !== 1) die(`"${slug}" ${qid}: found ${hits.length} question id lines (need exactly 1)`);
+    const idLine = hits[0];
+    const indent = lines[idLine].match(/^(\s*)/)![1];
+    // Copy the line's OWN ending, so a CRLF region stays CRLF and an LF region LF.
+    // The carriage return is built from its code point: an editor, a shell or a
+    // heredoc will eat a backslash escape, and this project has paid for that.
+    const CR = String.fromCharCode(13);
+    const cr = lines[idLine].endsWith(CR) ? CR : "";
+    const text = `${indent}"kind": ${JSON.stringify(kinds)},${cr}`;
+    if (/^\s*"kind":/.test(lines[idLine + 1] ?? "")) rewrites.set(idLine + 1, text);
+    else inserts.set(idLine, text);
   }
 }
-if (inserts.size !== marked) die(`prepared ${inserts.size} insertions for ${marked} marked questions`);
+if (inserts.size + rewrites.size !== marked) {
+  die(`prepared ${inserts.size} insertion(s) and ${rewrites.size} rewrite(s) for ${marked} marked questions`);
+}
 
 const out: string[] = [];
 for (let i = 0; i < lines.length; i++) {
-  out.push(lines[i]);
+  const rw = rewrites.get(i);
+  out.push(rw !== undefined ? rw : lines[i]);
   const ins = inserts.get(i);
   if (ins !== undefined) out.push(ins);
 }

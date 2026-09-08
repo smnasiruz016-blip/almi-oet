@@ -66,6 +66,22 @@ export const readingPartAPayloadSchema = z.object({
       answer: z.string(),
       // Additional accepted wordings for a `gap` answer — see markObjective.
       variants: z.array(z.string()).optional(),
+      // 🔴 THE AUTHOR SAYING THERE IS NOTHING ELSE TO ACCEPT.
+      //
+      // Declared, not inferred. gate:accept-lists A4 asks that every
+      // multi-word free-text answer HAS an accept list, and 28 answers in the
+      // bank have none because none exists — "frozen peas", "laundry
+      // detergent", "130 over 80". Before this field the only ways to satisfy
+      // A4 were to invent a variant or to add a hand-written exemption row in
+      // the gate, and inventing is what produced hours→hors and
+      // biscuits→biscuitbing on 6 September. This says it in the content, where
+      // the person who knows sits.
+      //
+      // ⚠️ IT MUST BE DECLARED IN THIS SCHEMA OR IT DOES NOT EXIST AT RUNTIME:
+      // zod strips an undeclared key at parse time, which is exactly how the
+      // Reading Part C `kind` markers were in the database and invisible to the
+      // grader for a week.
+      acceptExhaustive: z.literal(true).optional(),
     }),
   ),
 });
@@ -95,15 +111,15 @@ export function readingPartAAnswerKey(
     id: q.id,
     answer: q.answer,
     exact: q.kind === "match",
-    // 🔴 The overlay is keyed by the question's own `answer`, not by its stem:
-    // Reading stems are long sentences and copying them into the accept-list
-    // file would be a transcription error waiting to happen. It is applied to
-    // free-text questions only — a "match" answer is an id, and leniency has
-    // no business there.
+    // 🔴 The overlay is keyed by the question's `id`, never by its stem or
+    // by its answer text. Reading stems are long sentences, and an answer is
+    // content that gets edited — both are transcription errors waiting to
+    // happen. It is applied to free-text questions only: a "match" answer is
+    // an id, and leniency has no business there.
     variants:
       q.kind === "match"
         ? q.variants
-        : [...(q.variants ?? []), ...readingAcceptFor(slug, q.answer)],
+        : [...(q.variants ?? []), ...readingAcceptFor(slug, q.id)],
   }));
 }
 

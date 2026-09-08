@@ -96,6 +96,27 @@ test.describe("retiring the twenty-one legacy Reading Part C articles", () => {
     const titles = await listTitles(page);
     expect(titles.length, "the library must hold the whole Part C bank before the retire").toBe(42);
 
+    // 🔴 THE RETIRE LIST, CHECKED AGAINST WHAT THE APP ACTUALLY OFFERS.
+    //
+    // Until 7 September 2026 the list was checked against fixture.partCLegacyTitles,
+    // which the fixture worked out from the articles' SHAPE — a genuinely separate
+    // second opinion. That opinion is gone: the verified bank of 6 September rewrote
+    // the outgoing twenty-one to full length, so all 42 now meet the same law and
+    // the fixture reads this same file to tell them apart. Comparing the two would
+    // be comparing a file with itself.
+    //
+    // The rendered library is the independent side that is left, and it is the
+    // better one — it is what the paying learner can see. A retire list naming an
+    // article the product does not offer fails HERE, before anything is switched
+    // off, which is the only useful moment to find out.
+    const going = (JSON.parse(readFileSync(RETIRE_LIST, "utf8")) as { title: string }[]).map(
+      (r) => r.title,
+    );
+    expect(going, "the checked-in Part C retire list").toHaveLength(21);
+    for (const t of going) {
+      expect(titles, `${t} is named for retirement but the library does not offer it`).toContain(t);
+    }
+
     kept.scoredTitle = fixture.partCLegacyTitles[0];
     kept.scoredUrl = await openByTitle(page, kept.scoredTitle);
     await page.locator('input[type="radio"]').first().check();
@@ -126,7 +147,12 @@ test.describe("retiring the twenty-one legacy Reading Part C articles", () => {
     }[];
     expect(list, "the retire list must be the checked-in one").toHaveLength(21);
     for (const r of list) expect(r.taskType).toBe("READING_PART_C");
-    expect(list.map((r) => r.title).sort()).toEqual([...fixture.partCLegacyTitles].sort());
+    // The list is no longer compared with fixture.partCLegacyTitles — the fixture
+    // now derives those FROM this file, so the comparison could not fail. What
+    // proves the list resolves to twenty-one real rows is the dry run below:
+    // "42 active now -> 21 after" is the database's own count, not a restatement
+    // of the file. The list is checked against the rendered library in the first
+    // test of this file, which is the side that is still independent.
 
     const dry = spawnSync(`npx tsx scripts/retire-fragments.mts ${RETIRE_LIST}`, {
       shell: true,
