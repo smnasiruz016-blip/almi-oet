@@ -724,7 +724,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         }
       ],
-      "audioScript": "Manager: One thing before you go. From Monday the new hand-hygiene audit starts, and you'll see people on the ward with tablets at odd times of day. I want to be clear about what it is and what it isn't. It is not about catching anyone out, and nobody's name goes on anything. What we're doing is gathering baseline data — how we're actually performing now, across all four moments, before we roll out the new sanitiser stations next quarter. Without a proper before, we'll have no way of knowing whether the stations made any difference at all, and we'll have spent the money on a guess. So carry on exactly as you normally would. If you have a bad shift, I'd rather see it in the numbers than not.",
+      "audioScript": "Manager: One thing before you go. From Monday the new hand-hygiene audit starts, and you'll see people on the ward with tablets at odd times of day. I want to be clear about what it is and what it isn't. It is not about catching anyone out, and nobody's name goes on anything. What we're doing is gathering baseline data — how we're actually performing now, across all five moments, before we roll out the new sanitiser stations next quarter. Without a proper before, we'll have no way of knowing whether the stations made any difference at all, and we'll have spent the money on a guess. So carry on exactly as you normally would. If you have a bad shift, I'd rather see it in the numbers than not.",
       "questions": [
         {
           "id": "q1",
@@ -1242,7 +1242,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "alloy"
         }
       ],
-      "audioScript": "Charge nurse: I want to go over the bedside check before a transfusion, because I saw it done badly on Tuesday and I don't want to see it again. The check must be done by two staff, together, at the patient's side. Both of you there, both of you looking at the unit and at the wristband, at the same time. What I saw was one person reading it out in the bay and the second signing the form ten minutes later at the desk, and that is not a check — that's two people agreeing with each other. This is the final barrier between a mistake made anywhere upstream and the wrong blood going into a patient, and it only works if you both actually look.",
+      "audioScript": "Charge nurse: I want to go over the bedside check before a transfusion, because I saw it done badly on Tuesday and I don't want to see it again. The check on this ward must be done by two staff, together, at the patient's side. Both of you there, both of you looking at the unit and at the wristband, at the same time. What I saw was one person reading it out in the bay and the second signing the form ten minutes later at the desk, and that is not a check — that's two people agreeing with each other. This is the final barrier between a mistake made anywhere upstream and the wrong blood going into a patient, and it only works if you both actually look.",
       "questions": [
         {
           "id": "q1",

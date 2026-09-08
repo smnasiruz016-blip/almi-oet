@@ -690,10 +690,36 @@ export async function seedFixture(url: string): Promise<Fixture> {
     //
     // LEGACY_SHORT: lis-b 33 -> 32, lis-c 21 -> 20. Same five-plus-two items,
     // no other movement, and no bound anywhere was touched to get here.
+    //
+    // LISTENING_PART_C moved 16 -> 17 on 7 September 2026, and this one is an
+    // ADDITION rather than an item that met its law. GAP-018 retired
+    // lis-c-improving-health-literacy-through-teach-back, which was the same
+    // lecture as lis-c-f3-presentation-health-literacy, and replaced it with:
+    //
+    //     lis-c-item-16-presentation-the-week-after-discharge   802 words (780-880)
+    //     six three-option questions; every key SHORTER than its longest
+    //     distractor (margins -1 to -4)
+    //
+    // THE RETIRE DOES NOT OFFSET IT, and that is the whole reason this number
+    // moves. The teach-back item measured 713 words, below the 780 floor, so it
+    // was never in this pool. One item entered the pool and none left it.
+    //
+    // The walk target is unchanged, and it is NOT the item first assumed:
+    // listeningCFull[0] is lis-c-item-1-presentation-the-four-hours-before-an-arrest
+    // at 800 words, before this change and after it. GEN_ITEMS spreads
+    // LISTENING_C_SETS BEFORE LISTENING_C, so the new-format items sort ahead of
+    // the twenty-one legacy ones. The new item lands at listeningCFull[15], and
+    // listeningCFull[16] — last in seed-source order — is still
+    // lis-c-a-multimodal-approach-to-chronic-pain-management at 784 words.
+    // Measured at d0ac931 and again here with this file's own `words()`: [0] did
+    // not move, so line 786 still walks the same item.
+    //
+    // LEGACY_SHORT's LISTENING_PART_C section went 21 -> 20 across the same
+    // commit, and no bound anywhere was touched to get here.
     for (const [part, pool, want] of [
       ["LISTENING_PART_A", listeningAFull, 18],
       ["LISTENING_PART_B", listeningBFull, 91],
-      ["LISTENING_PART_C", listeningCFull, 16],
+      ["LISTENING_PART_C", listeningCFull, 17],
     ] as const) {
       if (pool.length !== want) {
         throw new Error(

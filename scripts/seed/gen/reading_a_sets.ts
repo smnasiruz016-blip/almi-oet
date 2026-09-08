@@ -886,7 +886,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         {
           "id": "q12",
           "kind": "gap",
-          "stem": "What grows organisms in every long-term catheter?",
+          "stem": "What is it called when a long-term catheter grows organisms?",
           "answer": "colonisation"
         },
         {
