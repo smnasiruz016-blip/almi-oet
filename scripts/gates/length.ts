@@ -221,39 +221,57 @@ const LAW: Record<string, [number, number]> = {
 
 /**
  * 🔴 HAND-CHECKED-IN, MEASURED, MAY ONLY SHRINK. Each line carries the word
- * count measured on 3 September 2026 UNDER THE CORRECTED LAW AND THE RULED
- * TOKENISER, so a reader can see how far short an item is without re-running
- * anything.
+ * count RE-MEASURED ON 8 SEPTEMBER 2026 against the merged bank, under the same
+ * law and the same tokeniser, so a reader can see how far outside the law an
+ * item is without re-running anything.
  *
- * Every count here was RE-MEASURED from the run that made the tokeniser change;
- * none was carried over. 60 of the 147 fell, because those items carry
- * standalone punctuation the old whitespace split counted as words.
+ * ⚠️ THE COUNTS BEFORE THIS DATE WERE STALE, AND BADLY. They were measured on
+ * 3 September, before the 6-September rebuild lengthened most of these items,
+ * and were never re-taken. 52 of the 67 rows were wrong, by a median of 536
+ * words and by as much as 628 (`lis-c-talk-on-hydration-in-older-adults` said
+ * 59; it is 687). The gate's VERDICTS were never affected — every row still
+ * breaches, none had quietly started meeting the law — but the evidence a human
+ * reads was false, and it made the remaining debt look about six times larger
+ * than it is. Measured: 2,999 words to add and 539 to cut from the sixteen rows
+ * that are over the ceiling — 3,538 in all, against the 22,007 the old counts implied.
  *
- * MEMBERSHIP IS IDENTICAL, and that was established before the change rather
- * than discovered after it: all 177 governed items were measured under BOTH
- * tokenisers, and not one crosses a bound either way. So the may-only-shrink
- * rule is not being bent by a rebuild here. The Reading Part A counts are texts
- * + question stems combined.
+ * ⚠️ THE NAME SAYS "SHORT". SIXTEEN OF THESE ROWS ARE NOT SHORT — THEY ARE OVER
+ * THE CEILING. Every LISTENING_PART_A row sits above 600, by 7 to 69 words; the
+ * 6-September rebuild overshot and the exemption hid it, because an exemption
+ * does not care which side of the band an item misses. The name is kept because
+ * it appears in this gate's failure messages and in comments across five files,
+ * and a rename would bury this note in a refactor. Each section header below now
+ * states the direction, so the list cannot mislead again.
+ *
+ * ⚠️ AND ON WHETHER THE PART A ROWS SHOULD BE TRIMMED: they should not, on the
+ * evidence. OET's own Listening audio script was measured on 8 September 2026
+ * from the owner's answer-key PDFs (counts only; no OET text copied). Their two
+ * Part A extracts measure 348 and 743 words against our 550-600. Every one of
+ * the 16 rows here (607-669) is SHORTER than their longer extract. Part C's law
+ * is separately vindicated: their two recordings measure 835 and 770 against
+ * 780-880. Part A's 550-600 comes from ZABTA alone and one paper cannot settle
+ * it — their own two extracts differ by 395 words, more than twice the width of
+ * our band. Do not trim to satisfy it; measure more papers first.
  */
 const LEGACY_SHORT: string[] = [
-  // ── LISTENING_PART_A · 21 item(s), law 550-600 words ──
-  "lis-a-ankle-injury-after-a-fall", // 114 words
-  "lis-a-antenatal-visit", // 65 words
-  "lis-a-asthma-flare-up", // 74 words
-  "lis-a-diabetes-annual-check", // 75 words
-  "lis-a-knee-pain-consultation", // 49 words
-  "lis-a-lower-back-pain", // 71 words
-  "lis-a-medication-side-effect", // 77 words
-  "lis-a-mental-health-check-in", // 72 words
-  "lis-a-migraine-review", // 78 words
-  "lis-a-new-skin-rash", // 56 words
-  "lis-a-ongoing-sleep-problem", // 75 words
-  "lis-a-post-operative-wound-check", // 60 words
-  "lis-a-suspected-urinary-infection", // 69 words
-  "lis-a-f1-dietitian-consultation-type-2-diabetes", // 193 words
-  "lis-a-f2-occupational-therapy-home-visit-post-stroke", // 190 words
-  "lis-a-f3-midwife-antenatal-booking-visit", // 197 words
-  // ── LISTENING_PART_B · 33 item(s), law 140-165 words ──
+  // ── LISTENING_PART_A · 16 item(s), law 550-600 words — 16 OVER the ceiling ──
+  "lis-a-ankle-injury-after-a-fall", // 656 words
+  "lis-a-antenatal-visit", // 632 words
+  "lis-a-asthma-flare-up", // 610 words
+  "lis-a-diabetes-annual-check", // 646 words
+  "lis-a-knee-pain-consultation", // 634 words
+  "lis-a-lower-back-pain", // 614 words
+  "lis-a-medication-side-effect", // 663 words
+  "lis-a-mental-health-check-in", // 619 words
+  "lis-a-migraine-review", // 668 words
+  "lis-a-new-skin-rash", // 642 words
+  "lis-a-ongoing-sleep-problem", // 669 words
+  "lis-a-post-operative-wound-check", // 617 words
+  "lis-a-suspected-urinary-infection", // 607 words
+  "lis-a-f1-dietitian-consultation-type-2-diabetes", // 623 words
+  "lis-a-f2-occupational-therapy-home-visit-post-stroke", // 614 words
+  "lis-a-f3-midwife-antenatal-booking-visit", // 625 words
+  // ── LISTENING_PART_B · 32 item(s), law 140-165 words — 32 short of the floor ──
   "lis-b-alert-about-a-norovirus-outbreak", // 53 words
   "lis-b-arranging-a-complex-discharge", // 51 words
   "lis-b-changes-to-the-weekend-roster", // 51 words
@@ -269,46 +287,43 @@ const LEGACY_SHORT: string[] = [
   "lis-b-switching-to-a-new-infusion-pump-model", // 56 words
   "lis-b-updated-dressing-trolley-protocol", // 84 words
   "lis-b-verbal-handover-for-a-post-operative-patient", // 53 words
-  "lis-b-f1-hand-hygiene-audit", // 28 words
-  "lis-b-f1-x-ray-result", // 33 words
-  "lis-b-f1-home-exercises", // 30 words
-  "lis-b-f1-infusion-pump-training", // 33 words
-  "lis-b-f1-handling-results", // 33 words
-  "lis-b-f2-low-sodium", // 34 words
-  "lis-b-f2-gloves-and-hand-hygiene", // 35 words
-  "lis-b-f2-nil-by-mouth", // 36 words
-  "lis-b-f2-paracetamol-order", // 39 words
-  "lis-b-f2-escalating-concern", // 41 words
-  "lis-b-f2-chest-pain-at-reception", // 38 words
-  "lis-b-f3-sharps-bins", // 43 words
-  "lis-b-f3-transfusion-check", // 48 words
-  "lis-b-f3-timely-notes", // 41 words
-  "lis-b-f3-oxygen-as-a-drug", // 42 words
-  "lis-b-f3-interpreters", // 39 words
-  "lis-b-f3-red-wristband", // 44 words
-  // ── LISTENING_PART_C · 20 item(s), law 780-880 words ──
-  "lis-c-antibiotic-stewardship-and-the-48-hour-review", // 132 words
-  "lis-c-building-a-culture-of-patient-safety-on-the-ward", // 139 words
-  "lis-c-honest-conversations-at-the-end-of-life", // 138 words
-  "lis-c-making-telehealth-consultations-safe-and-effective", // 142 words
-  "lis-c-preventing-inpatient-falls-through-hourly-rounding", // 137 words
-  "lis-c-recognising-and-preventing-clinician-burnout", // 133 words
-  "lis-c-reducing-medication-errors-with-quiet-zones", // 157 words
-  "lis-c-responding-to-agitation-in-dementia-care", // 134 words
-  "lis-c-sustaining-gains-in-quality-improvement-projects", // 138 words
-  "lis-c-tackling-malnutrition-risk-in-hospital-patients", // 141 words
-  "lis-c-talk-on-hydration-in-older-adults", // 59 words
-  "lis-c-the-first-hour-in-recognising-sepsis", // 145 words
-  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake", // 141 words
-  "lis-c-f1-interview-wound-care-nursing", // 305 words
-  "lis-c-f1-presentation-polypharmacy", // 238 words
-  "lis-c-f2-interview-de-escalation-in-mental-health", // 217 words
-  "lis-c-f2-presentation-antimicrobial-resistance", // 151 words
-  "lis-c-f3-interview-living-with-chronic-pain", // 254 words
-  "lis-c-f3-presentation-health-literacy", // 240 words
-  // ── READING_PART_A · 18 item(s), law 885-1009 words ──
-  // ── READING_PART_B · 33 item(s), law 136-155 words ──
-  // ── READING_PART_C · 21 item(s), law 653-836 words ──
+  "lis-b-f1-hand-hygiene-audit", // 129 words
+  "lis-b-f1-x-ray-result", // 124 words
+  "lis-b-f1-home-exercises", // 122 words
+  "lis-b-f1-infusion-pump-training", // 129 words
+  "lis-b-f1-handling-results", // 130 words
+  "lis-b-f2-low-sodium", // 129 words
+  "lis-b-f2-gloves-and-hand-hygiene", // 128 words
+  "lis-b-f2-nil-by-mouth", // 119 words
+  "lis-b-f2-paracetamol-order", // 125 words
+  "lis-b-f2-escalating-concern", // 130 words
+  "lis-b-f2-chest-pain-at-reception", // 122 words
+  "lis-b-f3-sharps-bins", // 124 words
+  "lis-b-f3-transfusion-check", // 129 words
+  "lis-b-f3-timely-notes", // 126 words
+  "lis-b-f3-oxygen-as-a-drug", // 123 words
+  "lis-b-f3-interpreters", // 119 words
+  "lis-b-f3-red-wristband", // 124 words
+  // ── LISTENING_PART_C · 19 item(s), law 780-880 words — 19 short of the floor ──
+  "lis-c-antibiotic-stewardship-and-the-48-hour-review", // 702 words
+  "lis-c-building-a-culture-of-patient-safety-on-the-ward", // 704 words
+  "lis-c-honest-conversations-at-the-end-of-life", // 694 words
+  "lis-c-making-telehealth-consultations-safe-and-effective", // 753 words
+  "lis-c-preventing-inpatient-falls-through-hourly-rounding", // 713 words
+  "lis-c-recognising-and-preventing-clinician-burnout", // 671 words
+  "lis-c-reducing-medication-errors-with-quiet-zones", // 672 words
+  "lis-c-responding-to-agitation-in-dementia-care", // 705 words
+  "lis-c-sustaining-gains-in-quality-improvement-projects", // 749 words
+  "lis-c-tackling-malnutrition-risk-in-hospital-patients", // 693 words
+  "lis-c-talk-on-hydration-in-older-adults", // 687 words
+  "lis-c-the-first-hour-in-recognising-sepsis", // 719 words
+  "lis-c-understanding-hesitancy-to-improve-vaccination-uptake", // 682 words
+  "lis-c-f1-interview-wound-care-nursing", // 735 words
+  "lis-c-f1-presentation-polypharmacy", // 669 words
+  "lis-c-f2-interview-de-escalation-in-mental-health", // 684 words
+  "lis-c-f2-presentation-antimicrobial-resistance", // 734 words
+  "lis-c-f3-interview-living-with-chronic-pain", // 682 words
+  "lis-c-f3-presentation-health-literacy", // 721 words
 ];
 
 
