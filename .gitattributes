@@ -1,0 +1,16 @@
+# Pin line endings in the REPOSITORY, so they do not depend on each machine.
+#
+# Measured 8 September 2026: every text blob in the index is already LF
+# (345 i/lf, 0 i/crlf, 0 i/mixed), so this pins what is already true and
+# renormalises nothing.
+#
+# The exposure this closes is NOT the working tree on a Windows machine with
+# core.autocrlf=true — there git converts on checkout and back on staging, so
+# CRLF never reaches a blob. It is a machine WITHOUT that setting: a CI runner,
+# a Mac, a colleague with a default install. There, editing any file would
+# commit CRLF and produce a diff touching hundreds of files that hides the real
+# change inside it.
+#
+# text=auto lets git decide what is text; eol=lf fixes what text looks like in
+# the working tree and in the blob.
+* text=auto eol=lf
