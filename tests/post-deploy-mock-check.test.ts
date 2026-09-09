@@ -31,6 +31,13 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { spawn } from "node:child_process";
 import { createServer, type Server } from "node:http";
 import { readFileSync } from "node:fs";
+import { formTagsInRepo } from "../scripts/form-tags-in-repo";
+
+/** What the SEED SOURCE declares, from the same function the script calls.
+ *  The fixtures are built from this rather than from a literal 3: a fourth form
+ *  would otherwise turn every case in this file red for a reason that is not the
+ *  one it asserts. */
+const SOURCE_FORMS = formTagsInRepo().length;
 
 type Run = { out: string; code: number | null };
 
@@ -41,19 +48,26 @@ const CASES: Record<string, unknown> = {
   healthy: {
     ok: true,
     itemsActive: 661,
-    mock: { formsDeclared: 3, formsComplete: 3, startable: true },
+    mock: { formsDeclared: SOURCE_FORMS, formsComplete: SOURCE_FORMS, startable: true },
   },
   // GAP-041 itself: every form declared, none complete, nothing can start
   "nothing-startable": {
     ok: true,
     itemsActive: 634,
-    mock: { formsDeclared: 3, formsComplete: 0, startable: false },
+    mock: { formsDeclared: SOURCE_FORMS, formsComplete: 0, startable: false },
   },
   // the first two thirds of GAP-041, caught early: one form quietly lost
   "two-of-three": {
     ok: true,
     itemsActive: 655,
-    mock: { formsDeclared: 3, formsComplete: 2, startable: true },
+    mock: { formsDeclared: SOURCE_FORMS, formsComplete: SOURCE_FORMS - 1, startable: true },
+  },
+  // a form whose ROWS ARE GONE: the endpoint cannot tell that from a bank that
+  // never had it, and reports the rest as complete. Only the source knows.
+  "deleted-form": {
+    ok: true,
+    itemsActive: 604,
+    mock: { formsDeclared: SOURCE_FORMS - 1, formsComplete: SOURCE_FORMS - 1, startable: true },
   },
   // a deployment from before the block existed
   "old-build": { ok: true, itemsActive: 661 },
@@ -67,7 +81,7 @@ const CASES: Record<string, unknown> = {
   "pending-migration": {
     ok: false,
     itemsActive: 661,
-    mock: { formsDeclared: 3, formsComplete: 3, startable: true },
+    mock: { formsDeclared: SOURCE_FORMS, formsComplete: SOURCE_FORMS, startable: true },
   },
 };
 
@@ -123,9 +137,24 @@ afterAll(() => {
 });
 
 describe("check-prod-mock — the post-deploy answer to GAP-041", () => {
-  it("is GREEN on 3 of 3 complete and startable", () => {
-    expect(runs.healthy.out).toContain("3 form declare hain, 3 mukammal hain");
+  it("the source declares at least one form, and they all look like form tags", () => {
+    // otherwise every case below would be asserting against an empty scan
+    expect(SOURCE_FORMS).toBeGreaterThan(0);
+    for (const tag of formTagsInRepo()) expect(tag).toMatch(/^form-\d+$/);
+  });
+
+  it("is GREEN when every declared form is complete and startable", () => {
+    expect(runs.healthy.out).toContain(
+      `${SOURCE_FORMS} form declare hain, ${SOURCE_FORMS} mukammal hain`,
+    );
+    expect(runs.healthy.out).toContain(`source ${SOURCE_FORMS} = database ${SOURCE_FORMS}`);
     expect(runs.healthy.code, runs.healthy.out).toBe(0);
+  });
+
+  it("🔴 goes RED when the SOURCE declares a form the database does not have", () => {
+    // the one case the endpoint cannot see on its own: rows DELETED, not retired
+    expect(runs["deleted-form"].code, runs["deleted-form"].out).not.toBe(0);
+    expect(runs["deleted-form"].out).toContain("GHAYAB");
   });
 
   it("🔴 goes RED when nothing is startable — GAP-041 as it actually happened", () => {
@@ -137,7 +166,7 @@ describe("check-prod-mock — the post-deploy answer to GAP-041", () => {
     // the learner who would have drawn the third form gets nothing, and the
     // other two working is not a state anybody chose
     expect(runs["two-of-three"].code, runs["two-of-three"].out).not.toBe(0);
-    expect(runs["two-of-three"].out).toContain("(2/3)");
+    expect(runs["two-of-three"].out).toContain(`(${SOURCE_FORMS - 1}/${SOURCE_FORMS})`);
   });
 
   it("🔴 goes RED on a deployment that does not report the block at all", () => {
@@ -158,6 +187,17 @@ describe("check-prod-mock — the post-deploy answer to GAP-041", () => {
   it("does NOT fail on 503 — a pending migration is the other check's job", () => {
     expect(runs["pending-migration"].out).toContain("HTTP 503");
     expect(runs["pending-migration"].code, runs["pending-migration"].out).toBe(0);
+  });
+
+  it("the script does not carry its own copy of the source scan", () => {
+    const src = readFileSync("scripts/check-prod-mock.mts", "utf8");
+    expect(src).toContain("formTagsInRepo()");
+    // and does not import the 4.6 MB bank to learn one number. Asserted on the
+    // IMPORT lines: the header discusses scripts/seed/gen in prose, and a search
+    // for the string would call that a violation.
+    const imports = src.split(/\r?\n/).filter((l) => l.startsWith("import "));
+    expect(imports.length).toBeGreaterThan(0);
+    for (const line of imports) expect(line).not.toContain("seed/gen");
   });
 
   it("the engine and the endpoint share ONE computation, by import", () => {
