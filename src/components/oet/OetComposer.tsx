@@ -249,15 +249,45 @@ function QuestionField({
  * lost the item with no way back, so "played" now requires EVIDENCE of playback:
  * the element must report progress past PROGRESS_SECONDS. An element that ends
  * without ever advancing is a failed play, the button stays live, and it says so.
+ *
+ * ── 🔴 GAP-047 · THE PLAYER USED TO CONTRADICT ITS OWN SENTENCE ────────────
+ *
+ * This printed "Plays once, like the real test." and rendered a full native
+ * <audio controls> directly beneath it — pause, a SEEK BAR, and Chrome's ⋮ menu
+ * with Download and playback speed. In a MOCK a candidate could scrub back and
+ * replay any part as often as they liked, and take the mp3. OET Listening is
+ * one-pass and that constraint IS the skill, so the score of anyone who rewound
+ * meant nothing and they had no way to know. Found by the owner, with his eyes,
+ * inside a real mock on the live product. No gate reads a rendered control
+ * against a rendered sentence, so none of them could have seen it.
+ *
+ * `onePass` decides, and it comes from listeningAudioPolicy(session) — never
+ * from a mode threaded down here. MOCK: one Play button, no seek, no pause, no
+ * download. PRACTICE: exactly what it always was, because replaying a section is
+ * how a section is learned.
+ *
+ * ⚠️ SEEKING IS PREVENTED IN BEHAVIOUR, NOT BY HIDING A CONTROL. A hidden seek
+ * bar is still reachable by keyboard, by the media keys and by script, so the
+ * element itself refuses to move: `seeking` snaps the clock back to the furthest
+ * point actually reached, and a pause that is not the end resumes. Not rendering
+ * the controls is the second layer, not the first.
  */
 const PROGRESS_SECONDS = 1;
 
-function ListeningAudio({ attemptId }: { attemptId: string }) {
+/** How far the clock may drift from the furthest point reached before it counts
+ *  as a seek. Wide enough that ordinary timeupdate jitter is not fought, narrow
+ *  enough that no useful amount of audio can be re-heard. */
+const SEEK_TOLERANCE_SECONDS = 0.75;
+
+function ListeningAudio({ attemptId, onePass }: { attemptId: string; onePass: boolean }) {
   const [state, setState] = useState<"idle" | "loading" | "playing" | "done" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
   const [src, setSrc] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressedRef = useRef(false);
+  // The furthest point playback has actually reached. In one-pass mode the clock
+  // is snapped back to this on any seek, so rewinding returns nothing.
+  const furthestRef = useRef(0);
 
   // Ask the route why it refused, so a paywall reads as a paywall rather than as
   // "audio could not be played". The element only tells us that it failed.
@@ -278,6 +308,7 @@ function ListeningAudio({ attemptId }: { attemptId: string }) {
   async function play() {
     setMessage(null);
     progressedRef.current = false;
+    furthestRef.current = 0;
     setState("loading");
     // Setting src starts the load; preload="none" means nothing is fetched until
     // this point, so the audio is never pulled before the learner asks for it.
@@ -323,15 +354,48 @@ function ListeningAudio({ attemptId }: { attemptId: string }) {
       <audio
         ref={audioRef}
         data-testid="listening-audio-el"
+        data-one-pass={onePass ? "true" : "false"}
         preload="none"
-        controls={state === "playing" || state === "done"}
-        className={state === "playing" || state === "done" ? "mt-3 w-full" : "hidden"}
+        // 🔴 NO NATIVE CONTROLS IN ONE-PASS MODE. There is no seek bar to hide,
+        // no ⋮ menu to police and no Download item, because the control strip is
+        // never rendered. The behavioural guards below are what actually enforce
+        // it; this only removes the obvious door.
+        controls={!onePass && (state === "playing" || state === "done")}
+        // Belt and braces for any surface that shows controls anyway — a browser
+        // extension, a cast target, a future default. Harmless where there are none.
+        controlsList={onePass ? "nodownload noplaybackrate noremoteplayback" : undefined}
+        // The context menu is the other route to "Save audio as", and it is not
+        // part of the controls strip, so removing the strip does not remove it.
+        onContextMenu={onePass ? (e) => e.preventDefault() : undefined}
+        className={
+          !onePass && (state === "playing" || state === "done") ? "mt-3 w-full" : "hidden"
+        }
+        // 🔴 THE SEEK REFUSAL. Not CSS: this runs whoever asked, including the
+        // keyboard, the media keys and any script. The clock is put back to the
+        // furthest point actually reached, so a rewind returns nothing to hear.
+        onSeeking={(e) => {
+          if (!onePass) return;
+          const el = e.currentTarget;
+          if (Math.abs(el.currentTime - furthestRef.current) > SEEK_TOLERANCE_SECONDS) {
+            el.currentTime = furthestRef.current;
+          }
+        }}
+        // A pause is a rewind with extra steps: it buys thinking time the real
+        // test does not give. `ended` also fires a pause, and that one is final.
+        onPause={(e) => {
+          if (!onePass) return;
+          const el = e.currentTarget;
+          if (el.ended) return;
+          void el.play().catch(() => undefined);
+        }}
         // Terminal states are FINAL. `playing` can arrive after `ended` — that
         // ordering is exactly what buried the old state machine — so a late one
         // must not resurrect a finished play.
         onPlaying={() => setState((s) => (s === "done" || s === "error" ? s : "playing"))}
         onTimeUpdate={(e) => {
-          if (e.currentTarget.currentTime > PROGRESS_SECONDS) progressedRef.current = true;
+          const t = e.currentTarget.currentTime;
+          if (t > PROGRESS_SECONDS) progressedRef.current = true;
+          if (t > furthestRef.current) furthestRef.current = t;
         }}
         onEnded={() => {
           if (progressedRef.current) {
@@ -353,6 +417,16 @@ function ListeningAudio({ attemptId }: { attemptId: string }) {
         {src ? <source src={src} type="audio/mpeg" /> : null}
       </audio>
 
+      {/* A disabled button with no explanation is GAP-042 again. In one-pass mode
+          there is no player left on screen to look at either, so the finished state
+          says in words what happened and why. */}
+      {onePass && state === "done" && (
+        <p data-testid="listening-spent" className="mt-2 text-xs text-almi-text-muted">
+          This recording has been played. Like the real test, it is heard once — you can
+          still answer the questions below.
+        </p>
+      )}
+
       {state === "error" && (
         <p className="mt-2 text-xs font-medium text-almi-coral-deep">
           {message ?? "Audio could not be played. Press Retry."}
@@ -366,10 +440,12 @@ function ListeningComposer({
   attemptId,
   prompt,
   payload,
+  onePass,
 }: {
   attemptId: string;
   prompt: string;
   payload: unknown;
+  onePass: boolean;
 }) {
   const { submit, submitting, error } = useSubmit(attemptId);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -379,7 +455,7 @@ function ListeningComposer({
   return (
     <div className="space-y-5">
       <p className="text-sm text-almi-text">{prompt}</p>
-      <ListeningAudio attemptId={attemptId} />
+      <ListeningAudio attemptId={attemptId} onePass={onePass} />
       <div data-testid="listening-questions" className="space-y-3">
         {questions.map((q) => (
           <QuestionField
@@ -1025,6 +1101,7 @@ export function OetComposer({
   prompt,
   payload,
   allowSkipPreparation,
+  listeningOnePass,
   deadlineAt,
 }: {
   attemptId: string;
@@ -1038,6 +1115,12 @@ export function OetComposer({
    *  preparation phase is mandatory. Callers must not compute this themselves —
    *  pass speakingPrepPolicy(session).allowSkip from src/lib/oet/prep-policy.ts. */
   allowSkipPreparation?: boolean;
+  /** Listening only. OPTIONAL AND SAFE-BY-DEFAULT: omitted or undefined means the
+   *  recording plays ONCE — no seek, no pause, no download — because a mock that
+   *  quietly allows a rewind looks exactly like a working screen (GAP-047).
+   *  Callers must not compute this themselves — pass
+   *  listeningAudioPolicy(session).onePass from src/lib/oet/audio-policy.ts. */
+  listeningOnePass?: boolean;
 }) {
   if (taskType === "WRITING_LETTER") {
     return <WritingComposer attemptId={attemptId} prompt={prompt} payload={payload} />;
@@ -1053,7 +1136,15 @@ export function OetComposer({
     );
   }
   if (taskType.startsWith("LISTENING")) {
-    return <ListeningComposer attemptId={attemptId} prompt={prompt} payload={payload} />;
+    return (
+      <ListeningComposer
+        attemptId={attemptId}
+        prompt={prompt}
+        payload={payload}
+        // Omitted means one pass: see the prop's own note, and audio-policy.ts.
+        onePass={listeningOnePass ?? true}
+      />
+    );
   }
   return (
     <ReadingComposer

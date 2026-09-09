@@ -9,6 +9,7 @@ import { continuePracticeChain } from "@/lib/oet/entry";
 import { chainView, libraryHrefFor } from "@/lib/oet/chain";
 import { OET_TASKS } from "@/lib/oet/registry";
 import { speakingPrepPolicy } from "@/lib/oet/prep-policy";
+import { listeningAudioPolicy } from "@/lib/oet/audio-policy";
 import { OetComposer } from "@/components/oet/composer-map";
 import { ExamChrome } from "@/components/oet/ExamChrome";
 import { ExamPageRail } from "@/components/oet/ExamPageRail";
@@ -234,6 +235,10 @@ export default async function SessionPage({
         // preparation; PRACTICE_SET = skippable with the explanation shown. An
         // unrecognised mode falls back to mandatory. See prep-policy.ts.
         allowSkipPreparation={speakingPrepPolicy(session).allowSkip}
+        // GAP-047. Derived from the same session row, by the same kind of
+        // function, for the same reason: a MOCK recording plays once, and a
+        // PRACTICE one may be replayed. Never decided here. See audio-policy.ts.
+        listeningOnePass={listeningAudioPolicy(session).onePass}
         // The server's clock, as an ISO string. The countdown renders from this
         // so a reload recomputes the time left instead of restarting it.
         deadlineAt={current.deadlineAt ? current.deadlineAt.toISOString() : null}
