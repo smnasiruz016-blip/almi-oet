@@ -18,6 +18,46 @@
  *   A4  the audio is long enough to be a consultation, not a click
  *   A5  the audio is not silence
  *   A6  no segment SPEAKS a speaker label
+ *   A7  the audio LASTS as long as the exam's own audio lasts (mean, and no wild item)
+ *
+ * ── 🔴 A7 · WHY A SEVENTH CHECK WAS ADDED ON 9 SEPTEMBER 2026 ──────────────
+ *
+ * NOTHING HERE MEASURED A DURATION AGAINST A TARGET. A4 asks only whether a file
+ * is longer than three seconds. So an item could be FORTY PER CENT too short and
+ * pass A1-A6 without a mark against it — which is exactly what happened: measured
+ * on 9 September, the renderer was speaking at 210.9 words per minute and every
+ * one of the 194 items came out far shorter than the exam's own audio, while
+ * every word law was met and every gate ran green for five weeks.
+ *
+ * The word laws were not the defect and did not change. The render speed did —
+ * see AUDIO_LENGTH_SCALE in src/lib/oet/audio.ts. This check is what stops the
+ * same thing being invisible next time: a band per part, in SECONDS.
+ *
+ * ── 🔴 WHY A7 HAS TWO LIMBS AND NOT ONE ────────────────────────────────────
+ *
+ * The obvious rule — every item inside its band — is WRONG, and it was written
+ * that way first. The bands come from ONE sample paper: two observations for
+ * Part A, six for Part B, two for Part C. Two observations cannot bind thirty-
+ * four items. Applied literally at the first render speed it flagged 115 of 194
+ * items, and those were not 115 defects; they were a spread being measured
+ * against a sample too small to describe it.
+ *
+ * So the gate asserts the two things the evidence actually supports:
+ *
+ *   (a) the MEAN duration per task type sits inside the band. The mean is the
+ *       claim a sample of two can carry, and it is the claim being made.
+ *   (b) no SINGLE item is outside the band edges by more than a quarter
+ *       (floor x0.75, ceiling x1.25). This catches the catastrophic case — an
+ *       eight-second Part C — without pretending two observations define the
+ *       legitimate spread of thirty-four.
+ *
+ * A gate that goes in red is a gate somebody switches off. Both limbs were
+ * driven red on purpose before either was trusted — see the PR.
+ *
+ * ⚠️ THE BANDS ARE DURATIONS AND NOTHING ELSE. They were measured from a real
+ * sample paper's audio by timing it; no wording, phrasing, question, script or
+ * transcript of it was read, stored, quoted or reproduced anywhere in this repo,
+ * and none is needed for this check to work. A count is not content.
  *
  * ── A6 · WHY A SIXTH CHECK WAS ADDED ON 3 SEPTEMBER 2026 ────────────────────
  *
@@ -70,6 +110,23 @@ const EXPECT_KBPS = 48;
 const EXPECT_MODE = "mono";
 const MIN_BYTES = 2048;
 const MIN_SECONDS = 3.0; // no real consultation is under three seconds
+
+/** A7 · how long each part's audio must last, in SECONDS. Hand-typed here like
+ *  every other expectation in this file, and deliberately not derived from the
+ *  word laws: words are what we author, seconds are what a candidate sits
+ *  through, and the whole point of this check is that the second one was never
+ *  measured. Range per part, low and high inclusive. */
+const DURATION_BAND: Record<string, [number, number]> = {
+  LISTENING_PART_A: [213, 270],
+  LISTENING_PART_B: [51, 76],
+  LISTENING_PART_C: [273, 308],
+};
+
+/** Limb (b)'s tolerance: how far one item may fall outside the band edges before
+ *  it is a defect rather than a spread. A quarter, because the bands rest on two
+ *  to six observations and a tighter rule would be measuring our variance
+ *  against their sample size. */
+const OUTLIER_TOLERANCE = 0.25;
 const MAX_QUIET_SHARE = 0.5; // measured 0.0000 on every shipped file
 const MAX_JUNK_BYTES = 256; // measured 0 on every shipped file
 const QUIET_FRAME_ZERO_RATIO = 0.95;
@@ -194,6 +251,8 @@ if (listening.length === 0) {
 const claimed = new Set<string>();
 let totalSeconds = 0;
 let checked = 0;
+/** Every item's duration, by task type, for A7(a)'s mean. */
+const seenSeconds = new Map<string, number[]>();
 
 for (const it of listening) {
   const label = `[${it.taskType}] ${it.title}`;
@@ -253,11 +312,53 @@ for (const it of listening) {
   if (p.seconds < MIN_SECONDS) {
     fail("A4", `${label} → ${key}.mp3 is only ${p.seconds}s of audio (floor ${MIN_SECONDS}s) — truncated`);
   }
+  // ── A7(b) · no single item wildly outside its band ───────────────────────
+  const band = DURATION_BAND[it.taskType];
+  if (!band) {
+    fail("A7", `${label} — no duration band for ${it.taskType}; a part with no band is a part nobody is measuring`);
+  } else {
+    seenSeconds.set(it.taskType, [...(seenSeconds.get(it.taskType) ?? []), p.seconds]);
+    const floor = band[0] * (1 - OUTLIER_TOLERANCE);
+    const ceiling = band[1] * (1 + OUTLIER_TOLERANCE);
+    if (p.seconds < floor || p.seconds > ceiling) {
+      fail(
+        "A7",
+        `${label} → ${key}.mp3 lasts ${p.seconds.toFixed(1)}s, outside ${band[0]}-${band[1]}s by more ` +
+          `than a quarter (allowed ${floor.toFixed(1)}-${ceiling.toFixed(1)}s). Word count is not the ` +
+          "lever here — check AUDIO_LENGTH_SCALE and re-render (npm run audio:render).",
+      );
+    }
+  }
   if (p.quietShare > MAX_QUIET_SHARE) {
     fail(
       "A5",
       `${label} → ${key}.mp3 is ${(p.quietShare * 100).toFixed(1)}% SILENT frames (limit ` +
         `${(MAX_QUIET_SHARE * 100).toFixed(0)}%). It would play to completion and the learner would hear nothing.`,
+    );
+  }
+}
+
+// ── A7(a) · the MEAN of each part must sit inside the band ─────────────────
+// Population before the guard: a part with no items measured is a part this
+// check would pass over in silence.
+for (const taskType of Object.keys(DURATION_BAND)) {
+  const xs = seenSeconds.get(taskType) ?? [];
+  if (xs.length === 0) {
+    fail("A7", `${taskType} — no audio was measured, so its mean proves nothing`);
+    continue;
+  }
+  const [lo, hi] = DURATION_BAND[taskType];
+  const mean = xs.reduce((a, b) => a + b, 0) / xs.length;
+  const inside = mean >= lo && mean <= hi;
+  console.log(
+    `  A7  ${taskType.padEnd(17)} n=${String(xs.length).padStart(3)}  mean ${mean.toFixed(1)}s  ` +
+      `band ${lo}-${hi}s  ${inside ? "inside" : "OUTSIDE"}`,
+  );
+  if (!inside) {
+    fail(
+      "A7",
+      `${taskType} — mean audio is ${mean.toFixed(1)}s across ${xs.length} item(s); the band is ` +
+        `${lo}-${hi}s. This is a RENDER SPEED question, not a word count one.`,
     );
   }
 }
@@ -280,6 +381,7 @@ const GATES = [
   "A4 duration",
   "A5 not silent",
   "A6 no label spoken",
+  "A7 duration band",
 ];
 console.log(
   `[gate:audio] ${listening.length} Listening item(s); ${checked} file(s) opened and parsed; ` +

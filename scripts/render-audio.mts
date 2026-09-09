@@ -27,6 +27,7 @@ import {
   audioKey,
   planVoices,
   segmentsFor,
+  AUDIO_LENGTH_SCALE,
   type ListeningAudioPayload,
 } from "../src/lib/oet/audio";
 
@@ -171,7 +172,21 @@ function main() {
     console.log(`\npiper: ${voice} — ${segs.length} segment(s)`);
     const res = spawnSync(
       PIPER,
-      ["-m", model, "-i", inFile, "-d", outSub, "--output-dir-naming", "timestamp"],
+      [
+        "-m",
+        model,
+        "-i",
+        inFile,
+        "-d",
+        outSub,
+        "--output-dir-naming",
+        "timestamp",
+        // 🔴 THE SPEED, FROM THE SAME CONSTANT THE KEY HASHES. Passing a literal
+        // here would let the renderer speak at one speed while the key claimed
+        // another, and the cache would then be right about a file that is wrong.
+        "--length-scale",
+        String(AUDIO_LENGTH_SCALE),
+      ],
       { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 },
     );
     if (res.status !== 0) {

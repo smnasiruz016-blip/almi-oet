@@ -22,6 +22,38 @@ export const PIPER_MALE = "en_GB-northern_english_male-medium";
 export const AUDIO_SAMPLE_RATE = 22050;
 export const AUDIO_BITRATE_KBPS = 48;
 
+/**
+ * 🔴 HOW FAST THE VOICE SPEAKS — piper's --length-scale. IN THE KEY, AND THAT IS
+ * THE WHOLE POINT OF THIS CONSTANT EXISTING HERE.
+ *
+ * Measured 9 September 2026: at the renderer's default the 194 Listening items
+ * came out at 210.9 words per minute — Part A 203.0, Part B 217.0, Part C 212.8,
+ * total words over total seconds. That is not a speed anyone uses in a clinic or
+ * a lecture, and it made every item far shorter than the exam's own audio while
+ * every word law was met and every gate was green.
+ *
+ * The scripts were never the defect — the renderer was.
+ *
+ * ⚠️ AND THE NOMINAL FIGURE IS NOT THE STRETCH. Measured on 9 September at 1.30:
+ * piper delivers about 0.63 of the nominal factor on the phonemes, and the 350ms
+ * inter-turn gaps do not scale at all, so 1.30 lengthened the audio by ~1.18x, not
+ * 1.30x. Every part landed just under its target together. 1.50 was chosen on the
+ * criterion that survives a small sample: maximise the smallest clearance to a band
+ * edge. It puts the rate near 160 words per minute, where clinical dialogue and
+ * lecture delivery actually sit.
+ * It lands all three parts inside the durations measured from a real paper, without
+ * one word being rewritten.
+ *
+ * ⚠️ IT MUST STAY IN audioKey()'s MATERIAL. The comment above says a change to
+ * the encoder settings must re-render rather than serve stale audio — and until
+ * today this value was not among them. Change the speed with it left out and
+ * every key, and therefore every filename, is unchanged: the renderer finds its
+ * own cache, keeps the old fast audio for ever, and nothing errors, nothing goes
+ * red, nothing tells anybody. It is in the key now, and tests/audio-key.test.ts
+ * fails if it is taken out.
+ */
+export const AUDIO_LENGTH_SCALE = 1.5;
+
 // Voice names come from the seed data, which was authored against OpenAI's
 // catalogue. We only need the presented gender to choose between two Piper
 // voices; anything unrecognised falls to the male voice deterministically.
@@ -147,9 +179,14 @@ export function segmentsFor(payload: ListeningAudioPayload): { piperVoice: strin
 export function audioKey(payload: ListeningAudioPayload): string {
   const segments = segmentsFor(payload);
   const material = JSON.stringify({
-    v: 1,
+    // v2 · lengthScale joined the material on 9 September 2026. The bump is not
+    // decoration: it makes the change to the material's SHAPE explicit, and it
+    // would still move every key even if a future value of lengthScale happened
+    // to serialise the same as the old absence of it.
+    v: 2,
     rate: AUDIO_SAMPLE_RATE,
     kbps: AUDIO_BITRATE_KBPS,
+    lengthScale: AUDIO_LENGTH_SCALE,
     segments: segments.map((s) => [s.piperVoice, s.text]),
   });
   return createHash("sha256").update(material, "utf8").digest("hex").slice(0, 16);
