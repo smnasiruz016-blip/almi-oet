@@ -155,7 +155,11 @@ export function ExamChrome({
           </div>
         </div>
 
-        <div className="flex flex-1 gap-4 pt-4">
+        {/* 🔴 COLUMN AT 430px, ROW FROM sm UP. The rail used to be a left column
+            at every width and simply `hidden` below sm — so on a phone there was
+            no position strip at all. Stacking puts it above the item instead of
+            squeezing it beside one. */}
+        <div className="flex flex-1 flex-col gap-4 pt-4 sm:flex-row">
           {rail}
           {/* Only this scrolls. */}
           <div className="min-w-0 flex-1">{children}</div>

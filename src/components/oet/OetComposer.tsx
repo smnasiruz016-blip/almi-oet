@@ -331,8 +331,14 @@ function ListeningAudio({ attemptId, onePass }: { attemptId: string; onePass: bo
         <span aria-hidden className="text-xl">🎧</span>
         <div className="flex-1">
           <p className="text-sm font-semibold text-almi-ink">Audio</p>
-          <p className="text-xs text-almi-text-muted">
-            Plays once, like the real test. Read the questions first.
+          {/* 🔴 THE SENTENCE MUST MATCH THE CONTROL UNDERNEATH IT. In practice the
+              seek bar works, so "Plays once, like the real test." was false there —
+              reported on #107 rather than rewritten, and ruled on 9 September: the
+              CONTROLS stay exactly as they are, the sentence changes. */}
+          <p data-testid="listening-audio-note" className="text-xs text-almi-text-muted">
+            {onePass
+              ? "Plays once, like the real test. Read the questions first."
+              : "Replay as often as you like. In the mock and the real test it plays once."}
           </p>
         </div>
         <button
