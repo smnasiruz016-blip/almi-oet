@@ -54,6 +54,13 @@
  * A gate that goes in red is a gate somebody switches off. Both limbs were
  * driven red on purpose before either was trusted — see the PR.
  *
+ * 🔴 AND THE SAME SMALL SAMPLE THAT SHAPED THE LIMBS RESHAPED THE BAND ITSELF ON
+ * 10 SEPTEMBER 2026. The band was the sample's min and max; it is now the
+ * sample's MEAN ±15%, because a min and a max taken from two observations
+ * tighten as the sample shrinks and had left limb (a) one tenth of a second from
+ * red on Part C. The reasoning, the numbers and what it cost are on
+ * DURATION_BAND below. Limb (b)'s rule did not change.
+ *
  * ⚠️ THE BANDS ARE DURATIONS AND NOTHING ELSE. They were measured from a real
  * sample paper's audio by timing it; no wording, phrasing, question, script or
  * transcript of it was read, stored, quoted or reproduced anywhere in this repo,
@@ -111,15 +118,60 @@ const EXPECT_MODE = "mono";
 const MIN_BYTES = 2048;
 const MIN_SECONDS = 3.0; // no real consultation is under three seconds
 
-/** A7 · how long each part's audio must last, in SECONDS. Hand-typed here like
- *  every other expectation in this file, and deliberately not derived from the
- *  word laws: words are what we author, seconds are what a candidate sits
- *  through, and the whole point of this check is that the second one was never
- *  measured. Range per part, low and high inclusive. */
+/**
+ * A7 · how long each part's audio must last, in SECONDS. Hand-typed here like
+ * every other expectation in this file, and deliberately not derived from the
+ * word laws: words are what we author, seconds are what a candidate sits
+ * through, and the whole point of this check is that the second one was never
+ * measured. Range per part, low and high inclusive.
+ *
+ * 🔴 THESE ARE THE SAMPLE'S MEAN ±15%. THEY WERE ITS MIN AND MAX UNTIL
+ * 10 SEPTEMBER 2026, AND THAT WAS A MISTAKE IN THE SPECIFICATION, NOT IN ANY
+ * ITEM.
+ *
+ * The whole band rests on ONE sitting of a real paper, and the observations
+ * behind each part are: Part A n=2, Part B n=6, Part C n=2.
+ *
+ * A min and a max drawn from TWO observations is not a range — it is two points
+ * with a line drawn between them, and it gets NARROWER the fewer times you look.
+ * Using it as a ceiling asserts something the sample cannot support: that no
+ * legitimate item lasts longer than the longer of the two we happened to time.
+ * The mean is the claim two observations CAN carry, and ±15% is a stated
+ * tolerance around it rather than an accident of which two were sampled.
+ *
+ * WHAT IT COST, MEASURED 10 SEPTEMBER 2026. Under the old min-max the Part C
+ * ceiling was 308s and our own mean was 307.9s. ONE TENTH OF A SECOND. Nothing
+ * was wrong with the audio; the next lawful Part C item added would have pushed
+ * the mean over and turned the gate red for a reason no author could act on. A
+ * gate that goes red for nothing is a gate somebody switches off, and it would
+ * have taken A7's real limbs down with it.
+ *
+ *   part    sample mean   band (mean ±15%)   our mean, 10 Sep   clearance
+ *   A       241s          205 - 277          240.0s  (n=34)     35.0s
+ *   B        63s           54 -  72           57.0s  (n=123)     3.0s
+ *   C       291s          247 - 335          307.9s  (n=37)     27.1s
+ *
+ * The worst clearance in the file goes from 0.1s to 3.0s, and it moves from Part
+ * C's ceiling to PART B'S FLOOR — our Part B audio runs about a tenth under the
+ * sample's mean, so that is the one to watch next. It is 3.0s of room, not 30;
+ * stated here so nobody reads this change as having made A7 comfortable.
+ *
+ * ⚠️ LIMB (b)'s EDGES MOVE WITH THESE NUMBERS. Its rule is untouched — still
+ * ±25% outside the band edges — but it multiplies these values, so changing them
+ * changes what it allows. Measured on all 194 files before this edit landed:
+ * Part A spans 195.4-272.4s (limb (b) allows 153.8-346.3), Part B 44.2-70.8s
+ * (allows 40.5-90.0), Part C 256.8-344.2s (allows 185.3-418.8). Every item is
+ * inside, with Part B's floor the tightest at 3.7s. Part B's allowed window
+ * narrowed on both sides in this edit; that was checked against every file, not
+ * assumed.
+ *
+ * ⚠️ Seconds and nothing else. The only thing taken from that paper is how long
+ * its audio ran — see the note above the limbs.
+ */
 const DURATION_BAND: Record<string, [number, number]> = {
-  LISTENING_PART_A: [213, 270],
-  LISTENING_PART_B: [51, 76],
-  LISTENING_PART_C: [273, 308],
+  LISTENING_PART_A: [205, 277],
+  LISTENING_PART_B: [54, 72],
+  LISTENING_PART_C: [247, 335],
 };
 
 /** Limb (b)'s tolerance: how far one item may fall outside the band edges before
