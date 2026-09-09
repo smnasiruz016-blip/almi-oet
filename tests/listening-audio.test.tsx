@@ -33,6 +33,7 @@ import { AppRouterContext } from "next/dist/shared/lib/app-router-context.shared
 import type { OetTaskType } from "@prisma/client";
 import { serveAudio } from "@/lib/oet/serve-audio";
 import { OetComposer } from "@/components/oet/OetComposer";
+import { listeningAudioPolicy } from "@/lib/oet/audio-policy";
 
 // ── 1. serveAudio ───────────────────────────────────────────────────────────
 const TOTAL = 1000;
@@ -229,5 +230,238 @@ describe("the Listening player", () => {
       await Promise.resolve();
     });
     expect(container.textContent).toContain("7-day free trial");
+  });
+});
+
+// ── 3. GAP-047 · the mock enforces the promise it prints ────────────────────
+/**
+ * 🔴 THE SCREEN USED TO CONTRADICT ITSELF, AND THE OWNER FOUND IT WITH HIS EYES.
+ *
+ * "Plays once, like the real test." sat directly above a full native <audio
+ * controls>: pause, a SEEK BAR, and Chrome's ⋮ menu with Download. In a MOCK a
+ * candidate could scrub back and re-hear any part as often as they liked. OET
+ * Listening is one-pass and that constraint IS the skill, so the score of anyone
+ * who rewound meant nothing and they had no way to know.
+ *
+ * ⚠️ A TEST THAT ONLY CHECKS THE MOCK PLAYER RENDERS PROVES NOTHING. What is
+ * asserted here is BEHAVIOUR, in both directions: a seek in MOCK does not move
+ * playback, and the identical seek in PRACTICE does. If the guard were removed,
+ * the first assertion fails; if the guard leaked into practice, the second does.
+ *
+ * The seek is driven the way a keyboard or a media key drives it — the clock is
+ * written and `seeking` is dispatched — rather than by clicking a control, because
+ * hiding a control is exactly the fix that would NOT have worked.
+ */
+
+/** Give the element a REAL settable clock. jsdom has no media pipeline, and the
+ *  helper above pins currentTime to a fixed value, which cannot observe a handler
+ *  writing to it — which is the entire property under test here. */
+function installClock(el: HTMLAudioElement, start = 0) {
+  let t = start;
+  let ended = false;
+  Object.defineProperty(el, "currentTime", {
+    configurable: true,
+    get: () => t,
+    set: (v: number) => {
+      t = v;
+    },
+  });
+  Object.defineProperty(el, "ended", {
+    configurable: true,
+    get: () => ended,
+    set: (v: boolean) => {
+      ended = v;
+    },
+  });
+  return {
+    set: (v: number) => {
+      t = v;
+    },
+    get: () => t,
+    finish: () => {
+      ended = true;
+    },
+  };
+}
+
+const fire = (el: HTMLElement, name: string) =>
+  act(() => {
+    el.dispatchEvent(new Event(name, { bubbles: true }));
+  });
+
+function mountListening(onePass: boolean | undefined) {
+  mount(
+    <OetComposer
+      attemptId="a1"
+      taskType={"LISTENING_PART_A" as OetTaskType}
+      prompt="Listen."
+      payload={{ gaps: [{ id: "g1", label: "Gap 1" }] }}
+      listeningOnePass={onePass}
+    />,
+  );
+}
+
+/** Play, run the clock to 30s, then try to rewind to 5s the way a keyboard would. */
+function playThenSeekBackTo(seconds: number) {
+  act(() => btn().click());
+  const el = media();
+  const clock = installClock(el);
+  fire(el, "playing");
+  clock.set(30);
+  fire(el, "timeupdate");
+  clock.set(seconds);
+  fire(el, "seeking");
+  return clock;
+}
+
+describe("GAP-047 — one pass in a mock, full controls in practice", () => {
+  it("🔴 MOCK: a seek back does NOT move playback", () => {
+    mountListening(true);
+    const clock = playThenSeekBackTo(5);
+    // the clock was put back to the furthest point actually reached
+    expect(clock.get()).toBe(30);
+  });
+
+  it("PRACTICE: the identical seek DOES move playback", () => {
+    mountListening(false);
+    const clock = playThenSeekBackTo(5);
+    expect(clock.get()).toBe(5);
+  });
+
+  it("🔴 MOCK: a seek FORWARD is refused too — the clock cannot be skipped ahead", () => {
+    mountListening(true);
+    act(() => btn().click());
+    const el = media();
+    const clock = installClock(el);
+    fire(el, "playing");
+    clock.set(10);
+    fire(el, "timeupdate");
+    clock.set(90);
+    fire(el, "seeking");
+    expect(clock.get()).toBe(10);
+  });
+
+  it("MOCK: ordinary playback jitter is not fought", () => {
+    // a seek guard that snapped on every tick would stutter the audio it protects
+    mountListening(true);
+    act(() => btn().click());
+    const el = media();
+    const clock = installClock(el);
+    fire(el, "playing");
+    clock.set(12);
+    fire(el, "timeupdate");
+    clock.set(12.2);
+    fire(el, "seeking");
+    expect(clock.get()).toBe(12.2);
+  });
+
+  it("🔴 MOCK: a pause that is not the end resumes; the end is left alone", () => {
+    mountListening(true);
+    act(() => btn().click());
+    const el = media();
+    const clock = installClock(el);
+    const play = vi.spyOn(el, "play");
+    fire(el, "playing");
+    clock.set(8);
+    fire(el, "timeupdate");
+    play.mockClear();
+    fire(el, "pause");
+    expect(play).toHaveBeenCalledTimes(1);
+    // the pause the browser fires as part of ending must NOT be resumed
+    play.mockClear();
+    clock.finish();
+    fire(el, "pause");
+    expect(play).not.toHaveBeenCalled();
+  });
+
+  it("PRACTICE: a pause is left alone", () => {
+    mountListening(false);
+    act(() => btn().click());
+    const el = media();
+    installClock(el);
+    const play = vi.spyOn(el, "play");
+    fire(el, "playing");
+    play.mockClear();
+    fire(el, "pause");
+    expect(play).not.toHaveBeenCalled();
+  });
+
+  it("🔴 MOCK: no native controls, and no download or playback-rate menu", () => {
+    mountListening(true);
+    act(() => btn().click());
+    emit("playing");
+    const el = media();
+    expect(el.hasAttribute("controls")).toBe(false);
+    expect(el.getAttribute("controlsList")).toContain("nodownload");
+    expect(el.getAttribute("controlsList")).toContain("noplaybackrate");
+  });
+
+  it("PRACTICE is VISIBLY UNCHANGED — the full control strip is still there", () => {
+    mountListening(false);
+    act(() => btn().click());
+    emit("playing");
+    const el = media();
+    expect(el.hasAttribute("controls")).toBe(true);
+    expect(el.className).toContain("w-full");
+    expect(el.className).not.toContain("hidden");
+    // and nothing is taken away from it
+    expect(el.hasAttribute("controlsList")).toBe(false);
+  });
+
+  it("MOCK: the learner can still SEE the state, including that it is spent", () => {
+    mountListening(true);
+    expect(btn().textContent).toContain("Play audio");
+    act(() => btn().click());
+    emit("playing");
+    expect(btn().textContent).toContain("Playing");
+    emit("timeupdate", 4);
+    emit("ended");
+    expect(btn().textContent).toContain("Played");
+    // a disabled button with no explanation is GAP-042 again
+    expect(container.querySelector('[data-testid="listening-spent"]')).not.toBeNull();
+    expect(container.textContent).toContain("has been played");
+  });
+
+  it("PRACTICE does not tell the learner the recording is spent, because it is not", () => {
+    mountListening(false);
+    act(() => btn().click());
+    emit("playing");
+    emit("timeupdate", 4);
+    emit("ended");
+    expect(container.querySelector('[data-testid="listening-spent"]')).toBeNull();
+  });
+
+  it("an OMITTED prop is the strict one — a caller who forgets cannot leak a rewind", () => {
+    mountListening(undefined);
+    act(() => btn().click());
+    emit("playing");
+    expect(media().hasAttribute("controls")).toBe(false);
+    expect(media().getAttribute("data-one-pass")).toBe("true");
+  });
+});
+
+// ── 4. the policy that decides it ───────────────────────────────────────────
+describe("listeningAudioPolicy", () => {
+  it("discriminates the two modes, and that is the whole ruling", () => {
+    expect(listeningAudioPolicy({ mode: "MOCK" }).onePass).toBe(true);
+    expect(listeningAudioPolicy({ mode: "PRACTICE_SET" }).onePass).toBe(false);
+  });
+
+  it("🔴 defaults to ONE PASS for anything it cannot identify as practice", () => {
+    // too strict = a learner who says so. too lenient = a mock score that is
+    // quietly meaningless. Only the first is recoverable.
+    for (const mode of [null, undefined, "", "MOCK_2", 7, {}]) {
+      expect(listeningAudioPolicy({ mode }).onePass, JSON.stringify(mode)).toBe(true);
+    }
+  });
+
+  it("an ABSENT session is a standalone practice item", () => {
+    expect(listeningAudioPolicy(null).onePass).toBe(false);
+    expect(listeningAudioPolicy(undefined).onePass).toBe(false);
+  });
+
+  it("says why, in words, so a decision can be read back", () => {
+    expect(listeningAudioPolicy({ mode: "MOCK" }).reason).toContain("MOCK");
+    expect(listeningAudioPolicy({ mode: "PRACTICE_SET" }).reason).toContain("PRACTICE_SET");
   });
 });
