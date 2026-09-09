@@ -21,6 +21,7 @@
 
 import { z } from "zod";
 import { words } from "@/lib/oet/words";
+import { TRAIT_LEVELS, TRAIT_LEVEL_VALUE } from "@/lib/oet/trait-levels";
 import { getAnthropicClient, recordCost } from "@/lib/ai/anthropic-client";
 import { MODELS } from "@/lib/ai/models";
 import { professionGrading, professionHeading } from "@/lib/oet/profession-grading";
@@ -39,7 +40,7 @@ export type SpeakingRoleplayPayload = z.infer<typeof speakingRoleplayPayloadSche
 export const speakingRoleplayResponseSchema = z.object({ transcript: z.string() });
 export type SpeakingRoleplayResponse = z.infer<typeof speakingRoleplayResponseSchema>;
 
-const TRAIT = z.enum(["strong", "adequate", "limited"]);
+const TRAIT = z.enum(TRAIT_LEVELS);
 
 export const speakingFeedbackSchema = z.object({
   // Linguistic band
@@ -68,11 +69,9 @@ export type AiScore = {
 };
 
 const POINTS_MAX = 27; // 9 criteria × 3 trait levels
-const LEVEL_VALUE: Record<z.infer<typeof TRAIT>, number> = {
-  strong: 1.0,
-  adequate: 0.6,
-  limited: 0.3,
-};
+// The level values are shared with Writing — see src/lib/oet/trait-levels.ts
+// for why they are not defined here any more.
+const LEVEL_VALUE = TRAIT_LEVEL_VALUE;
 
 const SYSTEM = `You are an honest speaking assessor for AlmiOET, an Occupational English Test (OET) practice tool for healthcare professionals.
 
@@ -84,10 +83,22 @@ You rate a TRANSCRIPT of a candidate's OET Speaking role-play (the candidate pla
 - Banned words: "weak", "poor", "wrong", "failed". Prefer "improvement opportunity".
 - Use the role-play card AND the patient's concern to judge the CLINICAL COMMUNICATION band: did the candidate draw out and address the patient's actual concern, build rapport, structure the consultation, gather and give information well? This patient-centred skill is central to OET speaking.
 - Judge only what the candidate said; the transcript may be imperfect, so do not penalise obvious transcription noise.
+- THE CARD'S CORE TASK IS THE MEASURE. Missing what the card actually asked for counts against relationshipBuilding and understandingPatientPerspective — not only against informationGiving. Fluent, courteous English that never does the card's job has not met the clinical communication criteria.
 
 Two bands, nine criteria (each "strong" | "adequate" | "limited"):
 Linguistic: intelligibility, fluency, appropriatenessOfLanguage, resourcesOfGrammarAndExpression.
 Clinical communication: relationshipBuilding, understandingPatientPerspective, providingStructure, informationGathering, informationGiving.
+
+The linguistic four are about the English only. Clear, fluent, well-chosen language earns "strong" there and settles nothing about the five below.
+
+What the clinical communication criteria actually ask:
+- relationshipBuilding: did the candidate make it possible for this patient to say the difficult thing?
+    If the card's job is to let the patient voice a worry they are embarrassed or frightened to raise, and the candidate never opens that door — never invites the worry, never normalises it, never offers a way to stop or pause what is happening — relationshipBuilding is not "strong", however warm and polite the words are. Reassurance offered before the patient has been allowed to say what frightens them is not rapport.
+- understandingPatientPerspective: did the candidate reach the patient's ACTUAL concern, in the patient's own terms, and answer THAT?
+    If the concern named in the task never surfaces, or the candidate answers a nearby easier question instead, this is "limited". Naming the topic without addressing what the patient fears about it is "adequate" at best.
+- providingStructure: does the consultation have a shape the patient can follow — what will happen, in what order, and what happens next?
+- informationGathering: did the candidate ask, and then listen — open questions before closed ones, checking rather than assuming?
+- informationGiving: was the information accurate, in lay terms, checked for understanding, and did it include what this patient must be able to act on?
 
 Return ONLY a JSON object, no prose around it, with exactly these keys:
 {

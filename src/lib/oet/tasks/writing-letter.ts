@@ -17,6 +17,7 @@
 
 import { z } from "zod";
 import { words } from "@/lib/oet/words";
+import { TRAIT_LEVELS, TRAIT_LEVEL_VALUE } from "@/lib/oet/trait-levels";
 import { getAnthropicClient, recordCost } from "@/lib/ai/anthropic-client";
 import { MODELS } from "@/lib/ai/models";
 import { professionGrading, professionHeading } from "@/lib/oet/profession-grading";
@@ -34,7 +35,7 @@ export type WritingLetterPayload = z.infer<typeof writingLetterPayloadSchema>;
 export const writingLetterResponseSchema = z.object({ text: z.string() });
 export type WritingLetterResponse = z.infer<typeof writingLetterResponseSchema>;
 
-const TRAIT = z.enum(["strong", "adequate", "limited"]);
+const TRAIT = z.enum(TRAIT_LEVELS);
 
 // The six official OET writing assessment criteria.
 export const writingFeedbackSchema = z.object({
@@ -59,11 +60,9 @@ export type AiScore = {
 };
 
 const POINTS_MAX = 18; // 6 criteria × 3 trait levels
-const LEVEL_VALUE: Record<z.infer<typeof TRAIT>, number> = {
-  strong: 1.0,
-  adequate: 0.6,
-  limited: 0.3,
-};
+// The level values are shared with Speaking — see src/lib/oet/trait-levels.ts
+// for why they are not defined here any more.
+const LEVEL_VALUE = TRAIT_LEVEL_VALUE;
 
 const LETTER_TYPE_HINT: Record<WritingLetterPayload["letterType"], string> = {
   referral: "a referral letter (asking another professional to take on or assess the patient)",
@@ -81,14 +80,22 @@ You rate a candidate's OET Writing task: a profession-specific clinical letter w
 - Banned words: "weak", "poor", "wrong", "failed". Prefer "improvement opportunity".
 - Judge CLINICAL RELEVANCE using the case notes: did the candidate select the information the reader needs, leave out irrelevant detail, and match the correct letter genre and the recipient's needs? This — not just language — is central to OET writing.
 - Judge only the letter the candidate wrote; do not invent clinical facts beyond the case notes.
+- SAFETY IS PURPOSE, NOT ONLY CONTENT. When the case notes carry information the reader needs in order to stay safe, a letter that leaves it out has not done the job it exists to do. Record that against "purpose" as well as "content". Do not file it under "content" alone and leave "purpose" strong.
 
 The six criteria:
-- purpose: is the purpose of the letter clear immediately to the reader?
+- purpose: is the purpose of the letter clear immediately to the reader — and does the letter actually DO the job the task set?
+    Ask: could this reader act correctly on this letter without having to ask a further question? If not, purpose is not "strong".
+    A letter whose task is to keep someone safe at home has not achieved its purpose if it omits the safety information the case notes carry — how to use equipment safely, what must be avoided, which warning signs need contact the same day. That is a failure of PURPOSE. A reader would put the letter down without the one thing it existed to tell them.
+    Where the case notes explicitly require something to be conveyed — red-flag symptoms, what warrants same-day contact, what to stop, continue or finish — saying it vaguely is not saying it. "Call if you are worried", "watch out for any changes", "follow the advice you were given" name nothing the reader can act on. Vagueness of that kind counts against purpose AND concisenessAndClarity, not against content alone.
+    "strong" means: the reader knows who this is about, what has happened, what they must now do, and what would make them act urgently.
 - content: is the relevant clinical information selected and accurate, with irrelevant detail left out?
+    Selection is judged in BOTH directions: including what the reader does not need, and omitting what they do. An omission that is also safety-critical is recorded here AND under purpose — one fault, two criteria, because it damages both.
 - concisenessAndClarity: is it appropriately concise and clear, without unnecessary content?
+    Clarity is measured by what the reader can act on, not by sentence length. A short, smooth sentence that leaves the required instruction unspecific is a clarity fault, not a virtue.
 - genreAndStyle: correct letter genre, register and tone for this recipient?
 - organisationAndLayout: logical paragraphing, salutation and sign-off?
 - language: grammar, vocabulary, spelling, punctuation.
+    This criterion is about the English only. Fluent, accurate, well-formed prose earns "strong" here and settles nothing about the five criteria above.
 
 Return ONLY a JSON object, no prose around it, with exactly these keys:
 {
