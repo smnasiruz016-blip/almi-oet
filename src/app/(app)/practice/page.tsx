@@ -19,6 +19,26 @@
 // from our own registry. This is a product we sell; a borrowed page would be a
 // copyright problem as well as a lazy one.
 
+// ── 🔴 AND IT READS ?mockempty=1, SINCE 9 SEPTEMBER 2026 (GAP-042) ─────────
+//
+// `beginMockSession()` redirects here with that flag when no complete form
+// exists. Until today `mockempty` appeared in exactly ONE place in the whole
+// source — the line in entry.ts that SETS it. Nothing read it. A learner
+// pressed Start full mock, landed back on this page, and saw nothing at all,
+// which is indistinguishable from a dead button.
+//
+// With GAP-041 fixed this should never fire again. That is precisely why it
+// must render something: the next time it fires, nobody will be watching for
+// it, and the learner will be alone with a button that does nothing.
+//
+// ⚠️ TWO THINGS THE COPY MUST KEEP, whatever the wording becomes:
+//   · it says the fault is OURS — not her account, not her payment. A paying
+//     nurse at eleven at night must not think she has lost what she paid for.
+//   · it does NOT send her to support, who cannot fix an empty form bank.
+// tests/e2e/mockempty.spec.ts asserts both, and asserts the notice is absent
+// without the parameter — this defect existed because nothing read it, so a
+// fix nothing tests is the same defect with better intentions.
+
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
@@ -38,8 +58,13 @@ async function chooseProfession(formData: FormData) {
   redirect(`/practice/${def.slug}`);
 }
 
-export default async function PracticePage() {
+export default async function PracticePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ mockempty?: string }>;
+}) {
   const user = await requireUser();
+  const { mockempty } = await searchParams;
   // Card-first: the hub itself is behind the subscription, because everything it
   // leads to is.
   if (!hasPaidAccess(user)) redirect("/pricing");
@@ -49,6 +74,23 @@ export default async function PracticePage() {
 
   return (
     <div className="space-y-8">
+      {mockempty && (
+        <section
+          data-testid="mockempty-notice"
+          className="rounded-2xl border border-almi-coral/40 bg-almi-coral/5 p-5"
+        >
+          <h2 className="text-lg font-semibold text-almi-ink">
+            A full mock isn&apos;t available right now
+          </h2>
+          <p className="mt-2 text-sm text-almi-text">
+            A full mock uses one complete test form from start to finish, and none is ready at
+            the moment. This is a problem on our side — not with your account or your payment.
+            Everything else still works, so you can practise any section on its own in the
+            meantime.
+          </p>
+        </section>
+      )}
+
       <header>
         <p className="text-xs font-bold uppercase tracking-wider text-almi-accent-deep">
           AlmiOET · Occupational English Test practice
