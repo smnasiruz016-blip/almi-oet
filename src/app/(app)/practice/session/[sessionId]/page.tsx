@@ -13,6 +13,7 @@ import { listeningAudioPolicy } from "@/lib/oet/audio-policy";
 import { OetComposer } from "@/components/oet/composer-map";
 import { ExamChrome } from "@/components/oet/ExamChrome";
 import { ExamPageRail } from "@/components/oet/ExamPageRail";
+import { examMap, planOf } from "@/lib/oet/exam-map";
 import { ExamNav } from "@/components/oet/ExamNav";
 import { isSealedSection, sealedSectionNotice } from "@/lib/oet/section-rules";
 import { OetResult } from "@/components/oet/OetResult";
@@ -130,6 +131,9 @@ export default async function SessionPage({
       ? `${session.targetCount} items in this mock`
       : `${session.targetCount} ${session.targetCount === 1 ? "item" : "items"} in this set`;
   const isLast = session.currentStep + 1 >= session.targetCount;
+  // null for a practice set: it is N items of one task type, so a four-section
+  // map would be an invention rather than a description.
+  const mockPlan = planOf(session);
 
   if (current.status === "SCORED") {
     async function advance() {
@@ -216,7 +220,14 @@ export default async function SessionPage({
         pageCount={session.targetCount}
         onFinishHref={libraryHref}
         rail={
-          <ExamPageRail pageNumber={session.currentStep + 1} pageCount={session.targetCount} />
+          <ExamPageRail
+            pageNumber={session.currentStep + 1}
+            pageCount={session.targetCount}
+            // GAP-048. From the session's OWN plan, never from the step index —
+            // planOf is the same function advanceSession walks. A PRACTICE_SET has
+            // no plan and gets undefined, which is the numbered rail as before.
+            groups={mockPlan ? examMap(mockPlan) : undefined}
+          />
         }
         nav={
           <ExamNav

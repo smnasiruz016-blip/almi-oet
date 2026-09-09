@@ -431,6 +431,22 @@ describe("GAP-047 — one pass in a mock, full controls in practice", () => {
     expect(container.querySelector('[data-testid="listening-spent"]')).toBeNull();
   });
 
+  it("🔴 the SENTENCE matches the control underneath it, in both modes", () => {
+    // ruled 9 September: the controls in practice stay exactly as they are, and
+    // the sentence changes, because "Plays once, like the real test." was false
+    // beside a working seek bar.
+    mountListening(true);
+    expect(container.querySelector('[data-testid="listening-audio-note"]')!.textContent).toContain(
+      "Plays once, like the real test.",
+    );
+    act(() => root.unmount());
+    root = createRoot(container);
+    mountListening(false);
+    const note = container.querySelector('[data-testid="listening-audio-note"]')!.textContent ?? "";
+    expect(note).toContain("Replay as often as you like");
+    expect(note).not.toContain("Plays once, like the real test.");
+  });
+
   it("an OMITTED prop is the strict one — a caller who forgets cannot leak a rewind", () => {
     mountListening(undefined);
     act(() => btn().click());

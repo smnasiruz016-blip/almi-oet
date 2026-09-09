@@ -9,6 +9,14 @@
  * The composer's own submit control is the only way forward, and this says so on
  * hover rather than pretending to be a second route.
  *
+ * 🔴 AND IT SAYS SO IN WORDS, SINCE 9 SEPTEMBER 2026 (GAP-048). The rule used to
+ * live in a `title` attribute — a hover tooltip. THERE IS NO HOVER ON A PHONE, so
+ * at 430px a candidate had no way at all to discover why the next step would not
+ * open; the button simply looked broken. The owner had to be told the rule out
+ * loud, and he built this. It is now visible text, in both modes, because a
+ * practice learner meets the same disabled button. The title stays as well: it
+ * costs nothing and helps a mouse user who hovers before reading.
+ *
  * Back is rendered disabled on the first item rather than hidden: a control that
  * appears and disappears is harder to find than one that greys out.
  *
@@ -32,7 +40,15 @@ export function ExamNav({
           {sealedNotice}
         </p>
       )}
-      <div data-testid="exam-nav" className="flex items-center justify-end gap-3">
+      <div data-testid="exam-nav" className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-end">
+        <p
+          data-testid="exam-advance-hint"
+          className="order-2 text-xs text-almi-text-muted sm:order-none sm:mr-auto"
+        >
+          Submit your answers to continue — <span className="font-semibold text-almi-ink">Next</span>{" "}
+          opens once this step has been marked.
+        </p>
+        <div className="order-1 flex items-center justify-end gap-3 sm:order-none">
       {backHref ? (
         <a
           data-testid="exam-back"
@@ -58,6 +74,7 @@ export function ExamNav({
       >
         Next &gt;
       </span>
+        </div>
       </div>
     </div>
   );

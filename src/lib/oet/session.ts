@@ -22,6 +22,7 @@ import { isPerProfession } from "@/lib/oet/types";
 import { poolWhere } from "@/lib/oet/pool";
 import { attemptDeadline } from "@/lib/oet/deadline";
 import { formCompleteness } from "@/lib/oet/form-completeness";
+import { planOf } from "@/lib/oet/exam-map";
 
 const DIFFICULTIES: OetDifficulty[] = ["FOUNDATION", "CORE", "STRETCH"];
 /** Items served in one PRACTICE_SET run of an auto-marked task type.
@@ -313,7 +314,11 @@ export async function advanceSession(sessionId: string, userId: string): Promise
   // and a second copy is a second thing that can disagree.
   let form: string | null = null;
   if (session.mode === "MOCK") {
-    const plan = (session.plan as OetTaskType[] | null) ?? MOCK_PLAN;
+    // planOf, not a second `?? MOCK_PLAN` here: the rail draws the map from the
+    // same function, and two copies of "what plan is this session on" is two
+    // answers to one question — a rail could then show a section the engine was
+    // not walking. Same expression, one definition. See exam-map.ts.
+    const plan = planOf(session) ?? MOCK_PLAN;
     nextTask = plan[nextStep];
     nextDifficulty = "CORE";
     const first = session.attempts.find((a) => a.sessionStep === 0);
