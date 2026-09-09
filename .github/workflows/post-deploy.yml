@@ -19,6 +19,13 @@
 # folder shipped in the deployment against what that deployment's own database
 # says it has applied.
 #
+# 🔴 AND SINCE 8 SEPTEMBER 2026 IT ASKS A SECOND QUESTION AT THE SAME DOOR:
+# can a full mock start? GAP-041 was the same story with a different column —
+# three retire lists deactivated all 27 form-tagged Reading items, no form was
+# complete any more, the Start button led to a flag nothing reads, and it stood
+# for five days with gate:all green, because the gates read files and the state
+# lived in the database.
+#
 # NO SECRETS. The endpoint is public and returns counts only.
 name: post-deploy
 
@@ -46,3 +53,10 @@ jobs:
       # a way for it to fail for a reason that is not the one it watches for.
       - name: check production migrations
         run: npx --yes tsx@4 scripts/check-prod-migrations.mts
+      # A STEP, not a second job: the `if` guard above is subtle enough that a
+      # copy of it would be a thing to keep in step. `!cancelled()` so a pending
+      # migration does not HIDE a mock that cannot start — the two failures are
+      # independent and either one is the product being down.
+      - name: check production mock is startable
+        if: ${{ !cancelled() }}
+        run: npx --yes tsx@4 scripts/check-prod-mock.mts
