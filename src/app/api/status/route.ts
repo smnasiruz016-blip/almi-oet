@@ -30,6 +30,23 @@
 // the status is 503 while any migration in the repo is missing from the database
 // it is actually talking to.
 //
+// ── 🔴 AND IT REPORTS WHETHER A FULL MOCK CAN START, SINCE 8 SEPTEMBER 2026 ─
+//
+// GAP-041, and it is the same door with a second question. On 3 September three
+// retire lists deactivated all 27 form-tagged Reading items; from that write on,
+// chooseCompleteForm() found no complete form, startSession returned null, and
+// the Start button redirected to /practice?mockempty=1 — a flag nothing reads.
+// No gate could see it: every gate reads scripts/seed/gen, where the items were
+// present and correct all along. The state lived in the `active` column.
+//
+// ⚠️ THE COUNTS ARE NOT COMPUTED HERE. They come from formCompleteness(), the
+// same function chooseCompleteForm() calls. A route that counted rows its own
+// way could answer startable:true while the engine returned null, which is this
+// defect again with better manners — see that file's header.
+//
+// Counts only, like everything else here: how many forms are declared, how many
+// are complete, and whether a mock would start. No item names, no payloads.
+//
 // The migration folder is read at request time, which is why next.config.ts
 // traces `./prisma/migrations/**` into this route. A list embedded at build time
 // would be a second copy that could go stale against the folder.
@@ -38,6 +55,7 @@ import { readdirSync } from "node:fs";
 import { join } from "node:path";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { formCompleteness } from "@/lib/oet/form-completeness";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -65,7 +83,7 @@ async function migrationsApplied(): Promise<string[]> {
 
 export async function GET(): Promise<NextResponse> {
   try {
-    const [bySubTest, total, approvedReviews, applied] = await Promise.all([
+    const [bySubTest, total, approvedReviews, applied, forms] = await Promise.all([
       prisma.oetItem.groupBy({
         by: ["subTest"],
         where: { active: true },
@@ -74,6 +92,7 @@ export async function GET(): Promise<NextResponse> {
       prisma.oetItem.count({ where: { active: true } }),
       prisma.review.count({ where: { approved: true } }),
       migrationsApplied(),
+      formCompleteness(),
     ]);
     const items: Record<string, number> = {};
     for (const r of bySubTest) items[r.subTest] = r._count;
@@ -92,6 +111,15 @@ export async function GET(): Promise<NextResponse> {
         itemsActive: total,
         items,
         approvedReviews,
+        // Counts only. `startable` is not an opinion about what the engine would
+        // do — it is the same list chooseCompleteForm() picks from, being empty
+        // or not. scripts/check-prod-mock.mts fails on false, and on any gap
+        // between these two numbers.
+        mock: {
+          formsDeclared: forms.declared.length,
+          formsComplete: forms.complete.length,
+          startable: forms.startable,
+        },
         migrations: {
           inRepo: inRepo.length,
           applied: applied.length,

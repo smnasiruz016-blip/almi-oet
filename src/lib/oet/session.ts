@@ -21,6 +21,7 @@ import { fractionToEstimate, type GradeEstimate } from "@/lib/oet/scale";
 import { isPerProfession } from "@/lib/oet/types";
 import { poolWhere } from "@/lib/oet/pool";
 import { attemptDeadline } from "@/lib/oet/deadline";
+import { formCompleteness } from "@/lib/oet/form-completeness";
 
 const DIFFICULTIES: OetDifficulty[] = ["FOUNDATION", "CORE", "STRETCH"];
 /** Items served in one PRACTICE_SET run of an auto-marked task type.
@@ -61,36 +62,18 @@ function adaptDifficulty(current: OetDifficulty, fraction: number): OetDifficult
 // practice, and retiring them would drop parts below the served floor.
 const formOf = (item: { form: string | null }): string | null => item.form;
 
-/** The objective items one full mock consumes, per task type. */
-function mockObjectiveNeeds(): Map<OetTaskType, number> {
-  const need = new Map<OetTaskType, number>();
-  for (const t of MOCK_PLAN) {
-    if (isPerProfession(OET_TASKS[t].subTest)) continue;
-    need.set(t, (need.get(t) ?? 0) + 1);
-  }
-  return need;
-}
-
 /** Pick a form that can satisfy the WHOLE objective plan. A form missing even one
  *  Part B item cannot carry a coherent mock, and half a form is worse than none —
- *  it would silently fall back to the mixed bank this exists to prevent. */
+ *  it would silently fall back to the mixed bank this exists to prevent.
+ *
+ *  🔴 THE ARITHMETIC IS NOT HERE ANY MORE. It moved to form-completeness.ts on
+ *  8 September 2026, because /api/status has to answer the same question and a
+ *  second copy of the rule could report a startable product while this function
+ *  returned null — the failure the probe exists to catch, wearing a new coat.
+ *  What is left here is the only part that is this engine’s business: the
+ *  CHOICE among the forms that qualify. */
 async function chooseCompleteForm(): Promise<string | null> {
-  const need = mockObjectiveNeeds();
-  const rows = await prisma.oetItem.findMany({
-    where: { active: true, profession: null, taskType: { in: [...need.keys()] } },
-    select: { form: true, taskType: true },
-  });
-  const counts = new Map<string, Map<OetTaskType, number>>();
-  for (const r of rows) {
-    const f = formOf(r);
-    if (!f) continue;
-    const m = counts.get(f) ?? new Map<OetTaskType, number>();
-    m.set(r.taskType, (m.get(r.taskType) ?? 0) + 1);
-    counts.set(f, m);
-  }
-  const complete = [...counts.entries()]
-    .filter(([, m]) => [...need.entries()].every(([t, n]) => (m.get(t) ?? 0) >= n))
-    .map(([f]) => f);
+  const { complete } = await formCompleteness();
   if (complete.length === 0) return null;
   return complete[Math.floor(Math.random() * complete.length)];
 }
