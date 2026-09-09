@@ -94,9 +94,11 @@ beforeEach(() => {
 });
 afterEach(() => vi.clearAllMocks());
 
-/** Render the async server component and return its HTML. */
-async function renderPractice(): Promise<string> {
-  return renderToStaticMarkup(await PracticePage());
+/** Render the async server component and return its HTML. The page reads
+ *  searchParams, so the caller says what the URL carried — passing nothing is
+ *  a plain visit to /practice. */
+async function renderPractice(searchParams: { mockempty?: string } = {}): Promise<string> {
+  return renderToStaticMarkup(await PracticePage({ searchParams: Promise.resolve(searchParams) }));
 }
 
 /** Every profession the rendered grid actually offers, read out of the markup. */
@@ -183,5 +185,47 @@ describe("a tile sets targetProfession", () => {
     expect(parseProfession("nursing")).toBeNull(); // the slug, not the enum member
     expect(parseProfession("ASTRONAUT")).toBeNull();
     expect(parseProfession(undefined)).toBeNull();
+  });
+});
+
+/**
+ * 🔴 GAP-042 — ?mockempty=1 MUST RENDER SOMETHING.
+ *
+ * beginMockSession() redirects here with that flag when no complete form exists,
+ * and until 9 September 2026 `mockempty` appeared in exactly ONE place in the
+ * source: the line that set it. Nothing read it, so a learner who pressed Start
+ * full mock landed back on this page and saw nothing at all — which is what a
+ * dead button looks like, and is what GAP-041 made it for five days.
+ *
+ * Asserted BOTH WAYS. A page that always rendered the notice would tell every
+ * visitor a mock is unavailable when it is not, so the control matters as much as
+ * the case. tests/e2e/mockempty.spec.ts walks the same two URLs in a browser.
+ */
+describe("?mockempty=1 reaches the learner", () => {
+  it("renders a notice when the flag is set", async () => {
+    const html = await renderPractice({ mockempty: "1" });
+    expect(html).toContain('data-testid="mockempty-notice"');
+  });
+
+  it("renders NOTHING of the kind on a plain visit", async () => {
+    const html = await renderPractice();
+    expect(html).not.toContain('data-testid="mockempty-notice"');
+    // and the page itself still works, so the control is not passing by accident
+    expect(html).toContain('data-testid="profession-grid"');
+  });
+
+  it("blames US, not her account or her payment, and sends her nowhere useless", async () => {
+    // The wording may change; these two properties may not. A learner reading this
+    // at eleven at night must not think she has lost what she paid for, and must
+    // not be sent to support, who cannot conjure a complete form.
+    const text = (await renderPractice({ mockempty: "1" }))
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&#x27;|&apos;/g, "'")
+      .toLowerCase();
+    expect(text).toContain("problem on our side");
+    expect(text).toContain("not with your account or your payment");
+    for (const dead of ["support", "contact us", "help centre", "help center", "ticket"]) {
+      expect(text, `the notice sends the learner to ${dead}`).not.toContain(dead);
+    }
   });
 });

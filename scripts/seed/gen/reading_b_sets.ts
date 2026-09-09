@@ -343,13 +343,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "charge the department for the time that they give."
+              "text": "not be permitted to interpret over the telephone."
             }
           ]
         }
       ]
     },
-    "guidanceNote": "The passage names editing, missing vocabulary and a personal interest; availability and cost belong to the booking problem it describes at the end, not to the reason for the rule."
+    "guidanceNote": "The passage names editing, missing vocabulary and a personal interest; availability and the telephone route belong to the booking problem it describes at the end, not to the reason for the rule."
   },
   {
     "subTest": "READING",
