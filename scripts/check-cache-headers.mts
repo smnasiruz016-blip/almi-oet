@@ -24,9 +24,32 @@
  *
  * ── THE TWO HALVES, AND THE SECOND ONE MATTERS MORE ─────────────────────────
  *
- * ① PUBLIC routes must be cached. Request 1 may legitimately be MISS or
- *    PRERENDER — that is the cache filling. Requests 2 and 3 must be HIT, and
+ * ① PUBLIC routes must be cached — the LAST request must be HIT, and
  *    `Cache-Control` must not carry `private` or `no-store`.
+ *
+ *    🔴 IT SAID "REQUESTS 2 AND 3 MUST BE HIT" AND THAT WAS WRONG. Measured on
+ *    the first production run after the GAP-055 fix, 10 September 2026:
+ *
+ *      /                            PRERENDER HIT HIT
+ *      /nursing                     PRERENDER HIT HIT
+ *      /nursing/from-india          MISS MISS HIT
+ *      /nursing/from-india/uk-nmc   MISS MISS HIT
+ *      /register/uk-nmc             MISS MISS HIT
+ *
+ *    Every one of those is a PASS, and this check called three of them failures.
+ *    The reason is structural and it is not going away: **this check always runs
+ *    on a COLD cache.** It is triggered by `deployment_status`, and each
+ *    deployment gets its own ISR cache — so on a route filled on demand
+ *    (`fallback: null`) the first request renders and writes the durable ISR
+ *    entry, the second can still miss at the CDN edge, and the third is served
+ *    from it. Two layers, filled in order.
+ *
+ *    So the rule is the LAST request, not a fixed position — and it keeps all of
+ *    its power over the actual defect: before the fix, the same four routes read
+ *    MISS MISS MISS, and a last-request rule fails that just as hard.
+ *
+ *    ⚠️ This is a calibration change, NOT a lowered bar. `private`/`no-store` is
+ *    still refused outright, and a route that never reaches HIT still fails.
  *
  * ② PRIVATE routes must NOT be cached. This is the safety property of the whole
  *    change: making public pages cacheable and getting it wrong means ONE
@@ -38,7 +61,11 @@
  */
 
 const BASE = (process.argv[2] ?? "https://almioet.almiworld.com").replace(/\/$/, "");
-const REQUESTS = 3;
+// FOUR, not three. A cold on-demand route needs: render + ISR write, then a
+// CDN fill, then a hit. Three was exactly enough on 10 Sep and left no room
+// at all; a check that is one step from a false alarm will eventually raise
+// one, and a guard that cries wolf gets switched off.
+const REQUESTS = 4;
 const UA = "AlmiOET-post-deploy-cache-check/1.0";
 
 /** Public routes that must be cached, one per URL SHAPE — not one per page.
@@ -75,7 +102,7 @@ const failures: string[] = [];
 const fail = (msg: string) => failures.push(msg);
 
 console.log(`[cache] ${BASE}`);
-console.log(`[cache] ① PUBLIC — must be cached (request 1 may fill; 2 and 3 must HIT)`);
+console.log(`[cache] ① PUBLIC — must be cached (cold after a deploy; the LAST request must HIT)`);
 
 for (const route of PUBLIC_ROUTES) {
   const seq: Probe[] = [];
@@ -92,11 +119,12 @@ for (const route of PUBLIC_ROUTES) {
     fail(`${route.path} returned ${codes.join("/")}, expected 200 — cannot judge caching on a non-200`);
     continue;
   }
-  // Requests 2 and 3, not 1: the first request after a deploy legitimately fills
-  // the cache. Demanding a HIT on it would make this check fail for a reason
-  // that is not the one it watches for.
-  const later = caches.slice(1);
-  if (later.some((c) => c !== "HIT")) {
+  // THE LAST ONE. See the header: this check always runs on a cold cache, and a
+  // route filled on demand needs the durable ISR entry written before the CDN
+  // edge can serve it. What must be true is that the sequence ENDS in a hit —
+  // a route that never caches never gets there.
+  const last = caches[caches.length - 1];
+  if (last !== "HIT") {
     fail(
       // "en-US" explicitly: this machine formats 237413 as "237.413" on its
       // own locale, which reads as a decimal in a message about a page count.
