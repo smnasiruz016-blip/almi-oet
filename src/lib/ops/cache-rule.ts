@@ -64,6 +64,28 @@
  *
  * ⚠️ THIS NUMBER MOVES ONLY WITH A NEW MEASUREMENT, in the same edit, with the
  * evidence written above it. It is never raised to make a red run green.
+ *
+ * ── 🔴 THE SAMPLE THIS CEILING RESTS ON — CARRIED WITH THE NUMBER ───────────
+ *
+ *   n = 2 deployments
+ *       × 3 on-demand routes  (/[profession]/from-[origin],
+ *                              /[profession]/from-[origin]/[organization],
+ *                              /register/[organization])
+ *       + 2 build-time routes (/, /[profession])
+ *   runs: 34428615639 (commit 908b5aa) and 34429507516 (commit 7383ff7)
+ *   observed: 2, 2, 3, 3, 3 — identical in both
+ *
+ * WHY THE SAMPLE IS WRITTEN HERE AND NOT ONLY IN A COMMIT MESSAGE. A7's real
+ * failure was never the number. It was that nobody could SEE the band came from
+ * n=2 — not until 115 of 194 items fell outside it. A threshold has to carry its
+ * sample the way it carries its justification, or the next person reads "4" as a
+ * fact about the world instead of a reading taken twice on one product.
+ *
+ * ⚠️ AND SO: THIS CEILING IS PROVISIONAL FOR THE NEXT FEW DEPLOYMENTS.
+ * If it fires early, the FIRST question is **"was the sample too small?"** —
+ * never "raise the ceiling". Two cold runs on one product is a small sample, the
+ * mechanism that predicts 2 and 3 is the stronger half of the evidence, and a
+ * third or fourth reading that disagrees is data, not an inconvenience.
  */
 export const WARMUP_CEILING = 4;
 
