@@ -219,7 +219,17 @@ describe("check-prod-mock — the post-deploy answer to GAP-041", () => {
     // the job RUNS, not on the text of the file — the header discusses `npm ci`
     // in prose, and a search for the string called that a violation.
     const runs = wf.split("\n").filter((l) => l.trim().startsWith("run:"));
-    expect(runs.length).toBe(2);
     for (const line of runs) expect(line).toContain("npx --yes tsx@4");
+    // A CENSUS, not a count. The number moved from 2 to 3 on 10 September 2026
+    // when GAP-055 added the cache-header check, and a bare `toBe(3)` would have
+    // said nothing about WHICH three. Naming them keeps the original purpose —
+    // a step cannot appear or vanish unnoticed — and says what is there.
+    expect(runs.map((l) => l.trim().replace(/^run:\s*/, "")).sort()).toEqual(
+      [
+        "npx --yes tsx@4 scripts/check-cache-headers.mts",
+        "npx --yes tsx@4 scripts/check-prod-migrations.mts",
+        "npx --yes tsx@4 scripts/check-prod-mock.mts",
+      ].sort(),
+    );
   });
 });

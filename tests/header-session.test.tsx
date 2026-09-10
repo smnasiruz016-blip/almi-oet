@@ -197,3 +197,83 @@ describe("every segment that can serve HTML has a header owner", () => {
     expect(src).toMatch(/getCurrentUser/);
   });
 });
+
+/**
+ * 🔴 GAP-055 — THE COST OF A HEADER, WHICH THIS FILE NEVER ASKED ABOUT.
+ *
+ * The block above asks whether every segment HAS a header. It passed throughout
+ * the defect, and it was right to: no header was missing. The question nobody
+ * asked was what the header COSTS the route underneath it.
+ *
+ * One `await getCurrentUser()` in `SiteChrome`, adopted by two SEO layouts with a
+ * one-line re-export, made 240,327 public URLs dynamic. Measured on the served
+ * response, three requests each: `x-vercel-cache: MISS` every time and
+ * `Cache-Control: private, no-cache, no-store` — while the pages themselves
+ * declared `export const revalidate = false`.
+ *
+ * These checks are the SOURCE half of the guard. They stop the mistake being
+ * reintroduced by a one-line re-export, and they fail in CI in seconds.
+ * scripts/check-cache-headers.mts is the RESPONSE half, and it is the one that
+ * proves anything — a source check believed `revalidate = false` for weeks.
+ * Neither replaces the other.
+ */
+describe("the public SEO shell must cost a crawler nothing", () => {
+  const APP = join(process.cwd(), "src/app");
+
+  /** The layouts that govern the public, indexable, high-volume URL space. */
+  const PUBLIC_SEO_LAYOUTS = ["[profession]/layout.tsx", "register/layout.tsx"];
+
+  /** Their pages. Each must be prerenderable, which takes BOTH `revalidate` and
+   *  a `generateStaticParams` — the build proved that `revalidate` alone leaves
+   *  the route `ƒ` and absent from the prerender manifest. */
+  const PUBLIC_SEO_PAGES = [
+    "[profession]/page.tsx",
+    "[profession]/[fromOrigin]/page.tsx",
+    "[profession]/[fromOrigin]/[organization]/page.tsx",
+    "register/[organization]/page.tsx",
+  ];
+
+  /** 🔴 CODE ONLY, COMMENTS STRIPPED. These files EXPLAIN the defect at length,
+   *  so a naive substring match finds "SiteChrome" and "getCurrentUser" in the
+   *  prose and fails a file that is correct. A check that cannot tell an
+   *  explanation from a call is not checking the thing it names. */
+  function codeOf(file: string): string {
+    return readFileSync(join(APP, file), "utf8")
+      .replace(/\/\*[\s\S]*?\*\//g, " ")
+      .replace(/(^|[^:])\/\/.*$/gm, "$1");
+  }
+
+  it.each(PUBLIC_SEO_LAYOUTS)("%s reads NO session", (file) => {
+    const code = codeOf(file);
+    // SiteChrome awaits getCurrentUser(); adopting it is the exact one-line
+    // mistake this test exists to catch.
+    expect(code).not.toMatch(/SiteChrome/);
+    expect(code).not.toMatch(/getCurrentUser|requireUser|@\/lib\/auth|cookies\(\)|headers\(\)/);
+  });
+
+  it.each(PUBLIC_SEO_LAYOUTS)("%s still renders the signed-out header", (file) => {
+    const src = readFileSync(join(APP, file), "utf8");
+    expect(src).toMatch(/<GlobalHeader\s+user=\{null\}/);
+  });
+
+  it.each(PUBLIC_SEO_PAGES)("%s is prerenderable: revalidate AND generateStaticParams", (file) => {
+    const src = readFileSync(join(APP, file), "utf8");
+    expect(src).toMatch(/export const revalidate/);
+    // Without this the route is `ƒ`, has no prerender-manifest entry, and
+    // `revalidate` is decoration. Measured on the build output, 10 Sep 2026.
+    expect(src).toMatch(/export async function generateStaticParams/);
+  });
+
+  it("the signed-out header is real navigation for someone who IS signed in", () => {
+    // Option 3 gives every visitor the signed-out header on these pages. That is
+    // only acceptable because each destination resolves correctly for a signed-in
+    // learner, and that is asserted here rather than assumed.
+    const login = readFileSync(join(APP, "(auth)/login/page.tsx"), "utf8");
+    const signup = readFileSync(join(APP, "(auth)/signup/page.tsx"), "utf8");
+    expect(login).toMatch(/getCurrentUser\(\)\)\s*redirect\("\/account"\)/);
+    expect(signup).toMatch(/getCurrentUser\(\)\)\s*redirect\("\/account"\)/);
+    // …and "Practice" lands on the real shell, which does its own session read.
+    const appLayout = readFileSync(join(APP, "(app)/layout.tsx"), "utf8");
+    expect(appLayout).toMatch(/requireUser\(\)/);
+  });
+});

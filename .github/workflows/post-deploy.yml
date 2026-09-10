@@ -60,3 +60,12 @@ jobs:
       - name: check production mock is startable
         if: ${{ !cancelled() }}
         run: npx --yes tsx@4 scripts/check-prod-mock.mts
+      # GAP-055. The third question at the same door: are the public pages
+      # actually being cached, and are the private ones still not? It reads the
+      # SERVED response — every check that read the source passed this defect
+      # 240,327 times. `!cancelled()` for the same reason as above: a caching
+      # regression and a broken mock are independent failures and either one
+      # must be able to speak.
+      - name: check production cache headers
+        if: ${{ !cancelled() }}
+        run: npx --yes tsx@4 scripts/check-cache-headers.mts
