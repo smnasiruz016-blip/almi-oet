@@ -60,12 +60,14 @@
  * A green ① with a red ② is not a partial success. It is the worse outcome.
  */
 
+import { judgePublicRoute, WARMUP_CEILING } from "../src/lib/ops/cache-rule";
+
 const BASE = (process.argv[2] ?? "https://almioet.almiworld.com").replace(/\/$/, "");
 // FOUR, not three. A cold on-demand route needs: render + ISR write, then a
 // CDN fill, then a hit. Three was exactly enough on 10 Sep and left no room
 // at all; a check that is one step from a false alarm will eventually raise
 // one, and a guard that cries wolf gets switched off.
-const REQUESTS = 4;
+const REQUESTS = 6;
 const UA = "AlmiOET-post-deploy-cache-check/1.0";
 
 /** Public routes that must be cached, one per URL SHAPE — not one per page.
@@ -98,11 +100,12 @@ async function get(url: string, follow: boolean): Promise<Probe> {
   };
 }
 
+const warmup: { path: string; urls: number; n: number | null }[] = [];
 const failures: string[] = [];
 const fail = (msg: string) => failures.push(msg);
 
 console.log(`[cache] ${BASE}`);
-console.log(`[cache] ① PUBLIC — must be cached (cold after a deploy; the LAST request must HIT)`);
+console.log(`[cache] ① PUBLIC — must be cached, and its warm-up must stay under ${WARMUP_CEILING}`);
 
 for (const route of PUBLIC_ROUTES) {
   const seq: Probe[] = [];
@@ -119,28 +122,37 @@ for (const route of PUBLIC_ROUTES) {
     fail(`${route.path} returned ${codes.join("/")}, expected 200 — cannot judge caching on a non-200`);
     continue;
   }
-  // THE LAST ONE. See the header: this check always runs on a cold cache, and a
-  // route filled on demand needs the durable ISR entry written before the CDN
-  // edge can serve it. What must be true is that the sequence ENDS in a hit —
-  // a route that never caches never gets there.
-  const last = caches[caches.length - 1];
-  if (last !== "HIT") {
-    fail(
-      // "en-US" explicitly: this machine formats 237413 as "237.413" on its
-      // own locale, which reads as a decimal in a message about a page count.
-      `${route.path} (${route.shape}, ${route.urls.toLocaleString("en-US")} URLs) is NOT CACHED — ` +
-        `x-vercel-cache was ${caches.join(", ")} across ${REQUESTS} requests. ` +
-        "Every request to this shape runs a function, including every crawler visit. " +
-        "Look for a cookie/header read in a LAYOUT above this route (GAP-055), not in the page.",
-    );
-  }
-  if (/\bprivate\b/i.test(cc) || /\bno-store\b/i.test(cc)) {
-    fail(
-      `${route.path} is served with "${cc}" — \`private\`/\`no-store\` forbids the CDN from ` +
-        "keeping it at all. A public page must not carry them.",
-    );
-  }
+
+  // The verdict is NOT computed here. src/lib/ops/cache-rule.ts owns it, so the
+  // same rule can be driven from RECORDED sequences in tests/cache-check-rule.test.ts
+  // and forced red without touching production.
+  const verdict = judgePublicRoute({
+    label: `${route.path} (${route.shape}, ${route.urls.toLocaleString("en-US")} URLs)`,
+    caches: seq.map((s) => s.cache),
+    cacheControl: cc,
+  });
+  warmup.push({ path: route.path, urls: route.urls, n: verdict.requestsToFirstHit });
+  for (const b of verdict.breaches) fail(b);
 }
+
+// ── THE NUMBER THIS CHECK EXISTS TO PUBLISH, PASS OR FAIL ───────────────────
+// `revalidate = false` empties the cache on every deploy, so "requests to first
+// HIT" is each route's PER-DEPLOY WARM-UP COST across its whole URL space. It is
+// printed whatever the verdict, because a check that only says pass/fail throws
+// away the measurement it already took.
+console.log(`
+[cache] warm-up — requests to first HIT (ceiling ${WARMUP_CEILING}):`);
+// ⚠️ THE NUMBER ONLY MEANS SOMETHING ON A COLD CACHE. Run by hand against a
+// deployment that has already been served, every route reports 1 and the column
+// says nothing. It is the POST-DEPLOY run — fired by deployment_status, against
+// a cache the deploy just emptied — that produces the real per-deploy figure.
+for (const w of warmup) {
+  console.log(
+    `  ${w.path.padEnd(34)} ${w.n === null ? "NEVER" : String(w.n).padStart(5)}   ` +
+      `${w.urls.toLocaleString("en-US").padStart(9)} URLs on this shape`,
+  );
+}
+console.log("");
 
 console.log(`[cache] ② PRIVATE — must NOT be cached, fetched WITHOUT a cookie`);
 
