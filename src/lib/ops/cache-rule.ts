@@ -31,25 +31,28 @@
 /**
  * 🔴 HOW MANY REQUESTS A ROUTE MAY TAKE TO ANSWER FROM CACHE AFTER A DEPLOY.
  *
- * MEASURED ON PRODUCTION, TWICE, ON TWO SEPARATE COLD CACHES. Each deployment
- * gets its own ISR cache, so each post-deploy run is one — and only one —
- * opportunity to see this. Both runs, 10 September 2026:
+ * MEASURED ON PRODUCTION THREE TIMES, ON THREE SEPARATE COLD CACHES. Each
+ * deployment gets its own ISR cache, so each post-deploy run is one — and only
+ * one — opportunity to see this. All three runs, 10 September 2026:
  *
- *                                 run 34428615639        run 34429507516
- *                                 commit 908b5aa         commit 7383ff7
- *   /                             PRERENDER HIT HIT      PRERENDER HIT HIT HIT     → 2
- *   /nursing                      PRERENDER HIT HIT      PRERENDER HIT HIT HIT     → 2
- *   /nursing/from-india           MISS MISS HIT          MISS MISS HIT HIT         → 3
- *   /nursing/from-india/uk-nmc    MISS MISS HIT          MISS MISS HIT HIT         → 3
- *   /register/uk-nmc              MISS MISS HIT          MISS MISS HIT HIT         → 3
+ *                          908b5aa            7383ff7                3019106
+ *                          run 34428615639    run 34429507516        run 34430460087
+ *   /                      PRERENDER HIT HIT  PRERENDER HIT HIT HIT  PRERENDER HIT×5   → 2
+ *   /nursing               PRERENDER HIT HIT  PRERENDER HIT HIT HIT  PRERENDER HIT×5   → 2
+ *   /…/from-india          MISS MISS HIT      MISS MISS HIT HIT      MISS MISS HIT×4   → 3
+ *   /…/from-india/uk-nmc   MISS MISS HIT      MISS MISS HIT HIT      MISS MISS HIT×4   → 3
+ *   /register/uk-nmc       MISS MISS HIT      MISS MISS HIT HIT      MISS MISS HIT×4   → 3
  *
- * IDENTICAL ACROSS BOTH: 2, 2, 3, 3, 3. Two populations, and both are predictable
- * from the mechanism rather than read off the result — routes prerendered at
- * build time answer from cache on the SECOND request; routes filled on demand
- * (`fallback: null`) need render + durable ISR write, then a CDN fill, then a
- * hit — the THIRD. A number that repeats on two independent cold caches, and
- * that the mechanism predicts in advance, is a measurement rather than a
- * coincidence.
+ * IDENTICAL IN ALL THREE: 2, 2, 3, 3, 3. Two populations, and both are
+ * predictable from the mechanism rather than read off the result — routes
+ * prerendered at build time answer from cache on the SECOND request; routes
+ * filled on demand (`fallback: null`) need render + durable ISR write, then a CDN
+ * fill, then a hit — the THIRD. A number that repeats on three independent cold
+ * caches, and that the mechanism predicts in advance, is a measurement rather
+ * than a coincidence.
+ *
+ * (The third run is the first one where the check printed the number itself,
+ * rather than it having to be read off the hit sequence by hand.)
  *
  * The ceiling is FOUR: today's worst case plus exactly one request of slack.
  *
@@ -67,25 +70,26 @@
  *
  * ── 🔴 THE SAMPLE THIS CEILING RESTS ON — CARRIED WITH THE NUMBER ───────────
  *
- *   n = 2 deployments
+ *   n = 3 deployments
  *       × 3 on-demand routes  (/[profession]/from-[origin],
  *                              /[profession]/from-[origin]/[organization],
  *                              /register/[organization])
  *       + 2 build-time routes (/, /[profession])
- *   runs: 34428615639 (commit 908b5aa) and 34429507516 (commit 7383ff7)
- *   observed: 2, 2, 3, 3, 3 — identical in both
+ *   runs: 34428615639 (908b5aa), 34429507516 (7383ff7), 34430460087 (3019106)
+ *   observed: 2, 2, 3, 3, 3 — identical in ALL THREE
  *
  * WHY THE SAMPLE IS WRITTEN HERE AND NOT ONLY IN A COMMIT MESSAGE. A7's real
  * failure was never the number. It was that nobody could SEE the band came from
  * n=2 — not until 115 of 194 items fell outside it. A threshold has to carry its
  * sample the way it carries its justification, or the next person reads "4" as a
- * fact about the world instead of a reading taken twice on one product.
+ * fact about the world instead of a reading taken three times on one product.
  *
  * ⚠️ AND SO: THIS CEILING IS PROVISIONAL FOR THE NEXT FEW DEPLOYMENTS.
  * If it fires early, the FIRST question is **"was the sample too small?"** —
- * never "raise the ceiling". Two cold runs on one product is a small sample, the
- * mechanism that predicts 2 and 3 is the stronger half of the evidence, and a
- * third or fourth reading that disagrees is data, not an inconvenience.
+ * never "raise the ceiling". Three cold runs on ONE product is still a small
+ * sample, all of it from one app on one platform; the mechanism that predicts 2
+ * and 3 is the stronger half of the evidence, and a fourth reading that disagrees
+ * is data, not an inconvenience.
  */
 export const WARMUP_CEILING = 4;
 
