@@ -46,6 +46,7 @@
     "test:e2e": "tsx scripts/e2e/run.mts",
     "check:prod-migrations": "tsx scripts/check-prod-migrations.mts",
     "check:prod-mock": "tsx scripts/check-prod-mock.mts",
+    "check:cache-headers": "tsx scripts/check-cache-headers.mts",
     "check:titles-match-prod": "tsx scripts/check-titles-match-prod.mts",
     "gate:no-tokens-for-nothing": "tsx scripts/measure/blank-submit.mts",
     "gate:slug-immutable": "tsx scripts/measure/slug-immutable.mts",
