@@ -70,9 +70,12 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },
   // The published OET guides: /guides/<slug> serves the static page public/guides/<slug>.html. One rule
-  // per guide, so no other address changes.
+  // per guide, so no other address changes. /guides itself serves the guides' own page, public/guides/index.html (RR-273).
   async rewrites() {
-    return GUIDE_SLUGS.map((slug) => ({ source: `${GUIDES_PATH}/${slug}`, destination: `${GUIDES_PATH}/${slug}.html` }));
+    return [
+      { source: GUIDES_PATH, destination: `${GUIDES_PATH}/index.html` },
+      ...GUIDE_SLUGS.map((slug) => ({ source: `${GUIDES_PATH}/${slug}`, destination: `${GUIDES_PATH}/${slug}.html` })),
+    ];
   },
 };
 

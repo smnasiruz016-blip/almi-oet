@@ -14,6 +14,9 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       { label: "Home", href: "https://almiworld.com/" },
       { label: "Ebooks", href: "https://almiworld.com/ebooks-2/" },
+      // The published OET guides' own page on this site (RR-273, owner GREEN 16 Oct 2026): the one link that lets a reader — and a search
+      // engine — reach them through the site's own links.
+      { label: "Guides", href: "/guides" },
       { label: "Shamool Foundation", href: "https://shamoolfoundation.com/" },
     ],
   },
