@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { GUIDE_SLUGS, GUIDES_PATH } from "./src/lib/oet-guides/guides";
 
 // ── SECURITY HEADERS ────────────────────────────────────────────────────────
 // Parity with the family set already shipped on AlmiPrep / AlmiPTE / AlmiTOEFL /
@@ -67,6 +68,11 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
+  },
+  // The published OET guides: /guides/<slug> serves the static page public/guides/<slug>.html. One rule
+  // per guide, so no other address changes.
+  async rewrites() {
+    return GUIDE_SLUGS.map((slug) => ({ source: `${GUIDES_PATH}/${slug}`, destination: `${GUIDES_PATH}/${slug}.html` }));
   },
 };
 
