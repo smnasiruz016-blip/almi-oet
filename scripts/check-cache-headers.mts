@@ -74,11 +74,12 @@ const UA = "AlmiOET-post-deploy-cache-check/1.0";
  *  A shape is what a layout governs, and a layout is what broke this. */
 const PUBLIC_ROUTES: { path: string; shape: string; urls: number }[] = [
   { path: "/", shape: "home", urls: 1 },
-  { path: "/nursing", shape: "/[profession]", urls: 12 },
-  { path: "/nursing/from-india", shape: "/[profession]/from-[origin]", urls: 2_292 },
-  { path: "/nursing/from-india/uk-nmc", shape: "/[profession]/from-[origin]/[organization]", urls: 237_413 },
-  { path: "/register/uk-nmc", shape: "/register/[organization]", urls: 610 },
+  // RR-276 (17 Oct 2026): the four old SEO shapes (/[profession], /[profession]/from-[origin], …/[organization],
+  // /register/[organization]) are removed — they answer 410 and are checked as GONE below, not as cached pages.
 ];
+
+/** RR-276: one URL per removed shape — each must answer 410 Gone (src/proxy.ts), never 200, a redirect or a 404. */
+const GONE_ROUTES = ["/nursing", "/nursing/from-india", "/nursing/from-india/uk-nmc", "/register/uk-nmc", "/sitemap/0.xml"];
 
 /** Routes that must stay dynamic. A HIT here is a data leak, not a saving. */
 const PRIVATE_ROUTES = ["/practice", "/account", "/progress"];
@@ -180,6 +181,13 @@ for (const path of PRIVATE_ROUTES) {
   if (r.status === 200 && /\bpublic\b/i.test(r.cacheControl ?? "")) {
     fail(`🔴 ${path} is served with a PUBLIC Cache-Control ("${r.cacheControl}").`);
   }
+}
+
+console.log(`[cache] ③ GONE — the removed old SEO shapes must answer 410 (RR-276)`);
+for (const path of GONE_ROUTES) {
+  const r = await get(BASE + path, false);
+  console.log(`  ${path.padEnd(34)} ${r.status}`);
+  if (r.status !== 410) fail(`${path} returned ${r.status}, expected 410 Gone — a removed old SEO page is answering again`);
 }
 
 if (failures.length) {

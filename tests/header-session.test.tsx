@@ -145,8 +145,7 @@ describe("every segment that can serve HTML has a header owner", () => {
     "(auth)": ["(auth)/layout.tsx"],
     admin: ["admin/layout.tsx"],
     pricing: ["pricing/layout.tsx"],
-    "[profession]": ["[profession]/layout.tsx"],
-    register: ["register/layout.tsx"],
+    // RR-276 (17 Oct 2026): the old SEO segments [profession] and register are removed — their URLs answer 410 (src/proxy.ts).
     // The root segment itself: the homepage and the 404 carry their own.
     ".": ["page.tsx", "not-found.tsx"],
   };
@@ -217,52 +216,11 @@ describe("every segment that can serve HTML has a header owner", () => {
  * proves anything — a source check believed `revalidate = false` for weeks.
  * Neither replaces the other.
  */
-describe("the public SEO shell must cost a crawler nothing", () => {
+/* RR-276 (17 Oct 2026): the public SEO shell — [profession]/… and register/… — is removed; its URLs answer 410 Gone
+ * (src/proxy.ts, tests/old-seo-gone.test.ts). What stays of this block is the check that the signed-out header
+ * routes a signed-in learner correctly, which the remaining public pages still rely on. */
+describe("the signed-out header still routes a signed-in learner", () => {
   const APP = join(process.cwd(), "src/app");
-
-  /** The layouts that govern the public, indexable, high-volume URL space. */
-  const PUBLIC_SEO_LAYOUTS = ["[profession]/layout.tsx", "register/layout.tsx"];
-
-  /** Their pages. Each must be prerenderable, which takes BOTH `revalidate` and
-   *  a `generateStaticParams` — the build proved that `revalidate` alone leaves
-   *  the route `ƒ` and absent from the prerender manifest. */
-  const PUBLIC_SEO_PAGES = [
-    "[profession]/page.tsx",
-    "[profession]/[fromOrigin]/page.tsx",
-    "[profession]/[fromOrigin]/[organization]/page.tsx",
-    "register/[organization]/page.tsx",
-  ];
-
-  /** 🔴 CODE ONLY, COMMENTS STRIPPED. These files EXPLAIN the defect at length,
-   *  so a naive substring match finds "SiteChrome" and "getCurrentUser" in the
-   *  prose and fails a file that is correct. A check that cannot tell an
-   *  explanation from a call is not checking the thing it names. */
-  function codeOf(file: string): string {
-    return readFileSync(join(APP, file), "utf8")
-      .replace(/\/\*[\s\S]*?\*\//g, " ")
-      .replace(/(^|[^:])\/\/.*$/gm, "$1");
-  }
-
-  it.each(PUBLIC_SEO_LAYOUTS)("%s reads NO session", (file) => {
-    const code = codeOf(file);
-    // SiteChrome awaits getCurrentUser(); adopting it is the exact one-line
-    // mistake this test exists to catch.
-    expect(code).not.toMatch(/SiteChrome/);
-    expect(code).not.toMatch(/getCurrentUser|requireUser|@\/lib\/auth|cookies\(\)|headers\(\)/);
-  });
-
-  it.each(PUBLIC_SEO_LAYOUTS)("%s still renders the signed-out header", (file) => {
-    const src = readFileSync(join(APP, file), "utf8");
-    expect(src).toMatch(/<GlobalHeader\s+user=\{null\}/);
-  });
-
-  it.each(PUBLIC_SEO_PAGES)("%s is prerenderable: revalidate AND generateStaticParams", (file) => {
-    const src = readFileSync(join(APP, file), "utf8");
-    expect(src).toMatch(/export const revalidate/);
-    // Without this the route is `ƒ`, has no prerender-manifest entry, and
-    // `revalidate` is decoration. Measured on the build output, 10 Sep 2026.
-    expect(src).toMatch(/export async function generateStaticParams/);
-  });
 
   it("the signed-out header is real navigation for someone who IS signed in", () => {
     // Option 3 gives every visitor the signed-out header on these pages. That is
