@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/lib/oet-seo/sitemap-urls";
+import { SITE_URL } from "@/lib/site-url";
 import { GUIDE_SLUGS, GUIDES_PATH } from "@/lib/oet-guides/guides";
 
 // The published OET guides, as their own child sitemap, listed in /sitemap-index.xml. Kept apart
