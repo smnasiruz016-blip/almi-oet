@@ -17,7 +17,7 @@ const GONE = [
 const STAYS = [
   "/", "/login", "/signup", "/practice", "/practice/nursing", "/practice/nursing/writing", "/account", "/progress", "/pricing",
   "/admin", "/api/status", "/guides", "/guides/oet-for-doctors", "/guides/assets/almiworld-logo.png", "/robots.txt",
-  "/sitemap-index.xml", "/sitemap-guides.xml", "/forgot-password", "/registration", "/nursingx", "/sitemap.xml",
+  "/sitemap-index.xml", "/sitemap-guides.xml", "/sitemap-pages.xml", "/forgot-password", "/registration", "/nursingx", "/sitemap.xml",
 ];
 
 describe("RR-276 · the old SEO pages are gone (410) — and only they", () => {
