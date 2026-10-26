@@ -2,9 +2,10 @@ import { SITE_URL } from "@/lib/site-url";
 
 // The site's own public pages, as their own child sitemap, listed in /sitemap-index.xml beside the guides.
 // Only a page that answers 200 to a visitor with no session, and is indexable, belongs here. Today that is the
-// home page alone: every practice tool (/practice, /practice/mock, /progress, /account) sits behind
-// requireUser() in src/app/(app)/layout.tsx and redirects a visitor to /login; auth, admin and api are never listed.
-const SITE_PAGE_PATHS = ["/"] as const;
+// home page and /pricing (owner GREEN 27 Oct 2026): every practice tool (/practice, /practice/mock, /progress,
+// /account) sits behind requireUser() in src/app/(app)/layout.tsx and redirects a visitor to /login; auth, admin
+// and api are never listed.
+const SITE_PAGE_PATHS = ["/", "/pricing"] as const;
 
 export const dynamic = "force-static";
 
