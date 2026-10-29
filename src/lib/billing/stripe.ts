@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
-import { priceIdToPlanLabel } from "@/lib/billing/plans";
+import { priceIdToPlanLabel, STRIPE_PRICE_MONTHLY, STRIPE_PRICE_YEARLY } from "@/lib/billing/plans";
+import { ensureOetPortalConfig } from "@/lib/billing/portal-config";
 import { OFFER } from "@/lib/billing/offer";
 
 /** The free-trial length, in days — now sourced from the OFFER config so trial
@@ -80,6 +81,10 @@ export async function createCheckoutSession(input: {
 
   const baseUrl = getPublicBaseUrl();
   const stripe = getStripeClient();
+  /* RR-345 (D4): the free week is ONCE per learner — a customer who ever had an AlmiOET subscription (any status, cancelled too)
+   * subscribes without a new trial. Asked of Stripe itself, so no stored flag can drift from the truth. */
+  const earlier = await stripe.subscriptions.list({ customer: customerId, status: "all", limit: 1 });
+  const trialAllowed = earlier.data.length === 0;
   const session = await stripe.checkout.sessions.create({
     mode: "subscription",
     customer: customerId,
@@ -89,7 +94,7 @@ export async function createCheckoutSession(input: {
     // into a no-card trial without a line of code moving.
     payment_method_collection: "always",
     subscription_data: {
-      trial_period_days: TRIAL_PERIOD_DAYS,
+      ...(trialAllowed ? { trial_period_days: TRIAL_PERIOD_DAYS } : {}),
       metadata: { userId: input.userId, plan: planLabel, product: "almi-oet" },
     },
     metadata: { userId: input.userId, plan: planLabel, product: "almi-oet" },
@@ -110,8 +115,11 @@ export async function createCustomerPortalSession(
 ): Promise<{ url: string }> {
   const stripe = getStripeClient();
   const baseUrl = getPublicBaseUrl();
+  /* RR-345: AlmiOET's OWN portal configuration — never the shared account's default (lib/billing/portal-config.ts) */
+  const { id: configuration } = await ensureOetPortalConfig(stripe, { priceIds: [STRIPE_PRICE_MONTHLY, STRIPE_PRICE_YEARLY], baseUrl });
   const session = await stripe.billingPortal.sessions.create({
     customer: stripeCustomerId,
+    configuration,
     return_url: `${baseUrl}/account`,
   });
   return { url: session.url };

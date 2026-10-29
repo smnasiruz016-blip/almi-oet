@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { findOetPortalConfig } from "@/lib/billing/portal-config";
 
 // Read-only billing self-check. OWNER ONLY — guarded by ADMIN_API_SECRET
 // (header x-admin-secret), FAIL-CLOSED: if the secret is unset this endpoint
@@ -71,10 +72,12 @@ export async function GET(req: Request) {
   }
   out.keyValid = keyValid;
 
+  /* RR-345: the portal is reachable when Stripe answers; AlmiOET's OWN configuration (never the shared default) is reported apart —
+   * "not made yet" is fine: the first learner's "Manage subscription" makes it (lib/billing/portal-config.ts) */
   let portalReachable = false;
   try {
-    const cfgs = await stripe.billingPortal.configurations.list({ limit: 1 });
-    portalReachable = cfgs.data.some((c) => c.active);
+    out.portalConfig = (await findOetPortalConfig(stripe)) ?? "not made yet — made on the first Manage subscription";
+    portalReachable = true;
   } catch {
     portalReachable = false;
   }

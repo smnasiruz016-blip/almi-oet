@@ -32,6 +32,7 @@
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { hasPaidAccess } from "@/lib/billing/plans";
+import { mockShortfallFor } from "@/lib/billing/mock-trial";
 import { startSession, getSessionView } from "@/lib/oet/session";
 import { taskBySlug } from "@/lib/oet/registry";
 import { professionBySlug } from "@/lib/oet/professions";
@@ -86,6 +87,7 @@ export async function beginPracticeSession(input: {
 export async function beginMockSession(): Promise<never> {
   const user = await payingUser();
   if (!user.targetProfession) redirect("/account?needprofession=1");
+  if (await mockShortfallFor(user)) redirect("/practice/mock?trialcap=1"); // RR-345 (D6): never start a mock the trial cannot finish
   const id = await startSession({
     userId: user.id,
     mode: "MOCK",
@@ -145,3 +147,4 @@ export async function continuePracticeChain(
   if (!id) redirect(view.libraryHref);
   redirect(`/practice/session/${id}`);
 }
+

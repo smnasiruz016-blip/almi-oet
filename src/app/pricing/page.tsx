@@ -1,10 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getCurrentUser } from "@/lib/auth";
-import { isBillingEnabled } from "@/lib/billing/plans";
+import { isBillingEnabled, isProActive } from "@/lib/billing/plans";
 // Family GlobalHeader + GlobalFooter come from the root layout.
 import { PricingCheckoutButton } from "./PricingCheckoutButton";
 import { track } from "@/lib/analytics/track";
+import { ContentCounts } from "@/components/oet/ContentCounts";
 
 export const metadata: Metadata = {
   title: "Pricing — 7-day free trial",
@@ -42,6 +43,8 @@ export default async function PricingPage({
           <p className="mt-3 text-base text-almi-text-muted">
             One subscription. Honest AI feedback and full-length practice. Cancel anytime.
           </p>
+          {/* RR-345: what the subscription holds, counted from the live bank */}
+          <ContentCounts className="mt-3 text-base" />
         </div>
 
         {params.cancelled && (
@@ -65,6 +68,7 @@ export default async function PricingPage({
             features={FEATURES}
             plan="monthly"
             isLoggedIn={Boolean(user)}
+            hasPlan={Boolean(user && isProActive(user))}
             billingLive={billingLive}
             featured
           />
@@ -86,6 +90,7 @@ function PlanCard({
   features,
   plan,
   isLoggedIn,
+  hasPlan,
   billingLive,
   featured,
 }: {
@@ -96,6 +101,8 @@ function PlanCard({
   features: string[];
   plan: "monthly" | "yearly";
   isLoggedIn: boolean;
+  /** RR-345 (D5): already on a plan — the card points to "Manage or cancel my plan", never to a second checkout */
+  hasPlan: boolean;
   billingLive: boolean;
   featured?: boolean;
 }) {
@@ -135,6 +142,14 @@ function PlanCard({
             style={{ borderRadius: 9999 }}
           >
             Start 7-day free trial
+          </Link>
+        ) : hasPlan ? (
+          <Link
+            href="/account"
+            className="inline-flex w-full min-h-[44px] items-center justify-center border border-almi-ink/15 bg-almi-paper px-6 py-3 text-sm font-semibold text-almi-ink hover:border-almi-coral"
+            style={{ borderRadius: 9999 }}
+          >
+            You have a plan — manage or cancel it
           </Link>
         ) : (
           <PricingCheckoutButton plan={plan} disabled={!billingLive} />
