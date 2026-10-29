@@ -210,11 +210,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "speakers": [
         {
           "role": "Doctor",
-          "voice": "alloy"
+          "voice": "onyx"
         },
         {
           "role": "Relative",
-          "voice": "onyx"
+          "voice": "alloy"
         }
       ],
       "questions": [
@@ -4158,7 +4158,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
         },
         {
           "role": "Sister",
-          "voice": "nova"
+          "voice": "onyx"
         }
       ],
       "questions": [

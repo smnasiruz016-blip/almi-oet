@@ -26,7 +26,7 @@
  * and the ownership check are untouched. What it cost was a whole failure mode
  * between the bytes and the speaker.
  */
-export function serveAudio(file: Buffer, req: Request): Response {
+export function serveAudio(file: Buffer, req: Request, opts: { noStore?: boolean } = {}): Response {
   const total = file.length;
   const range = req.headers.get("range");
   const common = {
@@ -34,7 +34,8 @@ export function serveAudio(file: Buffer, req: Request): Response {
     "Accept-Ranges": "bytes",
     // Identical for every learner, but still paid content behind an ownership
     // check — private, never a shared cache.
-    "Cache-Control": "private, max-age=3600",
+    // RR-345 (D1): a one-pass (mock) recording is never kept by the browser — a cached copy would replay after a reload
+    "Cache-Control": opts.noStore ? "no-store" : "private, max-age=3600",
     "X-Audio-Source": "prerendered",
   };
 

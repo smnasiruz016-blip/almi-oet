@@ -328,6 +328,10 @@ model OetAttempt {
   sessionId   String?
   sessionStep Int?
 
+  // RR-345 (D1): when the server first handed out a ONE-PASS (mock) recording for this attempt. NULL = not yet
+  // played, or a practice attempt (replay allowed). See src/lib/oet/one-pass.ts.
+  audioPlayedAt DateTime?
+
   timeSpentSeconds Int       @default(0)
   startedAt        DateTime  @default(now())
   submittedAt      DateTime?
