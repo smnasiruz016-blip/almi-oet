@@ -1,0 +1,4 @@
+{
+  "why": "RR-345 GAP-058: the DKA diagnosis rule (a raised glucose or known diabetes; euglycaemic ketoacidosis is treated). Payload only, one row.",
+  "slugs": ["rea-a-diabetic-ketoacidosis"]
+}
