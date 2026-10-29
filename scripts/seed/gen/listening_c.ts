@@ -61,7 +61,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "It should focus on completely eliminating the pain itself."
+              "text": "It should focus mainly on completely eliminating the pain itself."
             },
             {
               "id": "c",
@@ -76,7 +76,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Patients were discharged before they had been assessed."
+              "text": "Patients were discharged before they had been fully assessed."
             },
             {
               "id": "b",
@@ -118,7 +118,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Sleeping tablets are the most effective treatment."
+              "text": "Sleeping tablets are the most effective treatment for it."
             },
             {
               "id": "c",
@@ -176,11 +176,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Banning broad-spectrum antibiotics across the whole ward."
+              "text": "Banning broad-spectrum antibiotics across the whole of the ward."
             },
             {
               "id": "b",
-              "text": "A required review of every antibiotic at 48 hours."
+              "text": "A required review of every antibiotic course at 48 hours."
             },
             {
               "id": "c",
@@ -260,7 +260,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Because shorter courses had produced more readmissions."
+              "text": "Because shorter courses had produced more hospital readmissions."
             }
           ]
         },
@@ -360,7 +360,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "A written procedure had not been followed at all."
+              "text": "A written procedure had simply not been followed at all."
             }
           ]
         },
@@ -413,7 +413,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "A new electronic system that made reporting much quicker."
+              "text": "A new electronic system that made reporting much quicker for staff."
             },
             {
               "id": "c",
@@ -471,7 +471,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Asking patients how much they wish to be told."
+              "text": "Asking patients how much they actually wish to be told."
             },
             {
               "id": "b",
@@ -494,7 +494,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "To illustrate how families disagree about disclosure."
+              "text": "To illustrate how families can disagree about disclosure."
             },
             {
               "id": "c",
@@ -904,7 +904,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "They are frequently removed or ignored by patients."
+              "text": "They are frequently removed or simply ignored by patients."
             },
             {
               "id": "b",
@@ -942,7 +942,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "That the programme works better on smaller wards."
+              "text": "That the programme works better on the smaller wards."
             },
             {
               "id": "b",
@@ -961,7 +961,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Because it provides a record that the check was done."
+              "text": "Because it provides a written record that the check was done."
             },
             {
               "id": "b",
@@ -1004,7 +1004,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It mainly reflects a lack of personal resilience."
+              "text": "It mainly reflects a lack of personal resilience in staff."
             },
             {
               "id": "b",
@@ -1099,7 +1099,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Wellbeing budgets are spent on the wrong activities."
+              "text": "Wellbeing budgets are being spent on the wrong activities."
             },
             {
               "id": "b",
@@ -1199,7 +1199,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It reminds the wearer to slow down and check."
+              "text": "It reminds the wearer to slow down and check carefully."
             },
             {
               "id": "b",
@@ -1464,7 +1464,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "They succeed but are never written up properly."
+              "text": "They succeed but are never written up properly afterwards."
             }
           ]
         },
@@ -1521,7 +1521,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "The evidence base the project was built on."
+              "text": "The evidence base the project was first built on."
             }
           ]
         }
@@ -1556,7 +1556,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Because their illness had removed their appetite."
+              "text": "Because their illness had simply removed their appetite."
             },
             {
               "id": "b",
@@ -1564,7 +1564,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Because nutritional supplements were unavailable."
+              "text": "Because the supplements were unavailable."
             }
           ]
         },
@@ -1632,7 +1632,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Because the tool becomes more accurate with repetition."
+              "text": "Because the tool becomes more accurate with each repetition."
             },
             {
               "id": "b",
@@ -1659,7 +1659,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "It allowed relatives to be billed for their time."
+              "text": "It allowed the relatives to be billed for their time."
             }
           ]
         }
@@ -1713,7 +1713,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Checking skin turgor at every ward round."
+              "text": "Checking skin turgor at every single ward round."
             },
             {
               "id": "b",
@@ -1797,7 +1797,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Fear of not reaching the toilet in time."
+              "text": "Being frightened of not reaching the toilet in time."
             }
           ]
         }
@@ -1974,11 +1974,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "a lack of trust shaped by past experiences."
+              "text": "a lack of trust that is shaped by past experiences."
             },
             {
               "id": "c",
-              "text": "the inconvenience of clinic opening hours alone."
+              "text": "the inconvenience of clinic opening hours, and nothing else."
             }
           ]
         },
@@ -2027,7 +2027,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "The quality of the material that was handed out."
+              "text": "The quality of the printed material that was handed out."
             },
             {
               "id": "b",
@@ -2046,7 +2046,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "They change their minds after a second invitation."
+              "text": "They change their minds after receiving a second invitation."
             },
             {
               "id": "b",
@@ -2096,6 +2096,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Lena says she would 'push back' on the idea that wound care is routine, because a wound shows the state of the person's whole health.","evidence":"I understand why, but I'd push back. A wound is rarely just a wound; it's a window into the person's whole health.","wrong":{"a":"Contradicted: she understands the view but disagrees with it.","c":"Not said: she makes no distinction between types of wound here."}},"q2":{"why":"She says she stayed because in this field you can watch a patient heal week by week, unlike many other areas.","evidence":"I stayed because you can watch someone heal week by week, which isn't true of every specialty.","wrong":{"a":"Contradicted: she says it 'wasn't a grand plan'.","b":"Half-true trap: the mentor explains how she got interested, not why she stayed."}},"q3":{"why":"She says nutrition is a bigger factor than most people, including many clinicians, appreciate, because without protein the body cannot rebuild tissue.","evidence":"Bigger than most people — including quite a few clinicians — appreciate.","wrong":{"b":"Contradicted: even a perfect dressing regime fails without enough protein.","c":"Not said: diabetes is mentioned earlier as one cause of poor healing, not as the only group affected by nutrition."}},"q4":{"why":"Asked about a myth, she names the belief that wounds should be kept dry and open to the air; most heal faster when kept moist.","evidence":"That wounds should be kept dry and open to the air. For most wounds the opposite is true","wrong":{"a":"Wrong topic: she does talk about nutrition, but says it matters a lot; she does not call this the myth.","c":"Contradicted: she says the emotional side is the hardest part of the job."}},"q5":{"why":"She says the emotional side is hardest: keeping hope alive for patients whose wounds will not heal, without making promises.","evidence":"The emotional side, without question. When a wound won't heal despite everything","wrong":{"a":"Contradicted: she says clinical skills can be taught in a year; that is the easier part.","b":"Not said: dressings are not what she finds hard."}},"q6":{"why":"Her final advice is to shadow someone in the community and see the real homes and conversations, not rely on the textbook.","evidence":"Come and shadow someone first. Don't rely on the textbook picture — spend a day in the community","wrong":{"a":"Contradicted: she warns against relying on the textbook picture.","c":"Not said: she suggests spending a day in the community, not starting in hospital."}}},
       "speakers": [
         {
           "role": "Interviewer",
@@ -2238,6 +2239,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"She says adding a drug for each condition seems logical, but every new drug interacts with the others and the risk rises sharply.","evidence":"That seems logical, and in a sense it is. But every new drug interacts with the others","wrong":{"b":"Too strong: she says each decision is defensible, not always wrong.","c":"Contradicted: her whole talk argues that drugs can be carefully stopped."}},"q2":{"why":"She says the most useful thing is not a new drug but deprescribing: carefully stopping medicines that no longer help.","evidence":"It is deprescribing — carefully stopping the ones that are no longer helping.","wrong":{"a":"Not said: she talks about stopping drugs, not switching to safer ones.","b":"Contradicted: adding drugs for side effects is the problem she describes."}},"q3":{"why":"She gives practical reasons and fear of blame, but says 'most of it is cultural': adding feels like caring, stopping like giving up.","evidence":"But most of it is cultural. There is a culture in which adding feels like caring and stopping feels like giving up","wrong":{"b":"Half-true: she mentions blame as one part, but says the main reason is cultural.","c":"Half-true: time is a practical part, but not the main reason she gives."}},"q4":{"why":"Reviewing the list, she found that three of the fourteen drugs were only treating side effects caused by the other eleven.","evidence":"three of them were treating the side effects of the other eleven","wrong":{"a":"Contradicted: she went home on six, so most were not essential.","c":"Not said: the drugs were reduced over two months with no mention of refusal."}},"q5":{"why":"Everyone had put the falls down to age; she says the falls were the drugs, and this is the assumption she most wants to challenge.","evidence":"The falls were the drugs, not her age, and that is the assumption I most want to challenge today.","wrong":{"a":"Not said: she suggests patients know which tablet harms them, not that they dislike tablets.","b":"Wrong idea: she raises safety as a question, then says the evidence is reassuring."}},"q6":{"why":"Her 'simple' request is that at every review, staff ask not only what to add but what can safely be taken away.","evidence":"At every review, don't only ask what to add. Ask what you can safely take away.","wrong":{"b":"Not said: pharmacists are not mentioned in her request.","c":"Wrong detail: six was one patient's result, not a target for everyone."}}},
       "speakers": [
         {
           "role": "Dr Amara Singh",
@@ -2377,6 +2379,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Grace says she first checks herself, because her anxiety spreads to the patient, so she slows her breathing before speaking.","evidence":"Check myself, honestly. My own anxiety is contagious","wrong":{"b":"Not said: she does not mention calling for help as a first step.","c":"Contradicted: she says people wrongly expect a set phrase or technique."}},"q2":{"why":"She says de-escalation is ninety per cent presence, and that tone and space matter far more than the actual words.","evidence":"de-escalation is about ninety per cent presence and ten per cent script. Tone and space matter far more than the words do","wrong":{"a":"Contradicted: the words matter much less than tone and space.","c":"Contradicted: she warns that rushing is a common mistake."}},"q3":{"why":"She keeps the door in view because a person who feels trapped will fight, while one who feels free to leave rarely needs to.","evidence":"A person who feels trapped will fight; a person who feels they could leave rarely needs to.","wrong":{"a":"Not said: other patients are not mentioned here.","c":"Wrong person: the patient, not Grace, needs to see the door."}},"q4":{"why":"She does not correct untrue statements; she acknowledges the feeling behind them, because the feeling drives the behaviour.","evidence":"correcting them just adds fuel. It turns the conversation into a contest they can't afford to lose. So I acknowledge the feeling behind it instead.","wrong":{"a":"Contradicted: she says correcting them adds fuel.","b":"Contradicted: she responds to the feeling instead of ignoring it."}},"q5":{"why":"The mistake she names is rushing: staff find silence unbearable and fill it with questions, which escalates things.","evidence":"Rushing. Silence feels unbearable to staff — thirty seconds of it feels like five minutes — so they fill it with questions","wrong":{"b":"Not said: she warns against cornering people, not standing too far away.","c":"Not said: the volume of her voice is never mentioned."}},"q6":{"why":"She says the team debriefs because carrying these moments alone is how people burn out, not to assign blame.","evidence":"It's because carrying these moments alone is how people burn out","wrong":{"a":"Contradicted: she says the debrief is 'not to assign blame'.","c":"Not said: no policy is mentioned; she says it is not a formal investigation."}}},
       "speakers": [
         {
           "role": "Interviewer",
@@ -2438,7 +2441,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "so the patient does not feel trapped"
+              "text": "so that the patient does not feel trapped"
             },
             {
               "id": "c",
@@ -2519,6 +2522,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"He says plainly that resistance is not a future problem: it is already here and killing people in this hospital this year.","evidence":"it is already here and it is killing people now, in this hospital, this year.","wrong":{"a":"Contradicted: he rejects the idea that it is a future threat.","c":"Contradicted: he says the main driver is everyday cases, not exotic ones."}},"q2":{"why":"He says each unnecessary antibiotic teaches bacteria to survive on behalf of everyone, so the harm reaches other patients.","evidence":"Every unnecessary antibiotic doesn't just fail one patient — it teaches bacteria to survive, on behalf of everyone.","wrong":{"b":"Not said: he speaks of cost to other patients, not to budgets.","c":"Not said: there is no mention of patients sharing drugs."}},"q3":{"why":"He says the biggest driver is not the exotic case but the everyday one, such as an antibiotic given 'just in case'.","evidence":"The biggest driver isn't the exotic case — it isn't the intensive-care patient on four agents","wrong":{"a":"Contradicted: he says it is not the exotic case.","b":"Contradicted: studies show patients usually want an explanation, not an antibiotic."}},"q4":{"why":"Everyday decisions are dangerous because none feels reckless or looks wrong in the notes, so nobody sees themselves causing the problem.","evidence":"None of those feels reckless in the moment. Not one of them would look wrong in a case note.","wrong":{"b":"Not said: the price of the drugs is not discussed.","c":"Not said: he worries about courses being too long, not unfinished."}},"q5":{"why":"His message is not 'never prescribe' but to prescribe as if the drug were a limited resource being rationed for the future.","evidence":"prescribe as if the drug were a limited resource that you are rationing for your children's future","wrong":{"a":"Contradicted: he says 'my message is not never prescribe'.","c":"Contradicted: he criticises reaching for broad-spectrum drugs without thinking."}},"q6":{"why":"He says documentation is not bureaucracy or for auditors; writing down why you chose a drug forces you to think.","evidence":"The documentation isn't bureaucracy, and it isn't for the auditors. It forces the thinking.","wrong":{"a":"Contradicted: he says it 'isn't for the auditors'.","c":"Not said: it takes ten seconds, but he never says it makes prescribing quicker."}}},
       "speakers": [
         {
           "role": "Dr Rahul Mehta",
@@ -2658,6 +2662,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Fiona says the first thing she tries to change is the patient's expectation that the pain will be made to disappear.","evidence":"What's the first thing you try to change? Fiona: Their expectation that we'll make it disappear.","wrong":{"b":"Later topic: she discusses medication, but not as the first thing she changes.","c":"Not said: routines come up later with pacing, not as her first aim."}},"q2":{"why":"She lists endless appointments, more scans and stronger drugs, each promising an end that never comes, as the harm of chasing a cure.","evidence":"Endless appointments, another scan, another opinion, stronger drugs, each one promising an end that doesn't come.","wrong":{"a":"Not said: money is never mentioned.","c":"Not said: she says nothing about doctors' feelings."}},"q3":{"why":"When the interviewer says it sounds like giving up, Fiona agrees patients often hear it that way at first.","evidence":"Patients often hear it that way at first, and I completely understand why.","wrong":{"a":"Contradicted: they hear that what they came for is not available, which is not a relief.","b":"Not said: no GP is mentioned; anger is about leaving with a walking plan."}},"q4":{"why":"She says strong opioids often lose their effect over time, while side effects such as constipation and low mood stay.","evidence":"Strong opioids in particular often lose their effect over time while the side effects stay exactly where they are","wrong":{"b":"Contradicted: they lose effect over time.","c":"Too strong: she says painkillers 'have a place', just a small one."}},"q5":{"why":"She explains a loop: unused muscles get weaker, weaker muscles hurt more, and graded activity breaks it.","evidence":"But muscles that aren't used get weaker, and weaker muscles hurt more, and hurting more leads to less movement.","wrong":{"a":"Not said: distraction is not given as a reason.","c":"Not said: she talks about living with pain, not healing the injury."}},"q6":{"why":"The trick is never to dismiss the pain, which is real, while offering a different kind of hope.","evidence":"The trick — and it took me years — is not to dismiss their pain.","wrong":{"a":"Contradicted: patients want a stronger tablet but leave with a walking plan.","b":"Contradicted: she says the pain is 'absolutely real'."}}},
       "speakers": [
         {
           "role": "Interviewer",
@@ -2800,6 +2805,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"She says the label blames patients as if it were a character flaw, when they very often simply didn't understand.","evidence":"you very often find something much simpler: they didn't understand what we told them.","wrong":{"b":"Contradicted: she says the label usually hides a misunderstanding.","c":"Not said: she compares it to a character flaw, not a diagnosis."}},"q2":{"why":"She quotes studies showing patients forget up to half of a consultation within minutes of leaving the room.","evidence":"patients forget up to half of what's said in a consultation within minutes of leaving the room","wrong":{"a":"Contradicted: they forget up to half.","c":"Not said: she does not say only drug names are forgotten."}},"q3":{"why":"She says most patient information is written well above the reading level of the people who need it most.","evidence":"most patient information is written well above the reading level of the people who most need it","wrong":{"a":"Not said: length is not her complaint.","b":"Not said: she says nothing about leaflets being out of date."}},"q4":{"why":"She says everybody answers yes to 'do you understand?', because saying no feels like admitting something.","evidence":"Not do you understand — everybody says yes to that, because saying no feels like admitting something.","wrong":{"b":"Not said: time is mentioned for teach-back, not for this question.","c":"Wrong question: she warns that 'tell me what I just said' can sound patronising."}},"q5":{"why":"Teach-back reframes a misunderstanding as the clinician's failure rather than the patient's, without embarrassing anyone.","evidence":"It reframes the failure as ours rather than theirs, which is where it usually belongs","wrong":{"a":"Not said: cost is mentioned only as what teach-back saves.","c":"Not said: teach-back checks advice; it does not change the diagnosis."}},"q6":{"why":"She ends by saying the point is to check that the 'bridge' of understanding actually reaches the patient.","evidence":"The point is to check that the bridge we think we've built actually reaches the other side","wrong":{"a":"Contradicted: she says the point is not to speak down to people.","b":"Contradicted: she warns that unread leaflets mainly reassure the writer."}}},
       "speakers": [
         {
           "role": "Dr Amara Sithole",

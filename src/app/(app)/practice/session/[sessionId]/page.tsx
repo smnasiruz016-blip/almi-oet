@@ -185,7 +185,7 @@ export default async function SessionPage({
     return (
       <div className="mx-auto max-w-2xl space-y-6">
         <p className="text-xs font-bold uppercase tracking-wider text-almi-text-muted">{stepLabel}</p>
-        <OetResult def={def} item={current.item} attempt={current} variant="step" />
+        <OetResult def={def} item={current.item} attempt={current} variant="step" mode={session.mode} />
         <form action={advance}>
           <button
             type="submit"

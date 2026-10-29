@@ -21,6 +21,8 @@ import { aggregateSession } from "@/lib/oet/session";
 import { OET_BENCHMARK_B } from "@/lib/oet/scale";
 import { SUBTEST_LABEL } from "@/lib/oet/types";
 import { GradeEstimate, ESTIMATE_DISCLAIMER } from "@/components/oet/GradeEstimate";
+import { ObjectiveReview } from "@/components/oet/OetResult";
+import { OET_TASKS } from "@/lib/oet/registry";
 
 const SUBTEST_ORDER: OetSubTest[] = ["LISTENING", "READING", "WRITING", "SPEAKING"];
 
@@ -79,6 +81,26 @@ export function OetSessionResult({
             focus next. Confirm the exact grades you need with your own regulator.
           </p>
         </div>
+      )}
+
+      {/* RR-346 (B1): the mock's answers and explanations — held back during the mock, shown here, item by item */}
+      {isMock && (
+        <section data-mock-review className="space-y-3">
+          <h2 className="text-lg font-semibold text-almi-ink">Review your answers</h2>
+          {attempts
+            .filter((a) => a.status === "SCORED" && (a.subTest === "LISTENING" || a.subTest === "READING"))
+            .map((a) => {
+              const def = Object.values(OET_TASKS).find((t) => t.taskType === a.taskType);
+              return def ? (
+                <details key={a.id} className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-4">
+                  <summary className="cursor-pointer text-sm font-semibold text-almi-ink">
+                    {def.label} · {a.item.title} · {a.pointsEarned}/{a.pointsMax}
+                  </summary>
+                  <div className="mt-3"><ObjectiveReview def={def} item={a.item} attempt={a} /></div>
+                </details>
+              ) : null;
+            })}
+        </section>
       )}
 
       <p className="rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3 text-xs text-almi-text-muted">

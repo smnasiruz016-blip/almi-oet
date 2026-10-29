@@ -64,7 +64,21 @@ import {
   type ReadingPartAPayload,
 } from "@/lib/oet/tasks/reading";
 
-export type ReviewRow = { label: string; your: string; correct: string; ok: boolean };
+/** RR-346 (B1) · the item's own explanation, shown AFTER the answer is marked: why the key is right, the evidence quoted from
+ *  the item's own text or script, and — when the learner chose wrong — why THAT option is wrong (or, for a gap, a common
+ *  mistake to watch). Absent when the item has no explanations yet. */
+export type ReviewExplanation = { why: string; evidence: string | null; note: string | null };
+export type ReviewRow = { label: string; your: string; correct: string; ok: boolean; explanation?: ReviewExplanation };
+
+type StoredExplanation = { why?: string; evidence?: string; wrong?: Record<string, string>; watch?: string };
+/** payload.explanations[questionId], read defensively — a payload without it simply has no explanation */
+function explanationFor(payload: Record<string, unknown>, id: string, yourId: string | null, ok: boolean): ReviewExplanation | undefined {
+  const all = payload.explanations as Record<string, StoredExplanation> | undefined;
+  const e = all?.[id];
+  if (!e?.why) return undefined;
+  const note = ok ? null : (yourId && e.wrong?.[yourId]) || e.watch || null;
+  return { why: e.why, evidence: e.evidence ?? null, note };
+}
 export type Review = { rows: ReviewRow[]; correct: number; total: number };
 
 type Option = { id: string; text: string };
@@ -79,17 +93,14 @@ function optionText(options: Option[] | undefined, id: string): string {
  *  accepted variant happened to match. */
 type Displayed = { id: string; label: string; your: string; correct: string };
 
-function rowsFrom(displayed: Displayed[], key: AnswerKey[], response: unknown): Review {
+function rowsFrom(displayed: Displayed[], key: AnswerKey[], response: unknown, payload: Record<string, unknown> = {}): Review {
   const byId = new Map(key.map((k) => [k.id, k]));
   const rows: ReviewRow[] = displayed.map((d) => {
     const k = byId.get(d.id);
-    return {
-      label: d.label,
-      your: d.your || "—",
-      correct: d.correct,
-      // The grader's verdict, on the grader's key, from the grader's reader.
-      ok: k ? isAnswerCorrect(k, answerFor(response, d.id)) : false,
-    };
+    // The grader's verdict, on the grader's key, from the grader's reader.
+    const raw = answerFor(response, d.id), ok = k ? isAnswerCorrect(k, raw) : false;
+    const explanation = explanationFor(payload, d.id, raw ? String(raw) : null, ok);
+    return { label: d.label, your: d.your || "—", correct: d.correct, ok, ...(explanation ? { explanation } : {}) };
   });
   return { rows, correct: rows.filter((r) => r.ok).length, total: rows.length };
 }
@@ -130,19 +141,20 @@ export function buildObjectiveReview(
       })),
       listeningPartAAnswerKey(typed, slug ?? undefined),
       response,
+      p,
     );
   }
 
   if (taskType === "LISTENING_PART_B" || taskType === "LISTENING_PART_C") {
     const typed = p as unknown as ListeningMcqPayload;
     const questions = (typed.questions ?? []) as Mcq[];
-    return rowsFrom(displayedMcq(questions, response), listeningMcqAnswerKey(typed), response);
+    return rowsFrom(displayedMcq(questions, response), listeningMcqAnswerKey(typed), response, p);
   }
 
   if (taskType === "READING_PART_B" || taskType === "READING_PART_C") {
     const typed = p as unknown as ReadingMcqPayload;
     const questions = (typed.questions ?? []) as Mcq[];
-    return rowsFrom(displayedMcq(questions, response), readingMcqAnswerKey(typed), response);
+    return rowsFrom(displayedMcq(questions, response), readingMcqAnswerKey(typed), response, p);
   }
 
   if (taskType === "READING_PART_A") {
@@ -162,6 +174,7 @@ export function buildObjectiveReview(
       }),
       readingPartAAnswerKey(typed, slug ?? undefined),
       response,
+      p,
     );
   }
 

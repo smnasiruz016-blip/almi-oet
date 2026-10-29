@@ -45,7 +45,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "somebody has answered it."
+              "text": "somebody has actually answered the message."
             },
             {
               "id": "c",
@@ -125,7 +125,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "by two members of staff working together at the desk."
+              "text": "by two members of staff working together at the nurses' desk."
             },
             {
               "id": "b",
@@ -175,7 +175,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "only if the source patient consents to testing."
+              "text": "only if the source patient gives consent to testing."
             }
           ]
         }
@@ -209,7 +209,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "has been misread as a zero."
+              "text": "has been mistaken for a zero too many times."
             },
             {
               "id": "b",
@@ -259,7 +259,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "reported before any further dose is removed."
+              "text": "reported to the person in charge before the next dose."
             }
           ]
         }
@@ -419,11 +419,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "completed later than a task given to one person."
+              "text": "completed later than a task given to one named person."
             },
             {
               "id": "b",
-              "text": "effectively given to no one."
+              "text": "effectively a task that has been given to no one."
             },
             {
               "id": "c",
@@ -461,7 +461,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "it decides what can be offered safely later."
+              "text": "it decides what can be offered safely to them later."
             },
             {
               "id": "b",
@@ -469,7 +469,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "the pharmacy will not dispense without that detail."
+              "text": "the pharmacy will not dispense the drug without that detail."
             }
           ]
         }
@@ -511,7 +511,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "while equipment is being taken off."
+              "text": "while equipment is being taken off, on the way out."
             }
           ]
         }
@@ -545,7 +545,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "cause a second injury."
+              "text": "turn the fall into a second injury."
             },
             {
               "id": "b",
@@ -595,7 +595,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "what was stopped and for what reason."
+              "text": "which drugs were stopped and for what reason."
             }
           ]
         }
@@ -633,7 +633,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "discarded and taken again."
+              "text": "discarded and taken again, never relabelled from the form."
             },
             {
               "id": "c",
