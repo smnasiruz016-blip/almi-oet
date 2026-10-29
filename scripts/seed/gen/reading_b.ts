@@ -675,7 +675,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "both checkers sign at the moment the dose is given"
+              "text": "both staff sign at the time of administration"
             },
             {
               "id": "c",
@@ -699,7 +699,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "explanations": {"q1":{"why":"The word 'now' marks the change: bins are replaced when three-quarters full instead of when completely full.","evidence":"sharps bins must now be replaced when three-quarters full, not when completely full","wrong":{"b":"Half-true: same-day reporting is required, but it is a standing instruction, not the change the memo introduces.","c":"Contradicted: a bin is closed at the line, before it is completely full."}}},
+      "explanations": {"q1":{"why":"The word 'now' marks the change: bins are replaced when three-quarters full instead of when completely full.","evidence":"sharps bins must now be replaced when three-quarters full, not when completely full","wrong":{"b":"Contradicted: needles must never be resheathed, so careful resheathing is not the change.","c":"Contradicted: a bin is closed at the line, before it is completely full."}}},
       "passages": [
         {
           "id": "p1",
@@ -714,11 +714,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "changing sharps bins sooner, at three-quarters of capacity"
+              "text": "replacing sharps bins earlier, at three-quarters full"
             },
             {
               "id": "b",
-              "text": "reporting every needlestick injury on the same day"
+              "text": "resheathing needles more carefully after use"
             },
             {
               "id": "c",
@@ -742,7 +742,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "explanations": {"q1":{"why":"Spores survive alcohol rub, while the physical action of washing and drying removes them.","evidence":"the physical action of washing and drying removes spores that rub cannot kill","wrong":{"a":"Contradicted: rub is described as kinder to the skin than washing.","b":"True of rub, but it is a separate point about soiled hands, not the reason given for C. difficile."}}},
+      "explanations": {"q1":{"why":"Spores survive alcohol rub, while the physical action of washing and drying removes them.","evidence":"the physical action of washing and drying removes spores that rub cannot kill","wrong":{"a":"Contradicted: rub is described as kinder to the skin than washing.","b":"Contradicted: rub is described as quicker than washing, not slower."}}},
       "passages": [
         {
           "id": "p1",
@@ -757,15 +757,15 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "rub is harsher on the skin than washing is"
+              "text": "rub is harsher on skin than washing"
             },
             {
               "id": "b",
-              "text": "rub performs poorly on visibly soiled hands"
+              "text": "rub takes longer to apply"
             },
             {
               "id": "c",
-              "text": "rub cannot kill spores, but washing removes them"
+              "text": "rub does not remove spores"
             }
           ]
         }
@@ -800,7 +800,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "discard any remainder 28 days after opening"
+              "text": "discard it 28 days after opening"
             },
             {
               "id": "b",
@@ -808,7 +808,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "keep it in the ward fridge after opening"
+              "text": "keep it in the ward fridge"
             }
           ]
         }
@@ -847,7 +847,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "48 hours after the last bout of symptoms"
+              "text": "after 48 hours free of symptoms"
             },
             {
               "id": "c",
@@ -894,7 +894,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "managing his breakfast without being sick"
+              "text": "that he tolerates breakfast"
             }
           ]
         }
@@ -973,15 +973,15 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "dispose of the affected stock straight away"
+              "text": "discard them at once"
             },
             {
               "id": "b",
-              "text": "keep using the stock once the fridge is back in range"
+              "text": "keep using them once back in range"
             },
             {
               "id": "c",
-              "text": "set the stock aside and ask the immunisation lead"
+              "text": "quarantine them and seek advice"
             }
           ]
         }
@@ -1016,7 +1016,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "it suggests that only people confined to bed are at risk"
+              "text": "it wrongly implies only bed-bound people are affected"
             },
             {
               "id": "b",
@@ -1044,7 +1044,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "explanations": {"q1":{"why":"Breaks are presented as a patient-safety measure because fatigue causes errors; they are part of safe practice.","evidence":"Fatigue-related error is a patient-safety issue; breaks are part of safe practice, not a perk","wrong":{"a":"Contradicted: breaks are not to be given up when busy; busy days matter most.","c":"Half-true: the nurse in charge allocates times, but the text says breaks are not a perk."}}},
+      "explanations": {"q1":{"why":"Breaks are presented as a patient-safety measure because fatigue causes errors; they are part of safe practice.","evidence":"Fatigue-related error is a patient-safety issue; breaks are part of safe practice, not a perk","wrong":{"a":"Contradicted: breaks are not to be given up when busy; busy days matter most.","c":"Contradicted: the text says breaks are part of safe practice, not a perk."}}},
       "passages": [
         {
           "id": "p1",
@@ -1059,15 +1059,15 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "a benefit to be dropped on busy days"
+              "text": "a benefit dropped when busy"
             },
             {
               "id": "b",
-              "text": "an essential element of working safely"
+              "text": "part of safe practice"
             },
             {
               "id": "c",
-              "text": "a perk the nurse in charge allocates"
+              "text": "a perk for the staff"
             }
           ]
         }
@@ -1130,7 +1130,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "explanations": {"q1":{"why":"Discharge waits until pharmacy has delivered the blister pack and the district-nurse referral is confirmed as accepted.","evidence":"until pharmacy has delivered his blister pack and the district-nurse referral is confirmed as accepted, not merely sent","wrong":{"a":"Not said: his daughter will meet him at the flat; transport is booked to take him.","b":"Half-true: a referral that has merely been sent is not enough; it must be accepted."}}},
+      "explanations": {"q1":{"why":"Discharge waits until pharmacy has delivered the blister pack and the district-nurse referral is confirmed as accepted.","evidence":"until pharmacy has delivered his blister pack and the district-nurse referral is confirmed as accepted, not merely sent","wrong":{"a":"Not said: his daughter will meet him at the flat; transport is booked to take him.","b":"Not said: he manages his insulin with support; nothing says the insulin is stopped."}}},
       "passages": [
         {
           "id": "p1",
@@ -1149,11 +1149,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "the district-nurse referral must have been sent"
+              "text": "his insulin must be stopped beforehand"
             },
             {
               "id": "c",
-              "text": "his pack must arrive and the referral be accepted"
+              "text": "the blister pack and nurse referral must be arranged"
             }
           ]
         }
@@ -1189,7 +1189,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "it steers prescribing towards poorer, wider-spectrum alternatives"
+              "text": "it leads to less effective, broader-spectrum antibiotics"
             },
             {
               "id": "b",
@@ -1236,7 +1236,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "stop and report it at once to the nurse in charge"
+              "text": "stop and report it immediately"
             },
             {
               "id": "c",
@@ -1275,7 +1275,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "a score recorded on the chart but not in the notes"
+              "text": "a score left out of the notes"
             },
             {
               "id": "b",
@@ -1283,7 +1283,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "a climbing score with no recorded action in response"
+              "text": "a rising score with no response"
             }
           ]
         }
@@ -1318,7 +1318,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "cuffs and jewellery carry germs and obstruct thorough washing"
+              "text": "cuffs and jewellery harbour organisms and hinder handwashing"
             },
             {
               "id": "b",
@@ -1346,7 +1346,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "explanations": {"q1":{"why":"The reminder opens by telling staff not to discuss patients in lifts, corridors, stairwells or the canteen.","evidence":"do not discuss patients in lifts, corridors, stairwells or the canteen","wrong":{"a":"Contradicted: speaking more quietly is not a solution, because the conversation itself carries information.","c":"Half-true: initials are only for urgent cases with nowhere private, not for every discussion."}}},
+      "explanations": {"q1":{"why":"The reminder opens by telling staff not to discuss patients in lifts, corridors, stairwells or the canteen.","evidence":"do not discuss patients in lifts, corridors, stairwells or the canteen","wrong":{"a":"Contradicted: speaking more quietly is not a solution, because the conversation itself carries information.","c":"Not said: first names are never suggested; initials and bed number are advised only when nowhere private is available."}}},
       "passages": [
         {
           "id": "p1",
@@ -1365,11 +1365,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "to keep patient discussions out of public areas"
+              "text": "avoid discussing patients in public areas"
             },
             {
               "id": "c",
-              "text": "to use initials whenever you discuss a patient"
+              "text": "to use only patients' first names"
             }
           ]
         }
@@ -1389,7 +1389,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "explanations": {"q1":{"why":"When a verbal order is unavoidable, you write it down and read it back to the prescriber in full.","evidence":"write it down and read it back to the prescriber, including the drug, the dose, the route and the frequency","wrong":{"a":"Half-true: reading back is required, but so is writing the order down.","b":"Wrong time: countersigning happens within 24 hours, not before the dose is given."}}},
+      "explanations": {"q1":{"why":"When a verbal order is unavoidable, you write it down and read it back to the prescriber in full.","evidence":"write it down and read it back to the prescriber, including the drug, the dose, the route and the frequency","wrong":{"a":"Half-true: reading back is required, but so is writing the order down.","b":"Not said: the order is written down and read back; nothing makes the dose wait 24 hours, which is the countersigning window."}}},
       "passages": [
         {
           "id": "p1",
@@ -1408,11 +1408,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "have it countersigned before you give it"
+              "text": "wait 24 hours, then give it"
             },
             {
               "id": "c",
-              "text": "record it and read it back to the prescriber"
+              "text": "write it down and read it back"
             }
           ]
         }
@@ -1453,7 +1453,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "the patient's own reason must be written on the chart."
+              "text": "the patient's reason must go on the chart."
             }
           ]
         }
@@ -1529,11 +1529,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "totalled, so that each shift begins with a running figure."
+              "text": "totalled, so that each shift inherits a figure."
             },
             {
               "id": "b",
-              "text": "signed, so that every entry can be traced to a person."
+              "text": "audited, so that late entries are found."
             },
             {
               "id": "c",
@@ -1579,7 +1579,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "taken out of service and labelled, then reported."
+              "text": "labelled and removed from service."
             }
           ]
         }
@@ -1659,7 +1659,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "remains valid without any review by the new team."
+              "text": "remains valid without any new review."
             },
             {
               "id": "c",
@@ -1789,7 +1789,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "can result in a worse fall, from the height of the rails."
+              "text": "can make the fall worse."
             }
           ]
         }
@@ -1831,7 +1831,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "requires the prescriber to be on duty for the review."
+              "text": "needs the prescriber on duty for the review."
             }
           ]
         }
@@ -1873,7 +1873,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "the delivery device itself is recorded at every observation round."
+              "text": "a fixed flow rate cannot be recorded on the drug chart at all."
             }
           ]
         }
@@ -1915,7 +1915,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "only what the member of staff can actually see."
+              "text": "what can actually be seen."
             }
           ]
         }
@@ -1991,15 +1991,15 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "is emptied out and separated again on the ward."
+              "text": "is emptied and re-sorted on the ward."
             },
             {
               "id": "b",
-              "text": "stays as it is, because a closed bag is not reopened."
+              "text": "stays as it is; the bag is not reopened."
             },
             {
               "id": "c",
-              "text": "is labelled with the ward it came from and then traced."
+              "text": "is sent for incineration with the cytotoxic waste."
             }
           ]
         }

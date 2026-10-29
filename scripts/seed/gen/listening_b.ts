@@ -123,7 +123,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "b",
-              "text": "All of the weekend long days"
+              "text": "All weekend long days"
             },
             {
               "id": "c",
@@ -131,7 +131,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "a",
-              "text": "Only the Sunday night shift"
+              "text": "The Sunday night shift"
             }
           ]
         }
@@ -342,11 +342,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "a",
-              "text": "The theory part can now be completed online"
+              "text": "The theory part can be done online"
             },
             {
               "id": "c",
-              "text": "Classroom sessions have been made longer"
+              "text": "Classroom sessions are now longer"
             }
           ]
         }
@@ -428,7 +428,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "More visitors are allowed at each bed"
+              "text": "More visitors are allowed per bed"
             },
             {
               "id": "c",
@@ -639,7 +639,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "b",
-              "text": "The appearance of the wound site"
+              "text": "The appearance of the wound"
             },
             {
               "id": "c",
@@ -1220,11 +1220,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "sharps bins that were too full to close"
+              "text": "sharps bins that were too full"
             },
             {
               "id": "b",
-              "text": "needles being resheathed after use"
+              "text": "needles being resheathed"
             },
             {
               "id": "c",

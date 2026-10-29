@@ -57,7 +57,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "The warning signs were recorded for hours but not acted on."
+              "text": "The warning signs were recorded but ignored."
             },
             {
               "id": "b",
@@ -80,7 +80,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "They remove the argument about who may escalate a concern."
+              "text": "They settle who may escalate a concern."
             },
             {
               "id": "c",
@@ -103,7 +103,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Staff fear being judged for calling the team unnecessarily."
+              "text": "Staff fear being judged for calling unnecessarily."
             }
           ],
           "answer": "c"
@@ -137,7 +137,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "An ordinary judgement made at the right moment."
+              "text": "A judgement made at the right moment."
             },
             {
               "id": "c",
@@ -156,7 +156,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Record the reasoning when deciding not to call."
+              "text": "Record the reasoning for not calling."
             },
             {
               "id": "c",
@@ -241,7 +241,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Equipment cannot be delivered to a private house."
+              "text": "Patients prefer to be nursed in hospital."
             },
             {
               "id": "c",
@@ -279,11 +279,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Nutrition, especially protein, and keeping skin dry."
+              "text": "Nutrition and keeping the skin dry."
             },
             {
               "id": "c",
-              "text": "A precise schedule of small and frequent position changes."
+              "text": "A precise schedule of small position changes."
             }
           ],
           "answer": "b"
@@ -345,7 +345,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Because nobody involved was negligent, tired or behaved badly."
+              "text": "Because no one involved behaved badly."
             }
           ],
           "answer": "c"
@@ -356,7 +356,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "They were explained away, one by one, as they arrived."
+              "text": "They were explained away one at a time."
             },
             {
               "id": "b",
@@ -383,7 +383,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "It is inseparable from how clinical expertise works."
+              "text": "It is inseparable from clinical expertise."
             }
           ],
           "answer": "c"
@@ -394,7 +394,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "A second clinician reviewing every admission."
+              "text": "A second clinician reviewing each admission."
             },
             {
               "id": "b",
@@ -521,7 +521,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Those with the highest cost to the service."
+              "text": "Those that cost the service most."
             },
             {
               "id": "c",
@@ -536,11 +536,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Whether they are, in effect, being given up on."
+              "text": "Whether they are being written off."
             },
             {
               "id": "b",
-              "text": "Whether the decision can be reversed later if they wish."
+              "text": "Whether the decision can be reversed later."
             },
             {
               "id": "c",
@@ -678,7 +678,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Asking someone who knew the patient two weeks before."
+              "text": "Asking someone who knew the patient beforehand."
             },
             {
               "id": "c",
@@ -701,7 +701,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "It is effective but is prescribed too readily."
+              "text": "It works but is prescribed too readily."
             }
           ],
           "answer": "a"
@@ -759,7 +759,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "That he is the one who decides whether a patient may eat."
+              "text": "That he decides whether a patient may eat."
             },
             {
               "id": "b",
@@ -797,7 +797,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "As two honest alternatives that each carry a risk."
+              "text": "As two courses that each carry a risk."
             },
             {
               "id": "b",
@@ -835,7 +835,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "He first establishes what they mean by the phrase."
+              "text": "He establishes what they mean by it."
             },
             {
               "id": "b",
@@ -901,7 +901,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Ward rounds are not taught in the way that procedures are."
+              "text": "Ward rounds are not taught in the way procedures are."
             },
             {
               "id": "c",
@@ -924,7 +924,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Because the round has a fixed end but a variable start."
+              "text": "Because the round must finish at a fixed time."
             }
           ],
           "answer": "c"
@@ -939,7 +939,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Most patients could not say afterwards what had been decided."
+              "text": "Most patients could not say what had been decided."
             },
             {
               "id": "c",
@@ -962,7 +962,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "They fell most heavily on the sickest patients on the ward."
+              "text": "They fell most heavily on the sickest patients."
             }
           ],
           "answer": "c"
@@ -977,7 +977,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "It contained too many items to be remembered."
+              "text": "It had too many items to remember."
             },
             {
               "id": "c",
@@ -1047,7 +1047,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Modern scanners can now detect much smaller abnormalities."
+              "text": "Scanners now detect much smaller abnormalities."
             }
           ],
           "answer": "c"
@@ -1085,7 +1085,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "It passes the whole problem on to a general practitioner."
+              "text": "It passes the difficulty to somebody else."
             }
           ],
           "answer": "c"
@@ -1096,7 +1096,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "A statement, where it is true, that no follow-up is needed."
+              "text": "A statement that no follow-up is needed."
             },
             {
               "id": "b",
@@ -1200,7 +1200,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Less is actually handed over, as attention runs out."
+              "text": "Less is actually handed over than before."
             },
             {
               "id": "c",
@@ -1242,7 +1242,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "It was the wrong target; inattention was the problem."
+              "text": "It was the wrong target."
             }
           ],
           "answer": "c"
@@ -1253,7 +1253,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Only the patients who matter that night are handed over."
+              "text": "Only the patients who matter that night."
             },
             {
               "id": "b",
@@ -1319,7 +1319,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Because it depends on the midwives' working pattern."
+              "text": "Because it depends on the working pattern."
             },
             {
               "id": "b",
@@ -1346,7 +1346,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Not having to repeat her story to a stranger."
+              "text": "Not having to repeat her story."
             }
           ],
           "answer": "c"
@@ -1361,7 +1361,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Predict when labour is likely to begin."
+              "text": "Predict when labour will begin."
             },
             {
               "id": "c",
@@ -1395,7 +1395,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "The choice to decline continuity altogether."
+              "text": "The choice to decline it."
             },
             {
               "id": "b",
@@ -1522,7 +1522,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Which language the consultation uses."
+              "text": "Which language will be used."
             }
           ],
           "answer": "a"
@@ -1533,7 +1533,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It is recovered later in the harm that is avoided."
+              "text": "It is recovered later in avoided harm."
             },
             {
               "id": "b",
@@ -1560,7 +1560,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "By asking the patient to repeat the plan back."
+              "text": "By asking the patient to state the plan."
             }
           ],
           "answer": "c"
@@ -1599,7 +1599,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It is a record of how the person has adapted over the years."
+              "text": "It shows how the person has adapted over time."
             },
             {
               "id": "b",
@@ -1637,7 +1637,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "An unfamiliar step outside the front of the house."
+              "text": "An unfamiliar step outside the house."
             },
             {
               "id": "b",
@@ -1645,7 +1645,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Getting up during the night, in the dark."
+              "text": "Getting up during the night."
             }
           ],
           "answer": "c"
@@ -1656,7 +1656,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Because an aid she has chosen is one that gets used."
+              "text": "Because a chosen aid gets used."
             },
             {
               "id": "b",
@@ -1741,7 +1741,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Patients who cannot speak receive markedly less pain relief."
+              "text": "Patients who cannot speak receive less pain relief."
             },
             {
               "id": "c",
@@ -1764,7 +1764,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "As a change in what the person usually does or tolerates."
+              "text": "As a change in what the person usually does."
             }
           ],
           "answer": "c"
@@ -1779,7 +1779,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Whether pain has been ruled out, and by what means."
+              "text": "Whether pain has been ruled out."
             },
             {
               "id": "c",
@@ -1798,7 +1798,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "They take too long to complete on a busy ward."
+              "text": "They take too long on a busy ward."
             },
             {
               "id": "c",
@@ -1817,7 +1817,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "It is usually sought far later than it should be."
+              "text": "It is sought later than it should be."
             },
             {
               "id": "c",
@@ -1836,7 +1836,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "An opioid rather than a simple analgesic."
+              "text": "An opioid, not a simple analgesic."
             },
             {
               "id": "c",
@@ -1917,7 +1917,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "A child whose intake is genuinely inadequate."
+              "text": "A child whose intake is truly inadequate."
             },
             {
               "id": "b",
@@ -1959,11 +1959,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Weighing the child at home in between clinic appointments."
+              "text": "Weighing the child at home between appointments."
             },
             {
               "id": "c",
-              "text": "Putting pressure on the child to eat at mealtimes."
+              "text": "Pressing the child to eat."
             }
           ],
           "answer": "c"
@@ -2036,11 +2036,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It saves money but slightly delays the healing of most wounds."
+              "text": "It saves money but slightly delays healing."
             },
             {
               "id": "b",
-              "text": "For most wounds, it leads to faster healing."
+              "text": "It heals most wounds more quickly."
             },
             {
               "id": "c",
@@ -2063,7 +2063,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "The assessment that must come before treatment."
+              "text": "The assessment that must come first."
             }
           ],
           "answer": "c"
@@ -2074,7 +2074,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It repaid its cost several times within the year."
+              "text": "It repaid its cost within the year."
             },
             {
               "id": "b",
@@ -2197,7 +2197,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Whether the patient could follow it without help."
+              "text": "Whether it lists every change in date order."
             },
             {
               "id": "c",

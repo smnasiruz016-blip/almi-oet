@@ -46,7 +46,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "As a problem best solved by higher opioid doses."
+              "text": "As a problem solved by higher opioid doses."
             }
           ]
         },
@@ -103,7 +103,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "The belief that it rules out any drug treatment."
+              "text": "The belief that it rules out drug treatment."
             }
           ]
         },
@@ -180,7 +180,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "A required review of every antibiotic course at 48 hours."
+              "text": "A required review of every antibiotic at 48 hours."
             },
             {
               "id": "c",
@@ -241,7 +241,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Having a second prescriber present for the review."
+              "text": "Having a second prescriber at the review."
             }
           ]
         },
@@ -390,7 +390,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "As evidence that the ward had become less safe."
+              "text": "As evidence the ward had become less safe."
             },
             {
               "id": "b",
@@ -547,7 +547,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It is best protected by leaving the prognosis vague."
+              "text": "It is best kept by leaving the prognosis vague."
             },
             {
               "id": "b",
@@ -808,7 +808,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Any child under one year of age at the time."
+              "text": "Any child under one year of age."
             },
             {
               "id": "c",
@@ -893,7 +893,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "They worked best when combined with warning signs."
+              "text": "They worked best combined with warning signs."
             }
           ]
         },
@@ -1188,7 +1188,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Most occurred during the evening drug round."
+              "text": "Most occurred on the evening drug round."
             }
           ]
         },
@@ -1288,7 +1288,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "As an unavoidable stage of the illness."
+              "text": "As an unavoidable stage of illness."
             }
           ]
         },
@@ -1322,7 +1322,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "The need to use the toilet without help."
+              "text": "The need to use the toilet."
             },
             {
               "id": "c",
@@ -1441,7 +1441,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Relying on the diligence of committed individuals."
+              "text": "Relying on the diligence of committed staff."
             },
             {
               "id": "c",
@@ -1479,7 +1479,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "How can we persuade staff to take part in it?"
+              "text": "How can we persuade staff to take part?"
             },
             {
               "id": "c",
@@ -1770,7 +1770,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Charting hourly, and having two staff sign it."
+              "text": "Charting hourly, and two staff signing it."
             },
             {
               "id": "b",
@@ -1797,7 +1797,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Being frightened of not reaching the toilet in time."
+              "text": "Fear of not reaching the toilet in time."
             }
           ]
         }
@@ -1836,7 +1836,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Confusion on its own confirms the diagnosis."
+              "text": "Confusion alone confirms the diagnosis."
             },
             {
               "id": "c",
@@ -1974,7 +1974,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "a lack of trust that is shaped by past experiences."
+              "text": "a lack of trust shaped by past experiences."
             },
             {
               "id": "c",
@@ -2012,7 +2012,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "To argue that services should not have been cut."
+              "text": "To argue services should not have been cut."
             },
             {
               "id": "c",
@@ -2441,7 +2441,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "so that the patient does not feel trapped"
+              "text": "so the patient does not feel trapped"
             },
             {
               "id": "c",
