@@ -1,5 +1,5 @@
 {
-  "why": "RR-346 payload only: B1 explanations for the 3 mock forms (57 items), DISTRACTOR rewrites only — every key keeps its verified wording except lis-b-set-13 (GAP-057 shortest-key balance, GAP-066 weak Reading B options, lis-b-set-13 key matched to its script), clinical fixes GAP-060/061/062. Run only after beta-g has cross-checked AlmiOET_RR-346_B1_and_Fixes.docx and after PR rr346 is merged and deployed. Plus the alcohol liaison case notes: the leaving day now agrees with the expected discharge date (owner decision, 30 Oct 2026).",
+  "why": "RR-346 payload only: B1 explanations for the 3 mock forms (57 items), DISTRACTOR rewrites only — every key keeps its verified wording except lis-b-set-13 (GAP-057 shortest-key balance, GAP-066 weak Reading B options, lis-b-set-13 key matched to its script), clinical fixes GAP-060/061/062. Run only after beta-g has cross-checked AlmiOET_RR-346_B1_and_Fixes.docx and after PR rr346 is merged and deployed. Plus the alcohol liaison case notes: the leaving day now agrees with the expected discharge date (owner decision, 30 Oct 2026). Plus beta-g's NSAID point: the GI bleed and renal case notes say low-dose aspirin is not part of the anti-inflammatory ban.",
   "slugs": [
     "lis-a-f1-physiotherapy-consultation-lower-back-pain",
     "lis-a-f1-dietitian-consultation-type-2-diabetes",
@@ -186,6 +186,7 @@
     "rea-c-the-kitchen-that-is-not-the-kitchen",
     "wri-medicine-discharge-to-the-general-practitioner-upper-gastrointestinal-bleeding",
     "wri-nursing-transfer-to-the-coronary-care-unit-chest-pain-in-the-emergency-department",
-    "wri-nursing-referral-to-the-alcohol-liaison-service-repeated-admissions-with-withdrawal"
+    "wri-nursing-referral-to-the-alcohol-liaison-service-repeated-admissions-with-withdrawal",
+    "wri-medicine-referral-to-the-renal-service-declining-kidney-function"
   ]
 }
