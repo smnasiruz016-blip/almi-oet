@@ -1,0 +1,9 @@
+{
+  "why": "RR-345 B0 voices, payload only (speakers): GAP-056 the three mock Listening C interviews (role names = script labels), GAP-063 six items voiced against the names in their scripts, GAP-064 one item with both speakers on one voice. Run right AFTER this PR deploys: until then production keys its audio on the old speakers.",
+  "slugs": [
+    "lis-c-f1-interview-wound-care-nursing", "lis-c-f2-interview-de-escalation-in-mental-health", "lis-c-f3-interview-living-with-chronic-pain",
+    "lis-a-script-3-dietetics-unintentional-weight-loss", "lis-a-script-14-physiotherapy-knee-pain-in-a-runner", "lis-a-script-5-dentistry-jaw-pain-and-night-grinding",
+    "lis-a-script-7-pharmacy-a-medicines-review", "lis-a-script-11-speech-pathology-hoarseness-in-a-teacher",
+    "lis-b-set-1-a-doctor-telephoning-a-patient-s-daughter", "lis-b-set-15-a-ward-sister-and-a-patient-s-daughter"
+  ]
+}

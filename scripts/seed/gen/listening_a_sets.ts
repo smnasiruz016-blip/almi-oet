@@ -30,11 +30,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "speakers": [
         {
           "role": "Dietitian",
-          "voice": "alloy"
+          "voice": "onyx"
         },
         {
           "role": "Patient",
-          "voice": "onyx"
+          "voice": "alloy"
         }
       ],
       "gaps": [
@@ -295,11 +295,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "speakers": [
         {
           "role": "Dentist",
-          "voice": "alloy"
+          "voice": "onyx"
         },
         {
           "role": "Patient",
-          "voice": "onyx"
+          "voice": "alloy"
         }
       ],
       "gaps": [
@@ -560,11 +560,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "speakers": [
         {
           "role": "Pharmacist",
-          "voice": "alloy"
+          "voice": "onyx"
         },
         {
           "role": "Patient",
-          "voice": "onyx"
+          "voice": "alloy"
         }
       ],
       "gaps": [
@@ -1087,11 +1087,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "speakers": [
         {
           "role": "Therapist",
-          "voice": "alloy"
+          "voice": "onyx"
         },
         {
           "role": "Patient",
-          "voice": "onyx"
+          "voice": "alloy"
         }
       ],
       "gaps": [
@@ -1494,11 +1494,11 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
       "speakers": [
         {
           "role": "Physiotherapist",
-          "voice": "alloy"
+          "voice": "onyx"
         },
         {
           "role": "Patient",
-          "voice": "onyx"
+          "voice": "alloy"
         }
       ],
       "gaps": [

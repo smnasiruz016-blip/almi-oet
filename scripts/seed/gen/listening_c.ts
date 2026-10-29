@@ -2102,7 +2102,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         },
         {
-          "role": "Lena Fischer",
+          "role": "Lena",
           "voice": "alloy"
         }
       ],
@@ -2383,7 +2383,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         },
         {
-          "role": "Grace Okoye",
+          "role": "Grace",
           "voice": "alloy"
         }
       ],
@@ -2664,7 +2664,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "voice": "onyx"
         },
         {
-          "role": "Fiona Clark",
+          "role": "Fiona",
           "voice": "alloy"
         }
       ],

@@ -324,6 +324,21 @@ for (const it of listening) {
     }
   }
 
+  // ── A6b (RR-345, GAP-056) · a TURN label INSIDE a segment ──────────────────
+  // A6 reads only the start of each segment. Three mock interviews declared "Lena Fischer" while the script
+  // labelled "Lena:", so splitDialogue found only "Interviewer:" — the whole interview went to one voice and
+  // "Lena:" was read aloud eleven times, every segment starting cleanly. A name that labels two or more turns
+  // (after a sentence end or at the start) and is not a declared speaker is that defect.
+  {
+    const p = it.payload as { audioScript: string; speakers?: { role: string; voice: string }[] };
+    const roles = new Set((p.speakers ?? []).map((s) => s.role.toLowerCase()));
+    const turns = new Map<string, number>();
+    for (const m of String(p.audioScript ?? "").matchAll(/(?:^|[.!?…"”]\s+)([A-Z][\w'’-]*(?: [A-Z][\w'’-]*)?):\s/g)) turns.set(m[1], (turns.get(m[1]) ?? 0) + 1);
+    if ((p.speakers ?? []).length >= 2) for (const [name, n] of turns) {
+      if (n >= 2 && !roles.has(name.toLowerCase())) fail("A6", `${label} — "${name}:" labels ${n} turns but is not a declared speaker, so its turns are spoken in another voice with the label read aloud`);
+    }
+  }
+
   const key = audioKey(it.payload as { audioScript: string; speakers?: { role: string; voice: string }[] });
   claimed.add(key);
   const path = join(process.cwd(), AUDIO_DIR, audioFileName(key));
