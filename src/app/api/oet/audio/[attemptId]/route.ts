@@ -19,6 +19,8 @@ import { prisma } from "@/lib/prisma";
 import { synthesizeSpeech, synthesizeDialogue } from "@/lib/ai/openai";
 import { AUDIO_DIR, audioFileName, audioKey, stripLeadingLabel } from "@/lib/oet/audio";
 import { serveAudio } from "@/lib/oet/serve-audio";
+import { listeningAudioPolicy } from "@/lib/oet/audio-policy";
+import { onePassDecision, PLAYED_ONCE_MESSAGE } from "@/lib/oet/one-pass";
 
 export const runtime = "nodejs";
 
@@ -61,10 +63,21 @@ export async function GET(
 
   const attempt = await prisma.oetAttempt.findFirst({
     where: { id: attemptId, userId: user.id },
-    include: { item: true },
+    include: { item: true, session: { select: { mode: true } } },
   });
   if (!attempt || attempt.subTest !== "LISTENING") {
     return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });
+  }
+
+  // RR-345 (D1): a mock recording is heard once — decided here, on the server, from the session it belongs to
+  const onePass = attempt.sessionId ? listeningAudioPolicy(attempt.session).onePass : listeningAudioPolicy(null).onePass;
+  const decision = onePassDecision({ onePass, playedAt: attempt.audioPlayedAt, now: Date.now() });
+  if (!decision.serve) {
+    return NextResponse.json({ ok: false, error: PLAYED_ONCE_MESSAGE, played: true }, { status: 410, headers: { "Cache-Control": "no-store" } });
+  }
+  if (decision.markPlayed) {
+    // only the first stamp counts: a second request racing this one leaves the earlier time
+    await prisma.oetAttempt.updateMany({ where: { id: attempt.id, audioPlayedAt: null }, data: { audioPlayedAt: new Date() } });
   }
 
   const parsed = audioPayloadSchema.safeParse(attempt.item.payload);
@@ -73,7 +86,7 @@ export async function GET(
   }
 
   const file = await prerendered(parsed.data);
-  if (file) return serveAudio(file, _req);
+  if (file) return serveAudio(file, _req, { noStore: onePass });
 
   console.warn(
     `[oet.audio] no rendered file for item ${attempt.item.id} (${attempt.item.title}) — falling back to paid TTS`,

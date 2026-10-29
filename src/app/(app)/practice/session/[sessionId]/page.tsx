@@ -255,6 +255,7 @@ export default async function SessionPage({
         // function, for the same reason: a MOCK recording plays once, and a
         // PRACTICE one may be replayed. Never decided here. See audio-policy.ts.
         listeningOnePass={listeningAudioPolicy(session).onePass}
+        listeningPlayed={Boolean(current.audioPlayedAt)} // RR-345 (D1): a reload shows the mock recording as played
         // The server's clock, as an ISO string. The countdown renders from this
         // so a reload recomputes the time left instead of restarting it.
         deadlineAt={current.deadlineAt ? current.deadlineAt.toISOString() : null}

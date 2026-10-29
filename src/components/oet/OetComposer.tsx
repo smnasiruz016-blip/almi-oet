@@ -279,8 +279,9 @@ const PROGRESS_SECONDS = 1;
  *  enough that no useful amount of audio can be re-heard. */
 const SEEK_TOLERANCE_SECONDS = 0.75;
 
-function ListeningAudio({ attemptId, onePass }: { attemptId: string; onePass: boolean }) {
-  const [state, setState] = useState<"idle" | "loading" | "playing" | "done" | "error">("idle");
+function ListeningAudio({ attemptId, onePass, played = false }: { attemptId: string; onePass: boolean; played?: boolean }) {
+  // RR-345 (D1): a one-pass recording the server has already handed out reads as played after a reload — no second Play
+  const [state, setState] = useState<"idle" | "loading" | "playing" | "done" | "error">(onePass && played ? "done" : "idle");
   const [message, setMessage] = useState<string | null>(null);
   const [src, setSrc] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -447,11 +448,13 @@ function ListeningComposer({
   prompt,
   payload,
   onePass,
+  played,
 }: {
   attemptId: string;
   prompt: string;
   payload: unknown;
   onePass: boolean;
+  played?: boolean;
 }) {
   const { submit, submitting, error } = useSubmit(attemptId);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -461,7 +464,7 @@ function ListeningComposer({
   return (
     <div className="space-y-5">
       <p className="text-sm text-almi-text">{prompt}</p>
-      <ListeningAudio attemptId={attemptId} onePass={onePass} />
+      <ListeningAudio attemptId={attemptId} onePass={onePass} played={played} />
       <div data-testid="listening-questions" className="space-y-3">
         {questions.map((q) => (
           <QuestionField
@@ -1108,6 +1111,7 @@ export function OetComposer({
   payload,
   allowSkipPreparation,
   listeningOnePass,
+  listeningPlayed,
   deadlineAt,
 }: {
   attemptId: string;
@@ -1127,6 +1131,8 @@ export function OetComposer({
    *  Callers must not compute this themselves — pass
    *  listeningAudioPolicy(session).onePass from src/lib/oet/audio-policy.ts. */
   listeningOnePass?: boolean;
+  /** Listening only (RR-345, D1): the server already handed out this one-pass recording (OetAttempt.audioPlayedAt). */
+  listeningPlayed?: boolean;
 }) {
   if (taskType === "WRITING_LETTER") {
     return <WritingComposer attemptId={attemptId} prompt={prompt} payload={payload} />;
@@ -1149,6 +1155,7 @@ export function OetComposer({
         payload={payload}
         // Omitted means one pass: see the prop's own note, and audio-policy.ts.
         onePass={listeningOnePass ?? true}
+        played={listeningPlayed ?? false}
       />
     );
   }
