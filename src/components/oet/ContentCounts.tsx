@@ -30,7 +30,8 @@ export async function liveCounts(): Promise<LiveCounts | null> {
 }
 
 export function countsLine(c: LiveCounts): string {
-  const n = (x: number) => x.toLocaleString("en-US");
+  // thousands with a comma, no locale call (gate:dates: a toLocale* call can be read two ways)
+  const n = (x: number) => String(Math.trunc(x)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return `${n(c.total)} practice items in all 12 professions: ${n(c.listening)} Listening and ${n(c.reading)} Reading for everyone; at least ${n(c.writingEach)} Writing letters and ${n(c.speakingEach)} Speaking role-plays for your own profession${c.mocks ? ` · ${c.mocks} full timed mock exam${c.mocks === 1 ? "" : "s"}` : ""}`;
 }
 
