@@ -4,6 +4,7 @@
 
 import { notFound, redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
+import { hasPaidAccess } from "@/lib/billing/plans";
 import { getSessionView, advanceSession } from "@/lib/oet/session";
 import { continuePracticeChain } from "@/lib/oet/entry";
 import { chainView, libraryHrefFor } from "@/lib/oet/chain";
@@ -68,6 +69,9 @@ export default async function SessionPage({
   const { sessionId } = await params;
   const session = await getSessionView(sessionId, user.id);
   if (!session) notFound();
+  /* RR-345 (D2): a session still in progress is the paid content itself — a lapsed plan goes to /pricing, as every other way in does
+   * (entry.ts). A COMPLETED session stays readable: it is the learner's own result. */
+  if (session.status !== "COMPLETED" && !hasPaidAccess(user)) redirect("/pricing");
 
   if (session.status === "COMPLETED") {
     // 🔴 THE CHAIN. A finished practice set now offers the NEXT exercise in the
@@ -139,6 +143,7 @@ export default async function SessionPage({
     async function advance() {
       "use server";
       const u = await requireUser();
+      if (!hasPaidAccess(u)) redirect("/pricing"); // RR-345 (D2): no next item without a plan
       await advanceSession(sessionId, u.id);
       redirect(`/practice/session/${sessionId}`);
     }

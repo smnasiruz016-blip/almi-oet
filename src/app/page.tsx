@@ -10,6 +10,8 @@ import type { OetSubTest } from "@prisma/client";
 import { TestimonialsSection } from "@/components/reviews/TestimonialsSection";
 import { GlobalHeader } from "@/components/GlobalHeader";
 import { track } from "@/lib/analytics/track";
+import { ContentCounts } from "@/components/oet/ContentCounts";
+import { SUBTEST_COPY } from "@/lib/oet/subtest-copy";
 
 // Re-render hourly so newly approved testimonials appear without a redeploy.
 export const revalidate = 3600;
@@ -211,6 +213,8 @@ export default function Home() {
             <p className="mt-4 text-sm text-almi-text-muted">
               $12/month after a 7-day free trial, cancel anytime · All four sub-tests · Original material, never copied from OET
             </p>
+            {/* RR-345: the true counts, read from the live bank (hourly) — never a typed number */}
+            <ContentCounts className="mt-3 text-base" />
           </div>
           <ScoreMockup />
         </div>
@@ -252,9 +256,10 @@ export default function Home() {
                     <h3 className="text-lg font-semibold text-almi-ink">{SUBTEST_LABEL[subTest]}</h3>
                     <span className="text-xs text-almi-text-muted">{isAi ? "AI feedback" : "Auto-marked"}</span>
                   </div>
-                  <p className="mt-2 flex-1 text-sm text-almi-text">{parts[0]?.blurb}</p>
+                  {/* RR-345: the WHOLE sub-test — it printed Part A's blurb and "1 task" for Speaking */}
+                  <p className="mt-2 flex-1 text-sm text-almi-text">{SUBTEST_COPY[subTest].what}</p>
                   <span className="mt-3 text-xs text-almi-text-muted">
-                    {parts.length} {parts.length === 1 ? "task" : "parts"} · 0–500 scale, grade A · B · C+ · C
+                    {SUBTEST_COPY[subTest].shape} · 0–500 scale, grade A · B · C+ · C
                   </span>
                 </li>
               );

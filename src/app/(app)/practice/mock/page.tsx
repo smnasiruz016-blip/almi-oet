@@ -8,6 +8,7 @@ import { requireUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { hasPaidAccess } from "@/lib/billing/plans";
 import { beginMockSession } from "@/lib/oet/entry";
+import { mockShortfallFor } from "@/lib/billing/mock-trial";
 
 async function startMockAction() {
   "use server";
@@ -21,6 +22,8 @@ export default async function MockStartPage() {
   const user = await requireUser();
   const needsPaid = !hasPaidAccess(user);
   const needsProfession = !user.targetProfession;
+  // RR-345 (D6): a trial whose AI feedback cannot cover the mock's Writing and Speaking is told so here, before it starts
+  const trialShort = needsPaid || needsProfession ? null : await mockShortfallFor(user);
 
   // Offer to resume an unfinished mock rather than always starting fresh.
   const inProgress =
@@ -63,6 +66,14 @@ export default async function MockStartPage() {
           The full mock includes AI feedback and is part of a subscription.{" "}
           <a href="/pricing" className="font-semibold underline">
             See plans
+          </a>
+          .
+        </div>
+      ) : trialShort ? (
+        <div role="alert" className="rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink">
+          {trialShort}{" "}
+          <a href="/account" className="font-semibold underline">
+            Your plan
           </a>
           .
         </div>

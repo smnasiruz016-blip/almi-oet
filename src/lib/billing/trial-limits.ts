@@ -73,3 +73,20 @@ export function trialAiAllowance(input: {
         `the tasks that need no AI evaluation.`,
   };
 }
+
+/**
+ * RR-345 (D6) · can a trialling learner FINISH a full mock? The mock grades each AI step (1 Writing, 2 Speaking) and has no skip, so a
+ * trial with too little AI allowance left was refused at step 21 or 22 and the mock never ended. The check is made BEFORE the mock
+ * starts (and shown on its page): null = it fits; otherwise the words to show. Owner, comp and paying learners always fit.
+ */
+export function mockTrialShortfall(input: { subscriptionStatus: string | null; used: Partial<Record<OetTaskType, number>>; plan: readonly OetTaskType[]; bypass?: boolean }): string | null {
+  const short: string[] = [];
+  for (const t of Object.keys(TRIAL_AI_LIMITS) as OetTaskType[]) {
+    const need = input.plan.filter((x) => x === t).length;
+    if (!need) continue;
+    const a = trialAiAllowance({ subscriptionStatus: input.subscriptionStatus, taskType: t, used: input.used[t] ?? 0, bypass: input.bypass });
+    const left = a.remaining ?? 0;
+    if (a.capped && left < need) short.push(`${need} ${t === "WRITING_LETTER" ? "Writing" : "Speaking"} (you have ${left} left)`);
+  }
+  return short.length ? `A full mock needs AI feedback on ${short.join(" and ")}, and your trial's AI feedback is used up. Subscribe to take the full mock, or keep practising Listening and Reading.` : null;
+}

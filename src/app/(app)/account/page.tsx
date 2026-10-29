@@ -37,7 +37,7 @@ async function setProfession(formData: FormData) {
 export default async function AccountPage({
   searchParams,
 }: {
-  searchParams: Promise<{ welcome?: string; upgraded?: string; saved?: string; needprofession?: string }>;
+  searchParams: Promise<{ welcome?: string; upgraded?: string; saved?: string; needprofession?: string; portal_error?: string }>;
 }) {
   const user = await requireUser();
   const params = await searchParams;
@@ -55,7 +55,13 @@ export default async function AccountPage({
       )}
       {params.upgraded && (
         <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/10 px-4 py-3 text-sm text-almi-ink">
-          Subscription active. Your 7-day trial has begun.
+          Subscription active.{user.subscriptionStatus === "trialing" ? " Your 7-day trial has begun." : ""}
+        </div>
+      )}
+      {/* RR-345: the portal route's failure was redirected here and shown nowhere */}
+      {params.portal_error && (
+        <div role="alert" className="rounded-xl border border-almi-coral/40 bg-almi-coral/10 px-4 py-3 text-sm text-almi-ink">
+          The plan page could not be opened just now. Nothing was changed. Please try again in a minute, or write to almiworld@almiworld.com.
         </div>
       )}
       {params.saved && (
@@ -100,16 +106,19 @@ export default async function AccountPage({
         )}
 
         <div className="mt-4 flex flex-wrap gap-3">
-          {proActive ? (
+          {/* RR-345 (D3): shown to every learner with a Stripe customer — on the first failed payment the status becomes past_due and
+              the button used to vanish, so nobody could fix the card. The portal itself works for them. */}
+          {user.stripeCustomerId && (
             <form action="/api/billing/portal" method="POST">
               <button
                 type="submit"
                 className="inline-flex min-h-[40px] items-center justify-center rounded-md border border-almi-ink/15 bg-almi-paper px-4 py-2 text-sm font-semibold text-almi-ink hover:border-almi-coral"
               >
-                Manage subscription
+                Manage or cancel my plan
               </button>
             </form>
-          ) : (
+          )}
+          {!proActive && (
             <Link
               href="/pricing"
               className="inline-flex min-h-[40px] items-center justify-center bg-almi-coral px-4 py-2 text-sm font-semibold text-almi-ink hover:bg-almi-coral-deep"
@@ -173,7 +182,7 @@ export default async function AccountPage({
           </button>
         </form>
         <p className="mt-2 text-xs text-almi-text-muted">
-          Nursing has practice content now; the other professions follow in content batches.
+          All 12 professions have their own Writing letters and Speaking role-plays; Listening and Reading are shared.
         </p>
       </section>
 

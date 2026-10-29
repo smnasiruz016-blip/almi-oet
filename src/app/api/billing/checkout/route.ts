@@ -5,6 +5,7 @@ import {
   STRIPE_PRICE_MONTHLY,
   STRIPE_PRICE_YEARLY,
   priceIdToPlanLabel,
+  isProActive,
 } from "@/lib/billing/plans";
 import { createCheckoutSession } from "@/lib/billing/stripe";
 import { track } from "@/lib/analytics/track";
@@ -28,6 +29,15 @@ export async function POST(req: Request): Promise<NextResponse> {
     return NextResponse.json(
       { ok: false, error: "Please verify your email before subscribing." },
       { status: 403 },
+    );
+  }
+
+  // RR-345 (D5): a second subscription for a learner who already has one — the webhook would then track only one of the two, while
+  // Stripe charges both. The plan is changed or cancelled in the portal (/account), never by a new checkout.
+  if (isProActive(user)) {
+    return NextResponse.json(
+      { ok: false, error: "You already have a plan. Manage or cancel it from your account." },
+      { status: 409 },
     );
   }
 
