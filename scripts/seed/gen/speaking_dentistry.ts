@@ -24,12 +24,12 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "payload": {
       "setting": "General dental surgery, a booked appointment on a weekday morning, the patient already in the chair.",
-      "candidateRole": "You are the dentist. A non-restorable upper first molar needs extracting today and the patient has never had a tooth out.",
-      "patientRole": "A 34-year-old office worker who has never had an extraction, dreads the injection, and is worried about feeling everything and about being unfit for work the next day.",
+      "candidateRole": "You are the dentist. A non-restorable upper first molar needs extracting today and the patient has never had a tooth out. The tooth was assessed at a previous visit, and the patient agreed in principle to the extraction then.",
+      "patientRole": "A 34-year-old office worker who has never had an extraction, dreads the injection, and is worried about feeling everything and about being unfit for work the next day. They came alone by bus, are due back at their desk tomorrow, and mention that they spent the weekend decorating the spare room.",
       "patientConcern": "The real fear is not the tooth but a painful dental experience in childhood, and a private belief that anaesthetic does not work properly on them.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask what the patient is expecting to happen today, and let them describe it in their own words before you correct anything.\n\nAsk directly what the worst part of it is for them, and give them room to say something other than pain.\n\nExplain what local anaesthetic does and what it does not do: that they should feel firm pressure and movement, and that pressure is not the same as pain.\n\nExplain what you will do if they do feel pain, and that more anaesthetic can be given at any point.\n\nAgree a stop signal before you start, and tell them you will honour it every time.\n\nDescribe the procedure itself in sequence and in plain language, including roughly how long it takes.\n\nExplain the aftercare: biting on the gauze, no rinsing or smoking for the rest of the day, painkillers taken before the anaesthetic wears off, and mild swelling that peaks on day two.\n\nAnswer the question about work honestly rather than optimistically, including what a desk day would realistically feel like.\n\nCheck what they have understood by asking them to tell you the plan back.\n\nAgree whether you are going ahead today or booking a longer appointment, and make either choice an acceptable one."
+      "candidateCard": "Ask what the patient is expecting to happen today, and let them describe it in their own words before you correct anything.\n\nAsk directly what the worst part of it is for them, and give them room to say something other than pain.\n\nExplain what local anaesthetic does and what it does not do: that they should feel firm pressure and movement, and that pressure is not the same as pain.\n\nExplain what you will do if they do feel pain, and that more anaesthetic can be given at any point.\n\nAgree a stop signal before you start, and tell them you will honour it every time.\n\nDescribe the procedure itself in sequence and in plain language, including roughly how long it takes.\n\nExplain the aftercare: biting on the gauze, no rinsing today then warm salt-water rinses, no smoking for at least a day or two, painkillers taken before the anaesthetic wears off, and mild swelling that peaks on day two.\n\nAnswer the question about work honestly rather than optimistically, including what a desk day would realistically feel like.\n\nCheck what they have understood by asking them to tell you the plan back.\n\nAgree whether you are going ahead today or booking a longer appointment, and make either choice an acceptable one."
     },
     "guidanceNote": "Slow down and check feelings before facts — naming the fear ('many people feel nervous before a first extraction') earns the trust that lets your clinical explanation actually land. Let the patient set the pace and confirm consent rather than rushing to the chair."
   },
@@ -46,8 +46,8 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "payload": {
       "setting": "Community dental clinic, a routine check-up appointment, the child sitting in the chair and the parent alongside.",
-      "candidateRole": "You are the dentist. A six-year-old has early decay in two lower molars and you want to apply fluoride varnish and agree a prevention plan.",
-      "patientRole": "The parent of a six-year-old, cautious about fluoride, has read online that it is harmful, and prefers natural approaches, but does want the decay stopped.",
+      "candidateRole": "You are the dentist. A six-year-old has early decay in two lower molars and you want to apply fluoride varnish and agree a prevention plan. The decay was first noted on radiographs at the last check-up, and the parent was told then that prevention would be discussed today.",
+      "patientRole": "The parent of a six-year-old, cautious about fluoride, has read online that it is harmful, and prefers natural approaches, but does want the decay stopped. They brush the child’s teeth at night themselves, an older sibling has never needed a filling, and they mention that the family has just got a puppy.",
       "patientConcern": "The parent is not opposed to evidence so much as afraid of being judged a bad parent for the decay, and will close down if lectured.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -67,9 +67,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Children's dental clinic, a first appointment, the child on the parent's lap rather than in the chair.",
-      "candidateRole": "You are the dentist. A three-year-old has several cavities in the upper front and back teeth, with a bedtime bottle of sweetened milk a likely contributor.",
-      "patientRole": "The parent of a three-year-old, anxious, quiet, feels they have already done their best, and expects to be told off. A grandmother gives the bedtime bottle.",
+      "setting": "Children's dental clinic, a first appointment, the child on the parent's lap rather than in the chair. The family were referred by their health visitor, and this is the last appointment before lunch.",
+      "candidateRole": "You are the dentist. A three-year-old has several cavities in the upper front and back teeth, with a bedtime bottle of sweetened milk a likely contributor. The child let you look briefly with a mirror and cried only at the very end.",
+      "patientRole": "The parent of a three-year-old, anxious, quiet, feels they have already done their best, and expects to be told off. A grandmother gives the bedtime bottle. The parent works part-time in a bakery, the grandmother looks after the child three evenings a week, and the parent apologises for being late after struggling to park.",
       "patientConcern": "The parent is frightened of being judged and will stop engaging altogether if the conversation feels like an accusation.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -89,13 +89,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General dental surgery, a follow-up appointment after an emergency visit two days ago for pain.",
-      "candidateRole": "You are the dentist. A lower second molar is badly infected and can either be saved with root canal treatment or removed.",
-      "patientRole": "A 46-year-old who wants the pain gone quickly, is leaning towards extraction because it sounds simpler and cheaper, and has already looked up the price of both.",
+      "setting": "General dental surgery, a follow-up appointment after an emergency visit two days ago for pain. At that visit the tooth was examined and radiographed, and the patient was asked to come back to discuss the options.",
+      "candidateRole": "You are the dentist. A lower second molar is badly infected and can either be saved with root canal treatment or removed. The rest of the mouth is in good condition, and the neighbouring teeth are sound.",
+      "patientRole": "A 46-year-old who wants the pain gone quickly, is leaning towards extraction because it sounds simpler and cheaper, and has already looked up the price of both. They work shifts at a distribution warehouse, have had only one filling before, and mention that their car failed its MOT last week, which is partly why money feels tight.",
       "patientConcern": "The patient has not thought past the next fortnight and has not considered what a gap will mean for chewing, for the neighbouring teeth, or for cost in five years.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask what the patient is thinking at the moment and what has led them towards extraction.\n\nAsk what matters most to them: speed, cost, avoiding further appointments, or keeping the tooth.\n\nExplain what root canal treatment involves, how many visits, what it feels like, and how likely it is to succeed in this tooth.\n\nExplain what extraction involves and how quickly the pain would settle.\n\nSet out the longer picture for each option: what happens to the space, to the opposing tooth, and to chewing on that side.\n\nExplain the cost of each option honestly, including the cost of replacing the tooth later if they choose extraction now.\n\nCorrect any assumption that the tooth will simply be replaced free of charge or easily.\n\nSay what you would recommend and give your reason, while making clear the decision is theirs.\n\nCheck whether anything is pushing them towards a rushed decision, such as pain or time off work, and offer to relieve the pain today either way.\n\nAgree the next step and give them the option of deciding after the appointment rather than in the chair."
+      "candidateCard": "Ask what the patient is thinking at the moment and what has led them towards extraction.\n\nAsk what matters most to them: speed, cost, avoiding further appointments, or keeping the tooth.\n\nExplain what root canal treatment involves, how many visits, what it feels like, and how likely it is to succeed in this tooth.\n\nExplain what extraction involves and how quickly the pain would settle.\n\nSet out the longer picture for each option: what happens to the space, to the opposing tooth, and to chewing on that side.\n\nExplain the cost of each option honestly, under the health service and privately, including the cost of replacing the tooth later if they choose extraction now.\n\nCorrect any assumption that the tooth will simply be replaced free of charge or easily.\n\nSay what you would recommend and give your reason, while making clear the decision is theirs.\n\nCheck whether anything is pushing them towards a rushed decision, such as pain or time off work, and offer to relieve the pain today either way.\n\nAgree the next step and give them the option of deciding after the appointment rather than in the chair."
     },
     "guidanceNote": "Make the long-term consequences of extraction concrete; an informed patient may still choose it, but should not be surprised later."
   },
@@ -111,9 +111,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Private cosmetic dental practice, a consultation appointment booked for treatment planning.",
-      "candidateRole": "You are the dentist. The patient wants very bright, uniform veneers on the upper front teeth, based on photographs they have brought in.",
-      "patientRole": "A 27-year-old getting married in four months, with fixed ideas about the exact shade and shape, and photographs of a celebrity smile on their phone.",
+      "setting": "Private cosmetic dental practice, a consultation appointment booked for treatment planning. The patient paid a consultation fee when booking and has come with their partner, who is waiting in reception.",
+      "candidateRole": "You are the dentist. The patient wants very bright, uniform veneers on the upper front teeth, based on photographs they have brought in. Their own teeth are healthy, with mild crowding and some yellowing, and there are no existing restorations on the upper front teeth.",
+      "patientRole": "A 27-year-old getting married in four months, with fixed ideas about the exact shade and shape, and photographs of a celebrity smile on their phone. They work in marketing, have been planning the wedding for over a year, and mention that the venue is a converted barn.",
       "patientConcern": "The patient has not understood that veneers are irreversible, and would be quietly disappointed by a result that looked natural rather than dramatic.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -133,9 +133,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General dental surgery, a routine six-monthly examination, findings noted during the check-up.",
-      "candidateRole": "You are the dentist. The patient has markedly worn, flattened molars and reports jaw soreness and morning headaches consistent with night-time grinding.",
-      "patientRole": "A 41-year-old in a demanding job who waves the problem off as stress that will pass, and who has never been told about the wear before.",
+      "setting": "General dental surgery, a routine six-monthly examination, findings noted during the check-up. The patient has attended this practice for several years, usually seeing a colleague who has now retired.",
+      "candidateRole": "You are the dentist. The patient has markedly worn, flattened molars and reports jaw soreness and morning headaches consistent with night-time grinding. The previous notes record only slight wear, and there are no cracked teeth or failing fillings at present.",
+      "patientRole": "A 41-year-old in a demanding job who waves the problem off as stress that will pass, and who has never been told about the wear before. They manage a team at an insurance firm, often answer emails late at night, and mention that they took up running last spring and have just entered a half-marathon.",
       "patientConcern": "The patient does not connect the headaches with the teeth at all, and hears the night guard as an upsell rather than as treatment.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -155,9 +155,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Community dental clinic, an appointment booked for a filling, the patient in the chair and visibly distressed.",
-      "candidateRole": "You are the dentist. The patient needs a moderate cavity filled and becomes distressed as soon as any equipment is switched on.",
-      "patientRole": "A 29-year-old who had a frightening dental experience as a child, has avoided dentists for eleven years, and came today only because of pain.",
+      "setting": "Community dental clinic, an appointment booked for a filling, the patient in the chair and visibly distressed. The receptionist mentioned that the patient almost cancelled this morning, and the appointment has been given a longer slot.",
+      "candidateRole": "You are the dentist. The patient needs a moderate cavity filled and becomes distressed as soon as any equipment is switched on. The tooth is a lower molar, the pain has come and gone for about a month, and nothing has been started yet.",
+      "patientRole": "A 29-year-old who had a frightening dental experience as a child, has avoided dentists for eleven years, and came today only because of pain. They work as a graphic designer from home, came on their own, and mention that their sister recommended this clinic after having her own teeth treated here.",
       "patientConcern": "The underlying fear is of being trapped and unable to make you stop once treatment has begun, rather than of pain itself.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -177,9 +177,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General dental surgery, an unscheduled review two weeks after a lower complete denture was fitted.",
-      "candidateRole": "You are the dentist. The patient has returned with a sore spot from a recently fitted lower denture that needs adjusting.",
-      "patientRole": "A 68-year-old who is frustrated, is finding it hard to eat anything firm, has stopped wearing the denture at home, and wonders whether it was made wrongly.",
+      "setting": "General dental surgery, an unscheduled review two weeks after a lower complete denture was fitted. The patient phoned yesterday and was fitted in at the end of the morning list.",
+      "candidateRole": "You are the dentist. The patient has returned with a sore spot from a recently fitted lower denture that needs adjusting. You made the denture yourself, and the upper teeth are the patient’s own and in reasonable condition.",
+      "patientRole": "A 68-year-old who is frustrated, is finding it hard to eat anything firm, has stopped wearing the denture at home, and wonders whether it was made wrongly. They are a retired bus driver who lives with a partner, still put the denture in when going out, and mention that they have just come back from a week visiting their grandchildren in Scotland.",
       "patientConcern": "The patient fears the money has been wasted on something they will never wear comfortably, and is embarrassed to have taken it out.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -199,9 +199,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General dental surgery, an emergency walk-in forty minutes after the injury, the patient still holding the tooth in a tissue.",
-      "candidateRole": "You are the dentist. An upper central incisor was avulsed in a fall and the patient has brought the tooth with them.",
-      "patientRole": "A 26-year-old, shaken and in pain after tripping on steps, holding the tooth wrapped in a dry tissue, and frightened about how they will look.",
+      "setting": "General dental surgery, an emergency walk-in forty minutes after the injury, the patient still holding the tooth in a tissue. A friend who was with them at the time has come along and is waiting in reception.",
+      "candidateRole": "You are the dentist. An upper central incisor was avulsed in a fall and the patient has brought the tooth with them. The patient has no medical history of note, and the neighbouring teeth appear intact at first look.",
+      "patientRole": "A 26-year-old, shaken and in pain after tripping on steps, holding the tooth wrapped in a dry tissue, and frightened about how they will look. They work in a clothes shop, were on their way to meet friends for lunch, and mention that they had braces as a teenager.",
       "patientConcern": "The distress is mostly about appearance and about facing work on Monday with a visible gap, more than about the tooth itself.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -221,9 +221,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General dental surgery, a routine examination, gum findings recorded during the check-up.",
-      "candidateRole": "You are the dentist. Charting has shown generalised bleeding on probing, four to five millimetre pockets, and early bone loss.",
-      "patientRole": "A 36-year-old accountant who thinks bleeding when brushing is normal, brushes hard twice a day with a medium brush, has never used interdental brushes, and has not seen a hygienist.",
+      "setting": "General dental surgery, a routine examination, gum findings recorded during the check-up. The patient has attended for check-ups every year or so but has always declined a hygiene appointment because of the cost.",
+      "candidateRole": "You are the dentist. Charting has shown generalised bleeding on probing, four to five millimetre pockets, and early bone loss. There is no decay needing treatment, and the previous notes mention only mild gingivitis.",
+      "patientRole": "A 36-year-old accountant who thinks bleeding when brushing is normal, brushes hard twice a day with a medium brush, has never used interdental brushes, and has not seen a hygienist. They do not smoke, have no medical conditions they know of, and mention that their busy season ends next month and that they have recently joined a five-a-side football team.",
       "patientConcern": "The patient assumes gum disease belongs to people who do not clean their teeth, and is quietly embarrassed to be told they have it.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -243,9 +243,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General dental surgery, an appointment requested by the patient because of sensitivity.",
-      "candidateRole": "You are the dentist. The patient has marked generalised sensitivity after three weeks of a strong whitening kit bought online.",
-      "patientRole": "A 31-year-old with a family event in five weeks who is reluctant to stop whitening despite pain on cold drinks and on breathing in cold air.",
+      "setting": "General dental surgery, an appointment requested by the patient because of sensitivity. The patient was offered the first available slot after phoning on Monday, and has come straight from work.",
+      "candidateRole": "You are the dentist. The patient has marked generalised sensitivity after three weeks of a strong whitening kit bought online. Their last check-up was eight months ago and showed no decay, and the gums were healthy at that visit.",
+      "patientRole": "A 31-year-old with a family event in five weeks who is reluctant to stop whitening despite pain on cold drinks and on breathing in cold air. The event is their sister’s wedding, where they will be in many photographs. They work as a hairdresser, have brought the kit with them in a carrier bag, and mention that they have just moved flat.",
       "patientConcern": "The cosmetic result matters more to the patient than the discomfort, so they will simply continue unless offered something that still gets them a result.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -265,13 +265,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Private dental surgery, a treatment planning appointment after a cracked cusp was found last week.",
-      "candidateRole": "You are the dentist. A heavily filled lower molar has cracked and you have recommended a crown to protect it.",
-      "patientRole": "A 44-year-old self-employed plumber who has just been told the crown is only partly covered by his insurance and who has had large fillings placed before without problems.",
+      "setting": "Private dental surgery, a treatment planning appointment after a cracked cusp was found last week. The patient asked for the earliest morning appointment so that he could get to a job afterwards.",
+      "candidateRole": "You are the dentist. A heavily filled lower molar has cracked and you have recommended a crown to protect it. The tooth is vital, shows no sign of infection, and the rest of his mouth is in good repair.",
+      "patientRole": "A 44-year-old self-employed plumber who has just been told the crown is only partly covered by his insurance and who has had large fillings placed before without problems. He has brought the insurance letter with him, has two children at primary school, and mentions that his van is parked on a meter outside.",
       "patientConcern": "The patient suspects he is being sold the expensive option and wants honest reassurance that the crown is genuinely necessary.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask what the patient has been told so far and what his understanding of the problem is.\n\nShow him the crack and explain what has happened to the tooth in plain terms.\n\nExplain why a large filling is not the same proposition in this tooth as in the ones he has had before.\n\nSet out the realistic options: crown, large filling, onlay, and doing nothing for now, with the likely outcome of each.\n\nGive an honest estimate of how long each option would be expected to last in a tooth like this.\n\nExplain what happens if the tooth splits, including the possibility of losing it altogether, without overstating it.\n\nAddress the suspicion of upselling head on, and say what you would do if it were your own tooth.\n\nGive clear figures, including what the insurance covers and what he would pay, and check whether payment over time is possible.\n\nOffer a middle path if there is one, such as a temporary measure now and a decision in a few months.\n\nAgree the next step and make clear that choosing the cheaper option is a legitimate decision you will support."
+      "candidateCard": "Ask what the patient has been told so far and what his understanding of the problem is.\n\nShow him the crack and explain what has happened to the tooth in plain terms.\n\nExplain why a large filling is not the same proposition in this tooth as in the ones he has had before.\n\nSet out the realistic options: crown, large filling, onlay, and doing nothing for now, with the likely outcome of each.\n\nGive an honest estimate of how long each option would be expected to last in a tooth like this.\n\nExplain what happens if the tooth splits, including the possibility of losing it altogether, without overstating it.\n\nAddress the suspicion of upselling head on, and say what you would do if it were your own tooth.\n\nGive clear figures from the written estimate and the insurance letter: what the insurance covers and what he would pay, and whether payment over time is possible.\n\nOffer a middle path: a bonded restoration protecting the cracked cusp now, a decision within weeks, and what to report meanwhile.\n\nAgree the next step and make clear that choosing the cheaper option is a legitimate decision you will support."
     },
     "guidanceNote": "Name the cost openly before the patient has to raise it again; honest framing of alternatives builds more trust than a hard sell."
   },
@@ -287,13 +287,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General dental surgery, a routine appointment, the patient at twenty-two weeks of pregnancy.",
-      "candidateRole": "You are the dentist. The patient has a moderate cavity in a lower molar that needs restoring and is worried treatment could harm the baby.",
-      "patientRole": "A 30-year-old at twenty-two weeks in her first pregnancy, hesitant about local anaesthetic and radiographs, told by a relative to avoid all treatment, and inclined to postpone everything until after the birth.",
+      "setting": "General dental surgery, a routine appointment, the patient at twenty-two weeks of pregnancy. Her last check-up here was before she became pregnant.",
+      "candidateRole": "You are the dentist. The patient has a moderate cavity in a lower molar that needs restoring and is worried treatment could harm the baby. The cavity was found on examination today, there is no swelling, and she reports only occasional sensitivity to sweet things.",
+      "patientRole": "A 30-year-old at twenty-two weeks in her first pregnancy, hesitant about local anaesthetic and radiographs, told by a relative to avoid all treatment, and inclined to postpone everything until after the birth. She works as a primary school teacher, her pregnancy has been straightforward so far, and she mentions that she and her partner have just finished painting the nursery.",
       "patientConcern": "The patient believes any dental treatment in pregnancy carries risk, and needs specific evidence rather than general reassurance before she will agree.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask what she has been told and by whom, and what specifically she is worried about.\n\nAsk about the pregnancy itself: how many weeks, whether it has been straightforward, and whether she is comfortable lying back.\n\nExplain what is known about dental local anaesthetic in pregnancy, and be specific rather than simply reassuring.\n\nExplain the position on radiographs, including the dose involved, the shielding used, and why one may not be needed today at all.\n\nExplain why the second trimester is the preferred window, and what happens to treatment options if she waits.\n\nExplain what an untreated cavity is likely to do over the next four months, including the risk of pain or infection at a worse time.\n\nAddress gum changes in pregnancy briefly, since she may be noticing bleeding and worrying about it.\n\nOffer practical adjustments: a shorter appointment, a more upright position, and a break whenever she needs one.\n\nAsk whether she would like to discuss it with her midwife first, and offer to put the information in writing.\n\nAgree a plan, and make it a plan she has chosen rather than accepted."
+      "candidateCard": "Ask what she has been told and by whom, and what specifically she is worried about.\n\nAsk about the pregnancy itself: how many weeks, whether it has been straightforward, and whether she is comfortable lying back.\n\nExplain what is known about dental local anaesthetic in pregnancy, and be specific rather than simply reassuring.\n\nExplain the position on radiographs, including the dose involved, why a lead apron is no longer recommended, and why one may not be needed today at all.\n\nExplain why the second trimester is the preferred window, and what happens to treatment options if she waits.\n\nExplain what an untreated cavity is likely to do over the next four months, including the risk of pain or infection at a worse time.\n\nAddress gum changes in pregnancy briefly, since she may be noticing bleeding and worrying about it.\n\nOffer practical adjustments: a shorter appointment, a more upright position, and a break whenever she needs one.\n\nAsk whether she would like to discuss it with her midwife first, and offer to put the information in writing.\n\nAgree a plan, and make it a plan she has chosen rather than accepted."
     },
     "guidanceNote": "Be specific about what is safe and why; vague reassurance leaves an anxious patient still inclined to postpone."
   },
@@ -309,9 +309,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General dental surgery, a routine examination, the finding noticed during soft tissue screening.",
-      "candidateRole": "You are the dentist. A persistent white patch on the lateral border of the tongue needs urgent specialist referral.",
-      "patientRole": "A 55-year-old lorry driver who has smoked for thirty-five years and drinks most evenings, feels perfectly well, has no pain, and does not want a hospital appointment or time off work.",
+      "setting": "General dental surgery, a routine examination, the finding noticed during soft tissue screening. The patient usually attends once a year and was seen by a colleague at the last visit.",
+      "candidateRole": "You are the dentist. A persistent white patch on the lateral border of the tongue needs urgent specialist referral. The patch does not rub off, there are no ulcers elsewhere in the mouth, and you have not felt any lumps in the neck on examination.",
+      "patientRole": "A 55-year-old lorry driver who has smoked for thirty-five years and drinks most evenings, feels perfectly well, has no pain, and does not want a hospital appointment or time off work. He is married with grown-up children, drives long-distance routes that keep him away three nights a week, and mentions that he supports the local football club.",
       "patientConcern": "The patient is frightened of a cancer diagnosis and is more likely to avoid the referral than to attend, so avoidance must be anticipated rather than assumed away.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -331,13 +331,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Orthodontic clinic, a review appointment four months after fixed appliances were removed, the parent waiting outside at the patient's request.",
-      "candidateRole": "You are the dentist. The patient's lower incisors have begun to relapse because the retainer has not been worn.",
-      "patientRole": "A 16-year-old who finished two years of braces, finds the retainer uncomfortable and embarrassing, and does not see the point now that the braces are off.",
+      "setting": "Orthodontic clinic, a review appointment four months after fixed appliances were removed, the parent waiting outside at the patient's request. The patient arrived straight from school, still in uniform, and has brought the retainer in its case.",
+      "candidateRole": "You are the dentist. The patient's lower incisors have begun to relapse because the retainer has not been worn. The upper teeth remain well aligned, and the original treatment finished on time with a good result.",
+      "patientRole": "A 16-year-old who finished two years of braces, finds the retainer uncomfortable and embarrassing, and does not see the point now that the braces are off. They play hockey for the school, are revising for exams this year, and mention that they have just started a weekend job at a café.",
       "patientConcern": "The patient resents being told what to do and will disengage entirely if the conversation is conducted over their head or as a telling-off.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Speak to the patient rather than about them, and ask how they have got on since the braces came off.\n\nAsk what the retainer is actually like to wear: comfort, speech, sport, eating, and being seen in it.\n\nAsk when they last wore it and for how long, and make an honest answer easy to give.\n\nShow them the movement that has already happened, using the models or photographs from debond.\n\nExplain why teeth move back, in terms of the fibres and the bone rather than in terms of obedience.\n\nExplain what the next two years look like with and without the retainer, and be specific about how much more movement to expect.\n\nExplain the options honestly, including a fixed bonded retainer and a different removable design.\n\nAsk what they would be willing to do, rather than telling them what they must do, and negotiate from there.\n\nAgree a plan in their words, including how many nights a week and what happens if they miss.\n\nAgree what will be said to their parent, and how the next review will check the plan rather than their character."
+      "candidateCard": "Speak to the patient rather than about them, and ask how they have got on since the braces came off.\n\nAsk what the retainer is actually like to wear: comfort, speech, sport, eating, and being seen in it.\n\nAsk when they last wore it and for how long, and make an honest answer easy to give.\n\nShow them the movement that has already happened, using the models or photographs from debond.\n\nExplain why teeth move back, in terms of the fibres and the bone rather than in terms of obedience.\n\nExplain what the next two years look like with and without the retainer, and be honest about the likely direction of further movement without forecasting an exact amount.\n\nExplain the options honestly, including a fixed bonded retainer and a different removable design.\n\nAsk what they would be willing to do, rather than telling them what they must do, and negotiate from there.\n\nAgree a plan in their words, including how many nights a week and what happens if they miss.\n\nAgree what will be said to their parent, and how the next review will check the plan rather than their character."
     },
     "guidanceNote": "Give the teenager ownership of the plan; involving them in the solution works better than warnings about consequences."
   }

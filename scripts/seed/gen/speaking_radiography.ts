@@ -23,13 +23,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "MRI department, in the screening area outside the scan room, before a knee scan.",
-      "candidateRole": "You are the radiographer completing the MRI safety screening questionnaire before the patient enters the scan room.",
-      "patientRole": "A 70-year-old who is vague about past operations, has ticked no to everything on the form, and keeps saying it was all a long time ago.",
-      "patientConcern": "The patient had eye surgery decades ago and does not realise a retained metal fragment could be dangerous, so waves the questions away.",
+      "setting": "MRI department, in the screening area outside the scan room, before a knee scan. The screening area has a curtained cubicle and a locker for belongings. The knee scan was booked after several months of pain on the stairs.",
+      "candidateRole": "You are the radiographer completing the MRI safety screening questionnaire before the patient enters the scan room. You have the referral and the ticked form in front of you.",
+      "patientRole": "A 70-year-old who is vague about past operations, has ticked no to everything on the form, and keeps saying it was all a long time ago. Their son drove them in and is waiting in the main reception. They mention that the car park was full and that they had to circle twice.",
+      "patientConcern": "The patient had a metal fragment injury to the eye decades ago, treated surgically, and does not realise that a retained fragment, which cannot be excluded, could be dangerous, so waves the questions away.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Explain before you begin why these questions are asked every time and of every patient.\n\nExplain what the magnet does to metal, in concrete terms rather than as a general safety statement.\n\nAsk about each category in turn rather than accepting a single blanket answer: pacemakers, clips, stents, joints and plates.\n\nAsk specifically about eye injuries and eye surgery, and about metalwork or grinding at work.\n\nAsk about anything implanted that they may not think of as an operation, including a hearing implant or a drug pump.\n\nAsk patiently again about the periods they have skipped over, and give them time to remember.\n\nExplain why the timing matters, since older implants are often the ones that are not MRI safe.\n\nExplain what happens if there is any doubt, including checking the medical record or arranging an orbital radiograph.\n\nReassure them that the scan is not being obstructed and that a delay is preferable to the alternative.\n\nAsk about loose metal on their person now: jewellery, hearing aids, dentures and clothing.\n\nGain full and honest cooperation, and confirm every answer with them before entering the room."
+      "candidateCard": "Explain before you begin why these questions are asked every time and of every patient.\n\nExplain what the magnet does to metal, in concrete terms rather than as a general safety statement.\n\nAsk about each category in turn rather than accepting a single blanket answer: pacemakers, clips, stents, joints and plates.\n\nAsk specifically about eye injuries and eye surgery, and about metalwork or grinding at work.\n\nAsk about anything implanted that they may not think of as an operation, including a hearing implant or a drug pump.\n\nAsk patiently again about the periods they have skipped over, and give them time to remember.\n\nExplain why the timing matters, since older implants are often the ones that are not MRI safe.\n\nRecord the eye history as a past metal fragment injury where a retained fragment cannot be excluded, and explain the checks: the medical record or an orbital radiograph.\n\nReassure them that the scan is not being obstructed and that a delay is preferable to the alternative.\n\nAsk about loose metal on their person now: jewellery, hearing aids, dentures and clothing.\n\nGain full and honest cooperation, and confirm every answer with them before entering the room."
     },
     "guidanceNote": "Convey that thorough screening protects the patient rather than being bureaucratic; probe gently about old operations and occupational metal exposure rather than accepting a quick 'no'."
   },
@@ -45,9 +45,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "CT imaging department, on the scanner table, cannula in place and the pump loaded.",
-      "candidateRole": "You are the radiographer about to perform a CT angiogram requiring intravenous iodinated contrast.",
-      "patientRole": "A 47-year-old who has become tense and quiet since seeing the pump, whose aunt was said to have reacted badly to a dye years ago.",
+      "setting": "CT imaging department, on the scanner table, cannula in place and the pump loaded. The scan has been requested to look at the arteries of the legs, and the referral and consent form have been checked. The room is cool and the patient has been given a blanket.",
+      "candidateRole": "You are the radiographer about to perform a CT angiogram requiring intravenous iodinated contrast. A colleague is at the console in the control room, and the scan protocol is already loaded.",
+      "patientRole": "A 47-year-old who has become tense and quiet since seeing the pump, whose aunt was said to have reacted badly to a dye years ago. They work as a school librarian and came straight from work. Their partner is in the waiting area outside. They mention that they once broke a wrist skiing, which healed well, and that they are missing their evening choir practice.",
       "patientConcern": "The patient secretly fears the warm flushing sensation means an allergic reaction is beginning, and is close to asking to stop.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -67,9 +67,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Fluoroscopy suite, in the changing area, before a barium enema examination.",
-      "candidateRole": "You are the radiographer preparing the patient for a barium enema examination.",
-      "patientRole": "A 63-year-old who has completed the bowel preparation, is apprehensive, avoids eye contact, and has asked twice how many people will be in the room.",
+      "setting": "Fluoroscopy suite, in the changing area, before a barium enema examination. A toilet is directly next door to the changing area, and gowns and dressing gowns hang by the door. The list is running about twenty minutes late.",
+      "candidateRole": "You are the radiographer preparing the patient for a barium enema examination. A radiologist will perform the examination with you, and an assistant practitioner is also working on the list today.",
+      "patientRole": "A 63-year-old who has completed the bowel preparation, is apprehensive, avoids eye contact, and has asked twice how many people will be in the room. They work as a bookkeeper, live with their wife, and came by bus. They mention that they spent most of yesterday at home because of the preparation, and that they would rather be out in the garden this morning.",
       "patientConcern": "The patient is deeply embarrassed about the possibility of losing bowel control during the examination and is reluctant to admit it.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -89,9 +89,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General X-ray room, the patient standing at the erect bucky, breathless after walking from the waiting area.",
-      "candidateRole": "You are the radiographer performing a chest X-ray and needing an adequate inspiratory breath-hold.",
-      "patientRole": "A 66-year-old with COPD who is short of breath, has not followed the breathing instruction on two attempts, and is becoming embarrassed.",
+      "setting": "General X-ray room, the patient standing at the erect bucky, breathless after walking from the waiting area. The request is from the respiratory clinic downstairs, and the patient walked up because no wheelchair was free. There is a chair in the corner of the room.",
+      "candidateRole": "You are the radiographer performing a chest X-ray and needing an adequate inspiratory breath-hold. The department is busy and two more patients are waiting, but you have time to do this properly.",
+      "patientRole": "A 66-year-old with COPD who is short of breath, has not followed the breathing instruction on two attempts, and is becoming embarrassed. They gave up smoking several years ago and live with their husband, who is waiting outside. They used to play bowls until last winter, and they mention that the bus was late this morning.",
       "patientConcern": "The patient worries that taking a deep breath will trigger a coughing fit or worsen the breathlessness, so is holding back deliberately.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -111,9 +111,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Paediatric X-ray room, the child crying and clinging to the parent, the arm supported in a sling.",
-      "candidateRole": "You are the radiographer needing anteroposterior and lateral images of a possibly fractured forearm in a four-year-old.",
-      "patientRole": "The parent of a frightened four-year-old, reluctant to let you position or hold the arm, and visibly upset at the child's distress.",
+      "setting": "Paediatric X-ray room, the child crying and clinging to the parent, the arm supported in a sling. The child fell from a sofa at home earlier today, and the emergency department nurse applied the sling.",
+      "candidateRole": "You are the radiographer needing anteroposterior and lateral images of a possibly fractured forearm in a four-year-old. A second radiographer is free to help if needed, and the request form gives the child's name and how the injury happened.",
+      "patientRole": "The parent of a frightened four-year-old, reluctant to let you position or hold the arm, and visibly upset at the child's distress. The parent is the child's mother, who came straight from work and has a baby at home with a grandparent. She mentions that the child loves dinosaurs and that the car is in the one-hour bay outside.",
       "patientConcern": "The parent worries that holding the child still will be traumatic and that the equipment and lead apron will frighten the child further.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -133,9 +133,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Interventional imaging room, the patient on the couch, before an ultrasound-guided core biopsy.",
-      "candidateRole": "You are the radiographer assisting with the biopsy and preparing the patient for the procedure.",
-      "patientRole": "A 44-year-old recalled from routine screening after an abnormal mammogram, attending alone today, frightened of the needle and shaking slightly on the couch.",
+      "setting": "Interventional imaging room, the patient on the couch, before an ultrasound-guided core biopsy. The radiologist who will take the samples is reviewing the images next door, and the room has been kept warm.",
+      "candidateRole": "You are the radiographer assisting with the biopsy and preparing the patient for the procedure. You have assisted with many of these procedures and will stay beside her throughout.",
+      "patientRole": "A 44-year-old recalled from routine screening after an abnormal mammogram, attending alone today, frightened of the needle and shaking slightly on the couch. She works part-time in a garden centre and has two teenage sons, whom she has not told about the recall. Her partner is away on business this week. She mentions that she coped well with the injection for a dental filling recently, and that she nearly missed the turning for the hospital.",
       "patientConcern": "The patient is mainly terrified that the biopsy is being done because the team already believes she has cancer.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -155,9 +155,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "MRI suite in a hospital imaging department, immediately before a scheduled lumbar spine scan.",
-      "candidateRole": "You are the radiographer about to perform an MRI of the lumbar spine on a patient who has become visibly anxious in the waiting area.",
-      "patientRole": "A 44-year-old who has never had an MRI, has been in the waiting room for forty minutes, and asked the receptionist how wide the scanner is.",
+      "setting": "MRI suite in a hospital imaging department, immediately before a scheduled lumbar spine scan. The scan was requested by the spinal clinic, and the safety questionnaire has already been completed and checked.",
+      "candidateRole": "You are the radiographer about to perform an MRI of the lumbar spine on a patient who has become visibly anxious in the waiting area. A colleague is at the console, and headphones are ready.",
+      "patientRole": "A 44-year-old who has never had an MRI, has been in the waiting room for forty minutes, and asked the receptionist how wide the scanner is. They work as a delivery driver and are worried about losing the afternoon. A friend came with them and is reading in the waiting room. They are a keen angler.",
       "patientConcern": "The patient is terrified of panicking and being trapped, and is too embarrassed to say so unless gently invited.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -177,13 +177,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Mammography unit, in the screening room, the patient gowned and standing at the machine.",
-      "candidateRole": "You are the radiographer performing a routine screening mammogram and you need four standard views of adequate quality.",
-      "patientRole": "A 56-year-old who found the previous mammogram three years ago very painful, hesitated about attending, and is now reluctant to step forward.",
+      "setting": "Mammography unit, in the screening room, the patient gowned and standing at the machine. The room is warm, and a changing cubicle is just behind the curtain. The next appointment is in fifteen minutes.",
+      "candidateRole": "You are the radiographer performing a routine screening mammogram and you need four standard views of adequate quality. You have her previous images and the note from last time, which records only that she found the examination uncomfortable.",
+      "patientRole": "A 56-year-old who found the previous mammogram three years ago very painful, hesitated about attending, and is now reluctant to step forward. She works as a primary school teacher and came in her lunch hour. Her sister had a mammogram last year and told her it was easier than expected. She mentions that she has recently taken up swimming and that the parking machine would only take coins.",
       "patientConcern": "The patient fears the compression will be as painful as last time and is privately considering leaving before the second view.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask about the previous experience and what made it painful.\n\nAsk whether there is any breast tenderness today and where in her cycle she is, if relevant.\n\nAcknowledge that compression can genuinely hurt and do not tell her it will be fine.\n\nExplain why compression is necessary: image quality, spreading the tissue, and a lower radiation dose.\n\nExplain what would happen without adequate compression, including a repeat visit.\n\nExplain how you will work with her: warning before each compression, applying it gradually, and stopping at her word.\n\nAgree a signal for pausing, and make clear you will honour it.\n\nExplain how many views are needed and how long each compression actually lasts.\n\nExplain the positioning for each view before you move her, so nothing is a surprise.\n\nOffer practical measures: analgesia at the next appointment, timing in the cycle, and a slower pace today.\n\nExplain how and when the result will reach her, so the appointment ends with something certain.\n\nGain cooperation for all the required views, and check afterwards how it compared with last time."
+      "candidateCard": "Ask about the previous experience and what made it painful.\n\nAsk whether there is any breast tenderness today and where in her cycle she is, if relevant.\n\nAcknowledge that compression can genuinely hurt and do not tell her it will be fine.\n\nExplain why compression is necessary: image quality, spreading the tissue, and a lower radiation dose.\n\nExplain what would happen without adequate compression, including a repeat visit.\n\nExplain how you will work with her: warning before each compression, applying it gradually, and stopping at her word.\n\nAgree a signal for pausing, and make clear you will honour it.\n\nExplain how many views are needed and how long each compression actually lasts.\n\nExplain the positioning for each view before you move her, so nothing is a surprise.\n\nOffer practical measures: analgesia at the next appointment, cycle timing if she still has periods, and a slower pace today.\n\nExplain how and when the result will reach her, so the appointment ends with something certain.\n\nGain cooperation for all the required views, and check afterwards how it compared with last time."
     },
     "guidanceNote": "Give the patient a sense of control, for example agreeing a signal to pause, and explain that good compression actually lowers the radiation dose and reduces the need to repeat views."
   },
@@ -199,9 +199,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Ultrasound department, in the scanning room, the patient already on the couch.",
-      "candidateRole": "You are the radiographer about to perform an abdominal ultrasound, having discovered the patient ate breakfast two hours ago.",
-      "patientRole": "A 52-year-old who took unpaid leave to attend, drove an hour, and did not read the fasting instruction on the appointment letter.",
+      "setting": "Ultrasound department, in the scanning room, the patient already on the couch. The appointment letter is on the desk, with the fasting instruction printed in small type on the second page. The waiting area outside is full.",
+      "candidateRole": "You are the radiographer about to perform an abdominal ultrasound, having discovered the patient ate breakfast two hours ago. The referral comes from the patient's GP, and you can see the booking diary on the screen.",
+      "patientRole": "A 52-year-old who took unpaid leave to attend, drove an hour, and did not read the fasting instruction on the appointment letter. They work shifts in a warehouse, and their manager agreed to the leave reluctantly. They had toast and a coffee with milk at home. They mention that they are training for a charity walk and that they paid for two hours of parking.",
       "patientConcern": "The patient took time off work with difficulty and fears that rescheduling means more lost pay and a longer wait for answers.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -221,13 +221,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "General X-ray room, the door closed, before a lumbar spine examination.",
-      "candidateRole": "You are the radiographer required to confirm pregnancy status before X-raying the lumbar spine of a patient of childbearing age.",
-      "patientRole": "A 29-year-old attending with several months of back pain, who becomes defensive when asked, says she is sure she is not pregnant, and glances towards the door.",
+      "setting": "General X-ray room, the door closed, before a lumbar spine examination. The request comes from her GP, and the waiting area outside is busy, with the next patient seated near the door.",
+      "candidateRole": "You are the radiographer required to confirm pregnancy status before X-raying the lumbar spine of a patient of childbearing age. A female colleague is available if she would prefer, and you have the request form in front of you.",
+      "patientRole": "A 29-year-old attending with several months of back pain, who becomes defensive when asked, says she is sure she is not pregnant, and glances towards the door. She works in an office, and the pain began after lifting boxes during a house move. Her mother brought her and is waiting outside. She mentions an old ankle sprain that has fully healed.",
       "patientConcern": "She could be in the very early stages of a pregnancy she has told nobody about and does not want to disclose it where she might be overheard.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ensure privacy before asking, and say explicitly that the conversation is confidential.\n\nExplain that you ask this of everyone in this age group before this examination, so it is not a personal judgement.\n\nAsk the date of the last menstrual period rather than only asking whether she could be pregnant.\n\nExplain why it matters specifically for this examination, since the beam includes the pelvis.\n\nDescribe the radiation risk to an early pregnancy honestly and proportionately, without exaggeration.\n\nGive her the opportunity to change the answer without embarrassment, and make that easy.\n\nExplain the options available: proceeding, rescheduling to the first ten days of the cycle, or arranging a pregnancy test.\n\nExplain what a delay would mean clinically, so the choice is informed rather than made in a vacuum.\n\nExplain what protection can and cannot be provided if the examination proceeds.\n\nExplain that the answer will be recorded and who has access to it.\n\nExplain what the examination itself will involve, so the delay is the only thing being decided.\n\nAgree the way forward, confirm her decision, and document the discussion."
+      "candidateCard": "Ensure privacy before asking, and say explicitly that the conversation is confidential.\n\nExplain that you ask this of everyone in this age group before this examination, so it is not a personal judgement.\n\nAsk the date of the last menstrual period rather than only asking whether she could be pregnant.\n\nExplain why it matters specifically for this examination, since the beam includes the pelvis.\n\nDescribe the radiation risk to an early pregnancy honestly and proportionately, without exaggeration.\n\nGive her the opportunity to change the answer without embarrassment, and make that easy.\n\nExplain the options under the 28-day rule: proceeding only if clinically justified, rescheduling until after her next period starts, or arranging a pregnancy test.\n\nExplain what a delay would mean clinically, so the choice is informed rather than made in a vacuum.\n\nExplain what protection can and cannot be provided if the examination proceeds.\n\nExplain that the answer will be recorded and who has access to it.\n\nExplain what the examination itself will involve, so the delay is the only thing being decided.\n\nAgree the way forward, confirm her decision, and document the discussion."
     },
     "guidanceNote": "Frame the pregnancy question as routine safety for everyone, offer privacy, and explain the '10-day rule' style reasoning without pressuring the patient to disclose details she is not ready to share."
   },
@@ -243,9 +243,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Fluoroscopy suite, the patient standing at the table, cup of barium prepared.",
-      "candidateRole": "You are the radiographer setting up a barium swallow examination for a patient investigated for dysphagia.",
-      "patientRole": "A 60-year-old who has been coughing on liquids for three months, has lost weight, and is looking at the cup with obvious apprehension.",
+      "setting": "Fluoroscopy suite, the patient standing at the table, cup of barium prepared. The referral is from the GP, and the radiologist will be at the screening controls. A box of tissues and a bowl are on the table.",
+      "candidateRole": "You are the radiographer setting up a barium swallow examination for a patient investigated for dysphagia. You have checked the patient's identity and the request, and the radiologist, aware of the coughing on liquids, has approved the test.",
+      "patientRole": "A 60-year-old who has been coughing on liquids for three months, has lost weight, and is looking at the cup with obvious apprehension. They live alone, do their own shopping, and came by taxi. They say they have mostly been eating soft food, and that their daughter has been worried. They mention that they used to sing in a choir and that the taxi driver got lost.",
       "patientConcern": "The patient is afraid the thick liquid will make them choke, given the swallowing problem that brought them here.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -265,9 +265,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Bone densitometry room, the patient seated beside the scanner.",
-      "candidateRole": "You are the radiographer about to perform a DEXA bone density scan of the spine and hip.",
-      "patientRole": "A 58-year-old referred after a wrist fracture, who has read about radiation risk, is unsure why the scan was requested, and is considering declining.",
+      "setting": "Bone densitometry room, the patient seated beside the scanner. The room is bright and quiet, and the scanner table is open on all sides.",
+      "candidateRole": "You are the radiographer about to perform a DEXA bone density scan of the spine and hip. The request comes from the fracture clinic, and you have the referral letter on screen.",
+      "patientRole": "A 58-year-old referred after a wrist fracture, who has read about radiation risk, is unsure why the scan was requested, and is considering declining. The wrist has healed and the plaster came off some weeks ago. They work as a hairdresser and came on their day off. They mention that a neighbour has had these scans, and that they hope to catch the early train home.",
       "patientConcern": "The patient believes any scan involving radiation must carry a serious risk and is close to walking out of the appointment.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -287,9 +287,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "CT department, the child on the trolley from the emergency department, the parent standing beside it.",
-      "candidateRole": "You are the radiographer preparing to perform a non-contrast head CT on a six-year-old following a fall from playground equipment.",
-      "patientRole": "The parent of the child, who has read online that CT scans cause cancer, and is asking whether the scan can be avoided or delayed.",
+      "setting": "CT department, the child on the trolley from the emergency department, the parent standing beside it. The fall happened at school earlier today, and an emergency department nurse has come down with them.",
+      "candidateRole": "You are the radiographer preparing to perform a non-contrast head CT on a six-year-old following a fall from playground equipment. The request from the emergency doctor is on the screen, and a colleague is ready at the console.",
+      "patientRole": "The parent of the child, who has read online that CT scans cause cancer, and is asking whether the scan can be avoided or delayed. The child's father came straight from work after a call from the school. He says that his daughter loves gymnastics, and that he left his car across two spaces in his hurry.",
       "patientConcern": "The parent fears they are consenting to something that could give their child cancer later, and wants to know whether it is truly necessary.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -309,9 +309,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Emergency department X-ray room, the patient on a trolley, having fallen at home four hours ago.",
-      "candidateRole": "You are the radiographer needing anteroposterior and lateral views of a possibly fractured hip.",
-      "patientRole": "An 84-year-old in pain, confused about where she is and why, calling for her daughter, and resisting attempts to move her onto the table.",
+      "setting": "Emergency department X-ray room, the patient on a trolley, having fallen at home four hours ago. A nurse has come round with her, and the request form notes that her daughter is on her way in.",
+      "candidateRole": "You are the radiographer needing anteroposterior and lateral views of a possibly fractured hip. A radiography assistant is with you, and the porter who brought her is still nearby.",
+      "patientRole": "An 84-year-old in pain, confused about where she is and why, calling for her daughter, and resisting attempts to move her onto the table. She lives alone in a bungalow, has a carer who calls each morning, and was found by a neighbour. Before today she walked to the shops with a stick. She mentions her late husband and that she once kept chickens.",
       "patientConcern": "The patient is frightened of being moved because every previous position change has caused severe pain, and does not understand why an X-ray is needed.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -331,13 +331,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "CT imaging department, the patient on the table with the head positioned in the head holder.",
-      "candidateRole": "You are the radiographer preparing a patient for a head and neck CT who has become uneasy once positioned.",
-      "patientRole": "A 38-year-old who has just had their head strapped into the holder, has asked to sit up once already, and is breathing quickly.",
+      "setting": "CT imaging department, the patient on the table with the head positioned in the head holder. The scan was requested by the ear, nose and throat clinic, and the control room window looks directly onto the table.",
+      "candidateRole": "You are the radiographer preparing a patient for a head and neck CT who has become uneasy once positioned. A colleague is in the control room, and the scan protocol is already loaded.",
+      "patientRole": "A 38-year-old who has just had their head strapped into the holder, has asked to sit up once already, and is breathing quickly. They work as a graphic designer and came alone by train. They have never had a CT scan, though they had a knee MRI some years ago and found it very long. They are a keen cyclist.",
       "patientConcern": "The patient is worried they will panic, be unable to stay still, and ruin the scan so that it has to be repeated.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Stop and let them sit up if they need to, before trying to talk them through it.\n\nAsk what is worrying them and what happened when they asked to sit up.\n\nAcknowledge the anxiety and say that it is common with the head holder specifically.\n\nExplain how short a CT scan is, in seconds rather than minutes, and how it differs from an MRI.\n\nExplain that the bore is open at both ends and that they are not enclosed.\n\nExplain what the head holder is for and loosen it if that is possible without losing the position.\n\nExplain the intercom, show them the camera, and confirm that you can see and hear them throughout.\n\nExplain the breath-hold instruction and rehearse it once before the scan.\n\nAddress the fear of ruining the scan: explain that movement means a repeat, not a disaster, and that most people manage.\n\nOffer practical measures: eyes closed, a cloth over the eyes, or a hand on the abdomen for a companion.\n\nGain their agreement to proceed, and confirm the signal for stopping."
+      "candidateCard": "Stop and let them sit up if they need to, before trying to talk them through it.\n\nAsk what is worrying them and what happened when they asked to sit up.\n\nAcknowledge the anxiety and say that it is common with the head holder specifically.\n\nExplain how short a CT scan is, in seconds rather than minutes, and how it differs from an MRI.\n\nExplain that the bore is open at both ends and that they are not enclosed.\n\nExplain what the head holder is for and loosen it if that is possible without losing the position.\n\nExplain the intercom, show them the camera, and confirm that you can see and hear them throughout.\n\nExplain the breath-hold instruction and rehearse it once before the scan.\n\nAddress the fear of ruining the scan: explain that movement means a repeat, not a disaster, and that most people manage.\n\nOffer practical measures: eyes closed, a cloth over the eyes, a hand on their own abdomen to pace their breathing, and your voice over the intercom.\n\nGain their agreement to proceed, and confirm the signal for stopping."
     },
     "guidanceNote": "Distinguish CT clearly from MRI, the short scan time and open ring are genuine reassurances; offer the call button and a clear time estimate so the patient feels in control."
   }
