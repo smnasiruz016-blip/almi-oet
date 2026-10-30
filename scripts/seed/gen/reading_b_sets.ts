@@ -27,6 +27,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"A bleep message is only an escalation once a person responds to it; leaving the message alone is not enough.","evidence":"A message left on a bleep is not an escalation until somebody has answered it.","wrong":{"a":"Calculating the score in full is a separate step, not the condition for a bleep message.","c":"Recording the time is required, but the passage does not make it the condition here."}}},
       "passages": [
         {
           "id": "p1",
@@ -69,6 +70,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Reading back lets the prescriber hear their own words repeated, so they can catch and correct anything they did not mean to say.","evidence":"It exists so that the prescriber hears their own instruction returned and can correct what they did not intend to say.","wrong":{"b":"Sharing responsibility between two staff is never given as the purpose of the read-back.","c":"Countersigning within twenty-four hours is a separate requirement, not the purpose of the read-back."}}},
       "passages": [
         {
           "id": "p1",
@@ -111,6 +113,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The check is done next to the patient by the same person who will begin the transfusion, never at the desk or by someone else.","evidence":"The final identity check is carried out at the bedside, next to the patient, by the person who is about to start the transfusion.","wrong":{"a":"The opposite: it is not carried out at the desk, and is done by the person starting it.","b":"Arrival of the pack on the ward is not mentioned; the check happens at the bedside."}}},
       "passages": [
         {
           "id": "p1",
@@ -153,6 +156,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The notice puts washing, reporting and treatment first, within the hour; the form comes later because it has no deadline while treatment does.","evidence":"Complete the incident form afterwards, not first. The form has no time limit; the treatment does.","wrong":{"a":"The opposite: the form is completed afterwards, not first.","c":"Source patient consent concerns testing; it is not a condition for completing the form."}}},
       "passages": [
         {
           "id": "p1",
@@ -195,6 +199,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The short form of units has been read as a zero many times, so the organisation bans it and the word is always written out.","evidence":"The abbreviation has been mistaken for a zero often enough that it is not used anywhere in this organisation","wrong":{"b":"Insulin devices are mentioned only for names and dosing, not for recognising abbreviations.","c":"Older charts are mentioned for out-of-date doses, not for how the abbreviation looks."}}},
       "passages": [
         {
           "id": "p1",
@@ -237,6 +242,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"A mismatched balance goes to the person in charge before anyone takes another dose from that cupboard; the register is not simply adjusted.","evidence":"A balance that does not agree is reported to the person in charge before the next dose is removed from that cupboard","wrong":{"a":"The opposite: the register is not simply corrected to match what is there.","b":"The balance is checked at every entry, not once a shift, and must be reported."}}},
       "passages": [
         {
           "id": "p1",
@@ -279,6 +285,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The patient's known wishes are gathered from people who know them well, including family, and these views shape the decision but do not settle it.","evidence":"Those views inform the decision and do not decide it.","wrong":{"a":"The opposite: best interests is not the same as what the family would prefer.","c":"Written wishes are never mentioned as a condition for recording family views."}}},
       "passages": [
         {
           "id": "p1",
@@ -321,6 +328,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"One reason given is that a relative may change what is said so as to shield the patient, which is what softening means here.","evidence":"A relative may edit what is said in order to protect the patient","wrong":{"b":"Short-notice attendance by relatives is never mentioned.","c":"Telephone interpreting is about professional interpreters when nobody can attend, not relatives."}}},
       "passages": [
         {
           "id": "p1",
@@ -363,6 +371,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The assessment is redone each time the patient's condition alters, rather than on a set weekly schedule.","evidence":"repeated whenever the patient's condition changes, not on a fixed weekly cycle","wrong":{"a":"The opposite: the policy says not on a fixed weekly cycle.","b":"Too narrow: it is repeated whenever condition changes, not only after skin damage appears."}}},
       "passages": [
         {
           "id": "p1",
@@ -405,6 +414,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"If a job is given to everyone on the shift rather than to one named person, nobody actually owns it.","evidence":"A task handed to the shift in general is a task handed to nobody.","wrong":{"a":"The memo does not say such a task is done later; it says nobody has it.","c":"Notes versus chart is not discussed for tasks; handover is given from both."}}},
       "passages": [
         {
           "id": "p1",
@@ -447,6 +457,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The kind of reaction, such as a mild rash or a closed airway, determines which treatments can be given safely when the patient is unwell later.","evidence":"the difference decides what can safely be offered when the patient is unwell at three in the morning","wrong":{"b":"An annual audit is never mentioned in the notice.","c":"Pharmacy dispensing rules are not mentioned in the notice."}}},
       "passages": [
         {
           "id": "p1",
@@ -489,6 +500,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The guideline opens by saying contamination happens mostly when leaving, during removal, which is why removal is the part that is practised.","evidence":"Most contamination happens on the way out, not on the way in.","wrong":{"a":"The opposite: contamination happens mostly on the way out, not on the way in.","b":"Contamination during the procedure is not given as the main moment."}}},
       "passages": [
         {
           "id": "p1",
@@ -531,6 +543,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Moving a patient who may have a fractured hip, for comfort, is named as the most common way one fall leads to a further injury.","evidence":"is the commonest way that a fall becomes a second injury","wrong":{"b":"Neurological observations are about timing before paperwork, not about moving the patient.","c":"Asking about anticoagulants is a separate check, not affected by moving the patient."}}},
       "passages": [
         {
           "id": "p1",
@@ -573,6 +586,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"A list of current medicines cannot show the reader which drug was discontinued or why, so the surgery may restart it.","evidence":"A list of current medicines does not tell the reader which drug was stopped, or why","wrong":{"a":"How long each drug has been taken is not mentioned.","b":"Doses given in hospital are not mentioned as missing from the list."}}},
       "passages": [
         {
           "id": "p1",
@@ -615,6 +629,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"A sample without a correct label is thrown away and collected again; it is never relabelled, however hard it was to obtain.","evidence":"An unlabelled or mislabelled sample is discarded and repeated.","wrong":{"a":"The opposite: it is not relabelled from the request form.","c":"Sending it with a note is not mentioned; the sample is discarded."}}},
       "passages": [
         {
           "id": "p1",

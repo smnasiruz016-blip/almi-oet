@@ -23,6 +23,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The nurse says gel does not work against this virus and that hands must be washed with soap and water after every contact in the bay.","evidence":"alcohol gel isn't enough; you must wash your hands with soap and water after every contact in that bay","wrong":{"b":"The opposite: she says gel is not enough because it runs over the virus.","c":"She says washing applies on the way in as much as on the way out."}}},
       "speakers": [
         {
           "role": "Infection Prevention Nurse",
@@ -66,6 +67,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The coordinator says the hold-up is the care agency, which still has to confirm the first home visit before the care package is in place.","evidence":"we're waiting on the care agency to confirm her first home visit","wrong":{"b":"Transport is already sorted, so it is not causing the delay.","c":"Her medication is also sorted; she rules it out directly."}}},
       "speakers": [
         {
           "role": "Discharge Coordinator",
@@ -109,6 +111,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Every other shift is covered; the coordinator says only the Sunday night has a gap that someone needs to pick up.","evidence":"It is the Sunday night, and only that one, that has a gap.","wrong":{"b":"The long days are all still covered.","c":"Friday lunchtime is the deadline for volunteering, not a shift to fill."}}},
       "speakers": [
         {
           "role": "Shift Coordinator",
@@ -152,6 +155,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The audit showed the team kept missing hand cleaning before touching a patient, while the other moments scored above ninety per cent.","evidence":"The one moment we consistently missed, though, was cleaning our hands before touching a patient","wrong":{"b":"The other moments scored above ninety per cent; the weak one is before contact.","c":"Gloves are not mentioned in the audit feedback at all."}}},
       "speakers": [
         {
           "role": "Infection Control Lead",
@@ -195,6 +199,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The matron finds the care was appropriate and documented; what failed was keeping the family informed promptly after the fall.","evidence":"What we do need to improve is how consistently we update families when something unexpected happens.","wrong":{"b":"She says the care itself was appropriate, so it is not a clinical concern.","c":"The care was well documented; documentation is not the problem."}}},
       "speakers": [
         {
           "role": "Matron",
@@ -238,6 +243,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The only job handed over is chasing the pre-op bloods, which are still pending and could stop the operation; she asks the colleague to ring the lab.","evidence":"It really is just the bloods.","wrong":{"a":"Consent is already signed, so she says it isn't a job.","c":"Nil by mouth is already on the board; it is a fact, not a task."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -281,6 +287,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Before the post-take round, staff must review who might be fit for discharge so that beds can be freed early.","evidence":"Please prioritise reviewing anyone who might be fit for discharge before the post-take round","wrong":{"b":"Side rooms are never mentioned; the corridor patients are simply waiting for beds.","c":"The opposite: the round starts on time and is not being moved."}}},
       "speakers": [
         {
           "role": "Ward Manager",
@@ -324,6 +331,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The change this year is that the update can be completed online from any computer instead of in a booked classroom slot.","evidence":"It's moved online this year, so you can complete it from any computer rather than booking a classroom slot.","wrong":{"b":"The hoist assessment is still required in person; that hasn't changed.","c":"Classroom slots are replaced by online work; nothing says sessions are longer."}}},
       "speakers": [
         {
           "role": "Ward Sister",
@@ -367,6 +375,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The audit keeps flagging the team for not documenting the time the first dose was given, not for the drug chosen.","evidence":"It's the documentation of timing, not the choice of drug, that we keep getting flagged on at audit.","wrong":{"b":"The drug choice was right in every case audited.","c":"She says nobody has given anything early."}}},
       "speakers": [
         {
           "role": "Senior Nurse",
@@ -410,6 +419,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Afternoon visiting has been extended by an hour, so it ends at five instead of four; nothing else has changed.","evidence":"it was two until four and it is now two until five. Nothing else has moved.","wrong":{"b":"The limit of two visitors per bed is being kept.","c":"Posters stay by the entrance, and a second one is being added by the lift."}}},
       "speakers": [
         {
           "role": "Charge Nurse",
@@ -453,6 +463,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Staff must write down the patient's exact words and pass the concern to the safeguarding lead within the same shift.","evidence":"record exactly what was said in their own words and escalate it to the safeguarding lead the same shift","wrong":{"b":"She says investigating it yourself is not your job.","c":"Deciding whether it is true is explicitly not the staff member's role."}}},
       "speakers": [
         {
           "role": "Safeguarding Nurse",
@@ -496,6 +507,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Until Thursday's delivery, staff should cover a wound with two overlapping medium dressings where they would normally use one large.","evidence":"please use two mediums where you'd normally reach for a large, rather than ordering extra from another ward","wrong":{"b":"She asks staff not to ring round other wards, which are short too.","c":"The opposite: nobody delays a dressing; wounds are done today."}}},
       "speakers": [
         {
           "role": "Stock Coordinator",
@@ -539,6 +551,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The new pumps lock the rate once confirmed, so staff have to press the unlock key before making any adjustment.","evidence":"the new pumps lock the rate once you confirm it, so you'll have to press the unlock key before any adjustment","wrong":{"b":"They record everything the old pump did and more, including the rate.","c":"There is no dial on the new pumps at all."}}},
       "speakers": [
         {
           "role": "Practice Educator",
@@ -582,6 +595,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"From this week trolleys are wiped with chlorine solution both before and after each procedure, not only at the end of the day.","evidence":"all trolleys must be wiped down with the chlorine-based solution both before and after each procedure, not just at the end of the day","wrong":{"a":"End-of-day cleaning alone was the old practice that is being replaced.","c":"The opposite: alcohol wipes are now only for the patient's skin, not trolleys."}}},
       "speakers": [
         {
           "role": "Senior Nurse",
@@ -625,6 +639,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The nurse is worried by the pain score climbing from three to seven within hours on the same regime.","evidence":"It is the direction that concerns me rather than the number.","wrong":{"b":"The wound is dry and looks fine.","c":"His observations have been rock steady, with no concerns."}}},
       "speakers": [
         {
           "role": "Recovery Nurse",

@@ -27,6 +27,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(C) is contradicted — physio saw her this morning. (A) is not raised: day four with the temperature settled.",
     "payload": {
+      "explanations": {"q1":{"why":"The discharge plan still says today only because the ward round note was written before physio found her breathless on the stairs.","evidence":"The plan says today because the ward round note was written before physio saw her.","wrong":{"a":"She is on day four of the antibiotic and her temperature has settled; this is not raised as a worry.","c":"Physio has already seen her this morning."}}},
       "speakers": [
         {
           "role": "Nurse 1",
@@ -74,6 +75,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "\"Not against what the first person says.\" (C) is not addressed and (B) is invented.",
     "payload": {
+      "explanations": {"q1":{"why":"The second person must check the dose against the chart and the insulin type against the pen, rather than relying on the first person.","evidence":"the second person checks the dose against the chart and the type of insulin against the pen","wrong":{"b":"Two insulins are never mentioned; the check applies to every administration.","c":"Who may do the check is not discussed; only how it must be done."}}},
       "speakers": [
         {
           "role": "Pharmacist",
@@ -117,6 +119,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "Carrying, steadying, reaching, turning. (A) is never mentioned as a consideration.",
     "payload": {
+      "explanations": {"q1":{"why":"Making tea shows walking plus carrying, steadying on the worktop, reach and turning, which a corridor walk cannot show.","evidence":"None of that shows up in a corridor.","wrong":{"a":"Tiredness is never mentioned as the reason.","b":"Following instructions is not the point; she is told to say nothing while the patient does it."}}},
       "speakers": [
         {
           "role": "Physiotherapist",
@@ -164,6 +167,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is the claim he opens by denying.",
     "payload": {
+      "explanations": {"q1":{"why":"Missing information will now be queried on the first day, so referrals stop coming back after a wasted month.","evidence":"The waiting stays the same. The wasted month goes.","wrong":{"a":"The opposite: he says it will not shorten the waiting list.","c":"He never says fewer referrals will be made; only fewer returned late."}}},
       "speakers": [
         {
           "role": "Manager",
@@ -207,6 +211,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "The antibiotic and the oxygen are both mentioned, but neither is what the call is for.",
     "payload": {
+      "explanations": {"q1":{"why":"The doctor believes the father is dying and calls so the daughter hears it directly and comes today rather than at the weekend.","evidence":"if you were asking me whether to come today or at the weekend, I would come today","wrong":{"b":"The new antibiotic has already been started; no agreement is sought.","c":"The rising oxygen is mentioned as background, not as the reason for the call."}}},
       "speakers": [
         {
           "role": "Doctor",
@@ -254,6 +259,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "\"Refusing is the last thing, not the first\", which rules out (A).",
     "payload": {
+      "explanations": {"q1":{"why":"He advises phoning the requester not to refuse but to ask what they are looking for, since a missing question often emerges.","evidence":"Phone and ask what they are looking for.","wrong":{"a":"He says refusing is the last thing, not the first.","b":"Booking and recording happen only if the clinician insists after the call."}}},
       "speakers": [
         {
           "role": "Radiographer 1",
@@ -301,6 +307,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) inverts him — he doubts the totals, he does not endorse them. (C) is never proposed; he asks for the same chart kept properly.",
     "payload": {
+      "explanations": {"q1":{"why":"The dietitian says the chart's recording is unreliable, so she will not base a feeding decision on it until intake is properly witnessed.","evidence":"I won't build a nasogastric decision on them.","wrong":{"b":"She suggests intake may be under-recorded, so it could be better, not worse.","c":"She wants better recording on the chart, not a different form of monitoring."}}},
       "speakers": [
         {
           "role": "Dietitian",
@@ -348,6 +355,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(C) is contradicted outright — \"the stairs were never the risk\". (A) is the plan the visit overturned, not its finding.",
     "payload": {
+      "explanations": {"q1":{"why":"At home the patient did nothing the way she showed in the department: carrying a full kettle, sleeping in an armchair.","evidence":"In her own kitchen she did none of it the way she showed us.","wrong":{"a":"Extra equipment is not the finding; a second stair rail had been planned already.","c":"The opposite: she says the stairs were never the risk."}}},
       "speakers": [
         {
           "role": "Therapist",
@@ -391,6 +399,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is never suggested — the record is hers. (B) inverts him: it is the severity, not the drug, that is wrong.",
     "payload": {
+      "explanations": {"q1":{"why":"A childhood rash and sickness, with no allergic features, has been labelled as a penicillin allergy and costs her first-line treatment.","evidence":"What is written in that box is an intolerance from childhood wearing the word allergy.","wrong":{"a":"Nothing suggests it belongs to another patient; it has followed her through three hospitals.","b":"The mismatch discussed is intolerance versus allergy, not reaction versus drug."}}},
       "speakers": [
         {
           "role": "Doctor 1",
@@ -438,6 +447,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is already in place and is explicitly left unchanged. (C) reverses the timing — the watching comes afterwards.",
     "payload": {
+      "explanations": {"q1":{"why":"With a delayed swallow the important cough may come well after the meal, so the assistant should stay and record what happens afterwards.","evidence":"sit with him for a quarter of an hour afterwards, and write down anything you hear then","wrong":{"b":"Thickened fluids stay exactly as they are; no change to fluids.","c":"The upright position also stays as it is; it is not being lengthened."}}},
       "speakers": [
         {
           "role": "Therapist",
@@ -485,6 +495,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is one example she gives, not her point. (C) is not claimed anywhere — she never says how contact is counted.",
     "payload": {
+      "explanations": {"q1":{"why":"The patients who attend are mostly those who would come anyway; the high-risk group the recall targets largely did not attend.","evidence":"It is measuring the wrong people.","wrong":{"a":"No comparison with a previous quarter is made; the figure reads very well.","c":"Unread texts being counted as contacts is never said."}}},
       "speakers": [
         {
           "role": "Manager",
@@ -532,6 +543,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is never raised — he says the intervals are sound. (B) is close but wrong: the category is acted on, the action simply does not fit the patient.",
     "payload": {
+      "explanations": {"q1":{"why":"The pathway relies on patients who can inspect, telephone and travel, so the high-risk people it exists for are the ones it misses.","evidence":"the people it exists for are precisely the people it misses","wrong":{"a":"He can't fault the categories or the intervals; referral timing is not the issue.","b":"Too strong: the system does act by writing to them, just in the wrong way."}}},
       "speakers": [
         {
           "role": "Podiatrist",
@@ -579,6 +591,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(C) is contradicted — she understands the risks. (B) is never suggested; he accepts the signature.",
     "payload": {
+      "explanations": {"q1":{"why":"The patient thinks extraction is the only option because nobody mentioned root canal treatment, so she has not been offered a real choice.","evidence":"Nobody has said the words \"root canal\" to her","wrong":{"b":"He says he is not questioning the signature.","c":"Nerve risk is on the form and she understands the extraction risks."}}},
       "speakers": [
         {
           "role": "Dentist",
@@ -626,6 +639,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is not raised at all — the diagnosis is settled. (C) sounds reasonable but he never mentions time or questions.",
     "payload": {
+      "explanations": {"q1":{"why":"The figures were correct but did not help the owner; the vet wants the student to lead with what she will actually see.","evidence":"Lead with what she will see.","wrong":{"a":"Waiting for results is never raised; the student's facts were already accurate.","c":"Time for the owner's questions is not the criticism."}}},
       "speakers": [
         {
           "role": "Vet",
@@ -673,6 +687,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) reverses him entirely. (B) is close — she does telephone — but the reason he gives is the symptoms, not confirmation of delivery.",
     "payload": {
+      "explanations": {"q1":{"why":"The form's category says routine, but the symptoms suggest an emergency; whenever the two conflict, the symptoms should decide.","evidence":"If anything on that form ever contradicts the symptoms in front of you, the symptoms win.","wrong":{"a":"The opposite: the referral is going as urgent, not routine.","b":"She is told to ring to pass on the symptoms, not to confirm arrival."}}},
       "speakers": [
         {
           "role": "Optometrist",
@@ -720,6 +735,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is not claimed — the totals agree. (C) is never mentioned; the patient is still on the table, which is why she can act.",
     "payload": {
+      "explanations": {"q1":{"why":"Nurse 1 did both counts after Priya left, so the check was not independent; it was the same count written twice.","evidence":"Then it isn't a second count. It's the same count written down twice.","wrong":{"b":"No unrecorded swab is mentioned; forty in and forty out.","c":"Timing relative to closing is not raised; they recount before he leaves the table."}}},
       "speakers": [
         {
           "role": "Nurse 1",
@@ -767,6 +783,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted — he does not doubt today's weight. (C) is never proposed.",
     "payload": {
+      "explanations": {"q1":{"why":"Today's centile alone is reassuring, but the fall across visits from fiftieth to ninth is what needs reading.","evidence":"it is that line — the shape of it, not the point at the end of it — that we are meant to be reading","wrong":{"a":"Today's measurement is not doubted; it simply would not worry anybody alone.","c":"Reweighing is never suggested; the nurse books her in."}}},
       "speakers": [
         {
           "role": "Paediatrician",
@@ -814,6 +831,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is contradicted word for word — the daughter is refused. (A) is only what happens if the patient is out, not the instruction.",
     "payload": {
+      "explanations": {"q1":{"why":"Because it is a controlled drug, it must be handed to Mr Okafor himself, who signs the register on the pharmacist's form.","evidence":"It goes into the hands of Mr Okafor himself, and he signs the register on my form","wrong":{"a":"A new time is arranged only if he is not there to receive it.","b":"The opposite: if his daughter opens the door, it comes back."}}},
       "speakers": [
         {
           "role": "Pharmacist",
@@ -861,6 +879,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(C) inverts it — choosing the projections is her job, once she has the detail. (B) is never raised.",
     "payload": {
+      "explanations": {"q1":{"why":"\"Query fracture\" does not explain why; she needs the clinical details that decide positioning and justify the dose.","evidence":"Query fracture tells me what you are hoping I will find. It doesn't tell me why you think it.","wrong":{"b":"Pregnancy is not raised in this call.","c":"The radiographer chooses the projections herself, using the clinical detail."}}},
       "speakers": [
         {
           "role": "Radiographer",
@@ -908,6 +927,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is not mentioned — the board is within reach. (C) is contradicted: he takes about fifteen seconds to find a symbol, so he can use them.",
     "payload": {
+      "explanations": {"q1":{"why":"Every question he was asked could be answered with a nod, so he never needed the board.","evidence":"Every one of them could be answered by a nod.","wrong":{"a":"Placement is not mentioned; she says the board itself is working.","c":"His training is not questioned; the problem is the conversations around the board."}}},
       "speakers": [
         {
           "role": "Therapist",
@@ -955,6 +975,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is never mentioned — cost does not come up. (B) is close but wrong: she objects to the timing, not to the route to prescription.",
     "payload": {
+      "explanations": {"q1":{"why":"The dietitian shows that Mrs Iyer drank a supplement shortly before lunch and then hardly ate, so the bottle took the place of the meal and her total intake did not rise.","evidence":"We have moved her calories from a plate she enjoys into a bottle she tolerates, and the total has not gone up at all.","wrong":{"a":"Cost is never compared; the dietitian talks only about timing and intake.","b":"She accepts some residents may need them; a formal assessment is never mentioned."}}},
       "speakers": [
         {
           "role": "Manager",
@@ -1002,6 +1023,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is not raised — position is never discussed. (C) inverts her point about whose fault the narrow assessment was; funding is not mentioned.",
     "payload": {
+      "explanations": {"q1":{"why":"The therapist measured the door: its clear opening is narrower than the wheelchair, so a new ramp would bring the woman to a door she still cannot pass through.","evidence":"She can get up to that door beautifully on a new ramp and she still cannot get through it.","wrong":{"b":"The ramp's position is never criticised; the problem is the doorway width.","c":"Funding is not discussed; she even says the gap was her own service's fault."}}},
       "speakers": [
         {
           "role": "Therapist",
@@ -1049,6 +1071,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted — he is being asked to exercise daily. (C) invents a timescale; she names a month, and as a condition, not a review date.",
     "payload": {
+      "explanations": {"q1":{"why":"The physiotherapist explains that a long programme gets abandoned, while a short one is actually done every day, and regular short practice is what rebuilds the shoulder.","evidence":"Little and often beats long and occasional, every time","wrong":{"a":"The opposite: he has been given ten minutes of exercise a day.","c":"No six-week review is mentioned; she says she may make it harder after a month."}}},
       "speakers": [
         {
           "role": "Son",
@@ -1096,6 +1119,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted — three sets, on time. (B) is contradicted: nobody rang at all.",
     "payload": {
+      "explanations": {"q1":{"why":"The first nurse thought the ward had already bleeped the doctor, and Priya thought the first nurse had done it, so in the end nobody called anyone.","evidence":"I assumed the ward had already bleeped when it first went up at midnight. Priya thought I had done it at two. Nobody rang.","wrong":{"a":"The opposite: the observations were done on time, three times, and recorded correctly.","b":"No doctor was ever called, so the doctor could not fail to attend."}}},
       "speakers": [
         {
           "role": "Nurse 1",
@@ -1143,6 +1167,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is never raised — no interaction is mentioned. (C) is close, since she does ask for a line of explanation, but the defect is the dose itself.",
     "payload": {
+      "explanations": {"q1":{"why":"The discharge list shows ramipril five milligrams, the dose he came in on, but it was reduced to two and a half on the ward and he has been stable on that lower dose.","evidence":"It is what he came in on, and it is not what he is on now.","wrong":{"b":"No drug interaction is mentioned; the problem is one wrong dose.","c":"Course length is never raised; the issue is the dose on line four."}}},
       "speakers": [
         {
           "role": "Pharmacist",
@@ -1190,6 +1215,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) and (C) are both reasonable questions that she never asks — she asks only about the amount of weight.",
     "payload": {
+      "explanations": {"q1":{"why":"The physiotherapist rings because the phrase in the note is understood differently by different colleagues, and she needs the surgeon to say exactly how much weight he means.","evidence":"The note says partial weight bearing and I need you to tell me what you mean by it.","wrong":{"a":"Walking aids such as a stick or crutches are never discussed.","c":"She asks how much weight, not for how many weeks; duration is not mentioned."}}},
       "speakers": [
         {
           "role": "Physiotherapist",
@@ -1237,6 +1263,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) inverts her — the rate is correct for an uninterrupted window. (B) is never mentioned; weight does not come up.",
     "payload": {
+      "explanations": {"q1":{"why":"The pump runs whenever it is checked, but it is stopped again and again: for antibiotics, phenytoin flushes, morning bloods and the bathroom. Together the pauses take four hours out of a ten-hour feed.","evidence":"Each pause is entirely correct on its own and together they take four hours out of a ten-hour window.","wrong":{"a":"The nurse found it running whenever she checked, and the rate is never said to be wrong.","b":"The patient's weight is never mentioned; the volume is unreachable because of the pauses."}}},
       "speakers": [
         {
           "role": "Dietitian",
@@ -1262,7 +1289,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "The feed is stopped repeatedly for medications."
+              "text": "The feed is paused again and again during the night."
             }
           ],
           "answer": "c"
@@ -1284,6 +1311,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is not the point — the form is already there. (C) shifts the duty away from her, which is the opposite of what she does.",
     "payload": {
+      "explanations": {"q1":{"why":"The radiographer refuses to rely on notes found on a bed, since beds and notes get swapped; the patient himself must state his identity details so they can be matched to the request.","evidence":"He tells me his name, his date of birth and his first line of address, in his own voice, and I match all three against the request.","wrong":{"b":"The request form travelling with the patient is never mentioned.","c":"She does not blame the ward or say it must check; she checks herself."}}},
       "speakers": [
         {
           "role": "Radiographer",
@@ -1331,6 +1359,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is never raised — she does not question the timing. (C) is not mentioned at all.",
     "payload": {
+      "explanations": {"q1":{"why":"The eye pressures show the medicine is barely getting in: the second drop runs down the cheek, and without pressing the inner corner most of it drains away down the tear duct.","evidence":"his pressures tell me almost none of it is getting in","wrong":{"a":"Giving the drops every morning is never criticised; the problem is how they are put in.","c":"Replacing the bottle is not mentioned; the daughter will only write instructions on it."}}},
       "speakers": [
         {
           "role": "Daughter",
@@ -1378,6 +1407,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is not suggested — the grade was her own recommendation. (B) names a reason for the low intake that she never gives.",
     "payload": {
+      "explanations": {"q1":{"why":"The thickened fluids stopped him aspirating, but he now drinks far less, has had urinary infections and a rising sodium, so one danger was removed and another created.","evidence":"I have protected his chest and I have dried him out.","wrong":{"a":"Nobody says staff are mixing the wrong grade; the therapist herself suggests a lower level.","b":"Taste and night-time refusals are never mentioned; the problem is how little he drinks overall."}}},
       "speakers": [
         {
           "role": "Therapist",
@@ -1425,6 +1455,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) inverts it — the problem is that everything IS ticked. (C) refers to the photograph, not to the checklist itself.",
     "payload": {
+      "explanations": {"q1":{"why":"Each tick came from a phone call, a hospital test, the patient's own account or an old photograph, so nothing was checked in the house itself.","evidence":"They are all sources about the home rather than from it.","wrong":{"b":"The opposite: every box on the checklist is ticked.","c":"The form itself is not called out of date; only one photograph used as a source is old."}}},
       "speakers": [
         {
           "role": "Therapist 1",
@@ -1472,6 +1503,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is never mentioned. (C) is close but wrong — she asks for a same-day appointment at the practice, not a referral elsewhere.",
     "payload": {
+      "explanations": {"q1":{"why":"The nurse moves the appointment to today because a rabbit off its food can develop gut stasis within hours, so any small herbivore not eating must be seen the same day.","evidence":"rabbit, guinea pig or any small herbivore not eating is a same-day appointment","wrong":{"a":"A urine sample is never mentioned.","c":"The rabbit is to be seen at the practice today, not passed to an emergency service."}}},
       "speakers": [
         {
           "role": "Receptionist",
@@ -1519,6 +1551,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) reverses him — he asks for them to be stopped. (A) is never raised; dressings are not discussed.",
     "payload": {
+      "explanations": {"q1":{"why":"The podiatrist explains that redness and weeping at the nail fold are the normal phenol reaction nine days after this operation, not an infection.","evidence":"That is a phenol reaction, and it is what this operation looks like at nine days on almost everybody.","wrong":{"a":"Dressings are never discussed.","b":"The opposite: he asks the nurse to stop the antibiotics."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -1566,6 +1599,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is the opposite of what he argues. (C) is never discussed — where they are standing is not his point.",
     "payload": {
+      "explanations": {"q1":{"why":"The doctor argues that waiting until the daughter arrives would mean deciding for the patient that she should be present, so he wants to ask the patient himself.","evidence":"Waiting feels like kindness and it is still a decision somebody made for him.","wrong":{"b":"The daughter is already coming at six; the doctor wants to speak to him now, not wait.","c":"Where the conversation happens is never discussed."}}},
       "speakers": [
         {
           "role": "Student",
@@ -1613,6 +1647,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted — she accepts the chart is accurate. (C) is never mentioned.",
     "payload": {
+      "explanations": {"q1":{"why":"The chart shows he has only been turned between his left side and his back, never onto his right, and the left hip is now red.","evidence":"In fourteen entries he has not once been on his right side","wrong":{"a":"The chart is praised as complete; nothing suggests turns are written down early.","c":"The mattress is never mentioned; she suggests a pillow tilt instead."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -1660,6 +1695,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted word for word — the strength is right. (B) is never raised.",
     "payload": {
+      "explanations": {"q1":{"why":"The pharmacist says the strength and the tablet number are correct; the error is the word daily, because the dose is meant to be taken once a week.","evidence":"That dose is a weekly dose — ten milligrams once a week, on the same named day","wrong":{"a":"The opposite: she says the strength is right.","b":"Blood tests are not mentioned at all."}}},
       "speakers": [
         {
           "role": "Pharmacist",
@@ -1707,6 +1743,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is never mentioned — no target is discussed. (C) overstates her: she asks for fifteen minutes, not resuscitation.",
     "payload": {
+      "explanations": {"q1":{"why":"The category was set from the ankle injury she walked in with, but her pulse, breathing rate and colour show she is much more unwell than that.","evidence":"She walked in on it, and that is what the category was set from.","wrong":{"b":"No breached target is mentioned; she simply wants her seen within fifteen minutes.","c":"The resuscitation area is never mentioned; she is moved up a category."}}},
       "speakers": [
         {
           "role": "Nurse 1",
@@ -1754,6 +1791,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is never raised — infection is not mentioned. (C) sounds plausible but she asks for readings, not a clinic appointment.",
     "payload": {
+      "explanations": {"q1":{"why":"The nurse believes dressings alone cannot heal an ulcer caused by fluid returning down the leg, so she asks the doctor to check whether compression is safe to start.","evidence":"Look at whether she can have compression.","wrong":{"a":"Antibiotics are never mentioned; she wants compression, not a new drug.","c":"A clinic visit is not requested; she asks for pressure readings and a compression decision."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -1801,6 +1839,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) and (B) are both what she refuses — she brings him in today, with a different clinician if necessary.",
     "payload": {
+      "explanations": {"q1":{"why":"Because the patient's face is swollen, the therapist says he cannot wait until Monday: such swelling can threaten the airway within a day, so he must come in today.","evidence":"Then he is not a Monday.","wrong":{"a":"Painkillers are never suggested; she rejects sending a prescription and waiting.","b":"The opposite: he must be seen today, by her if his own dentist is full."}}},
       "speakers": [
         {
           "role": "Receptionist",
@@ -1848,6 +1887,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is what she postpones — \"before we discuss anything else\". (C) is not suggested; she changes the amount and the timing, not the milk.",
     "payload": {
+      "explanations": {"q1":{"why":"The child drinks so much milk that he is not hungry at meals, so the milk, which has almost no iron, takes the place of foods that would supply it.","evidence":"Every bottle that goes in before a meal takes the place of the meat, the beans, the eggs and the bread that would.","wrong":{"b":"No supplement is proposed; she wants six weeks of less milk before discussing anything else.","c":"Formula is never mentioned; she says to reduce the milk and give it in a cup."}}},
       "speakers": [
         {
           "role": "Mother",
@@ -1895,6 +1935,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) inverts her — the attenders are well. (C) confuses transport, which she mentions, with the room's location, which she does not.",
     "payload": {
+      "explanations": {"q1":{"why":"The class is full of well people who can travel to it, while the patients who actually fell live alone and cannot get there or read the invitation.","evidence":"They are the people who can accept an invitation.","wrong":{"a":"The opposite: nobody has struggled with any movement in the class.","c":"The class location is never criticised; the barriers are buses, letters and isolation at home."}}},
       "speakers": [
         {
           "role": "Manager",
@@ -1942,6 +1983,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) and (B) are both contradicted — the nodule is clearly described and it is in the report.",
     "payload": {
+      "explanations": {"q1":{"why":"The nodule is clearly reported, but the requesting team has discharged the patient, and the GP copy may be lost among many letters, so nobody owns the follow-up.","evidence":"there is no named person whose job it is to act on it in three months","wrong":{"a":"Image quality is never questioned; the finding is clearly described.","b":"The opposite: the nodule is in the report, at the end."}}},
       "speakers": [
         {
           "role": "Radiographer",
@@ -1989,6 +2031,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is what he defers until after the check. (C) is never suggested — she already knows which is which.",
     "payload": {
+      "explanations": {"q1":{"why":"Before anyone asks for a stronger inhaler, the pharmacist wants the patient to show exactly how she uses it, because watching reveals technique errors that talking never would.","evidence":"Not describe it — do it.","wrong":{"b":"A stronger dose comes only after checking technique; he warns it may be pointless.","c":"Explaining the two inhalers is not his advice; he wants to watch her use the device."}}},
       "speakers": [
         {
           "role": "Student",
@@ -2036,6 +2079,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) inverts the point about his age — being six is an advantage here. (C) is never mentioned.",
     "payload": {
+      "explanations": {"q1":{"why":"The school test was done with both eyes open, so the good right eye could pass the chart while the weak left eye was never tested on its own.","evidence":"both eyes open, one chart at the far end","wrong":{"a":"His age is not said to invalidate the test; it makes treating him now more urgent.","c":"Which practice received the result is never questioned."}}},
       "speakers": [
         {
           "role": "Optometrist 1",
@@ -2083,6 +2127,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is exactly what she overrules. (B) is never said — she talks about tonight, not about the future.",
     "payload": {
+      "explanations": {"q1":{"why":"The nurse says the unfamiliar, quiet ward makes his confusion worse, and the son, as the only person he recognises, helps more by staying and talking.","evidence":"Quiet is the one thing this ward gives him too much of.","wrong":{"a":"The opposite: she asks the son to stay past visiting time.","b":"She never says the confusion is permanent; she only says isolation makes it worse."}}},
       "speakers": [
         {
           "role": "Son",
@@ -2130,6 +2175,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) keeps the whole-herd approach he refuses. (C) is contradicted — he treats the four today.",
     "payload": {
+      "explanations": {"q1":{"why":"The vet refuses to treat the whole shed and tells the farmer to treat only the four coughing animals, because needless treatment weakens the drug for future cases.","evidence":"Treat the four that are ill, today, properly, and I will come back on Thursday for anything new.","wrong":{"b":"He does not suggest another antibiotic; he wants fewer animals treated and the vents opened.","c":"No laboratory results are mentioned; he wants the sick four treated today."}}},
       "speakers": [
         {
           "role": "Farmer",
@@ -2177,6 +2223,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) and (C) are both changes to the classroom that she never proposes — she changes what the teacher does while he is speaking.",
     "payload": {
+      "explanations": {"q1":{"why":"The therapist explains that finishing his words teaches him he has run out of time, so the teacher should keep looking at him and simply wait.","evidence":"Keep looking at him, keep your face where it was, and wait.","wrong":{"a":"His seat in the classroom is never discussed.","c":"Reading aloud is not mentioned; the advice is about waiting and slowing her own speech."}}},
       "speakers": [
         {
           "role": "Teacher",
@@ -2224,6 +2271,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is the employer's plan that she argues against. (B) overstates her — the lifting comes out temporarily, \"until I say otherwise\".",
     "payload": {
+      "explanations": {"q1":{"why":"The therapist warns that waiting to be fully well makes a return less likely, so he proposes two mornings a week of light work, building up over six weeks.","evidence":"Two mornings a week on the counter and the ordering, building up over six weeks, with the lifting written out of it until I say otherwise.","wrong":{"a":"The opposite: he wants to talk the employer out of waiting for full recovery.","b":"The lifting is removed only until he says otherwise, and the hours build up; nothing is permanent."}}},
       "speakers": [
         {
           "role": "Employer",
@@ -2271,6 +2319,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is never proposed — he asks for a daily check, not new footwear. (C) is not mentioned; the shoes are worn all day either way.",
     "payload": {
+      "explanations": {"q1":{"why":"The podiatrist finds a seam inside the right shoe that has worn through the lining and rubs the toe, which the patient cannot feel.","evidence":"A seam, and it has worn through the lining so it sits proud of it.","wrong":{"b":"Surgical footwear is never mentioned; he asks for both shoes to be checked by hand each morning.","c":"Wearing time is not discussed; the cause is the seam, not how long they are worn."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -2318,6 +2367,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is the suggestion she turns down. (C) is never raised — she does not move anything, she changes what may reach her.",
     "payload": {
+      "explanations": {"q1":{"why":"The first nurse counted twelve interruptions and says returning mid-task is where errors happen, so she asks for the medication hour to be kept free of disturbance.","evidence":"Protect the hour and the checking looks after itself.","wrong":{"a":"She rejects this: a second checker would face the same interruptions.","c":"Moving the trolley is never suggested; she wants calls and requests held instead."}}},
       "speakers": [
         {
           "role": "Nurse 1",
@@ -2365,6 +2415,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is not suggested — she accepts the clinical judgement. (B) is never mentioned; the form was completed today.",
     "payload": {
+      "explanations": {"q1":{"why":"The nurse accepts the decision itself but asks who has told the patient, who is fully able to talk and has asked what happens if he worsens.","evidence":"I am asking who has told him.","wrong":{"a":"Who signed the form is never questioned; she agrees with the decision.","b":"Reviewing the form since admission is not mentioned; her point is that he was not told."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -2412,6 +2463,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) and (C) are both plausible catering changes that she never mentions — she changes what is served by default, not the range or the timing.",
     "payload": {
+      "explanations": {"q1":{"why":"She wants high-calorie, full-fat foods served as the normal option on the ward, while keeping the lighter choices available for those who ask.","evidence":"I want to change the default, not the choices.","wrong":{"b":"The opposite: she wants to change the default, not the choices.","c":"Meal times are never discussed."}}},
       "speakers": [
         {
           "role": "Dietitian",
@@ -2459,6 +2511,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is the opposite — she asks for twenty minutes on bad days too. (C) sets a condition about seasons that she never gives.",
     "payload": {
+      "explanations": {"q1":{"why":"The patient overdoes it on good days and then loses days in bed, so the physiotherapist asks her to do the same twenty minutes whatever she feels like.","evidence":"I want you to do the same twenty minutes on the day you feel wonderful as on the day you feel dreadful.","wrong":{"a":"He does not advise complete rest; he sets twenty minutes of activity every day.","c":"Stopping garden work until spring is not said; the garden is only her example of overdoing it."}}},
       "speakers": [
         {
           "role": "Patient",
@@ -2506,6 +2559,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is refused outright — the daughter cannot consent. (B) is never mentioned; who gives it is not the issue.",
     "payload": {
+      "explanations": {"q1":{"why":"Hiding medicine in food needs a proper decision: an assessment of her capacity, a meeting of everyone involved and a written record of why it is in her best interests.","evidence":"a written record of why it is in her best interests","wrong":{"a":"The daughter cannot consent for her, and two tablets must never be crushed.","b":"Changing who gives the medicine is never suggested."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -2553,6 +2607,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) and (C) are never mentioned — nothing is sent or repeated; only where the label is written changes.",
     "payload": {
+      "explanations": {"q1":{"why":"The nurse asks the phlebotomist to stop labelling tubes at the desk beforehand, because a label written beside the patient, after checking identity, can only match that patient.","evidence":"Written at the bedside, the label can only be wrong if you are standing at the wrong bed","wrong":{"b":"Transport bags are never mentioned.","c":"No repeat test is asked for; the point is how future tubes are labelled."}}},
       "speakers": [
         {
           "role": "Phlebotomist",
@@ -2600,6 +2655,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted — his counting is described as faultless. (C) is never raised.",
     "payload": {
+      "explanations": {"q1":{"why":"The dietitian watched him eat and saw that he injects only once the meal is finished. His counting is accurate; the timing is the fault, so the food acts before the insulin.","evidence":"he picked up the pen when he put his fork down","wrong":{"a":"The opposite: both speakers say his counting is perfect and the arithmetic is faultless.","c":"The meter is never mentioned; the problem described is the order of injection and eating."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -2647,6 +2703,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is never suggested. (B) is the opposite — the examination happens now, differently.",
     "payload": {
+      "explanations": {"q1":{"why":"The radiographer refuses to lie the breathless patient flat and instead plans to image him upright and on his side, changing the technique to suit him rather than forcing the usual position.","evidence":"Then we do not put him flat. Bring the trolley into room two and I will bring the tube to him.","wrong":{"a":"Sedation is never mentioned; the solution is a different position, not medication.","b":"Nothing is postponed; the radiographer plans to do the examination now in room two."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -2694,6 +2751,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is refused explicitly — no driving at all. (C) invents a hospital appointment she never offers.",
     "payload": {
+      "explanations": {"q1":{"why":"When the patient asks if the optometrist will report the problem, she explains that the legal duty to tell the authority is his, and she gives him the form and address.","evidence":"The law puts that duty on you, not on me","wrong":{"b":"The opposite: he is told not to drive at all until the authority replies.","c":"No hospital test is arranged; \"next month\" is used only to stress that reporting cannot wait."}}},
       "speakers": [
         {
           "role": "Patient",
@@ -2741,6 +2799,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is the plan she argues against. (C) is not proposed — she changes what the ward does, not what the manufacturer does.",
     "payload": {
+      "explanations": {"q1":{"why":"The pharmacist rejects reminders to be careful and insists that one of the look-alike products is removed from the shelf and kept in a separate place with a different label.","evidence":"Take one of them off that shelf altogether. It goes in a separate cupboard","wrong":{"a":"This is the sister's idea of a note; the pharmacist says relying on care fails when it matters.","c":"The packaging is described, but nobody suggests asking the supplier to change it."}}},
       "speakers": [
         {
           "role": "Sister",
@@ -2788,6 +2847,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is true of the plan but is not her argument — she mentions two people in passing. (A) is the delay she is arguing against.",
     "payload": {
+      "explanations": {"q1":{"why":"The physiotherapist argues that staying in bed stops the chest expanding, which is how a chest infection starts, so sitting him up today protects his chest.","evidence":"His chest does not fill properly lying down, so the bases stay closed and that is where a chest infection begins.","wrong":{"a":"No drain is mentioned; the only condition set is timing his pain relief first.","b":"The opposite: she wants him upright today, saying every day of waiting makes it harder."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -2835,6 +2895,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is refused — a brief rinse only, never scrubbing. (C) is what the parent has already done and he replaces it with milk.",
     "payload": {
+      "explanations": {"q1":{"why":"The dentist tells the parent to push the knocked-out tooth back into its socket and have the child bite on a cloth, and to come straight to the surgery.","evidence":"Push it back into the socket the way it came out","wrong":{"b":"The opposite: the parent must not scrub, brush or wipe it, only rinse briefly in milk if dirty.","c":"A tissue is how the parent is holding it now; the dentist says the socket or a cup of milk."}}},
       "speakers": [
         {
           "role": "Parent",
@@ -2882,6 +2943,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(C) is contradicted — his hearing is fine. (A) is never mentioned; his wife does not come up.",
     "payload": {
+      "explanations": {"q1":{"why":"The therapist has noticed everyone talking to him loudly and slowly although his hearing is normal, and asks staff to use an ordinary voice and ordinary sentences instead.","evidence":"Ordinary voice, ordinary sentences, one idea at a time.","wrong":{"a":"His wife is never mentioned in the conversation.","c":"The therapist states his hearing is fine; no hearing test is planned."}}},
       "speakers": [
         {
           "role": "Therapist",
@@ -2929,6 +2991,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) inverts him — he is about to give more, not less. (B) is never discussed.",
     "payload": {
+      "explanations": {"q1":{"why":"The nurse took the cat's silence as comfort, but the vet reads her face and posture as signs of pain and says that in cats quietness is a poor guide to comfort.","evidence":"Silence is the least reliable sign we have in this species.","wrong":{"a":"The vet wants to give her a dose, not reduce one; weight is never discussed.","b":"Going home is never discussed; the plan is to score her pain and then dose her."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -2976,6 +3039,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) confuses the sister who is mentioned in passing with somebody taking the work over. (C) is never proposed — she changes the timing, not the tools.",
     "payload": {
+      "explanations": {"q1":{"why":"Instead of doing all the housework on Monday and being exhausted, the therapist advises dividing the same jobs over six days, with some done sitting down.","evidence":"Take the same jobs and cut them into six days.","wrong":{"b":"Only her sister is mentioned, and not as someone to do the housework.","c":"No equipment is suggested; the advice is about pacing and sitting for tasks."}}},
       "speakers": [
         {
           "role": "Patient",
@@ -3023,6 +3087,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted — both agree the correction itself is right. (C) misreads the problem: he cannot get it in the boot at all.",
     "payload": {
+      "explanations": {"q1":{"why":"The orthotic is correct, but it does not fit the work boot he wears ten hours a day, so it is hardly used; it must be remade to fit that boot.","evidence":"A device that does not go in the shoe somebody actually wears is a device that sits in a cupboard.","wrong":{"a":"The opposite: both agree the orthotic is right and corrects the heel.","c":"Wearing time is a symptom; the fix is a thinner device for the boot, not a schedule."}}},
       "speakers": [
         {
           "role": "Physiotherapist",
@@ -3070,6 +3135,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) and (B) are both reasonable next steps that she never asks for — she asks only for the way it is prescribed to change.",
     "payload": {
+      "explanations": {"q1":{"why":"Because the patient will not ask for pain relief, the nurse wants the morphine changed from as-required to a regular prescription for forty-eight hours, with extra available.","evidence":"Write it regularly for forty-eight hours, with something extra available on top","wrong":{"a":"Nobody questions the diagnosis; the issue is how the pain relief is prescribed.","b":"No pain team is mentioned; the nurse asks the doctor to change the prescription himself."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -3117,6 +3183,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is never mentioned — timing does not come up. (C) misreads the existing prescription he already holds as a new one.",
     "payload": {
+      "explanations": {"q1":{"why":"The pharmacist warns that after six weeks of steroid the body's own glands need time to restart, so the patient must follow the reducing pattern instead of stopping suddenly.","evidence":"four days at fifteen, four at ten, four at five. Follow the ladder down","wrong":{"b":"The time of day for taking the tablets is never discussed.","c":"The pattern is on his current prescription; no repeat prescription is mentioned."}}},
       "speakers": [
         {
           "role": "Patient",
@@ -3164,6 +3231,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) and (C) are both good practice she does not raise — her whole point is what happened in the nine seconds she was out of the room.",
     "payload": {
+      "explanations": {"q1":{"why":"The student left an elderly patient uncovered with the door open. The radiographer says he must be covered and the door shut before the student walks away, every time.","evidence":"Sheet over him, door closed, then walk.","wrong":{"a":"A chaperone is never mentioned; the issue is covering him and closing the door.","c":"The images were good; explaining the procedure is not what she criticises."}}},
       "speakers": [
         {
           "role": "Radiographer",
@@ -3211,6 +3279,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is what has already failed. (A) is never proposed — the food is put in her hand, not into her mouth.",
     "payload": {
+      "explanations": {"q1":{"why":"The resident cannot manage a knife and fork and keeps walking, but eats when food is put in her hand, so the dietitian recommends small foods she can eat on the move.","evidence":"Small things she can hold and eat on the move","wrong":{"a":"Being fed by staff is never suggested; the aim is food she can manage herself.","b":"Supplement drinks were already tried and she left those too."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -3258,6 +3327,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(C) has the right shape — the conversation is delayed — but he waits for the interpreter, not for a daughter, who is never mentioned. (B) is not discussed.",
     "payload": {
+      "explanations": {"q1":{"why":"After the interpreter explains how much the son left out, the doctor decides to wait for the interpreter and move the meeting to four o'clock, so the son can be there simply as family.","evidence":"Then we wait for you. Four o'clock?","wrong":{"b":"Written information for the family is never discussed.","c":"No daughter is mentioned; the delay is to have the interpreter present."}}},
       "speakers": [
         {
           "role": "Doctor",
@@ -3305,6 +3375,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) and (C) are both catheter problems that are not this one — she is told the bag is emptying and she does not question the recording.",
     "payload": {
+      "explanations": {"q1":{"why":"The nurse has checked every record: the catheter has stayed in for twenty-two days with no written reason, although he now walks to the toilet, so nobody has questioned removing it.","evidence":"Nobody has written down why it is still there.","wrong":{"a":"The bag's position is not raised; the assistant says it is draining well.","c":"Missing output records are not mentioned; the missing record is the reason it stays in."}}},
       "speakers": [
         {
           "role": "Assistant",
@@ -3352,6 +3423,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is never proposed — one of them goes first, they do not go together. (B) inverts the nurses' role, which is given as another example of the same problem.",
     "payload": {
+      "explanations": {"q1":{"why":"They realise three staff asked the same questions, so they agree the first person assesses and records it, and the second only reads it and asks what is missing.","evidence":"whichever of us gets there first does it, writes it where the other one looks","wrong":{"a":"A joint session is not proposed; each still sees him, but only one asks the questions.","b":"The nurses already asked him too; nobody suggests passing the assessment to them."}}},
       "speakers": [
         {
           "role": "Physiotherapist",
@@ -3399,6 +3471,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(C) is the doctor's position that she answers. (B) is never suggested — there is nobody at home until Friday.",
     "payload": {
+      "explanations": {"q1":{"why":"The nurse accepts that the patient understands the risks and is entitled to leave, so she wants the discharge planned safely with oral antibiotics, a district nurse and written warning signs.","evidence":"That is a choice he is entitled to make.","wrong":{"b":"No relative is asked to persuade him; there is nobody at home until Friday.","c":"This is the doctor's view; the nurse says he is going and should go safely."}}},
       "speakers": [
         {
           "role": "Doctor",
@@ -3446,6 +3519,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) moves the meal, which he does not — he moves the tablet before it. (C) is never mentioned.",
     "payload": {
+      "explanations": {"q1":{"why":"The pharmacist explains that the tablet can irritate the gullet, so after taking it the patient must stay sitting or standing for half an hour rather than lying down to read.","evidence":"it wants you upright for the next half hour","wrong":{"a":"The advice is first thing in the morning with water, not with an evening meal.","c":"The dose is never discussed; the problems are the milky tea and lying down."}}},
       "speakers": [
         {
           "role": "Patient",
@@ -3493,6 +3567,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is never proposed — the same examination, from March. (A) is not discussed at all.",
     "payload": {
+      "explanations": {"q1":{"why":"The patient had a scan five weeks ago elsewhere, so the radiographer wants those images obtained to compare, instead of repeating the scan and giving him another dose.","evidence":"a comparison beats a repeat almost every time","wrong":{"a":"Consent forms are never mentioned in the conversation.","b":"No different examination is suggested; she wants the earlier scan of the same kind."}}},
       "speakers": [
         {
           "role": "Radiographer",
@@ -3540,6 +3615,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(C) inverts it — the sling is the alternative she is being offered, not the fault. (B) is never raised.",
     "payload": {
+      "explanations": {"q1":{"why":"The carer lifts her father by putting her hands under his arms. The physiotherapist asks her to stop at once because this grip can injure the nerves and shoulder joint.","evidence":"Under the arms is the one hold that does real damage.","wrong":{"b":"A second person is never mentioned; the alternative offered is a waist belt.","c":"The sling is what the carer avoids; the physiotherapist offers a belt, not a ban on the sling."}}},
       "speakers": [
         {
           "role": "Carer",
@@ -3587,6 +3663,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted — she calls the policy good. (C) is never mentioned.",
     "payload": {
+      "explanations": {"q1":{"why":"The dietitian accepts the food policy is good but worries that the adrenaline pen is in a bag in a distant cloakroom, so in a reaction nobody could get it to him fast.","evidence":"the only thing that decides how it ends is how many minutes away the pen is, and who can reach it.","wrong":{"a":"The lunch checks are praised as watertight; his lunch is not criticised.","c":"A written care plan is never mentioned in the conversation."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -3634,6 +3711,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted — he expects the lenses to match the order. (B) is never checked or mentioned.",
     "payload": {
+      "explanations": {"q1":{"why":"The lenses are correct, but the patient received eleven years of change in one go, so the optometrist will remake them at two-thirds of the change and add the rest later.","evidence":"Remake them at about two-thirds of the change and bring her back in three months for the rest of it.","wrong":{"a":"The optometrist expects the lenses to match the order exactly; no axis error is suggested.","b":"The frame fit is never mentioned; the cause is the size of the change."}}},
       "speakers": [
         {
           "role": "Assistant",
@@ -3681,6 +3759,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is the template he is removing. (C) is never mentioned.",
     "payload": {
+      "explanations": {"q1":{"why":"The dentist wants the automatic two images removed from the template; each X-ray must answer a stated question for that particular patient, which is why one patient needs them and another does not.","evidence":"somebody has to be able to say what question this particular image answers for this particular person","wrong":{"b":"This is the old habit the dentist rejects; habit is not a justification.","c":"The machine is never discussed; \"annually\" refers to how often images were taken."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -3728,6 +3807,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is never raised — he asks her, not a family. (C) is not offered; he speaks about managing him as they are.",
     "payload": {
+      "explanations": {"q1":{"why":"The vet asks for three things the dog has always loved and suggests marking each day whether he still has them, so the decision rests on a record, not one bad afternoon.","evidence":"Write those three on the calendar and mark each day — yes or no, nothing more.","wrong":{"a":"No family is mentioned; the vet helps the owner herself decide with a record.","c":"Further treatment is never suggested; the conversation is about when to decide."}}},
       "speakers": [
         {
           "role": "Client",
@@ -3775,6 +3855,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is contradicted — gloves are explicitly not a substitute. (A) is never mentioned; the gel is not criticised.",
     "payload": {
+      "explanations": {"q1":{"why":"The student cleaned her hands only at the door. The nurse explains she must also clean them at certain moments inside the curtain, such as before the dressing and after touching his things.","evidence":"Before anything clean, after anything of his, and after gloves come off","wrong":{"a":"The gel itself is not criticised; the problem is when she uses it.","b":"The opposite: gloves are not a substitute, because they leak and hands sweat."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -3822,6 +3903,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is the grandmother's advice she sets aside. (C) is never mentioned.",
     "payload": {
+      "explanations": {"q1":{"why":"The therapist advises that when the child points at something, the parent should name it for him and hand it over, rather than asking him to say it.","evidence":"Say \"cup — you want the cup\", and give it to him.","wrong":{"b":"This is the grandmother's view; the therapist refuses to just wait and see.","c":"Television is never mentioned in the conversation."}}},
       "speakers": [
         {
           "role": "Parent",
@@ -3869,6 +3951,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is exactly what she stops. (C) is never proposed — she asks to see it, not to treat it.",
     "payload": {
+      "explanations": {"q1":{"why":"A single dark band along one nail does not look like fungal infection, so the podiatrist wants to examine it this week before any further treatment is ordered.","evidence":"A single dark band running the length of it, in one nail, is a different conversation","wrong":{"a":"The opposite: she tells the nurse not to order anything until she has seen it.","c":"Removing the nail is never mentioned; the plan is to examine it first."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -3916,6 +3999,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is the assumption she removes. (A) is never mentioned.",
     "payload": {
+      "explanations": {"q1":{"why":"The therapist says a diagnosis does not decide capacity; it must be assessed for the specific decision being made now, here whether he can decide where he lives.","evidence":"A diagnosis on its own settles nothing. The question is always this decision, today","wrong":{"a":"No psychiatrist is mentioned; the therapist and social worker plan to assess him themselves.","b":"The opposite: this is the social worker's assumption, which the therapist rejects."}}},
       "speakers": [
         {
           "role": "Social Worker",
@@ -3963,6 +4047,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is the approach he rejects. (C) is never suggested — the same system, with fewer alerts.",
     "payload": {
+      "explanations": {"q1":{"why":"Most warnings are ones nobody would act on, so staff ignore them all. The pharmacist proposes removing those warnings from the screen so the few remaining ones are taken seriously.","evidence":"Ninety-six of every hundred warnings this system raises are things nobody would act on","wrong":{"b":"The opposite: asking tired people to read more carefully is what the pharmacist rejects.","c":"A different platform is never mentioned; the change is to the alerts shown."}}},
       "speakers": [
         {
           "role": "Prescriber",
@@ -3980,7 +4065,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Turning off the alerts that carry no risk."
+              "text": "Turning off the alerts that nobody would act on."
             },
             {
               "id": "b",
@@ -4010,6 +4095,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) inverts it — the resting figure is fine. (C) is the opposite of walking him with a measured plan.",
     "payload": {
+      "explanations": {"q1":{"why":"His oxygen level is normal when sitting but falls when he walks, so the physiotherapist says any measurement for walking must be taken while he is actually walking.","evidence":"Whatever we prescribe for walking has to be measured while he is walking","wrong":{"a":"The resting reading is fine; the concern is the level during walking.","c":"Stopping exercise is never suggested; she wants the walking plan measured properly."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -4057,6 +4143,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is refused explicitly. (B) is ordinary practice she never raises here.",
     "payload": {
+      "explanations": {"q1":{"why":"Some pacemakers can be scanned and some cannot, so the radiographer insists on finding the model, manufacturer and date before deciding, instead of guessing or cancelling.","evidence":"If we cannot establish the model, he does not come through that door","wrong":{"a":"The opposite: she refuses to cancel on the word \"pacemaker\" alone.","b":"Metal objects are never mentioned; the check is on the device's card or letter."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -4104,6 +4191,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(B) is never proposed — she wants him eating. (C) is not raised; she objects to what the fluids contain, not the rate.",
     "payload": {
+      "explanations": {"q1":{"why":"The nil-by-mouth instruction was right for the test on Tuesday, but nobody removed it afterwards, so he has gone without food for days after it stopped being needed.","evidence":"The instruction was correct on Monday. It stopped being correct at half past eleven on Tuesday","wrong":{"b":"Tube feeding is never suggested; the problem is an out-of-date order.","c":"The rate of fluids is not criticised; she says water and salt are not enough food."}}},
       "speakers": [
         {
           "role": "Dietitian",
@@ -4151,6 +4239,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is what she deliberately refuses to do. (C) inverts it — she writes it, in the daughter's words, and gives her a copy.",
     "payload": {
+      "explanations": {"q1":{"why":"The sister says sorry without making excuses, then describes the next steps: a written record tonight, review by the matron, and a written answer with a named contact.","evidence":"I am sorry. That should not have happened to him and I am not going to explain it away to you now.","wrong":{"a":"The opposite: she refuses to use short staffing as an excuse.","c":"It is the daughter who wants it written down; the sister writes it herself."}}},
       "speakers": [
         {
           "role": "Daughter",
@@ -4198,6 +4287,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "active": true,
     "guidanceNote": "(A) is contradicted — age is not a disease. (B) is close, since bloods are mentioned, but he asks for the risks written into the form, not for the decision to wait.",
     "payload": {
+      "explanations": {"q1":{"why":"The vet says general reassurance about age is not consent; the form must show this dog's own results, such as his kidneys, murmur and weight, so the owner understands his risk.","evidence":"let us put his own numbers on it","wrong":{"a":"The vet agrees age is not a disease; the risk depends on his specific problems.","b":"The bloods are to go in the form, not delay the decision until results arrive."}}},
       "speakers": [
         {
           "role": "Nurse",

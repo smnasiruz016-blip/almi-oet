@@ -1431,6 +1431,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The passage says an empty box gives no information: a reader cannot tell whether the dose was missed or was given without a signature, so the two cases look identical.","evidence":"It cannot be told apart from a dose that was given and not signed for","wrong":{"b":"The pharmacy is contacted when a medicine is unavailable; this is not the reason given against empty boxes.","c":"The opposite: the patient's reason for declining goes in the notes, not on the chart."}}},
       "passages": [
         {
           "id": "p1",
@@ -1473,6 +1474,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The guideline gives one reason for withdrawing the air-and-stethoscope test: it is unable to show whether the tube is in the stomach or in the lung.","evidence":"That test has been withdrawn because it cannot distinguish the stomach from the lung.","wrong":{"a":"Equipment availability is never mentioned as a reason for withdrawing the test.","c":"Fifteen to twenty minutes is the wait before retrying aspiration, a different detail."}}},
       "passages": [
         {
           "id": "p1",
@@ -1515,6 +1517,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The change announced is in how often charts are totalled: every shift instead of once a day, so the next shift starts with a running total rather than a list to add up.","evidence":"so that the next shift begins with a figure instead of a column of entries to add up","wrong":{"b":"Auditing or finding late entries is not mentioned in the memo.","c":"Where charts are stored is never discussed; the change concerns totalling."}}},
       "passages": [
         {
           "id": "p1",
@@ -1557,6 +1560,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"When a control result is outside the printed range, the notice says the meter must be withdrawn from use and given a label, then reported that day.","evidence":"the meter is taken out of service and labelled","wrong":{"a":"Three months is the life of an opened control solution; reporting is the same day, not to the manufacturer.","b":"The opposite: the notice says not to leave it on the trolley for somebody else."}}},
       "passages": [
         {
           "id": "p1",
@@ -1599,6 +1603,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Early notice lets theatre put the patient at the start of the list, after the room has stood empty overnight, so it is free of latex in the air.","evidence":"so that the case can be placed first on the list and the room can be left standing empty overnight","wrong":{"a":"Cancellation is never mentioned as a reason for telling theatre early.","c":"Staff rashes are reported to occupational health; this is unrelated to listing."}}},
       "passages": [
         {
           "id": "p1",
@@ -1641,6 +1646,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Once the patient moves service, the form is no longer valid by itself; the new team must review it and decide whether to keep it or replace it.","evidence":"the receiving team reviews it and either adopts it or replaces it","wrong":{"a":"The opposite: the decision does not limit antibiotics, fluids or admission.","b":"The opposite: it is not valid on its own after a move and must be reviewed."}}},
       "passages": [
         {
           "id": "p1",
@@ -1683,6 +1689,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Staff refer on a belief of risk; they need no proof and do not have to decide whether abuse happened, because that judgement belongs to the safeguarding team.","evidence":"You do not need proof, and you do not need to have decided that abuse has taken place.","wrong":{"b":"The opposite: questioning to satisfy yourself can contaminate the account; refer, do not investigate.","c":"The opposite: referrals are made the same working day; waiting for the ward round is a delay."}}},
       "passages": [
         {
           "id": "p1",
@@ -1725,6 +1732,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"A relative or friend may stay if the patient wishes, but the guideline says they are not counted as the chaperone, who must be trained staff.","evidence":"A relative or a friend may stay at the patient's request, but they do not count as the chaperone","wrong":{"a":"The opposite: their presence does not remove the need to make and record the offer.","c":"The opposite: a relative does not count as the chaperone, so is not named as one."}}},
       "passages": [
         {
           "id": "p1",
@@ -1767,6 +1775,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"A patient trying to leave the bed will climb over the rails, and falling from that height causes more harm than the fall the rails were meant to prevent.","evidence":"a fall from that height is worse than the fall the rails were fitted to stop","wrong":{"a":"Preventing rolling out is what rails do in general; for this patient the text warns of climbing over.","b":"Weekly reassessment is a separate requirement, not a result of fitting rails."}}},
       "passages": [
         {
           "id": "p1",
@@ -1809,6 +1818,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The memo says an open-ended course is the most common reason a treatment meant to last a few days continues for weeks.","evidence":"A course with no end date is the commonest way in which a three-day treatment becomes a three-week one.","wrong":{"b":"Continue with no end date is never an available outcome, whatever the indication.","c":"The memo names a responsible person, but does not link this to continuing without an end date."}}},
       "passages": [
         {
           "id": "p1",
@@ -1851,6 +1861,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The amount of oxygen a patient needs varies during the day, but the saturation goal stays the same, so the goal is what gets prescribed.","evidence":"because the amount the patient needs changes through the day while the target does not","wrong":{"a":"The opposite: the high-risk range is written when the risk is identified, before any blood gas.","c":"Flow rate is recorded at every observation round, so it can be written down."}}},
       "passages": [
         {
           "id": "p1",
@@ -1893,6 +1904,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Staff describe an item only by its appearance, so a ring is recorded as yellow metal, not as gold, because they record what is visible.","evidence":"You are recording what you can see.","wrong":{"a":"Value given by a relative is never mentioned as a way to describe property.","b":"The opposite: guessing the metal, such as gold, is exactly what the extract forbids."}}},
       "passages": [
         {
           "id": "p1",
@@ -1935,6 +1947,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The conversation takes place as soon as practicable and is not delayed until the investigation is over, so it happens while the investigation is still under way.","evidence":"it is not held back until the investigation has finished","wrong":{"b":"The opposite: what is not yet known is also said, so not all facts need to be established.","c":"The opposite: it happens in person; writing comes afterwards as a follow-up."}}},
       "passages": [
         {
           "id": "p1",
@@ -1977,6 +1990,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Waste is sorted only where it is produced and never sorted again, and a closed bag is never opened, so a wrongly filled bag is left as it is.","evidence":"it is never sorted again afterwards. A bag that has been closed is not reopened.","wrong":{"a":"The opposite: waste is never sorted again and closed bags are not reopened.","c":"Incineration is not mentioned; cytotoxic waste has its own container only."}}},
       "passages": [
         {
           "id": "p1",
@@ -2019,6 +2033,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The passage defines countersigning as the registered person being there, or confirming by another method that the entry is correct.","evidence":"Countersigning means that the registered member of staff was present, or has satisfied themselves by some other means that the entry is accurate.","wrong":{"a":"The opposite: it does not mean the student is considered reliable in general.","b":"The opposite: agreement afterwards is not supervision; agreement must come beforehand."}}},
       "passages": [
         {
           "id": "p1",

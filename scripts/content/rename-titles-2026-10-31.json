@@ -1,16 +1,9 @@
 [
   {
-    "slug": "wri-nursing-referral-to-falls-prevention-service-from-aged-care-facility",
-    "taskType": "WRITING_LETTER",
-    "from": "Nursing — Referral to falls prevention service from aged care facility",
-    "to": "Nursing — Referral to falls prevention service from a care home",
-    "why": "Owner, 31 Oct 2026: UK wording for the remaining 'aged care' titles. (The earlier rows in this file — angioedema, and the Nursing speaking care-home card — ran in production; they are in git history.)"
-  },
-  {
-    "slug": "wri-speech-pathology-modified-diet-transfer-letter-for-residential-aged-care",
-    "taskType": "WRITING_LETTER",
-    "from": "Speech Pathology — Modified-diet transfer letter for residential aged care",
-    "to": "Speech Pathology — Modified-diet transfer letter for a residential care home",
-    "why": "Owner, 31 Oct 2026: UK wording for the remaining 'aged care' titles."
+    "slug": "lis-a-ankle-injury-after-a-fall",
+    "taskType": "LISTENING_PART_A",
+    "from": "Part A — Ankle injury after a fall",
+    "to": "Part A — Ankle injury playing football",
+    "why": "Nov 2026, beta-g explanation check: The script has no fall: the ankle turned while the patient was playing football. (The earlier rows in this file ran in production; they are in git history.)"
   }
 ]

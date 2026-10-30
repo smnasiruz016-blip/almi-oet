@@ -466,11 +466,13 @@ if (RETIRE_UNRESOLVED.length > 0) {
  * ⚠️ THIS LIST IS A TO-DO, NOT AN ALLOWANCE. It is stricter than an exemption: a
  * row that has STOPPED failing fails the build, so a question that is fixed must
  * be deleted from here rather than left lying.
+ *
+ * ✅ 1 Nov 2026: three closed by the beta-g explanation findings. The key is now
+ * the text's own words and the old key became a variant: `cleanse` (the gap
+ * reads "Staff should ___ the wound"), `insulin and the sulfonylurea tablets`,
+ * and `label`.
  */
 const FINDABILITY_PENDING: { slug: string; qid: string; answer: string }[] = [
-  { slug: "rea-a-wound-infection-and-antibiotics", qid: "q15", answer: "cleansed" },
-  { slug: "rea-a-hypoglycaemia", qid: "q14", answer: "insulin and sulfonylureas" },
-  { slug: "rea-a-high-risk-medicines", qid: "q11", answer: "label it" },
   {
     slug: "rea-a-wound-infection-and-antibiotics",
     qid: "q9",

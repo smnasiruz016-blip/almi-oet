@@ -152,7 +152,7 @@ export type AcceptRow = { readonly label: string; readonly accept: readonly stri
 /** slug → gap id → the gap's label and its extra accepted answers. */
 export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> = {
   "lis-a-ankle-injury-after-a-fall": {
-    // Part A — Ankle injury after a fall
+    // Part A — Ankle injury playing football
     g1: { label: "Activity at time of injury", accept: ["playing football", "football"] },
     g3: { label: "Time since injury", accept: ["three days ago", "three days", "Saturday", "Saturday afternoon", "3 days"] },
     g4: { label: "Pain score on weight-bearing (0-10)", accept: ["7"] },
@@ -163,7 +163,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> 
   "lis-a-antenatal-visit": {
     // Part A — Antenatal visit
     g1: { label: "Gestation", accept: ["twenty-eight weeks", "twenty-eight"] },
-    g4: { label: "Swelling site", accept: ["fingers", "her fingers"] },
+    g4: { label: "Site of hand swelling", accept: ["fingers", "her fingers"] },
   },
   "lis-a-asthma-flare-up": {
     // Part A — Asthma flare-up
@@ -178,7 +178,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> 
     g1: { label: "Character of pain", accept: ["tight pressure", "tightness", "pressure", "tight"] },
     g2: { label: "Site of pain", accept: ["center"] },
     g4: { label: "Pain began this long ago", accept: ["2 hours"] },
-    g7: { label: "Associated symptom", accept: ["breathless", "breathlessness", "sweaty", "sweating"] },
+    g7: { label: "Associated symptom", accept: ["breathless", "breathlessness", "sweaty", "sweating", "felt sick", "feeling sick", "nausea"] },
     g8: { label: "Pain score at worst (0-10)", accept: ["8"] },
     g11: { label: "Stopped smoking this long ago", accept: ["11 years"] },
   },
@@ -203,7 +203,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> 
     // Part A — Knee pain consultation
     g1: { label: "Affected joint", accept: ["right knee", "knee"] },
     g2: { label: "Duration of symptoms", accept: ["three weeks", "3 weeks"] },
-    g5: { label: "Weekly running distance reached", accept: ["5 kilometres"] },
+    g5: { label: "Distance per run reached", accept: ["5 kilometres"] },
     g9: { label: "Morning stiffness lasts", accept: ["10 minutes"] },
     g10: { label: "Current medication", accept: ["paracetamol"] },
   },
@@ -463,7 +463,7 @@ export const LISTENING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> 
     g8: { label: "Former occupation", accept: ["welder", "welding"] },
     g9: { label: "Previous eye injury", accept: ["no injury"] },
     g10: { label: "Difficulty reported", accept: ["claustrophobic", "small spaces"] },
-    g11: { label: "Offered during the scan", accept: ["a buzzer and music", "music", "music through headphones"] },
+    g11: { label: "Offered for comfort during the scan", accept: ["a buzzer and music", "music", "music through headphones"] },
     g12: { label: "Expected length of the scan", accept: ["20 minutes", "about twenty minutes"] },
   },
   "lis-a-script-11-speech-pathology-hoarseness-in-a-teacher": {
@@ -708,7 +708,7 @@ export const READING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> = 
     q10: { label: "between the gum and the cheek", accept: ["gum and cheek", "in the cheek"] },
     q11: { label: "15 minutes", accept: ["after 15 minutes", "fifteen minutes"] },
     q13: { label: "the liver", accept: ["liver"] },
-    q14: { label: "insulin and sulfonylureas", accept: ["insulin and sulfonylurea", "insulin and sulfonylurea tablets", "insulin and the tablets"] },
+    q14: { label: "insulin and the sulfonylurea tablets", accept: ["insulin and sulfonylureas", "insulin and sulfonylurea", "insulin and sulfonylurea tablets", "insulin and the tablets"] },
     q15: { label: "intoxication", accept: ["a stroke", "drunkenness"] },
     q16: { label: "nothing", accept: ["nothing at all"] },
     q17: { label: "long-acting", accept: ["long acting", "slow-acting"] },
@@ -740,7 +740,7 @@ export const READING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> = 
     q11: { label: "an injected anticoagulant", accept: ["anticoagulant", "anticoagulant injection", "injection", "the injection"] },
     q12: { label: "swelling", accept: ["swollen"] },
     q14: { label: "daily", accept: ["each day", "every day"] },
-    q15: { label: "condition", accept: [] },
+    q15: { label: "condition", accept: ["situation"] },
     q16: { label: "measured", accept: [] },
     q17: { label: "breathing in", accept: ["breathing"] },
     q18: { label: "arterial", accept: ["artery"] },
@@ -751,7 +751,7 @@ export const READING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> = 
     // Part A — High-risk medicines
     q8: { label: "units", accept: ["the word units", "unit"] },
     q10: { label: "potassium", accept: ["concentrated potassium"] },
-    q11: { label: "label it", accept: ["label the syringe", "labeled", "labelled"] },
+    q11: { label: "label", accept: ["label it", "label the syringe", "labeled", "labelled"] },
     q12: { label: "the patient", accept: ["patient"] },
     q13: { label: "the second victim", accept: ["second victim"] },
     q14: { label: "apart", accept: ["not side by side", "separated", "stored apart"] },
@@ -883,7 +883,7 @@ export const READING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> = 
   },
   "rea-a-delirium-in-the-older-inpatient": {
     // Part A — Delirium in the older inpatient
-    q10: { label: "pain, constipation", accept: ["pain constipation and a full bladder"] },
+    q10: { label: "pain, constipation and a full bladder", accept: ["pain, constipation, a full bladder", "pain constipation and full bladder"] },
     q11: { label: "a clock", accept: ["clock"] },
     q12: { label: "a night move", accept: ["night move"] },
     q13: { label: "the family", accept: ["family"] },
@@ -946,7 +946,7 @@ export const READING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> = 
     q9: { label: "sixty-five", accept: ["over sixty-five"] },
     q10: { label: "bleeding", accept: ["the risk of bleeding"] },
     q11: { label: "the kidney function", accept: ["kidney function"] },
-    q12: { label: "the target range", accept: ["time spent inside the target range"] },
+    q12: { label: "the time spent inside the target range", accept: ["time inside the target range", "time in the target range"] },
     q13: { label: "rate control", accept: [] },
     q14: { label: "bruising", accept: ["ordinary bruising"] },
     q15: { label: "knew", accept: ["never knew"] },
@@ -980,7 +980,7 @@ export const READING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> = 
     // Part A — Heart failure and fluid overload
     q8: { label: "a month ago", accept: ["a month"] },
     q10: { label: "the neck", accept: ["neck"] },
-    q11: { label: "the weight", accept: ["weight and the fluid chart"] },
+    q11: { label: "the weight and the fluid chart", accept: ["weight and fluid chart"] },
     q12: { label: "a jug", accept: ["jug"] },
     q14: { label: "carers", accept: ["the person who is caring for them"] },
     q18: { label: "call", accept: ["telephone call"] },
@@ -1002,7 +1002,7 @@ export const READING_PART_A_ACCEPT: Record<string, Record<string, AcceptRow>> = 
   "rea-a-care-in-the-last-days-of-life": {
     // Part A — Care in the last days of life
     q8: { label: "the reasons", accept: ["reasons"] },
-    q9: { label: "tablets", accept: ["medicines"] },
+    q9: { label: "medicines", accept: ["tablets"] },
     q10: { label: "by injection", accept: ["injection"] },
     q11: { label: "the family", accept: ["family"] },
     q12: { label: "reposition", accept: ["reposition first"] },
