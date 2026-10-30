@@ -8,7 +8,7 @@ import { GEN_ITEMS } from "../seed/gen/index";
 import { MODEL_LETTERS } from "../seed/gen/writing_model_letters";
 import { checkLetter, bodyWordsOf } from "../seed/gen/model-letters-check";
 
-const EXPECTED_AT_LEAST = 30; // B2: 15 Nursing + 15 Medicine
+const EXPECTED_AT_LEAST = 60; // B2: 15 Nursing + 15 Medicine; B4: the other 15 + 15
 let bad = 0;
 const fail = (m: string) => { bad++; console.error(`  🔴 ${m}`); };
 const slugs = Object.keys(MODEL_LETTERS);

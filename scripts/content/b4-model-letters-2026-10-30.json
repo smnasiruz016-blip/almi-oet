@@ -1,0 +1,2073 @@
+{
+  "batch": "B4",
+  "version": "v2",
+  "checkedBy": "automatic check passed; beta-g cross-check pending",
+  "drafted": "2026-10-30",
+  "letters": [
+    {
+      "slug": "wri-nursing-advice-letter-to-carer-following-copd-exacerbation-discharge",
+      "header": [
+        "Mr Joseph Mensah",
+        "Son and main carer of Mr Kofi Mensah",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Mr Mensah,",
+      "re": "Re: Your father, Mr Kofi Mensah, aged 75",
+      "body": [
+        "I am writing to advise you on caring for your father at home following his discharge today, 26 June 2026. He was admitted on 18 June 2026 with a flare-up of his lung condition caused by a chest infection, his third admission this year.",
+        "His breathing had returned to his usual level by day six, and he is eating well again. Please make sure that he takes the remaining two doses of prednisolone, a steroid tablet, and the final three days of his antibiotic. He should continue his inhalers, using the technique you practised on the ward, and his furosemide each morning.",
+        "He will now use home oxygen at 1 litre overnight. Nobody should smoke near the equipment, and naked flames, candles and paraffin-based creams must be avoided. The fire service has been informed.",
+        "Please contact his GP the same day if he becomes more breathless at rest, if his sputum changes in colour or amount, or if he develops a fever or new confusion.",
+        "He should see his GP in one week, and a referral to pulmonary rehabilitation, an exercise and breathing programme, is pending.",
+        "Please contact the ward if you have any questions."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Respiratory Ward"
+      ],
+      "commentary": {
+        "opening": "The purpose comes first, followed by why he was in hospital, explained in plain words for a carer rather than a clinician.",
+        "selection": "Only what the son must do or watch for is kept; admission results, past history and unrelated requests are left out.",
+        "organisation": "Purpose, then progress and medicines, then oxygen safety, then warning signs, then follow-up.",
+        "tone": "Warm but clear; medical terms such as prednisolone and pulmonary rehabilitation are briefly explained."
+      },
+      "notesUsed": [
+        "admitted 18 June, discharged 26 June 2026; chest infection; third admission this year",
+        "breathing back to baseline by day six; eating well",
+        "prednisolone two doses and antibiotic three days remaining",
+        "inhalers continued; technique reinforced with the son; furosemide each morning",
+        "home oxygen 1 litre overnight; no smoking, naked flames, candles or paraffin-based creams; fire service notified",
+        "warning signs needing same-day contact",
+        "GP review in one week; pulmonary rehabilitation referral pending"
+      ],
+      "notesLeftOut": [
+        "admission observations, chest X-ray and CRP - hospital detail the carer does not need to act on",
+        "current saturation range - normal for him, nothing for the carer to act on",
+        "inpatient treatment detail (nebulisers, controlled oxygen targets, physiotherapy) - completed",
+        "past history (diagnosis 2013, ex-smoker, heart failure, knee osteoarthritis) - known to the family",
+        "furosemide dose, exact inhaler names - on the discharge medication list; the letter stresses continuing them",
+        "social detail (flat, perching stool, radio) - the son already knows it",
+        "bus pass and dental appointment - not relevant to his care plan"
+      ],
+      "safety": [
+        {
+          "point": "Oxygen fire safety: no smoking, naked flames, candles or paraffin-based creams near the oxygen",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Warning signs needing same-day contact: breathlessness at rest, sputum change, fever, new confusion",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Complete the remaining prednisolone and antibiotic courses",
+          "where": "paragraph 2"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-discharge-advice-for-new-mother-and-newborn-postnatal-ward",
+      "header": [
+        "Ms Fiona Doyle",
+        "Community Midwife",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Ms Doyle,",
+      "re": "Re: Mrs Amina Yusuf, aged 29, and her baby daughter",
+      "body": [
+        "I am writing to request a home visit within 48 hours for Mrs Yusuf and her daughter, who are being discharged today, 26 June 2026. She had a normal vaginal birth on 24 June 2026 at 39 weeks and 2 days. This is her first baby.",
+        "Mrs Yusuf has a first-degree perineal tear, unsutured and healing well. Her after-pains are controlled with paracetamol and her observations are stable. She takes ferrous sulphate 200 mg daily, as her booking haemoglobin was 108. She was slightly tearful on day two, which she attributes to tiredness, but she is bonding well. I would be grateful if you could review her mood and perineal healing.",
+        "Breastfeeding is established, with a good latch and eight to ten feeds in 24 hours. The baby developed mild physiological jaundice on day two; her bilirubin was below the treatment line and phototherapy was not required. She weighed 3.42 kg today, back to her birth weight of 3.4 kg. Please monitor her jaundice and feeding, and weigh her at your visit.",
+        "Newborn screening was completed on 26 June, and vitamin K was given at birth.",
+        "Thank you for your continued care of Mrs Yusuf and her baby."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Midwife, Postnatal Ward"
+      ],
+      "commentary": {
+        "opening": "The request and its timing, a home visit within 48 hours, open the letter, followed by the essential birth details.",
+        "selection": "Points the midwife must check are kept; delivery details that change nothing and personal enquiries are left out.",
+        "organisation": "Request, then the mother, then the baby, then screening already done, so that each check sits with its findings.",
+        "tone": "Collegial and concise, as between midwives."
+      },
+      "notesUsed": [
+        "discharged 26 June; normal vaginal birth 24 June at 39 weeks and 2 days; first baby",
+        "first-degree tear, unsutured, healing well",
+        "after-pains controlled with paracetamol; observations stable",
+        "ferrous sulphate 200 mg daily; booking haemoglobin 108",
+        "tearful on day two, bonding well; mood to be reviewed at home visit",
+        "breastfeeding established, good latch, eight to ten feeds in 24 hours",
+        "mild physiological jaundice, below treatment line, no phototherapy",
+        "weight 3.42 kg today, back to birth weight of 3.4 kg",
+        "newborn screening completed 26 June; vitamin K given",
+        "plan: home visit within 48 hours; monitor jaundice, feeding, weight, mood, perineum"
+      ],
+      "notesLeftOut": [
+        "second stage duration and blood loss of 250 ml - normal, no action needed",
+        "individual observation values, bladder and bowel function - normal; summarised as stable",
+        "glucose tolerance test - normal, no bearing on postnatal care",
+        "meconium and urine times - normal and already passed",
+        "Edinburgh score not indicated - covered by the request to review mood",
+        "language (English good), former job - no interpreter needed, not relevant",
+        "birth registration and baby massage - she can raise these at the visit"
+      ],
+      "safety": [
+        {
+          "point": "Neonatal jaundice to be monitored",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Baby weighed 3.42 kg today, back to birth weight of 3.4 kg - weigh again at visit",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Maternal mood to be reviewed (tearful on day two)",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Home visit within 48 hours",
+          "where": "paragraph 1"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-discharge-advice-to-parents-of-an-asthmatic-child-paediatric-ward",
+      "header": [
+        "Mr and Mrs Tran",
+        "Parents of Lily Tran",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Mr and Mrs Tran,",
+      "re": "Re: Lily Tran, aged 6 years",
+      "body": [
+        "I am writing to advise you on caring for Lily at home following her discharge today, 26 June 2026. She was admitted on 23 June 2026 with an asthma attack brought on by a chest infection.",
+        "Lily responded well to treatment and is now breathing comfortably, eating and playing normally. Please give her the remaining two doses of prednisolone, her steroid medicine, so that she completes the course.",
+        "She must take her beclometasone preventer inhaler twice every day, even when she seems well, as it reduces the risk of further attacks. Her salbutamol reliever inhaler should be used when needed, always with the new spacer and mask, using the technique you practised with us. Please follow the written asthma plan you have been given.",
+        "Please make an emergency call immediately, rather than booking an appointment, if her breathing gets worse instead of better, if her lips or face turn blue, if she is too breathless to talk or eat, or if she needs her reliever more often than every four hours.",
+        "Lily should see her GP for a review in one week.",
+        "Please contact the ward if you have any questions."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Paediatric Ward"
+      ],
+      "commentary": {
+        "opening": "The purpose comes first, with a plain explanation of why Lily was admitted.",
+        "selection": "Medicines, inhaler use, emergency signs and follow-up are kept; hospital readings and unrelated questions are left out.",
+        "organisation": "Purpose, then progress and the steroid course, then daily inhalers, then emergency signs, then follow-up.",
+        "tone": "Reassuring yet firm for parents, with plain words and a clear instruction on when to call for help."
+      },
+      "notesUsed": [
+        "admitted 23 June, discharged 26 June 2026; asthma exacerbation triggered by chest infection",
+        "responded well; playing and eating normally",
+        "prednisolone two doses remaining",
+        "beclometasone preventer twice daily, including when well",
+        "salbutamol with spacer as required; new spacer and mask supplied; technique demonstrated",
+        "written asthma plan given",
+        "warning signs meaning an emergency call",
+        "GP review in one week"
+      ],
+      "notesLeftOut": [
+        "admission observations and inpatient treatment - completed hospital detail parents do not need to act on",
+        "past history (diagnosed at four, previous emergency visits, infant eczema) - known to the parents",
+        "school absence and sibling - not needed for home management",
+        "pet cat in her room - not identified as a trigger in the notes; the GP may explore it",
+        "swimming and eye test - not relevant to the asthma plan"
+      ],
+      "safety": [
+        {
+          "point": "Emergency call (not an appointment) if breathing worsens, lips or face turn blue, too breathless to talk or eat, or reliever needed more often than every four hours",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Preventer inhaler every day, even when well",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Reliever always with spacer and mask",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Complete the prednisolone course",
+          "where": "paragraph 2"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-discharge-to-community-nurse-leg-ulcer",
+      "header": [
+        "Ms R. Okafor",
+        "Community Nursing Team",
+        "Riverside Health Centre",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Ms Okafor,",
+      "re": "Re: Mr George Hill, aged 74",
+      "body": [
+        "I am writing to hand over the wound care of Mr Hill, discharged today, 26 June 2026, after cellulitis of the left lower leg over a venous ulcer of around eight months. He is allergic to penicillin, which causes a rash.",
+        "After four days of intravenous antibiotics, he should complete the remaining five days of oral doxycycline 100 mg once daily, chosen because of his penicillin allergy. He has been afebrile for 72 hours, his C-reactive protein is 24, and the erythema has receded by around 5 cm.",
+        "The ulcer, on the medial gaiter area, is approximately 3 cm across, clean and granulating, with moderate exudate and no slough or necrotic tissue. The surrounding skin is dry; he uses emollient twice daily.",
+        "Please redress the wound with a foam dressing every 48 hours and maintain compression, resumed on 24 June; his ankle-brachial pressure index was 1.0 on 20 June. If the ulcer has not reduced within four weeks, he should be referred to tissue viability.",
+        "He has diet-controlled type 2 diabetes, walks independently with a stick and lives alone; his daughter visits daily. His GP will review him in two weeks.",
+        "Thank you for your help."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Ward 4"
+      ],
+      "commentary": {
+        "opening": "The purpose and the penicillin allergy come first, as the allergy matters for any further antibiotic.",
+        "selection": "Wound description, dressing and compression plan, the named antibiotic and its remaining course, and the index result that supports compression are kept; admission figures and unrelated requests are left out.",
+        "organisation": "Purpose and allergy, then infection progress, then the wound, then the actions requested, then background.",
+        "tone": "Precise and collegial, using wound terms a community nurse knows."
+      },
+      "notesUsed": [
+        "cellulitis left lower leg over venous ulcer of around eight months",
+        "penicillin allergy - rash",
+        "intravenous antibiotics four days; oral doxycycline 100 mg once daily, five days remaining, chosen because of the penicillin allergy",
+        "afebrile 72 hours; CRP 24; erythema receded around 5 cm",
+        "ulcer medial gaiter, around 3 cm, clean, granulating, moderate exudate, no slough or necrosis; dry skin; emollient twice daily",
+        "redress every 48 hours; foam dressing; compression resumed 24 June, maintain",
+        "ABPI 1.0 on 20 June, compression appropriate",
+        "tissue viability referral if not smaller within four weeks",
+        "diet-controlled type 2 diabetes; independent with stick; lives alone; daughter daily",
+        "GP review in two weeks"
+      ],
+      "notesLeftOut": [
+        "admission observations, CRP 112 and white cell count - superseded by current improvement",
+        "leg elevation in hospital - inpatient detail",
+        "pedal pulses - covered by the index result supporting compression",
+        "stairs, varicose veins, venous insufficiency - implied by the venous ulcer; not needed for the plan",
+        "amlodipine and hypertension - no bearing on wound care",
+        "stairlift and poor sleep on the ward - not part of this handover"
+      ],
+      "safety": [
+        {
+          "point": "Penicillin allergy (rash)",
+          "where": "paragraph 1"
+        },
+        {
+          "point": "Complete the five remaining days of oral doxycycline 100 mg once daily (chosen because of the penicillin allergy)",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Compression appropriate: ankle-brachial pressure index 1.0",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Refer to tissue viability if the ulcer has not reduced within four weeks",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-discharge-to-community-nurse-following-cellulitis-treatment",
+      "header": [
+        "Ms Rachel Obi",
+        "Community Nursing Team",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Ms Obi,",
+      "re": "Re: Mrs Beverley Hartley, aged 66",
+      "body": [
+        "I am writing to request your care of Mrs Hartley, discharged today, 26 June 2026, after treatment for cellulitis of the right lower leg. I would be grateful if you could administer her intravenous flucloxacillin four times daily at home for the remaining five days and monitor the affected area.",
+        "The cellulitis followed an insect bite while gardening on 19 June. She was admitted on 22 June with fever and erythema from the ankle to below the knee; ultrasound showed no abscess.",
+        "She has responded well. She has been afebrile for 48 hours and her C-reactive protein has fallen from 96 to 31. Her right calf remains mildly warm and pink, but the redness is within the original pen marking, redrawn today for comparison. There is no blistering or skin breakdown.",
+        "Please note that a penicillin allergy queried previously has been formally excluded; she tolerates flucloxacillin well and her record has been corrected.",
+        "Please encourage her to elevate her leg for at least two hours each afternoon. She has well-controlled type 2 diabetes and takes metformin. If her fever returns or the redness extends beyond the line, she needs urgent medical review.",
+        "Thank you for your help."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Ward 7"
+      ],
+      "commentary": {
+        "opening": "The two requests, completing the intravenous antibiotic at home and monitoring the leg, are stated in the first paragraph.",
+        "selection": "The marking, current findings and the corrected allergy record are kept; past surgery, unrelated medicines and personal questions are left out.",
+        "organisation": "Request, then the cause and admission, then progress, then the allergy, then the plan with the red flags.",
+        "tone": "Collegial and clear, with the urgent signs stated firmly."
+      },
+      "notesUsed": [
+        "discharged 26 June 2026; cellulitis right lower leg",
+        "intravenous flucloxacillin four times daily, five days remaining, given by the community nurse",
+        "insect bite while gardening on 19 June; admitted 22 June; ankle to below knee; no abscess",
+        "afebrile 48 hours; CRP 96 to 31",
+        "calf mildly warm and pink, within marking redrawn today; no blistering or skin breakdown",
+        "penicillin allergy formally excluded; tolerates flucloxacillin; record corrected",
+        "elevate leg at least two hours in the afternoon",
+        "type 2 diabetes, well controlled, metformin",
+        "urgent review if fever returns or redness spreads beyond the line"
+      ],
+      "notesLeftOut": [
+        "admission pulse, temperature and white cell count - superseded by current improvement",
+        "HbA1c value and metformin dose - control is stated as good; dose is on the medication list",
+        "varicose veins, hypertension, amlodipine, hysterectomy - no bearing on this episode",
+        "mobile with one stick, family details - not needed for the antibiotic and monitoring plan",
+        "insect repellent and mammogram - not relevant to this handover"
+      ],
+      "safety": [
+        {
+          "point": "Penicillin allergy formally excluded; tolerates flucloxacillin (old record may still alarm the reader)",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Urgent review if fever returns or redness extends beyond the marking",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Intravenous flucloxacillin four times daily for the remaining five days",
+          "where": "paragraph 1"
+        },
+        {
+          "point": "Marking redrawn today for comparison",
+          "where": "paragraph 3"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-discharge-to-district-nurse-following-heart-failure-admission",
+      "header": [
+        "Ms Carol Underwood",
+        "District Nursing Service",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Ms Underwood,",
+      "re": "Re: Mr Albert Finch, aged 79",
+      "body": [
+        "I am writing to request home monitoring of fluid status, weight and medication titration for Mr Finch, discharged today, 26 June 2026, following admission on 17 June with decompensated chronic heart failure.",
+        "After five days of intravenous furosemide, now oral, he lost 4 kg of fluid. Oedema is now limited to his ankles, and he breathes comfortably at rest. His discharge weight, 78 kg, is his target weight. Renal function is stable.",
+        "He takes furosemide 40 mg twice daily, bisoprolol 5 mg daily, ramipril 2.5 mg daily and atorvastatin 20 mg at night. He also takes apixaban 5 mg twice daily for atrial fibrillation.",
+        "I would be grateful if you could monitor his weight each morning at the same time, recorded on the chart supplied. A gain of more than 2 kg over three days, or increasing oedema or breathlessness, should be reported promptly, as his diuretic dose may need adjusting. Renal blood tests are due in one week. Please reinforce his 1.5-litre daily fluid restriction, which he finds difficult.",
+        "He lives alone, uses a frame and is anxious about coping. His daughter visits weekly, and meals-on-wheels begin on 27 June.",
+        "Thank you for your help."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Cardiology Ward"
+      ],
+      "commentary": {
+        "opening": "The request is in the first sentence, with the discharge date and diagnosis, so the district nurse knows at once what is being asked.",
+        "selection": "Weight target, diuretic response, medications and the report threshold are kept; admission findings and incidental requests are not needed at home.",
+        "organisation": "Background and progress, medications, the specific monitoring actions, then social circumstances.",
+        "tone": "Collegial and practical, with clear actions rather than instructions."
+      },
+      "notesUsed": [
+        "admitted 17 June, discharged 26 June 2026, decompensated heart failure",
+        "intravenous furosemide five days, then oral; lost 4 kg",
+        "oedema to ankles only, comfortable at rest",
+        "target weight 78 kg",
+        "renal function stable four days; bloods in one week",
+        "full medication list, including apixaban",
+        "daily morning weight on chart; report gain over 2 kg in three days, oedema, breathlessness",
+        "1.5-litre fluid restriction, finds it difficult",
+        "lives alone, frame, daughter weekly, meals-on-wheels from 27 June"
+      ],
+      "notesLeftOut": [
+        "admission observations, chest X-ray and NT-proBNP - superseded by discharge status",
+        "discharge blood pressure, saturation and creatinine values - stable and need no action; 'stable renal function' is enough",
+        "ejection fraction and chronic kidney disease stage - background the nurse does not act on",
+        "cataract surgery 2022 - irrelevant",
+        "blue badge and crosswords - not part of the clinical handover"
+      ],
+      "safety": [
+        {
+          "point": "Report a weight gain of more than 2 kg over three days, or increasing oedema or breathlessness",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Anticoagulated with apixaban",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Renal function blood tests due in one week",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Fluid restriction of 1.5 litres a day, which he finds difficult",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-referral-to-community-drug-and-alcohol-service-alcohol-withdrawal",
+      "header": [
+        "Mr Sean Gallagher",
+        "Community Drug and Alcohol Service",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Mr Gallagher,",
+      "re": "Re: Mr Wayne Fletcher, aged 47",
+      "body": [
+        "I am writing to refer Mr Fletcher for ongoing community support following a medically managed alcohol detoxification. He was admitted on 20 June and discharged today, 26 June 2026.",
+        "He had drunk around 100 units a week for three years. He completed a five-day reducing chlordiazepoxide regimen without seizures or delirium tremens and has been medication-free for 24 hours. He is now stable and motivated to remain abstinent.",
+        "He has mild, compensated alcohol-related liver disease without cirrhosis, with improving liver function, and depression, diagnosed in 2023 and not yet in remission. He relapsed in 2025 after a previous community programme.",
+        "He takes acamprosate 666 mg three times daily, started on 24 June to support abstinence, thiamine 100 mg three times daily, vitamin B compound strong once daily and sertraline 50 mg daily.",
+        "I would be grateful if you could provide relapse prevention and psychological support, and monitor his mood. He identifies social isolation and stress as his main triggers: he recently separated from his partner, is unemployed and lives alone in a bedsit with limited support. He hopes to rebuild his relationship with his two children, with whom contact is currently supervised.",
+        "Thank you for your support."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Ward 2"
+      ],
+      "commentary": {
+        "opening": "The purpose and the admission dates open the letter, so the reader knows immediately that this is a post-detoxification referral.",
+        "selection": "Drinking history, a safe detoxification, relapse history, untreated depression and triggers are kept; individual blood values and unrelated history are omitted.",
+        "organisation": "Purpose, detoxification, relevant history, medications, then the request linked to his social risks.",
+        "tone": "Respectful and factual, presenting his motivation without judgement."
+      },
+      "notesUsed": [
+        "admitted 20 June, discharged 26 June 2026",
+        "around 100 units a week for three years",
+        "five-day chlordiazepoxide, no seizures or delirium tremens, medication-free 24 hours",
+        "stable, motivated to remain abstinent",
+        "compensated liver disease without cirrhosis, improving",
+        "depression since 2023, not in remission",
+        "relapse in 2025 after a community programme",
+        "discharge medications",
+        "triggers: isolation and stress; separation, unemployed, bedsit, supervised contact with children"
+      ],
+      "notesLeftOut": [
+        "ALT and GGT values - 'improving' is enough for a community alcohol worker",
+        "full blood count, B12 and folate - normal, change nothing",
+        "peak withdrawal score on day two - detoxification is complete",
+        "wrist fracture 2018 and back pain - not relevant to this referral",
+        "housing application request - a practical matter he can raise directly with the service"
+      ],
+      "safety": [
+        {
+          "point": "Previous relapse after a community programme",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Depression not yet in remission; mood to be monitored",
+          "where": "paragraphs 3, 5"
+        },
+        {
+          "point": "Continue acamprosate and thiamine",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Social isolation and stress as relapse triggers",
+          "where": "paragraph 5"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-referral-to-community-mental-health-team-post-discharge-depression",
+      "header": [
+        "Ms Hannah Pereira",
+        "Community Mental Health Nurse",
+        "Riverside Wellbeing Team",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Ms Pereira,",
+      "re": "Re: Mr Daniel Okoro, aged 34",
+      "body": [
+        "I am writing to request community follow-up for Mr Okoro within one week of his discharge today, 26 June 2026, to monitor his mood, medication adherence and suicide risk.",
+        "He was admitted voluntarily on 12 June 2026 with a moderate depressive episode, his first, after losing his job in April 2026. On admission he had passive suicidal ideation, without a plan or intent. He has no history of self-harm or substance misuse.",
+        "He started sertraline 50 mg each morning on 13 June and attended every group therapy session. His mood has improved steadily, and his Patient Health Questionnaire (PHQ-9) score fell from 21 to 11. He now denies suicidal thoughts, discusses them openly, and has a written safety plan and crisis numbers.",
+        "His risk is assessed as low but not absent. Concerns are that he lives alone, is estranged from his mother and may face further job rejections in the coming weeks. He has one supportive friend nearby.",
+        "I would be grateful if you could reassess his suicide risk at each contact and consider a dose increase if his response plateaus. His GP will continue prescribing after your first review.",
+        "Thank you for seeing him."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Acute Mental Health Unit"
+      ],
+      "commentary": {
+        "opening": "The first sentence states the request, the one-week timeframe and the three things to monitor, matching the task exactly.",
+        "selection": "Suicidal ideation history, treatment response, safety plan and risk factors are kept; smoking, family cardiac history and leisure details are omitted.",
+        "organisation": "Request, admission, progress, current risk, then specific actions and prescribing responsibility.",
+        "tone": "Calm and precise about risk, neither alarming nor minimising it."
+      },
+      "notesUsed": [
+        "admitted voluntarily 12 June, discharged 26 June 2026",
+        "first moderate depressive episode after job loss in April 2026",
+        "passive suicidal ideation, no plan or intent; no self-harm or substance misuse",
+        "sertraline 50 mg from 13 June, each morning",
+        "full group therapy attendance; PHQ-9 21 to 11",
+        "denies suicidal thoughts, safety plan, crisis numbers",
+        "risk low but not absent; lives alone, estranged mother, job rejections",
+        "one supportive friend",
+        "follow-up within one week; reassess risk; GP prescribing; consider dose increase"
+      ],
+      "notesLeftOut": [
+        "sleep, appetite and 2 kg weight regain - covered by 'mood improved steadily'",
+        "smoking and father's myocardial infarction - not relevant to mental health follow-up",
+        "presenting himself to the emergency department - background only",
+        "cycling and bus pass - not needed for the referral"
+      ],
+      "safety": [
+        {
+          "point": "Suicide risk low but not absent; reassess at each contact",
+          "where": "paragraphs 4, 5"
+        },
+        {
+          "point": "Previous passive suicidal ideation",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Written safety plan and crisis numbers in place",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Follow-up within one week",
+          "where": "paragraph 1"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-referral-to-diabetes-specialist-nurse-newly-diagnosed-type-1",
+      "header": [
+        "Ms Lauren Hayes",
+        "Diabetes Specialist Nurse",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Ms Hayes,",
+      "re": "Re: Miss Chloe Adeyemi, aged 19",
+      "body": [
+        "I am writing to refer Miss Adeyemi, discharged today, 26 June 2026, for education and ongoing support following a new diagnosis of type 1 diabetes, which presented as diabetic ketoacidosis. Early contact would help, as her university term starts in three weeks.",
+        "Her ketoacidosis resolved within 18 hours, and she converted to subcutaneous insulin on 22 June. She takes insulin glargine 14 units at night and fixed doses of insulin aspart with meals. Her blood glucose has been 7 to 11 mmol/L for 48 hours.",
+        "On the ward she learned injection technique, blood glucose monitoring and the signs of hypoglycaemia. She can demonstrate injecting but lacks confidence, has needed prompting each time and became tearful during teaching.",
+        "I would be grateful if you could provide education on carbohydrate counting, dose adjustment, sick-day rules, alcohol, exercise and driving, none of which has yet been covered, and on managing hypoglycaemia. She would also benefit from psychological support with adjustment, and structured follow-up.",
+        "She lives in halls with a shared kitchen, has a busy social life and plays netball twice a week. She is worried about managing at university and telling her friends.",
+        "Thank you for your help."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Ward 9"
+      ],
+      "commentary": {
+        "opening": "Purpose, diagnosis and urgency appear together, so the specialist nurse sees why early contact matters before term begins.",
+        "selection": "Insulin regimen, recent glucose range, what has and has not been taught, and her anxiety are kept; admission blood values and unrelated history are left out.",
+        "organisation": "Request and urgency, treatment, ward education, outstanding education, then lifestyle.",
+        "tone": "Supportive and specific, recognising her anxiety."
+      },
+      "notesUsed": [
+        "new type 1 diabetes presenting as ketoacidosis",
+        "discharged 26 June 2026; term begins in three weeks",
+        "resolved within 18 hours; subcutaneous insulin from 22 June",
+        "glargine 14 units at night; aspart fixed doses with meals",
+        "glucose 7 to 11 mmol/L over 48 hours",
+        "taught injection, monitoring, hypoglycaemia signs; lacks confidence, tearful",
+        "not yet covered: carbohydrate counting, dose adjustment, sick-day rules, alcohol, exercise, driving",
+        "psychological support, structured follow-up",
+        "halls, shared kitchen, social life, netball twice a week, worries"
+      ],
+      "notesLeftOut": [
+        "admission glucose, ketones, pH and bicarbonate - resolved, change nothing now",
+        "presenting symptoms and weight loss - diagnosis is established",
+        "tonsillectomy and immunisations - irrelevant",
+        "family thyroid disease - not relevant to this education referral",
+        "medical alert bracelet and dental check - minor, can be raised at review"
+      ],
+      "safety": [
+        {
+          "point": "Lacks confidence injecting and needs prompting",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Sick-day rules and hypoglycaemia management not yet taught",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Current insulin regimen",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Early contact needed before term in three weeks",
+          "where": "paragraph 1"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-referral-to-falls-prevention-service-from-aged-care-facility",
+      "header": [
+        "Mr Thomas Reilly",
+        "Falls Prevention Coordinator",
+        "Aged Care Outreach Service",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Mr Reilly,",
+      "re": "Re: Mrs Doris Whitfield, aged 84",
+      "body": [
+        "I am writing to request a multidisciplinary falls assessment for Mrs Whitfield, who has fallen three times in six weeks.",
+        "On 14 May and 24 June 2026 she fell at night in her room going to the toilet; the second caused a healing left forearm skin tear. On 2 June she fell in the corridor, saying her feet stuck to the floor.",
+        "She has Parkinson's disease, osteoporosis and a previous right hip fracture in 2023, raising her fracture risk. She also has mild cognitive impairment and macular degeneration. She walks with a wheeled frame but freezes in doorways and when turning, and has twice been found without it.",
+        "On 23 June her blood pressure fell from 130/80 lying to 105/65 standing, with dizziness. She takes levodopa with carbidopa three times daily, alendronate 70 mg weekly, bisoprolol 2.5 mg daily and zopiclone 3.75 mg on two or three nights a week. She is allergic to sulfa drugs.",
+        "Other factors are poor night lighting, nocturnal urinary urgency and backless slippers. I would be grateful if your review could address her postural blood pressure, night sedation, environment and continence, with physiotherapy for gait and freezing.",
+        "Thank you for your help."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Willowbank Residential Care"
+      ],
+      "commentary": {
+        "opening": "The request and the frequency of falls come first, establishing why a multidisciplinary assessment is needed.",
+        "selection": "Fall pattern, fracture risk, freezing, postural drop, sedation and environmental factors are kept; leisure and minor requests are omitted.",
+        "organisation": "Request, the falls, risk factors, observations and medications, then contributing factors and the specific review areas.",
+        "tone": "Clear and objective, giving the coordinator a ready-made assessment agenda."
+      },
+      "notesUsed": [
+        "three falls in six weeks: 14 May, 2 June, 24 June 2026",
+        "night falls heading to the toilet; skin tear left forearm",
+        "Parkinson's disease, osteoporosis, right hip fracture 2023",
+        "mild cognitive impairment, macular degeneration",
+        "wheeled frame, freezing, found without frame",
+        "postural drop 130/80 to 105/65 with dizziness on 23 June",
+        "medications including zopiclone two or three nights a week",
+        "sulfa drug allergy",
+        "night lighting, urgency, backless slippers",
+        "requested review areas"
+      ],
+      "notesLeftOut": [
+        "pulse and stable weight - normal, change nothing",
+        "date of Parkinson's diagnosis and last eye review - not needed",
+        "light switch position detail - summarised as poor night lighting",
+        "son's visits, knitting and choir - not relevant to the assessment",
+        "hairdresser and annual eye review - minor, not for this service"
+      ],
+      "safety": [
+        {
+          "point": "Postural hypotension with dizziness",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Osteoporosis and previous hip fracture: high fracture risk",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Night sedation with zopiclone",
+          "where": "paragraphs 4, 5"
+        },
+        {
+          "point": "Allergy to sulfa drugs",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Found twice without her frame",
+          "where": "paragraph 3"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-referral-to-wound-care-clinic-post-operative-surgical-wound-dehiscence",
+      "header": [
+        "Ms Priya Naidoo",
+        "Clinical Nurse Specialist",
+        "Outpatient Wound Care Clinic",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Ms Naidoo,",
+      "re": "Re: Mr Gregor Bauer, aged 58",
+      "body": [
+        "I am writing to refer Mr Bauer, discharged today after an emergency laparotomy and Hartmann's procedure for perforated diverticulitis on 10 June 2026. I would be grateful for your ongoing assessment and dressing management of his partially dehisced midline wound, healing by secondary intention.",
+        "The wound became infected on day six, and its lower third dehisced the next day; deep dehiscence has been excluded. He has five days of oral co-amoxiclav remaining. He has been afebrile for six days, and his CRP has fallen from 180 to 18.",
+        "The cavity measures 4 cm by 2 cm, 1.5 cm deep, with moderate exudate and a granulating base without slough or necrosis. The surrounding skin is healthy. It is dressed with an alginate rope and secondary absorbent dressing on alternate days; a photograph from 25 June is in his record.",
+        "Please change his dressings twice weekly, measure the wound weekly and monitor for re-infection. His diabetes may delay healing: his HbA1c was 62 in May and his glucose remains 8 to 10 mmol/L, so his practice is arranging a diabetes review. He has no known allergies.",
+        "He has asked about lifting restrictions.",
+        "Thank you for seeing him."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Surgical Ward"
+      ],
+      "commentary": {
+        "opening": "The first paragraph names the operation, the discharge and the exact request, so the specialist knows at once what is being asked.",
+        "selection": "Infection, antibiotics, wound measurements, the current dressing and poor glycaemic control are kept because they shape wound care. Blood pressure treatment, smoking history and work plans are left out.",
+        "organisation": "Request, then the infection and dehiscence, then the wound today, then the plan and healing risks.",
+        "tone": "Precise and collegial, as one nurse to a specialist."
+      },
+      "notesUsed": [
+        "emergency laparotomy and Hartmann's procedure, 10 June 2026; discharged 26 June 2026",
+        "infection day six; partial dehiscence lower third day seven; deep dehiscence excluded",
+        "oral co-amoxiclav, five days remaining",
+        "afebrile six days; CRP 18, down from 180",
+        "cavity 4 cm by 2 cm, depth 1.5 cm; moderate exudate; granulating, no slough or necrosis; healthy skin",
+        "alginate rope and secondary absorbent dressing, alternate days; photograph 25 June",
+        "plan: twice-weekly dressings, weekly measurement, watch for re-infection",
+        "type 2 diabetes on metformin, HbA1c 62, glucose 8 to 10 mmol/L; diabetes review requested",
+        "no known allergies; asked about lifting restrictions"
+      ],
+      "notesLeftOut": [
+        "intravenous antibiotics, purulent discharge, swab result - the infection is treated; only the oral remainder matters now",
+        "hypertension, amlodipine, paracetamol - do not change wound management",
+        "BMI 34, ex-smoker - background; glycaemic control is the healing risk the plan acts on",
+        "eating well, mobile independently - no action needed",
+        "wife, accountant, return to work in three weeks - social detail he can give himself",
+        "stoma nurse appointment on 30 June - managed by another service",
+        "metformin dose - prescribing is the practice concern, not the wound clinic"
+      ],
+      "safety": [
+        {
+          "point": "Monitor for re-infection after a recent wound infection",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Co-amoxiclav course still running, five days remaining",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Suboptimal glycaemic control may delay healing; diabetes review requested",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Deep dehiscence excluded by the surgical team",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "No known allergies",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-transfer-to-coronary-care-unit-from-emergency-department-chest-pain",
+      "header": [
+        "The Charge Nurse",
+        "Coronary Care Unit",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Charge Nurse,",
+      "re": "Re: Mr Raymond Bellini, aged 62",
+      "body": [
+        "I am writing to hand over Mr Bellini, transferring to your unit at 17:00 today with a confirmed non-ST-elevation myocardial infarction. I would be grateful if you could continue cardiac monitoring pending cardiology review for consideration of angiography.",
+        "He presented at 14:20 with two hours of central crushing chest pain at rest, radiating to the left arm, with sweating and nausea. His ECG showed lateral ST depression, unchanged at 16:00; troponin rose from 480 ng/L to 910 ng/L at three hours. His GRACE score is intermediate to high.",
+        "He received aspirin 300 mg, ticagrelor 180 mg, fondaparinux and morphine 5 mg with an antiemetic. A glyceryl trinitrate infusion is running at 2 mg per hour, titrated to pain and blood pressure, via his left forearm cannula. At 16:45 his pain was 1/10, blood pressure 138/82, pulse 76 regular, and oxygen saturation 97% on 2 litres.",
+        "Please maintain bed rest, observe for further chest pain or arrhythmia, and repeat troponin and ECG in the morning. He has no known allergies and has not eaten since breakfast.",
+        "He is anxious about returning to work as a taxi driver; his wife is on her way.",
+        "Thank you for your care."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Emergency Department"
+      ],
+      "commentary": {
+        "opening": "The diagnosis, transfer time and the request come first, because the receiving nurse needs to prepare monitoring and the cardiology review.",
+        "selection": "Serial ECGs and troponins, the drugs given, the running infusion and the latest observations are kept. Normal chest X-ray and bloods, surgical history and his glasses are left out.",
+        "organisation": "Purpose, presentation and results, treatment and current state, ongoing plan, then his anxiety.",
+        "tone": "Concise and factual, as suits an urgent handover."
+      },
+      "notesUsed": [
+        "confirmed NSTEMI; arrived 14:20, transferred 17:00",
+        "central crushing pain two hours, at rest, left arm, sweating, nausea",
+        "ECG lateral ST depression, no elevation, unchanged at 16:00",
+        "troponin 480 rising to 910 ng/L at three hours; GRACE intermediate to high",
+        "aspirin 300 mg, ticagrelor 180 mg, fondaparinux, morphine 5 mg with antiemetic, oxygen",
+        "glyceryl trinitrate infusion 2 mg per hour, titrated; cannula left forearm patent",
+        "observations at 16:45; pain 1/10",
+        "plan: monitoring, cardiology review for angiography, bed rest, repeat troponin and ECG, observe for pain or arrhythmia",
+        "no known allergies; not eaten since breakfast; anxious about work; wife on her way"
+      ],
+      "notesLeftOut": [
+        "chest X-ray, potassium, creatinine - normal and change nothing for the unit",
+        "pain 8/10 on arrival - superseded by current score",
+        "respiratory rate, temperature - normal",
+        "cannula siting time - patency is what matters",
+        "hypertension, hyperlipidaemia, smoking, family history - risk factors for later secondary prevention, not for this handover",
+        "amlodipine, atorvastatin - home medicines the cardiology team will review",
+        "appendicectomy, glasses - irrelevant"
+      ],
+      "safety": [
+        {
+          "point": "Glyceryl trinitrate infusion running at 2 mg per hour, titrated to pain and blood pressure",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Dual antiplatelet therapy and fondaparinux given (bleeding risk)",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Observe for further chest pain or arrhythmia; continue cardiac monitoring",
+          "where": "paragraphs 1, 4"
+        },
+        {
+          "point": "Not eaten since breakfast (relevant to possible angiography)",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "No known allergies",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-transfer-to-palliative-care-unit-advanced-pancreatic-cancer",
+      "header": [
+        "Sister Mary Quinn",
+        "Palliative Care Unit",
+        "St Anne's Hospice",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Sister Quinn,",
+      "re": "Re: Mrs Eleanor Castle, aged 71",
+      "body": [
+        "I am writing to transfer Mrs Castle, who has advanced pancreatic cancer with liver metastases, to your unit today, and would be grateful if you could continue her comfort-focused end-of-life care. Active treatment ceased on 20 June, when she and her daughters were told her prognosis is likely days to a small number of weeks. She has discussed this calmly since.",
+        "She has been bedbound since 22 June. Her pain and nausea are controlled by a syringe driver delivering morphine 30 mg and metoclopramide 30 mg over 24 hours. As-required midazolam has been used twice for agitation; hyoscine butylbromide is also prescribed. Two episodes of mild night-time confusion settled with reorientation.",
+        "She takes only sips and some yoghurt, with four-hourly mouth care. Her sacrum is intact, with a Waterlow score of 18, and she is repositioned two-hourly. She is allergic to penicillin.",
+        "A DNACPR decision was signed on 20 June, and her family is aware. She wishes to die peacefully, without further investigations. She is Catholic and values chaplain visits, and her daughters, present daily, wish to be fully involved.",
+        "Please review the syringe driver as required and continue spiritual support.",
+        "Thank you for caring for her."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Oncology Ward"
+      ],
+      "commentary": {
+        "opening": "The purpose, the request and what the patient and family understand come first, since the hospice team must speak with them from the start.",
+        "selection": "Symptom control, intake, skin, the DNACPR decision, her wishes and her faith are kept. Her surgical history, stopped antihypertensives and the grandson are left out.",
+        "organisation": "Purpose and understanding, symptom control, nursing care, wishes, then the remaining actions.",
+        "tone": "Warm but professional, fitting end-of-life care."
+      },
+      "notesUsed": [
+        "advanced pancreatic cancer with liver metastases; end-of-life care",
+        "active treatment ceased 20 June; prognosis discussed with patient and daughters; spoken about it without distress",
+        "bedbound since 22 June",
+        "syringe driver: morphine 30 mg and metoclopramide 30 mg over 24 hours; pain and nausea controlled",
+        "midazolam as required, used twice; hyoscine butylbromide prescribed as required",
+        "mild night confusion twice, settled with reorientation",
+        "sips and yoghurt; mouth care four-hourly; two-hourly pressure care, sacrum intact, Waterlow 18",
+        "penicillin allergy",
+        "DNACPR 20 June, family aware; peaceful death, no investigations; Catholic, chaplain visits",
+        "daughters present daily, full involvement"
+      ],
+      "notesLeftOut": [
+        "diet-controlled diabetes, glucose monitoring stopped 23 June - nothing for the hospice to do",
+        "window open, no television - small preferences the family will share; kept out for length",
+        "site of pain (epigastrium and back) - controlled; the regimen is what the reader acts on",
+        "admission date 18 June - the transfer and its reasons matter more",
+        "hypertension, antihypertensives stopped - nothing for the hospice to act on",
+        "cholecystectomy 2009 - irrelevant",
+        "the hospital chaplain visited twice - the hospice will arrange its own chaplain",
+        "widow, grandson at weekends - minor social detail",
+        "reaction to penicillin (rash) - the allergy itself is stated"
+      ],
+      "safety": [
+        {
+          "point": "Penicillin allergy",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "DNACPR in place, family aware; no further investigations",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Syringe driver: morphine 30 mg and metoclopramide 30 mg over 24 hours, to be reviewed",
+          "where": "paragraphs 2, 5"
+        },
+        {
+          "point": "As-required midazolam for agitation, used twice; night confusion",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Pressure risk, Waterlow 18, two-hourly repositioning",
+          "where": "paragraph 3"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-transfer-to-rehabilitation-unit-post-hip-fracture",
+      "header": [
+        "Ms Carla Devine",
+        "Charge Nurse",
+        "Riverside Rehabilitation Unit",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Ms Devine,",
+      "re": "Re: Mrs Aurora Pereira, aged 78",
+      "body": [
+        "I am writing to transfer Mrs Pereira to your unit today for rehabilitation after a right hemiarthroplasty on 5 June 2026 following a fall at home. I would be grateful if you could continue her physiotherapy and occupational therapy to restore her independence, and arrange a home assessment before discharge.",
+        "Her wound has healed since staple removal on 19 June. She walks 10 metres with a frame and one assistant, weight-bearing as tolerated. Her pain scores 3 out of 10 on movement and 0 at rest.",
+        "She receives enoxaparin 40 mg subcutaneously daily, which should continue until 3 July, 28 days post-operatively. She is allergic to penicillin, which causes a rash. Her haemoglobin was 104 on 20 June, down from 128 before surgery, and no transfusion was needed.",
+        "She takes metformin 500 mg twice daily for type 2 diabetes, with blood glucose of 6 to 8 mmol/L. She needs help with washing and dressing, is continent, and her pressure areas are intact, with a Waterlow score of 12.",
+        "Previously independent, she lived alone in a ground-floor flat, with her daughter nearby. She is anxious about returning home.",
+        "Thank you for your care of her."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Orthopaedic Ward"
+      ],
+      "commentary": {
+        "opening": "The operation, the purpose of the transfer and the request for therapy and a home assessment come first.",
+        "selection": "Mobility, pain, anticoagulation, the allergy, haemoglobin, diabetes and her care needs are kept. Her knees, cataracts, hobbies and fall details beyond the cause are left out.",
+        "organisation": "Purpose, recovery, medication safety, daily care needs, then home circumstances.",
+        "tone": "Clear and collegial; the anticoagulation end date is stated plainly so the unit can continue it."
+      },
+      "notesUsed": [
+        "right hemiarthroplasty 5 June 2026 after a fall at home",
+        "staples removed 19 June, wound healed",
+        "10 metres with frame and one assistant; weight-bearing as tolerated",
+        "pain 3 out of 10 on movement, 0 at rest",
+        "enoxaparin 40 mg daily, continue until 3 July, 28 days post-operatively",
+        "penicillin allergy (rash); haemoglobin 104 on 20 June, from 128, no transfusion",
+        "metformin 500 mg twice daily; glucose 6 to 8 mmol/L",
+        "help with washing and dressing; continent; pressure areas intact, Waterlow 12",
+        "plan: physiotherapy, occupational therapy, pre-discharge home assessment",
+        "previously independent, lived alone in ground-floor flat, daughter nearby, anxious about going home"
+      ],
+      "notesLeftOut": [
+        "rug, no head injury, X-ray - cause and diagnosis are settled",
+        "spinal anaesthetic, blood loss 300 ml - no effect on rehabilitation; the haemoglobin is given instead",
+        "afebrile - normal",
+        "constipation from day four, now resolved with lactulose - settled",
+        "uncomplicated surgery - implied by the healed wound and current progress",
+        "amlodipine, paracetamol, hypertension - routine, on the drug chart",
+        "osteoarthritis of knees, cataract surgery - not relevant to the plan",
+        "retired seamstress, sewing machine, afternoon tea - personal detail the team will learn"
+      ],
+      "safety": [
+        {
+          "point": "Enoxaparin 40 mg daily to continue until 3 July, 28 days post-operatively",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Penicillin allergy (rash)",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Haemoglobin 104, reduced from 128",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Mobilises only with a frame and one assistant (fall risk)",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Pre-discharge home assessment required",
+          "where": "paragraph 1"
+        }
+      ]
+    },
+    {
+      "slug": "wri-nursing-transfer-to-stroke-rehabilitation-ward-acute-ischaemic-stroke",
+      "header": [
+        "The Nurse in Charge",
+        "Stroke Rehabilitation Ward",
+        "26 June 2026"
+      ],
+      "salutation": "Dear Nurse in Charge,",
+      "re": "Re: Mr Ivan Petrov, aged 68",
+      "body": [
+        "I am writing to transfer Mr Petrov to your ward today for rehabilitation after a right middle cerebral artery ischaemic stroke on 19 June 2026. I would be grateful if you could continue his physiotherapy, occupational therapy and speech and language therapy, and agree mobility goals with him.",
+        "He was thrombolysed, and imaging at 24 hours showed no haemorrhagic transformation. His left arm power is 2/5 and left leg 3/5. His speech is intelligible with occasional slurring, and comprehension is intact. He needs two people to transfer.",
+        "He takes a soft diet with level 2 thickened fluids, supervised at meals, and these precautions must continue until speech and language therapy reassesses him.",
+        "He has atrial fibrillation and now takes apixaban 5 mg twice daily, having previously taken only aspirin. Codeine causes nausea; this is an intolerance, not an allergy.",
+        "With a Waterlow score of 16, he needs two-hourly pressure care on a pressure-redistributing mattress. He has occasional urinary incontinence, managed with aids, and requires a continence assessment.",
+        "He is highly motivated to walk again. He lives with his wife in a two-storey house with an upstairs bathroom, and wears a right hearing aid.",
+        "Thank you for your care."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Registered Nurse, Acute Stroke Unit"
+      ],
+      "commentary": {
+        "opening": "The stroke, the purpose of the transfer and the rehabilitation request come first.",
+        "selection": "Deficits, swallow precautions, new anticoagulation, the codeine intolerance, skin and continence are kept. Onset time, scan details and his hernia repair are left out.",
+        "organisation": "Purpose, current deficits, swallow safety, medication, nursing care, then home and motivation for goal setting.",
+        "tone": "Factual and collegial between nursing teams."
+      },
+      "notesUsed": [
+        "right middle cerebral artery ischaemic stroke, 19 June 2026",
+        "thrombolysed; no haemorrhagic transformation at 24 hours",
+        "left arm 2/5, left leg 3/5; speech intelligible, occasional slurring; comprehension intact",
+        "two to transfer",
+        "soft diet, thickened fluids level 2, supervision; precautions until reassessed",
+        "atrial fibrillation, apixaban 5 mg twice daily, previously aspirin only",
+        "codeine intolerance (nausea), not an allergy",
+        "Waterlow 16, two-hourly pressure care, pressure-redistributing mattress",
+        "occasional urinary incontinence, aids; continence assessment",
+        "motivated to walk; two-storey house, bathroom upstairs; right hearing aid"
+      ],
+      "notesLeftOut": [
+        "onset time 08:10, thrombolysis time 09:40, witnessed by wife, CT - acute details superseded by current status",
+        "sitting out two hours twice a day - the therapists will set the new routine",
+        "facial droop improving - minor and improving",
+        "swallow assessment dates, no coughing on current consistency - the current precautions are what matter",
+        "bowels open with lactulose - settled, on the drug chart",
+        "amlodipine, metformin, atorvastatin - unchanged routine medicines on the drug chart; apixaban given as it is new and high-risk",
+        "hypertension, diabetes, hernia repair 2015 - managed routinely or irrelevant",
+        "retired carpenter, own pyjamas - personal detail"
+      ],
+      "safety": [
+        {
+          "point": "Swallow precautions: soft diet, level 2 thickened fluids, supervision at meals until reassessed",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Newly anticoagulated with apixaban 5 mg twice daily after thrombolysis",
+          "where": "paragraphs 2, 4"
+        },
+        {
+          "point": "Codeine intolerance (nausea), not an allergy",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Pressure risk, Waterlow 16, two-hourly care",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Two-person transfers (fall risk)",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Hearing aid on the right (communication)",
+          "where": "paragraph 6"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-advice-letter-to-gp-on-warfarin-to-doac-switch",
+      "header": [
+        "Dr Imran Saleh",
+        "General Practitioner",
+        "Brookside Surgery",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Saleh,",
+      "re": "Re: Mrs Glenda Pruitt, aged 78",
+      "body": [
+        "I am writing to advise switching Mrs Pruitt from warfarin to apixaban. She has taken warfarin for atrial fibrillation for four years, with unstable control.",
+        "Her time in the therapeutic range was 48% over the past twelve months, and recent INR readings varied between 1.4 and 3.8, requiring frequent dose changes. She has also missed four appointments this year.",
+        "She has had no bleeding on warfarin and has no mechanical valve; her HAS-BLED score is 2. Her eGFR is stable at 44 and she weighs 62 kg. The reduced dose of 2.5 mg twice daily applies only when two of three criteria are met: age 80 or over, weight 60 kg or less, and creatinine 133 or above. As she meets one only, I recommend apixaban 5 mg twice daily.",
+        "I would be grateful if you could stop warfarin and start apixaban according to local changeover guidance, then check her renal function after one month, at least annually thereafter, and sooner during any intercurrent illness. Routine INR monitoring will no longer be needed, and she need not avoid green vegetables. Please involve her daughter, who manages her tablets. She is allergic to sulfonamides.",
+        "Thank you for your help."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Specialist Practitioner, Anticoagulation Clinic"
+      ],
+      "commentary": {
+        "opening": "The first sentence states the advice itself, a switch from warfarin to apixaban, so the GP knows at once what action is being recommended.",
+        "selection": "Only facts that justify the switch and the dose are kept: unstable control, missed appointments, renal function, weight and the dose criteria. Unrelated questions are dropped.",
+        "organisation": "Purpose, then why warfarin is failing, then the dose reasoning, then the actions and monitoring the GP must take.",
+        "tone": "Collegial and advisory; the request is polite but explicit."
+      },
+      "notesUsed": [
+        "four years on warfarin, unstable control",
+        "time in range 48%",
+        "INR 1.4 to 3.8, frequent dose changes",
+        "four missed appointments",
+        "no bleeding, no mechanical valve, HAS-BLED 2",
+        "eGFR 44 stable, weight 62 kg",
+        "dose-reduction criteria; meets one only",
+        "apixaban 5 mg twice daily",
+        "renal function at one month, annually, sooner if unwell; no INR",
+        "daughter manages tablets",
+        "sulfonamide allergy",
+        "question about green vegetables"
+      ],
+      "notesLeftOut": [
+        "individual INR dates and the current warfarin dose - the range makes the point",
+        "bisoprolol, furosemide, atorvastatin - unchanged and already on the GP record",
+        "blood pressure and pulse - normal, change nothing",
+        "past history of heart failure and osteoarthritis - GP knows it",
+        "flu vaccination and hearing loss - not part of this advice",
+        "does not drive - not relevant",
+        "reason for missed appointments - the number of missed visits makes the point"
+      ],
+      "safety": [
+        {
+          "point": "Apixaban dose 5 mg twice daily with the reasoning against dose reduction",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Stop warfarin when apixaban starts, per local changeover guidance (avoid double anticoagulation)",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Renal monitoring at one month, annually, and sooner in intercurrent illness",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Daughter manages tablets and must know of the change",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Sulfonamide allergy",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-cardiology-referral-for-new-atrial-fibrillation",
+      "header": [
+        "Dr Helena Frost",
+        "Consultant Cardiologist",
+        "Riverside Hospital Cardiology Clinic",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Frost,",
+      "re": "Re: Mr Trevor Hale, aged 68",
+      "body": [
+        "I would be grateful if you could assess Mr Hale, who has newly diagnosed atrial fibrillation, and review the anticoagulation I started today.",
+        "He reports a two-week history of palpitations, lasting up to an hour, with new breathlessness on climbing stairs. On 30 August he had one episode of light-headedness while gardening, without loss of consciousness or a fall. He has had no chest pain.",
+        "Today his pulse was 112 and irregularly irregular, and his blood pressure 138/86. An ECG confirmed atrial fibrillation at 110 with no ischaemic changes. Blood tests on 2 September, including thyroid function, were normal. An echocardiogram is booked for 18 September.",
+        "His CHA2DS2-VASc score is 4, reflecting his age, hypertension and a transient ischaemic attack in 2021; he takes no antiplatelet. He also takes amlodipine 5 mg daily and atorvastatin 20 mg at night. He is allergic to penicillin.",
+        "Today I started bisoprolol 2.5 mg daily for rate control and, after discussing bleeding risk, apixaban at the standard dose; no contraindication was identified. He has written information and was advised to seek immediate help if he develops chest pain, severe breathlessness or any blackout. He drives.",
+        "Thank you for seeing him."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner, Riverside Surgery"
+      ],
+      "commentary": {
+        "opening": "The request comes first and names both tasks: assessment of the new arrhythmia and review of the anticoagulation already started.",
+        "selection": "Symptoms, the presyncopal episode, the ECG, the stroke-risk score and the start of apixaban after a bleeding-risk discussion are kept. Hip pain and heartburn are dropped.",
+        "organisation": "Request, history, findings and tests, risk and medicines, then what has been started and what he has been told.",
+        "tone": "Concise and collegial, letting the facts carry the urgency."
+      },
+      "notesUsed": [
+        "two-week palpitations, up to an hour",
+        "new breathlessness on stairs",
+        "light-headedness 30 August, no loss of consciousness",
+        "pulse 112 irregularly irregular, BP 138/86",
+        "ECG atrial fibrillation at 110, no ischaemia",
+        "bloods 2 September normal",
+        "echocardiogram 18 September",
+        "CHA2DS2-VASc 4; TIA 2021, no antiplatelet",
+        "amlodipine, atorvastatin",
+        "penicillin allergy",
+        "bisoprolol 2.5 mg started; apixaban started today at standard dose after bleeding-risk discussion; no contraindication",
+        "written information; seek immediate help for chest pain, severe breathlessness or any blackout",
+        "drives"
+      ],
+      "notesLeftOut": [
+        "no orthopnoea, oedema, murmur; chest clear - negatives the cardiologist will confirm",
+        "weight and BMI - not needed for this decision",
+        "no 24-hour tape - rhythm already documented",
+        "alcohol and smoking - minor, can be taken at assessment",
+        "hip injection and heartburn - unrelated to the referral"
+      ],
+      "safety": [
+        {
+          "point": "Apixaban started today at the standard dose after discussing bleeding risk; previous transient ischaemic attack, CHA2DS2-VASc 4",
+          "where": "paragraphs 1, 4, 5"
+        },
+        {
+          "point": "Penicillin allergy",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Advised to seek immediate help for chest pain, severe breathlessness or any blackout",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Presyncopal episode and he drives",
+          "where": "paragraphs 2, 5"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-community-mental-health-referral-for-first-episode-depression",
+      "header": [
+        "Dr Yusuf Karim",
+        "Consultant Psychiatrist",
+        "Westbrook Community Mental Health Team",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Karim,",
+      "re": "Re: Ms Rebecca Lyall, aged 34",
+      "body": [
+        "I am writing to refer Ms Lyall for specialist assessment and psychological therapy for moderate to severe depression with only a partial response to her first antidepressant.",
+        "She describes four months of persistent low mood, worse in the mornings, with early waking, poor appetite and a weight loss of five kilograms. She has withdrawn socially and struggles to concentrate. This followed her mother's death in March 2026 and a relationship breakdown in April 2026. Her PHQ-9 score today was 18 and GAD-7 11. There were no psychotic features.",
+        "She reports fleeting, unwelcome thoughts of not wanting to be here, but has no plan, intent or preparatory acts, and no history of self-harm. She identifies her four-year-old daughter as her reason not to act. We agreed a safety plan and gave written crisis contacts.",
+        "Sertraline 50 mg daily was started on 21 August 2026 and is well tolerated. In June 2026 she stopped online therapy after two sessions, as she could not concentrate on the written exercises. She is a single parent with little local support, off work for three weeks.",
+        "I would be grateful for your advice on further treatment.",
+        "Thank you for seeing her."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner, Westbrook Surgery"
+      ],
+      "commentary": {
+        "opening": "The opening states the referral, the diagnosis and its severity, and why specialist input is needed: only a partial response to treatment.",
+        "selection": "Core symptoms, scores, precipitants and the full risk assessment are kept, with the failed online therapy. Migraine and the sick note are omitted.",
+        "organisation": "Purpose, symptoms and context, risk, treatment so far and social situation, then the request.",
+        "tone": "Factual and compassionate; risk is reported precisely, neither minimised nor dramatised."
+      },
+      "notesUsed": [
+        "four months low mood, diurnal variation",
+        "early waking, appetite, weight loss 5 kg",
+        "anhedonia, withdrawal, poor concentration",
+        "bereavement March 2026, breakup April 2026",
+        "PHQ-9 18, GAD-7 11",
+        "no psychotic features",
+        "passive thoughts, no plan or intent, no self-harm",
+        "daughter protective; safety plan and crisis contacts",
+        "sertraline 50 mg from 21 August 2026",
+        "online therapy two sessions, stopped",
+        "single parent, little support, off work three weeks"
+      ],
+      "notesLeftOut": [
+        "appearance and reactive affect - covered by 'no psychotic features' and the specialist's own examination",
+        "no previous psychiatric contact, alcohol rarely - can be given at assessment",
+        "occupation and sister abroad - the key point, limited support, is kept",
+        "sleeping tablets not prescribed - changes nothing for the reader",
+        "sick note and migraines - unrelated to the referral"
+      ],
+      "safety": [
+        {
+          "point": "Fleeting thoughts of not wanting to be here; no plan, intent or self-harm",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Safety plan agreed and crisis contacts given in writing",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Dependent child; single parent with limited support",
+          "where": "paragraphs 3, 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-discharge-after-community-acquired-pneumonia",
+      "header": [
+        "Dr Amara Okoye",
+        "General Practitioner",
+        "Lakeside Medical Centre",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Okoye,",
+      "re": "Re: Mrs Doreen Whitfield, aged 74",
+      "body": [
+        "I am writing to inform you that Mrs Whitfield was discharged today, following admission on 30 August 2026 with right lower lobe community-acquired pneumonia, and to request your follow-up.",
+        "She presented with four days of productive cough, fever and increasing breathlessness, and was briefly confused. On arrival her saturation was 89% on air and CURB-65 score 2. Her CRP of 186 fell to 42 by 3 September.",
+        "She received intravenous co-amoxiclav, changed to oral after 48 hours, and oxygen until day three. At discharge she had been afebrile for 48 hours, her saturation was 95% on air and she was mobilising independently.",
+        "She should complete the remaining three days of oral co-amoxiclav, finishing a seven-day course. Her tiotropium and salbutamol inhalers and metformin 1 g twice daily are unchanged.",
+        "I would be grateful if you could arrange a repeat chest X-ray in six weeks to confirm resolution, support her to remain smoke-free, having stopped four months ago, and offer pneumococcal vaccination if due. She lives alone, but a neighbour visits daily. She has been advised to seek help if her breathlessness or fever returns, and may contact the ward for 48 hours.",
+        "Thank you for your continued care."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Doctor, Medical Ward, Riverside Hospital"
+      ],
+      "commentary": {
+        "opening": "The first sentence gives the diagnosis, the admission and discharge, and the purpose: follow-up by the GP.",
+        "selection": "Severity, treatment response, the remaining antibiotics and the three follow-up actions are kept. Negative cultures, fluids and hand osteoarthritis are left out.",
+        "organisation": "Purpose, presentation, treatment and progress, medication, then the actions requested and the safety-net advice.",
+        "tone": "Clear and collegial; the requests are direct and grouped in one paragraph."
+      },
+      "notesUsed": [
+        "admitted 30 August, discharged today",
+        "right lower lobe pneumonia",
+        "four-day cough, fever, breathlessness, brief confusion",
+        "saturation 89%, CURB-65 2",
+        "CRP 186 falling to 42",
+        "IV co-amoxiclav to oral after 48 hours; oxygen weaned day three",
+        "afebrile 48 hours, saturation 95%, mobile",
+        "oral co-amoxiclav to complete seven days, three days remaining",
+        "inhalers and metformin unchanged",
+        "X-ray six weeks, support to remain smoke-free, pneumococcal vaccine",
+        "lives alone, neighbour daily",
+        "safety-net advice, ward number 48 hours"
+      ],
+      "notesLeftOut": [
+        "full admission observations and white cell count - CURB-65 and saturation convey severity",
+        "urea, cultures with no growth - change nothing for the GP",
+        "intravenous fluids - completed in hospital",
+        "past history dates - known to the GP",
+        "hospital transport and hand osteoarthritis - not relevant to follow-up"
+      ],
+      "safety": [
+        {
+          "point": "Complete the remaining three days of oral co-amoxiclav (seven-day course)",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Repeat chest X-ray in six weeks to confirm resolution",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Lives alone; neighbour checks daily",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Told to seek help if breathlessness or fever returns; ward contact for 48 hours",
+          "where": "paragraph 5"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-discharge-after-paediatric-asthma-admission",
+      "header": [
+        "Dr Priya Nair",
+        "General Practitioner",
+        "Elmwood Family Surgery",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Nair,",
+      "re": "Re: Mia Holloway, aged 7 years",
+      "body": [
+        "I am writing to hand over the care of Mia, who was discharged today after admission on 31 August 2026 with an acute moderate to severe asthma exacerbation triggered by a viral infection. I would be grateful if you could review her at the practice within 48 hours.",
+        "On admission her respiratory rate was 38, her oxygen saturation 90% on room air and her peak flow 55% of predicted. She needed oxygen, back-to-back salbutamol nebulisers, ipratropium for 24 hours and a three-day course of oral prednisolone, completed today. At discharge her saturation was 98% on room air and peak flow 85% of predicted.",
+        "She goes home on beclometasone 100 mcg twice daily as a preventer and salbutamol 100 mcg as required via a spacer, now supplied. Her mother demonstrated correct spacer technique, and a written asthma action plan has been explained.",
+        "Importantly, the family has been using the preventer only when symptoms occur, so adherence needs reinforcing. This is her second similar admission, the previous one 18 months ago, so routine asthma clinic review would be valuable. Her father smokes outdoors, and smoking cessation advice has been offered.",
+        "Thank you for your ongoing care of Mia."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Paediatric Doctor, Paediatric Ward, Riverside Hospital"
+      ],
+      "commentary": {
+        "opening": "The purpose and the time-critical request, review within 48 hours, are both in the first paragraph.",
+        "selection": "Severity, treatment, discharge inhalers, the spacer and the action plan are kept, with the adherence problem and the previous admission. Eczema, swimming and dental questions are left out.",
+        "organisation": "Purpose and request, admission and progress, discharge medication and education, then the risks the GP should address.",
+        "tone": "Collegial and direct, with 'importantly' marking the key concern."
+      },
+      "notesUsed": [
+        "admitted 31 August, discharged today",
+        "viral trigger, moderate to severe",
+        "respiratory rate 38, saturation 90%, peak flow 55%",
+        "oxygen, salbutamol, ipratropium, prednisolone completed",
+        "saturation 98%, peak flow 85%",
+        "beclometasone 100 mcg twice daily, salbutamol 100 mcg via spacer",
+        "spacer supplied, technique checked",
+        "written action plan",
+        "review within 48 hours",
+        "preventer used only with symptoms",
+        "previous admission 18 months ago",
+        "asthma clinic review",
+        "father smokes; cessation advice offered"
+      ],
+      "notesLeftOut": [
+        "accessory muscles, wheeze - severity already clear",
+        "eczema and emollient - unchanged, mild",
+        "age at diagnosis - known to the GP",
+        "no allergies, afebrile - change nothing",
+        "school days missed - not needed for follow-up",
+        "swimming and dental check - unrelated"
+      ],
+      "safety": [
+        {
+          "point": "Review at the practice within 48 hours",
+          "where": "paragraph 1"
+        },
+        {
+          "point": "Preventer used only when symptomatic; adherence needs reinforcing",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Second similar admission (previous 18 months ago)",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Spacer and written action plan supplied",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Household smoking exposure",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-emergency-department-letter-for-acute-coronary-syndrome",
+      "header": [
+        "Dr Ravi Chandran",
+        "On-call Cardiology Registrar",
+        "Coronary Care Unit",
+        "Harbourview Hospital",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Chandran,",
+      "re": "Re: Mr Patrick O'Donnell, aged 59",
+      "body": [
+        "I am writing to refer Mr O'Donnell urgently for admission with a non-ST-elevation myocardial infarction, and would be grateful if you would consider inpatient angiography.",
+        "He presented with a three-hour history of central crushing chest pain at rest, radiating to the left arm and jaw, with sweating and nausea. Sublingual glyceryl trinitrate reduced the pain from 9/10 to 6/10. His ECG shows T-wave inversion in V4 to V6 without ST elevation, unchanged at one hour, and troponin has risen from 320 ng/L on arrival to 640 ng/L at three hours. There are no signs of heart failure.",
+        "In the department he has received aspirin 300 mg, ticagrelor 180 mg, fondaparinux, glyceryl trinitrate, and morphine 5 mg with an antiemetic. He is on cardiac monitoring. Haemoglobin and renal function are normal.",
+        "Risk factors include type 2 diabetes, with an HbA1c of 68 mmol/mol, hyperlipidaemia, smoking 20 a day for 40 years, and his father's myocardial infarction at 55. He has no known allergies.",
+        "He is a long-distance lorry driver, so his fitness to drive must be addressed before discharge. He has asked whether his employer will be informed.",
+        "Thank you for seeing him."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Emergency Department Doctor, Harbourview Hospital"
+      ],
+      "commentary": {
+        "opening": "The first sentence states the diagnosis, the urgency and both requests: admission and consideration of angiography.",
+        "selection": "The rising troponin, ECG changes and all antithrombotic treatment are kept because the cardiologist acts on them. Normal examination findings, the chest X-ray and back pain are left out.",
+        "organisation": "Request, then presentation and results, then treatment given, then risk factors, then the driving issue for discharge planning.",
+        "tone": "Brief and factual, as suits an urgent hand-over between doctors."
+      },
+      "notesUsed": [
+        "NSTEMI; urgent admission and angiography consideration",
+        "three-hour central crushing pain at rest, radiation, sweating, nausea",
+        "GTN eased pain 9/10 to 6/10",
+        "T-wave inversion V4 to V6, no ST elevation, unchanged at one hour",
+        "troponin 320 rising to 640 ng/L",
+        "no heart failure signs",
+        "aspirin 300 mg, ticagrelor 180 mg, fondaparinux, GTN, morphine 5 mg with antiemetic",
+        "on cardiac monitoring",
+        "haemoglobin and creatinine normal (stated without figures)",
+        "diabetes, HbA1c 68, hyperlipidaemia, smoking 20 a day for 40 years, father MI at 55",
+        "no known allergies",
+        "lorry driver: fitness to drive before discharge; asked about employer"
+      ],
+      "notesLeftOut": [
+        "full observations - stable and recorded on the chart; not needed to accept the patient",
+        "normal heart sounds, clear chest, no raised JVP - summarised as no signs of heart failure",
+        "chest X-ray normal and potassium normal - change nothing",
+        "glucose 11.4 and cannulation - HbA1c already shows control; cannula is routine",
+        "exact haemoglobin and creatinine figures - summarised as normal",
+        "year of diabetes diagnosis, lives with partner - not needed for acute care",
+        "lower back pain - unrelated to this admission"
+      ],
+      "safety": [
+        {
+          "point": "Dual antiplatelet therapy and fondaparinux already given, so doses must not be duplicated",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Rising troponin confirming ongoing myocardial injury",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Fitness to drive as a lorry driver must be addressed before discharge",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "No known allergies",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-endocrine-referral-for-poorly-controlled-type-2-diabetes",
+      "header": [
+        "Dr Priya Nair",
+        "Consultant Endocrinologist",
+        "Greenfield Diabetes Centre",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Nair,",
+      "re": "Re: Mrs Felicity Boateng, aged 56",
+      "body": [
+        "I would be grateful for your guidance on optimising treatment for Mrs Boateng, who has type 2 diabetes with persistent hyperglycaemia despite maximal oral therapy and mildly impaired renal function.",
+        "Her control has worsened steadily: her HbA1c was 64 mmol/mol in September 2025, 72 in March 2026 and 86 on 21 August 2026. Home readings are mostly 12 to 16 mmol/L before meals. Over the past two months she has developed polyuria, nocturia three times a night and fatigue.",
+        "She currently takes metformin 1 g twice daily, now tolerated as modified release, gliclazide 80 mg twice daily, atorvastatin 20 mg at night and ramipril 5 mg daily. She collects her prescriptions regularly and reports full adherence.",
+        "Her eGFR is stable at 58, with a mildly raised urine albumin-creatinine ratio of 4.5. Her BMI is 34 and her blood pressure 142/88. Her feet were normal today, and her retinal screening is due.",
+        "I am considering a GLP-1 receptor agonist or an SGLT2 inhibitor and would value your advice on the most suitable agent, given her renal function and current sulfonylurea. She is a full-time schoolteacher and finds dieting difficult during term.",
+        "Thank you for seeing her."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner, Greenfield Surgery"
+      ],
+      "commentary": {
+        "opening": "The opening names the request at once: specialist guidance on the next agent for poorly controlled diabetes with impaired renal function.",
+        "selection": "The rising HbA1c, medication, adherence and renal results are kept because they decide the choice of agent. Normal liver function, foot detail, dry eyes and the podiatry question are left out.",
+        "organisation": "Request, then the trend in control, then medication and adherence, then renal and other findings, then the specific question.",
+        "tone": "Collegial and precise, inviting the specialist's judgement."
+      },
+      "notesUsed": [
+        "persistent hyperglycaemia despite maximal oral therapy, impaired renal function",
+        "HbA1c 64 (September 2025), 72 (March 2026), 86 (21 August 2026)",
+        "home readings 12 to 16 mmol/L",
+        "polyuria, nocturia three times, fatigue for two months",
+        "metformin 1 g twice daily (modified release, tolerated), gliclazide 80 mg twice daily, atorvastatin 20 mg, ramipril 5 mg",
+        "good adherence",
+        "eGFR 58 stable, ACR 4.5 mildly raised",
+        "BMI 34, BP 142/88",
+        "feet normal; retinal screening due",
+        "considering GLP-1 receptor agonist or SGLT2 inhibitor; advice given renal function and sulfonylurea",
+        "full-time schoolteacher, diet difficult in term"
+      ],
+      "notesLeftOut": [
+        "weight 92 kg - BMI already given",
+        "detailed foot findings - normal; summarised",
+        "background retinopathy detail - screening is due and will update it",
+        "liver function normal, cholesterol 5.1 - do not change the choice of agent",
+        "non-smoker, minimal alcohol, lives with husband - not needed for this decision",
+        "podiatry question, dry eyes - can be handled in primary care"
+      ],
+      "safety": [
+        {
+          "point": "Impaired renal function (eGFR 58, raised albumin-creatinine ratio) affecting the choice of agent",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Current sulfonylurea, relevant to hypoglycaemia risk if another agent is added",
+          "where": "paragraphs 3, 5"
+        },
+        {
+          "point": "Retinal screening due",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-gp-referral-for-suspected-dvt",
+      "header": [
+        "Dr Helena Cardoso",
+        "On-call Medical Registrar",
+        "Emergency Assessment Unit",
+        "Riverside Hospital",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Cardoso,",
+      "re": "Re: Mr Daniel Ortega, aged 58",
+      "body": [
+        "I am writing to refer Mr Ortega for urgent assessment and imaging today for a suspected right-sided deep vein thrombosis and possible pulmonary embolism.",
+        "He has a three-day history of progressive swelling, warmth and aching of the right calf. Since this morning he has had sharp right-sided chest discomfort on deep inspiration, without cough, haemoptysis or syncope. He returned five days ago from a thirteen-hour flight and has been less mobile for a week.",
+        "His right calf is tender, warm and swollen, four centimetres larger than the left, with prominent superficial veins. His two-level Wells score indicates that a deep vein thrombosis is likely. His pulse is 96, blood pressure 138/84 and oxygen saturation 96% on room air. His chest is clear.",
+        "I would be grateful if you would arrange a proximal leg vein ultrasound within 4 hours. If this cannot be done, please take a D-dimer and start interim therapeutic anticoagulation until the scan. A CT pulmonary angiogram should also be considered.",
+        "He has well-controlled type 2 diabetes and takes metformin 1 g twice daily, which may be relevant if contrast is given. He is allergic to penicillin, which causes a rash.",
+        "Thank you for seeing him."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner"
+      ],
+      "commentary": {
+        "opening": "The purpose, the urgency (today) and both suspected diagnoses appear in the first two sentences.",
+        "selection": "Risk factors, signs, observations, the Wells result and the imaging and anticoagulation plan are kept. Old surgery, knee osteoarthritis, eczema and the insurance question are left out.",
+        "organisation": "Request, then history and risk factors, then examination, then the time-bound imaging plan with its fallback, then medication and allergy.",
+        "tone": "Direct and urgent but calm, as one doctor to another."
+      },
+      "notesUsed": [
+        "suspected DVT with pleuritic chest discomfort; urgent assessment and imaging today",
+        "three-day calf swelling, warmth, aching",
+        "pleuritic chest pain since this morning; no cough, haemoptysis, syncope",
+        "thirteen-hour flight five days ago; reduced mobility for a week",
+        "calf tender, warm, oedematous, four centimetres larger, superficial veins",
+        "two-level Wells score: DVT likely",
+        "pulse 96, BP 138/84, saturation 96% on room air; chest clear",
+        "proximal leg vein ultrasound within 4 hours",
+        "if not possible within 4 hours: D-dimer and interim therapeutic anticoagulation until the scan",
+        "consider CT pulmonary angiogram",
+        "diabetes on metformin 1 g twice daily",
+        "penicillin allergy - rash"
+      ],
+      "notesLeftOut": [
+        "no surgery, malignancy, previous clot or family history - negatives the registrar will confirm",
+        "measurement site, respiratory rate, temperature - detail beyond what is needed",
+        "HbA1c 48 - diabetes summarised as well controlled",
+        "knee osteoarthritis, appendicectomy, eczema - not relevant",
+        "paracetamol as required, analgesia continued - minor",
+        "travel insurance question, job, ex-smoker, social details - not needed for acute assessment"
+      ],
+      "safety": [
+        {
+          "point": "Possible pulmonary embolism with new pleuritic chest pain",
+          "where": "paragraphs 1, 2"
+        },
+        {
+          "point": "Proximal leg vein ultrasound within 4 hours",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "If the scan cannot be done within 4 hours: D-dimer and interim therapeutic anticoagulation until the scan",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "CT pulmonary angiogram to be considered",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Penicillin allergy (rash)",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Metformin, relevant to contrast for CT pulmonary angiography",
+          "where": "paragraph 5"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-gastroenterology-referral-for-iron-deficiency-anaemia",
+      "header": [
+        "Dr Sanjay Mehta",
+        "Consultant Gastroenterologist",
+        "St Aiden's Hospital",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Mehta,",
+      "re": "Re: Mr Colin Radley, aged 61",
+      "body": [
+        "I am writing to refer Mr Radley on the two-week-wait pathway for urgent upper gastrointestinal endoscopy and colonoscopy to investigate unexplained iron-deficiency anaemia with a positive faecal immunochemical test and weight loss.",
+        "He has a three-month history of progressive fatigue and breathlessness on climbing stairs, with looser stools over the same period. He has had no rectal bleeding, abdominal pain or dysphagia. He has unintentionally lost four kilograms, from 82 kg to 78 kg, despite a normal appetite.",
+        "On 28 August 2026 his haemoglobin was 88 g/L, with an MCV of 71 and a ferritin of 6, compared with 134 g/L in March 2026. Coeliac serology was negative. His faecal immunochemical test on 30 August 2026 was positive. He was pale, but abdominal and rectal examinations were unremarkable.",
+        "His father was diagnosed with bowel cancer at 70. He has never had an endoscopy. He takes lansoprazole 30 mg daily for long-standing reflux and ramipril 5 mg daily.",
+        "Please note that he is allergic to aspirin, which causes wheeze. I started ferrous fumarate 210 mg twice daily on 30 August 2026 and have warned him that it may darken his stool.",
+        "Thank you for seeing him."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner"
+      ],
+      "commentary": {
+        "opening": "The first sentence gives the pathway, both procedures requested and the three findings that make the referral urgent.",
+        "selection": "The fall in haemoglobin, iron studies, the positive test, weight loss and family history are kept. Normal liver and kidney results, alcohol, the vaccine question and knee pain are left out.",
+        "organisation": "Request, then symptoms, then results, then background, then allergy and the new iron treatment.",
+        "tone": "Concise and clinical, urgent without speculating about the cause."
+      },
+      "notesUsed": [
+        "two-week-wait for gastroscopy and colonoscopy",
+        "fatigue, breathlessness on stairs, looser stools for three months",
+        "no rectal bleeding, pain or dysphagia",
+        "weight loss 82 kg to 78 kg, normal appetite",
+        "Hb 88 g/L, MCV 71, ferritin 6 on 28 August 2026; Hb 134 g/L in March 2026",
+        "coeliac serology negative",
+        "FIT positive 30 August 2026",
+        "pale; abdominal and rectal examination normal",
+        "father bowel cancer at 70; no previous endoscopy",
+        "lansoprazole 30 mg, ramipril 5 mg",
+        "aspirin allergy - wheeze",
+        "ferrous fumarate 210 mg twice daily from 30 August 2026; warned of dark stools"
+      ],
+      "notesLeftOut": [
+        "B12, folate, liver function, urea and electrolytes normal - do not change the plan",
+        "pulse and blood pressure - stable, not needed",
+        "hypertension year of onset - not relevant",
+        "no mucus, no vomiting - minor negatives",
+        "job, non-smoker, alcohol ten units, lives with wife - not needed for endoscopy",
+        "shingles vaccine question, knee pain - unrelated"
+      ],
+      "safety": [
+        {
+          "point": "Aspirin allergy (wheeze)",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Oral iron started, which darkens the stool and may affect bowel preparation and interpretation of melaena",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Long-term lansoprazole, relevant to upper gastrointestinal findings",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-geriatric-referral-after-recurrent-falls",
+      "header": [
+        "Dr Harriet Cole",
+        "Consultant Geriatrician",
+        "Falls and Syncope Service",
+        "Elmwood Hospital",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Cole,",
+      "re": "Re: Mrs Edith Marlow, aged 83",
+      "body": [
+        "I would be grateful if you would see Mrs Marlow for a multifactorial falls assessment, as she has fallen three times in two months.",
+        "On 12 July 2026 she tripped on a rug indoors. On 9 August 2026 she felt dizzy on standing from a chair and fell, fracturing her left wrist, now healed. On 30 August 2026 she fell outdoors without warning. She has never lost consciousness.",
+        "Her blood pressure falls from 138/80 lying to 112/68 at one minute standing, with light-headedness. Her gait is unsteady with a stick, leg power is 4/5, and her timed up-and-go is 18 seconds. She has bilateral cataracts and osteoporosis, and her Abbreviated Mental Test Score is 8 out of 10.",
+        "She takes amlodipine 10 mg and bendroflumethiazide 2.5 mg daily, and has taken zopiclone 7.5 mg at night for three years. I would value a review of these, with gait and balance assessment and falls-prevention advice. Her vitamin D was low at 28 nmol/L; I started replacement today. Codeine causes nausea, an intolerance rather than an allergy.",
+        "She lives alone without a care package and does not wear her personal alarm; her daughter visits daily.",
+        "Thank you for seeing her."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner, Elmwood Surgery"
+      ],
+      "commentary": {
+        "opening": "The opening states the request and the reason in one sentence: three falls in two months.",
+        "selection": "The falls, postural drop, mobility, cognition, medicines that raise falls risk and the home situation are kept. Normal blood results, the hearing test question and the lunch club are left out.",
+        "organisation": "Request, then the falls in date order, then findings, then medicines with the specific review requested, then home risk.",
+        "tone": "Respectful and factual, collegial between doctors."
+      },
+      "notesUsed": [
+        "three falls in two months; multifactorial assessment",
+        "12 July 2026 trip; 9 August 2026 dizzy on standing, wrist fracture healed; 30 August 2026 outdoors, no warning",
+        "no loss of consciousness",
+        "lying 138/80, standing 112/68 at one minute, light-headed",
+        "unsteady gait with stick, power 4/5, timed up-and-go 18 seconds",
+        "cataracts, osteoporosis, AMTS 8 out of 10",
+        "amlodipine 10 mg, bendroflumethiazide 2.5 mg, zopiclone 7.5 mg for three years",
+        "medication review, gait and balance, falls prevention",
+        "vitamin D 28 nmol/L, replacement started",
+        "codeine intolerance (nausea), not an allergy",
+        "lives alone, no care package, alarm not worn, daughter visits daily"
+      ],
+      "notesLeftOut": [
+        "pulse 72 regular, no palpitations - normal findings",
+        "got up unaided twice - minor detail",
+        "full blood count, kidney, thyroid and calcium normal - change nothing",
+        "points lost on date and recall - the score is enough for referral",
+        "paracetamol as required - minor",
+        "hearing test question, lunch club, widowed - not needed for this assessment"
+      ],
+      "safety": [
+        {
+          "point": "Postural drop in blood pressure with symptoms, on two antihypertensives",
+          "where": "paragraphs 3, 4"
+        },
+        {
+          "point": "Long-term hypnotic (zopiclone) increasing falls risk",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Osteoporosis with a previous fall-related fracture",
+          "where": "paragraphs 2, 3"
+        },
+        {
+          "point": "Lives alone and does not wear her personal alarm",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Codeine intolerance (nausea), not an allergy",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-neurology-referral-for-first-unprovoked-seizure",
+      "header": [
+        "Dr Marcus Lindqvist",
+        "Consultant Neurologist",
+        "Central First-Seizure Clinic",
+        "Central",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Lindqvist,",
+      "re": "Re: Miss Olivia Pearson, aged 24",
+      "body": [
+        "I am writing to request urgent assessment of Miss Pearson, who had a first unprovoked generalised tonic-clonic seizure at work on 3 September 2026.",
+        "The event, witnessed by a colleague at approximately 11:15, lasted around ninety seconds, with left-sided tongue-biting and brief urinary incontinence. She recalls no warning and was confused for twenty minutes before recovering fully. She had slept only about four hours nightly for three nights because of a work deadline. There was no alcohol, drug use, new medication, fever or head injury.",
+        "Today, neurological and cardiovascular examinations were normal. Her CT head, blood tests and ECG were normal, and a pregnancy test was negative. There is no relevant personal or family history.",
+        "She takes the combined oral contraceptive pill and is allergic to latex. No anticonvulsant has been started, and an outpatient EEG and MRI are awaited.",
+        "She has been advised in writing not to drive and to inform the licensing authority, and to avoid swimming alone, baths and working at height until reviewed. I would be grateful if you could see her urgently to confirm the diagnosis and advise on further management, including her return to work.",
+        "Thank you for seeing her."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner, Central Surgery"
+      ],
+      "commentary": {
+        "opening": "The first sentence states the urgent request and the event, so the neurologist knows at once why she is being seen.",
+        "selection": "The seizure description, sleep deprivation, normal investigations, the pill, the latex allergy and the driving advice are kept; routine social and minor details are left out.",
+        "organisation": "Request, then the event and triggers, then findings, then medication and plan, then advice given and the specific request.",
+        "tone": "Formal and collegial, urgent without alarm."
+      },
+      "notesUsed": [
+        "first generalised tonic-clonic seizure at work on 3 September 2026, about 11:15, witnessed",
+        "ninety seconds, left tongue-biting, brief incontinence, twenty minutes post-ictal confusion, no aura",
+        "about four hours' sleep a night for three nights",
+        "no alcohol, drugs, new medication, fever or head injury",
+        "normal neurological and cardiovascular examination; normal CT head, bloods, ECG; pregnancy test negative",
+        "no personal or family history",
+        "combined oral contraceptive pill; latex allergy",
+        "no anticonvulsant; EEG and MRI awaited",
+        "written driving advice; avoid swimming alone, baths, heights",
+        "return to work question"
+      ],
+      "notesLeftOut": [
+        "blood pressure 118/72 and individual normal blood results - normal and change nothing",
+        "corrected QT detail - covered by 'ECG normal'",
+        "no febrile convulsions in childhood - covered by 'no relevant personal history'",
+        "lives with partner, non-smoker - not needed for the assessment",
+        "tension headaches - minor and unrelated",
+        "screen work question and the answer given - already answered; the neurologist can discuss it if she asks"
+      ],
+      "safety": [
+        {
+          "point": "Advised in writing not to drive and to inform the licensing authority",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Advised to avoid swimming alone, baths and working at height",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Latex allergy",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "Takes the combined oral contraceptive pill (relevant to any future anticonvulsant choice)",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "No anticonvulsant started",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-paediatric-referral-for-faltering-growth",
+      "header": [
+        "Dr Eleanor Vasquez",
+        "Consultant Paediatrician",
+        "Children's Outpatient Department",
+        "Northgate Hospital",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Vasquez,",
+      "re": "Re: Lucas Bramley, aged 18 months",
+      "body": [
+        "I am writing to refer Lucas for assessment of faltering growth and recurrent loose stools, with strongly positive coeliac serology. I would be grateful if you could confirm the diagnosis and arrange dietetic input.",
+        "His weight has fallen from the 50th centile at 12 months to the 9th today, at 10.1 kg, while length and head circumference remain on the 50th centile. For around four months he has passed three to four loose, pale and offensive stools a day, with irritability, reduced appetite and abdominal distension. He was thin, with reduced buttock fat and a mildly distended, soft abdomen without organomegaly. His development is normal.",
+        "Bloods on 28 August 2026 showed a strongly positive anti-tissue transglutaminase antibody with normal total IgA, and mild iron-deficiency anaemia, with haemoglobin 98 g/L and ferritin 8. His maternal aunt has coeliac disease.",
+        "His diet includes bread, pasta and cereal; he takes daily vitamin D drops and has no known allergies.",
+        "Importantly, the family has been advised not to remove gluten from his diet before your review, as this would affect the results. I would also welcome your advice on managing his iron deficiency.",
+        "Thank you for seeing him."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner, Northgate Surgery"
+      ],
+      "commentary": {
+        "opening": "The purpose and both requests, confirmation and dietetic input, are stated in the first paragraph.",
+        "selection": "Growth figures, symptoms, the positive serology with normal IgA, anaemia and family history are kept; birth, immunisation and nursery details are omitted.",
+        "organisation": "Request, then growth and clinical picture, then results and family history, then diet, then the gluten instruction.",
+        "tone": "Clear and collegial, with the gluten advice signalled as important."
+      },
+      "notesUsed": [
+        "weight 50th centile at 12 months to 9th today, 10.1 kg; length and head on 50th",
+        "loose, pale, offensive stools three to four a day for about four months",
+        "irritability, reduced appetite, distension",
+        "thin, reduced buttock fat, mildly distended soft abdomen, no organomegaly",
+        "development normal",
+        "28 August 2026: anti-tissue transglutaminase strongly positive, IgA normal, haemoglobin 98 g/L, ferritin 8",
+        "maternal aunt with coeliac disease",
+        "diet includes gluten; vitamin D drops; no known allergies",
+        "advised not to remove gluten before review"
+      ],
+      "notesLeftOut": [
+        "earlier weights 9.8 kg and 9.9 kg - the centile fall already shows the trend",
+        "MCV 68 - adds little beside ferritin",
+        "milestone details, hearing screen - summarised as normal development",
+        "birth history, immunisations - normal and not relevant",
+        "cow's milk 400 ml - not essential to this referral",
+        "social details, nursery form, 18-month review - for the practice, not the paediatrician"
+      ],
+      "safety": [
+        {
+          "point": "Family told NOT to remove gluten before specialist review",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Iron-deficiency anaemia needing management",
+          "where": "paragraphs 3 and 5"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-respiratory-referral-for-suspected-lung-malignancy",
+      "header": [
+        "Dr Wendy Acheampong",
+        "Consultant Respiratory Physician",
+        "Rapid-Access Lung Clinic",
+        "Stonebridge Hospital",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Acheampong,",
+      "re": "Re: Mr Albert Finch, aged 66",
+      "body": [
+        "I am writing to refer Mr Finch urgently under the two-week-wait pathway for investigation of a 3 cm right upper lobe mass on his chest X-ray of 1 September 2026.",
+        "His cough changed in character about six weeks ago, unlike his usual COPD cough, and has not responded to two antibiotic courses. He has had two episodes of blood-streaked sputum, on 22 and 28 August 2026, and a continuous hoarse voice for three weeks. He has lost 5 kg unintentionally over two months, from 74 kg to 69 kg, with new fatigue and poor appetite.",
+        "Today there was reduced air entry in the right upper zone, and oxygen saturation was 94 per cent on air at rest. There was no clubbing or palpable lymphadenopathy. Bloods showed mild anaemia, haemoglobin 112 g/L, with normal calcium, sodium and liver function.",
+        "He is a 40 pack-year ex-smoker who stopped four years ago, and was exposed to asbestos as a welder between 1979 and 1994. He uses tiotropium and salbutamol inhalers and has no known allergies.",
+        "A CT of the chest and abdomen has been arranged before clinic. I would be grateful for your urgent assessment.",
+        "Thank you for seeing him."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner, Stonebridge Surgery"
+      ],
+      "commentary": {
+        "opening": "The pathway, the urgency and the imaging finding are given in one opening sentence.",
+        "selection": "Red-flag symptoms with their timing, the examination, relevant bloods, smoking and asbestos exposure are kept; hearing loss and the emollient request are omitted.",
+        "organisation": "Request, then symptoms, then examination and results, then risk factors and medication, then the arranged scan and the request.",
+        "tone": "Concise and urgent, as suits a suspected cancer referral."
+      },
+      "notesUsed": [
+        "3 cm right upper lobe mass on chest X-ray 1 September 2026",
+        "cough changed in character about six weeks ago, unresponsive to two antibiotic courses",
+        "blood-streaked sputum 22 and 28 August 2026",
+        "hoarse voice three weeks",
+        "weight down 5 kg over two months, 74 kg to 69 kg; fatigue; reduced appetite",
+        "reduced air entry in the right upper zone; saturation 94 per cent on air",
+        "no clubbing or lymphadenopathy",
+        "haemoglobin 112 g/L; calcium, sodium, liver function normal",
+        "40 pack-years, stopped four years ago; asbestos 1979 to 1994",
+        "tiotropium, salbutamol; no known allergies",
+        "CT chest and abdomen arranged"
+      ],
+      "notesLeftOut": [
+        "corrected calcium value 2.38 - stated as normal instead",
+        "no night sweats, bone pain or headache, no vena caval obstruction - negatives summarised by the examination findings",
+        "COPD diagnosis year - not needed",
+        "lives with wife, drives - not needed for this referral",
+        "emollient request, occupational hearing loss - unrelated"
+      ],
+      "safety": [
+        {
+          "point": "Haemoptysis and hoarseness (red flags)",
+          "where": "paragraph 2"
+        },
+        {
+          "point": "Oxygen saturation 94 per cent on air with reduced air entry in the right upper zone",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Asbestos exposure",
+          "where": "paragraph 4"
+        },
+        {
+          "point": "CT chest and abdomen already arranged before clinic",
+          "where": "paragraph 5"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-surgical-referral-for-symptomatic-gallstones",
+      "header": [
+        "Mr David Ashworth",
+        "Consultant General Surgeon",
+        "Upper GI Surgery",
+        "Fairmont Hospital",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Mr Ashworth,",
+      "re": "Re: Mrs Anita Sharma, aged 45",
+      "body": [
+        "I am writing to refer Mrs Sharma for surgical assessment of symptomatic gallstones and consideration of elective laparoscopic cholecystectomy.",
+        "For three months she has had recurrent colicky right upper quadrant pain, radiating to the right shoulder blade, within an hour of fatty meals and lasting thirty minutes to several hours. Two severe episodes, on 8 and 27 August 2026, lasted around four hours with nausea and vomiting. There has been no jaundice or fever; she is well between attacks.",
+        "Today she had mild right upper quadrant tenderness and a negative Murphy's sign. Ultrasound on 26 August 2026 showed multiple gallstones, the largest 12 mm, a normal gallbladder wall and an undilated 4 mm common bile duct. Liver function, amylase, full blood count and C-reactive protein were normal.",
+        "She takes the combined oral contraceptive pill, relevant to perioperative planning, and occasional ibuprofen. She has no known allergies; her body mass index is 29.",
+        "The attacks have cost her four days off work in three months. She has been advised on a low-fat diet and to attend urgently if pain occurs with fever, jaundice or persistent vomiting. I would be grateful for your surgical opinion.",
+        "Thank you for seeing her."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "General Practitioner, Fairmont Surgery"
+      ],
+      "commentary": {
+        "opening": "The opening names the condition and the procedure being considered, matching the task.",
+        "selection": "Pain pattern, severe episodes, absent complications, ultrasound and bloods, the pill and the safety-net advice are kept; back pain and pregnancy history are omitted.",
+        "organisation": "Request, history, findings and results, medication, then impact, advice and the request.",
+        "tone": "Formal and factual, suited to an elective referral."
+      },
+      "notesUsed": [
+        "three months of colicky right upper quadrant pain after fatty meals, radiating to shoulder blade",
+        "severe episodes 8 and 27 August 2026, about four hours, nausea and vomiting",
+        "no jaundice or fever; well between attacks",
+        "mild tenderness, Murphy's negative",
+        "ultrasound 26 August 2026: multiple stones, largest 12 mm, normal wall, duct 4 mm",
+        "normal liver function, amylase, blood count; CRP 4",
+        "combined pill, occasional ibuprofen, no known allergies, BMI 29",
+        "four days off in three months",
+        "low-fat diet and urgent attendance advice"
+      ],
+      "notesLeftOut": [
+        "temperature 36.8, pulse 76, no mass, stool and urine colour normal, liver and pancreas normal on ultrasound - normal findings that change nothing",
+        "two previous pregnancies - not relevant",
+        "non-smoker, alcohol four units - not needed",
+        "family details - not needed",
+        "night-shift detail - summarised as impact on work",
+        "occupational health clearance and back pain - for later or unrelated"
+      ],
+      "safety": [
+        {
+          "point": "Told to attend urgently with pain plus fever, jaundice or persistent vomiting",
+          "where": "paragraph 5"
+        },
+        {
+          "point": "Combined oral contraceptive pill (venous thromboembolism risk around surgery)",
+          "where": "paragraph 4"
+        }
+      ]
+    },
+    {
+      "slug": "wri-medicine-transfer-of-stroke-patient-to-rehabilitation-unit",
+      "header": [
+        "Dr Ngozi Adeyemi",
+        "Consultant in Rehabilitation Medicine",
+        "Maple Ward",
+        "Brookhaven Rehabilitation Unit",
+        "4 September 2026"
+      ],
+      "salutation": "Dear Dr Adeyemi,",
+      "re": "Re: Mr Gerald Thompson, aged 71",
+      "body": [
+        "I am writing to request inpatient neurorehabilitation for Mr Thompson, who transfers to you today, 4 September 2026, following a left middle cerebral artery ischaemic stroke on 23 August 2026.",
+        "He presented with sudden right-sided weakness, facial droop and speech difficulty, witnessed at 07:40, and was thrombolysed at 09:25. Imaging at 24 hours showed no haemorrhagic transformation, and antiplatelet therapy was started. Atrial fibrillation was excluded on prolonged monitoring.",
+        "Right arm power is 3/5 and right leg 4/5. His expressive dysphasia is improving, with intact comprehension. His swallow, reassessed on 1 September, is safe for a normal diet and thin fluids. He transfers with one assistant and walks short distances with a frame and one person, but has not attempted stairs. He has occasional urgency but is continent with prompting.",
+        "His medications are clopidogrel 75 mg daily, atorvastatin 80 mg at night, ramipril 2.5 mg daily and paracetamol as required. He has hypertension and no known allergies.",
+        "I would be grateful if you could continue his multidisciplinary rehabilitation towards his agreed goals of independent transfers and discharge home. As his only bathroom is upstairs, stairs are the main discharge concern.",
+        "Thank you for your help."
+      ],
+      "valediction": "Yours sincerely,",
+      "signoff": [
+        "[Name]",
+        "Doctor, Stroke Team, Brookhaven"
+      ],
+      "commentary": {
+        "opening": "The request and the diagnosis with its date come first, so the unit knows what it is taking on.",
+        "selection": "Acute treatment, current function, swallow status, full medication and the stairs concern are kept; driving and glasses are left for later.",
+        "organisation": "Request, acute course, current status, medication, then goals and the discharge issue.",
+        "tone": "Collegial handover between doctors, precise about doses."
+      },
+      "notesUsed": [
+        "left middle cerebral artery ischaemic stroke 23 August 2026; transfer 4 September 2026",
+        "onset witnessed 07:40; thrombolysed 09:25",
+        "no haemorrhagic transformation at 24 hours; antiplatelet then started",
+        "atrial fibrillation excluded",
+        "arm 3/5, leg 4/5; improving expressive dysphasia, comprehension intact",
+        "swallow safe on 1 September: normal diet, thin fluids",
+        "transfers with one; frame and one person; no stairs yet",
+        "urgency, continent with prompting",
+        "clopidogrel 75 mg, atorvastatin 80 mg, ramipril 2.5 mg, paracetamol",
+        "hypertension; no known allergies",
+        "goals: independent transfers, discharge home; bathroom upstairs"
+      ],
+      "notesLeftOut": [
+        "first swallow assessment on 25 August - superseded by 1 September",
+        "bowels regular - normal",
+        "therapy already given on the ward - covered by the request to continue rehabilitation",
+        "ex-smoker since 2005, hypertension since 2012 - dates not needed",
+        "retired postman, children nearby - social detail the unit will collect",
+        "driving question, reading glasses - not urgent; can be addressed during rehabilitation"
+      ],
+      "safety": [
+        {
+          "point": "Thrombolysed; no haemorrhagic transformation; on clopidogrel 75 mg daily",
+          "where": "paragraphs 2 and 4"
+        },
+        {
+          "point": "Swallow safe for normal diet and thin fluids (latest assessment 1 September)",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "Needs one person to transfer and walk; has not attempted stairs (falls risk)",
+          "where": "paragraph 3"
+        },
+        {
+          "point": "No known allergies; full medication with doses",
+          "where": "paragraph 4"
+        }
+      ]
+    }
+  ]
+}
