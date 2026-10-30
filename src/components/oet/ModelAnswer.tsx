@@ -10,7 +10,7 @@ const box = "rounded-2xl border border-almi-bg-peach bg-almi-paper";
 const summary = "flex min-h-[48px] cursor-pointer items-center justify-between gap-3 px-4 py-3 text-base font-semibold text-almi-ink";
 const label = "text-xs font-bold uppercase tracking-wider text-almi-text-muted";
 
-function Letter({ l }: { l: ModelLetter }) {
+function Letter({ l, range }: { l: ModelLetter; range: string | null }) {
   return (
     <div className="space-y-4 px-4 pb-5">
       <article data-model-letter className="rounded-xl border border-almi-bg-peach bg-white px-4 py-4 text-[15px] leading-relaxed text-almi-ink">
@@ -21,7 +21,7 @@ function Letter({ l }: { l: ModelLetter }) {
         <p className="mt-4">{l.valediction}</p>
         <div className="mt-6 space-y-0.5">{l.signoff.map((s, i) => <p key={i}>{s}</p>)}</div>
       </article>
-      <p className="text-xs text-almi-text-muted">{l.bodyWords} words in the body · OET asks for about 180–200.</p>
+      <p className="text-xs text-almi-text-muted">{l.bodyWords} words in the body{range ? ` · the task asks for ${range} words` : ""}.</p>
       <section>
         <h3 className={label}>Why it is written this way</h3>
         <dl className="mt-2 space-y-2 text-sm text-almi-text">
@@ -74,12 +74,12 @@ function Script({ s, concern }: { s: ModelScript; concern: string | null }) {
 
 /** The model answer for an item, or nothing when it has none. Render ONLY after the attempt. */
 export function ModelAnswer({ item, open = false }: { item: Pick<OetItem, "taskType" | "payload">; open?: boolean }) {
-  const p = (item.payload ?? {}) as { modelLetter?: ModelLetter; modelScript?: ModelScript; patientConcern?: string };
+  const p = (item.payload ?? {}) as { modelLetter?: ModelLetter; modelScript?: ModelScript; patientConcern?: string; wordMin?: number; wordMax?: number };
   if (item.taskType === "WRITING_LETTER" && p.modelLetter) {
     return (
       <details data-model-answer="letter" className={box} open={open}>
         <summary className={summary}>Model answer <span aria-hidden className="text-sm text-almi-text-muted">▾</span></summary>
-        <Letter l={p.modelLetter} />
+        <Letter l={p.modelLetter} range={p.wordMin && p.wordMax ? `${p.wordMin}–${p.wordMax}` : null} />
       </details>
     );
   }
