@@ -260,8 +260,8 @@ const A4_SINGLE_FORM: { item: string; answer: string; why: string }[] = [
   },
   {
     item: "rea-a-wound-infection-and-antibiotics",
-    answer: "cleansed",
-    why: "Finding 2 withdrew 'cleaned' and 'washed' as DIFFERENT words and specified variants: [] — cleansed is the only accepted form",
+    answer: "cleanse",
+    why: "Finding 2 withdrew 'cleaned' and 'washed' as DIFFERENT words and specified variants: [] — the text's own word is the only accepted form (the gap became 'Staff should ___ the wound' on 1 Nov 2026, so the key is now the text's base form, cleanse)",
   },
   // ── sets 10-15, ported 2026-09-02 ─────────────────────────────────────────
   // Every row below is an answer whose accepted list the author closed in the
@@ -515,6 +515,10 @@ const A4_SINGLE_FORM_OVERRULED: { item: string; answer: string; variant: string 
   { item: "rea-a-sharps-injury-and-exposure-to-blood", answer: "hepatitis B", variant: "hep B" },
   { item: "rea-a-a-flare-up-of-chronic-obstructive-lung-disease", answer: "carbon dioxide", variant: "CO2" },
   { item: "rea-a-diabetic-ketoacidosis", answer: "litres", variant: "liters" },
+  // 1 Nov 2026, the owner's fix order on beta-g's explanation findings: Text A
+  // names three whole presentations — "Confusion, a fall, or simply not being
+  // themselves" — so the gap has three right answers, not one. Not a paraphrase.
+  { item: "rea-a-pneumonia-acquired-in-the-community", answer: "confusion", variant: "a fall" },
 ];
 const A4_OVERRULED_KEY = new Set(A4_SINGLE_FORM_OVERRULED.map((e) => `${e.item}||${e.answer}`));
 const A4_SINGLE_KEY = new Set(

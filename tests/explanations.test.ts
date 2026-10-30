@@ -24,6 +24,12 @@ describe("RR-346 · B1 explanations", () => {
     const n = form.reduce((a, i) => a + Object.keys(i.payload.explanations as object).length, 0);
     expect(n).toBe(252);
   });
+  it("cover the practice bank too: 244 items, 1419 questions (Nov 2026, beta-g checked)", () => {
+    const practice = ITEMS.filter((i) => !i.form && i.payload.explanations);
+    expect(practice.length).toBe(244);
+    const n = practice.reduce((a, i) => a + Object.keys(i.payload.explanations as object).length, 0);
+    expect(n).toBe(1419);
+  });
   it("every explanation answers a real question, quotes its own item word for word, and explains only real wrong options", () => {
     const bad: string[] = [];
     for (const i of withEx) {
