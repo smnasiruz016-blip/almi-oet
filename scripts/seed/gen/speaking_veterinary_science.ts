@@ -23,9 +23,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, a booked appointment following two earlier visits for the same problem.",
-      "candidateRole": "You are the veterinarian. A physical cause has been excluded and the behaviour is consistent with separation-related distress.",
-      "patientRole": "A first-time dog owner in their thirties with a two-year-old crossbreed rescue, adopted four months ago, who barks, chews doorframes and toilets indoors whenever left.",
+      "setting": "Veterinary consulting room, a booked appointment following two earlier visits for the same problem. The dog has been left at home with a neighbour for the hour.",
+      "candidateRole": "You are the veterinarian. A physical cause has been excluded and the behaviour is consistent with separation-related distress. Blood tests and a urine sample at the earlier visits were normal, and the dog was calm and friendly in the clinic both times. The owner has come alone today.",
+      "patientRole": "A first-time dog owner in their thirties with a two-year-old crossbreed rescue, adopted four months ago, who barks, chews doorframes and toilets indoors whenever left. They work in an office three days a week and from home on the others, and the problems happen only on office days. They mention that they used to keep tropical fish.",
       "patientConcern": "The owner is quietly considering returning the dog to the shelter and feels like a failure for not coping, and has told nobody.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -45,9 +45,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, an appointment booked because of halitosis.",
-      "candidateRole": "You are the veterinarian. Examination has revealed heavy calculus, gingival recession and several mobile teeth requiring extraction under general anaesthetic.",
-      "patientRole": "A retired owner with a nine-year-old Yorkshire terrier who came in only about the smell, has never had a pet anaesthetised, and looks alarmed at the word surgery.",
+      "setting": "Veterinary consulting room, an appointment booked because of halitosis. It is the last appointment before lunch, and the owner arrived early.",
+      "candidateRole": "You are the veterinarian. Examination has revealed heavy calculus, gingival recession and several mobile teeth requiring extraction under general anaesthetic. The dog is otherwise bright, his heart and chest sound normal, and he has not been seen at the practice for nearly two years.",
+      "patientRole": "A retired owner with a nine-year-old Yorkshire terrier who came in only about the smell, has never had a pet anaesthetised, and looks alarmed at the word surgery. Their spouse usually handles vet visits but is away visiting a sister this week. They mention that their previous dog, a beagle, lived to fifteen without ever needing dental treatment, and that they go bowling on Thursdays.",
       "patientConcern": "The owner is frightened that a general anaesthetic could kill their elderly dog and would rather avoid the procedure than risk losing him on the table.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -67,9 +67,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, a results appointment following blood and urine testing.",
-      "candidateRole": "You are the veterinarian. The dog has been diagnosed with diabetes mellitus and needs twice-daily insulin, consistent feeding and home monitoring.",
-      "patientRole": "An owner in their sixties who lives alone with an eight-year-old crossbreed bitch, has never given an injection, and often stays overnight with a daughter.",
+      "setting": "Veterinary consulting room, a results appointment following blood and urine testing. The results were telephoned through yesterday and this appointment was booked to go through them.",
+      "candidateRole": "You are the veterinarian. The dog has been diagnosed with diabetes mellitus and needs twice-daily insulin, consistent feeding and home monitoring. The dog is bright, eating well and not ketotic, so treatment can begin at home. A nurse is free after the consultation to help with practice.",
+      "patientRole": "An owner in their sixties who lives alone with an eight-year-old crossbreed bitch, has never given an injection, and often stays overnight with a daughter. They are a retired school secretary who walks the dog twice a day, and their late husband managed all the household medicines. They mention that the dog loves car journeys and that the daughter lives about forty minutes away.",
       "patientConcern": "The owner is overwhelmed and afraid of making a fatal mistake with the injections, and fears the twice-daily routine will end their freedom.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -89,13 +89,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, a second vaccination appointment for a young cat.",
-      "candidateRole": "You are the veterinarian. The owner has asked for your view on whether to neuter their six-month-old male cat.",
-      "patientRole": "A young adult owner of a six-month-old male tabby who has free outdoor access, has heard conflicting opinions from friends, and has not yet decided.",
+      "setting": "Veterinary consulting room, a second vaccination appointment for a young cat. The waiting room is busy and the appointment has started ten minutes late.",
+      "candidateRole": "You are the veterinarian. The owner has asked for your view on whether to neuter their six-month-old male cat. Examination today is normal and both testicles are descended.",
+      "patientRole": "A young adult owner of a six-month-old male tabby who has free outdoor access, has heard conflicting opinions from friends, and has not yet decided. They share a ground-floor flat with a friend whose older female cat was spayed before she arrived, and the tabby has recently started staying out longer at night. The owner works shifts at a supermarket and mentions that they are learning to play the guitar.",
       "patientConcern": "The owner feels neutering is unnatural and worries it will change the cat's personality or make him lazy and overweight.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask what the cat's life is like: indoor, outdoor, other cats nearby, and whether he has started to roam.\n\nAsk what they have heard and what has made them hesitate.\n\nAsk what they most want for the cat, so the discussion is framed around that.\n\nAcknowledge that the question is a reasonable one and do not treat it as an obstacle.\n\nExplain what neutering involves: the procedure, the anaesthetic, the recovery and the cost.\n\nExplain the benefits specifically for an outdoor male: roaming, road traffic, fighting, abscesses and disease transmission.\n\nExplain spraying and territorial marking, and how much harder it is to resolve once established.\n\nAddress the personality concern honestly: what does and does not change.\n\nAddress the weight concern honestly: explain that the requirement falls and how feeding is adjusted.\n\nExplain the unwanted litters question and the local situation.\n\nExplain what would change your advice if the cat were to be kept strictly indoors.\n\nExplain what microchipping and vaccination would add, since these usually go together.\n\nAnswer any remaining questions, agree a decision or a date to book, and confirm the pre-operative instructions."
+      "candidateCard": "Ask what the cat's life is like: indoor, outdoor, other cats nearby, and whether he has started to roam.\n\nAsk what they have heard and what has made them hesitate.\n\nAsk what they most want for the cat, so the discussion is framed around that.\n\nAcknowledge that the question is a reasonable one and do not treat it as an obstacle.\n\nExplain what neutering involves: the procedure, the anaesthetic, the recovery and the cost.\n\nExplain the benefits specifically for an outdoor male: roaming, road traffic, fighting, abscesses and disease transmission.\n\nExplain spraying and territorial marking, and how much harder it is to resolve once established.\n\nAddress the personality concern honestly: what does and does not change.\n\nAddress the weight concern honestly: explain that the requirement falls and how feeding is adjusted.\n\nExplain the unwanted litters question and the local situation.\n\nExplain what would change your advice if the cat were to be kept strictly indoors.\n\nCheck that he is microchipped and registered, as the law in England requires for cats, offer to chip him today if not, and confirm his vaccinations.\n\nAnswer any remaining questions, agree a decision or a date to book, and confirm the pre-operative instructions."
     },
     "guidanceNote": "Take the 'unnatural' and personality worries seriously rather than dismissing them; explain that temperament stays the same and weight is managed through feeding, so the owner makes an informed, unpressured choice."
   },
@@ -111,9 +111,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room at a small-animal practice, a results appointment after blood and urine tests.",
-      "candidateRole": "You are the veterinarian. You have diagnosed diabetes mellitus in a nine-year-old cat and need to agree home management and monitoring.",
-      "patientRole": "The owner of 'Biscuit', a nine-year-old overweight cat, anxious, who has never given an injection and has gone quiet since the word insulin was used.",
+      "setting": "Veterinary consulting room at a small-animal practice, a results appointment after blood and urine tests. Biscuit is in a carrier on the table and is calm.",
+      "candidateRole": "You are the veterinarian. You have diagnosed diabetes mellitus in a nine-year-old cat and need to agree home management and monitoring. Biscuit is bright and eating, with no sign of ketoacidosis, so treatment can start at home. You took the samples yourself at last week's visit.",
+      "patientRole": "The owner of 'Biscuit', a nine-year-old overweight cat, anxious, who has never given an injection and has gone quiet since the word insulin was used. The owner lives with a teenage son who is at school during the day, and Biscuit has always had dry food left out all day. They mention that the bus was late and that Biscuit once had a torn claw that healed on its own.",
       "patientConcern": "The owner is terrified of hurting the cat with the needle and is quietly considering euthanasia because they fear they cannot cope with lifelong injections.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -133,9 +133,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Quiet veterinary consulting room, a review appointment, the dog lying on a blanket on the floor.",
-      "candidateRole": "You are the veterinarian. The tumour has progressed despite treatment and the focus is now comfort and quality of life.",
-      "patientRole": "An owner in their fifties with an eleven-year-old golden retriever, who has driven to every appointment for eight months, sleeps downstairs with the dog, and is exhausted.",
+      "setting": "Quiet veterinary consulting room, a review appointment, the dog lying on a blanket on the floor. A box of tissues is on the table and the next appointment slot has been left free.",
+      "candidateRole": "You are the veterinarian. The tumour has progressed despite treatment and the focus is now comfort and quality of life. You have seen the dog at most of the visits and know the owner well.",
+      "patientRole": "An owner in their fifties with an eleven-year-old golden retriever, who has driven to every appointment for eight months, sleeps downstairs with the dog, and is exhausted. They run a small bookshop and have been closing early for appointments, and the dog was once a regular at the local agility club. They mention that he once stole a whole birthday cake as a puppy.",
       "patientConcern": "The owner is terrified of giving up too soon and feels that agreeing to let the dog go would be a betrayal of a loyal companion.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -155,9 +155,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, an appointment booked about an occasional cough.",
-      "candidateRole": "You are the veterinarian. You have detected a grade four murmur and the imaging points to degenerative mitral valve disease requiring ongoing medication.",
-      "patientRole": "An owner in their fifties with a twelve-year-old Cavalier King Charles spaniel, who came in about a cough after exercise and had no idea anything else was wrong.",
+      "setting": "Veterinary consulting room, an appointment booked about an occasional cough. The owner has waited while chest X-rays and a heart scan were done this morning.",
+      "candidateRole": "You are the veterinarian. You have detected a grade four murmur and the imaging points to degenerative mitral valve disease requiring ongoing medication. His breathing is calm at rest today and his chest sounds clear, with no sign of fluid on the lungs.",
+      "patientRole": "An owner in their fifties with a twelve-year-old Cavalier King Charles spaniel, who came in about a cough after exercise and had no idea anything else was wrong. The owner and their wife bought him as a puppy from a breeder, and he walks for about forty minutes each morning. They mention that they are a keen gardener and that he had a grass seed removed from an ear last summer, which healed well.",
       "patientConcern": "The owner is shocked that a minor cough signals heart disease and is now afraid the dog could collapse and die suddenly at any moment.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -177,9 +177,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, a third appointment for the same problem this year.",
-      "candidateRole": "You are the veterinarian. The dog has recurrent pruritus, otitis and pedal erythema, and you are recommending a strict elimination diet trial.",
-      "patientRole": "An owner in their thirties with a one-year-old French bulldog, two young children who feed the dog from the table, and a cupboard full of pet shop shampoos.",
+      "setting": "Veterinary consulting room, a third appointment for the same problem this year. The children are at nursery today and the owner has come alone.",
+      "candidateRole": "You are the veterinarian. The dog has recurrent pruritus, otitis and pedal erythema, and you are recommending a strict elimination diet trial. The dog is otherwise healthy, bright and of good weight.",
+      "patientRole": "An owner in their thirties with a one-year-old French bulldog, two young children who feed the dog from the table, and a cupboard full of pet shop shampoos. The owner works part time as a hairdresser, and the dog sleeps in the children's room and is walked in the local park. They mention that the family has just repainted the kitchen and that the dog once ate a sock, which passed without trouble.",
       "patientConcern": "The owner is frustrated that there is no quick cure and doubts the whole family can keep to a diet trial with no treats at all.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -199,13 +199,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, a results appointment after blood and urine tests.",
-      "candidateRole": "You are the veterinarian. Testing confirms early-stage chronic kidney disease in an older cat with polydipsia and mild weight loss.",
-      "patientRole": "An owner in their sixties with a thirteen-year-old domestic shorthair, unfamiliar with chronic illness in pets, who expected a course of tablets and a cure.",
+      "setting": "Veterinary consulting room, a results appointment after blood and urine tests. The owner has brought a list of questions written on the back of an envelope.",
+      "candidateRole": "You are the veterinarian. Testing confirms IRIS stage 2 chronic kidney disease, with normal blood pressure and no proteinuria, in an older cat with polydipsia and mild weight loss since her last visit a year ago. She is bright and eating.",
+      "patientRole": "An owner in their sixties with a thirteen-year-old domestic shorthair, unfamiliar with chronic illness in pets, who expected a course of tablets and a cure. Their partner works away during the week, the cat goes in and out through a cat flap, and she often drinks from the garden pond. They mention having recently retired from the post office and that she once disappeared for three days and came back unharmed.",
       "patientConcern": "The owner fears the cat is dying imminently and is overwhelmed by the prospect of lifelong cost and medicating a famously difficult cat.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask what they have noticed at home: drinking, urinating, appetite, weight and how she is in herself.\n\nExplain in plain terms what chronic kidney disease is and what the test results show.\n\nSay clearly what stage she is at and what that means for time, since the fear of imminent death is the loudest thing in the room.\n\nExplain that this is managed rather than cured, and what management is actually aiming at.\n\nExplain the renal diet: why it is the single most effective step, and how to transition a fussy cat onto it.\n\nDiscuss hydration practically: water placement, fountains, and wet food.\n\nExplain what medication may be needed and when, rather than everything at once.\n\nAddress the medicating difficulty directly and discuss alternatives for a cat who will not take tablets.\n\nDiscuss the cost honestly, including the monitoring, so there are no surprises.\n\nExplain the monitoring schedule: which bloods, how often, and what would change the plan.\n\nAgree the first dietary change and one monitoring date, and keep the plan small enough to follow."
+      "candidateCard": "Ask what they have noticed at home: drinking, urinating, appetite, weight and how she is in herself.\n\nExplain in plain terms what chronic kidney disease is and what the test results show.\n\nSay clearly what stage she is at and what that means for time, since the fear of imminent death is the loudest thing in the room.\n\nExplain that this is managed rather than cured, and what management is actually aiming at.\n\nExplain the renal diet: why, at this stage, it is the best-evidenced step, and how to transition a fussy cat onto it.\n\nDiscuss hydration practically: water placement, fountains, and wet food.\n\nExplain what medication may be needed and when, rather than everything at once.\n\nAddress the medicating difficulty directly and discuss alternatives for a cat who will not take tablets.\n\nDiscuss the cost honestly, including the monitoring, so there are no surprises.\n\nExplain the monitoring schedule: which bloods, blood pressure and urine protein, how often, and what would change the plan.\n\nAgree the first dietary change and one monitoring date, and keep the plan small enough to follow."
     },
     "guidanceNote": "Separate the word 'chronic' from 'terminal' early; many cats live comfortably for years with diet and monitoring. Offer practical tips for feeding and dosing a reluctant cat to reduce the owner's sense of burden."
   },
@@ -221,13 +221,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, a routine annual health check and vaccination.",
-      "candidateRole": "You are the veterinarian. The dog weighs 42 kg with a body condition score of 8 out of 9, up 6 kg since the last visit.",
-      "patientRole": "A busy professional in their forties with a seven-year-old male Labrador who is fed twice daily plus scraps, gets one twenty-minute walk, and looks fine to them.",
+      "setting": "Veterinary consulting room, a routine annual health check and vaccination. The owner has come in on a lunch break and is short of time.",
+      "candidateRole": "You are the veterinarian. The dog weighs 42 kg with a body condition score of 8 out of 9, up 6 kg since the last visit. He is otherwise well, with normal heart and joints on examination today.",
+      "patientRole": "A busy professional in their forties with a seven-year-old male Labrador who is fed twice daily plus scraps, gets one twenty-minute walk, and looks fine to them. Their partner and teenage daughter also feed him, and he gets a biscuit whenever someone comes home. They mention starting a new job in sales and that he once ate a whole loaf of bread as a puppy.",
       "patientConcern": "The owner secretly feels guilty and worries that cutting food and treats means taking away the dog's main pleasure, and that they have been a bad owner.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask what the dog eats: the food, the amount, how it is measured, treats, and who else feeds him.\n\nAsk about exercise: how often, how long, and what he is like on a walk now.\n\nShow them the weight trend and let them feel the ribs, so the finding is not just your opinion.\n\nExplain body condition scoring and what an ideal shape would look like on this dog.\n\nExplain the health consequences specifically: joints, breathing, diabetes risk and shortened lifespan.\n\nAcknowledge the guilt rather than confirming it, and be clear that this is common and reversible.\n\nAddress the belief that food is his main pleasure, and offer alternatives that are not food.\n\nSet a realistic target weight and a rate of loss, so the plan has numbers.\n\nExplain measured feeding, weighing the food, and how to account for treats within the allowance.\n\nDiscuss exercise progression appropriate to a dog carrying this weight.\n\nExplain how the household will need to act together, since one person feeding scraps undoes the plan.\n\nAgree the first step, arrange monthly nurse weigh-ins, and agree how success will be measured."
+      "candidateCard": "Ask what the dog eats: the food, the amount, how it is measured, treats, and who else feeds him.\n\nAsk about exercise: how often, how long, and what he is like on a walk now.\n\nShow them the weight trend and let them feel the ribs, so the finding is not just your opinion.\n\nExplain body condition scoring and what an ideal shape would look like on this dog.\n\nExplain the health consequences specifically: joint disease, breathing, exercise intolerance and shortened lifespan.\n\nAcknowledge the guilt rather than confirming it, and be clear that this is common and reversible.\n\nAddress the belief that food is his main pleasure, and offer alternatives that are not food.\n\nSet a realistic target weight and a rate of loss, so the plan has numbers.\n\nExplain measured feeding, weighing the food, and how to account for treats within the allowance.\n\nDiscuss exercise progression appropriate to a dog carrying this weight.\n\nExplain how the household will need to act together, since one person feeding scraps undoes the plan.\n\nAgree the first step and monthly nurse weigh-ins, how success is measured, and a thyroid test if he does not lose weight."
     },
     "guidanceNote": "Acknowledge that treats are a real bond between owner and dog; reframe the plan around the dog's comfort and years of life rather than blame, so the owner feels supported, not judged."
   },
@@ -243,9 +243,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room at discharge, the dog in the kennel next door recovering.",
-      "candidateRole": "You are the veterinarian discharging a dog after cranial cruciate ligament surgery, where strict rest and controlled rehabilitation determine the outcome.",
-      "patientRole": "An active owner in their forties with a four-year-old Border collie walked for two hours daily, who works from home and has a garden with steps.",
+      "setting": "Veterinary consulting room at discharge, the dog in the kennel next door recovering. The owner has been in the waiting room for twenty minutes and is worried about the parking meter running out.",
+      "candidateRole": "You are the veterinarian discharging a dog after cranial cruciate ligament surgery, where strict rest and controlled rehabilitation determine the outcome. The surgery went well, she recovered smoothly from the anaesthetic and has eaten a small meal.",
+      "patientRole": "An active owner in their forties with a four-year-old Border collie walked for two hours daily, who works from home and has a garden with steps. They live alone, the downstairs floors are laminate, and the dog usually sleeps on the sofa. She normally runs with them each evening. They mention that they are training for a half marathon and once took her to a sheepdog trial for fun.",
       "patientConcern": "The owner fears that weeks of confinement will make a high-energy dog miserable and unmanageable, and doubts they can keep her still.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -265,9 +265,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room during a first puppy health check.",
-      "candidateRole": "You are the veterinarian. The owner is reluctant to start the core vaccination course for a healthy nine-week-old puppy.",
-      "patientRole": "The owner of 'Rocket', a nine-week-old crossbreed, who has read online that vaccines cause harm, wants to delay or skip them, and expects an argument.",
+      "setting": "Veterinary consulting room during a first puppy health check. Rocket is sitting on the owner's lap and has been examined.",
+      "candidateRole": "You are the veterinarian. The owner is reluctant to start the core vaccination course for a healthy nine-week-old puppy. The examination is normal, Rocket was wormed by the breeder and is already microchipped.",
+      "patientRole": "The owner of 'Rocket', a nine-week-old crossbreed, who has read online that vaccines cause harm, wants to delay or skip them, and expects an argument. They collected Rocket from a family home two weeks ago and live with a partner in a flat with a shared garden. They work from home as a graphic designer. They mention that they grew up with cats and that the drive here took longer because of roadworks.",
       "patientConcern": "The real worry is that a friend's dog became unwell after a vaccination, and the owner feels guilt-tripped by clinics and wants to feel respected and in control.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -287,13 +287,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, an emergency appointment at the end of the afternoon.",
-      "candidateRole": "You are the veterinarian. The rabbit has gut stasis and you are recommending imaging and supportive hospitalisation, with a more conservative outpatient option available.",
-      "patientRole": "A parent on a limited budget whose eight-year-old child owns the three-year-old house rabbit, which has not eaten or passed droppings for eighteen hours.",
+      "setting": "Veterinary consulting room, an emergency appointment at the end of the afternoon. The rabbit has arrived in a cardboard box, and the child is in the waiting room with a grandparent.",
+      "candidateRole": "You are the veterinarian. The rabbit appears to have gut stasis. You recommend radiographs first to rule out obstruction, then supportive care in hospital, with a conservative outpatient option. The rabbit is new to this practice.",
+      "patientRole": "A parent on a limited budget whose eight-year-old child owns the three-year-old house rabbit, which has not eaten or passed droppings for eighteen hours. The rabbit lives indoors with the run of the kitchen and is fed pellets, hay and some vegetables. The parent works part time in a school canteen. They mention that the family moved house last month and that the rabbit once chewed through a phone charger without harm.",
       "patientConcern": "The owner is ashamed that money is a factor in their child's pet's care and is afraid you will judge them if they cannot afford the best option.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask when the rabbit last ate, last passed droppings, and what has changed in the household or the diet.\n\nExamine and explain what you find, including why this is urgent in a rabbit rather than a wait-and-see problem.\n\nExplain what gut stasis is and what happens over the next day if it is not treated.\n\nExplain what the imaging would look for and why it changes the treatment.\n\nSet out both options plainly: full hospitalisation with imaging, and a conservative outpatient plan.\n\nGive honest costs for each before they have to ask.\n\nExplain the trade-off in outcome between the two, without overstating either.\n\nRaise the money question yourself, so they do not have to, and make clear that it is a normal part of the conversation.\n\nSay plainly that choosing the outpatient plan is a legitimate decision and not a lesser kind of care.\n\nExplain what the outpatient plan asks of them at home: syringe feeding, medication and monitoring.\n\nAgree a plan together, agree exactly what would mean returning tonight, and arrange the recheck."
+      "candidateCard": "Ask when the rabbit last ate and passed droppings, and what has changed at home or in the diet.\n\nExamine and explain what you find, and why this is urgent in a rabbit rather than a wait-and-see problem.\n\nExplain what gut stasis is and what happens over the next day if untreated.\n\nExplain why radiographs come before any plan: what they look for, and why a blockage changes the treatment.\n\nSet out both options for a rabbit with no blockage: hospital care and a conservative outpatient plan.\n\nExplain the costs of each honestly, with a written estimate, before they have to ask.\n\nExplain the trade-off in outcome between the two, without overstating either.\n\nRaise the money question yourself, as a normal part of the conversation.\n\nSay plainly that, once a blockage is ruled out, the outpatient plan is legitimate care and not a lesser kind.\n\nExplain what the outpatient plan asks of them at home: syringe feeding, medication and monitoring.\n\nExplain honestly what would happen if a blockage were found.\n\nAgree a plan, what would mean returning tonight, and the recheck."
     },
     "guidanceNote": "Raise cost matter-of-factly and without judgement; presenting a credible 'good, better, best' range lets the owner make a responsible choice within their means and removes the shame from the conversation."
   },
@@ -309,9 +309,9 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, a routine annual vaccination and health check.",
-      "candidateRole": "You are the veterinarian recommending a senior wellness approach with six-monthly checks and baseline blood and urine testing.",
-      "patientRole": "An owner in their seventies with a ten-year-old miniature schnauzer who seems well, has slowed a little on walks, and thinks the extra tests are fussing over nothing.",
+      "setting": "Veterinary consulting room, a routine annual vaccination and health check. The owner arrived by bus and has another appointment in town afterwards.",
+      "candidateRole": "You are the veterinarian recommending a senior wellness approach with six-monthly checks and baseline blood and urine testing. On examination today the dog is bright and of a good weight.",
+      "patientRole": "An owner in their seventies with a ten-year-old miniature schnauzer who seems well, has slowed a little on walks, and thinks the extra tests are fussing over nothing. They live with their wife, and the dog is walked twice a day around the local park. Their previous schnauzer lived to fourteen. They mention that they play bridge on Tuesdays and that the dog once had an upset stomach after a barbecue, which settled quickly.",
       "patientConcern": "The owner quietly dreads that screening will uncover a serious illness they would rather not know about, and would prefer to let the dog just enjoy life.",
       "prepSeconds": 180,
       "speakSeconds": 300,
@@ -331,13 +331,13 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
-      "setting": "Veterinary consulting room, a routine health check and booster appointment.",
-      "candidateRole": "You are the veterinarian. A healthy outdoor cat has had no regular flea or worm prevention and you are recommending a year-round plan.",
-      "patientRole": "An owner in their fifties with a five-year-old outdoor cat that hunts regularly, sleeps on the beds, and is treated only when fleas are actually seen.",
+      "setting": "Veterinary consulting room, a routine health check and booster appointment. The booster has been given and the cat is back in the carrier.",
+      "candidateRole": "You are the veterinarian. A healthy outdoor cat has had no regular flea or worm prevention and you are recommending a year-round plan. The examination is normal, and no fleas or flea dirt are seen today.",
+      "patientRole": "An owner in their fifties with a five-year-old outdoor cat that hunts regularly, sleeps on the beds, and is treated only when fleas are actually seen. They live with a partner, and two grandchildren visit most weekends. When fleas appear they buy a spot-on from the supermarket. They mention that the cat once brought a live frog into the kitchen, and that they are about to repaint the hall.",
       "patientConcern": "The owner thinks regular preventatives are an unnecessary expense and a way for the practice to make money when the cat looks perfectly healthy.",
       "prepSeconds": 180,
       "speakSeconds": 300,
-      "candidateCard": "Ask about the cat's routine: hours outdoors, hunting, contact with other cats, and where he sleeps.\n\nAsk what is currently used, how often, and where it is bought.\n\nAsk what they think about regular treatment, and let the suspicion about cost be voiced.\n\nAcknowledge the concern openly rather than defensively, and address it head on.\n\nExplain the flea life cycle and why seeing a flea means the house is already affected.\n\nExplain what worms this cat is exposed to through hunting, and why hunting cats need a different schedule.\n\nExplain the risk to people in the home, particularly children, in proportionate terms.\n\nExplain why treatment through the winter matters in a heated house.\n\nExplain the difference between what is sold in supermarkets and what you are recommending, and why.\n\nGive the actual cost per month, so the decision is made on a real number.\n\nExplain how the house itself is treated if fleas are already established there.\n\nRecommend a specific product and schedule, and agree a plan the owner will realistically follow."
+      "candidateCard": "Ask about the cat's routine: hours outdoors, hunting, contact with other cats, and where he sleeps.\n\nAsk what is currently used, how often, and where it is bought.\n\nAsk what they think about regular treatment, and let the suspicion about cost be voiced.\n\nAcknowledge the concern openly rather than defensively, and address it head on.\n\nExplain the flea life cycle and why seeing a flea means the house is already affected.\n\nExplain what worms this cat is exposed to through hunting, and why hunting cats need a different schedule.\n\nExplain the risk to people in the home, particularly children, in proportionate terms.\n\nExplain why treatment through the winter matters in a heated house.\n\nExplain the difference between what is sold in supermarkets and what you are recommending, and why.\n\nBe open about the monthly cost and offer a written estimate, so the decision is made on real information.\n\nExplain how the house itself is treated if fleas are already established there.\n\nRecommend a prescription treatment by its active ingredients and a schedule, and agree a plan the owner will realistically follow."
     },
     "guidanceNote": "Acknowledge the cost-versus-need scepticism honestly; explain prevention in terms of the hidden risks (tapeworm, household exposure, hunting) so the owner sees the value rather than feeling sold to."
   }
