@@ -101,11 +101,12 @@ test.describe.configure({ mode: "serial" });
 test.describe("retiring the fifteen legacy Reading Part C articles", () => {
   test("a learner has work against two of the fifteen", async ({ page }) => {
     expect(fixture.partCLegacyTitles.length).toBe(15);
-    expect(fixture.partCFullLengthTitles.length).toBe(27);
+    // 1 Nov 2026: 13 new full-length articles (Reading to 20 full tests): 27 -> 40 full length, 42 -> 55 in all.
+    expect(fixture.partCFullLengthTitles.length).toBe(40);
     await signIn(page);
 
     const titles = await listTitles(page);
-    expect(titles.length, "the library must hold the whole Part C bank before the retire").toBe(42);
+    expect(titles.length, "the library must hold the whole Part C bank before the retire").toBe(55);
 
     // 🔴 THE RETIRE LIST, CHECKED AGAINST WHAT THE APP ACTUALLY OFFERS.
     //
@@ -172,7 +173,7 @@ test.describe("retiring the fifteen legacy Reading Part C articles", () => {
     });
     expect(dry.status, `dry run failed: ${dry.stderr}`).toBe(0);
     expect(dry.stdout).toContain("DRY RUN");
-    expect(dry.stdout).toMatch(/READING_PART_C: 42 active now -> 27 after/);
+    expect(dry.stdout).toMatch(/READING_PART_C: 55 active now -> 40 after/);
 
     const confirmed = spawnSync(`npx tsx scripts/retire-fragments.mts ${RETIRE_LIST} --confirm`, {
       shell: true,
@@ -187,12 +188,12 @@ test.describe("retiring the fifteen legacy Reading Part C articles", () => {
     );
   });
 
-  test("the library offers only the twenty-seven full-length articles, ABOVE the floor", async ({
+  test("the library offers only the forty full-length articles, ABOVE the floor", async ({
     page,
   }) => {
     await signIn(page);
     const titles = await listTitles(page);
-    expect(titles).toHaveLength(27);
+    expect(titles).toHaveLength(40);
     for (const t of fixture.partCLegacyTitles) {
       expect(titles, `${t} is still being offered`).not.toContain(t);
     }
@@ -255,7 +256,7 @@ test.describe("retiring the fifteen legacy Reading Part C articles", () => {
     expect(back.stdout).toMatch(/RESTORE complete — 15 row\(s\) updated, 0 deleted/);
 
     await signIn(page);
-    expect(await listTitles(page)).toHaveLength(42);
-    console.log("[e2e] Part C --restore: the library is back to 42 exercise(s)");
+    expect(await listTitles(page)).toHaveLength(55);
+    console.log("[e2e] Part C --restore: the library is back to 55 exercise(s)");
   });
 });

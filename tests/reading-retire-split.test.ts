@@ -69,7 +69,7 @@ const PARTS = [
     list: "reading-part-b-legacy.json",
     meetsLaw: isFullLengthPartB,
     law: "136-155 words",
-    seeded: 63,
+    seeded: 135, // 63 + the 72 new items of 1 Nov 2026 (reading_bc_nov.ts)
     going: 15,
   },
   {
@@ -77,7 +77,7 @@ const PARTS = [
     list: "reading-part-c-legacy.json",
     meetsLaw: isFullLengthPartC,
     law: "653-836 words with eight questions of four options",
-    seeded: 42,
+    seeded: 55, // 42 + the 13 new articles of 1 Nov 2026 (reading_bc_nov.ts)
     going: 15,
   },
 ] as const;
@@ -122,13 +122,14 @@ describe("the retire lists, against the bank they name", () => {
 });
 
 describe("what the shape rule could no longer see", () => {
-  it("READING_PART_C: all 42 articles now satisfy the full-length law", () => {
+  it("READING_PART_C: all 55 articles now satisfy the full-length law", () => {
     // 🔴 THE MEASUREMENT THE OLD RULE DEPENDED ON, PINNED.
     // While this reads 42/0 the shape rule cannot name the outgoing twenty-one,
     // and anything that tries is guessing. If it ever stops reading 42/0 that is
     // a change to the bank worth a person looking at, not a test to relax.
     const bank = ALL.filter((i) => i.taskType === "READING_PART_C");
-    expect(bank.filter((i) => isFullLengthPartC(i))).toHaveLength(42);
+    // 1 Nov 2026: 42 -> 55 with the 13 new full-length articles; still none short.
+    expect(bank.filter((i) => isFullLengthPartC(i))).toHaveLength(55);
     expect(bank.filter((i) => !isFullLengthPartC(i))).toHaveLength(0);
   });
 
