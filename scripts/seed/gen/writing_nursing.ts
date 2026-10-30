@@ -205,7 +205,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "taskType": "WRITING_LETTER",
     "profession": "NURSING",
     "slug": "wri-nursing-referral-to-falls-prevention-service-from-aged-care-facility",
-    "title": "Nursing — Referral to falls prevention service from aged care facility",
+    "title": "Nursing — Referral to falls prevention service from a care home",
     "prompt": "Using the case notes, write a letter to the falls prevention coordinator. Write 180–200 words. Select only the information relevant to ongoing care.",
     "difficulty": "CORE",
     "topicTag": "referral",

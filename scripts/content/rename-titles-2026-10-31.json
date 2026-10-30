@@ -1,9 +1,16 @@
 [
   {
-    "slug": "spk-nursing-supporting-a-man-reluctant-to-use-a-walking-aid-in-aged-care",
-    "taskType": "SPEAKING_ROLEPLAY",
-    "from": "Nursing — Supporting a man reluctant to use a walking aid in aged care",
-    "to": "Nursing — Supporting a man reluctant to use a walking aid in a care home",
-    "why": "beta-g, 31 Oct 2026: UK wording — the card's setting became \"Residential care home\" in S1–S6 (#135); the title follows. (The earlier angioedema rename in this file ran in production after #134; it is in git history.)"
+    "slug": "wri-nursing-referral-to-falls-prevention-service-from-aged-care-facility",
+    "taskType": "WRITING_LETTER",
+    "from": "Nursing — Referral to falls prevention service from aged care facility",
+    "to": "Nursing — Referral to falls prevention service from a care home",
+    "why": "Owner, 31 Oct 2026: UK wording for the remaining 'aged care' titles. (The earlier rows in this file — angioedema, and the Nursing speaking care-home card — ran in production; they are in git history.)"
+  },
+  {
+    "slug": "wri-speech-pathology-modified-diet-transfer-letter-for-residential-aged-care",
+    "taskType": "WRITING_LETTER",
+    "from": "Speech Pathology — Modified-diet transfer letter for residential aged care",
+    "to": "Speech Pathology — Modified-diet transfer letter for a residential care home",
+    "why": "Owner, 31 Oct 2026: UK wording for the remaining 'aged care' titles."
   }
 ]
