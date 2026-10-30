@@ -55,6 +55,10 @@ import { MODEL_LETTERS } from "./writing_model_letters";
 const withModelLetter = (i: Prisma.OetItemCreateManyInput): Prisma.OetItemCreateManyInput =>
   i.slug && MODEL_LETTERS[i.slug] ? { ...i, payload: { ...(i.payload as object), modelLetter: MODEL_LETTERS[i.slug] } as Prisma.InputJsonValue } : i;
 
+// B3 (30 Oct 2026) · a card with a model role-play carries it in its payload; the others are unchanged (speaking_model_scripts.ts)
+import { MODEL_SCRIPTS } from "./speaking_model_scripts";
+const withModelScript = (i: Prisma.OetItemCreateManyInput): Prisma.OetItemCreateManyInput =>
+  i.slug && MODEL_SCRIPTS[i.slug] ? { ...i, payload: { ...(i.payload as object), modelScript: MODEL_SCRIPTS[i.slug] } as Prisma.InputJsonValue } : i;
 export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...LISTENING_A,
   ...LISTENING_B,
@@ -62,7 +66,7 @@ export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...LISTENING_B_SETS,
   ...LISTENING_C_SETS,
   ...WRITING_SETS.map(withModelLetter), // B2: the model letters join their items (payload.modelLetter)
-  ...SPEAKING_SETS,
+  ...SPEAKING_SETS.map(withModelScript), // B3: the model role-plays join their cards (payload.modelScript)
   ...LISTENING_C,
   ...READING_A,
   ...READING_B,
