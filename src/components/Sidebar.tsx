@@ -22,11 +22,13 @@ import { HamburgerButton } from "@/components/HamburgerButton";
 
 type Item = { key: string; href: string; icon: string; label: string; match: string };
 
-function buildItems(isAdmin: boolean): Item[] {
+function buildItems(isAdmin: boolean, vocabulary = false): Item[] {
   const items: Item[] = [
     { key: "home", href: "/", icon: "🏠", label: "Home", match: "/" },
     { key: "practice", href: "/practice", icon: "✏️", label: "Choose a Test", match: "/practice" },
     { key: "progress", href: "/progress", icon: "📊", label: "My Progress", match: "/progress" },
+    // Vocabulary: only once the owner switches it on (VOCABULARY_ON — src/lib/oet/vocabulary.ts)
+    ...(vocabulary ? [{ key: "vocabulary", href: "/vocabulary", icon: "📖", label: "Vocabulary", match: "/vocabulary" }] : []),
     { key: "account", href: "/account", icon: "👤", label: "Account", match: "/account" },
   ];
   // Admin panel (Comp Accounts + Accounts) — only for ADMIN_EMAILS users.
@@ -106,14 +108,16 @@ export function Sidebar({
   email,
   isAdmin,
   logout,
+  vocabulary = false,
 }: {
   email: string;
   isAdmin: boolean;
   logout: () => Promise<void>;
+  vocabulary?: boolean;
 }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const items = buildItems(isAdmin);
+  const items = buildItems(isAdmin, vocabulary);
   const active = activeKey(pathname, items);
 
   useEffect(() => {

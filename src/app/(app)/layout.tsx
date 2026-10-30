@@ -9,6 +9,7 @@ import { EmailVerifyBanner } from "@/components/EmailVerifyBanner";
 import { GlobalHeader } from "@/components/GlobalHeader";
 import { Sidebar } from "@/components/Sidebar";
 import { isAdmin } from "@/lib/founder";
+import { vocabularyOn } from "@/lib/oet/vocabulary";
 
 export default async function AppLayout({
   children,
@@ -35,7 +36,7 @@ export default async function AppLayout({
           scope={emailGateScope(user) as "AI_ONLY" | "ALL_PAID"}
         />
       )}
-      <Sidebar email={user.email} isAdmin={admin} logout={logoutAction} />
+      <Sidebar email={user.email} isAdmin={admin} logout={logoutAction} vocabulary={vocabularyOn()} />
       <main className="flex-1 px-4 py-8 sm:px-6 md:ml-60 md:px-8">
         <div className="mx-auto w-full max-w-5xl">{children}</div>
       </main>
