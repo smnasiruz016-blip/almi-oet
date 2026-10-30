@@ -1,0 +1,122 @@
+[
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Advice letter to carer following COPD exacerbation discharge"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge advice for new mother and newborn (postnatal ward)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge advice to parents of an asthmatic child (paediatric ward)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge to community nurse (leg ulcer)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge to community nurse following cellulitis treatment"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Discharge to district nurse following heart failure admission"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to community drug and alcohol service (alcohol withdrawal)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to community mental health team (post-discharge depression)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to diabetes specialist nurse (newly diagnosed type 1)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to falls prevention service from aged care facility"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Referral to wound care clinic (post-operative surgical wound dehiscence)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Transfer to coronary care unit from emergency department (chest pain)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Transfer to palliative care unit (advanced pancreatic cancer)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Transfer to rehabilitation unit (post-hip fracture)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Nursing — Transfer to stroke rehabilitation ward (acute ischaemic stroke)"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Advice letter to GP on warfarin to DOAC switch"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Cardiology referral for new atrial fibrillation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Community mental health referral for first-episode depression"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Discharge after community-acquired pneumonia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Discharge after paediatric asthma admission"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Emergency department letter for acute coronary syndrome"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Endocrine referral for poorly controlled type 2 diabetes"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — GP referral for suspected DVT"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Gastroenterology referral for iron-deficiency anaemia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Geriatric referral after recurrent falls"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Neurology referral for first unprovoked seizure"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Paediatric referral for faltering growth"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Respiratory referral for suspected lung malignancy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Surgical referral for symptomatic gallstones"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Medicine — Transfer of stroke patient to rehabilitation unit"
+  }
+]
