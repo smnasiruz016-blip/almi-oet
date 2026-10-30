@@ -50,13 +50,18 @@ import { ITEMS as S_RADIOGRAPHY } from "./speaking_radiography";
 import { ITEMS as S_SPEECH } from "./speaking_speech_pathology";
 import { ITEMS as S_VET } from "./speaking_veterinary_science";
 
+// B2 (29 Oct 2026) · an item with a model letter carries it in its payload; the others are unchanged (writing_model_letters.ts)
+import { MODEL_LETTERS } from "./writing_model_letters";
+const withModelLetter = (i: Prisma.OetItemCreateManyInput): Prisma.OetItemCreateManyInput =>
+  i.slug && MODEL_LETTERS[i.slug] ? { ...i, payload: { ...(i.payload as object), modelLetter: MODEL_LETTERS[i.slug] } as Prisma.InputJsonValue } : i;
+
 export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...LISTENING_A,
   ...LISTENING_B,
   ...LISTENING_A_SETS,
   ...LISTENING_B_SETS,
   ...LISTENING_C_SETS,
-  ...WRITING_SETS,
+  ...WRITING_SETS.map(withModelLetter), // B2: the model letters join their items (payload.modelLetter)
   ...SPEAKING_SETS,
   ...LISTENING_C,
   ...READING_A,

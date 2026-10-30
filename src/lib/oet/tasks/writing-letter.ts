@@ -22,6 +22,24 @@ import { getAnthropicClient, recordCost } from "@/lib/ai/anthropic-client";
 import { MODELS } from "@/lib/ai/models";
 import { professionGrading, professionHeading } from "@/lib/oet/profession-grading";
 
+/** B2 (29 Oct 2026) · an original model letter for the item, with why it is written so — optional: most items have none yet.
+ *  Built by scripts/seed/gen/_build_model_letters.mts and checked by scripts/gates/model-letters.ts (180–200 words by
+ *  src/lib/oet/words.ts, every number found in the item's own case notes, the slug present). */
+export const modelLetterSchema = z.object({
+  header: z.array(z.string()),
+  salutation: z.string(),
+  re: z.string(),
+  body: z.array(z.string()).min(2),
+  valediction: z.string(),
+  signoff: z.array(z.string()).min(1),
+  bodyWords: z.number().int().min(180).max(200),
+  commentary: z.object({ opening: z.string(), selection: z.string(), organisation: z.string(), tone: z.string() }),
+  notesUsed: z.array(z.string()),
+  notesLeftOut: z.array(z.string()),
+  safety: z.array(z.object({ point: z.string(), where: z.string() })),
+});
+export type ModelLetter = z.infer<typeof modelLetterSchema>;
+
 export const writingLetterPayloadSchema = z.object({
   caseNotes: z.string(),
   recipient: z.string(),
@@ -29,6 +47,7 @@ export const writingLetterPayloadSchema = z.object({
   letterType: z.enum(["referral", "transfer", "discharge", "advice"]),
   wordMin: z.number().int().nonnegative(),
   wordMax: z.number().int().nonnegative(),
+  modelLetter: modelLetterSchema.optional(),
 });
 export type WritingLetterPayload = z.infer<typeof writingLetterPayloadSchema>;
 
