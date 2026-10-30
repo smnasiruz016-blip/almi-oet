@@ -21,13 +21,16 @@ const sourceOf = (p: Record<string, unknown>): string =>
 
 describe("RR-346 · B1 explanations", () => {
   it("cover the 3 mock forms: 57 items, 252 questions", () => {
-    const form = ITEMS.filter((i) => i.form && i.payload.explanations);
+    // Forms 1–3 by name: since 1 Nov 2026 forms 4–10 are tagged on items that came from the practice bank.
+    const form = ITEMS.filter((i) => ["form-1", "form-2", "form-3"].includes(i.form ?? "") && i.payload.explanations);
     expect(form.length).toBe(57);
     const n = form.reduce((a, i) => a + Object.keys(i.payload.explanations as object).length, 0);
     expect(n).toBe(252);
   });
   it("cover the practice bank too: 244 items, 1419 questions, + the 85 new Reading items, 176 questions (Nov 2026, beta-g checked)", () => {
-    const practice = ITEMS.filter((i) => !i.form && i.payload.explanations);
+    // Everything outside forms 1–3: the practice bank, which forms 4–10 (133 of these items) share.
+    const practice = ITEMS.filter((i) => !["form-1", "form-2", "form-3"].includes(i.form ?? "") && i.payload.explanations);
+    expect(practice.filter((i) => i.form).length, "forms 4–10 tag 133 practice items").toBe(133);
     expect(practice.length).toBe(244 + 85);
     const n = practice.reduce((a, i) => a + Object.keys(i.payload.explanations as object).length, 0);
     expect(n).toBe(1419 + 176);
