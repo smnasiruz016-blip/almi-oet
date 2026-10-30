@@ -10,6 +10,7 @@ import { SUBTEST_LABEL } from "@/lib/oet/types";
 import type { GradeEstimate as GradeEstimateValue } from "@/lib/oet/scale";
 import { GradeEstimate, ESTIMATE_DISCLAIMER } from "@/components/oet/GradeEstimate";
 import { buildObjectiveReview } from "@/lib/oet/review";
+import { ModelAnswer } from "@/components/oet/ModelAnswer";
 
 export function ObjectiveReview({ def, item, attempt }: { def: TaskDef; item: OetItem; attempt: OetAttempt }) {
   const review = buildObjectiveReview(def.taskType, item.payload, attempt.response, item.slug);
@@ -185,6 +186,9 @@ export function OetResult({
           <div className="mt-3"><FeedbackBlock feedback={feedback} /></div>
         </section>
       )}
+
+      {/* B2/B3: the model letter / model role-play — after the attempt; in a MOCK it waits for the final review, like the answers */}
+      {!inMock && <ModelAnswer item={item} />}
 
       {variant === "single" && (
         <>

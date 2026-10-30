@@ -20,45 +20,8 @@ import { isSealedSection, sealedSectionNotice } from "@/lib/oet/section-rules";
 import { OetResult } from "@/components/oet/OetResult";
 import { OetSessionResult } from "@/components/oet/OetSessionResult";
 import { ChainNext } from "@/components/oet/ChainNext";
-import type { OetTaskType } from "@prisma/client";
+import { sanitizePayload } from "@/lib/oet/sanitize-payload"; // B2/B3: also keeps the model letter and model role-play out of the composer
 
-// Strip any server-only answer key before sending the payload to the client.
-// Objective items keep their questions/gaps but lose the `answer` field; audio
-// scripts never go to the client (audio is fetched server-side).
-function sanitizePayload(taskType: OetTaskType, payload: unknown): unknown {
-  const p = payload as Record<string, unknown>;
-  if (taskType === "LISTENING_PART_A") {
-    const gaps = (p.gaps as { id: string; label: string }[] | undefined) ?? [];
-    return { gaps: gaps.map((g) => ({ id: g.id, label: g.label })) };
-  }
-  if (taskType === "LISTENING_PART_B" || taskType === "LISTENING_PART_C") {
-    const questions = (p.questions as { id: string; stem: string; options: unknown[] }[] | undefined) ?? [];
-    return { questions: questions.map((q) => ({ id: q.id, stem: q.stem, options: q.options })) };
-  }
-  if (taskType === "READING_PART_A") {
-    const questions = (p.questions as { id: string; stem: string; options?: unknown[] }[] | undefined) ?? [];
-    return {
-      texts: p.texts,
-      questions: questions.map((q) => ({ id: q.id, stem: q.stem, options: q.options })),
-    };
-  }
-  if (taskType === "READING_PART_B" || taskType === "READING_PART_C") {
-    const questions = (p.questions as { id: string; stem: string; options: unknown[] }[] | undefined) ?? [];
-    return {
-      passages: p.passages,
-      questions: questions.map((q) => ({ id: q.id, stem: q.stem, options: q.options })),
-    };
-  }
-  if (taskType === "SPEAKING_ROLEPLAY") {
-    // The candidate sees their own card, not the patient's hidden concern —
-    // drawing that out is part of the task and what the grader scores.
-    const { patientConcern: _omit, ...rest } = p as { patientConcern?: unknown };
-    void _omit;
-    return rest;
-  }
-  // Writing payloads carry no objective answer key.
-  return payload;
-}
 
 export default async function SessionPage({
   params,

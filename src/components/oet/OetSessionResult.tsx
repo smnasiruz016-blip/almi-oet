@@ -22,6 +22,7 @@ import { OET_BENCHMARK_B } from "@/lib/oet/scale";
 import { SUBTEST_LABEL } from "@/lib/oet/types";
 import { GradeEstimate, ESTIMATE_DISCLAIMER } from "@/components/oet/GradeEstimate";
 import { ObjectiveReview } from "@/components/oet/OetResult";
+import { ModelAnswer } from "@/components/oet/ModelAnswer"; // B2/B3
 import { OET_TASKS } from "@/lib/oet/registry";
 
 const SUBTEST_ORDER: OetSubTest[] = ["LISTENING", "READING", "WRITING", "SPEAKING"];
@@ -100,6 +101,15 @@ export function OetSessionResult({
                 </details>
               ) : null;
             })}
+          {/* B2/B3: the Writing and Speaking items' model answers — held back during the mock, shown here */}
+          {attempts
+            .filter((a) => a.status === "SCORED" && (a.subTest === "WRITING" || a.subTest === "SPEAKING"))
+            .map((a) => (
+              <div key={a.id} data-mock-model className="space-y-2">
+                <p className="text-sm font-semibold text-almi-ink">{a.item.title}</p>
+                <ModelAnswer item={a.item} />
+              </div>
+            ))}
         </section>
       )}
 
