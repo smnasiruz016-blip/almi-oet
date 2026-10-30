@@ -26,6 +26,21 @@ import { getAnthropicClient, recordCost } from "@/lib/ai/anthropic-client";
 import { MODELS } from "@/lib/ai/models";
 import { professionGrading, professionHeading } from "@/lib/oet/profession-grading";
 
+/** B3 (30 Oct 2026) · an original model role-play for the card, with how each card task is covered — optional: most cards have none yet.
+ *  Built by scripts/seed/gen/_build_model_scripts.mts and checked by scripts/gates/model-scripts.ts (600–750 words, 24–40 turns, every
+ *  card task mapped to a turn, every number on the card or in the allowed list, the slug present). */
+export const modelScriptSchema = z.object({
+  candidateLabel: z.string(),
+  interlocutorLabel: z.string(),
+  turns: z.array(z.object({ who: z.enum(["C", "I"]), text: z.string().min(1) })).min(24).max(40),
+  words: z.number().int().min(600).max(750),
+  coverage: z.array(z.object({ bullet: z.number().int().min(1), turns: z.array(z.number().int().min(1)).min(1), how: z.string() })),
+  concern: z.object({ turns: z.array(z.number().int().min(1)).min(1), how: z.string() }),
+  safety: z.array(z.object({ point: z.string(), turn: z.number().int().min(1) })).min(1),
+  notes: z.string(),
+});
+export type ModelScript = z.infer<typeof modelScriptSchema>;
+
 export const speakingRoleplayPayloadSchema = z.object({
   setting: z.string(),
   candidateRole: z.string(),
@@ -34,6 +49,7 @@ export const speakingRoleplayPayloadSchema = z.object({
   patientConcern: z.string(),
   prepSeconds: z.number().int().nonnegative(),
   speakSeconds: z.number().int().nonnegative(),
+  modelScript: modelScriptSchema.optional(),
 });
 export type SpeakingRoleplayPayload = z.infer<typeof speakingRoleplayPayloadSchema>;
 
