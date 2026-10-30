@@ -31,11 +31,16 @@ const audioPayloadSchema = z.object({
   speakers: z.array(z.object({ role: z.string(), voice: z.string() })).optional(),
 });
 
+if (AUDIO_DIR !== "audio/oet") throw new Error(`AUDIO_DIR is ${AUDIO_DIR} but the audio route reads the literal "audio/oet"`);
+
 /** The rendered file for this script, or null if it was never rendered. */
 async function prerendered(payload: z.infer<typeof audioPayloadSchema>): Promise<Buffer | null> {
   const key = audioKey(payload);
   try {
-    return await readFile(join(process.cwd(), AUDIO_DIR, audioFileName(key)));
+    // The literal "audio/oet" (= AUDIO_DIR, asserted below) is what lets the tracer narrow this read to that folder. With the imported
+    // constant it widened to the WHOLE project — scripts/, docs/, tests/, 23 MiB — and took this function to 254.33 MiB of Vercel's
+    // 250 MiB limit (S1–S6 PR, 31 Oct 2026). Measured in .next/server/app/api/oet/audio/[attemptId]/route.js.nft.json.
+    return await readFile(join(process.cwd(), "audio/oet", audioFileName(key)));
   } catch {
     return null;
   }
