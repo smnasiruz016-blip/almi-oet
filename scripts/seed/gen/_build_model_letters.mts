@@ -13,12 +13,15 @@ import { fileURLToPath } from "node:url";
 import { ITEMS as WRITING_SETS } from "./writing_sets";
 import { ITEMS as W_NURSING } from "./writing_nursing";
 import { ITEMS as W_MEDICINE } from "./writing_medicine";
+import { ITEMS as W_PHARMACY } from "./writing_pharmacy";
+import { ITEMS as W_PHYSIOTHERAPY } from "./writing_physiotherapy";
+import { ITEMS as W_DENTISTRY } from "./writing_dentistry";
 import { checkLetter, type LetterSource } from "./model-letters-check";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-/* B2 (the 4 September sets) and B4 (the other 15 Nursing + 15 Medicine tasks, 30 Oct 2026) — every letter checked against its own item */
-const SOURCES = ["scripts/content/b2-model-letters-2026-10-30.json", "scripts/content/b4-model-letters-2026-10-30.json"];
-const ITEMS = [...WRITING_SETS, ...W_NURSING, ...W_MEDICINE];
+/* B2 (the 4 September sets), B4 (the other 15 Nursing + 15 Medicine tasks, 30 Oct 2026) and B5 (all 30 Pharmacy, Physiotherapy and Dentistry tasks, 31 Oct 2026) — every letter checked against its own item */
+const SOURCES = ["scripts/content/b2-model-letters-2026-10-30.json", "scripts/content/b4-model-letters-2026-10-30.json", "scripts/content/b5-model-letters-2026-10-31.json"];
+const ITEMS = [...WRITING_SETS, ...W_NURSING, ...W_MEDICINE, ...W_PHARMACY, ...W_PHYSIOTHERAPY, ...W_DENTISTRY];
 const out: Record<string, unknown> = {}, shas: string[] = [];
 let bad = 0;
 for (const SOURCE of SOURCES) {

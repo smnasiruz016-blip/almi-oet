@@ -1,0 +1,182 @@
+[
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — ACE inhibitor and potassium supplement hyperkalaemia risk"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Clopidogrel and omeprazole interaction concern"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Discharge medicines reconciliation to GP"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Gentamicin level handover at hospital discharge"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Insulin regimen confusion and recurrent hypoglycaemia"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Levothyroxine and calcium timing affecting control"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Lithium monitoring overdue advice to GP"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Methotrexate dosing error identified at dispensing"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — New prescription duplication of two SSRIs"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — OTC ibuprofen request unsuitable for patient on anticoagulant"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Polypharmacy deprescribing review for elderly patient"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Poor inhaler adherence and technique referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Suspected adverse skin reaction to lamotrigine"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Suspected statin-induced myalgia review"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Pharmacy — Warfarin–antibiotic interaction referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Discharge advice to GP following women's health continence programme"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Discharge to GP after lateral ankle sprain rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Discharge to GP after post-stroke rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Discharge to GP after total hip replacement rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to GP for suspected lumbar radiculopathy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to falls clinic for recurrent geriatric falls"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to hand therapy after complex distal radius fracture"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to orthopaedic surgeon for non-improving knee"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to orthopaedic team for suspected rotator cuff tear"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to paediatric service for developmental motor delay"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to rheumatologist for suspected inflammatory arthritis"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Referral to sports medicine for suspected ACL deficiency"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Transfer to cardiac rehabilitation after coronary bypass surgery"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Transfer to community respiratory team after COPD exacerbation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Physiotherapy — Transfer to neuro-rehabilitation unit after Guillain-Barré syndrome"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Advice letter to GP on dental focus before cardiac surgery"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Discharge of implant patient to referring dentist"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Discharge to GP after dental abscess management"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Discharge to GP after suspicious lesion biopsy"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Endodontic referral for calcified canal"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Impacted lower third molar referral"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Orthodontic referral for crowding and impacted canine"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Periodontal referral for advanced bone loss"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to GP for suspected oral candidiasis and dry mouth"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to oral medicine for chronic mucosal lesion"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to oral surgeon after dental trauma"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to oral surgeon for dentigerous cyst"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to prosthodontist for full-mouth rehabilitation"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Referral to special care dentistry for anxious patient"
+  },
+  {
+    "taskType": "WRITING_LETTER",
+    "title": "Dentistry — Transfer of paediatric patient for hospital extractions"
+  }
+]
