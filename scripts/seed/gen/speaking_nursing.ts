@@ -258,7 +258,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "taskType": "SPEAKING_ROLEPLAY",
     "profession": "NURSING",
     "slug": "spk-nursing-supporting-a-man-reluctant-to-use-a-walking-aid-in-aged-care",
-    "title": "Nursing — Supporting a man reluctant to use a walking aid in aged care",
+    "title": "Nursing — Supporting a man reluctant to use a walking aid in a care home",
     "prompt": "Read your role-play card. You have a short time to prepare, then carry out the consultation. Speak your part aloud.",
     "difficulty": "FOUNDATION",
     "topicTag": "advice",
