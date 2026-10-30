@@ -75,9 +75,9 @@ export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...READING_C,
   ...W_NURSING.map(withModelLetter), // B4: the model letters of the other Nursing tasks
   ...W_MEDICINE.map(withModelLetter), // B4: … and of the other Medicine tasks
-  ...W_PHARMACY,
-  ...W_DENTISTRY,
-  ...W_PHYSIOTHERAPY,
+  ...W_PHARMACY.map(withModelLetter), // B5
+  ...W_DENTISTRY.map(withModelLetter), // B5
+  ...W_PHYSIOTHERAPY.map(withModelLetter), // B5
   ...W_DIETETICS,
   ...W_OT,
   ...W_OPTOMETRY,
