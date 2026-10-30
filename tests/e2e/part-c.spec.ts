@@ -130,7 +130,7 @@ test.describe.configure({ mode: "serial" });
  */
 test.describe("Reading Part C, full length, in a real browser", () => {
   test("the article renders in full at 1360px, with four options on the page", async ({ page }) => {
-    expect(fixture.partCFullLengthTitles, "the twenty-seven must be seeded").toHaveLength(27);
+    expect(fixture.partCFullLengthTitles, "the forty must be seeded").toHaveLength(40);
     await signIn(page);
     await openByTitle(page, C.title);
 

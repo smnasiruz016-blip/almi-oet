@@ -15,7 +15,9 @@ type Ex = { why: string; evidence?: string; wrong?: Record<string, string>; watc
 const ITEMS = GEN_ITEMS as unknown as { slug: string; taskType: string; form?: string; payload: Record<string, unknown> }[];
 const withEx = ITEMS.filter((i) => i.payload.explanations);
 const sourceOf = (p: Record<string, unknown>): string =>
-  [p.audioScript, ...(((p.texts as { body: string }[]) ?? []).map((t) => t.body)), ...(((p.passages as unknown[]) ?? []).map((x) => (typeof x === "string" ? x : JSON.stringify(x))))].filter(Boolean).join("\n");
+  // A passage is read by its body, as the learner sees it. It used to be JSON.stringify'd, which escaped every quote
+  // mark, so an evidence quote containing `"` could never match its own text (Nov 2026, two Part C quotes).
+  [p.audioScript, ...(((p.texts as { body: string }[]) ?? []).map((t) => t.body)), ...(((p.passages as unknown[]) ?? []).map((x) => (typeof x === "string" ? x : (x as { body?: string }).body ?? JSON.stringify(x))))].filter(Boolean).join("\n");
 
 describe("RR-346 · B1 explanations", () => {
   it("cover the 3 mock forms: 57 items, 252 questions", () => {
@@ -24,11 +26,11 @@ describe("RR-346 · B1 explanations", () => {
     const n = form.reduce((a, i) => a + Object.keys(i.payload.explanations as object).length, 0);
     expect(n).toBe(252);
   });
-  it("cover the practice bank too: 244 items, 1419 questions (Nov 2026, beta-g checked)", () => {
+  it("cover the practice bank too: 244 items, 1419 questions, + the 85 new Reading items, 176 questions (Nov 2026, beta-g checked)", () => {
     const practice = ITEMS.filter((i) => !i.form && i.payload.explanations);
-    expect(practice.length).toBe(244);
+    expect(practice.length).toBe(244 + 85);
     const n = practice.reduce((a, i) => a + Object.keys(i.payload.explanations as object).length, 0);
-    expect(n).toBe(1419);
+    expect(n).toBe(1419 + 176);
   });
   it("every explanation answers a real question, quotes its own item word for word, and explains only real wrong options", () => {
     const bad: string[] = [];
