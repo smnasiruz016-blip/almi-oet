@@ -1,9 +1,9 @@
 [
   {
-    "slug": "wri-pharmacy-referral-to-the-general-practitioner-a-suspected-adverse-drug-reaction",
-    "taskType": "WRITING_LETTER",
-    "from": "Pharmacy — Referral to the general practitioner: a suspected adverse drug reaction",
-    "to": "Pharmacy — Urgent letter to the emergency department: a suspected adverse drug reaction",
-    "why": "beta-g, 31 Oct 2026: the angioedema task became an urgent letter to the emergency department in B5 (#133); the title must say so."
+    "slug": "spk-nursing-supporting-a-man-reluctant-to-use-a-walking-aid-in-aged-care",
+    "taskType": "SPEAKING_ROLEPLAY",
+    "from": "Nursing — Supporting a man reluctant to use a walking aid in aged care",
+    "to": "Nursing — Supporting a man reluctant to use a walking aid in a care home",
+    "why": "beta-g, 31 Oct 2026: UK wording — the card's setting became \"Residential care home\" in S1–S6 (#135); the title follows. (The earlier angioedema rename in this file ran in production after #134; it is in git history.)"
   }
 ]
