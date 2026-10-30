@@ -69,6 +69,8 @@ export function ExamPageRail({
                 <div
                   data-testid={`exam-rail-group-${g.subTest}`}
                   aria-current={isCurrent ? "step" : undefined}
+                  // RR-346 (owner): on a phone the rail shows L R W S; the full name is the tooltip (and is read in full below)
+                  title={g.label}
                   className={
                     "flex items-center gap-2 rounded-lg border px-2 py-1.5 sm:px-3 " +
                     (isCurrent

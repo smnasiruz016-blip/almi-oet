@@ -103,10 +103,12 @@
  */
 import { GEN_ITEMS } from "../seed/gen/index";
 import { lengthCue } from "../content/payload-shape";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 
 type Option = { id: string; text: string };
 type Question = { id: string; answer: string; options?: Option[] };
-type Item = { taskType: string; slug: string; payload?: { questions?: Question[] } };
+type Item = { taskType: string; slug: string; title?: string; payload?: { questions?: Question[] } };
 
 const words = (s: string | undefined): number =>
   s && s.trim() ? s.trim().split(/\s+/).length : 0;
@@ -118,7 +120,6 @@ const LEGACY_TELL: string[] = [
 /** D2 · an option more than 1.6x the mean of the others. 65 legacy
  *  questions, with the measured ratio beside each. */
 const LEGACY_OVERSIZE: string[] = [
-  "rea-b-f3-controlled-drugs::q1", // 1.80x
 ];
 
 /** D3 · a single option letter holding more than 45% of the keys, per taskType.
@@ -325,6 +326,52 @@ for (const [taskType, v] of perType) {
     skewSeen.add(taskType);
     fail(`D3 ${taskType} is in LEGACY_SKEW but is now ${pct}% — delete it.`);
   }
+}
+
+// ── D5 · THE KEY IS NOT SYSTEMATICALLY THE SHORTEST OPTION (RR-346, GAP-057) ──
+//
+// D1 stops the key being far LONGER than the rest. The audit of 29 October 2026 found the opposite cue, made when
+// options were shortened: the key was the shortest option in 43% of Reading Part C questions (chance 25%) and 50% of
+// Listening Part B (chance 33%) — a learner who always picked the shortest scored without reading. Owner's ruling:
+// per task type, the share of LIVE questions whose key is the shortest option (ties count — a tie still points at it)
+// stays under 35%. Measured on characters, the way a glance measures. Retired items are served to nobody, so the
+// population is the live bank: scripts/retire/*.json, resolved to slugs as gate:length does.
+{
+  const live = (() => {
+    const byTitle = new Map(ITEMS.map((i) => [`${i.taskType}::${i.title}`, i.slug]));
+    const dir = join(process.cwd(), "scripts", "retire"), retired = new Set<string>();
+    for (const f of readdirSync(dir).filter((x) => x.endsWith(".json")))
+      for (const r of JSON.parse(readFileSync(join(dir, f), "utf8")) as { taskType: string; title: string }[]) {
+        const slug = byTitle.get(`${r.taskType}::${r.title}`);
+        if (slug) retired.add(slug);
+      }
+    return ITEMS.filter((i) => !retired.has(i.slug));
+  })();
+  const D5_CAP = 35;
+  // D5b · and the REVERSE cue: fixing the shortest key must not make the key the longest — the same population, ties counted
+  const D5B_CAP = 45;
+  const share = new Map<string, { q: number; shortest: number; longest: number }>();
+  for (const item of live) for (const q of item.payload?.questions ?? []) {
+    const opts = q.options;
+    if (!Array.isArray(opts) || opts.length < 2) continue;
+    const ki = opts.findIndex((o) => String(o.id) === String(q.answer)); if (ki < 0) continue;
+    const len = opts.map((o) => String(o.text ?? "").trim().length);
+    // a match question's options are the text letters A–D — equal by construction, never a cue
+    if (len.every((n) => n === len[0])) continue;
+    const t = share.get(item.taskType) ?? { q: 0, shortest: 0, longest: 0 };
+    t.q += 1; if (len.every((n, i) => i === ki || len[ki] <= n)) t.shortest += 1;
+    if (len.every((n, i) => i === ki || len[ki] >= n)) t.longest += 1;
+    share.set(item.taskType, t);
+  }
+  for (const [taskType, v] of share) {
+    const pct = (100 * v.shortest) / v.q;
+    console.log(`  D5  ${taskType.padEnd(18)} key shortest in ${v.shortest}/${v.q} live questions = ${pct.toFixed(1)}% (cap ${D5_CAP}%)`);
+    const lp = (100 * v.longest) / v.q;
+    console.log(`  D5b ${taskType.padEnd(18)} key longest  in ${v.longest}/${v.q} live questions = ${lp.toFixed(1)}% (cap ${D5B_CAP}%)`);
+    if (lp >= D5B_CAP) fail(`D5b ${taskType} — the key is the longest option in ${lp.toFixed(1)}% of live questions (cap ${D5B_CAP}%): a learner can score by picking the longest`);
+    if (pct >= D5_CAP) fail(`D5 ${taskType} — the key is the shortest option in ${pct.toFixed(1)}% of live questions (cap ${D5_CAP}%): a learner can score by picking the shortest`);
+  }
+  if (share.size === 0) fail("D5 found no live multiple-choice question — the check is vacuous");
 }
 
 // ── the lists cannot rot ────────────────────────────────────────────────────

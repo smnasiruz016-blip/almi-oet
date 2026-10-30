@@ -11,7 +11,7 @@ import type { GradeEstimate as GradeEstimateValue } from "@/lib/oet/scale";
 import { GradeEstimate, ESTIMATE_DISCLAIMER } from "@/components/oet/GradeEstimate";
 import { buildObjectiveReview } from "@/lib/oet/review";
 
-function ObjectiveReview({ def, item, attempt }: { def: TaskDef; item: OetItem; attempt: OetAttempt }) {
+export function ObjectiveReview({ def, item, attempt }: { def: TaskDef; item: OetItem; attempt: OetAttempt }) {
   const review = buildObjectiveReview(def.taskType, item.payload, attempt.response, item.slug);
   if (!review || review.total === 0) return null;
   return (
@@ -35,6 +35,20 @@ function ObjectiveReview({ def, item, attempt }: { def: TaskDef; item: OetItem; 
               <p className="pl-6 text-sm text-almi-text">
                 Correct: <span className="font-medium text-almi-ink">{r.correct}</span>
               </p>
+            )}
+            {/* RR-346 (B1): the item's own explanation — after marking only (practice step, or the mock's final review) */}
+            {r.explanation && (
+              <div data-explanation className="mt-2 space-y-1 pl-6 text-sm text-almi-text">
+                <p><span className="font-semibold text-almi-ink">Why: </span>{r.explanation.why}</p>
+                {r.explanation.evidence && (
+                  <p className="text-almi-text-muted">
+                    <span className="font-semibold">In the text: </span>&ldquo;{r.explanation.evidence}&rdquo;
+                  </p>
+                )}
+                {r.explanation.note && (
+                  <p><span className="font-semibold text-almi-coral-deep">{r.ok ? "Note: " : "Your answer: "}</span>{r.explanation.note}</p>
+                )}
+              </div>
             )}
           </li>
         ))}
@@ -128,12 +142,16 @@ export function OetResult({
   item,
   attempt,
   variant = "single",
+  mode = null,
 }: {
   def: TaskDef;
   item: OetItem;
   attempt: OetAttempt;
   variant?: "single" | "step";
+  /** RR-346: the session's mode. In a MOCK step the answers and explanations are NOT shown — they wait for the mock's final review. */
+  mode?: "MOCK" | "PRACTICE_SET" | null;
 }) {
+  const inMock = variant === "step" && mode === "MOCK";
   const estimate = (attempt.gradeEstimate as GradeEstimateValue | null) ?? null;
   const feedback = (attempt.feedback as AnyFeedback) ?? null;
 
@@ -153,7 +171,13 @@ export function OetResult({
 
       <GradeEstimate label={`${SUBTEST_LABEL[attempt.subTest]} (this item)`} estimate={estimate} />
 
-      <ObjectiveReview def={def} item={item} attempt={attempt} />
+      {inMock ? (
+        <p data-mock-review-later className="rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3 text-sm text-almi-text">
+          Your answers are saved. The correct answers and their explanations are shown at the end of the mock, as in a real test.
+        </p>
+      ) : (
+        <ObjectiveReview def={def} item={item} attempt={attempt} />
+      )}
 
       {feedback && (
         <section className="rounded-2xl border border-almi-bg-peach bg-almi-bg p-5">

@@ -88,7 +88,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Dispensing her discharge medication"
+              "text": "Dispensing of her discharge medication"
             }
           ]
         }
@@ -123,7 +123,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "b",
-              "text": "All of the weekend long days"
+              "text": "All weekend long days"
             },
             {
               "id": "c",
@@ -170,7 +170,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "After contact with the patient"
+              "text": "After any contact with the patient"
             },
             {
               "id": "c",
@@ -209,7 +209,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "b",
-              "text": "The standard of clinical care given"
+              "text": "The standard of clinical care that was given"
             },
             {
               "id": "a",
@@ -338,7 +338,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "b",
-              "text": "The hoist assessment is no longer required"
+              "text": "The hoist assessment is no longer required at all"
             },
             {
               "id": "a",
@@ -346,7 +346,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Classroom sessions have been made longer"
+              "text": "Classroom sessions are now longer"
             }
           ]
         }
@@ -428,7 +428,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "More visitors are allowed at each bed"
+              "text": "More visitors are allowed per bed"
             },
             {
               "id": "c",
@@ -475,7 +475,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Decide whether the concern is credible first"
+              "text": "Decide whether the concern is credible before acting"
             }
           ]
         }
@@ -514,7 +514,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Wait until Thursday before dressing any wounds"
+              "text": "Wait until Thursday before dressing any of the wounds"
             },
             {
               "id": "a",
@@ -596,7 +596,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Trolleys should be cleaned only at the end of the day."
+              "text": "Trolleys should be cleaned only once, at the end of the day."
             },
             {
               "id": "b",
@@ -639,7 +639,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "b",
-              "text": "The appearance of the wound site"
+              "text": "The appearance of the wound"
             },
             {
               "id": "c",
@@ -671,6 +671,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The nurse says the family are happy to take him home; what worries them is handling his medication, which has grown to eleven items with recent changes.","evidence":"They're keen to have him home, that isn't the problem. What's worrying them is managing his medication","wrong":{"b":"The pharmacist is mentioned only as the solution: she has already been asked to come up. Availability is never a problem.","c":"Nobody questions when he leaves. The family are keen to have him home; the teaching is simply arranged before he goes."}}},
       "speakers": [
         {
           "role": "Nurse 1",
@@ -718,6 +719,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The manager says the audit measures current performance now, so it can be compared with a second audit after the new sanitiser stations arrive.","evidence":"What we're doing is gathering baseline data — how we're actually performing now, across all five moments, before we roll out the new sanitiser stations","wrong":{"a":"Directly denied: the manager says it is not about catching anyone out and no names are recorded.","c":"Half-true trap: the stations come next quarter. This audit is the 'before' measurement, so it cannot test them yet."}}},
       "speakers": [
         {
           "role": "Manager",
@@ -761,6 +763,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The doctor rules out a fracture, then says the marked swelling points to significant ligament (soft-tissue) damage that does not show on the film.","evidence":"that suggests she's done significant damage to the soft tissue — the ligaments, essentially","wrong":{"a":"Contradicted: the doctor says there is no fracture, nothing broken and nothing cracked.","b":"Contradicted: the doctor wants to see her again in a week, and sooner if the swelling does not improve."}}},
       "speakers": [
         {
           "role": "Doctor",
@@ -804,6 +807,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The physiotherapist says strength builds between visits, so the home exercises, done consistently on most days, matter more than the appointments themselves.","evidence":"The exercises matter more than the appointments themselves.","wrong":{"b":"Reversed: the appointments are described as less important than the exercises; doing them only at weekly visits brings no progress.","c":"Never suggested. The speaker says the strength does not build in the room, so longer sessions are not the point."}}},
       "speakers": [
         {
           "role": "Physiotherapist",
@@ -847,6 +851,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The educator says the commonest incident was forgetting to check the line for air, so the session covers priming and checking.","evidence":"What's come up again and again is people forgetting to check the line for air before starting","wrong":{"a":"Programming is not the problem — rate errors have fallen. It is only a refresher at the end, if there is time.","b":"Not said: nothing in the talk is about how many pumps the ward has."}}},
       "speakers": [
         {
           "role": "Nurse educator",
@@ -890,6 +895,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The receptionist says not to read out any result, but to book the patient a call with the nurse, even when they only want the number.","evidence":"So what you do is book them a call with the nurse.","wrong":{"a":"Contradicted: staff must not even say a result is normal, because normal results can still need explaining.","c":"Contradicted: explaining results is not the receptionist's place; that conversation belongs to the nurse or doctor."}}},
       "speakers": [
         {
           "role": "Receptionist",
@@ -934,6 +940,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Before doing anything about fluids, the doctor wants her drug chart checked for a diuretic or SSRI, since medication is the usual cause on this ward.","evidence":"I want somebody to go through her drug chart properly and check whether she's on a diuretic or an SSRI","wrong":{"b":"Contradicted: the doctor says not to restrict her fluids until the chart has been reviewed.","c":"Not said: no repeat blood test is requested; the comparison is with last week's result."}}},
       "speakers": [
         {
           "role": "Doctor",
@@ -977,6 +984,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The speaker's simple message is that gloves never replace hand hygiene: clean your hands before putting gloves on and after taking them off.","evidence":"Gloves are not a substitute for hand hygiene. Clean your hands before you put them on, and clean them again after you take them off","wrong":{"a":"Not said: the talk is about cleaning hands around glove use, not about when gloves should be worn.","b":"The exact opposite of the speaker's point: gloves are not a substitute for hand hygiene."}}},
       "speakers": [
         {
           "role": "Infection-control lead",
@@ -1020,6 +1028,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Mrs Doherty is nil by mouth because she is going to theatre this afternoon, so she must not be given anything to drink.","evidence":"Bed 4 — Mrs Doherty — is nil by mouth for theatre this afternoon.","wrong":{"b":"Wrong reason: in fact someone had told her she could have a drink; her own wishes are not the issue.","c":"Not said: the jug must go because of the operation, not for hygiene."}}},
       "speakers": [
         {
           "role": "Nurse",
@@ -1063,6 +1072,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"'Four times a day' was read as an instruction, giving frailer patients under fifty kilos a dose too high for their weight.","evidence":"for our frailer patients, the ones under fifty kilos, that adds up to a dose that's too high for their weight","wrong":{"a":"Contradicted: the pharmacist says nothing about the supply has changed.","c":"Contradicted: nobody asked for tidier wording; the change was made because the old wording was causing harm."}}},
       "speakers": [
         {
           "role": "Pharmacist",
@@ -1106,6 +1116,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The educator tells you to say what you think is wrong and what you want, giving the worry first and the numbers after.","evidence":"Say what you think is wrong and say what you want.","wrong":{"a":"Reading only the numbers is exactly what the speaker warns against; it leaves the interpretation to someone who cannot see the patient.","c":"Not said: the advice is about escalating a deteriorating patient now, not delaying."}}},
       "speakers": [
         {
           "role": "Nurse educator",
@@ -1149,6 +1160,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The receptionist says to press the emergency buzzer straight away, from the desk, and stay with the person until clinical help arrives.","evidence":"Call the emergency buzzer straight away, and then stay with them until somebody clinical arrives.","wrong":{"a":"Contradicted: do not book them in or ask them to take a seat; chest pain is never put in a queue.","b":"Contradicted: the speaker says don't take their details or look for their record."}}},
       "speakers": [
         {
           "role": "Receptionist",
@@ -1193,6 +1205,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The manager reviewed two years of needlestick injuries and found most came from bins too full to close properly.","evidence":"most of them have come from bins that were too full to close properly. Not one of them was a resheathing injury.","wrong":{"b":"Resheathing is forbidden, but the manager says none of the injuries was a resheathing injury.","c":"Carrying needles is mentioned as something to avoid, not as a cause of the injuries reviewed."}}},
       "speakers": [
         {
           "role": "Ward manager",
@@ -1211,7 +1224,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "needles being resheathed after use"
+              "text": "needles being resheathed"
             },
             {
               "id": "c",
@@ -1236,6 +1249,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The charge nurse insists the check is done by two staff together at the patient's side, both looking at the unit and wristband at once.","evidence":"The check on this ward must be done by two staff, together, at the patient's side.","wrong":{"a":"This is what the speaker saw done badly and rejects: signing later at the desk is not a check.","c":"Contradicted: the check needs two people at the bedside; one person alone is never mentioned as acceptable."}}},
       "speakers": [
         {
           "role": "Charge nurse",
@@ -1279,6 +1293,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Memory fades and distorts, and a note made at the time carries more weight; the speaker says it is about the note being true.","evidence":"And a record made at the time carries far more weight if a case is ever reviewed.","wrong":{"a":"Contradicted: the speaker says it is not about being quick.","b":"Contradicted: it is not about getting off on time; that is why notes get left, not why to write them early."}}},
       "speakers": [
         {
           "role": "Clinical educator",
@@ -1322,6 +1337,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The nurse says oxygen is a drug and must be prescribed with a target saturation range on the chart, like any other medicine.","evidence":"it must be prescribed with a target saturation range on the chart, exactly like anything else you'd give","wrong":{"b":"Contradicted: in some patients with chronic lung disease, high-flow oxygen can be dangerous.","c":"Contradicted: oxygen has a dose and side effects and can cause carbon dioxide retention."}}},
       "speakers": [
         {
           "role": "Respiratory nurse",
@@ -1365,6 +1381,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Relatives soften bad news, miss detail, and the patient may hold back in front of them, so the message gets changed or limited.","evidence":"Family members soften bad news — they do it kindly and they do it without noticing. They miss detail","wrong":{"a":"Reversed: using family is described as easier; booking a professional takes only two minutes.","c":"Not given as the reason: the manager explains the practical problems and never mentions a rule being broken."}}},
       "speakers": [
         {
           "role": "Practice manager",
@@ -1408,6 +1425,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The nurse says to stop and check with the patient, the notes and the admitting person before giving anything, even simple medicines.","evidence":"Stop and check before giving anything at all, including the simple things people don't think of as drugs.","wrong":{"a":"Contradicted: an unexplained band is a red flag; you must stop, not continue.","b":"Not advised: don't assume the band was a mistake or left over; check rather than remove it."}}},
       "speakers": [
         {
           "role": "Nurse",

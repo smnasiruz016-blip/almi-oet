@@ -3251,6 +3251,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The writer says training spends least time on the very skill patients value most: years go to pathology, only a few afternoons to communication.","evidence":"the capacity patients value above almost everything else is the one our training addresses least","wrong":{"a":"Reversed: pathology and pharmacology get years; it is listening that gets little time.","b":"The writer argues listening is a skill that can be taught, not a fixed temperament.","d":"No recent change is described; listening is presented as still neglected."}},"q2":{"why":"Listening leaves nothing that can be counted, so in a system that measures throughput a quietly listening clinician can look as if they are doing nothing.","evidence":"It produces no image, no result, no line in the notes that an auditor can count.","wrong":{"a":"The paragraph says patients disclose more when allowed to talk, not that they say little.","c":"Untrained clinicians doing it badly is not mentioned in this paragraph.","d":"Listening happens during the consultation; nothing is said about before it begins."}},"q3":{"why":"The recordings show that when clinicians stop redirecting the opening account, patients say more and say it sooner: a fuller, earlier account.","evidence":"when they resist the urge, patients disclose more, and disclose it sooner","wrong":{"a":"Overrunning is not the point; the writer argues the pause often saves time.","b":"The training discussed is for clinicians; patients are not said to need any.","c":"The opposite: the history remains the source of most diagnoses."}},"q4":{"why":"The writer says the move towards tasks is almost never conscious, yet patients read it accurately, and what they read is withdrawal.","evidence":"it is almost never conscious, but patients read it accurately, and what they read is withdrawal","wrong":{"b":"Contradicted: it is almost never conscious, so it is not a deliberate strategy.","c":"It is the patients who read it, not colleagues.","d":"No link to experience is made; it is called a very human pull."}},"q5":{"why":"The remark comes right after the writer says this is not an argument against clinical knowledge: attention matters, but it cannot replace being right.","evidence":"None of this is an argument against clinical knowledge, and it would be a poor reading of the case to take it as one.","wrong":{"a":"Too strong: warmth is valued, but it is no substitute for being correct.","c":"No particular group of clinicians is criticised; the remark supports a general point.","d":"The writer later says listening can be taught; whether warmth can be taught is not argued."}},"q6":{"why":"The phrase describes knowledge and attention as if they were competing for the same limited time, an idea the writer then rejects.","evidence":"knowledge and attention are not two claims on the same scarce hour, competing to be funded","wrong":{"a":"The phrase is about two qualities in one consultation, not different patients on a list.","b":"Talking versus examining is not mentioned; the two claims are knowledge and attention.","c":"Despite the word 'funded', the phrase is not about hospital and community budgets."}},"q7":{"why":"Letting a silence stand means putting up with a few seconds of discomfort that, the writer says, belongs to the clinician, not the patient.","evidence":"tolerating several seconds of a discomfort that belongs, in truth, to the clinician rather than to the patient","wrong":{"a":"Warning the patient about a pause is never suggested.","b":"The summary comes at the end, after listening, not before the patient finishes.","d":"The writer says appointment length probably would not change."}},"q8":{"why":"Protecting the opening minute is hard to adopt because clinicians must give up the sense of controlling where the conversation goes.","evidence":"it asks clinicians to give up the one thing a busy day makes them reluctant to surrender: the sense of being in control","wrong":{"b":"Contradicted: teams report the consultations do not run longer.","c":"Contradicted: teams report the consultations arrive somewhere more useful.","d":"Appointment length is fixed elsewhere, but this is not given as the obstacle."}}},
       "passages": [
         {
           "id": "p1",
@@ -3466,6 +3467,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The writer's key objection is that the resilience approach relocates the problem from the system that caused it to the individual worker.","evidence":"it moves the problem from the system that produced it to the individual standing inside that system","wrong":{"a":"Too strong: individual programmes are said to produce small effects, not none.","b":"Staff hear an unspoken implication, but resentment is not the main objection.","c":"Cost compared with alternatives is never discussed."}},"q2":{"why":"As first defined, burnout is a predictable response to workplace stressors that nobody has managed, a property of the organisation rather than the person.","evidence":"It is a predictable response to chronic workplace stressors that have gone unmanaged","wrong":{"a":"Recovery with rest is not mentioned; the definition is about workplace stressors.","c":"The writer stresses it is not a personal frailty, so individual treatment is not the frame.","d":"Contradicted: it is 'not a personal frailty', and new staff are not mentioned."}},"q3":{"why":"The nurse is not lacking resilience; she is absorbing a failure of the organisation that was never hers to fix.","evidence":"She is being asked to absorb, in her own body, a failure that was never hers to repair.","wrong":{"a":"Weekends are just part of the example; no comparison with weekdays is made.","b":"The writer says she is not deficient in resilience; no professions are compared.","d":"Rotas come up later, but arranging shift gaps is not the point here."}},"q4":{"why":"An umbrella protects you but does not fix the roof: coping protects staff, but it does not remove the cause of harm.","evidence":"But protection is not prevention, and the distinction matters more than it sounds.","wrong":{"b":"Contradicted: the umbrella is called a sensible thing to do, so coping does help.","c":"The roof is a metaphor; actual building maintenance is not the point.","d":"The opposite: the umbrella is 'not a substitute' for repairing the roof."}},"q5":{"why":"Individual programmes are not useless and have small effects, but changes to the work itself consistently do better.","evidence":"but they are consistently outperformed by changes to the work itself","wrong":{"a":"The writer cites accumulating evidence, so they have been studied.","b":"Contradicted: they are consistently outperformed by changes to the work.","c":"Withdrawal is never proposed; the writer says they are not useless."}},"q6":{"why":"If exhaustion is framed as a personal shortfall, admitting it feels like confessing inadequacy, so those who most need help stop asking.","evidence":"admitting to it becomes a confession of inadequacy rather than a report about the conditions","wrong":{"b":"No formal rule is mentioned; the silence comes from how exhaustion is framed.","c":"Reporting systems being hard to use is not mentioned.","d":"Managers' lack of time is not given as the reason."}},"q7":{"why":"By the time someone resigns, the problem has grown into a vacancy, recruitment and agency cover: the most expensive point at which to find it.","evidence":"strain is often first detected at the point of resignation, which is the most expensive place in the whole system to find it","wrong":{"a":"The writer says exit interviews come too late, not that only leavers are honest.","c":"Contradicted: the exit interview is one 'nobody will act on'.","d":"No single bad shift is blamed; strain builds up over time."}},"q8":{"why":"The closing question turns from asking staff to be more resilient to asking why work is designed to need so much resilience.","evidence":"why do we keep designing work that requires so much resilience simply to be survived?","wrong":{"a":"The writer questions resilience training rather than calling for more of it.","b":"Half-true: individuals carry some responsibility, but the balance has tilted too far towards them.","d":"The causes are presented as well evidenced, not unknown."}}},
       "passages": [
         {
           "id": "p1",
@@ -3682,6 +3684,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The harm is spread across many decisions in the system and never comes back to the person who ordered the test, so it goes unnoticed.","evidence":"the harm it produces is of a kind that never reaches the person who ordered the test","wrong":{"a":"Patients are said to share the wish for tests, not to refuse them.","b":"Contradicted: in a single instance the reasoning is 'almost impossible to argue with'.","d":"Department budgets and test volumes are not discussed."}},"q2":{"why":"When the chance of disease is low to begin with, a positive result is more likely to be wrong than right.","evidence":"in a patient whose prior probability of disease is low, a positive result is more likely to be wrong than right","wrong":{"b":"A second laboratory is not mentioned; further testing is presented as part of the problem.","c":"Contradicted: a wrong result triggers a second test, then a specialist opinion.","d":"The point is that a low prior probability makes a positive result less reliable."}},"q3":{"why":"The cascade is the chain of tests, opinions and procedures that follows from one finding that was never going to matter.","evidence":"It triggers a second test, then a specialist opinion, then sometimes an invasive procedure carrying risks of its own","wrong":{"a":"The original symptom stays benign; the cascade is of investigations, not illness.","b":"Backlogs of unreported scans are not mentioned.","c":"Repeat attendances are not what 'cascade' describes here."}},"q4":{"why":"Fear of litigation is the usual explanation, but research points to a larger driver: discomfort with uncertainty.","evidence":"The larger driver appears to be discomfort with uncertainty","wrong":{"a":"This is the usual explanation, but research points to something larger.","c":"Managers and capacity are not mentioned.","d":"No guidance requiring tests before referral is mentioned."}},"q5":{"why":"Explaining why a test is not needed takes much more time and emotional effort than simply signing the form.","evidence":"a consultation in which a clinician explains carefully why a test is not needed costs considerably more time, and more emotional effort","wrong":{"b":"Junior clinicians and cancelling requests are not mentioned.","c":"Examinations are not compared with investigations.","d":"Patients often share the feeling, but 'every appointment' is not claimed."}},"q6":{"why":"A missed diagnosis shows up later, but an unnecessary test does not: nobody can tell which biopsy was never needed.","evidence":"Nobody is ever asked to account for the biopsy that was never needed, because there is no way to know which one it was.","wrong":{"a":"How accurately complications are recorded is not discussed.","b":"A delayed diagnosis is not one of the two harms named.","c":"Money is not the subject; the two harms are to patients."}},"q7":{"why":"Ordering a test you expect to be normal does not remove risk; it moves the risk of a cascade onto the patient.","evidence":"The risk of the cascade is transferred to the patient, who did not ask for it","wrong":{"a":"Not equal: the small risk of waiting stays with the clinician, the cascade goes to the patient.","c":"The department is not named as carrying the risk.","d":"Contradicted: testing moves the risk rather than removing it."}},"q8":{"why":"Waiting takes longer and feels less like medicine for the clinician, yet it is often the better decision for the patient.","evidence":"It takes longer than signing a form and it feels less like medicine. It is also, in a great many consultations, the better clinical decision","wrong":{"a":"Patient refusal is not predicted; the patient is left with less anxiety.","b":"The benefit described is to the patient, not protection from criticism.","d":"A route back is offered 'if things change', so the symptom need not have settled."}}},
       "passages": [
         {
           "id": "p1",
@@ -3725,7 +3728,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "It should always be confirmed by a second laboratory."
+              "text": "It must always be confirmed by another laboratory."
             },
             {
               "id": "c",
@@ -3745,7 +3748,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "A worsening of the illness the patient first presented with."
+              "text": "A worsening of the illness the patient presented with."
             },
             {
               "id": "b",
@@ -3897,6 +3900,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"Some people were 'close to giddy': they saw a simple, almost free remedy for human error.","evidence":"Here, at last, was a simple and almost free remedy for the messiness of human error.","wrong":{"a":"Overstated findings were a later conclusion of some organisations, not the first reaction.","b":"No reluctance is described; the first reaction was enthusiasm.","c":"Aviation is mentioned as a reason for confidence, not concern."}},"q2":{"why":"A checklist works by flattening the hierarchy so that even the most junior person feels safe to speak up.","evidence":"Its real function, in an operating theatre or anywhere else, is to flatten the hierarchy of the room for a minute or two","wrong":{"a":"The number and order of items are never discussed.","c":"The writer stresses senior clinicians being willing to be interrupted, not who introduces it.","d":"Contradicted: it does not work 'because of the ticks'."}},"q3":{"why":"Recited by one person while others carry on, it changes nothing and may give a false feeling of safety.","evidence":"it changes nothing at all, and may do something worse than nothing by supplying a feeling of safety that has not been earned","wrong":{"b":"Contradicted: recited this way, it changes nothing at all.","c":"Slowing the list down is not mentioned.","d":"No later correction by the team is described."}},"q4":{"why":"The card can be copied in a week, but a senior's willingness to be interrupted is cultural, built slowly by example.","evidence":"What cannot be distributed is a senior clinician's willingness to be interrupted, or their grace when a trainee turns out to be right.","wrong":{"a":"Specialty versions are not mentioned; the card itself is easy to copy.","b":"Contradicted: the checklist can be printed and hung everywhere within a week.","d":"Habits of late adopters are not discussed."}},"q5":{"why":"Organisations that saw nothing often decided the tool had failed or the original findings were overstated.","evidence":"The second group frequently concluded that the tool had failed, or that their case mix was different, or that the original findings had been overstated.","wrong":{"b":"Insufficient training is not among the conclusions listed.","c":"Measuring over a longer period is not mentioned.","d":"The number of items is never discussed."}},"q6":{"why":"Compliance was measured because it is easy to measure, while the thing that really mattered was not measured.","evidence":"Compliance was measured, because compliance is easy to measure. The thing that mattered was not measured at all.","wrong":{"a":"Contradicted: perfect compliance can 'mean nothing whatsoever'.","b":"Teams deliberately overstating compliance is not suggested.","c":"Compliance falling over time is not mentioned."}},"q7":{"why":"The examples show the wider lesson: safety tools that look technical depend on human behaviour too.","evidence":"Nearly every safety improvement that looks purely technical turns out, on inspection, to rest on something human.","wrong":{"a":"The technology's reliability is not questioned; the human side is the point.","c":"No redesign of these systems is recommended.","d":"Incident reporting is one example of the wider point, not the paragraph's purpose."}},"q8":{"why":"Checklists remain valuable, but safety cannot be bought and installed without people changing how they speak to each other.","evidence":"It is an argument against a particular kind of hope: that safety can be purchased, installed and audited without anyone having to change","wrong":{"a":"Contradicted: the writer says this is not an argument for abandoning checklists.","b":"Team seniority is not compared with checklists.","d":"The opposite: treated as mere paperwork, the checklist means nothing."}}},
       "passages": [
         {
           "id": "p1",
@@ -4113,6 +4117,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"The length came from how many people can be seen in a working day, not from any study of consultations.","evidence":"It was derived from how many people can be seen in a working day.","wrong":{"a":"Contradicted: it was not derived from any study of how long understanding takes.","b":"Patient consultation exercises are not mentioned.","c":"Recorded average visit lengths are not mentioned."}},"q2":{"why":"An administrative figure was fixed first, and clinical care has been bent to fit it ever since.","evidence":"The number came first. The medicine has been folded to fit it ever since.","wrong":{"a":"How long the figure has stayed the same is not discussed.","c":"Software is arranged around the figure; no order of decisions is described.","d":"Patient expectations are shaped by the figure, not set before it."}},"q3":{"why":"The rash example concedes that for many simple problems a quick, focused visit is exactly what the patient wants.","evidence":"The system is not wrong to be efficient about the things that can be done efficiently.","wrong":{"b":"The wait explains why the patient wants a brisk visit; waiting times are not criticised.","c":"Minor complaints are said to fit comfortably, not to take too much time.","d":"The rash is an example of something that fits the time easily."}},"q4":{"why":"The low mood, the four complaints and the worried parent are a large part of practice, but none of them keeps to time.","evidence":"These are not curiosities at the edge of practice. They are a large part of its substance, and none of them keeps to time.","wrong":{"a":"The patients are not hard to communicate with; their real concerns emerge slowly.","b":"Contradicted: they are 'not curiosities at the edge of practice'.","d":"The booking system is not offered as a solution."}},"q5":{"why":"Even under pressure, a competent clinician will still identify the dangerous problem; what gets lost is the space to disclose.","evidence":"A competent clinician under pressure will still identify the dangerous thing; that is what the training is for","wrong":{"a":"Patient confidence is not mentioned as kept or lost.","c":"The accuracy of records is not discussed.","d":"Not said to be kept; rushed patients defer and may end up elsewhere."}},"q6":{"why":"Disclosure helps diagnosis, and naming a fear aloud is itself part of the purpose of a consultation.","evidence":"not merely because it aids diagnosis, but because being able to name a fear aloud is itself part of what a consultation is for","wrong":{"a":"Repeat bookings are mentioned later as a cost of rushing, not as why disclosure matters.","b":"Complaints and records are not mentioned.","c":"Disclosure is exactly the part that does not keep to time."}},"q7":{"why":"Clinicians carry guilt about unfinished conversations across a career, and this is a reliable predictor of leaving the profession.","evidence":"carries a low-grade guilt from room to room across a day and from day to day across a career","wrong":{"b":"Contradicted: the guilt builds up over a career rather than fading.","c":"No early-career group is singled out.","d":"Clinicians' preferences about appointment length are not mentioned."}},"q8":{"why":"The writer argues against treating time as an extra cost on top of care; time is part of what makes care work.","evidence":"the habit of treating time as an overhead laid on top of good care, a cost to be trimmed","wrong":{"a":"The writer says longer is not always better and more resource is not simply the answer.","b":"Letting practices set their own length is not discussed.","d":"Contradicted: the writer rejects the idea that longer is always better."}}},
       "passages": [
         {
           "id": "p1",
@@ -4132,7 +4137,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "It was proposed by patients through consultation exercises."
+              "text": "It was proposed by patients in consultation exercises."
             },
             {
               "id": "c",
@@ -4212,7 +4217,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "They could all be resolved by better use of the booking system."
+              "text": "They could be resolved by better use of the booking system."
             }
           ]
         },
@@ -4300,7 +4305,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Each practice should be free to set its own appointment length."
+              "text": "Each practice should set its own appointment length."
             },
             {
               "id": "c",
@@ -4328,6 +4333,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
     "timeLimitSeconds": 0,
     "active": true,
     "payload": {
+      "explanations": {"q1":{"why":"In these strategies every action belongs to the member of staff; the organisation never does anything.","evidence":"The verbs all belong to the same person, and it is never the organisation.","wrong":{"a":"Technical difficulty is not the issue; the writer notices who acts.","c":"National policy wording is not mentioned.","d":"Naming professions is not discussed."}},"q2":{"why":"Nobody would run a breathing course for a broken ventilation system; we would repair it, so the same move with rotas is odd.","evidence":"If a ward's ventilation system failed, we would not run a course teaching staff to breathe more efficiently","wrong":{"a":"How often ventilation fails is irrelevant; the example is hypothetical.","b":"No evidence about breathing exercises is cited.","c":"The writer says somebody would object, not that staff would refuse to attend."}},"q3":{"why":"The trick is not praising resilience but prescribing it, turning an organisational failure into a personal one.","evidence":"The sleight of hand lies not in praising the quality but in prescribing it","wrong":{"b":"Contradicted: praising the quality is not the sleight of hand.","c":"Contradicted: the writer calls resilient people a genuine gift.","d":"Funding of strategies is not mentioned."}},"q4":{"why":"Once exhaustion looks like weak character, the nurse is subtly blamed and the institution feels its duty is done.","evidence":"Once the frame is set, the exhausted nurse is subtly at fault. She might have attended the session.","wrong":{"a":"Seeking help outside the organisation is not mentioned.","b":"The opposite: the institution considers its duty discharged.","d":"Attendance is counted, but a fall in it is not mentioned."}},"q5":{"why":"Programmes count attendance and satisfaction, not whether the work changed, so success means uptake rather than effect.","evidence":"A programme can therefore report success in the same year that turnover rises, because success has been defined as uptake rather than as effect.","wrong":{"a":"The length of questionnaires is not criticised.","c":"Applying measures across services is not discussed.","b":"Publishing results to staff is not mentioned."}},"q6":{"why":"The evidence links burnout to things done to people, such as heavy workload, little control and unfair treatment.","evidence":"sustained excessive workload, little control over one's own day, unfair treatment","wrong":{"b":"Contradicted: burnout tracks 'not with weak personalities'.","c":"Supervision is not on the list.","d":"Years in the same post are not mentioned."}},"q7":{"why":"Staff who see exhaustion as a personal failing stop reporting it, and strain that cannot be seen cannot be managed.","evidence":"will stop reporting it, and an organisation that cannot see strain cannot manage it","wrong":{"a":"People resign together, but moving for better wellbeing provision is not mentioned.","c":"Managers' distrust is not mentioned; the reports simply stop.","d":"Budgets are not discussed."}},"q8":{"why":"Support offered alongside change is worth having; offered instead of change, it is not support at all.","evidence":"Offered alongside change, it is worth having, and for some people it is worth a great deal.","wrong":{"a":"Contradicted: the objection is not that wellbeing support is worthless.","b":"Limiting it to those who ask is not suggested.","d":"Offered instead of change it is 'not support at all', not a first step."}}},
       "passages": [
         {
           "id": "p1",
@@ -4375,7 +4381,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Because staff would refuse to attend a course of that kind."
+              "text": "Because staff would refuse to attend such a course."
             },
             {
               "id": "d",
@@ -4427,7 +4433,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "Attendance at wellbeing sessions falls away within months."
+              "text": "Attendance at wellbeing sessions falls within months."
             }
           ]
         },
@@ -4618,7 +4624,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It should be replaced by a publicly funded service"
+              "text": "It should be replaced by a public service"
             },
             {
               "id": "b",
@@ -4666,7 +4672,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "They are charged a fee that deters their families"
+              "text": "They are charged a fee that deters families"
             },
             {
               "id": "b",
@@ -4738,7 +4744,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "The profession should reduce its dependence on retail income"
+              "text": "The profession should rely less on retail income"
             },
             {
               "id": "b",
@@ -4820,7 +4826,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "the intervals between reviews"
+              "text": "the review intervals"
             }
           ]
         },
@@ -4904,7 +4910,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "In the waiting time for a podiatry appointment"
+              "text": "In the wait for a podiatry appointment"
             },
             {
               "id": "b",
@@ -4964,7 +4970,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "The interval at which the foot should be checked"
+              "text": "How often the foot should be checked"
             }
           ]
         }
@@ -5046,7 +5052,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Because the practice is required to publish its prices"
+              "text": "Because the practice must publish its prices"
             },
             {
               "id": "b",
@@ -5364,7 +5370,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Uptake fell by considerably more than had been anticipated"
+              "text": "Uptake fell by far more than had been anticipated"
             },
             {
               "id": "d",
@@ -5380,7 +5386,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Their conclusions are sound even where their tone is not"
+              "text": "Their conclusions are sound, if not their tone"
             },
             {
               "id": "b",
@@ -5434,7 +5440,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Patients proved unwilling to speak freely in front of an interpreter"
+              "text": "Patients would not speak freely in front of an interpreter"
             },
             {
               "id": "d",
@@ -5692,7 +5698,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "The quality of the evidence on which guidance rests"
+              "text": "The quality of the evidence behind guidance"
             },
             {
               "id": "c",
@@ -5764,7 +5770,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "It has been misrepresented by the guideline movement"
+              "text": "The guideline movement has misrepresented it"
             },
             {
               "id": "c",
@@ -5816,7 +5822,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "The proportion of clinicians currently complying with them"
+              "text": "The proportion of clinicians complying with them"
             },
             {
               "id": "d",
@@ -5974,7 +5980,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It reduces the time a handover takes at the end of a long shift"
+              "text": "It shortens handover at the end of a long shift"
             },
             {
               "id": "b",
@@ -6034,7 +6040,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "He has come to accept that night work cannot be reduced at all"
+              "text": "He now accepts that night work cannot be reduced at all"
             }
           ]
         }
@@ -6068,7 +6074,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "Because trainees have not been taught how long it ought to take"
+              "text": "Because trainees are not taught how long it should take"
             },
             {
               "id": "b",
@@ -6124,7 +6130,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "It relied on a sample too small to support its conclusion"
+              "text": "Its sample was too small to support its conclusion"
             },
             {
               "id": "d",
@@ -6286,7 +6292,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Older patients who had previously found the journey difficult"
+              "text": "Older patients who were already comfortable with video"
             },
             {
               "id": "c",
@@ -6504,7 +6510,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "It is understood differently by clinicians and by the patients on it"
+              "text": "It is understood differently by clinicians and patients"
             },
             {
               "id": "d",
@@ -6572,7 +6578,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Complaints fell in the first year and rose again in the second"
+              "text": "Complaints fell in the first year and rose in the second"
             },
             {
               "id": "c",
@@ -6644,7 +6650,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Communication has been studied less thoroughly than capacity"
+              "text": "Communication has been studied less than capacity"
             },
             {
               "id": "c",
@@ -7170,7 +7176,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "the criticisms made of incomplete notes"
+              "text": "the criticisms of incomplete notes"
             },
             {
               "id": "d",
@@ -7194,7 +7200,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "Reading every entry in full and timing the exercise"
+              "text": "Reading every entry in full and timing it"
             },
             {
               "id": "d",
@@ -7214,7 +7220,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Templates provide no field in which to place it"
+              "text": "Templates provide no field for it"
             },
             {
               "id": "c",
@@ -7282,7 +7288,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "A single record with the assessment placed at the top"
+              "text": "A single record with the assessment at the top"
             },
             {
               "id": "b",
@@ -7428,7 +7434,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "The terms differ between nursing and medical documentation"
+              "text": "The terms differ between nursing and medical notes"
             },
             {
               "id": "c",
@@ -7524,7 +7530,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Repeating the risk assessment more frequently than once a week"
+              "text": "Repeating the risk assessment more often"
             },
             {
               "id": "c",
@@ -7532,7 +7538,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "Recording the reason a patient last got out of bed unaided"
+              "text": "Recording why a patient last got out of bed unaided"
             }
           ]
         }
@@ -7578,7 +7584,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "It has been abandoned everywhere except in general practice"
+              "text": "It has been abandoned except in general practice"
             }
           ]
         },
@@ -7698,7 +7704,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "Complete the risk assessment the guidance requires"
+              "text": "Complete the required risk assessment"
             }
           ]
         },
@@ -7718,7 +7724,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "The practice manager reported an improvement in bookings"
+              "text": "The practice manager reported better bookings"
             },
             {
               "id": "d",
@@ -7780,7 +7786,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "As mistaken about the nutritional adequacy of the food"
+              "text": "As wrong about how nutritious the food is"
             },
             {
               "id": "b",
@@ -7888,7 +7894,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "As a problem that has been resolved in most other hospitals"
+              "text": "As a problem resolved in most other hospitals"
             }
           ]
         },
@@ -8046,7 +8052,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "It describes a task that pharmacists no longer perform"
+              "text": "It describes a task pharmacists no longer perform"
             },
             {
               "id": "c",
@@ -8094,7 +8100,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "They are recorded twice in different systems"
+              "text": "They are explained to the patient's GP"
             },
             {
               "id": "c",
@@ -8146,7 +8152,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "It reports fewer interventions than it actually makes"
+              "text": "It reports fewer interventions than it makes"
             },
             {
               "id": "d",
@@ -8332,7 +8338,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Because patients are more likely to remember the names"
+              "text": "Because patients remember the names more easily"
             },
             {
               "id": "c",
@@ -8502,7 +8508,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "They are reported less often than they are seen"
+              "text": "They are reported less often than seen"
             },
             {
               "id": "d",
@@ -8554,7 +8560,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "d",
-              "text": "They are applied inconsistently by junior staff"
+              "text": "Junior staff apply them inconsistently"
             }
           ]
         },
@@ -8716,7 +8722,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "c",
-              "text": "The absence of any form for recording it"
+              "text": "The absence of a form to record it"
             },
             {
               "id": "d",
@@ -8736,7 +8742,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Instrumental studies are more available in some hospitals"
+              "text": "Instrumental studies are commoner in some hospitals"
             },
             {
               "id": "c",
@@ -8850,7 +8856,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
           "options": [
             {
               "id": "a",
-              "text": "It is used by far too many patients to remain clean"
+              "text": "It is used by too many patients to stay clean"
             },
             {
               "id": "b",
@@ -8902,7 +8908,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "The equipment a patient already owns and uses"
+              "text": "The equipment a patient already owns"
             },
             {
               "id": "c",
@@ -8926,7 +8932,7 @@ export const ITEMS: Prisma.OetItemCreateManyInput[] = [
             },
             {
               "id": "b",
-              "text": "Because the wrong items are ordered by ward staff"
+              "text": "Because ward staff order the wrong items"
             },
             {
               "id": "c",
