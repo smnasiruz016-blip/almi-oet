@@ -1,7 +1,7 @@
 // GENERATED — DO NOT HAND-EDIT.
 //
 // Sources: scripts/content/b2-model-letters-2026-10-30.json sha256(first 16) = 1d8ece0ff6a8d6c5
-//          scripts/content/b4-model-letters-2026-10-30.json sha256(first 16) = 33a773da17d38df8
+//          scripts/content/b4-model-letters-2026-10-30.json sha256(first 16) = fc7962f3a6fb3d95
 // Built by scripts/seed/gen/_build_model_letters.mts, which checks every letter against the seed before writing
 // (scripts/seed/gen/model-letters-check.ts — the same check scripts/gates/model-letters.ts runs). 60 model letter(s).
 import type { ModelLetter } from "../../../src/lib/oet/tasks/writing-letter";
@@ -2922,7 +2922,7 @@ export const MODEL_LETTERS: Record<string, ModelLetter> = {
     "salutation": "Dear Charge Nurse,",
     "re": "Re: Mr Raymond Bellini, aged 62",
     "body": [
-      "I am writing to hand over Mr Bellini, transferring to your unit at 17:00 today with a confirmed non-ST-elevation myocardial infarction. I would be grateful if you could continue cardiac monitoring pending cardiology review for consideration of angiography.",
+      "I am writing to hand over Mr Bellini, transferring to your unit at 17:40 today with a confirmed non-ST-elevation myocardial infarction. I would be grateful if you could continue cardiac monitoring pending cardiology review for consideration of angiography.",
       "He presented at 14:20 with two hours of central crushing chest pain at rest, radiating to the left arm, with sweating and nausea. His ECG showed lateral ST depression, unchanged at 16:00; troponin rose from 480 ng/L to 910 ng/L at three hours. His GRACE score is intermediate to high.",
       "He received aspirin 300 mg, ticagrelor 180 mg, fondaparinux and morphine 5 mg with an antiemetic. A glyceryl trinitrate infusion is running at 2 mg per hour, titrated to pain and blood pressure, via his left forearm cannula. At 16:45 his pain was 1/10, blood pressure 138/82, pulse 76 regular, and oxygen saturation 97% on 2 litres.",
       "Please maintain bed rest, observe for further chest pain or arrhythmia, and repeat troponin and ECG in the morning. He has no known allergies and has not eaten since breakfast.",
@@ -2942,7 +2942,7 @@ export const MODEL_LETTERS: Record<string, ModelLetter> = {
       "tone": "Concise and factual, as suits an urgent handover."
     },
     "notesUsed": [
-      "confirmed NSTEMI; arrived 14:20, transferred 17:00",
+      "confirmed NSTEMI; arrived 14:20, transferred 17:40",
       "central crushing pain two hours, at rest, left arm, sweating, nausea",
       "ECG lateral ST depression, no elevation, unchanged at 16:00",
       "troponin 480 rising to 910 ng/L at three hours; GRACE intermediate to high",

@@ -742,7 +742,7 @@
       "salutation": "Dear Charge Nurse,",
       "re": "Re: Mr Raymond Bellini, aged 62",
       "body": [
-        "I am writing to hand over Mr Bellini, transferring to your unit at 17:00 today with a confirmed non-ST-elevation myocardial infarction. I would be grateful if you could continue cardiac monitoring pending cardiology review for consideration of angiography.",
+        "I am writing to hand over Mr Bellini, transferring to your unit at 17:40 today with a confirmed non-ST-elevation myocardial infarction. I would be grateful if you could continue cardiac monitoring pending cardiology review for consideration of angiography.",
         "He presented at 14:20 with two hours of central crushing chest pain at rest, radiating to the left arm, with sweating and nausea. His ECG showed lateral ST depression, unchanged at 16:00; troponin rose from 480 ng/L to 910 ng/L at three hours. His GRACE score is intermediate to high.",
         "He received aspirin 300 mg, ticagrelor 180 mg, fondaparinux and morphine 5 mg with an antiemetic. A glyceryl trinitrate infusion is running at 2 mg per hour, titrated to pain and blood pressure, via his left forearm cannula. At 16:45 his pain was 1/10, blood pressure 138/82, pulse 76 regular, and oxygen saturation 97% on 2 litres.",
         "Please maintain bed rest, observe for further chest pain or arrhythmia, and repeat troponin and ECG in the morning. He has no known allergies and has not eaten since breakfast.",
@@ -761,7 +761,7 @@
         "tone": "Concise and factual, as suits an urgent handover."
       },
       "notesUsed": [
-        "confirmed NSTEMI; arrived 14:20, transferred 17:00",
+        "confirmed NSTEMI; arrived 14:20, transferred 17:40",
         "central crushing pain two hours, at rest, left arm, sweating, nausea",
         "ECG lateral ST depression, no elevation, unchanged at 16:00",
         "troponin 480 rising to 910 ng/L at three hours; GRACE intermediate to high",
