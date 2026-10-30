@@ -8,7 +8,7 @@ import { GEN_ITEMS } from "../seed/gen/index";
 import { MODEL_LETTERS } from "../seed/gen/writing_model_letters";
 import { checkLetter, bodyWordsOf } from "../seed/gen/model-letters-check";
 
-const EXPECTED_AT_LEAST = 150; // B2: 15 Nursing + 15 Medicine; B4: the other 15 + 15; B5: Pharmacy, Physiotherapy, Dentistry 30 each
+const EXPECTED_AT_LEAST = 360; // every writing task of all 12 professions: B2 + B4 (Nursing, Medicine), B5 (Pharmacy, Physiotherapy, Dentistry), B6 (the other 7)
 let bad = 0;
 const fail = (m: string) => { bad++; console.error(`  🔴 ${m}`); };
 const slugs = Object.keys(MODEL_LETTERS);

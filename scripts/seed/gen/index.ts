@@ -78,13 +78,13 @@ export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...W_PHARMACY.map(withModelLetter), // B5
   ...W_DENTISTRY.map(withModelLetter), // B5
   ...W_PHYSIOTHERAPY.map(withModelLetter), // B5
-  ...W_DIETETICS,
-  ...W_OT,
-  ...W_OPTOMETRY,
-  ...W_PODIATRY,
-  ...W_RADIOGRAPHY,
-  ...W_SPEECH,
-  ...W_VET,
+  ...W_DIETETICS.map(withModelLetter), // B6
+  ...W_OT.map(withModelLetter), // B6
+  ...W_OPTOMETRY.map(withModelLetter), // B6
+  ...W_PODIATRY.map(withModelLetter), // B6
+  ...W_RADIOGRAPHY.map(withModelLetter), // B6
+  ...W_SPEECH.map(withModelLetter), // B6
+  ...W_VET.map(withModelLetter), // B6
   ...S_NURSING,
   ...S_MEDICINE,
   ...S_PHARMACY,
