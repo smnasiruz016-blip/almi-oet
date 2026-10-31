@@ -8,7 +8,7 @@ import { GEN_ITEMS } from "../seed/gen/index";
 import { MODEL_SCRIPTS, SCRIPT_NUMBERS_ALLOWED, SCRIPT_NUMBERS_DERIVED } from "../seed/gen/speaking_model_scripts";
 import { checkScript, scriptWordsOf } from "../seed/gen/model-scripts-check";
 
-const EXPECTED_AT_LEAST = 360; // every speaking card of all 12 professions: B3 (15 Nursing + 15 Medicine) + S1–S6 (the other 330)
+const EXPECTED_AT_LEAST = 480; // every speaking card of all 12 professions: B3 (15 Nursing + 15 Medicine) + S1–S6 (the other 330) + SP+120 (1 Nov 2026)
 let bad = 0;
 const fail = (m: string) => { bad++; console.error(`  🔴 ${m}`); };
 const slugs = Object.keys(MODEL_SCRIPTS);

@@ -23,13 +23,14 @@ import { ITEMS as S_PODIATRY } from "./speaking_podiatry";
 import { ITEMS as S_RADIOGRAPHY } from "./speaking_radiography";
 import { ITEMS as S_SPEECH } from "./speaking_speech_pathology";
 import { ITEMS as S_VET } from "./speaking_veterinary_science";
+import { ITEMS as S_NOV } from "./speaking_nov";
 import { checkScript, type ScriptSource } from "./model-scripts-check";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 /* B3 (the 4 September sets, 15 Nursing + 15 Medicine) and S1–S6 (every other speaking card of all 12 professions, 31 Oct 2026) —
    every script checked against its own card; the allowed numbers are merged (111/999 in both), derivations are per slug */
-const SOURCES = ["scripts/content/b3-model-scripts-2026-10-30.json", "scripts/content/s1-s6-model-scripts-2026-10-31.json"];
-const ITEMS = [...SPEAKING_SETS, ...S_NURSING, ...S_MEDICINE, ...S_PHARMACY, ...S_DENTISTRY, ...S_PHYSIOTHERAPY, ...S_DIETETICS, ...S_OT, ...S_OPTOMETRY, ...S_PODIATRY, ...S_RADIOGRAPHY, ...S_SPEECH, ...S_VET];
+const SOURCES = ["scripts/content/b3-model-scripts-2026-10-30.json", "scripts/content/s1-s6-model-scripts-2026-10-31.json", "scripts/content/sp120-model-scripts-2026-11-01.json"];
+const ITEMS = [...SPEAKING_SETS, ...S_NURSING, ...S_MEDICINE, ...S_PHARMACY, ...S_DENTISTRY, ...S_PHYSIOTHERAPY, ...S_DIETETICS, ...S_OT, ...S_OPTOMETRY, ...S_PODIATRY, ...S_RADIOGRAPHY, ...S_SPEECH, ...S_VET, ...S_NOV];
 const src = { numbersAllowed: {} as Record<string, string>, derived: {} as Record<string, Record<string, string>> };
 const out: Record<string, unknown> = {}, shas: string[] = [];
 let bad = 0;
