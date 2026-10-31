@@ -145,6 +145,8 @@ describe("every segment that can serve HTML has a header owner", () => {
     "(auth)": ["(auth)/layout.tsx"],
     admin: ["admin/layout.tsx"],
     pricing: ["pricing/layout.tsx"],
+    // RR-355: the AlmiVisibility pages — static, the signed-out header rendered directly (no cookie read)
+    "(visibility)": ["(visibility)/layout.tsx"],
     // RR-276 (17 Oct 2026): the old SEO segments [profession] and register are removed — their URLs answer 410 (src/proxy.ts).
     // The root segment itself: the homepage and the 404 carry their own.
     ".": ["page.tsx", "not-found.tsx"],
