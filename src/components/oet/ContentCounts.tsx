@@ -11,7 +11,7 @@ import { PROFESSION_LIST } from "@/lib/oet/professions";
  * 🔴 Writing and Speaking are per profession: "180 letters" would read as 180 for YOUR profession when it is 15. So those two are said
  * as the SMALLEST count any one profession has ("at least 15 for your profession"), from the same query.
  */
-export type LiveCounts = { total: number; listening: number; reading: number; writingEach: number; speakingEach: number; mocks: number; professions: number };
+export type LiveCounts = { total: number; listening: number; reading: number; writingEach: number; speakingEach: number; writingAll: number; speakingAll: number; mocks: number; professions: number };
 
 export async function liveCounts(): Promise<LiveCounts | null> {
   try {
@@ -23,7 +23,7 @@ export async function liveCounts(): Promise<LiveCounts | null> {
     const each = (s: string) => Math.min(...PROFESSION_LIST.map((p) => rows.filter((r) => r.subTest === s && r.profession === p.profession).reduce((a, r) => a + r._count, 0)));
     const total = rows.reduce((a, r) => a + r._count, 0);
     if (!total) return null;
-    return { total, listening: sum("LISTENING"), reading: sum("READING"), writingEach: each("WRITING"), speakingEach: each("SPEAKING"), mocks: forms.startable ? forms.complete.length : 0, professions: PROFESSION_LIST.length };
+    return { total, listening: sum("LISTENING"), reading: sum("READING"), writingEach: each("WRITING"), speakingEach: each("SPEAKING"), writingAll: sum("WRITING"), speakingAll: sum("SPEAKING"), mocks: forms.startable ? forms.complete.length : 0, professions: PROFESSION_LIST.length };
   } catch {
     return null;
   }

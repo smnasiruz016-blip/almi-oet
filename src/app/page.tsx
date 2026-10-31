@@ -11,6 +11,7 @@ import { TestimonialsSection } from "@/components/reviews/TestimonialsSection";
 import { GlobalHeader } from "@/components/GlobalHeader";
 import { track } from "@/lib/analytics/track";
 import { ContentCounts } from "@/components/oet/ContentCounts";
+import { CompareSection } from "@/components/home/CompareSection";
 import { SUBTEST_COPY } from "@/lib/oet/subtest-copy";
 
 // Re-render hourly so newly approved testimonials appear without a redeploy.
@@ -219,6 +220,9 @@ export default function Home() {
           <ScoreMockup />
         </div>
       </section>
+
+      {/* Market comparison (owner GREEN, 31 Oct 2026) — right after the hero */}
+      <CompareSection />
 
       {/* Honest hook */}
       <section className="border-t border-almi-bg-peach bg-almi-paper px-6 py-16">
