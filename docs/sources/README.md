@@ -31,6 +31,9 @@ The gate parses this table. One row per source. Columns are fixed.
 | --- | --- | --- | --- |
 | Understanding OET scores | Occupational English Test | 2026-08-31 | https://www.occupationalenglishtest.org/re-marking-policy → the "Learn more" button in the "Understanding OET scores" box |
 | Results and scoring | Occupational English Test | 2026-08-31 | https://www.occupationalenglishtest.org/results-and-scoring |
+| Listening Part A: the complete guide (heard once; 30 seconds to read the notes; questions in order) | Occupational English Test | 2026-10-31 | https://oet.com/en-us/post/listening-part-a-the-complete-guide |
+| Listening Part C: the complete guide (90 seconds to read the questions; answered in order) | Occupational English Test | 2026-10-31 | https://oet.com/en-us/post/listening-part-c-the-complete-guide |
+| Reading Part C: the complete guide (questions follow the order of the text) | Occupational English Test | 2026-10-31 | https://oet.com/en-us/post/reading-part-c-the-complete-guide |
 
 ### Understanding OET scores
 
