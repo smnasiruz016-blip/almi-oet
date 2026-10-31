@@ -40,18 +40,19 @@ describe("home-page comparison", () => {
     ROWS = bank(30, 40);
     const a = await html();
     expect(a).toContain("10 full timed mocks · 203 Listening and 193 Reading practice items");
-    expect(a).toContain("360 Writing tasks (30 for each profession), each with a model letter");
-    expect(a).toContain("480 role-play cards (40 for each profession)");
+    expect(a).toContain("360 model letters with commentary — one for every Writing task (30 for each profession)");
+    expect(a).toContain("480 model role-plays — one for every role-play card (40 for each profession)");
+    expect(a).toContain("On every Listening and Reading question");
     ROWS = bank(31, 41);
     const b = await html();
-    expect(b).toContain("372 Writing tasks (31 for each profession)");
-    expect(b).toContain("492 role-play cards (41 for each profession)");
+    expect(b).toContain("372 model letters with commentary — one for every Writing task (31 for each profession)");
+    expect(b).toContain("492 model role-plays — one for every role-play card (41 for each profession)");
   });
 
   it("with no database it says less, never a number", async () => {
     ROWS = [];
     const h = await html();
-    expect(h).toContain("Writing tasks, each with a model letter");
+    expect(h).toContain("A model letter with commentary for every Writing task");
     expect(h).not.toMatch(/\b360\b|\b480\b/);
   });
 

@@ -19,11 +19,17 @@ export async function almiCells(): Promise<Record<RowKey, string>> {
       ? `${c.mocks} full timed mocks · ${n(c.listening)} Listening and ${n(c.reading)} Reading practice items`
       : "Full timed mocks and Listening and Reading practice",
     professions: "All 12 OET professions",
-    writing: c ? `${n(c.writingAll)} Writing tasks (${n(c.writingEach)} for each profession), each with a model letter` : "Writing tasks, each with a model letter",
+    // Owner, 31 Oct 2026: every model-answer payload write ran with "0 still differ" — one model per task, so the count is the task count.
+    writing: c
+      ? `${n(c.writingAll)} model letters with commentary — one for every Writing task (${n(c.writingEach)} for each profession)`
+      : "A model letter with commentary for every Writing task",
     speaking: c
-      ? `${n(c.speakingAll)} role-play cards (${n(c.speakingEach)} for each profession), each with a model role-play; you record your answer`
-      : "Role-play cards, each with a model role-play; you record your answer",
-    explanations: `On ${n(EXPLAINED.explained)} of ${n(EXPLAINED.questions)} Listening and Reading questions`,
+      ? `${n(c.speakingAll)} model role-plays — one for every role-play card (${n(c.speakingEach)} for each profession); you record your answer`
+      : "A model role-play for every role-play card; you record your answer",
+    explanations:
+      EXPLAINED.explained === EXPLAINED.questions
+        ? "On every Listening and Reading question"
+        : `On ${n(EXPLAINED.explained)} of ${n(EXPLAINED.questions)} Listening and Reading questions`,
     feedback: "AI feedback on Writing and Speaking when you submit; Listening and Reading marked instantly",
   };
 }

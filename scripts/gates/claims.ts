@@ -384,7 +384,8 @@ for (const item of items) {
 //   C1  it carries the date it was checked, and that date is real and not older than MAX_AGE_DAYS — a stale table is a false one;
 //   C2  the section prints that date in its disclaimer (the component must call DISCLAIMER with it);
 //   C3  no "guarantee" anywhere in the table's words (ours or theirs), and every other provider cell is non-empty and sourced;
-//   C4  AlmiOET's own explanation coverage is RE-COUNTED here from the seed, the way the review screen reads it, and must match.
+//   C4  AlmiOET's own explanation coverage is RE-COUNTED here from the seed's SERVED items (retire lists applied), the way the
+//       review screen reads it, and must match.
 const COMPARISON_FILE = "src/content/comparison.ts";
 const COMPARE_COMPONENT = "src/components/home/CompareSection.tsx";
 {
@@ -412,10 +413,25 @@ const COMPARE_COMPONENT = "src/components/home/CompareSection.tsx";
     if (!p.sources.length || !p.sources.every((u: string) => /^https:\/\//.test(u))) add("C3 sourced", p.name, "at least one https source URL");
     for (const r of cmp.ROWS) if (!String(p.cells[r.key] ?? "").trim()) add("C3 every cell", `${p.name} · ${r.label} is empty`, `a fact, or "${cmp.NOT_STATED}"`);
   }
-  // C4
-  let questions = 0, explained = 0;
-  for (const it of (GEN_ITEMS as unknown as { taskType: string; active?: boolean; payload?: Record<string, unknown> }[])) {
+  // C4 — over the SERVED population only. 🔴 31 Oct 2026: the first version counted the seed's `active` flag, which is true on 46
+  // items production switched off long ago (scripts/retire/*-legacy.json, run by retire-fragments.mts). It reported 1,943 of 2,384
+  // and a brief was written to author 441 explanations for items no learner can be given. The retire lists are the record of what is
+  // off; they are resolved to slugs by title, exactly as gate:length does, and a row that resolves to nothing is RED, never skipped.
+  const ALL = GEN_ITEMS as unknown as { taskType: string; title: string; slug: string; active?: boolean; payload?: Record<string, unknown> }[];
+  const bySlugKey = new Map(ALL.map((i) => [`${i.taskType}::${i.title}`, i.slug]));
+  const retired = new Set<string>();
+  for (const f of readdirSync("scripts/retire").filter((x) => x.endsWith(".json"))) {
+    for (const r of JSON.parse(readFileSync(join("scripts/retire", f), "utf8")) as { taskType: string; title: string }[]) {
+      const s = bySlugKey.get(`${r.taskType}::${r.title}`);
+      if (s) retired.add(s);
+      else add("C4 retire list", `${f}: ${r.taskType} :: ${r.title}`, "every retire row names an item in the seed (else that item is silently served again)");
+    }
+  }
+  if (retired.size === 0) add("C4 retire list", "no retired item read", "the retire lists in scripts/retire");
+  let questions = 0, explained = 0, retiredSkipped = 0;
+  for (const it of ALL) {
     if (it.active === false || !/^(LISTENING|READING)_/.test(it.taskType)) continue;
+    if (retired.has(it.slug)) { retiredSkipped++; continue; }
     const ex = (it.payload?.explanations ?? {}) as Record<string, { why?: string }>;
     const ids = new Set<string>();
     const walk = (o: unknown): void => {
@@ -431,8 +447,8 @@ const COMPARE_COMPONENT = "src/components/home/CompareSection.tsx";
   }
   if (questions === 0) add("C4 explanations", "0 questions counted", "a non-empty population");
   if (cmp.EXPLAINED.explained !== explained || cmp.EXPLAINED.questions !== questions)
-    add("C4 explanations", `copy says ${cmp.EXPLAINED.explained} of ${cmp.EXPLAINED.questions}`, `the seed has ${explained} of ${questions} (re-counted as the review screen reads payload.explanations[id].why)`);
-  console.log(`[gate:claims] comparison: checked ${cmp.CHECKED_ON} · ${cmp.PROVIDERS.length} provider(s) · explanations ${explained}/${questions}`);
+    add("C4 explanations", `copy says ${cmp.EXPLAINED.explained} of ${cmp.EXPLAINED.questions}`, `the served bank has ${explained} of ${questions} (re-counted as the review screen reads payload.explanations[id].why; retired items excluded)`);
+  console.log(`[gate:claims] comparison: checked ${cmp.CHECKED_ON} · ${cmp.PROVIDERS.length} provider(s) · explanations ${explained}/${questions} on served items (${retiredSkipped} retired Listening/Reading item(s) excluded)`);
 }
 
 // ── a gate over an empty population passes vacuously ────────────────────────
