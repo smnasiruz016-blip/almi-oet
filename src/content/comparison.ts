@@ -93,8 +93,9 @@ export const PROVIDERS: Provider[] = [
 ];
 
 /** Listening and Reading questions with an explanation (payload.explanations[id].why, the way the review screen reads them), counted
- *  from the seed on CHECKED_ON. gate:claims re-counts and refuses a mismatch, so this line cannot outlive the bank it describes. */
-export const EXPLAINED = { explained: 1943, questions: 2384 } as const;
+ *  over the SERVED items (seed minus scripts/retire) on CHECKED_ON. gate:claims re-counts and refuses a mismatch, so this line cannot
+ *  outlive the bank it describes. 31 Oct 2026: the first count (1,943 of 2,384) included 46 retired items no learner is ever given. */
+export const EXPLAINED = { explained: 1943, questions: 1943 } as const;
 
 export const DISCLAIMER = (on: string) =>
   `Information from each provider's public website, checked ${on}. Names are trademarks of their owners; AlmiOET is not affiliated with them.`;
