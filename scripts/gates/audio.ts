@@ -113,7 +113,7 @@ import { AUDIO_DIR, audioFileName, audioKey, segmentsFor } from "../../src/lib/o
 const EXPECT_MPEG = "MPEG2"; // 22050 Hz is below MPEG1's range, so Layer III here is MPEG2
 const EXPECT_LAYER = "III";
 const EXPECT_RATE_HZ = 22050;
-const EXPECT_KBPS = 48;
+const EXPECT_KBPS = 40; // 48 → 40 on 31 Oct 2026, a deliberate re-encode for the function budget (see src/lib/oet/audio.ts)
 const EXPECT_MODE = "mono";
 const MIN_BYTES = 2048;
 const MIN_SECONDS = 3.0; // no real consultation is under three seconds
