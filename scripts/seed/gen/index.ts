@@ -27,6 +27,8 @@ import { ITEMS as READING_B } from "./reading_b";
 import { ITEMS as READING_C } from "./reading_c";
 // The 72 Part B + 13 Part C Reading items of 1 November 2026 (Reading to 20 full tests).
 import { ITEMS as READING_BC_NOV } from "./reading_bc_nov";
+// The 120 speaking cards of 1 November 2026 (10 per profession, to 40 each).
+import { ITEMS as SPEAKING_NOV } from "./speaking_nov";
 import { ITEMS as W_NURSING } from "./writing_nursing";
 import { ITEMS as W_MEDICINE } from "./writing_medicine";
 import { ITEMS as W_PHARMACY } from "./writing_pharmacy";
@@ -76,6 +78,7 @@ export const GEN_ITEMS: Prisma.OetItemCreateManyInput[] = [
   ...READING_B_SETS,
   ...READING_C,
   ...READING_BC_NOV,
+  ...SPEAKING_NOV.map(withModelScript), // SP+120: the new cards and their model role-plays
   ...W_NURSING.map(withModelLetter), // B4: the model letters of the other Nursing tasks
   ...W_MEDICINE.map(withModelLetter), // B4: … and of the other Medicine tasks
   ...W_PHARMACY.map(withModelLetter), // B5
