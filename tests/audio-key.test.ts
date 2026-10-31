@@ -59,7 +59,8 @@ describe("audioKey — the cache cannot outlive a settings change", () => {
 
   it("🔴 pins the key, so nothing can leave the material unnoticed", () => {
     // see the header before touching this value
-    expect(audioKey(PAYLOAD as never)).toBe("7307294a42572ada");
+    // 31 Oct 2026: moved with AUDIO_BITRATE_KBPS 48 → 40 (an encoder change; all 204 files re-rendered, A3 at 40)
+    expect(audioKey(PAYLOAD as never)).toBe("a7c3ccc74919fd55");
   });
 
   it("changes when the script changes", () => {
@@ -101,7 +102,7 @@ describe("audioKey — the cache cannot outlive a settings change", () => {
 
   it("the constants that belong in the key are the ones this test knows about", () => {
     expect(AUDIO_SAMPLE_RATE).toBe(22050);
-    expect(AUDIO_BITRATE_KBPS).toBe(48);
+    expect(AUDIO_BITRATE_KBPS).toBe(40); // 48 → 40 on 31 Oct 2026, for the audio function's size budget
     expect(AUDIO_LENGTH_SCALE).toBe(1.5);
   });
 });

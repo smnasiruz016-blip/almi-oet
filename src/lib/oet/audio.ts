@@ -20,7 +20,11 @@ export const PIPER_MALE = "en_GB-northern_english_male-medium";
 /** Encoder settings baked into the key: change one and every file re-renders
  *  rather than silently serving audio that no longer matches the settings. */
 export const AUDIO_SAMPLE_RATE = 22050;
-export const AUDIO_BITRATE_KBPS = 48;
+// 48 → 40 on 31 Oct 2026. The 10 new Listening items (to 20 full tests) took audio/oet to 167.88 MiB against the
+// 155 MiB budget (gate:audio-budget). The audio route's measured trace without the audio is ~80–100 MiB, so 48 kbps
+// would have put the function at or past Vercel's 250 MiB limit, where the merge passes and the deploy fails. Mono
+// speech at 22.05 kHz stays clear at 40 kbps; every file re-renders, because this value is in the key.
+export const AUDIO_BITRATE_KBPS = 40;
 
 /**
  * 🔴 HOW FAST THE VOICE SPEAKS — piper's --length-scale. IN THE KEY, AND THAT IS
