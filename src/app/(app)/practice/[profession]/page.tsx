@@ -15,6 +15,8 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { hasPaidAccess } from "@/lib/billing/plans";
+import { tasteEndsAt } from "@/lib/billing/taste";
+import { TasteStatus } from "@/components/oet/TasteStatus";
 import { OET_TASKS, taskBySlug } from "@/lib/oet/registry";
 import type { TaskDef } from "@/lib/oet/registry";
 import { SUBTEST_LABEL, isPerProfession } from "@/lib/oet/types";
@@ -98,7 +100,10 @@ export default async function ProfessionPracticePage({
   params: Promise<{ profession: string }>;
 }) {
   const user = await requireUser();
-  if (!hasPaidAccess(user)) redirect("/pricing");
+  // Browse-only (titles and counts, no payload). Paid and 48-hour-taste accounts
+  // see it; the doors in lib/oet/entry.ts decide what may actually start.
+  const paid = hasPaidAccess(user);
+  if (!paid && !tasteEndsAt(user)) redirect("/pricing?locked=none");
   const { profession: slug } = await params;
 
   // ── OLD LINKS KEEP WORKING ────────────────────────────────────────────────
@@ -148,6 +153,7 @@ export default async function ProfessionPracticePage({
 
   return (
     <div className="space-y-8">
+      {!paid && <TasteStatus user={user} />}
       <header>
         <p className="text-xs font-bold uppercase tracking-wider text-almi-accent-deep">
           AlmiOET ·{" "}

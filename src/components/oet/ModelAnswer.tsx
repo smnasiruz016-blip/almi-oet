@@ -5,6 +5,7 @@
 import type { OetItem } from "@prisma/client";
 import type { ModelLetter } from "@/lib/oet/tasks/writing-letter";
 import type { ModelScript } from "@/lib/oet/tasks/speaking-roleplay";
+import { Paywall } from "@/components/oet/Paywall";
 
 const box = "rounded-2xl border border-almi-bg-peach bg-almi-paper";
 const summary = "flex min-h-[48px] cursor-pointer items-center justify-between gap-3 px-4 py-3 text-base font-semibold text-almi-ink";
@@ -73,8 +74,12 @@ function Script({ s, concern }: { s: ModelScript; concern: string | null }) {
 }
 
 /** The model answer for an item, or nothing when it has none. Render ONLY after the attempt. */
-export function ModelAnswer({ item, open = false }: { item: Pick<OetItem, "taskType" | "payload">; open?: boolean }) {
+export function ModelAnswer({ item, open = false, locked = false }: { item: Pick<OetItem, "taskType" | "payload">; open?: boolean; /** 48-hour taste / unpaid: the model is not in the taste — show the paywall where it would be */ locked?: boolean }) {
   const p = (item.payload ?? {}) as { modelLetter?: ModelLetter; modelScript?: ModelScript; patientConcern?: string; wordMin?: number; wordMax?: number };
+  if (locked) {
+    const has = (item.taskType === "WRITING_LETTER" && p.modelLetter) || (item.taskType === "SPEAKING_ROLEPLAY" && p.modelScript);
+    return has ? <Paywall reason="MODEL" compact /> : null;
+  }
   if (item.taskType === "WRITING_LETTER" && p.modelLetter) {
     return (
       <details data-model-answer="letter" className={box} open={open}>

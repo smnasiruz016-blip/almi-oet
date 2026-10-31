@@ -15,15 +15,23 @@ vi.mock("@/lib/prisma", () => ({ prisma: { user: { findUnique: async () => ({ st
 beforeEach(() => { calls.checkout = []; calls.subsListed = 0; calls.earlier = 0; vi.resetModules(); vi.stubEnv("STRIPE_SECRET_KEY", "sk_test_only_a_fake_for_this_test_000"); vi.stubEnv("STRIPE_PRICE_ID_MONTHLY", "price_test_monthly"); });
 
 describe("RR-345 · the selling path", () => {
-  it("D4 · the 7-day trial is given once: a learner who ever had a subscription subscribes without a new trial", async () => {
+  // 🔴 Owner decision 31 Oct 2026 (direct selling): NO new checkout carries a trial — not for a first-time
+  // customer, not for a returning one. Was: "the 7-day trial is given once" (first checkout trial_period_days 7).
+  it("D4 (31 Oct 2026) · checkout has NO trial — a new customer and a returning one alike are charged at checkout", async () => {
     const { createCheckoutSession } = await import("@/lib/billing/stripe");
-    await createCheckoutSession({ userId: "u1", email: "a@example.test", name: null, priceId: "price_test_monthly" });
-    expect((calls.checkout[0].subscription_data as Record<string, unknown>).trial_period_days).toBe(7);
-    calls.earlier = 1;
-    await createCheckoutSession({ userId: "u1", email: "a@example.test", name: null, priceId: "price_test_monthly" });
-    expect(calls.checkout[1].subscription_data).not.toHaveProperty("trial_period_days");
-    expect(calls.checkout[1].payment_method_collection).toBe("always");
-    expect(calls.subsListed).toBe(2);
+    for (const earlier of [0, 1]) {
+      calls.earlier = earlier;
+      await createCheckoutSession({ userId: "u1", email: "a@example.test", name: null, priceId: "price_test_monthly" });
+    }
+    expect(calls.checkout).toHaveLength(2);
+    for (const c of calls.checkout) {
+      const sub = c.subscription_data as Record<string, unknown>;
+      expect(sub).not.toHaveProperty("trial_period_days");
+      expect(sub).not.toHaveProperty("trial_end");
+      expect(sub).not.toHaveProperty("trial_from_plan");
+      expect(sub).not.toHaveProperty("trial_settings");
+      expect(c.payment_method_collection).toBe("always");
+    }
   });
 
   it("D6 · a trial whose AI feedback cannot cover the mock (1 Writing, 2 Speaking) is told before it starts; paying and comp always fit", async () => {
@@ -40,8 +48,10 @@ describe("RR-345 · the selling path", () => {
 
   it("D2 · D3 · D5 · D8 — the guards stand where the money and the truth are", () => {
     const session = readFileSync("src/app/(app)/practice/session/[sessionId]/page.tsx", "utf8");
-    expect(session).toMatch(/if \(session\.status !== "COMPLETED" && !hasPaidAccess\(user\)\) redirect\("\/pricing"\);/);
-    expect(session).toMatch(/if \(!hasPaidAccess\(u\)\) redirect\("\/pricing"\);[^\n]*\n\s*await advanceSession/);
+    // 31 Oct 2026: the 48-hour taste may continue a PRACTICE set it opened; nothing else unpaid passes. The behaviour is
+    // proven in tests/taste-offer.test.ts; this pins that both guards still stand before the content and the advance.
+    expect(session).toMatch(/const tasteOpen = !paid && isTasteActive\(user\) && session\.mode === "PRACTICE_SET";\s*if \(session\.status !== "COMPLETED" && !paid && !tasteOpen\) \{\s*redirect\(/);
+    expect(session).toMatch(/if \(!hasPaidAccess\(u\) && !\(isTasteActive\(u\) && sessionMode === "PRACTICE_SET"\)\) redirect\("\/pricing\?locked=expired"\);\s*await advanceSession/);
     const account = readFileSync("src/app/(app)/account/page.tsx", "utf8");
     expect(account).toMatch(/\{user\.stripeCustomerId && \(\s*<form action="\/api\/billing\/portal" method="POST">/);
     expect(account).toContain("Manage or cancel my plan");

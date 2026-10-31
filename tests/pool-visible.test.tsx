@@ -114,7 +114,7 @@ vi.mock("@/lib/prisma", () => ({
 vi.mock("@/lib/auth", () => ({ requireUser: async () => USER }));
 
 let PAID = true;
-vi.mock("@/lib/billing/plans", () => ({ hasPaidAccess: () => PAID }));
+vi.mock("@/lib/billing/plans", () => ({ hasPaidAccess: () => PAID, isBillingEnabled: () => false })); // isBillingEnabled: the paywall card (31 Oct 2026)
 
 class RedirectError extends Error {
   constructor(public to: string) {
@@ -320,8 +320,10 @@ describe("a learner without a subscription", () => {
     expect(html).not.toContain(">Again<");
     expect(html).not.toContain('name="itemId"');
     for (const row of pool) expect(html).not.toContain(`value="${row.id}"`);
-    // The subscription notice is still the thing they are pointed at.
-    expect(html).toContain("/pricing");
+    // The paywall is the thing they are pointed at (31 Oct 2026: a card with what
+    // unlocks and the checkout button itself, instead of a link to /pricing).
+    expect(html).toContain("data-paywall=");
+    expect(html).toContain("Full mocks across all four sub-tests");
   });
 
   it("sees titles and NOTHING from the payload", async () => {

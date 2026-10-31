@@ -58,7 +58,7 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { OET_MAX, OET_MIN, OET_STEP, gradeForScore } from "../../src/lib/oet/scale";
-import { OFFER } from "../../src/lib/billing/offer";
+import { OFFER, tasteLabel } from "../../src/lib/billing/offer";
 import { TIMING } from "../../src/lib/oet/exam-shape";
 import { GEN_ITEMS } from "../seed/gen/index";
 
@@ -160,14 +160,33 @@ const ROWS: {
       };
     },
   },
+  // 🔴 OWNER DECISION 31 Oct 2026 — DIRECT SELLING. The card trial is closed to
+  // new users, so ANY "N-day trial" in public copy is now a promise the checkout
+  // does not keep (stripe.ts hands Stripe no trial). This row used to check the
+  // number against OFFER.trialDays; it now refuses the claim outright, whatever
+  // the number. It is allowed to be silent — silence is the correct state.
   {
-    name: "the free-trial length",
+    name: "a day-trial offer (closed 31 Oct 2026)",
     re: /\b(\d{1,3})[- ]day (?:free )?trial\b/i,
     check: (m) => ({
-      ok: Number(m[1]) === OFFER.trialDays,
+      ok: false,
       found: `${m[1]}-day trial`,
-      expected: `${OFFER.trialDays}-day trial (OFFER.trialDays, the value handed to Stripe)`,
+      expected: `no trial is offered to new users — the offer is "${tasteLabel()}" (OFFER.tasteHours)`,
     }),
+  },
+  {
+    name: "the free-taste length",
+    re: /\bfree for (\d{1,3}) hours?\b/i,
+    check: (m) => ({
+      ok: Number(m[1]) === OFFER.tasteHours,
+      found: `free for ${m[1]} hours`,
+      expected: `free for ${OFFER.tasteHours} hours (OFFER.tasteHours, what lib/billing/taste.ts enforces)`,
+    }),
+  },
+  {
+    name: "a refund promise (owner: none anywhere)",
+    re: /\b(?:full |money[- ]back |)refund(?:ed|able|s)?\b(?! and return policy)/i,
+    check: (m) => ({ ok: false, found: m[0], expected: "no refund promise in product copy (owner, 31 Oct 2026)" }),
   },
 ];
 
@@ -198,6 +217,37 @@ for (const file of files) {
     }
   }
 }
+
+// ── THE PUBLISHED GUIDES (public/guides/*.html) — the OFFER rows only ──────
+// The SEO guides carry their own CTA ("Try free for 48 hours — then $12/month").
+// On 31 Oct 2026 all 48 of their CTAs still said "Start 7-day free trial" while
+// nothing here read them. Only the offer rows apply: the guides legitimately
+// quote OET's own published scale, which the grade row would misread.
+const OFFER_ROWS = new Set([
+  "the monthly price",
+  "a day-trial offer (closed 31 Oct 2026)",
+  "the free-taste length",
+  "a refund promise (owner: none anywhere)",
+]);
+const GUIDES = "public/guides";
+const guideFiles = readdirSync(GUIDES).filter((f) => f.endsWith(".html")).map((f) => join(GUIDES, f));
+if (guideFiles.length === 0) {
+  console.error("[gate:claims] no guide page read — the offer check over the guides would pass over nothing");
+  process.exit(1);
+}
+for (const file of guideFiles) {
+  const lines = readFileSync(file, "utf8").split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++) {
+    for (const row of ROWS.filter((r) => OFFER_ROWS.has(r.name))) {
+      for (const m of lines[i].matchAll(new RegExp(row.re.source, "gi"))) {
+        rowHits.set(row.name, (rowHits.get(row.name) ?? 0) + 1);
+        const verdict = row.check(m);
+        if (!verdict.ok) findings.push({ file, line: i + 1, claim: row.name, found: verdict.found, expected: verdict.expected });
+      }
+    }
+  }
+}
+console.log(`[gate:claims] ${guideFiles.length} guide page(s) read for the offer rows`);
 
 // ═════════════════════════════════════════════════════════════════════════════
 // THE SECOND HALF — THE ITEMS' OWN WORDS
@@ -343,7 +393,12 @@ if (ENGINE_GRADES.size === 0) {
 // nobody is making any more, or a regex that stopped working — and the second
 // is indistinguishable from the first unless it is said out loud.
 const silent = [...rowHits.entries()].filter(([, n]) => n === 0).map(([n]) => n);
-const SILENCE_ALLOWED = new Set(["grade letters"]); // this one is silent when the copy is CORRECT
+// These are silent when the copy is CORRECT.
+const SILENCE_ALLOWED = new Set([
+  "grade letters",
+  "a day-trial offer (closed 31 Oct 2026)",
+  "a refund promise (owner: none anywhere)",
+]);
 const wronglySilent = silent.filter((n) => !SILENCE_ALLOWED.has(n));
 
 console.log(`[gate:claims] ${files.length} file(s) · ${linesRead} line(s) of copy read`);

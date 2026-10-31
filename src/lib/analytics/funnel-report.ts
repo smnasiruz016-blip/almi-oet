@@ -33,6 +33,7 @@ import {
   FUNNEL_EVENTS,
   FUNNEL_FRICTION_ORDER,
   FUNNEL_STEP_ORDER,
+  FUNNEL_TASTE_ORDER,
   type FunnelEventName,
 } from "@/lib/analytics/events";
 
@@ -50,6 +51,9 @@ export type FunnelStep = {
 };
 
 export type FunnelReport = {
+  /** The 48-hour taste, counted in distinct learners. */
+  taste: { name: FunnelEventName; label: string; people: number }[];
+  tasteToPaidPct: number | null;
   steps: FunnelStep[];
   friction: { name: FunnelEventName; label: string; count: number }[];
   churn: { name: FunnelEventName; label: string; count: number }[];
@@ -94,7 +98,20 @@ export async function buildFunnelReport(from: Date, to: Date): Promise<FunnelRep
 
   const total = [...counts.values()].reduce((a, b) => a + b, 0);
 
+  // The taste counts PEOPLE, not events: one learner can meet the paywall ten
+  // times, and a rate over events would read ten times better or worse than it is.
+  const tasteUsers = await prisma.funnelEvent.groupBy({
+    by: ["name", "userId"],
+    where: { createdAt: { gte: from, lte: to }, name: { in: [...FUNNEL_TASTE_ORDER] } },
+  });
+  const peopleOf = (n: FunnelEventName) => tasteUsers.filter((r) => r.name === n && r.userId).length;
+  const started = peopleOf("taste_started");
+  const taste = FUNNEL_TASTE_ORDER.map((n) => ({ name: n, label: label(n), people: peopleOf(n) }));
+
   return {
+    taste,
+    /** Share of learners who started a taste and then paid — null with no tastes. */
+    tasteToPaidPct: survival(peopleOf("paid_after_taste"), started),
     steps,
     friction: FUNNEL_FRICTION_ORDER.map((n) => ({ name: n, label: label(n), count: countOf(n) })),
     churn: FUNNEL_CHURN_ORDER.map((n) => ({ name: n, label: label(n), count: countOf(n) })),

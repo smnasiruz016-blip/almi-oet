@@ -14,7 +14,9 @@ Honesty doctrine: scores are practice estimates on the **10–160** scale, shown
 as per-subscore **ranges** (Literacy / Comprehension / Conversation / Production)
 plus a readiness band — **never a fabricated overall** (DET's overall is a
 proprietary adaptive estimate). All content is original — **never copied from
-OET**. $12/month + 7-day trial; objective tasks free, AI feedback paid.
+OET**. Try free for 48 hours with no card (1 Reading set, 1 Listening set,
+1 AI-scored Writing letter, 1 Speaking role-play, lessons), then $12/month with
+no trial — owner decision 31 Oct 2026; see `src/lib/billing/taste.ts`.
 
 Adaptivity here is honest difficulty-pool adaptivity and does **not** reproduce
 DET's scoring engine.

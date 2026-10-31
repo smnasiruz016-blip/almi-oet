@@ -160,11 +160,14 @@ export function OetResult({
   attempt,
   variant = "single",
   mode = null,
+  modelLocked = false,
 }: {
   def: TaskDef;
   item: OetItem;
   attempt: OetAttempt;
   variant?: "single" | "step";
+  /** 48-hour taste / unpaid: the model letter / role-play shows the paywall instead */
+  modelLocked?: boolean;
   /** RR-346: the session's mode. In a MOCK step the answers and explanations are NOT shown — they wait for the mock's final review. */
   mode?: "MOCK" | "PRACTICE_SET" | null;
 }) {
@@ -209,7 +212,7 @@ export function OetResult({
       )}
 
       {/* B2/B3: the model letter / model role-play — after the attempt; in a MOCK it waits for the final review, like the answers */}
-      {!inMock && <ModelAnswer item={item} />}
+      {!inMock && <ModelAnswer item={item} locked={modelLocked} />}
 
       {variant === "single" && (
         <>

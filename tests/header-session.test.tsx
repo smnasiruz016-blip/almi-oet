@@ -46,7 +46,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 
 // HAND-TYPED from the header a signed-in learner must never see again.
-const LOGGED_OUT_ONLY = ["Log in", "Start 7-day free trial"];
+const LOGGED_OUT_ONLY = ["Log in", "Try free for 48 hours"];
 
 vi.mock("@/lib/prisma", () => ({ prisma: {} }));
 vi.mock("@/lib/auth", () => ({

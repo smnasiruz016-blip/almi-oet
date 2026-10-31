@@ -3,19 +3,26 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireUser } from "@/lib/auth";
+import { hasPaidAccess } from "@/lib/billing/plans";
+import { OFFER } from "@/lib/billing/offer";
+import { Paywall } from "@/components/oet/Paywall";
 import { professionBySlug, PROFESSION_LIST } from "@/lib/oet/professions";
 import { vocabularyFor, vocabularyOn, VOCABULARY } from "@/lib/oet/vocabulary";
 
 export default async function VocabularyPage({ params, searchParams }: { params: Promise<{ profession: string }>; searchParams: Promise<{ tab?: string; q?: string }> }) {
   if (!vocabularyOn()) notFound();
-  await requireUser();
+  const user = await requireUser();
+  // 48-hour taste / unpaid: a short sample per tab, then the paywall (owner, 31 Oct 2026).
+  const paid = hasPaidAccess(user);
   const { profession: slug } = await params;
   const { tab: rawTab, q: rawQ } = await searchParams;
   const prof = professionBySlug(slug);
   if (!prof || !VOCABULARY[prof.profession]) notFound();
   const tab = rawTab === "use" ? "use" : "understand";
   const q = String(rawQ ?? "").slice(0, 60);
-  const rows = vocabularyFor(prof.profession, tab, q);
+  const all = vocabularyFor(prof.profession, tab, q);
+  const rows = paid ? all : all.slice(0, OFFER.tasteVocabularySample);
+  const heldBack = all.length - rows.length;
   const href = (t: string) => `/vocabulary/${prof.slug}?tab=${t}${q ? `&q=${encodeURIComponent(q)}` : ""}`;
   const tabCls = (on: boolean) => `inline-flex min-h-[44px] items-center rounded-full px-5 text-sm font-semibold ${on ? "bg-almi-coral text-almi-ink" : "border border-almi-bg-peach bg-almi-paper text-almi-text"}`;
 
@@ -42,7 +49,11 @@ export default async function VocabularyPage({ params, searchParams }: { params:
         <button type="submit" className="min-h-[48px] rounded-full bg-almi-ink px-5 text-sm font-semibold text-white">Search</button>
       </form>
 
-      <p className="text-xs text-almi-text-muted" data-vocab-count>{rows.length} {rows.length === 1 ? "entry" : "entries"}{q ? ` for “${q}”` : ""}</p>
+      <p className="text-xs text-almi-text-muted" data-vocab-count>
+        {paid
+          ? `${rows.length} ${rows.length === 1 ? "entry" : "entries"}${q ? ` for “${q}”` : ""}`
+          : `Showing ${rows.length} of ${all.length} ${all.length === 1 ? "entry" : "entries"}${q ? ` for “${q}”` : ""}`}
+      </p>
       <ul className="space-y-3">
         {rows.map((e) => (
           <li key={e.term} data-vocab-entry className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-4">
@@ -57,6 +68,7 @@ export default async function VocabularyPage({ params, searchParams }: { params:
         ))}
       </ul>
       {rows.length === 0 && <p className="text-sm text-almi-text">No entry matches. Try a shorter word.</p>}
+      {heldBack > 0 && <Paywall reason="VOCABULARY" />}
 
       <p className="text-xs text-almi-text-muted">
         Other professions:{" "}

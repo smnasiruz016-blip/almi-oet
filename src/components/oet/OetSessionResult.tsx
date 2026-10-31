@@ -14,6 +14,7 @@
 // OET has not published to us.
 
 import Link from "next/link";
+import type React from "react";
 import type { OetAttempt, OetItem, OetSession, OetSubTest } from "@prisma/client";
 import type { ChainView } from "@/lib/oet/chain";
 import { ChainNext } from "@/components/oet/ChainNext";
@@ -32,9 +33,13 @@ export function OetSessionResult({
   attempts,
   chain = null,
   continueAction,
+  paywall = null,
 }: {
   session: OetSession;
   attempts: (OetAttempt & { item: OetItem })[];
+  /** 48-hour taste / unpaid: the next set is locked — the paywall replaces the
+   *  chain, so the end of a free set is an offer, never a dead end. */
+  paywall?: React.ReactNode;
   /** The next-exercise chain for a practice set. Null for a mock, which has no
    *  single task type to continue within. Every number in it is read from the
    *  database by chainView() — none is written down here. */
@@ -120,7 +125,9 @@ export function OetSessionResult({
       {/* The chain, rendered by the SAME component the per-item result uses —
           see src/components/oet/ChainNext.tsx. A mock has no single task type to
           continue within, so it keeps the old ending. */}
-      {chain && continueAction ? (
+      {paywall ? (
+        paywall
+      ) : chain && continueAction ? (
         <ChainNext chain={chain} continueAction={continueAction} />
       ) : (
         <Link

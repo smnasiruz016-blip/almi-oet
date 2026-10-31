@@ -138,6 +138,32 @@ export const FUNNEL_EVENTS = {
     why: "activation: fires after the attempt is actually written SCORED",
   },
 
+  // ── the 48-hour taste (owner decision 31 Oct 2026: direct selling) ─────
+  taste_started: {
+    owner: "src/app/(auth)/signup/page.tsx",
+    keys: ["userId", "hours"],
+    conversion: true,
+    why:
+      "a new account's no-card taste began — fired right after prisma.user.create, " +
+      "because the taste starts at sign-up and at nothing else",
+  },
+  taste_limit_hit: {
+    owner: "src/lib/billing/taste.ts",
+    keys: ["userId", "target", "reason"],
+    conversion: true,
+    why:
+      "an unpaid learner met the paywall: a taste item already used, the 48 hours over, " +
+      "or something the taste never included (mock, model answers, full vocabulary)",
+  },
+  paid_after_taste: {
+    owner: "src/app/api/webhooks/stripe/route.ts",
+    keys: ["userId", "planLabel", "tasted"],
+    conversion: true,
+    why:
+      "a no-trial checkout completed and Stripe says the subscription is active — " +
+      "money taken. `tasted` says whether the learner practised before paying",
+  },
+
   // ── admin ───────────────────────────────────────────────────────────────
   comp_granted: {
     owner: "src/lib/admin/comp-accounts.ts",
@@ -198,11 +224,19 @@ export const FUNNEL_FRICTION_ORDER = ["paywall_blocked", "trial_cap_hit"] as con
 export const FUNNEL_CHURN_ORDER = ["subscription_cancelled", "payment_failed"] as const satisfies
   readonly FunnelEventName[];
 
+/** The taste: started -> limit hit -> paid. Its own group, NOT inserted into
+ *  FUNNEL_STEP_ORDER: that order still describes the trial accounts that are
+ *  finishing, and mixing the two journeys would make every rate in both wrong.
+ *  /admin/funnel shows these three with the taste-to-paid rate under them. */
+export const FUNNEL_TASTE_ORDER = ["taste_started", "taste_limit_hit", "paid_after_taste"] as const satisfies
+  readonly FunnelEventName[];
+
 /** Everything /admin/funnel puts on the screen. gate:funnel check 5 reads this. */
 export const FUNNEL_DISPLAYED: readonly FunnelEventName[] = Object.freeze([
   ...FUNNEL_STEP_ORDER,
   ...FUNNEL_FRICTION_ORDER,
   ...FUNNEL_CHURN_ORDER,
+  ...FUNNEL_TASTE_ORDER,
 ]);
 
 /** Position in the journey, or null for events that are not steps. */

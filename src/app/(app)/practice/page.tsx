@@ -43,6 +43,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { hasPaidAccess } from "@/lib/billing/plans";
+import { tasteEndsAt } from "@/lib/billing/taste";
+import { TasteStatus } from "@/components/oet/TasteStatus";
 import { PROFESSION_LIST } from "@/lib/oet/professions";
 import { parseProfession, setTargetProfession } from "@/lib/oet/set-profession";
 
@@ -65,15 +67,19 @@ export default async function PracticePage({
 }) {
   const user = await requireUser();
   const { mockempty } = await searchParams;
-  // Card-first: the hub itself is behind the subscription, because everything it
-  // leads to is.
-  if (!hasPaidAccess(user)) redirect("/pricing");
+  // The hub holds no practice content — every way into a set is a door in
+  // lib/oet/entry.ts. Paid learners and 48-hour-taste accounts (running or ended)
+  // see it; an ended taste sees the paywall at the top. Anyone else (a lapsed
+  // subscription) goes to the pricing page, as before.
+  const paid = hasPaidAccess(user);
+  if (!paid && !tasteEndsAt(user)) redirect("/pricing?locked=none");
 
   const current = user.targetProfession ?? null;
   const currentDef = current ? PROFESSION_LIST.find((p) => p.profession === current) : undefined;
 
   return (
     <div className="space-y-8">
+      {!paid && <TasteStatus user={user} />}
       {mockempty && (
         <section
           data-testid="mockempty-notice"

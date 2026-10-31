@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { createSession, getCurrentUser, hashPassword } from "@/lib/auth";
 import { sendEmailVerification } from "@/lib/email";
 import { track } from "@/lib/analytics/track";
+import { OFFER } from "@/lib/billing/offer";
 
 const VERIFY_TTL_MS = 24 * 60 * 60 * 1000;
 
@@ -45,6 +46,9 @@ async function signupAction(formData: FormData) {
   // AFTER the row exists. Not when the form was rendered, and not on submit
   // — a failed create must not look like a new account.
   track("account_created", { userId: user.id });
+  // The 48-hour taste starts at sign-up (lib/billing/taste.ts reads createdAt),
+  // so this is the one honest moment to record that it started.
+  track("taste_started", { userId: user.id, hours: OFFER.tasteHours });
 
   // Best-effort email send — don't block signup if Resend is down or
   // unconfigured. User can request resend from the banner.
@@ -73,7 +77,10 @@ export default async function SignupPage({
   return (
     <div className="rounded-2xl border border-almi-bg-peach bg-almi-paper p-8 shadow-sm">
       <h1 className="text-2xl font-semibold text-almi-ink">Create your account</h1>
-      <p className="mt-2 text-sm text-almi-text-muted">Then $12/month. Cancel anytime.</p>
+      <p className="mt-2 text-sm text-almi-text-muted">
+        Try free for 48 hours — no card: 1 Reading set, 1 Listening set, 1 AI-scored Writing letter,
+        1 Speaking role-play and the lessons. Then $12/month to unlock everything. Cancel anytime.
+      </p>
       <p className="mt-2 text-sm text-almi-text-muted">
         Practise the Occupational English Test with honest AI feedback on the 0–500 scale, graded A, B, C+ or C.
       </p>
