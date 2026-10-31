@@ -62,9 +62,12 @@ for (const ph of PHONES) {
     test("public: tapping a link in the menu navigates and closes the menu", async ({ page }) => {
       await page.goto("/");
       await page.getByRole("button", { name: "Open menu" }).tap();
-      const link = page.locator("#global-mobile-menu").getByRole("link", { name: /pricing/i }).first();
-      await link.tap();
-      await page.waitForURL(/\/pricing/);
+      // The signed-out product links are "Practice" and "Log in" (GlobalHeader productNavFor). A bounded tap, so a
+      // missing link fails in seconds instead of holding the job for the 5-minute test timeout.
+      const link = page.locator("#global-mobile-menu").getByRole("link", { name: "Log in" });
+      await expect(link).toBeVisible();
+      await link.tap({ timeout: 15_000 });
+      await page.waitForURL(/\/login/);
       await expect(page.locator("#global-mobile-menu")).toHaveCount(0);
     });
 
