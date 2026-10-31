@@ -61,6 +61,7 @@ import { OET_MAX, OET_MIN, OET_STEP, gradeForScore } from "../../src/lib/oet/sca
 import { OFFER, tasteLabel } from "../../src/lib/billing/offer";
 import { TIMING } from "../../src/lib/oet/exam-shape";
 import { GEN_ITEMS } from "../seed/gen/index";
+import * as CMP from "../../src/content/comparison";
 
 
 const ROOTS = ["src/app", "src/components"];
@@ -374,6 +375,64 @@ for (const item of items) {
       }
     }
   }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// THE HOME-PAGE COMPARISON (owner GREEN, 31 Oct 2026) — facts about NAMED providers.
+//
+// A comparison table is the most dangerous copy on the site: it speaks about other companies. So it is held to four things:
+//   C1  it carries the date it was checked, and that date is real and not older than MAX_AGE_DAYS — a stale table is a false one;
+//   C2  the section prints that date in its disclaimer (the component must call DISCLAIMER with it);
+//   C3  no "guarantee" anywhere in the table's words (ours or theirs), and every other provider cell is non-empty and sourced;
+//   C4  AlmiOET's own explanation coverage is RE-COUNTED here from the seed, the way the review screen reads it, and must match.
+const COMPARISON_FILE = "src/content/comparison.ts";
+const COMPARE_COMPONENT = "src/components/home/CompareSection.tsx";
+{
+  const cmp = CMP;
+  const label = "comparison";
+  const add = (claim: string, found: string, expected: string) => findings.push({ file: COMPARISON_FILE, line: 0, claim: `${label} — ${claim}`, found, expected });
+
+  // C1
+  const day = /^\d{4}-\d{2}-\d{2}$/.test(cmp.CHECKED_ON) ? new Date(`${cmp.CHECKED_ON}T00:00:00Z`) : null;
+  if (!day || Number.isNaN(day.getTime())) add("C1 checked date", String(cmp.CHECKED_ON), "an ISO day, e.g. 2026-10-31");
+  else {
+    const age = Math.floor((Date.now() - day.getTime()) / 86_400_000);
+    if (age < 0) add("C1 checked date", cmp.CHECKED_ON, "not in the future");
+    if (age > cmp.MAX_AGE_DAYS) add("C1 checked date", `${cmp.CHECKED_ON} (${age} days ago)`, `re-checked within ${cmp.MAX_AGE_DAYS} days — run npm run check:comparison, re-read every page, update the cells and CHECKED_ON`);
+  }
+  // C2
+  const comp = stripComments(readFileSync(COMPARE_COMPONENT, "utf8"));
+  if (!/DISCLAIMER\(\s*checked\s*\)/.test(comp) || !/formatDateUTC\(CHECKED_ON\)/.test(comp)) add("C2 date shown", "the section does not print CHECKED_ON in its disclaimer", "DISCLAIMER(checked) with checked = formatDateUTC(CHECKED_ON)");
+  if (!cmp.DISCLAIMER("X-DATE").includes("X-DATE")) add("C2 date shown", "DISCLAIMER() drops its date", "the date in the sentence");
+  // C3
+  const words = [comp, stripComments(readFileSync(COMPARISON_FILE, "utf8"))].join("\n");
+  const g = words.match(/\bguarante\w*/i);
+  if (g) add("C3 no guarantee", g[0], "no guarantee claim in the comparison");
+  for (const p of cmp.PROVIDERS) {
+    if (!p.sources.length || !p.sources.every((u: string) => /^https:\/\//.test(u))) add("C3 sourced", p.name, "at least one https source URL");
+    for (const r of cmp.ROWS) if (!String(p.cells[r.key] ?? "").trim()) add("C3 every cell", `${p.name} · ${r.label} is empty`, `a fact, or "${cmp.NOT_STATED}"`);
+  }
+  // C4
+  let questions = 0, explained = 0;
+  for (const it of (GEN_ITEMS as unknown as { taskType: string; active?: boolean; payload?: Record<string, unknown> }[])) {
+    if (it.active === false || !/^(LISTENING|READING)_/.test(it.taskType)) continue;
+    const ex = (it.payload?.explanations ?? {}) as Record<string, { why?: string }>;
+    const ids = new Set<string>();
+    const walk = (o: unknown): void => {
+      if (Array.isArray(o)) return o.forEach(walk);
+      if (o && typeof o === "object") {
+        const r = o as Record<string, unknown>;
+        if (typeof r.id === "string" && "answer" in r) ids.add(r.id);
+        for (const [k, v] of Object.entries(r)) if (k !== "explanations") walk(v);
+      }
+    };
+    walk(it.payload);
+    for (const id of ids) { questions++; if (String(ex[id]?.why ?? "").trim()) explained++; }
+  }
+  if (questions === 0) add("C4 explanations", "0 questions counted", "a non-empty population");
+  if (cmp.EXPLAINED.explained !== explained || cmp.EXPLAINED.questions !== questions)
+    add("C4 explanations", `copy says ${cmp.EXPLAINED.explained} of ${cmp.EXPLAINED.questions}`, `the seed has ${explained} of ${questions} (re-counted as the review screen reads payload.explanations[id].why)`);
+  console.log(`[gate:claims] comparison: checked ${cmp.CHECKED_ON} · ${cmp.PROVIDERS.length} provider(s) · explanations ${explained}/${questions}`);
 }
 
 // ── a gate over an empty population passes vacuously ────────────────────────
