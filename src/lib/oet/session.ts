@@ -73,10 +73,26 @@ const formOf = (item: { form: string | null }): string | null => item.form;
  *  returned null — the failure the probe exists to catch, wearing a new coat.
  *  What is left here is the only part that is this engine’s business: the
  *  CHOICE among the forms that qualify. */
-async function chooseCompleteForm(): Promise<string | null> {
+async function chooseCompleteForm(userId: string): Promise<string | null> {
   const { complete } = await formCompleteness();
   if (complete.length === 0) return null;
-  return complete[Math.floor(Math.random() * complete.length)];
+  // A form counts as STARTED by this learner once any mock of theirs drew its step 0 from it. Read from the
+  // attempts, where the form already lives, rather than from a second copy on the session.
+  const firsts = await prisma.oetAttempt.findMany({
+    where: { userId, sessionStep: 0, session: { mode: "MOCK" } },
+    select: { item: { select: { form: true } } },
+  });
+  return pickForm(complete, firsts.map((a) => a.item.form));
+}
+
+/** Owner + beta-g, 1 Nov 2026: give the learner a form they have NOT started yet; repeat one only when every
+ *  complete form has been started. Random within that set. Pure, so the rule is testable without a database. */
+export function pickForm(complete: string[], started: (string | null)[], random: () => number = Math.random): string | null {
+  if (complete.length === 0) return null;
+  const seen = new Set(started.filter(Boolean));
+  const fresh = complete.filter((f) => !seen.has(f));
+  const pool = fresh.length ? fresh : complete;
+  return pool[Math.floor(random() * pool.length)];
 }
 
 /** Pick an item for a task type, honouring the profession axis: Writing/Speaking
@@ -205,7 +221,7 @@ export async function startSession(input: {
     const profession = input.profession ?? null;
     // One form, end to end. If no form is complete we refuse to start rather than
     // assemble a mixed-bank mock and call it full-length.
-    const form = await chooseCompleteForm();
+    const form = await chooseCompleteForm(input.userId);
     if (!form) return null;
     const session = await prisma.oetSession.create({
       data: {

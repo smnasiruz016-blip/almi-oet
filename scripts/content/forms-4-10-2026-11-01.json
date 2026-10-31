@@ -1,0 +1,667 @@
+[
+  {
+    "slug": "lis-a-ankle-injury-after-a-fall",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-a-medication-side-effect",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-b-alert-about-a-norovirus-outbreak",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-b-set-1-two-radiographers-in-a-booking-office",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-b-set-10-a-dietitian-and-a-diabetes-specialist-nurse",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-b-set-13-a-community-pharmacist-and-a-patient",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-b-set-13-a-physiotherapist-and-a-family-carer-at-a-home-visit",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-b-set-3-a-veterinary-surgeon-debriefing-a-student-after-a-consultation",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-c-a-multimodal-approach-to-chronic-pain-management",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-c-item-5-presentation-the-word-confused",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-4"
+  },
+  {
+    "slug": "rea-a-a-flare-up-of-chronic-obstructive-lung-disease",
+    "taskType": "READING_PART_A",
+    "form": "form-4"
+  },
+  {
+    "slug": "rea-b-a-child-who-was-not-brought",
+    "taskType": "READING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "rea-b-closing-a-bay-during-a-diarrhoea-and-vomiting-outbreak",
+    "taskType": "READING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "rea-b-copying-clinic-letters-to-patients",
+    "taskType": "READING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "rea-b-fasting-before-surgery",
+    "taskType": "READING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "rea-b-guideline-advice-after-dilating-eye-drops",
+    "taskType": "READING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "rea-b-prescribing-oxygen-on-the-drug-chart",
+    "taskType": "READING_PART_B",
+    "form": "form-4"
+  },
+  {
+    "slug": "rea-c-a-note-for-a-reader-who-never-arrives",
+    "taskType": "READING_PART_C",
+    "form": "form-4"
+  },
+  {
+    "slug": "rea-c-the-image-and-the-question-it-was-asked",
+    "taskType": "READING_PART_C",
+    "form": "form-4"
+  },
+  {
+    "slug": "lis-a-antenatal-visit",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-a-lower-back-pain",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-b-arranging-a-complex-discharge",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-b-set-1-two-nurses-handing-over-on-a-medical-ward",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-b-set-10-a-pharmacist-and-a-ward-sister-after-a-near-miss",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-b-set-12-an-occupational-therapist-and-a-physiotherapist",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-b-set-13-a-radiographer-and-a-junior-doctor",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-b-set-2-two-doctors-discussing-an-entry-on-a-handover-list",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-c-antibiotic-stewardship-and-the-48-hour-review",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-c-item-4-interview-a-pharmacist-on-stopping-medicines",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-5"
+  },
+  {
+    "slug": "rea-a-acute-kidney-injury",
+    "taskType": "READING_PART_A",
+    "form": "form-5"
+  },
+  {
+    "slug": "rea-b-a-reminder-about-mandatory-training",
+    "taskType": "READING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "rea-b-consent-for-wound-photographs",
+    "taskType": "READING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "rea-b-crushing-tablets-for-swallowing-difficulty",
+    "taskType": "READING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "rea-b-extract-writing-insulin-on-the-chart",
+    "taskType": "READING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "rea-b-guideline-deciding-for-a-patient-who-cannot-decide",
+    "taskType": "READING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "rea-b-lone-working-in-the-community",
+    "taskType": "READING_PART_B",
+    "form": "form-5"
+  },
+  {
+    "slug": "rea-c-a-voice-without-a-face",
+    "taskType": "READING_PART_C",
+    "form": "form-5"
+  },
+  {
+    "slug": "rea-c-the-foot-at-the-end-of-the-appointment",
+    "taskType": "READING_PART_C",
+    "form": "form-5"
+  },
+  {
+    "slug": "lis-a-asthma-flare-up",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-a-script-14-physiotherapy-knee-pain-in-a-runner",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-b-following-up-a-patient-complaint",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-b-set-1-a-physiotherapist-and-a-student-outside-a-patient-s-home",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-b-set-10-a-physiotherapist-and-a-nurse-beside-a-post-operative-bed",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-b-set-12-a-radiographer-and-a-student-in-the-imaging-department",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-b-set-13-an-optometrist-and-an-optical-assistant",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-b-set-2-a-practice-manager-talking-to-a-general-practitioner-about-recalls",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-c-item-10-interview-knowing-the-woman",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-c-item-2-interview-a-district-nurse-on-pressure-damage",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-6"
+  },
+  {
+    "slug": "rea-a-acute-stroke",
+    "taskType": "READING_PART_A",
+    "form": "form-6"
+  },
+  {
+    "slug": "rea-b-a-resuscitation-decision-when-the-patient-moves",
+    "taskType": "READING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "rea-b-cleaning-a-commode-between-patients",
+    "taskType": "READING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "rea-b-deadlines-for-annual-leave-requests",
+    "taskType": "READING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "rea-b-escorting-a-patient-to-a-scan",
+    "taskType": "READING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "rea-b-guideline-handling-animals-that-may-bite",
+    "taskType": "READING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "rea-b-replacing-a-lost-identity-band",
+    "taskType": "READING_PART_B",
+    "form": "form-6"
+  },
+  {
+    "slug": "rea-c-come-back-in-six-months",
+    "taskType": "READING_PART_C",
+    "form": "form-6"
+  },
+  {
+    "slug": "rea-c-the-exercises-nobody-does",
+    "taskType": "READING_PART_C",
+    "form": "form-6"
+  },
+  {
+    "slug": "lis-a-chest-pain-assessment",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-a-script-13-medicine-breathlessness-with-an-irregular-pulse",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-b-note-on-mandatory-manual-handling-training",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-b-set-1-a-pharmacist-briefing-ward-staff",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-b-set-10-a-radiographer-and-a-ward-nurse-in-the-imaging-department",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-b-set-12-a-doctor-and-a-hospital-interpreter-outside-a-side-room",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-b-set-14-a-speech-and-language-therapist-and-a-parent",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-b-set-2-an-occupational-therapist-debriefing-two-students-after-a-home-visit",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-c-honest-conversations-at-the-end-of-life",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-c-item-15-presentation-the-ordinary-economics-of-a-wound",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-7"
+  },
+  {
+    "slug": "rea-a-an-asthma-attack-in-adults",
+    "taskType": "READING_PART_A",
+    "form": "form-7"
+  },
+  {
+    "slug": "rea-b-access-to-point-of-care-devices",
+    "taskType": "READING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "rea-b-checking-a-pca-pump-at-handover",
+    "taskType": "READING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "rea-b-critical-results-by-telephone",
+    "taskType": "READING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "rea-b-extract-the-controlled-drug-register",
+    "taskType": "READING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "rea-b-key-safe-codes",
+    "taskType": "READING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "rea-b-memo-the-discharge-summary",
+    "taskType": "READING_PART_B",
+    "form": "form-7"
+  },
+  {
+    "slug": "rea-c-everything-the-leaflet-cannot-do",
+    "taskType": "READING_PART_C",
+    "form": "form-7"
+  },
+  {
+    "slug": "rea-c-the-easiest-thing-in-the-room-to-write",
+    "taskType": "READING_PART_C",
+    "form": "form-7"
+  },
+  {
+    "slug": "lis-a-child-with-fever",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-a-script-12-occupational-therapy-recovery-after-a-wrist-fracture",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-b-changes-to-the-weekend-roster",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-b-set-1-a-doctor-telephoning-a-patient-s-daughter",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-b-set-10-a-staff-nurse-and-a-phlebotomist-on-a-ward-round",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-b-set-12-a-community-pharmacist-and-a-patient-at-the-counter",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-b-set-14-a-veterinary-surgeon-and-a-client",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-b-set-2-a-speech-and-language-therapist-briefing-a-healthcare-assistant",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-c-item-1-presentation-the-four-hours-before-an-arrest",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-c-item-14-interview-a-dietitian-on-a-child-who-is-not-growing",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-8"
+  },
+  {
+    "slug": "rea-a-anaphylaxis",
+    "taskType": "READING_PART_A",
+    "form": "form-8"
+  },
+  {
+    "slug": "rea-b-acknowledging-test-results",
+    "taskType": "READING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "rea-b-checking-the-position-of-a-feeding-tube",
+    "taskType": "READING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "rea-b-discharge-from-the-recovery-area",
+    "taskType": "READING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "rea-b-extract-patient-property-and-valuables",
+    "taskType": "READING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "rea-b-instructions-issuing-a-walking-aid",
+    "taskType": "READING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "rea-b-memo-physiotherapy-referrals-after-surgery",
+    "taskType": "READING_PART_B",
+    "form": "form-8"
+  },
+  {
+    "slug": "rea-c-reconciliation-and-the-list-that-is-never-true",
+    "taskType": "READING_PART_C",
+    "form": "form-8"
+  },
+  {
+    "slug": "rea-c-the-beep-nobody-answers",
+    "taskType": "READING_PART_C",
+    "form": "form-8"
+  },
+  {
+    "slug": "lis-a-diabetes-annual-check",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-a-script-11-speech-pathology-hoarseness-in-a-teacher",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-b-handover-extract",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-b-feedback-from-a-hand-hygiene-audit",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-b-set-10-an-optometrist-and-a-patient-at-the-end-of-an-examination",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-b-set-11-an-occupational-therapist-and-a-patient-at-a-home-visit",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-b-set-15-a-dietitian-and-a-doctor-on-a-ward-round",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-b-set-15-a-pharmacist-and-a-prescriber-reviewing-the-system",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-c-building-a-culture-of-patient-safety-on-the-ward",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-c-item-13-presentation-pain-in-people-who-cannot-tell-you",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-9"
+  },
+  {
+    "slug": "rea-a-atrial-fibrillation-and-anticoagulation",
+    "taskType": "READING_PART_A",
+    "form": "form-9"
+  },
+  {
+    "slug": "rea-b-an-informal-patient-who-asks-to-leave",
+    "taskType": "READING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "rea-b-changing-a-central-line-dressing",
+    "taskType": "READING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "rea-b-email-foot-checks-in-the-diabetes-clinic",
+    "taskType": "READING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "rea-b-extract-labelling-a-specimen",
+    "taskType": "READING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "rea-b-kidney-function-before-a-contrast-scan",
+    "taskType": "READING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "rea-b-missed-doses-on-the-drug-chart",
+    "taskType": "READING_PART_B",
+    "form": "form-9"
+  },
+  {
+    "slug": "rea-c-rehearsing-the-worst-day",
+    "taskType": "READING_PART_C",
+    "form": "form-9"
+  },
+  {
+    "slug": "rea-c-the-daughter-who-answered-for-her-mother",
+    "taskType": "READING_PART_C",
+    "form": "form-9"
+  },
+  {
+    "slug": "lis-a-knee-pain-consultation",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-10"
+  },
+  {
+    "slug": "lis-a-script-10-radiography-safety-checks-before-an-mri-scan",
+    "taskType": "LISTENING_PART_A",
+    "form": "form-10"
+  },
+  {
+    "slug": "lis-b-morning-team-brief-on-bed-pressures",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "lis-b-reminder-about-timing-of-antibiotics",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "lis-b-set-11-a-dentist-speaking-to-a-parent-on-the-telephone",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "lis-b-set-11-a-podiatrist-and-a-physiotherapist-in-a-joint-clinic",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "lis-b-set-11-a-speech-and-language-therapist-and-a-nurse-on-a-stroke-ward",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "lis-b-set-14-an-occupational-therapist-and-a-social-worker",
+    "taskType": "LISTENING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "lis-c-item-11-presentation-the-consultation-that-never-happened",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-10"
+  },
+  {
+    "slug": "lis-c-item-12-interview-what-frailty-looks-like-in-a-house",
+    "taskType": "LISTENING_PART_C",
+    "form": "form-10"
+  },
+  {
+    "slug": "rea-a-blood-transfusion-safety",
+    "taskType": "READING_PART_A",
+    "form": "form-10"
+  },
+  {
+    "slug": "rea-b-an-oral-care-plan-for-dependent-patients",
+    "taskType": "READING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "rea-b-animals-at-home-visits",
+    "taskType": "READING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "rea-b-equipment-before-discharge",
+    "taskType": "READING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "rea-b-escalating-a-patient-whose-score-is-rising",
+    "taskType": "READING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "rea-b-horizontal-evacuation-in-a-fire",
+    "taskType": "READING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "rea-b-joining-the-self-administration-scheme",
+    "taskType": "READING_PART_B",
+    "form": "form-10"
+  },
+  {
+    "slug": "rea-c-six-months-and-where-the-number-came-from",
+    "taskType": "READING_PART_C",
+    "form": "form-10"
+  },
+  {
+    "slug": "rea-c-the-badge-nobody-could-read",
+    "taskType": "READING_PART_C",
+    "form": "form-10"
+  }
+]
