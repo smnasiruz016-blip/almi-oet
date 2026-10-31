@@ -764,10 +764,15 @@ export async function seedFixture(url: string): Promise<Fixture> {
     //
     // LEGACY_SHORT lost its whole LISTENING_PART_C section in the same commit,
     // header included, and the debt fell 35 -> 16.
+    //
+    // LISTENING_PART_A 18 -> 24 and LISTENING_PART_C 36 -> 40 on 31 October 2026:
+    // ten new items (listening_nov.ts, to 20 full tests), every one inside its law
+    // (A 550-600 words, 12 gaps; C 780-880 words, six questions, three options).
+    // GEN_ITEMS spreads them LAST, so they join the tail and no walk target moves.
     for (const [part, pool, want] of [
-      ["LISTENING_PART_A", listeningAFull, 18],
+      ["LISTENING_PART_A", listeningAFull, 24],
       ["LISTENING_PART_B", listeningBFull, 123],
-      ["LISTENING_PART_C", listeningCFull, 36],
+      ["LISTENING_PART_C", listeningCFull, 40],
     ] as const) {
       if (pool.length !== want) {
         throw new Error(
