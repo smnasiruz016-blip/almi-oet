@@ -27,6 +27,7 @@ function buildItems(isAdmin: boolean, vocabulary = false): Item[] {
     { key: "home", href: "/", icon: "🏠", label: "Home", match: "/" },
     { key: "practice", href: "/practice", icon: "✏️", label: "Choose a Test", match: "/practice" },
     { key: "progress", href: "/progress", icon: "📊", label: "My Progress", match: "/progress" },
+    { key: "lessons", href: "/lessons", icon: "🎓", label: "Lessons", match: "/lessons" },
     // Vocabulary: only once the owner switches it on (VOCABULARY_ON — src/lib/oet/vocabulary.ts)
     ...(vocabulary ? [{ key: "vocabulary", href: "/vocabulary", icon: "📖", label: "Vocabulary", match: "/vocabulary" }] : []),
     { key: "account", href: "/account", icon: "👤", label: "Account", match: "/account" },

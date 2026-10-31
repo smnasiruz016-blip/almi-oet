@@ -196,6 +196,15 @@ export default async function ProfessionPracticePage({
         is built. Each sub-test is estimated on the 0–500 scale with a grade of A, B, C+ or C, shown as a range.
       </p>
 
+      <Link
+        href="/lessons"
+        data-testid="lessons-link"
+        className="flex min-h-[52px] items-center justify-between gap-3 rounded-2xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink"
+      >
+        <span><span className="font-semibold">Lessons</span> — how each part is marked, with examples and a quick self-check</span>
+        <span aria-hidden className="text-almi-accent-deep">→</span>
+      </Link>
+
       {SUBTEST_ORDER.map((subTest) => {
         const group = tasks.filter((t) => t.subTest === subTest);
         if (group.length === 0) return null;

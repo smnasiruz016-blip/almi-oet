@@ -11,6 +11,16 @@ import type { GradeEstimate as GradeEstimateValue } from "@/lib/oet/scale";
 import { GradeEstimate, ESTIMATE_DISCLAIMER } from "@/components/oet/GradeEstimate";
 import { buildObjectiveReview } from "@/lib/oet/review";
 import { ModelAnswer } from "@/components/oet/ModelAnswer";
+import { lessonForTask, lessonForTrait, lessonHref } from "@/lib/oet/lessons";
+
+/** "Learn how this is marked →": the lesson for one criterion or one Reading/Listening part. */
+function LessonLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link href={href} data-lesson-href={href} className="inline-flex min-h-[44px] items-center text-sm font-semibold text-almi-accent-deep underline">
+      {label}
+    </Link>
+  );
+}
 
 export function ObjectiveReview({ def, item, attempt }: { def: TaskDef; item: OetItem; attempt: OetAttempt }) {
   const review = buildObjectiveReview(def.taskType, item.payload, attempt.response, item.slug);
@@ -98,12 +108,18 @@ function TraitGrid({ feedback }: { feedback: AnyFeedback }) {
   if (traits.length === 0) return null;
   return (
     <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-      {traits.map(([k, v]) => (
-        <div key={k} className="flex items-center justify-between gap-2 rounded-lg border border-almi-bg-peach bg-almi-paper px-3 py-2">
-          <span className="text-sm text-almi-text">{TRAIT_LABEL[k] ?? k}</span>
-          <span className={`rounded-full px-2 py-0.5 text-xs font-semibold capitalize ${TRAIT_TONE[v] ?? ""}`}>{v}</span>
-        </div>
-      ))}
+      {traits.map(([k, v]) => {
+        const lesson = lessonForTrait(k);
+        return (
+          <div key={k} className="rounded-lg border border-almi-bg-peach bg-almi-paper px-3 py-2">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-sm text-almi-text">{TRAIT_LABEL[k] ?? k}</span>
+              <span className={`rounded-full px-2 py-0.5 text-xs font-semibold capitalize ${TRAIT_TONE[v] ?? ""}`}>{v}</span>
+            </div>
+            {lesson && <LessonLink href={lessonHref(lesson)} label="Learn how this is marked →" />}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -179,6 +195,11 @@ export function OetResult({
       ) : (
         <ObjectiveReview def={def} item={item} attempt={attempt} />
       )}
+
+      {(() => {
+        const lesson = lessonForTask(def.taskType);
+        return lesson ? <LessonLink href={lessonHref(lesson)} label={`Learn how this is marked: ${lesson.title} →`} /> : null;
+      })()}
 
       {feedback && (
         <section className="rounded-2xl border border-almi-bg-peach bg-almi-bg p-5">
