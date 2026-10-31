@@ -5,6 +5,7 @@
 // Esc.
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { FAMILY_NAV, GET_STARTED_HREF, type NavItem } from "./GlobalHeader";
 
@@ -29,12 +30,16 @@ export function HeaderMobileMenu({
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
-    // Lock body scroll while open.
-    const prev = document.body.style.overflow;
+    // Lock page scroll while open — on <html> as well as <body>, because iOS Safari keeps scrolling the page behind
+    // a fixed layer when only the body is locked.
+    const prevBody = document.body.style.overflow;
+    const prevHtml = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
+      document.body.style.overflow = prevBody;
+      document.documentElement.style.overflow = prevHtml;
     };
   }, [open]);
 
@@ -74,13 +79,17 @@ export function HeaderMobileMenu({
         </svg>
       </button>
 
-      {open && (
+      {/* 🔴 PORTALLED TO <body>. The header is `sticky … backdrop-blur`, and a backdrop-filter makes the header the
+          containing block of every position:fixed descendant. Rendered inside it, `fixed inset-0 top-[64px]` measured
+          on the live site at 390px as a box 0px tall: aria-expanded flipped to true and nothing appeared, on every page
+          with this header. Outside the header, fixed means the viewport again. */}
+      {open && typeof document !== "undefined" && createPortal(
         <div
           id="global-mobile-menu"
           role="dialog"
           aria-modal="true"
           aria-label="Family navigation"
-          className="fixed inset-0 top-[64px] z-40 overflow-y-auto bg-almi-bg"
+          className="fixed inset-x-0 bottom-0 top-[64px] z-50 overflow-y-auto overscroll-contain bg-almi-bg"
         >
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-6 text-lg">
             {FAMILY_NAV.map((item) => (
@@ -124,7 +133,8 @@ export function HeaderMobileMenu({
               </form>
             )}
           </nav>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );
