@@ -8,9 +8,9 @@ import { track } from "@/lib/analytics/track";
 import { ContentCounts } from "@/components/oet/ContentCounts";
 
 export const metadata: Metadata = {
-  title: "Pricing — 7-day free trial",
+  title: "Pricing — try free for 48 hours",
   description:
-    "AlmiOET Pro — $12/month, cancel anytime. 7-day free trial. Honest AI feedback on the OET Writing letter and Speaking role-plays, full-length practice, and per-sub-test estimates on the 0–500 scale, graded A, B, C+ or C.",
+    "AlmiOET Pro — try free for 48 hours, no card, then $12/month, cancel anytime. Honest AI feedback on the OET Writing letter and Speaking role-plays, full-length practice, and per-sub-test estimates on the 0–500 scale, graded A, B, C+ or C.",
 };
 
 const FEATURES = [
@@ -39,7 +39,7 @@ export default async function PricingPage({
     <div className="flex flex-1 flex-col bg-almi-bg">
       <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
         <div className="text-center">
-          <h1 className="text-4xl font-semibold text-almi-ink">Simple pricing. 7-day free trial.</h1>
+          <h1 className="text-4xl font-semibold text-almi-ink">Try free for 48 hours. Then $12/month.</h1>
           <p className="mt-3 text-base text-almi-text-muted">
             One subscription. Honest AI feedback and full-length practice. Cancel anytime.
           </p>
@@ -55,7 +55,7 @@ export default async function PricingPage({
 
         {!billingLive && (
           <p className="mx-auto mt-6 max-w-md rounded-xl border border-almi-bg-peach bg-almi-paper px-4 py-3 text-center text-sm text-almi-text-muted">
-            Billing is in setup. Trial signups open shortly — leave your email on the homepage to be notified.
+            Billing is in setup. Subscriptions open shortly — leave your email on the homepage to be notified.
           </p>
         )}
 
@@ -75,7 +75,7 @@ export default async function PricingPage({
         </div>
 
         <p className="mt-10 text-center text-xs text-almi-text-muted">
-          Card not charged during the 7-day trial. Cancel from your account before the trial ends and pay nothing.
+          The 48-hour try needs no card. When you unlock everything, $12 is charged at checkout and then monthly; cancel anytime from your account.
         </p>
       </main>
     </div>
@@ -141,7 +141,7 @@ function PlanCard({
             className="inline-flex w-full min-h-[44px] items-center justify-center bg-almi-coral px-6 py-3 text-sm font-semibold text-almi-ink hover:bg-almi-coral-deep"
             style={{ borderRadius: 9999 }}
           >
-            Start 7-day free trial
+            Try free for 48 hours — no card
           </Link>
         ) : hasPlan ? (
           <Link

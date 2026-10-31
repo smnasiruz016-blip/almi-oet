@@ -2,10 +2,11 @@
  * 🔴 THE ONLY DOOR INTO A PRACTICE SESSION.
  *
  * Every way a learner can begin an OET attempt goes through a function in this
- * file, and every function in this file starts with the same two lines:
- *
- *     const user = await requireUser();
- *     if (!hasPaidAccess(user)) redirect("/pricing");
+ * file, and every function in this file passes `admittedUser()` before any
+ * session is made: paid access (hasPaidAccess) first, then — for an unpaid
+ * learner only — the 48-hour taste's verdict for that one sub-test
+ * (lib/billing/taste.ts, owner decision 31 Oct 2026). Anything else redirects
+ * to /pricing with the reason.
  *
  * ── WHY IT IS ONE FILE AND NOT A CHECK PER PAGE ─────────────────────────────
  *
@@ -31,20 +32,34 @@
  */
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
+import type { OetSubTest } from "@prisma/client";
 import { hasPaidAccess } from "@/lib/billing/plans";
+import { isTasteActive, noteTasteLimitHit, tasteState, tasteVerdict } from "@/lib/billing/taste";
 import { mockShortfallFor } from "@/lib/billing/mock-trial";
 import { startSession, getSessionView } from "@/lib/oet/session";
-import { taskBySlug } from "@/lib/oet/registry";
+import { OET_TASKS, taskBySlug } from "@/lib/oet/registry";
 import { professionBySlug } from "@/lib/oet/professions";
 import { isPerProfession } from "@/lib/oet/types";
 import { chainView } from "@/lib/oet/chain";
 
 /** The guard, in one place, so all three doors share the same code rather than
- *  three copies that can drift apart one at a time. */
-async function payingUser() {
+ *  three copies that can drift apart one at a time.
+ *
+ *  Paid (subscription, running 7-day trial, comp, owner) passes as before. An
+ *  UNPAID learner is then asked the 48-hour taste question (lib/billing/taste.ts)
+ *  for exactly this sub-test: START a new set, RESUME the unanswered one, or be
+ *  sent to the paywall with the reason — /pricing explains what unlocks, so the
+ *  redirect is never a dead end. */
+async function admittedUser(target: OetSubTest | "MOCK") {
   const user = await requireUser();
-  if (!hasPaidAccess(user)) redirect("/pricing");
-  return user;
+  if (hasPaidAccess(user)) return { user, resume: null as string | null };
+  const state = isTasteActive(user) && target !== "MOCK" ? await tasteState(user.id) : null;
+  const verdict = tasteVerdict({ user, target, state });
+  if (verdict.kind === "LOCKED") {
+    if (verdict.reason !== "NONE") noteTasteLimitHit(user.id, target, verdict.reason);
+    redirect(`/pricing?locked=${verdict.reason.toLowerCase()}&for=${String(target).toLowerCase()}`);
+  }
+  return { user, resume: verdict.kind === "RESUME" ? verdict.sessionId : null };
 }
 
 /**
@@ -60,10 +75,13 @@ export async function beginPracticeSession(input: {
   professionSlug: string;
   itemId?: string | null;
 }): Promise<never> {
-  const user = await payingUser();
-
   const def = taskBySlug(input.taskSlug);
-  if (!def || !def.live) redirect("/practice");
+  if (!def || !def.live) {
+    await admittedUser("MOCK"); // an unknown task is never a way past the guard
+    redirect("/practice");
+  }
+  const { user, resume } = await admittedUser(def.subTest);
+  if (resume) redirect(`/practice/session/${resume}`);
 
   // The profession comes from the URL the learner was on, re-resolved through
   // the registry rather than trusted as a string, falling back to their stored
@@ -85,7 +103,7 @@ export async function beginPracticeSession(input: {
 
 /** Begin a full mock — all four sub-tests from one complete form. */
 export async function beginMockSession(): Promise<never> {
-  const user = await payingUser();
+  const { user } = await admittedUser("MOCK"); // never in the taste
   if (!user.targetProfession) redirect("/account?needprofession=1");
   if (await mockShortfallFor(user)) redirect("/practice/mock?trialcap=1"); // RR-345 (D6): never start a mock the trial cannot finish
   const id = await startSession({
@@ -116,13 +134,16 @@ export async function continuePracticeChain(
   sessionId: string,
   opts: { restart?: boolean } = {},
 ): Promise<never> {
-  const user = await payingUser();
-
+  const user = await requireUser();
   const session = await getSessionView(sessionId, user.id);
   // A mock has no single task type to continue within; its chain is the plan.
   if (!session || session.mode !== "PRACTICE_SET" || session.attempts.length === 0) {
+    await admittedUser("MOCK"); // still guarded: a bad id is never a way in
     redirect("/practice");
   }
+  // The chain always opens a NEW set, so it is asked the same question as the
+  // "Start" button — a taste learner who has used this sub-test meets the paywall.
+  await admittedUser(OET_TASKS[session.attempts[0].taskType]?.subTest ?? "MOCK");
 
   const taskType = session.attempts[0].taskType;
   const view = await chainView({

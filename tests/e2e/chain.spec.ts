@@ -83,7 +83,7 @@ async function elementShot(page: Page, name: string, testId: string) {
 
 /** Strings a signed-in learner must never be shown. Hand-typed from the header
  *  Nasir screenshotted, not imported from the component. */
-const SIGNED_OUT_ONLY = ["Log in", "Start 7-day free trial"];
+const SIGNED_OUT_ONLY = ["Log in", "Try free for 48 hours"];
 
 async function signIn(page: Page) {
   await page.goto("/login");

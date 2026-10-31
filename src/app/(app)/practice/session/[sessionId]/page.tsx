@@ -5,6 +5,8 @@
 import { notFound, redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { hasPaidAccess } from "@/lib/billing/plans";
+import { isTasteActive, tasteEndsAt } from "@/lib/billing/taste";
+import { Paywall } from "@/components/oet/Paywall";
 import { getSessionView, advanceSession } from "@/lib/oet/session";
 import { continuePracticeChain } from "@/lib/oet/entry";
 import { chainView, libraryHrefFor } from "@/lib/oet/chain";
@@ -34,7 +36,17 @@ export default async function SessionPage({
   if (!session) notFound();
   /* RR-345 (D2): a session still in progress is the paid content itself — a lapsed plan goes to /pricing, as every other way in does
    * (entry.ts). A COMPLETED session stays readable: it is the learner's own result. */
-  if (session.status !== "COMPLETED" && !hasPaidAccess(user)) redirect("/pricing");
+  const paid = hasPaidAccess(user);
+  const sessionMode = session.mode; // a plain string for the server action below, never the whole row
+  // 48-hour taste: an unpaid learner may work through a PRACTICE set the taste
+  // door opened (lib/oet/entry.ts) while the 48 hours run — never a mock.
+  const tasteOpen = !paid && isTasteActive(user) && session.mode === "PRACTICE_SET";
+  if (session.status !== "COMPLETED" && !paid && !tasteOpen) {
+    redirect(`/pricing?locked=${tasteEndsAt(user) ? "expired" : "none"}`);
+  }
+  // Unpaid: the next set is locked, so the end of a set shows the paywall.
+  const lockedSubTest = session.attempts[0]?.subTest ?? null;
+  const nextLocked = paid ? null : <Paywall reason={isTasteActive(user) ? "USED" : "EXPIRED"} what={lockedSubTest} />;
 
   if (session.status === "COMPLETED") {
     // 🔴 THE CHAIN. A finished practice set now offers the NEXT exercise in the
@@ -72,6 +84,7 @@ export default async function SessionPage({
         attempts={session.attempts}
         chain={chain}
         continueAction={continueChain}
+        paywall={nextLocked}
       />
     );
   }
@@ -106,7 +119,8 @@ export default async function SessionPage({
     async function advance() {
       "use server";
       const u = await requireUser();
-      if (!hasPaidAccess(u)) redirect("/pricing"); // RR-345 (D2): no next item without a plan
+      // RR-345 (D2): no next item without a plan — or, for the 48-hour taste, inside the free practice set it opened
+      if (!hasPaidAccess(u) && !(isTasteActive(u) && sessionMode === "PRACTICE_SET")) redirect("/pricing?locked=expired");
       await advanceSession(sessionId, u.id);
       redirect(`/practice/session/${sessionId}`);
     }
@@ -148,7 +162,7 @@ export default async function SessionPage({
     return (
       <div className="mx-auto max-w-2xl space-y-6">
         <p className="text-xs font-bold uppercase tracking-wider text-almi-text-muted">{stepLabel}</p>
-        <OetResult def={def} item={current.item} attempt={current} variant="step" mode={session.mode} />
+        <OetResult def={def} item={current.item} attempt={current} variant="step" mode={session.mode} modelLocked={!paid} />
         <form action={advance}>
           <button
             type="submit"
@@ -158,9 +172,10 @@ export default async function SessionPage({
             {isLast ? "See results →" : "Next step →"}
           </button>
         </form>
-        {stepChain && (
+        {stepChain && paid && (
           <ChainNext chain={stepChain} continueAction={continueChainFromStep} tone="secondary" />
         )}
+        {!paid && isLast && nextLocked}
       </div>
     );
   }

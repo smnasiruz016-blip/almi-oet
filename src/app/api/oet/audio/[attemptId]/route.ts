@@ -15,6 +15,8 @@ import { join } from "node:path";
 import { z } from "zod";
 import { getCurrentUser } from "@/lib/auth";
 import { hasPaidAccess } from "@/lib/billing/plans";
+import { isTasteActive } from "@/lib/billing/taste";
+import { unlockLabel } from "@/lib/billing/offer";
 import { prisma } from "@/lib/prisma";
 import { synthesizeSpeech, synthesizeDialogue } from "@/lib/ai/openai";
 import { AUDIO_DIR, audioFileName, audioKey, stripLeadingLabel } from "@/lib/oet/audio";
@@ -59,17 +61,21 @@ export async function GET(
   // Card-first: the audio IS the Listening content. Ownership alone used to be
   // enough, so a free account holding an attempt could stream the whole bank.
   // Pre-rendering it with Piper removed the marginal cost, not the paywall.
-  if (!hasPaidAccess(user)) {
-    return NextResponse.json(
-      { ok: false, error: "Start your 7-day free trial to play this audio.", upgradeUrl: "/pricing" },
+  // 48-hour taste (31 Oct 2026): an unpaid learner hears only the recordings of
+  // a PRACTICE set the taste door opened, while the 48 hours run.
+  const paid = hasPaidAccess(user);
+  const locked = () =>
+    NextResponse.json(
+      { ok: false, error: `This recording is part of the full plan. ${unlockLabel()}.`, upgradeUrl: "/pricing" },
       { status: 402 },
     );
-  }
+  if (!paid && !isTasteActive(user)) return locked();
 
   const attempt = await prisma.oetAttempt.findFirst({
     where: { id: attemptId, userId: user.id },
     include: { item: true, session: { select: { mode: true } } },
   });
+  if (!paid && attempt?.session?.mode !== "PRACTICE_SET") return locked();
   if (!attempt || attempt.subTest !== "LISTENING") {
     return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });
   }

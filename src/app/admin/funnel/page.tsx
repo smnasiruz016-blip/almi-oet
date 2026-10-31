@@ -106,6 +106,27 @@ export default async function AdminFunnelPage({
         </section>
       )}
 
+      {/* The 48-hour taste (owner decision 31 Oct 2026). Distinct learners, not
+          events; the rate is null — a dash — when nobody started a taste. */}
+      <section data-testid="funnel-taste" className="mt-6 rounded-2xl border border-almi-bg-peach bg-almi-paper px-4 py-4">
+        <h2 className="text-sm font-semibold text-almi-ink">48-hour taste → paid</h2>
+        <p className="text-xs text-almi-text-muted">Distinct learners in this range.</p>
+        <ul className="mt-2 space-y-1">
+          {report.taste.map((t) => (
+            <li key={t.name} data-testid="funnel-taste-row" data-step={t.name} className="flex justify-between text-sm">
+              <span className="text-almi-text">{t.label}</span>
+              <span className="font-semibold text-almi-ink">{t.people}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-2 text-sm text-almi-ink">
+          Taste → paid:{" "}
+          <span data-testid="funnel-taste-rate" className="font-semibold">
+            {report.tasteToPaidPct === null ? "—" : `${report.tasteToPaidPct}%`}
+          </span>
+        </p>
+      </section>
+
       {/* Friction and churn are counted BESIDE the funnel, never inside it —
           folding them into the steps would make every rate above wrong. */}
       <section className="mt-6 grid gap-3 sm:grid-cols-2">

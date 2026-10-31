@@ -61,7 +61,7 @@ const PRICING_LINES = [
   "A 0–500 estimate and a grade of A, B, C+ or C per sub-test, shown as ranges",
   "All 12 professions — Nursing, Medicine, Pharmacy and more",
   "Original practice material — never copied from OET",
-  "$12/month with a 7-day free trial, cancel anytime",
+  "Try free for 48 hours — no card. Then $12/month, cancel anytime",
 ] as const;
 
 const FAQ = [
@@ -87,7 +87,7 @@ const FAQ = [
   },
   {
     q: "How much does AlmiOET cost?",
-    a: "$12 per month after a 7-day free trial, monthly only, cancel anytime. The trial needs a card and gives you all four sub-tests; during the trial, AI feedback is limited to 2 Writing and 2 Speaking evaluations. Cancel before day 7 and you are not charged.",
+    a: "Try free for 48 hours — no card: 1 Reading set and 1 Listening set with explanations, 1 AI-scored Writing letter, 1 Speaking role-play, and the lessons. Then $12 per month unlocks everything — every set, AI feedback on Writing and Speaking, full mocks, model letters and role-plays, and the full vocabulary. Monthly only, cancel anytime from your account.",
   },
 ] as const;
 
@@ -204,14 +204,14 @@ export default function Home() {
                 href="/signup"
                 className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-almi-coral/30"
               >
-                Start 7-day free trial
+                Try free for 48 hours — no card
               </Link>
               <Link href="/login" className="text-sm font-medium text-almi-coral hover:underline">
                 Already have an account? Log in →
               </Link>
             </div>
             <p className="mt-4 text-sm text-almi-text-muted">
-              $12/month after a 7-day free trial, cancel anytime · All four sub-tests · Original material, never copied from OET
+              Try free for 48 hours — then $12/month, cancel anytime · All four sub-tests · Original material, never copied from OET
             </p>
             {/* RR-345: the true counts, read from the live bank (hourly) — never a typed number */}
             <ContentCounts className="mt-3 text-base" />
@@ -308,7 +308,7 @@ export default function Home() {
       <section className="border-t border-almi-bg-peach bg-almi-paper px-6 py-16">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-semibold text-almi-ink">Simple, honest pricing</h2>
-          <p className="mt-3 text-xl font-semibold text-almi-ink">$12/month — 7-day free trial, cancel anytime.</p>
+          <p className="mt-3 text-xl font-semibold text-almi-ink">Try free for 48 hours — then $12/month, cancel anytime.</p>
           <ul className="mx-auto mt-6 max-w-xl space-y-2 text-left text-sm text-almi-text">
             {PRICING_LINES.map((line) => (
               <li key={line} className="flex items-start gap-2">
@@ -319,7 +319,7 @@ export default function Home() {
           </ul>
           <div className="mt-8">
             <Link href="/signup" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep">
-              Start 7-day free trial
+              Try free for 48 hours — no card
             </Link>
           </div>
           <p className="mt-4 text-sm text-almi-text-muted">
@@ -351,12 +351,12 @@ export default function Home() {
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-semibold text-almi-ink">Practise honestly. Walk in ready.</h2>
           <p className="mt-3 text-base text-almi-text">
-            Real OET sub-tests, honest per-sub-test estimates, original material — for $12/month with a
-            7-day free trial.
+            Real OET sub-tests, honest per-sub-test estimates, original material. Try free for 48 hours —
+            no card — then $12/month.
           </p>
           <div className="mt-8">
             <Link href="/signup" className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep">
-              Start 7-day free trial
+              Try free for 48 hours — no card
             </Link>
           </div>
         </div>

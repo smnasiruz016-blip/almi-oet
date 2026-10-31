@@ -5,9 +5,12 @@ import { useState } from "react";
 export function PricingCheckoutButton({
   plan,
   disabled,
+  label = "Unlock everything — $12/month",
 }: {
   plan: "monthly" | "yearly";
   disabled?: boolean;
+  /** Server callers pass unlockLabel() from lib/billing/offer.ts. */
+  label?: string;
 }) {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -43,7 +46,7 @@ export function PricingCheckoutButton({
         className="inline-flex w-full min-h-[44px] items-center justify-center bg-almi-coral px-6 py-3 text-sm font-semibold text-almi-ink hover:bg-almi-coral-deep disabled:opacity-60"
         style={{ borderRadius: 9999 }}
       >
-        {loading ? "Starting…" : disabled ? "Checkout unavailable" : "Start 7-day free trial"}
+        {loading ? "Starting…" : disabled ? "Checkout unavailable" : label}
       </button>
       {err && <p className="mt-2 text-xs text-almi-coral-deep">{err}</p>}
     </div>

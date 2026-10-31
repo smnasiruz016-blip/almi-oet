@@ -4,10 +4,8 @@ import { priceIdToPlanLabel, STRIPE_PRICE_MONTHLY, STRIPE_PRICE_YEARLY } from "@
 import { ensureOetPortalConfig } from "@/lib/billing/portal-config";
 import { OFFER } from "@/lib/billing/offer";
 
-/** The free-trial length, in days — now sourced from the OFFER config so trial
- *  length, price and caps all move together. Still EXPORTED, because
- *  gate:claims checks the public copy against the very value Stripe is handed
- *  at checkout, and a gate reading its own copy of a number proves nothing. */
+/** The OLD trial length, in days. By the owner's decision new checkouts carry
+ *  no trial (see createCheckoutSession); it describes only trials already running. */
 export const TRIAL_PERIOD_DAYS = OFFER.trialDays;
 
 let cachedClient: Stripe | null = null;
@@ -81,10 +79,11 @@ export async function createCheckoutSession(input: {
 
   const baseUrl = getPublicBaseUrl();
   const stripe = getStripeClient();
-  /* RR-345 (D4): the free week is ONCE per learner — a customer who ever had an AlmiOET subscription (any status, cancelled too)
-   * subscribes without a new trial. Asked of Stripe itself, so no stored flag can drift from the truth. */
-  const earlier = await stripe.subscriptions.list({ customer: customerId, status: "all", limit: 1 });
-  const trialAllowed = earlier.data.length === 0;
+  /* 🔴 OWNER DECISION 31 Oct 2026 — DIRECT SELLING: NO NEW CHECKOUT CARRIES A TRIAL.
+   * `subscription_data` names no trial_period_days and no trial_end, and does not set trial_from_plan, so Stripe charges
+   * at checkout. The free try is now the no-card 48-hour taste inside the app (lib/billing/taste.ts). RR-345 (D4)'s
+   * "one trial per customer" still holds — trivially: no customer can be handed a trial here at all. Trials that were
+   * already running keep their days; this code never touches an existing subscription. */
   const session = await stripe.checkout.sessions.create({
     mode: "subscription",
     customer: customerId,
@@ -94,7 +93,6 @@ export async function createCheckoutSession(input: {
     // into a no-card trial without a line of code moving.
     payment_method_collection: "always",
     subscription_data: {
-      ...(trialAllowed ? { trial_period_days: TRIAL_PERIOD_DAYS } : {}),
       metadata: { userId: input.userId, plan: planLabel, product: "almi-oet" },
     },
     metadata: { userId: input.userId, plan: planLabel, product: "almi-oet" },

@@ -17,6 +17,8 @@
 import { notFound } from "next/navigation";
 import { requireUser } from "@/lib/auth";
 import { hasPaidAccess } from "@/lib/billing/plans";
+import { isTasteActive, tasteState, tasteVerdict } from "@/lib/billing/taste";
+import { Paywall, type PaywallReason } from "@/components/oet/Paywall";
 import { PRACTICE_SET_STEPS } from "@/lib/oet/session";
 import { beginPracticeSession } from "@/lib/oet/entry";
 import { taskBySlug } from "@/lib/oet/registry";
@@ -56,6 +58,12 @@ export default async function TaskStartPage({
 
   const isObjective = def.scoringMode === "DETERMINISTIC";
   const needsPaid = !hasPaidAccess(user);
+  // 48-hour taste: asked with the SAME pure verdict the door uses (lib/oet/entry.ts),
+  // so this page never offers a Start the door would refuse.
+  const tasteVerdictHere = needsPaid
+    ? tasteVerdict({ user, target: def.subTest, state: isTasteActive(user) ? await tasteState(user.id) : null })
+    : null;
+  const tasteLock: PaywallReason | null = tasteVerdictHere?.kind === "LOCKED" ? tasteVerdictHere.reason : null;
 
   // 🔴 THE BROWSABLE LIST. Every exercise this learner can be given, from the
   // database, at request time — the same pool the picker draws from and the same
@@ -108,13 +116,9 @@ export default async function TaskStartPage({
             , and “Next exercise →” at the end carries straight on through the list.
           </p>
 
-          {needsPaid ? (
-            <div className="mt-4 rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink">
-              Practice is part of a subscription, and the 7-day trial is free.{" "}
-              <a href="/pricing" className="font-semibold underline">
-                See plans
-              </a>{" "}
-              — the 7-day trial covers all four sub-tests.
+          {tasteLock ? (
+            <div className="mt-4">
+              <Paywall reason={tasteLock} what={def.subTest} />
             </div>
           ) : (
             <form action={beginAction} className="mt-4">
@@ -124,8 +128,14 @@ export default async function TaskStartPage({
                 type="submit"
                 className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-almi-coral px-7 py-3 text-base font-semibold text-almi-ink hover:bg-almi-coral-deep"
               >
-                Start a set of {setSize} →
+                {tasteVerdictHere?.kind === "RESUME" ? "Continue your free set →" : `Start a set of ${setSize} →`}
               </button>
+              {tasteVerdictHere && (
+                <p data-taste-note className="mt-2 text-xs text-almi-text-muted">
+                  Free in your 48 hours: 1 {isObjective ? `${SUBTEST_LABEL[def.subTest]} set` : `${SUBTEST_LABEL[def.subTest]} task`}, with
+                  {isObjective ? " explanations" : " feedback"}.
+                </p>
+              )}
             </form>
           )}
         </div>
@@ -136,6 +146,8 @@ export default async function TaskStartPage({
           rows={pool}
           taskSlug={def.slug}
           professionSlug={professionDef.slug}
+          // The taste starts ONE set per sub-test from the button above; picking
+          // a row is a paid-plan feature (it would also be a second set).
           beginAction={needsPaid ? undefined : beginAction}
         />
       </div>

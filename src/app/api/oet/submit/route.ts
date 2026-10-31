@@ -14,6 +14,8 @@ import { Prisma } from "@prisma/client";
 import { getCurrentUser } from "@/lib/auth";
 import { hasPaidAccess, isComped } from "@/lib/billing/plans";
 import { trialAiAllowance } from "@/lib/billing/trial-limits";
+import { isTasteActive, tasteMayScore } from "@/lib/billing/taste";
+import { unlockLabel } from "@/lib/billing/offer";
 import { isOwner } from "@/lib/auth/owner-check";
 import { prisma } from "@/lib/prisma";
 import { OET_HANDLERS } from "@/lib/oet/registry";
@@ -104,13 +106,37 @@ export async function POST(req: Request): Promise<NextResponse> {
   // Objective auto-marking used to be free and uncapped, which meant the whole
   // Listening and Reading bank could be worked through without ever adding a
   // card. The trial is the free tier now.
-  if (!hasPaidAccess(user)) {
+  //
+  // 48-hour taste (owner decision 31 Oct 2026): an unpaid learner may be scored
+  // inside a PRACTICE set the taste door opened, while the 48 hours run — and,
+  // for the AI tasks, only up to the taste's one evaluation per sub-test. That
+  // second check is the money guard behind the door: posting straight to this
+  // route can never buy a second Writing or Speaking evaluation.
+  const paid = hasPaidAccess(user);
+  let tasteOk = false;
+  if (!paid && isTasteActive(user)) {
+    const session = attempt.sessionId
+      ? await prisma.oetSession.findFirst({ where: { id: attempt.sessionId, userId: user.id }, select: { mode: true } })
+      : null;
+    const scoredOfThisSubTest =
+      handler.mode === "AI"
+        ? await prisma.oetAttempt.count({ where: { userId: user.id, subTest: attempt.subTest, status: "SCORED" } })
+        : 0;
+    tasteOk = tasteMayScore({
+      user,
+      sessionMode: session?.mode ?? null,
+      subTest: attempt.subTest,
+      isAi: handler.mode === "AI",
+      scoredOfThisSubTest,
+    });
+  }
+  if (!paid && !tasteOk) {
     // Demand meeting the wall. Fired HERE, where the refusal happens.
     track("paywall_blocked", { userId: user.id, taskType: attempt.taskType });
     return NextResponse.json(
       {
         ok: false,
-        error: "Start your 7-day free trial to score this task.",
+        error: `This is part of the full plan. ${unlockLabel()}.`,
         upgradeUrl: "/pricing",
       },
       { status: 402 },

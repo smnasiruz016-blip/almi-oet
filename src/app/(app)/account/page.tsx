@@ -18,7 +18,10 @@ import {
   PLAN_DISPLAY_NAME,
   isProActive,
   isEmailVerified,
+  hasPaidAccess,
 } from "@/lib/billing/plans";
+import { tasteEndsAt } from "@/lib/billing/taste";
+import { TasteStatus } from "@/components/oet/TasteStatus";
 import { ResendVerificationButton } from "@/components/ResendVerificationButton";
 import { getMyReview } from "@/lib/reviews";
 import { ReviewCard } from "@/components/reviews/ReviewCard";
@@ -43,6 +46,7 @@ export default async function AccountPage({
   const params = await searchParams;
   const plan = getUserPlan(user);
   const proActive = isProActive(user);
+  const paidAccess = hasPaidAccess(user);
   const verified = isEmailVerified(user);
   const myReview = await getMyReview();
 
@@ -50,12 +54,14 @@ export default async function AccountPage({
     <div className="space-y-8">
       {params.welcome && (
         <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/10 px-4 py-3 text-sm text-almi-ink">
-          Welcome, {user.name ?? "friend"}. Check your inbox for the verification link.
+          Welcome, {user.name ?? "friend"}. Your free 48 hours have started — no card.{" "}
+          <Link href="/practice" className="font-semibold underline">Start practising →</Link>{" "}
+          Check your inbox for the verification link: AI feedback needs a verified email.
         </div>
       )}
       {params.upgraded && (
         <div className="rounded-xl border border-almi-teal/30 bg-almi-teal/10 px-4 py-3 text-sm text-almi-ink">
-          Subscription active.{user.subscriptionStatus === "trialing" ? " Your 7-day trial has begun." : ""}
+          Subscription active.{user.subscriptionStatus === "trialing" ? " Your free trial is running." : " Everything is unlocked."}
         </div>
       )}
       {/* RR-345: the portal route's failure was redirected here and shown nowhere */}
@@ -118,13 +124,18 @@ export default async function AccountPage({
               </button>
             </form>
           )}
+          {!proActive && !paidAccess && tasteEndsAt(user) && (
+            <div className="w-full">
+              <TasteStatus user={user} />
+            </div>
+          )}
           {!proActive && (
             <Link
               href="/pricing"
               className="inline-flex min-h-[40px] items-center justify-center bg-almi-coral px-4 py-2 text-sm font-semibold text-almi-ink hover:bg-almi-coral-deep"
               style={{ borderRadius: 6 }}
             >
-              View plans
+              Unlock everything — $12/month
             </Link>
           )}
         </div>
@@ -147,7 +158,7 @@ export default async function AccountPage({
         {!verified && (
           <>
             <p className="mt-3 text-sm text-almi-text-muted">
-              Didn&apos;t get the link? Resend it — paid features stay locked until your email is verified.
+              Didn&apos;t get the link? Resend it — AI feedback and checkout need a verified email.
             </p>
             <ResendVerificationButton email={user.email} />
           </>

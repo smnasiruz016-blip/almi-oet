@@ -45,9 +45,33 @@
 import type { OetTaskType } from "@prisma/client";
 
 export const OFFER = {
-  /** Free-trial length in days. Handed to Stripe at checkout, and the number the
-   *  public pages must print. */
+  /** 🔴 OWNER DECISION 31 Oct 2026 — DIRECT SELLING. The 7-day card trial is
+   *  CLOSED to new checkouts: Stripe is no longer handed a trial (stripe.ts).
+   *  This value now describes only the trials that were ALREADY running on that
+   *  date — they keep their days (hasPaidAccess still admits "trialing") and
+   *  their AI caps below. No public page may print it any more; gate:claims
+   *  refuses any "N-day trial" copy. */
   trialDays: 7,
+
+  /** The no-card taste that replaced the trial for new sign-ups. It starts at
+   *  sign-up (User.createdAt) and lasts this many hours. lib/billing/taste.ts
+   *  is the one place it is decided; gate:claims holds the copy to this number. */
+  tasteHours: 48,
+
+  /** What the taste may START, per sub-test, over its whole 48 hours.
+   *  A Reading or Listening "set" is one practice session (PRACTICE_SET_STEPS
+   *  items, with explanations); Writing and Speaking are one AI-scored item each.
+   *  NOT in the taste: the full mock, model letters / model role-plays, more
+   *  sets, and vocabulary beyond `tasteVocabularySample` entries. */
+  tasteLimits: {
+    READING: 1,
+    LISTENING: 1,
+    WRITING: 1,
+    SPEAKING: 1,
+  } as const,
+
+  /** Vocabulary entries per tab a taste (or any unpaid) learner sees. */
+  tasteVocabularySample: 8,
 
   /** The advertised monthly price, in cents.
    *
@@ -72,8 +96,15 @@ export const OFFER = {
   } as Partial<Record<OetTaskType, number>>,
 } as const;
 
-/** The trial length as the public copy writes it, e.g. "7-day free trial". */
-export const trialLabel = (): string => `${OFFER.trialDays}-day free trial`;
+/** The taste as the public copy writes it: "Try free for 48 hours — no card". */
+export const tasteLabel = (): string => `Try free for ${OFFER.tasteHours} hours — no card`;
+
+/** The CTA the owner fixed for SEO pages and anywhere both halves fit. */
+export const tasteThenPriceLabel = (): string =>
+  `Try free for ${OFFER.tasteHours} hours — then ${priceMonthlyLabel()}`;
+
+/** The paywall button: "Unlock everything — $12/month". */
+export const unlockLabel = (): string => `Unlock everything — ${priceMonthlyLabel()}`;
 
 /** The monthly price as the public copy writes it, e.g. "$12/month". */
 export const priceMonthlyLabel = (): string =>

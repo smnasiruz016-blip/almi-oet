@@ -9,6 +9,7 @@ import { prisma } from "@/lib/prisma";
 import { hasPaidAccess } from "@/lib/billing/plans";
 import { beginMockSession } from "@/lib/oet/entry";
 import { mockShortfallFor } from "@/lib/billing/mock-trial";
+import { Paywall } from "@/components/oet/Paywall";
 
 async function startMockAction() {
   "use server";
@@ -53,19 +54,14 @@ export default async function MockStartPage() {
         </p>
       </div>
 
-      {needsProfession ? (
+      {needsPaid ? (
+        // 48-hour taste: the full mock is never in it — show what unlocks it, and the button.
+        <Paywall reason="MOCK" />
+      ) : needsProfession ? (
         <div className="rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink">
           Choose your healthcare profession first so the Writing and Speaking tasks match your field.{" "}
           <a href="/account" className="font-semibold underline">
             Set your profession
-          </a>
-          .
-        </div>
-      ) : needsPaid ? (
-        <div className="rounded-xl border border-almi-accent/40 bg-almi-accent/10 px-4 py-3 text-sm text-almi-ink">
-          The full mock includes AI feedback and is part of a subscription.{" "}
-          <a href="/pricing" className="font-semibold underline">
-            See plans
           </a>
           .
         </div>

@@ -121,6 +121,26 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session): Promis
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
   await syncSubscriptionToUser(userId, subscription);
 
+  // 48-hour taste → paid (owner decision 31 Oct 2026). New checkouts carry no
+  // trial, so a completed checkout whose subscription is ACTIVE is money taken.
+  // Once per checkout (this handler is idempotency-guarded). Never allowed to
+  // fail the webhook: a lost analytics row must not make Stripe re-deliver.
+  if (subscription.status === "active") {
+    try {
+      const practised = await prisma.oetSession.count({ where: { userId } });
+      const priceId = subscription.items.data[0]?.price.id;
+      track("paid_after_taste", {
+        userId,
+        planLabel: priceId ? priceIdToPlanLabel(priceId) : null,
+        tasted: practised > 0,
+      });
+    } catch (err) {
+      console.error(`${logPrefix()} paid_after_taste not recorded`, {
+        message: err instanceof Error ? err.message : String(err),
+      });
+    }
+  }
+
   // Subscription confirmation email — fires once per checkout (this event is
   // idempotency-guarded by alreadyProcessed/markProcessed). Fire-and-forget so
   // a mail failure never 500s the webhook and triggers a Stripe re-delivery.
