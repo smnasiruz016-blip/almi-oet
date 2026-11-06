@@ -15,7 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = visibilityPage(slug);
   if (!p) return {};
-  return { title: { absolute: p.title }, description: p.description ?? undefined, alternates: p.canonical ? { canonical: p.canonical } : undefined };
+  // RR-378: a page marked noindex is read by visitors and its links followed, but it is not listed in search
+  return { title: { absolute: p.title }, description: p.description ?? undefined, alternates: p.canonical ? { canonical: p.canonical } : undefined, ...(p.noindex ? { robots: { index: false, follow: true } } : {}) };
 }
 
 export default async function VisibilityPageRoute({ params }: { params: Promise<{ slug: string }> }) {

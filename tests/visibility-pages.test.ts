@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { mkdtempSync, mkdirSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { readVisibilityPage, visibilitySlugs, visibilityPage } from "@/lib/visibility-pages";
+import { readVisibilityPage, visibilitySlugs, visibilityPage, indexableVisibilitySlugs } from "@/lib/visibility-pages";
 
 const PAGE = `<!doctype html><html lang="en"><head><title>A test page about fees</title><meta name="description" content="Fees &amp; centres, in short.">
 <link rel="canonical" href="https://example.test/a-test-page"><script type="application/ld+json">{"@type":"Article"}</script><script>alert(1)</script></head>
@@ -48,5 +48,24 @@ describe("visibilitySlugs / visibilityPage", () => {
     expect(visibilitySlugs(root)).toEqual(["oet-in-pakistan"]);
     expect(visibilityPage("oet-in-pakistan", root)?.title).toBe("A test page about fees");
     expect(visibilityPage("empty-folder", root)).toBeNull();
+  });
+});
+
+// RR-378 (owner, 6 Nov 2026): a page that needs more answers is on the site for visitors, noindex,follow, and not in the sitemap
+const THIN = PAGE.replace('<link rel="canonical"', '<meta name="robots" content="noindex,follow"><link rel="canonical"');
+describe("a page marked noindex (RR-378)", () => {
+  it("is read as noindex only when its own robots line says so", () => {
+    expect(readVisibilityPage("a-test-page", THIN)?.noindex).toBe(true);
+    expect(readVisibilityPage("a-test-page", PAGE)?.noindex).toBe(false);
+    expect(readVisibilityPage("a-test-page", PAGE.replace('<link rel="canonical"', '<meta name="robots" content="index,follow"><link rel="canonical"'))?.noindex).toBe(false);
+  });
+  it("is still a page for visitors, and is left out of the sitemap's slugs while the other stays in", () => {
+    const root = mkdtempSync(join(tmpdir(), "vp-"));
+    for (const [slug, html] of [["thin-page", THIN], ["full-page", PAGE]] as const) { mkdirSync(join(root, "visibility-pages", slug), { recursive: true }); writeFileSync(join(root, "visibility-pages", slug, "index.html"), html); }
+    expect(visibilitySlugs(root)).toEqual(["full-page", "thin-page"]);
+    expect(visibilityPage("thin-page", root)?.main).toContain("Body text.");
+    expect(indexableVisibilitySlugs(root)).toEqual(["full-page"]);
+    writeFileSync(join(root, "visibility-pages", "thin-page", "index.html"), PAGE); // a later build with enough answers drops the mark
+    expect(indexableVisibilitySlugs(root)).toEqual(["full-page", "thin-page"]);
   });
 });
