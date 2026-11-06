@@ -1,5 +1,5 @@
 import { SITE_URL } from "@/lib/site-url";
-import { visibilitySlugs } from "@/lib/visibility-pages";
+import { indexableVisibilitySlugs } from "@/lib/visibility-pages";
 
 // The site's own public pages, as their own child sitemap, listed in /sitemap-index.xml beside the guides.
 // Only a page that answers 200 to a visitor with no session, and is indexable, belongs here. Today that is the
@@ -11,8 +11,9 @@ const SITE_PAGE_PATHS = ["/", "/pricing"] as const;
 export const dynamic = "force-static";
 
 export function GET(): Response {
-  // RR-355: and each page AlmiVisibility published into visibility-pages/ (served at /<slug> by src/app/(visibility)/[slug])
-  const urls = [...SITE_PAGE_PATHS, ...visibilitySlugs().map((slug) => `/${slug}`)].map(
+  // RR-355: and each page AlmiVisibility published into visibility-pages/ (served at /<slug> by src/app/(visibility)/[slug]);
+  // RR-378: except a page marked noindex (it needs more answers) — it is listed once a later version drops the mark
+  const urls = [...SITE_PAGE_PATHS, ...indexableVisibilitySlugs().map((slug) => `/${slug}`)].map(
     (path) => `  <url>\n    <loc>${SITE_URL}${path}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>`,
   ).join("\n");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
