@@ -17,8 +17,9 @@ export const metadata: Metadata = {
 };
 
 /** RR-386: Product + Offer structured data. The price is read from OFFER.priceMonthlyCents (src/lib/billing/offer.ts),
- *  the same figure gate:claims holds the copy to — never typed here. 🔴 No priceCurrency: the code says "$" and never
- *  names a currency (the Stripe price object holds it), so naming one here would be a guess. Add it only from the source. */
+ *  the same figure gate:claims holds the copy to — never typed here. RR-386b: the owner confirmed (7 Nov 2026) the
+ *  offer "Try free for 48 hours, then $12/month": price 12, currency USD, monthly. */
+const PRICE = String(OFFER.priceMonthlyCents / 100); // "12"
 const PRICING_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -30,10 +31,12 @@ const PRICING_JSON_LD = {
   offers: {
     "@type": "Offer",
     url: "https://almioet.almiworld.com/pricing",
-    price: (OFFER.priceMonthlyCents / 100).toFixed(2),
+    price: PRICE,
+    priceCurrency: "USD",
     priceSpecification: {
       "@type": "UnitPriceSpecification",
-      price: (OFFER.priceMonthlyCents / 100).toFixed(2),
+      price: PRICE,
+      priceCurrency: "USD",
       referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
     },
   },
