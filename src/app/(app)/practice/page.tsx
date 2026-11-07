@@ -39,6 +39,7 @@
 // without the parameter — this defect existed because nothing read it, so a
 // fix nothing tests is the same defect with better intentions.
 
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth";
@@ -47,6 +48,14 @@ import { tasteEndsAt } from "@/lib/billing/taste";
 import { TasteStatus } from "@/components/oet/TasteStatus";
 import { PROFESSION_LIST } from "@/lib/oet/professions";
 import { parseProfession, setTargetProfession } from "@/lib/oet/set-profession";
+
+// RR-386: its own title (it used to inherit the root default), kept out of search; links still followed.
+export const metadata: Metadata = {
+  title: "Practice — choose your profession",
+  description: "Choose your healthcare profession and practise the four OET sub-tests.",
+  alternates: { canonical: "/practice" },
+  robots: { index: false, follow: true },
+};
 
 // The same field /account writes, through the same function, so the two can
 // never store different shapes of the same answer.

@@ -25,6 +25,8 @@ export const metadata: Metadata = {
   },
   description:
     "OET practice on the real 0–500 scale with a grade of A, B, C+ or C per sub-test — see if you're Clear or Borderline before exam day. All 12 healthcare professions. Original material.",
+  // RR-386: resolved against the root layout's metadataBase (the live domain).
+  alternates: { canonical: "/" },
   openGraph: {
     title: "AlmiOET — honest Occupational English Test practice for healthcare",
     description:
