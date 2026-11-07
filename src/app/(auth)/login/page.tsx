@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+
+// RR-386: its own title (it used to inherit the root default), kept out of search; links still followed.
+export const metadata: Metadata = {
+  title: "Log in",
+  description: "Log in to AlmiOET to continue your OET practice.",
+  alternates: { canonical: "/login" },
+  robots: { index: false, follow: true },
+};
 import { createSession, getCurrentUser, verifyPassword } from "@/lib/auth";
 
 async function loginAction(formData: FormData) {

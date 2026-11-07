@@ -6,11 +6,40 @@ import { isBillingEnabled, isProActive } from "@/lib/billing/plans";
 import { PricingCheckoutButton } from "./PricingCheckoutButton";
 import { track } from "@/lib/analytics/track";
 import { ContentCounts } from "@/components/oet/ContentCounts";
+import { OFFER } from "@/lib/billing/offer";
 
 export const metadata: Metadata = {
   title: "Pricing — try free for 48 hours",
   description:
     "AlmiOET Pro — try free for 48 hours, no card, then $12/month, cancel anytime. Honest AI feedback on the OET Writing letter and Speaking role-plays, full-length practice, and per-sub-test estimates on the 0–500 scale, graded A, B, C+ or C.",
+  // RR-386: resolved against the root layout's metadataBase (the live domain).
+  alternates: { canonical: "/pricing" },
+};
+
+/** RR-386: Product + Offer structured data. The price is read from OFFER.priceMonthlyCents (src/lib/billing/offer.ts),
+ *  the same figure gate:claims holds the copy to — never typed here. RR-386b: the owner confirmed (7 Nov 2026) the
+ *  offer "Try free for 48 hours, then $12/month": price 12, currency USD, monthly. */
+const PRICE = String(OFFER.priceMonthlyCents / 100); // "12"
+const PRICING_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "AlmiOET Pro",
+  description:
+    "Occupational English Test practice: AI feedback on the Writing letter and Speaking role-plays, full-length practice across all four sub-tests, and per-sub-test estimates on the 0–500 scale.",
+  brand: { "@type": "Brand", name: "AlmiWorld" },
+  url: "https://almioet.almiworld.com/pricing",
+  offers: {
+    "@type": "Offer",
+    url: "https://almioet.almiworld.com/pricing",
+    price: PRICE,
+    priceCurrency: "USD",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: PRICE,
+      priceCurrency: "USD",
+      referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+    },
+  },
 };
 
 const FEATURES = [
@@ -37,6 +66,7 @@ export default async function PricingPage({
 
   return (
     <div className="flex flex-1 flex-col bg-almi-bg">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(PRICING_JSON_LD) }} />
       <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
         <div className="text-center">
           <h1 className="text-4xl font-semibold text-almi-ink">Try free for 48 hours. Then $12/month.</h1>

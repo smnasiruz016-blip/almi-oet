@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createHash, randomBytes } from "crypto";
+
+// RR-386: its own title (it used to inherit the root default), kept out of search; links still followed.
+export const metadata: Metadata = {
+  title: "Create your account",
+  description: "Create your AlmiOET account to start OET practice.",
+  alternates: { canonical: "/signup" },
+  robots: { index: false, follow: true },
+};
 import { prisma } from "@/lib/prisma";
 import { createSession, getCurrentUser, hashPassword } from "@/lib/auth";
 import { sendEmailVerification } from "@/lib/email";
