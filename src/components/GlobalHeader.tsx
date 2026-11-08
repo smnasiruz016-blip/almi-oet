@@ -1,7 +1,7 @@
-// AlmiOET-branded header — own wordmark + the family sibling nav + product entry
-// points. Desktop uses the grouped 2-row layout (Nav Task 1): row 1 = family strip
-// (canonical names, overflow behind "More ▾"), row 2 = product links + CTA. Family
-// labels come from the canonical single source (src/lib/nav/family.ts).
+// AlmiOET header. RR-398: on top, the AlmiWorld family bar (logo + Home to almiworld.com, and the same menus as
+// almiworld.com) from the one generated kit (src/components/almiworld/, made by almiworld-site/tools/make-family-kit.mjs);
+// under it AlmiOET's own wordmark, Practice, Log in and its own button. The old family strip (with its eBooks and
+// WordPress links) is gone.
 //
 // ── 🔴 THE HEADER NOW KNOWS WHETHER SOMEONE IS SIGNED IN ────────────────────
 //
@@ -40,14 +40,9 @@
 // asserts the split so nobody has to guess which pages are which.
 
 import Link from "next/link";
-import { familyStrip } from "@/lib/nav/family";
 import { logoutAction } from "@/lib/auth/logout-action";
-import { FamilyNav } from "./nav/FamilyNav";
+import { AlmiWorldBar } from "@/components/almiworld/AlmiWorldBar";
 import { HeaderMobileMenu } from "./HeaderMobileMenu";
-
-// The family strip for this repo = every product except AlmiOET (its own brand
-// wordmark is OET's home) + the network links. Sourced from the canonical list.
-export const FAMILY_NAV = familyStrip("oet");
 
 export type NavItem = { label: string; href: string };
 
@@ -100,6 +95,7 @@ export function GlobalHeader({
       data-signed-in={signedIn ? "true" : "false"}
       className="sticky top-0 z-40 border-b border-almi-bg-peach bg-almi-bg/95 backdrop-blur"
     >
+      <AlmiWorldBar />
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <Link
           href="/"
@@ -110,9 +106,8 @@ export function GlobalHeader({
           <span className="text-xl font-semibold tracking-tight text-almi-ink">AlmiOET</span>
         </Link>
 
-        {/* Desktop: grouped 2-row — family strip on top, product actions below. */}
+        {/* Desktop: AlmiOET's own actions (the family menus are in the AlmiWorld bar above). */}
         <div className="hidden flex-1 flex-col items-end gap-2 lg:flex">
-          <FamilyNav items={FAMILY_NAV} />
           <div className="flex items-center gap-x-4">
             {productNav.map((item) => (
               <Link
