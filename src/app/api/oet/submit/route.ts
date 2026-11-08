@@ -15,6 +15,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { hasPaidAccess, isComped } from "@/lib/billing/plans";
 import { trialAiAllowance } from "@/lib/billing/trial-limits";
 import { isTasteActive, tasteMayScore } from "@/lib/billing/taste";
+import { freeAiAllowedToday, FREE_AI_BUSY_MESSAGE } from "@/lib/billing/free-ai-budget";
 import { unlockLabel } from "@/lib/billing/offer";
 import { isOwner } from "@/lib/auth/owner-check";
 import { prisma } from "@/lib/prisma";
@@ -139,6 +140,18 @@ export async function POST(req: Request): Promise<NextResponse> {
         error: `This is part of the full plan. ${unlockLabel()}.`,
         upgradeUrl: "/pricing",
       },
+      { status: 402 },
+    );
+  }
+
+  // RR-397: the network's free-AI budget. An unpaid taste learner's Writing or
+  // Speaking evaluation is sent to AI only while today's free-AI spend (this
+  // product's AICostLedger, free accounts only) is under AlmiOET's share. When it
+  // is used up, the honest busy message, and no AI call. Paid learners (and
+  // running card trials) never reach this check.
+  if (!paid && tasteOk && handler.mode === "AI" && !(await freeAiAllowedToday())) {
+    return NextResponse.json(
+      { ok: false, error: FREE_AI_BUSY_MESSAGE, reason: "BUDGET", upgradeUrl: "/pricing" },
       { status: 402 },
     );
   }
