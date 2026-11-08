@@ -28,7 +28,7 @@
  * on purpose: a comped account and the owner must not need a verified email or a
  * live subscription. These tests record that order rather than questioning it.
  */
-import { describe, expect, it, vi, beforeEach } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import type { User } from "@prisma/client";
 
 const NOW = Date.now();
@@ -98,6 +98,15 @@ describe("isProActive — every edge, and it had none before", () => {
 });
 
 describe("comp duration — three points around the expiry instant", () => {
+  // The clock is frozen at NOW: NOW is read when the file loads, and on a slow CI runner more than
+  // a second passed before this ran, so "NOW + 1000" was already in the past (red on main and #156).
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ["Date"], now: NOW });
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it("expired yesterday -> not comped, no days remaining", () => {
     const u = user({ compProUntil: new Date(NOW - 864e5) });
     expect(isComped(u)).toBe(false);

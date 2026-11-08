@@ -4,7 +4,9 @@ export const ALMIWORLD_FAMILY = {
   "generatedFrom": "almiworld-site app/layout.jsx + lib/products.mjs (RR-398)",
   "home": "https://almiworld.com/",
   "logo": {
-    "src": "https://almiworld.com/wp-content/uploads/2026/04/almi-latest.webp",
+    // RR-400: served from this product (public/almiworld/, a byte copy of almiworld.com's almi-latest.webp). The hot-linked
+    // address 307-redirects to www.almiworld.com, which the CSP img-src blocked (console error, best practices 93).
+    "src": "/almiworld/almi-latest.webp",
     "alt": "AlmiWorld — live beautifully",
     "width": 132,
     "height": 88

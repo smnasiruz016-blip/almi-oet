@@ -16,6 +16,7 @@ import { hasPaidAccess, isComped } from "@/lib/billing/plans";
 import { trialAiAllowance } from "@/lib/billing/trial-limits";
 import { isTasteActive, tasteMayScore } from "@/lib/billing/taste";
 import { freeAiAllowedToday, FREE_AI_BUSY_MESSAGE } from "@/lib/billing/free-ai-budget";
+import { claimFreeAi, releaseFreeAi, type FreeAiKind } from "@/lib/billing/free-ai-claim";
 import { unlockLabel } from "@/lib/billing/offer";
 import { isOwner } from "@/lib/auth/owner-check";
 import { prisma } from "@/lib/prisma";
@@ -232,6 +233,36 @@ export async function POST(req: Request): Promise<NextResponse> {
     }
   }
 
+  // ── RR-399 A3 · THE TASTE'S ONE AI EVALUATION IS RESERVED ATOMICALLY ───────
+  //
+  // tasteMayScore() above counts SCORED attempts, and two requests at the same
+  // moment could both see "0 scored" and both reach the model. So an unpaid taste
+  // learner's AI-scored Writing letter or Speaking role-play is RESERVED here, as
+  // the last step before the first paid call: one INSERT on the unique (userId,
+  // kind), which only one request can win. The loser gets the same 402 as a used
+  // taste. If the AI call then fails, the reservation is released below, so a
+  // failed scoring does not use up the taste. Before the FreeAiUse migration is
+  // run, the claim answers UNAVAILABLE and the count above stands, unchanged.
+  // Paid learners, running card trials, and the objective sub-tests never reach it.
+  let releaseTaste: () => Promise<void> = async () => {};
+  const tasteAiKind: FreeAiKind | null =
+    attempt.subTest === "WRITING" || attempt.subTest === "SPEAKING" ? attempt.subTest : null;
+  if (!paid && tasteOk && handler.mode === "AI" && tasteAiKind) {
+    const claim = await claimFreeAi(user.id, tasteAiKind);
+    if (claim === "USED") {
+      track("paywall_blocked", { userId: user.id, taskType: attempt.taskType });
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `This is part of the full plan. ${unlockLabel()}.`,
+          upgradeUrl: "/pricing",
+        },
+        { status: 402 },
+      );
+    }
+    if (claim === "RESERVED") releaseTaste = () => releaseFreeAi(user.id, tasteAiKind);
+  }
+
   // Speaking: transcribe the uploaded audio before scoring.
   if (audio) {
     try {
@@ -244,6 +275,7 @@ export async function POST(req: Request): Promise<NextResponse> {
       responseValue = { transcript };
     } catch (err) {
       console.error("[oet.submit] transcription failed:", err);
+      await releaseTaste(); // RR-399 A3: nothing was scored, the taste is given back
       return NextResponse.json(
         { ok: false, error: "Could not transcribe your recording. Try again." },
         { status: 500 },
@@ -258,6 +290,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   if (handler.mode === "AI") {
     const post = checkBeforeGrading({ taskType: attempt.taskType, response: responseValue });
     if (!post.ok) {
+      await releaseTaste(); // RR-399 A3: not scored, the taste is given back
       return NextResponse.json(
         { ok: false, error: post.message, reason: post.reason },
         { status: 422 },
@@ -281,6 +314,7 @@ export async function POST(req: Request): Promise<NextResponse> {
     });
   } catch (err) {
     console.error("[oet.submit] scoring failed:", err);
+    await releaseTaste(); // RR-399 A3: a failed scoring does not use up the taste
     return NextResponse.json(
       { ok: false, error: "Could not score this attempt. Try again in a moment." },
       { status: 500 },

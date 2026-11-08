@@ -59,6 +59,21 @@ const HOUR = 3_600_000, DAY = 24 * HOUR;
     const ai = s.search(/transcribeAudio\(|\.grade\(|checkBeforeGrading\(/);
     assert.ok(ai > at, "the budget check must come before the first AI call");
   });
+  // RR-399 A3: the taste's one AI-scored Writing / Speaking is reserved atomically (FreeAiUse), not only counted
+  await t("RR-399: the submit route reserves the taste's AI use (claimFreeAi) before the first AI call, and releases it on failure", () => {
+    const s = readFileSync(join(ROOT, "src/app/api/oet/submit/route.ts"), "utf8").replace(/\/\/.*|\/\*[\s\S]*?\*\//g, "");
+    const claim = s.search(/if \(!paid && tasteOk && handler\.mode === "AI" && tasteAiKind\) \{\s*const claim = await claimFreeAi\(user\.id, tasteAiKind\);/);
+    assert.ok(claim > 0, "claimFreeAi( not found for an unpaid taste learner's AI task in /api/oet/submit");
+    const ai = s.search(/transcribeAudio\(|handler\.run\(/);
+    assert.ok(ai > claim, "the claim must come before the first AI call");
+    assert.match(s, /claim === "USED"\) \{[\s\S]{0,400}status: 402/, "a USED claim must refuse with 402");
+    assert.ok((s.match(/await releaseTaste\(\);/g) ?? []).length >= 3, "transcription, substance and scoring failures must release the taste");
+  });
+  await t("RR-399: schema.prisma has model FreeAiUse with @@unique([userId, kind])", () => {
+    const schema = readFileSync(join(ROOT, "prisma/schema.prisma"), "utf8");
+    const model = (/model FreeAiUse \{[\s\S]*?\n\}/.exec(schema) ?? [""])[0];
+    assert.match(model, /@@unique\(\[userId, kind\]\)/);
+  });
 
   console.log(failed ? `\nFREE-AI BUDGET TEST FAIL (${failed})` : "\nFREE-AI BUDGET TEST PASS");
   process.exitCode = failed ? 1 : 0;

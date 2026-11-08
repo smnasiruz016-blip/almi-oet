@@ -31,7 +31,8 @@ const CSP = [
   "script-src 'self' 'unsafe-inline'",
   "connect-src 'self'",
   "manifest-src 'self'",
-  "upgrade-insecure-requests",
+  // RR-400: no `upgrade-insecure-requests` here. This policy ships Report-Only, where the browser ignores that directive
+  // and logs a console error saying so (best practices 93). Put it back when the header is flipped to enforcing.
 ].join("; ");
 
 const SECURITY_HEADERS = [
