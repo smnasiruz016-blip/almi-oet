@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { GET_STARTED_HREF, type NavItem } from "./GlobalHeader";
+import { ALMIWORLD_FAMILY } from "@/lib/almiworld-family";
 
 // The nav and the trial flag are DERIVED ONCE in GlobalHeader and handed down.
 // This component holds no copy of the signed-in/signed-out rule: a drawer that
@@ -94,6 +95,15 @@ export function HeaderMobileMenu({
           {/* RR-398: the AlmiWorld family links live in the AlmiWorld bar above (its own "AlmiWorld ☰" menu); this menu holds
               AlmiOET's own actions. It opens below the bar + header (112px), so the close button is never covered. */}
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-6 text-lg">
+            {/* RR-398: Home to almiworld.com stays one tap away inside the product menu too (from the generated kit). */}
+            <a
+              href={ALMIWORLD_FAMILY.home}
+              onClick={() => setOpen(false)}
+              className="rounded-md px-3 py-3 text-lg font-semibold text-almi-text hover:bg-almi-bg-peach hover:text-almi-coral"
+            >
+              AlmiWorld Home
+            </a>
+            <div className="my-2 border-t border-almi-bg-peach" />
             {productNav.map((item) => (
               <Link
                 key={item.href}
