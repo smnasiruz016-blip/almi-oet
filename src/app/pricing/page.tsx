@@ -31,6 +31,8 @@ const PRICING_JSON_LD = {
   offers: {
     "@type": "Offer",
     url: "https://almioet.almiworld.com/pricing",
+    // RR-400: the Offer now says the same as the visible offer, free hours included, from the same OFFER symbols.
+    description: `Try free for ${OFFER.tasteHours} hours, no card. Then $${PRICE}/month, cancel anytime.`,
     price: PRICE,
     priceCurrency: "USD",
     priceSpecification: {

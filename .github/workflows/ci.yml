@@ -90,6 +90,8 @@ jobs:
         run: npx tsx scripts/verify-free-ai-claim.ts
       - name: family header and footer gate (RR-398)
         run: node scripts/gates/family-nav.mjs
+      - name: text contrast gate (RR-400, WCAG AA text shades)
+        run: node scripts/gates/text-contrast.mjs
 
       # The three gates the "next exercise" chain brought with it, run BY NAME so
       # a failure in the CI log says which promise broke rather than "a test
