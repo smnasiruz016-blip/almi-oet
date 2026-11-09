@@ -82,6 +82,17 @@ jobs:
       - name: Gates
         run: npm run gate:all
 
+      # RR-397 + RR-398: pure node / tsx, no database, no secret.
+      - name: free-AI budget test (RR-397, AlmiOET's share)
+        run: npx tsx scripts/verify-free-ai-budget.ts
+      # RR-399 A3: the taste's one AI evaluation is reserved atomically (a fake store with the database's unique rule; no DB, no AI)
+      - name: free AI claim test (RR-399)
+        run: npx tsx scripts/verify-free-ai-claim.ts
+      - name: family header and footer gate (RR-398)
+        run: node scripts/gates/family-nav.mjs
+      - name: text contrast gate (RR-400, WCAG AA text shades)
+        run: node scripts/gates/text-contrast.mjs
+
       # The three gates the "next exercise" chain brought with it, run BY NAME so
       # a failure in the CI log says which promise broke rather than "a test
       # failed". None of them opens a connection: gate:next-exercise drives the
